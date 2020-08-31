@@ -1,5 +1,16 @@
 // pages/searchFor/searchFor.js
 const Notify = require('../../miniprogram_npm/@vant/weapp/notify/notify');
+const systemInfo = wx.getSystemInfoSync();
+let system = systemInfo.system.toLowerCase();
+let _height = 0;
+if(system.match("android")){
+	_height = 8;
+}else if(system.match("ios")){
+	_height = 4;
+}
+// 胶囊按钮位置信息
+const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
+const paddingTop = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight+_height;
 Page({
 	/**
 	 * 页面的初始数据
@@ -9,6 +20,7 @@ Page({
 		data: [],
 		list: [],
 		popular:[],
+		paddingTop:paddingTop,
 		bgColor: {
       "color": true,
       "border": false

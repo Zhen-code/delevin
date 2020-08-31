@@ -1,7 +1,4 @@
-// pages/personal/message/index.js
-// const {
-// 	message
-// } = require('../../../request/request')
+// combination/pages/browsePictures/index.js
 const systemInfo = wx.getSystemInfoSync();
 let system = systemInfo.system.toLowerCase();
 let _height = 0;
@@ -13,18 +10,20 @@ if (system.match("android")) {
 // 胶囊按钮位置信息
 const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
 const paddingTop = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight + _height;
+
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		paddingTop: paddingTop,
+		title: "",
 		bgColor: {
 			"color": true,
-			"border": false
+			"border": true
 		},
-		data: [],
+		paddingTop: paddingTop,
+		list: [],
 		pageIndex: 1,
 		pageSize: 12,
 		scrollTop: 0,
@@ -53,13 +52,6 @@ Page({
 	getData() {
 
 	},
-
-	toMessageDetails() {
-		wx.navigateTo({
-			url: '/combination/pages/message/index',
-		})
-	},
-
 	/**
 	 * 生命周期函数--监听页面加载
 	 */

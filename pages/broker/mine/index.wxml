@@ -1,7 +1,7 @@
 <!--pages/personal/mine/index.wxml-->
 <view class="mine">
 	<navbar title="个人中心" />
-	<view class="mine-content">
+	<view class="mine-content" style="padding-top:{{paddingTop}}px">
 		<view class="mine-content-top">
 			<view class="mine-content-top-box">
 				<view class="mine-content-top-left">

@@ -64,6 +64,7 @@ App({
     this.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
     this.globalData.menuHeight = menuButtonInfo.height;
     this.globalData.maxHeight = systemInfo.statusBarHeight+_height;
+    this.globalData.paddingTop = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight+_height;
   },
   globalData: {
     userInfo: null,
@@ -73,6 +74,7 @@ App({
     menuRight: 0, // 胶囊距右方间距（方保持左、右间距一致）
     menuHeight: 0, // 胶囊高度（自定义内容可与胶囊高度保证一致）
     maxHeight:0,
+    paddingTop:0,
     list: [], // tabBar
   },
   topHeight:{

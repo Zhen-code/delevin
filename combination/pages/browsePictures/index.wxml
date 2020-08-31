@@ -1,0 +1,24 @@
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
+<view class="view" style="top:{{paddingTop}}px">
+	<view class="view-box borderBottom">
+		<text class="title" >房源视频</text>
+		<view class="video">
+			<video class="video-video" loop="{{true}}" direction object-fit="{{fill}}" show-center-play-btn='{{false}}' show-play-btn="{{true}}" show-fullscreen-btn src="https://aliyuncdn.beiru168.com/diana/7d941bf7-48e7-4539-813d-9cf3d9599ddc.mp4"></video>
+		</view>
+	</view>
+	<view class="view-box">
+		<text class="title" >房源照片</text>
+		<scroll-view class="list" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
+			<view class="image-view">
+				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+			</view>
+		</scroll-view>
+	</view>
+</view>

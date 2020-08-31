@@ -125,3 +125,21 @@
 	font-weight: 400;
 	color: rgba(254, 99, 0, 1);
 }
+
+.item-right-content-icon1 {
+	width: 30px;
+	height: 16px;
+	margin-right: 5px;
+}
+
+.item-right-content-icon2 {
+	width: 52px;
+	height: 16px;
+	margin-right: 5px;
+}
+
+.item-right-content-icon3 {
+	width: 30px;
+	height: 16px;
+	margin-right: 5px;
+}

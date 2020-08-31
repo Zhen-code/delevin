@@ -28,7 +28,7 @@
 			</view>
 			<view class="houseType">
 				<view class="houseType-item" wx:for="{{houseType}}" data-item="{{item}}" data-index="{{index}}" wx:key="index" bindtap="changeHouseType">
-					<van-icon size="40px" name="{{item.icon}}" />
+					<van-icon size="80rpx" name="{{item.icon}}" />
 					<text class="houseType-item-name">{{item.name}}</text>
 				</view>
 			</view>

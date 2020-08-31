@@ -84,8 +84,8 @@ Component({
       })
     },
 		toHome(){
-		  wx.switchTab({
-				url: `/pages/tabBar/home/home`
+		  wx.navigateTo({
+				url: `/pages/index/index`
 			})
 		},
 	}

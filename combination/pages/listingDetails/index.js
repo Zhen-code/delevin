@@ -1,3 +1,16 @@
+
+const systemInfo = wx.getSystemInfoSync();
+let system = systemInfo.system.toLowerCase();
+let _height = 0;
+if(system.match("android")){
+	_height = 8;
+}else if(system.match("ios")){
+	_height = 4;
+}
+// 胶囊按钮位置信息
+const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
+const paddingTop = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight+_height;
+
 import uCharts from "../../../utils/u-charts.min.js"
 var _self;
 var canvaColumn = null;
@@ -7,7 +20,8 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		title: "新房房源",
+		paddingTop:paddingTop,
+		title: "",
 		bgColor: {
 			"color": true,
 			"border": false
@@ -21,6 +35,11 @@ Page({
 		cWidth: '',
 		cHeight: '',
 		tabIndex: 0,
+	},
+	tovideoImage(){
+		wx.navigateTo({
+			url:"/combination/pages/browsePictures/index"
+		})
 	},
 	changeArrow() {
 		let state = this.data.stlectState;
@@ -38,8 +57,8 @@ Page({
 			})
 		}
 	},
-	selectShelf() {
-		if (this.data.tabIndex === 0) {
+	selectShelf(e) {
+		if (e.currentTarget.dataset.index === 0) {
 			this.setData({
 				tabIndex: 1,
 			})
@@ -53,6 +72,25 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		let type = "";
+		switch (options.type) {
+			case "NEW":
+				type = "新房房源";
+				break;
+			case "TOW":
+				type = "二手房房源";
+				break;
+			case "ZUFANG":
+				type = "租房房源";
+				break;
+			case "XIAOQU":
+				type = "小区房源";
+				break;
+			default:
+		}
+		this.setData({
+			title: type,
+		})
 		_self = this;
 		this.cWidth = wx.getSystemInfoSync().windowWidth;
 		this.cHeight = 500 / 750 * wx.getSystemInfoSync().windowWidth;

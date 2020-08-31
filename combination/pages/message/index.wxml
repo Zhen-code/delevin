@@ -1,5 +1,5 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="我的消息" />
-<view class="view">
+<view class="view" style="padding-top:{{paddingTop}}px">
 	<view class="view-top">
 		<text class="view-top-title">消息标题</text>
 		<text class="view-top-time">2020-08-23 18:20:21</text>

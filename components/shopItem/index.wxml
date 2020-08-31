@@ -1,5 +1,5 @@
 <!--components/shopItem/index.wxml-->
-<view class="item padding">
+<view class="item padding" bindtap="toListingDetails">
 	<view class="item-left">
 		<van-image width="106" height="80" src="https://img.yzcdn.cn/vant/cat.jpeg" />
 	</view>
@@ -7,8 +7,8 @@
 		<view class="item-right-title">华标峰湖御境 精装修 家私家电齐全 通风采光好华标峰湖御境 精装修 家私家电齐全</view>
 		<view class="item-right-content">
 			<image class="item-right-content-icon1" src="/assets/image/label_forsell_blue@2x.png"></image>
-			<image class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
-			<image class="item-right-content-icon3" src="/assets/image/label_sell_orange@2x.png"></image>
+			<!-- <image class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
+			<image class="item-right-content-icon3" src="/assets/image/label_sell_orange@2x.png"></image> -->
 			<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">97m²</van-tag>
 			<van-tag style="margin-right:10rpx" color="#F8F8F8" text-color="#666666">近地铁</van-tag>
 		</view>

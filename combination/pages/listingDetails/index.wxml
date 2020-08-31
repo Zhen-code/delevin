@@ -1,8 +1,8 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
-<view class="view">
-	<view class="view-top">
+<view class="view" style="padding-top:{{paddingTop}}px">
+	<view class="view-top" bindtap="tovideoImage">
 		<view class="view-top-video">
-			<view class="view-top-video-play" bindtap="showVideo">
+			<view class="view-top-video-play">
 				<image src="/combination/image/icon_play_50@2x.png"></image>
 			</view>
 			<van-image width="272" height="204" src="https://img.yzcdn.cn/vant/cat.jpeg" />
@@ -10,7 +10,7 @@
 		<view class="view-top-image">
 			<van-image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
 			<van-image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-			<view class="view-top-image-show" bindtap="showImage">
+			<view class="view-top-image-show">
 				<text class="view-top-image-show-num">+123</text>
 				<text class="view-top-image-show-add">查看更多</text>
 			</view>
@@ -19,7 +19,7 @@
 
 	<view class="introduction borderBottom">
 		<view class="introduction-top">
-			<text class="introduction-title">亚运城番禺亚运板块热门高性价比楼盘亚运城天逸新组团8栋和9栋</text>
+			<text class="introduction-title">2233亚运城番禺亚运板块热门高性价比楼盘亚运城天逸新组团8栋和9栋</text>
 			<favorites data="{{favorites}}"></favorites>
 		</view>
 		<view class="introduction-type">
@@ -29,14 +29,14 @@
 			<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">97m²</van-tag>
 			<van-tag style="margin-right:10rpx" color="#F8F8F8" text-color="#666666">近地铁</van-tag>
 		</view>
-		<view class="introduction-price">
+		<view class="introduction-price" wx:if="title === '新房房源'">
 			<view class="introduction-price-num">32000元/m²<text class="introduction-price-name">(最终以开发商报价为准)</text></view>
 			<image class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
 		</view>
 
-		<!-- <view class="introduction-resources"> -->
-		<!-- 二手房源 -->
-		<!-- <view class="introduction-resources-row">
+		<view class="introduction-resources" wx:else>
+			<!-- 二手房源 -->
+			<view class="introduction-resources-row">
 				<view class="introduction-resources-num">
 					<text>210万</text>
 					<text>总价</text>
@@ -49,9 +49,9 @@
 					<text>100m²</text>
 					<text>建筑面积</text>
 				</view>
-			</view> -->
-		<!-- 租房 -->
-		<!-- <view class="introduction-resources-row">
+			</view>
+			<!-- 租房 -->
+			<view class="introduction-resources-row">
 				<view class="introduction-resources-num">
 					<text>2000元</text>
 					<text>月租</text>
@@ -64,9 +64,9 @@
 					<text>100m²</text>
 					<text>建筑面积</text>
 				</view>
-			</view> -->
-		<!-- 小区房源 -->
-		<!-- <view class="introduction-resources-row">
+			</view>
+			<!-- 小区房源 -->
+			<view class="introduction-resources-row">
 				<view class="introduction-resources-num">
 					<text>2.5万元/m²</text>
 					<text>当月均价</text>
@@ -79,12 +79,12 @@
 					<text>42套</text>
 					<text>在租房源数</text>
 				</view>
-			</view> -->
-		<!-- <view class="introduction-resources-go">
+			</view>
+			<view class="introduction-resources-go">
 				<text class="introduction-resources-go-price">查看价格变动</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
-			</view> -->
-		<!-- </view> -->
+			</view>
+		</view>
 
 
 		<!-- 新房详情 -->
@@ -185,8 +185,8 @@
 		<view class="components-row">
 			<text class="components-title">房屋时光机</text>
 			<view class="components-tab">
-					<text class="tabState {{tabIndex === 0?'tabAction':''}}" bindtap="selectShelf">二手房</text>
-					<text class="tabState {{tabIndex === 1?'tabAction':''}}" bindtap="selectShelf">租房</text>
+				<text class="tabState {{tabIndex === 0?'tabAction':''}}" data-index="{{1}}" bindtap="selectShelf">二手房</text>
+				<text class="tabState {{tabIndex === 1?'tabAction':''}}" data-index="{{0}}" bindtap="selectShelf">租房</text>
 			</view>
 		</view>
 		<view class="lineChart">

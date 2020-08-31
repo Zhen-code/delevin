@@ -29,9 +29,9 @@
 		"userConfirmedUseCompilerModuleSwitch": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.12.0",
+	"libVersion": "2.12.2",
 	"appid": "wx93e669491cb9a67c",
-	"projectname": "fangyuantong-demo",
+	"projectname": "delevin-mini-program",
 	"cloudfunctionTemplateRoot": "",
 	"watchOptions": {
 		"ignore": []
@@ -98,6 +98,19 @@
 					"name": "combination/pages/listingDetails/index",
 					"pathName": "combination/pages/listingDetails/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/propertyType/index",
+					"pathName": "combination/pages/propertyType/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/browsePictures/index",
+					"pathName": "combination/pages/browsePictures/index",
 					"scene": null
 				}
 			]

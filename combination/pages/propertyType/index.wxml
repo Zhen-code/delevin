@@ -1,0 +1,201 @@
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
+<view class="view" style="top:{{paddingTop}}px">
+	<citySearch style="width:100%"></citySearch>
+
+	<view class="type">
+		<view class="type-index" data-index="{{0}}" bindtap="selectTab">
+			<text class="type-index-name {{selectType === 0?'type-index-name-action':''}}">区域</text>
+			<image class="type-index-icon" wx:if="{{selectType1 === 0}}" src="/combination/image/icon_dragdown_12_nor@2x.png"></image>
+			<image class="type-index-icon" wx:if="{{selectType1 === 1}}" src="/combination/image/icon_pullup_12_pre@2x.png"></image>
+			<image class="type-index-icon" wx:if="{{selectType1 === 2}}" src="/combination/image/icon_dragdown_12_pre@2x.png"></image>
+		</view>
+		<view class="type-index" data-index="{{1}}" bindtap="selectTab">
+			<text class="type-index-name {{selectType === 1?'type-index-name-action':''}}">单价</text>
+			<image class="type-index-icon" wx:if="{{selectType2 === 0}}" src="/combination/image/icon_dragdown_12_nor@2x.png"></image>
+			<image class="type-index-icon" wx:if="{{selectType2 === 1}}" src="/combination/image/icon_pullup_12_pre@2x.png"></image>
+			<image class="type-index-icon" wx:if="{{selectType2 === 2}}" src="/combination/image/icon_dragdown_12_pre@2x.png"></image>
+		</view>
+		<view class="type-index" data-index="{{2}}" bindtap="selectTab">
+			<text class="type-index-name {{selectType === 2?'type-index-name-action':''}}">户型</text>
+			<image class="type-index-icon" wx:if="{{selectType3 === 0}}" src="/combination/image/icon_dragdown_12_nor@2x.png"></image>
+			<image class="type-index-icon" wx:if="{{selectType3 === 1}}" src="/combination/image/icon_pullup_12_pre@2x.png"></image>
+			<image class="type-index-icon" wx:if="{{selectType3 === 2}}" src="/combination/image/icon_dragdown_12_pre@2x.png"></image>
+		</view>
+		<view class="type-index" data-index="{{3}}" bindtap="selectTab">
+			<text class="type-index-name {{selectType === 3?'type-index-name-action':''}}">销售状态</text>
+			<image class="type-index-icon" wx:if="{{selectType4 === 0}}" src="/combination/image/icon_dragdown_12_nor@2x.png"></image>
+			<image class="type-index-icon" wx:if="{{selectType4 === 1}}" src="/combination/image/icon_pullup_12_pre@2x.png"></image>
+			<image class="type-index-icon" wx:if="{{selectType4 === 2}}" src="/combination/image/icon_dragdown_12_pre@2x.png"></image>
+		</view>
+
+		<!-- 区域 -->
+		<view class="typeTreeSelect" wx:if="{{selectType === 0}}">
+			<view class="typeTreeSelect-list">
+				<view class="typeTreeSelect-list-left">
+					<text class="typeTreeSelect-list-left-index">全部</text>
+					<text class="typeTreeSelect-list-left-index left-index-action">白云</text>
+					<text class="typeTreeSelect-list-left-index">越秀</text>
+				</view>
+				<view class="typeTreeSelect-list-right">
+					<view class="typeTreeSelect-list-right-one">
+						<view class="typeTreeSelect-list-right-one-list" bindtap="changeArea">
+							<text class="typeTreeSelect-list-right-one-title right-one-action">不限</text>
+							<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{checked}}" />
+						</view>
+						<view class="typeTreeSelect-list-right-one-list" bindtap="changeArea">
+							<text class="typeTreeSelect-list-right-one-title">白云大道</text>
+							<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{checked}}" />
+						</view>
+						<view class="typeTreeSelect-list-right-one-list" bindtap="changeArea">
+							<text class="typeTreeSelect-list-right-one-title">机场北路</text>
+							<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{checked}}" />
+						</view>
+					</view>
+					<view class="typeTreeSelect-list-right-one">
+						<view class="typeTreeSelect-list-right-one-list" bindtap="changeArea">
+							<text class="typeTreeSelect-list-right-one-title right-one-action">不限</text>
+							<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{checked}}" />
+						</view>
+						<view class="typeTreeSelect-list-right-one-list" bindtap="changeArea">
+							<text class="typeTreeSelect-list-right-one-title">白云大道</text>
+							<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{checked}}" />
+						</view>
+						<view class="typeTreeSelect-list-right-one-list" bindtap="changeArea">
+							<text class="typeTreeSelect-list-right-one-title">机场北路</text>
+							<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{checked}}" />
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<!-- 单价 -->
+		<view class="typeTreeSelect" wx:if="{{selectType === 1}}">
+			<view class="rentalMethod">
+				<view class="rentalMethod-name">
+					<text class="rentalMethod-leftName">单价区间(元/m²)</text>
+					<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
+				</view>
+				<view class="rentalMethod-content">
+					<text class="rentalMethod-content-index {{entireRentIndex === 0?'index-action':''}}" data-index="{{0}}" bindtap="entireRentTab">10000以下</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 1?'index-action':''}}" data-index="{{1}}" bindtap="entireRentTab">10000-150000</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 2?'index-action':''}}" data-index="{{2}}" bindtap="entireRentTab">15000-200000</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 3?'index-action':''}}" data-index="{{3}}" bindtap="entireRentTab">20000-30000</text>
+				</view>
+				<view class="rentalMethod-ding">
+					<text class="rentalMethod-ding-text">自定义</text>
+					<view class="rentalMethod-ding-input">
+						<input placeholder="最低价格(元/m²)" data-index="{{0}}" bindinput="changePrice"></input>
+						<text> - </text>
+						<input placeholder="最高价格(元/m²)" data-index="{{1}}" bindinput="changePrice"></input>
+					</view>
+				</view>
+				<view class="rentalMethod-tap">
+					<text class="rentalMethod-tap-text {{conditionIndex === 0?'rentalMethod-tap-text-action':''}}" data-index="{{0}}" bindtap="conditionTab">不限条件</text>
+					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
+				</view>
+			</view>
+		</view>
+
+		<!-- 户型 -->
+		<view class="typeTreeSelect" wx:if="{{selectType === 2}}">
+			<view class="rentalMethod">
+				<view class="rentalMethod-name">
+					<text class="rentalMethod-leftName">户型</text>
+					<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
+				</view>
+				<view class="rentalMethod-content">
+					<text class="rentalMethod-content-index {{entireRentIndex === 0?'index-action':''}}" data-index="{{0}}" bindtap="entireRentTab">一室</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 1?'index-action':''}}" data-index="{{1}}" bindtap="entireRentTab">二室</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 2?'index-action':''}}" data-index="{{2}}" bindtap="entireRentTab">三室</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 3?'index-action':''}}" data-index="{{3}}" bindtap="entireRentTab">四室</text>
+				</view>
+				<view class="rentalMethod-tap">
+					<text class="rentalMethod-tap-text {{conditionIndex === 0?'rentalMethod-tap-text-action':''}}" data-index="{{0}}" bindtap="conditionTab">不限条件</text>
+					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
+				</view>
+			</view>
+		</view>
+
+		<!-- 销售状态 -->
+		<view class="typeTreeSelect" wx:if="{{selectType === 3}}">
+			<view class="rentalMethod">
+				<view class="rentalMethod-name">
+					<text class="rentalMethod-leftName">销售状态</text>
+					<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
+				</view>
+				<view class="rentalMethod-content">
+					<text class="rentalMethod-content-index {{entireRentIndex === 0?'index-action':''}}" data-index="{{0}}" bindtap="entireRentTab">在售</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 1?'index-action':''}}" data-index="{{1}}" bindtap="entireRentTab">待售</text>
+				</view>
+				<view class="rentalMethod-tap">
+					<text class="rentalMethod-tap-text {{conditionIndex === 0?'rentalMethod-tap-text-action':''}}" data-index="{{0}}" bindtap="conditionTab">不限条件</text>
+					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
+				</view>
+			</view>
+		</view>
+
+		<!-- 楼龄 -->
+		<!-- <view class="typeTreeSelect">
+			<view class="rentalMethod">
+				<view class="rentalMethod-name">
+					<text class="rentalMethod-leftName">楼龄</text>
+					<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
+				</view>
+				<view class="rentalMethod-content">
+					<text class="rentalMethod-content-index {{entireRentIndex === 0?'index-action':''}}" data-index="{{0}}" bindtap="entireRentTab">5年以内</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 1?'index-action':''}}" data-index="{{1}}" bindtap="entireRentTab">10年以内</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 2?'index-action':''}}" data-index="{{2}}" bindtap="entireRentTab">15年以内</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 3?'index-action':''}}" data-index="{{3}}" bindtap="entireRentTab">20年或以上</text>
+				</view>
+				<view class="rentalMethod-tap">
+					<text class="rentalMethod-tap-text {{conditionIndex === 0?'rentalMethod-tap-text-action':''}}" data-index="{{0}}" bindtap="conditionTab">不限条件</text>
+					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
+				</view>
+			</view>
+		</view> -->
+
+		<!-- 出租方式 -->
+		<!-- <view class="typeTreeSelect" wx:if="{{selectType1 === 1}}">
+			<view class="rentalMethod">
+				<view class="rentalMethod-name">
+					<text class="rentalMethod-leftName">整租</text>
+					<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
+				</view>
+				<view class="rentalMethod-content">
+					<text class="rentalMethod-content-index {{entireRentIndex === 0?'index-action':''}}" data-index="{{0}}" bindtap="entireRentTab">不限</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 1?'index-action':''}}" data-index="{{1}}" bindtap="entireRentTab">不限</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 2?'index-action':''}}" data-index="{{2}}" bindtap="entireRentTab">不限</text>
+					<text class="rentalMethod-content-index {{entireRentIndex === 3?'index-action':''}}" data-index="{{3}}" bindtap="entireRentTab">不限</text>
+				</view>
+				<view class="rentalMethod-name">
+					<text class="rentalMethod-leftName">合租</text>
+				</view>
+				<view class="rentalMethod-content">
+					<text class="rentalMethod-content-index {{shareIndex === 0?'index-action':''}}" data-index="{{0}}" bindtap="shareTab">不限</text>
+					<text class="rentalMethod-content-index {{shareIndex === 1?'index-action':''}}" data-index="{{1}}" bindtap="shareTab">不限</text>
+					<text class="rentalMethod-content-index {{shareIndex === 2?'index-action':''}}" data-index="{{2}}" bindtap="shareTab">不限</text>
+					<text class="rentalMethod-content-index {{shareIndex === 3?'index-action':''}}" data-index="{{3}}" bindtap="shareTab">不限</text>
+					<text class="rentalMethod-content-index {{shareIndex === 4?'index-action':''}}" data-index="{{4}}" bindtap="shareTab">不限</text>
+				</view>
+				<view class="rentalMethod-tap">
+					<text class="rentalMethod-tap-text {{conditionIndex === 0?'rentalMethod-tap-text-action':''}}" data-index="{{0}}" bindtap="conditionTab">不限条件</text>
+					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
+				</view>
+			</view>
+		</view> -->
+	</view>
+
+	<view class="chengeData">
+		<van-tag wx:if="{{ show.primary }}" style="margin-top:20rpx;margin-right:20rpx;" closeable size="medium" size="large" plain id="primary" bind:close="onClose">电梯房</van-tag>
+		<van-tag wx:if="{{ show.primary }}" style="margin-top:20rpx;margin-right:20rpx;" closeable size="medium" size="large" plain id="primary" bind:close="onClose">3室</van-tag>
+		<van-tag wx:if="{{ show.primary }}" style="margin-top:20rpx;margin-right:20rpx;" closeable size="medium" size="large" plain id="primary" bind:close="onClose">20000-30000</van-tag>
+		<van-tag wx:if="{{ show.primary }}" style="margin-top:20rpx;margin-right:20rpx;" closeable size="medium" size="large" plain id="primary" bind:close="onClose">3室</van-tag>
+	</view>
+
+	<scroll-view class="list" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
+		<block>
+			<shopItem item="{{item}}" classType="{{classType}}"></shopItem>
+		</block>
+	</scroll-view>
+</view>

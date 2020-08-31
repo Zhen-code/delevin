@@ -1,0 +1,77 @@
+/* combination/pages/browsePictures/index.wxss */
+.view {
+	width: 100%;
+	height: 100%;
+	overflow: scroll;
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: column;
+	box-sizing: border-box;
+	position: fixed;
+	left: 0;
+}
+
+.view-box {
+	width: 100%;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+	height: auto;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.borderBottom{
+	border-bottom: 20rpx solid #F8F8F8;
+}
+
+.title {
+	width: 100%;
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333333;
+	margin-top: 24rpx;
+}
+
+.video{
+	width: 100%;
+	height: auto;
+	margin-top: 24rpx;
+	margin-bottom: 24rpx;
+}
+
+.video-video{
+	width: 100%;
+	height: 514rpx;
+}
+
+.list{
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-top: 24rpx;
+	margin-bottom: 100px;
+}
+
+.image-view{
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.image{
+	width: 332rpx;
+	height: 332rpx;
+	margin-bottom: 24rpx;
+}
