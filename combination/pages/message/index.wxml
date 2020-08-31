@@ -1,0 +1,8 @@
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="我的消息" />
+<view class="view">
+	<view class="view-top">
+		<text class="view-top-title">消息标题</text>
+		<text class="view-top-time">2020-08-23 18:20:21</text>
+	</view>
+	<view class="view-text">因群省议气品反气结消除报局其织思发低百派二养构不便基业我五变主比量制该导识他广知子万音平之省派则内合价。争单亲上已备马要己花铁家里比小状容加好总应前象实说开传手都立农关采合了易持实地联业意九过象应听收布只入县标打做行计高选本所广政积科斗革关口走如机十资直线流记原。许万儿想出叫管整向本维党平斯论装数太正头都线她水然何水拉化给年走与存值音通候器次龙物思商张阶速。</view>
+</view>

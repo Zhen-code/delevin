@@ -1,0 +1,58 @@
+<!--pages/personal/mine/index.wxml-->
+<view class="mine">
+	<navbar title="个人中心" />
+	<view class="mine-content">
+		<view class="mine-content-top">
+			<view class="mine-content-top-left">
+				<van-image round width="100rpx" height="100rpx" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+				<text class="mine-content-top-left-text">楼市君</text>
+			</view>
+			<view class="mine-content-top-rigth" bindtap="tabPortal">
+				<text class="mine-content-top-rigth-text">认证为经纪人</text>
+				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
+			</view>
+		</view>
+
+		<view class="mine-content-row" bindtap="myCollection">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/image/icon_collection_20_black@3x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>我的收藏</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
+		<view class="mine-content-row" bindtap="browseRecords">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/image/icon_history_20_black@3x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>浏览记录</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
+		<view class="mine-content-row" bindtap="privacyPolicy">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/image/icon_policy_20_black@2x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>隐私政策</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
+		<view class="mine-content-row" bindtap="customerService">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/image/icon_service_20_black@2x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>联系客服</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
+
+		<!-- <view class="mine-content-bottom" bindtap="tabPortal">切换至经纪端</view> -->
+		<view class="mine-content-out" bindtap="outLogin">
+			<text>退出登录</text>
+		</view>
+	</view>
+</view>

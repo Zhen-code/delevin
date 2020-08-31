@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "登录/注册",
+  "usingComponents": {
+    "navbar":"/components/nav/index"
+  }
+}

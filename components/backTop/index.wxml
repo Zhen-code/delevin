@@ -1,0 +1,3 @@
+<view class="cart-box">
+  <image wx:if='{{newTop > 200}}' bindtap="scrollTop" class="top" src="/assets/image/icon_uptotop_52_gray@2x.png"></image>
+</view>

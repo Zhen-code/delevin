@@ -1,0 +1,48 @@
+/* combination/pages/message/index.wxss */
+
+.view {
+	width: 100%;
+	height: 100%;
+	padding: 0 32rpx;
+	margin-top: 88px;
+	box-sizing: border-box;
+}
+
+.view-top {
+	width: 100%;
+	height: 159rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	border-bottom: 1rpx solid #eeeeee;
+}
+
+.view-top-title {
+	width: 100%;
+	text-align: left;
+	font-size: 32rpx;
+	font-weight: bold;
+	color: rgba(51, 51, 51, 1);
+}
+
+.view-top-time {
+	width: 100%;
+	text-align: left;
+	margin-top: 16rpx;
+	font-size: 26rpx;
+	font-weight: 400;
+	color: rgba(153, 153, 153, 1);
+}
+
+.view-text {
+	width: 100%;
+	text-align: left;
+	font-size: 14px;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: rgba(102, 102, 102, 1);
+	line-height: 24px;
+	margin-top: 28rpx;
+	text-indent:2em
+}

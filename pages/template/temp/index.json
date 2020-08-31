@@ -1,0 +1,11 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "navbar": "/components/nav/index",
+    "search": "/components/search/index",
+    "navSearch": "/components/navSearch/index",
+    "backTop":"/components/backTop/index"
+  }
+}

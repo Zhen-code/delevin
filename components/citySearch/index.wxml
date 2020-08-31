@@ -1,0 +1,11 @@
+<!--components/citySearch/index.wxml-->
+<view class="top">
+	<view class="top-left">
+		<text class="top-left-title">{{city}}</text>
+		<text class="top-left-border"></text>
+	</view>
+	<view class="top-right">
+		<image class="top-right-image" src="/assets/image/icon_glass_22_d6@2x.png"></image>
+		<input class="top-right-text" placeholder="输入地名/地铁/楼盘/小区查找房源"></input>
+	</view>
+</view>

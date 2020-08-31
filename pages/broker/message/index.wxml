@@ -1,0 +1,19 @@
+<navbar bgColor="{{bgColor}}" title="系统消息" />
+<view class="message-view">
+	<scroll-view class="view-list" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
+		<view class="view-row" bindtap="toMessageDetails">
+			<text class="view-row-top">2020-08-27 13:50:00</text>
+			<view class="view-row-bottom">
+				<view class="view-row-bottom-top">
+					<text>今天周四</text>
+				</view>
+				<text class="view-row-bottom-text">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</text>
+			</view>
+		</view>
+	</scroll-view>
+</view>
+
+<!-- <view class="no-message">
+	<image src="/image/onSite/empty_common@2x.png"></image>
+	<text>暂无消息</text>
+</view> -->

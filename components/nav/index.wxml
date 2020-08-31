@@ -1,0 +1,16 @@
+<view class="nav" style="height:{{navBarHeight}}px;background-color:{{bg}};border-bottom:{{border?'1rpx solid #EEEEEE':''}}">
+	<!-- 胶囊区域 -->
+	<view class="capsule-box" style="height:{{menuHeight}}px;bottom:{{menuBotton}}px;">
+		<view class="back" wx:if="{{back}}" style="bottom:{{menuBotton}}px;" catchtap="back">
+			<image src="/assets/image/icon_back_24_black@2x.png"></image>
+		</view>
+
+		<view class="back2" wx:if="{{backHome}}">
+			<van-icon name="arrow-left" color="#000000" size="48rpx" bindtap="back"/>
+			<text class="back2-text"></text>
+			<van-icon name="wap-home" color="#000000" size="48rpx" bindtap="toHome"/>
+		</view>
+
+		<view class="nav-title">{{title}}</view>
+	</view>
+</view>

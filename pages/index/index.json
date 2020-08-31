@@ -1,0 +1,14 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "主页面",
+  "usingComponents": {
+   "home":"/pages/personal/home/index",
+   "aspect":"/pages/personal/aspect/index",
+   "message":"/pages/personal/message/index",
+   "mine":"/pages/personal/mine/index",
+   "brokerHome":"/pages/broker/home/index",
+   "brokerListings":"/pages/broker/listings/index",
+   "brokerMessage":"/pages/broker/message/index",
+   "brokerMine":"/pages/broker/mine/index"
+  }
+}

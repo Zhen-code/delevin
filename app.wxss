@@ -1,0 +1,57 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 200rpx 0; */
+  box-sizing: border-box;
+} 
+
+.item-right-content-icon1 {
+	width: 30px;
+	height: 16px;
+	margin-right: 5px;
+}
+
+.item-right-content-icon2 {
+	width: 52px;
+	height: 16px;
+	margin-right: 5px;
+}
+
+.item-right-content-icon3 {
+	width: 30px;
+	height: 16px;
+	margin-right: 5px;
+}
+
+
+.tabState {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28rpx;
+	color: #999999;
+}
+
+.tabAction {
+	position: relative;
+	color: #333333;
+	font-weight: bold;
+}
+
+.tabAction::before {
+	content: "";
+	width: 10px;
+	height: 3px;
+	background: rgba(255, 210, 0, 1);
+	border-radius: 2px;
+	position: absolute;
+	bottom: -8rpx;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

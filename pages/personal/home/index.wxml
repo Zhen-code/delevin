@@ -1,0 +1,84 @@
+<!--pages/personal/home/index.wxml-->
+<view class="view">
+	<navbar top="{{top}}" bgColor="{{bgColor}}" title="房猿通" />
+	<view class="content">
+		<view class="top">
+			<view class="top-left" catchtap="changeCity">
+				<text class="top-left-title">{{city}}</text>
+				<text class="top-left-border"></text>
+			</view>
+			<view class="top-right" catchtap="changeSearch">
+				<image class="top-right-image" src="/assets/image/icon_glass_22_d6@2x.png"></image>
+				<input class="top-right-text" placeholder="输入地名/地铁/楼盘/小区查找房源"></input>
+			</view>
+		</view>
+
+		<view class="view-swiper">
+			<swiper indicator-dots autoplay="true" interval="2000" circular="true" indicator-color="white" indicator-active-color="#FFD200">
+				<block wx:for="{{bannerList}}" wx:for-index="i" wx:key="index">
+					<swiper-item data-item="{{item}}">
+						<van-image width="100%" height="320rpx" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+
+		<view class="components">
+			<view class="components-top">
+				<text class="components-top-left">我要找房</text>
+			</view>
+			<view class="houseType">
+				<view class="houseType-item" wx:for="{{houseType}}" data-item="{{item}}" data-index="{{index}}" wx:key="index" bindtap="changeHouseType">
+					<van-icon size="40px" name="{{item.icon}}" />
+					<text class="houseType-item-name">{{item.name}}</text>
+				</view>
+			</view>
+		</view>
+
+		<view class="components border">
+			<view class="components-top">
+				<text class="components-top-left">我是业主</text>
+			</view>
+			<view class="owner">
+				<view class="owner-left">
+					<text class="owner-left-title1">我要卖房</text>
+					<text class="owner-left-title2">金牌经纪 快速成交</text>
+				</view>
+				<view class="owner-rigth" bindtap="toPrice">
+					<image class="owner-rigth-image" src="http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/3db0055d-7b73-42d5-b440-2d505e5d0e9b.png"></image>
+				</view>
+			</view>
+			<view class="home-message">
+				<image class="home-message-image" src="/assets/image/pic_notice_black@2x.png"></image>
+				<view class="home-message-text">
+					<swiper class="swiperTitle" autoplay="true" interval="2000" vertical="true" circular="true">
+						<block wx:for="{{bannerList}}" wx:for-index="i" wx:key="index">
+							<swiper-item data-item="{{item}}" catchtouchmove='catchTouchMove' bindtap="toNewsDetails">在代码阅读过程中人们说脏话的频率是衡量代码质量的唯一标准。</swiper-item>
+						</block>
+					</swiper>
+				</view>
+			</view>
+		</view>
+
+		<view class="components">
+			<view class="components-top">
+				<text class="components-top-left">推荐房源</text>
+				<view class="components-top-right">
+					<text class="tabState {{tabIndex === 0?'tabAction':''}}" bindtap="selectShelf">新房</text>
+					<text class="tabState {{tabIndex === 1?'tabAction':''}}" bindtap="selectShelf">二手房</text>
+				</view>
+			</view>
+			<shopItem></shopItem>
+			<shopItem></shopItem>
+			<shopItem></shopItem>
+		</view>
+
+		<view class="home-bottom">
+			<text>- 到底啦 -</text>
+		</view>
+	</view>
+</view>
+
+<van-popup show="{{ show }}" position="bottom" round="{{true}}" custom-style="width:100%;height: 656rpx;" bind:close="onClose">
+	<van-area area-list="{{ areaList }}" columns-placeholder="{{ ['请选择', '请选择', '请选择'] }}" style="height:464rpx" bind:cancel="cancel" bind:confirm="confirm" />
+</van-popup>

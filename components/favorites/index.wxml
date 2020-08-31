@@ -1,0 +1,5 @@
+<!--components/favorites/index.wxml-->
+<view class="introduction-favorites" bindtap="changeFavorites">
+	<van-icon size="22px" color="{{favoritesColor}}" name="{{favoritesIcon}}" />
+	<text class="introduction-favorites-name">{{favoritesName}}</text>
+</view>

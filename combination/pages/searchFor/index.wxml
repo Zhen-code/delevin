@@ -1,0 +1,30 @@
+
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="房猿通" />
+<view class="view">
+	<van-notify id="van-notify" />
+	<search isCancel val='{{val}}' bind:search="search" bind:firmInput="search"></search>
+	<view class="view-content">
+		<view class="view-content-top">
+			<text class="view-content-title">搜索历史</text>
+			<view bindtap="delete" class="view-content-delete">
+				<image class="view-content-image" src="/combination/image/icon_clean_12_grey@2x.png"></image>
+				<text class="view-content-text">清空</text>
+			</view>
+		</view>
+		<view class="view-content-content">
+			<block wx:for="{{list}}" data-index="{{index}}" wx:key="index">
+				<text class="view-content-content-history" bindtap="changeTap" data-text='{{item}}'>{{item}}</text>
+			</block>
+		</view>
+	</view>
+	<view class="view-content">
+		<view class="view-content-top">
+			<text class="view-content-title">热门搜索</text>
+		</view>
+		<view class="view-content-content">
+			<block wx:for="{{popular}}" data-index="{{index}}" wx:key="index">
+				<text class="view-content-content-popular" bindtap="changePopular" data-text='{{item}}'>{{item}}</text>
+			</block>
+		</view>
+	</view>
+</view>

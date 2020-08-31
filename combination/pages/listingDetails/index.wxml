@@ -1,0 +1,312 @@
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
+<view class="view">
+	<view class="view-top">
+		<view class="view-top-video">
+			<view class="view-top-video-play" bindtap="showVideo">
+				<image src="/combination/image/icon_play_50@2x.png"></image>
+			</view>
+			<van-image width="272" height="204" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+		</view>
+		<view class="view-top-image">
+			<van-image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+			<van-image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+			<view class="view-top-image-show" bindtap="showImage">
+				<text class="view-top-image-show-num">+123</text>
+				<text class="view-top-image-show-add">查看更多</text>
+			</view>
+		</view>
+	</view>
+
+	<view class="introduction borderBottom">
+		<view class="introduction-top">
+			<text class="introduction-title">亚运城番禺亚运板块热门高性价比楼盘亚运城天逸新组团8栋和9栋</text>
+			<favorites data="{{favorites}}"></favorites>
+		</view>
+		<view class="introduction-type">
+			<image class="item-right-content-icon1" src="/assets/image/label_forsell_blue@2x.png"></image>
+			<image class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
+			<image class="item-right-content-icon3" src="/assets/image/label_sell_orange@2x.png"></image>
+			<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">97m²</van-tag>
+			<van-tag style="margin-right:10rpx" color="#F8F8F8" text-color="#666666">近地铁</van-tag>
+		</view>
+		<view class="introduction-price">
+			<view class="introduction-price-num">32000元/m²<text class="introduction-price-name">(最终以开发商报价为准)</text></view>
+			<image class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
+		</view>
+
+		<!-- <view class="introduction-resources"> -->
+		<!-- 二手房源 -->
+		<!-- <view class="introduction-resources-row">
+				<view class="introduction-resources-num">
+					<text>210万</text>
+					<text>总价</text>
+				</view>
+				<view class="introduction-resources-num">
+					<text>3室2厅1卫</text>
+					<text>户型</text>
+				</view>
+				<view class="introduction-resources-num">
+					<text>100m²</text>
+					<text>建筑面积</text>
+				</view>
+			</view> -->
+		<!-- 租房 -->
+		<!-- <view class="introduction-resources-row">
+				<view class="introduction-resources-num">
+					<text>2000元</text>
+					<text>月租</text>
+				</view>
+				<view class="introduction-resources-num">
+					<text>3室2厅1卫</text>
+					<text>户型</text>
+				</view>
+				<view class="introduction-resources-num">
+					<text>100m²</text>
+					<text>建筑面积</text>
+				</view>
+			</view> -->
+		<!-- 小区房源 -->
+		<!-- <view class="introduction-resources-row">
+				<view class="introduction-resources-num">
+					<text>2.5万元/m²</text>
+					<text>当月均价</text>
+				</view>
+				<view class="introduction-resources-num">
+					<text>59套</text>
+					<text>在售房源</text>
+				</view>
+				<view class="introduction-resources-num">
+					<text>42套</text>
+					<text>在租房源数</text>
+				</view>
+			</view> -->
+		<!-- <view class="introduction-resources-go">
+				<text class="introduction-resources-go-price">查看价格变动</text>
+				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
+			</view> -->
+		<!-- </view> -->
+
+
+		<!-- 新房详情 -->
+		<view class="introduction-specification">
+			<text class="components-title marginTop">楼盘基本信息</text>
+			<view class="introduction-specification-bottom">
+				<view class="name-type">楼盘名称：<text class="name-typeValue">番禺大道汉溪长隆新光快速</text></view>
+				<view class="name-type">产权年限：<text class="name-typeValue">70</text></view>
+				<view class="name-type" wx:if="{{stlectState}}">物业类别：<text class="name-typeValue">住宅</text></view>
+				<view class="name-type" wx:if="{{stlectState}}">装修状况：<text class="name-typeValue">精装修</text></view>
+				<view class="name-type" wx:if="{{stlectState}}">环线位置：<text class="name-typeValue">暂无</text></view>
+			</view>
+			<text class="components-title marginTop" wx:if="{{stlectState}}">销售信息</text>
+			<view class="introduction-specification-bottom" wx:if="{{stlectState}}">
+				<view class="name-type">销售状态：<text class="name-typeValue">埃里克京东方</text></view>
+				<view class="name-type">开盘时间：<text class="name-typeValue">2020-01-01</text></view>
+				<view class="name-type">交房时间：<text class="name-typeValue">2020-01-01</text></view>
+				<view class="name-type">楼盘优惠：<text class="name-typeValue">95折</text></view>
+				<view class="name-type">装修状况：<text class="name-typeValue">暂无</text></view>
+				<view class="name-type">开发商：<text class="name-typeValue">奥科吉束带结发京东方</text></view>
+				<view class="name-type">楼盘地址：<text class="name-typeValue">按季度法卡萨老地方</text></view>
+				<view class="name-type">咨询电话：<text class="name-typeValue">020-294876593</text></view>
+			</view>
+			<text class="components-title marginTop" wx:if="{{stlectState}}">小区规划</text>
+			<view class="introduction-specification-bottom" wx:if="{{stlectState}}">
+				<view class="name-type">占地面积：<text class="name-typeValue">埃里克京东方</text></view>
+				<view class="name-type">建筑面积：<text class="name-typeValue">2020-01-01</text></view>
+				<view class="name-type">绿化率：<text class="name-typeValue">80%</text></view>
+				<view class="name-type">停车位：<text class="name-typeValue">2398</text></view>
+				<view class="name-type">停车配比：<text class="name-typeValue">暂无</text></view>
+				<view class="name-type">规划户数：<text class="name-typeValue">239</text></view>
+				<view class="name-type">楼层状况：<text class="name-typeValue">暂无</text></view>
+				<view class="name-type">物业费：<text class="name-typeValue">暂无</text></view>
+				<view class="name-type">物业公司：<text class="name-typeValue">暂无</text></view>
+			</view>
+			<view class="introduction-specification-add" bindtap="changeArrow">
+				<text class="introduction-specification-add-title">{{stlectData}}</text>
+				<van-icon size="30rpx" name="{{stlectName}}" color="#88ABFF" />
+			</view>
+		</view>
+
+		<!-- 二手房详情 -->
+		<!-- <view class="introduction-specification">
+			<view class="introduction-specification-top">
+				<view class="name-type">单价：<text class="name-typeValue">25510元/m²</text></view>
+				<view class="name-type">年代：<text class="name-typeValue">2017</text></view>
+				<view class="name-type">楼层：<text class="name-typeValue">东南</text></view>
+				<view class="name-type">产权：<text class="name-typeValue">70</text></view>
+				<view class="name-type">朝向：<text class="name-typeValue">东南</text></view>
+				<view class="name-type">装修：<text class="name-typeValue">精装修</text></view>
+				<view class="name-type">楼型：<text class="name-typeValue">塔楼</text></view>
+				<view class="name-type">电梯：<text class="name-typeValue">2梯5户</text></view>
+			</view>
+			<view class="introduction-specification-bottom">
+				<view class="name-type">发布时间：<text class="name-typeValue">2020-08-23</text></view>
+				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">锦绣香江</text></view>
+				<view class="name-type">首付月供：<text class="name-typeValue name-typeValueColor">预计100万元，月供8000</text></view>
+			</view>
+		</view> -->
+
+		<!-- 租房 -->
+		<!-- <view class="introduction-specification">
+		<view class="introduction-specification-top">
+			<view class="name-type">楼层：<text class="name-typeValue">高</text></view>
+			<view class="name-type">地铁：<text class="name-typeValue">汉溪长隆站</text></view>
+			<view class="name-type">朝向：<text class="name-typeValue">东南</text></view>
+			<view class="name-type">装修：<text class="name-typeValue">简约现代</text></view>
+			<view class="name-type">电梯：<text class="name-typeValue">2梯5户</text></view>
+			<view class="name-type">年代：<text class="name-typeValue">2017</text></view>
+		</view>
+		<view class="introduction-specification-bottom">
+			<view class="name-type">付款方式：<text class="name-typeValue">押二付一</text></view>
+			<view class="name-type">发布时间：<text class="name-typeValue">2020-08-23</text></view>
+			<view class="name-type">房屋配置：<text class="name-typeValue">空调、洗衣机、电视机、床</text></view>
+			<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">锦绣香江</text></view>
+		</view>
+	</view> -->
+
+		<!-- 小区房 -->
+		<!-- <view class="introduction-specification">
+		<view class="introduction-specification-bottom">
+			<view class="name-type">小区地址：<text class="name-typeValue">番禺区汉溪大道新光快速交汇处</text></view>
+		</view>
+		<view class="introduction-specification-top">
+			<view class="name-type">产权年限：<text class="name-typeValue">70</text></view>
+			<view class="name-type">容积率：<text class="name-typeValue">暂无</text></view>
+			<view class="name-type">物业类别：<text class="name-typeValue">住宅</text></view>
+			<view class="name-type">停车位：<text class="name-typeValue">暂无</text></view>
+			<view class="name-type">建筑年代：<text class="name-typeValue">2017</text></view>
+			<view class="name-type">物业费：<text class="name-typeValue">暂无</text></view>
+			<view class="name-type">物业公司：<text class="name-typeValue">时代地产</text></view>
+			<view class="name-type">绿化率：<text class="name-typeValue">80%</text></view>
+		</view>
+	</view> -->
+	</view>
+
+	<view class="components borderBottom">
+		<view class="components-row">
+			<text class="components-title">房屋时光机</text>
+			<view class="components-tab">
+					<text class="tabState {{tabIndex === 0?'tabAction':''}}" bindtap="selectShelf">二手房</text>
+					<text class="tabState {{tabIndex === 1?'tabAction':''}}" bindtap="selectShelf">租房</text>
+			</view>
+		</view>
+		<view class="lineChart">
+			<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
+		</view>
+	</view>
+	<view class="components borderBottom">
+		<text class="components-title">位置周边</text>
+		<view class="surrounding">
+			<view class="surrounding-map">
+				<map id="map" longitude="113.324520" latitude="23.099994" scale="14" show-location style="width: 100%; height: 172px;"></map>
+			</view>
+			<view class="surrounding-change">
+				<text class="surrounding-details">查看周边配套</text>
+				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
+			</view>
+			<view class="surrounding-show">
+				<van-image width="343" height="172" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+			</view>
+		</view>
+	</view>
+	<view class="components">
+		<text class="components-title">推荐经纪人</text>
+		<view class="information">
+			<view class="information-row">
+				<view class="information-row-left">
+					<van-image round width="40" height="40" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+					<view class="information-row-left-info">
+						<text class="information-row-left-info-name">殳松光</text>
+						<text class="information-row-left-info-type">链家</text>
+					</view>
+				</view>
+				<view class="information-row-right">
+					<image class="information-row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
+					<text class="information-row-right-phone">虚拟号码</text>
+				</view>
+			</view>
+			<view class="information-row">
+				<view class="information-row-left">
+					<van-image round width="40" height="40" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+					<view class="information-row-left-info">
+						<text class="information-row-left-info-name">殳松光</text>
+						<text class="information-row-left-info-type">链家</text>
+					</view>
+				</view>
+				<view class="information-row-right">
+					<image class="information-row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
+					<text class="information-row-right-phone">虚拟号码</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="components borderBottom">
+		<text class="components-title">经纪人描述</text>
+		<text class="description">原料也经备几很与将易的少织个断回地动对民后走半门话真且安可飞运义维会铁走别建几学调圆先精关见划很七社建可半委得火往资济想名自办须斗。压求半别做下受积术院第务七技时话得你从响大育中农内政非科下济造半极土知多近由</text>
+	</view>
+	<view class="components borderBottom">
+		<text class="components-title">全网点评</text>
+		<view class="comment">
+			<view class="comment-name">柏颖珊</view>
+			<view class="comment-type">
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+			</view>
+			<view class="comment-text">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</view>
+			<view class="comment-time">评论时间：2020-08-23</view>
+		</view>
+		<view class="comment">
+			<view class="comment-name">柏颖珊</view>
+			<view class="comment-type">
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+			</view>
+			<view class="comment-text">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</view>
+			<view class="comment-time">评论时间：2020-08-23</view>
+		</view>
+		<view class="comment">
+			<view class="comment-name">柏颖珊</view>
+			<view class="comment-type">
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+			</view>
+			<view class="comment-text">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</view>
+			<view class="comment-time">评论时间：2020-08-23</view>
+		</view>
+	</view>
+	<view class="components borderBottom">
+		<text class="components-title">成交记录</text>
+		<view class="record">
+			<view class="record-row">
+				<view class="record-sky">5室2厅3卫<text class="record-sky-num">225m²</text></view>
+				<view class="record-price">成交金额：<text class="record-price-num">932万</text><text class="record-price-money"> 29303元/m²</text></view>
+				<view class="record-time">成交日期：<text class="record-time-num">2020-08-23</text></view>
+			</view>
+			<view class="record-row">
+				<view class="record-sky">5室2厅3卫<text class="record-sky-num">225m²</text></view>
+				<view class="record-price">成交金额：<text class="record-price-num">932万</text><text class="record-price-money"> 29303元/m²</text></view>
+				<view class="record-time">成交日期：<text class="record-time-num">2020-08-23</text></view>
+			</view>
+			<view class="record-row">
+				<view class="record-sky">5室2厅3卫<text class="record-sky-num">225m²</text></view>
+				<view class="record-price">成交金额：<text class="record-price-num">932万</text><text class="record-price-money"> 29303元/m²</text></view>
+				<view class="record-time">成交日期：<text class="record-time-num">2020-08-23</text></view>
+			</view>
+		</view>
+	</view>
+	<view class="components">
+		<text class="components-title">猜你喜欢</text>
+		<shopItem></shopItem>
+		<shopItem></shopItem>
+		<shopItem></shopItem>
+	</view>
+</view>
+<view class="bottom-phone"><text class="bottom-phone-text">电话咨询</text></view>

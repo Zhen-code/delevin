@@ -1,0 +1,13 @@
+<import src="../../pages/template/tabar-template/tabar-template.wxml" />
+
+<home top="{{top}}" wx:if="{{PageCur=='home'}}"></home>
+<aspect wx:if="{{PageCur=='aspect'}}"></aspect>
+<message wx:if="{{PageCur=='message'}}"></message>
+<mine bind:item="getItem" wx:if="{{PageCur=='mine'}}"></mine>
+
+<brokerHome wx:if="{{PageCur=='brokerHome'}}"></brokerHome>
+<brokerListings wx:if="{{PageCur=='brokerListings'}}"></brokerListings>
+<brokerMessage wx:if="{{PageCur=='brokerMessage'}}"></brokerMessage>
+<brokerMine bind:item="getItem" wx:if="{{PageCur=='brokerMine'}}"></brokerMine>
+
+<template is="tabBar" data="{{menus}}" />

@@ -1,0 +1,12 @@
+.cart-box {
+  width: 104rpx;
+}
+
+.cart-box image {
+  width: 104rpx;
+  height: 104rpx;
+}
+
+.cart-box .top {
+  margin-bottom: 12px;
+}
