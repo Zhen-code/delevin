@@ -1,4 +1,3 @@
-<!--pages/personal/home/index.wxml-->
 <view class="view">
 	<navbar top="{{top}}" bgColor="{{bgColor}}" title="房猿通" />
 	<view class="content">
