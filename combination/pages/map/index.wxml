@@ -1,0 +1,2 @@
+<!--combination/pages/map/index.wxml-->
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="周边" />

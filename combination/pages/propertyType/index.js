@@ -1,15 +1,5 @@
-// combination/pages/propertyType/index.js
-const systemInfo = wx.getSystemInfoSync();
-let system = systemInfo.system.toLowerCase();
-let _height = 0;
-if (system.match("android")) {
-	_height = 8;
-} else if (system.match("ios")) {
-	_height = 4;
-}
-// 胶囊按钮位置信息
-const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
-const paddingTop = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight + _height;
+
+const topHeight = require('../../../request/topHeight.js').topHeight
 
 Page({
 	/**
@@ -27,7 +17,7 @@ Page({
 		entireRentIndex: 0,
 		shareIndex: 0,
 		conditionIndex: 0,
-		paddingTop: paddingTop,
+		paddingTop: topHeight,
 		title: "",
 		bgColor: {
 			"color": true,

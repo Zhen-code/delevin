@@ -4,7 +4,8 @@ const {
 } = require('../../../request/provinces')
 var QQMapWX = require('../../../utils/qqmap-wx-jssdk');
 var qqmapsdk;
-var key = 'XRUBZ-XN6KX-IYQ4H-7XZUT-AZWLJ-4PBIA'
+var key = 'XRUBZ-XN6KX-IYQ4H-7XZUT-AZWLJ-4PBIA';
+const topHeight = require('../../../request/topHeight.js').topHeight
 Component({
 	/**
 	 * 组件的属性列表
@@ -27,6 +28,7 @@ Component({
 	 * 组件的初始数据
 	 */
 	data: {
+		paddingTop:topHeight,
 		show: false,
 		city: "",
 		houseType: [{
@@ -51,7 +53,6 @@ Component({
 			}
 		],
 		bannerList: [1, 2, 3, 4],
-		tabIndex: 0,
 		areaList: provincCityDistrict
 	},
 
@@ -151,17 +152,6 @@ Component({
 		},
 		catchTouchMove(res) {
 			return false
-		},
-		selectShelf() {
-			if (this.data.tabIndex === 0) {
-				this.setData({
-					tabIndex: 1,
-				})
-			} else {
-				this.setData({
-					tabIndex: 0,
-				})
-			}
 		},
 	},
 })

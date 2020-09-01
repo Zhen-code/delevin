@@ -184,10 +184,7 @@
 	<view class="components borderBottom">
 		<view class="components-row">
 			<text class="components-title">房屋时光机</text>
-			<view class="components-tab">
-				<text class="tabState {{tabIndex === 0?'tabAction':''}}" data-index="{{1}}" bindtap="selectShelf">二手房</text>
-				<text class="tabState {{tabIndex === 1?'tabAction':''}}" data-index="{{0}}" bindtap="selectShelf">租房</text>
-			</view>
+			<doubleTab></doubleTab>
 		</view>
 		<view class="lineChart">
 			<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>

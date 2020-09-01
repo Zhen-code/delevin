@@ -1,16 +1,5 @@
 
-const systemInfo = wx.getSystemInfoSync();
-let system = systemInfo.system.toLowerCase();
-let _height = 0;
-if(system.match("android")){
-	_height = 8;
-}else if(system.match("ios")){
-	_height = 4;
-}
-// 胶囊按钮位置信息
-const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
-const paddingTop = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight+_height;
-
+const topHeight = require('../../../request/topHeight.js').topHeight
 import uCharts from "../../../utils/u-charts.min.js"
 var _self;
 var canvaColumn = null;
@@ -20,7 +9,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		paddingTop:paddingTop,
+		paddingTop:topHeight,
 		title: "",
 		bgColor: {
 			"color": true,

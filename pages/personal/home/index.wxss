@@ -10,7 +10,6 @@
 	min-height: 100vh;
 	max-height: 100%;
 	padding-bottom: 100rpx;
-	padding-top: 88px;
 	background-size: 100% 360rpx;
 	background-repeat: no-repeat;
 	background-image: url('http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/701b7e0d-9e0b-4b73-b615-9f2b6beb19fc.png');
@@ -117,43 +116,6 @@
 	font-size: 32rpx;
 	font-weight: bold;
 	color: rgba(51, 51, 51, 1);
-}
-
-.components-top-right {
-	width: 130px;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: row;
-}
-
-.tabState {
-	width: 50%;
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 28rpx;
-	color: #999999;
-}
-
-.tabAction {
-	position: relative;
-	color: #333333;
-	font-weight: bold;
-}
-
-.tabAction::before {
-	content: "";
-	width: 10px;
-	height: 3px;
-	background: rgba(255, 210, 0, 1);
-	border-radius: 2px;
-	position: absolute;
-	bottom: -8rpx;
-	left: 50%;
-	transform: translate(-50%, -50%);
 }
 
 .houseType {

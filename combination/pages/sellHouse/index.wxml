@@ -1,0 +1,2 @@
+<!--combination/pages/sellHouse/index.wxml-->
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="我要卖房" />

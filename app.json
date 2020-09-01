@@ -17,7 +17,9 @@
 				"pages/message/index",
 				"pages/listingDetails/index",
 				"pages/propertyType/index",
-				"pages/browsePictures/index"
+				"pages/browsePictures/index",
+				"pages/map/index",
+				"pages/sellHouse/index"
 			]
 		}
 	],

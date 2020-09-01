@@ -1,4 +1,4 @@
-// combination/pages/browsePictures/index.js
+// combination/pages/sellHouse/index.js
 const topHeight = require('../../../request/topHeight.js').topHeight
 Page({
 
@@ -6,41 +6,13 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		title: "",
+		paddingTop:topHeight,
 		bgColor: {
-			"color": true,
-			"border": true
-		},
-		paddingTop: topHeight,
-		list: [],
-		pageIndex: 1,
-		pageSize: 12,
-		scrollTop: 0,
-		triggered: false,
+      "color": true,
+      "border": false
+    },
 	},
 
-	scrollTop() {
-		wx.pageScrollTo({
-			scrollTop: 0
-		})
-	},
-
-	topList() {
-		this.setData({
-			pageIndex: 1,
-			triggered: false,
-		})
-		this.getData()
-	},
-
-	//滚动加载
-	scrollList() {
-		this.getData()
-	},
-
-	getData() {
-
-	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */

@@ -1,6 +1,6 @@
 <view class="view">
 	<navbar top="{{top}}" bgColor="{{bgColor}}" title="房猿通" />
-	<view class="content">
+	<view class="content" style="padding-top:{{paddingTop}}px">
 		<view class="top">
 			<view class="top-left" catchtap="changeCity">
 				<text class="top-left-title">{{city}}</text>
@@ -62,10 +62,7 @@
 		<view class="components">
 			<view class="components-top">
 				<text class="components-top-left">推荐房源</text>
-				<view class="components-top-right">
-					<text class="tabState {{tabIndex === 0?'tabAction':''}}" bindtap="selectShelf">新房</text>
-					<text class="tabState {{tabIndex === 1?'tabAction':''}}" bindtap="selectShelf">二手房</text>
-				</view>
+				<doubleTab></doubleTab>
 			</view>
 			<shopItem></shopItem>
 			<shopItem></shopItem>

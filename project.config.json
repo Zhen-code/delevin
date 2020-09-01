@@ -30,7 +30,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.12.2",
-	"appid": "wx93e669491cb9a67c",
+	"appid": "wxe0ce08c67e4c6d85",
 	"projectname": "delevin-mini-program",
 	"cloudfunctionTemplateRoot": "",
 	"watchOptions": {
@@ -111,6 +111,13 @@
 					"id": -1,
 					"name": "combination/pages/browsePictures/index",
 					"pathName": "combination/pages/browsePictures/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/sellHouse/index",
+					"pathName": "combination/pages/sellHouse/index",
 					"scene": null
 				}
 			]

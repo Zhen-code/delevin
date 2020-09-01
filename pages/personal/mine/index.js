@@ -1,16 +1,6 @@
 // pages/personal/mine/index.js
 const app = getApp()
-const systemInfo = wx.getSystemInfoSync();
-let system = systemInfo.system.toLowerCase();
-let _height = 0;
-if(system.match("android")){
-	_height = 8;
-}else if(system.match("ios")){
-	_height = 4;
-}
-// 胶囊按钮位置信息
-const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
-const paddingTop = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight+_height;
+const topHeight = require('../../../request/topHeight.js').topHeight
 Component({
 	/**
 	 * 组件的属性列表
@@ -30,7 +20,7 @@ Component({
 	 * 组件的初始数据
 	 */
 	data: {
-		paddingTop:paddingTop,
+		paddingTop:topHeight,
 		userInfo:{},
 	},
 	observers:{
