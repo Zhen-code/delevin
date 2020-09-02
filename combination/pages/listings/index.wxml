@@ -1,0 +1,16 @@
+<!--combination/pages/listings/index.wxml-->
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="房猿通" />
+<view class="view" style="padding-top:{{paddingTop}}px;">
+	<citySearch style="width:100%"></citySearch>
+	<view class="doubleTab">
+		<doubleTab style="width:100%;height:70rpx;" tabItem="{{tabItem}}"></doubleTab>
+	</view>
+	<scroll-view class="shopItem" style="top: {{paddingTop+44+45}}px;" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
+		<block wx:for="{{item}}" wx:key="index">
+			<shopItem ></shopItem>
+		</block>
+		<view class="footer">
+			<text class="footer-text">- 到底啦 -</text>
+		</view>
+	</scroll-view>
+</view>

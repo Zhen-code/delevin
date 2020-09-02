@@ -23,11 +23,16 @@ Page({
 		stlectName: "arrow-down",
 		cWidth: '',
 		cHeight: '',
-		tabIndex: 0,
+		tabItem:['新房','二手房']
 	},
 	tovideoImage(){
 		wx.navigateTo({
 			url:"/combination/pages/browsePictures/index"
+		})
+	},
+	toMap(){
+		wx.navigateTo({
+			url:"/combination/pages/map/index"
 		})
 	},
 	changeArrow() {
@@ -46,16 +51,8 @@ Page({
 			})
 		}
 	},
-	selectShelf(e) {
-		if (e.currentTarget.dataset.index === 0) {
-			this.setData({
-				tabIndex: 1,
-			})
-		} else {
-			this.setData({
-				tabIndex: 0,
-			})
-		}
+	getTabValue(e){
+		console.log(e.detail)
 	},
 	/**
 	 * 生命周期函数--监听页面加载

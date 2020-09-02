@@ -1,8 +1,8 @@
 /* component/search/index.wxss */
-/* pages/orderList/orderList.wxss */
 .search-box {
   padding: 0 24rpx;
   display: flex;
+  margin-top: 10rpx;
 }
 
 .search-box .cancel {

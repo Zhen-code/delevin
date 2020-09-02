@@ -9,8 +9,51 @@ Page({
 		paddingTop:topHeight,
 		bgColor: {
       "color": true,
-      "border": false
-    },
+      "border": true,
+		},
+		itemIndex:0,
+		list:[
+			{
+				"title":"银行",
+				"unCheckImgUrl": "/combination/image/mapTab/icon_bank_nor@2x.png",
+				"checkedImgUrl": "/combination/image/mapTab/icon_bank_pre@2x.png",
+			},
+			{
+				"title":"公交",
+				"unCheckImgUrl": "/combination/image/mapTab/icon_bus_nor@2x.png",
+				"checkedImgUrl": "/combination/image/mapTab/icon_bus_pre@2x.png",
+			},
+			{
+				"title":"地铁",
+				"unCheckImgUrl": "/combination/image/mapTab/icon_train_nor@2x.png",
+				"checkedImgUrl": "/combination/image/mapTab/icon_train_pre@2x.png",
+			},
+			{
+				"title":"教育",
+				"unCheckImgUrl": "/combination/image/mapTab/icon_education_nor@2x.png",
+				"checkedImgUrl": "/combination/image/mapTab/icon_education_pre@2x.png",
+			},
+			{
+				"title":"医疗",
+				"unCheckImgUrl": "/combination/image/mapTab/icon_medical_nor@2x.png",
+				"checkedImgUrl": "/combination/image/mapTab/icon_medical_pre@2x.png",
+			},
+			{
+				"title":"购物",
+				"unCheckImgUrl": "/combination/image/mapTab/icon_shop_nor@2x.png",
+				"checkedImgUrl": "/combination/image/mapTab/icon_shop_pre@2x.png",
+			},
+			{
+				"title":"餐饮",
+				"unCheckImgUrl": "/combination/image/mapTab/icon_eat_nor@2x.png",
+				"checkedImgUrl": "/combination/image/mapTab/icon_eat_pre@2x.png",
+			}
+		]
+	},
+	tabItem(e){
+		this.setData({
+			itemIndex:e.currentTarget.dataset.index
+		})
 	},
 
 	/**

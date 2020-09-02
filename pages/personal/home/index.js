@@ -53,7 +53,8 @@ Component({
 			}
 		],
 		bannerList: [1, 2, 3, 4],
-		areaList: provincCityDistrict
+		areaList: provincCityDistrict,
+		tabItem:['新房','二手房']
 	},
 
 	/**
@@ -78,24 +79,29 @@ Component({
 				},
 			})
 		},
+
 		changeCity() {
 			this.setData({
 				show: true
 			});
 		},
+
 		changeSearch() {
 			wx.navigateTo({
 				url: '/combination/pages/searchFor/index'
 			})
 		},
+		
 		onClose() {
 			this.setData({
 				show: false
 			});
 		},
+
 		cancel() {
 			this.onClose()
 		},
+
 		confirm(e) {
 			// for (let i = 0; i < e.detail.values.length; i++) {
 			// 	name = e.detail.values[0].name + '-' + e.detail.values[1].name + '-' + e.detail.values[2].name;
@@ -112,6 +118,7 @@ Component({
 			})
 			this.onClose();
 		},
+
 		changeHouseType(e) {
 			let type = '';
 			let name = e.currentTarget.dataset.item.name;
@@ -144,14 +151,23 @@ Component({
 				})
 			}
 		},
+
 		toPrice() {
-			console.log('跳卖楼界面')
+			wx.navigateTo({
+				url: '/combination/pages/sellHouse/index',
+			})
 		},
+
 		toNewsDetails(e) {
 			console.log('带参跳新闻详情界面')
 		},
+
 		catchTouchMove(res) {
 			return false
+		},
+
+		getTabValue(e){
+			console.log(e.detail)
 		},
 	},
 })

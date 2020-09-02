@@ -1,4 +1,4 @@
-// combination/pages/browsePictures/index.js
+// combination/pages/listings/index.js
 const topHeight = require('../../../request/topHeight.js').topHeight
 Page({
 
@@ -6,59 +6,47 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		title: "浏览图片",
+		paddingTop: topHeight,
 		bgColor: {
 			"color": true,
-			"border": true
+			"border": true,
 		},
-		src: "https://aliyuncdn.beiru168.com/diana/7d941bf7-48e7-4539-813d-9cf3d9599ddc.mp4",
-		current: 0,
-		paddingTop: topHeight,
-		addTitle: "点击加载更多",
-		list: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+		tabItem: ['新房/楼盘', '二手房', '租房', '小区房'],
+		item: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 		pageIndex: 1,
 		pageSize: 12,
-		show: false,
+		scrollTop: 0,
+		triggered: false,
+	},
+
+	scrollTop() {
+		wx.pageScrollTo({
+			scrollTop: 0
+		})
+	},
+
+	topList() {
+		this.setData({
+			pageIndex: 1,
+			triggered: false,
+		})
+		this.getData()
+	},
+
+	//滚动加载
+	scrollList() {
+		this.getData()
 	},
 
 	getData() {
-		// merchandise.warehouseList({
-		// 	"pageSize": this.data.pageSize,
-		// 	"pageIndex": this.data.pageIndex,
-		// }).then(((res) => {
-		// 	let list = this.data.list;
-		// 	list.push(...res.list)
-		// 	this.setData({
-		// 		list: list,
-		// 		pageIndex: this.data.pageIndex + 1,
-		// 	})
-		// })).catch((err) => {
-		// 	wx.showToast({
-		// 		title: '请求失败',
-		// 		icon: 'none',
-		// 		duration: 2500
-		// 	})
-		// })
+
 	},
-	getItem() {
-		console.log(this.data.list.length)
-	},
-	getImage(e) {
-		this.setData({
-			current: e.currentTarget.dataset.index,
-			show: true
-		});
-	},
-	onClose() {
-		this.setData({
-			show: false
-		});
-	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		console.log(options)
 	},
 
 	/**

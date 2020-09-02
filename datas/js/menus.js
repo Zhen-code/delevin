@@ -20,7 +20,7 @@ var agentMenus = {
   }, {
     currentUrl: "message",
     unCheckImgUrl: "/assets/image/tabbar/icon_tab3_24_nor@2x.png",
-    checkedImgUrl: "/assets/image/tabbar/icon_tab4_24_pre@2x.png",
+    checkedImgUrl: "/assets/image/tabbar/icon_tab3_24_pre@2x.png",
     btnType: 0,
     title: "消息"
   }, {

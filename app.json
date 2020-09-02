@@ -7,7 +7,8 @@
 		"pages/personal/aspect/index",
 		"pages/personal/message/index",
 		"pages/personal/mine/index",
-		"pages/broker/home/index"
+		"pages/broker/home/index",
+		"components/view/index"
 	],
 	"subpackages": [
 		{
@@ -19,7 +20,8 @@
 				"pages/propertyType/index",
 				"pages/browsePictures/index",
 				"pages/map/index",
-				"pages/sellHouse/index"
+				"pages/sellHouse/index",
+				"pages/listings/index"
 			]
 		}
 	],

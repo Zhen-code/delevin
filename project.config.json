@@ -118,6 +118,27 @@
 					"id": -1,
 					"name": "combination/pages/sellHouse/index",
 					"pathName": "combination/pages/sellHouse/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/map/index",
+					"pathName": "combination/pages/map/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/listings/index",
+					"pathName": "combination/pages/listings/index",
 					"scene": null
 				}
 			]

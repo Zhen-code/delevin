@@ -4,7 +4,10 @@ Component({
 	 * 组件的属性列表
 	 */
 	properties: {
-
+		tabItem:{
+			type:Array,
+			value:[],
+		}
 	},
 
 	/**
@@ -19,15 +22,10 @@ Component({
 	 */
 	methods: {
 		selectShelf(e) {
-			if (e.currentTarget.dataset.index === 0) {
-				this.setData({
-					tabIndex: 1,
-				})
-			} else {
-				this.setData({
-					tabIndex: 0,
-				})
-			}
+			this.setData({
+				tabIndex: e.currentTarget.dataset.index,
+			})
+			this.triggerEvent('backTabValue',e.currentTarget.dataset.index);
 		},
 	}
 })

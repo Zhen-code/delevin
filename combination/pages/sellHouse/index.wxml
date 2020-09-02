@@ -1,2 +1,85 @@
 <!--combination/pages/sellHouse/index.wxml-->
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="我要卖房" />
+<view class="view" style="padding-top:{{paddingTop}}px">
+	<text class="view-title">房源信息</text>
+	<view class="view-row">
+		<view class="view-row-content">
+			<text class="view-row-content-name">城市</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='city' data-model="city" placeholder="请输入城市区域"></input>
+			</view>
+		</view>
+		<view class="view-row-content">
+			<text class="view-row-content-name">小区名称</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='community' data-model="community" placeholder="请输入小区名称"></input>
+			</view>
+		</view>
+		<view class="view-row-content">
+			<text class="view-row-content-name">详细地址</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='adddress' data-model="adddress" placeholder="请输入详细地址"></input>
+			</view>
+		</view>
+		<view class="view-row-content">
+			<text class="view-row-content-name">楼栋单元</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='building' data-model="building" placeholder="请输入楼栋单元"></input>
+			</view>
+		</view>
+		<view class="view-row-content">
+			<text class="view-row-content-name">户型</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='unitType' data-model="unitType" placeholder="请输入房屋户型"></input>
+			</view>
+		</view>
+		<view class="view-row-content">
+			<text class="view-row-content-name">建筑面积</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='area' data-model="area" placeholder="请输入建筑面积"></input>m²
+			</view>
+		</view>
+		<view class="view-row-content">
+			<text class="view-row-content-name">楼层</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='floor' data-model="floor" placeholder="请输入房屋楼层"></input>
+			</view>
+		</view>
+		<view class="view-row-content">
+			<text class="view-row-content-name">朝向</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='towards' data-model="towards" placeholder="请输入房屋朝向"></input>
+			</view>
+		</view>
+		<view class="view-row-content">
+			<text class="view-row-content-name">期望售价</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='price' data-model="price" placeholder="请输入您期望的售价"></input>万元
+			</view>
+		</view>
+	</view>
+	<text class="view-title">联系信息</text>
+	<view class="view-row">
+		<view class="view-row-content">
+			<text class="view-row-content-name">称呼</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='name' data-model="name" placeholder="如何称呼您"></input>
+			</view>
+		</view>
+		<view class="view-row-content">
+			<text class="view-row-content-name">手机号</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='phone' data-model="phone" maxlength="11" placeholder="请填写您的手机号"></input>
+			</view>
+		</view>
+		<view class="view-row-content">
+			<text class="view-row-content-name">短信验证码</text>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='code' data-model="code" maxlength="6" placeholder="请输入验证码"></input>
+				<text class="view-row-content-input-set"></text>
+				<text class="view-row-content-input-code" bindtap="getCode">{{code_msg}}</text>
+			</view>
+		</view>
+	</view>
+</view>
+<view class="bottom-phone"><text class="bottom-phone-text" bindtap="submit">立即提交</text></view>

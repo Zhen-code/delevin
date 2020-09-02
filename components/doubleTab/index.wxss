@@ -1,6 +1,6 @@
 /* components/doubleTab/index.wxss */
 .tab {
-	width: 130px;
+	flex: 1;
 	height: 100%;
 	display: flex;
 	align-items: center;
@@ -9,13 +9,18 @@
 }
 
 .tabState {
-	width: 50%;
-	height: 100%;
+	flex: 1;
+	height: 80%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-size: 28rpx;
 	color: #999999;
+	/* margin-right: 56rpx; */
+}
+
+.tabState:last-child{
+	margin-right: 0;
 }
 
 .tabAction {
@@ -26,8 +31,8 @@
 
 .tabAction::before {
 	content: "";
-	width: 10px;
-	height: 3px;
+	width: 35rpx;
+	height: 6rpx;
 	background: rgba(255, 210, 0, 1);
 	border-radius: 2px;
 	position: absolute;

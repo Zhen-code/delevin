@@ -9,12 +9,12 @@ Page({
 		val: '',
 		data: [],
 		list: [],
-		popular:[],
-		paddingTop:topHeight,
+		popular: ["碧桂园", "港龙城", "九榕府", "星河湾", "华辉新都", "红荔花园", "荣大滨河湾"],
+		paddingTop: topHeight,
 		bgColor: {
-      "color": true,
-      "border": false
-    },
+			"color": true,
+			"border": false
+		},
 	},
 
 	firm(e) {
@@ -23,7 +23,7 @@ Page({
 			return
 		}
 		wx.navigateTo({
-			// url: `../searchClass/searchClass?title=${e.detail.val}`,
+			url: `/combination/pages/listings/index?title=${e.detail.val}`,
 		})
 	},
 
@@ -39,10 +39,11 @@ Page({
 				val: '',
 				list: resultArr
 			})
-			// wx.navigateTo({
-			// 	url: `../searchClass/searchClass?title=${e.detail.val}`,
-			// })
 			wx.setStorageSync('list', this.data.list)
+			wx.navigateTo({
+				url: `/combination/pages/listings/index?title=${e.detail.val}`,
+			})
+		
 		} else {
 			Notify.default({
 				type: 'warning',
@@ -55,14 +56,8 @@ Page({
 		this.setData({
 			val: e.target.dataset.text,
 		})
-		// wx.navigateTo({
-		// 	url: `../searchClass/searchClass?title=${e.target.dataset.text}`,
-		// })
-	},
-
-	changePopular(e) {
-		this.setData({
-			val: e.target.dataset.text,
+		wx.navigateTo({
+			url: `../searchClass/searchClass?title=${e.target.dataset.text}`,
 		})
 	},
 
@@ -79,9 +74,19 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		wx.setNavigationBarTitle({
-			title: '搜索商品'
-		});
+		var list = wx.getStorageSync('list');
+		if(list){
+			this.setData({
+				list:list,
+				data:list
+			})
+		}else{
+			this.setData({
+				list:[],
+				data:[],
+				val:'',
+			})
+		}
 	},
 
 	/**
