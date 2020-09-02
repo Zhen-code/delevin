@@ -118,6 +118,20 @@
 					"id": -1,
 					"name": "combination/pages/sellHouse/index",
 					"pathName": "combination/pages/sellHouse/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新闻详情页",
+					"pathName": "combination/pages/aspectDetail/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发帖页面",
+					"pathName": "combination/pages/post/index",
 					"scene": null
 				}
 			]

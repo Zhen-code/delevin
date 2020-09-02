@@ -1,7 +1,6 @@
 /* combination/pages/listingDetails/index.wxss */
 .view {
 	width: 100%;
-	height: 100vh;
 	padding-top: 88px;
 	display: flex;
 	align-items: flex-start;
