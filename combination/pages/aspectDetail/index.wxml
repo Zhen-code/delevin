@@ -1,0 +1,68 @@
+<!--combination/pages/aspectDetail/index.wxml-->
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="新闻资讯" />
+<view class="content" style="padding-top:{{paddingTop}}px">
+  <view class="content-top">
+    <view class="title">Hot文章值得看:广州当前两居室排行出炉：广州恒大阳光半岛领跑</view>
+    <view class="second-bar">
+      <view class="second-bar-left">参谋长说房俱乐部</view>
+      <view>2020-08-27 13:23:33</view>
+    </view>
+  </view>
+   <text class="content-center">
+  各地银行执行水平趋一致 专家称房贷利率平稳料延续额本息和等额本金，红色的部分是还款的利息，蓝色的部分是还款的本金记者日前调研发现，近期一线城市房贷利率整体趋于平稳，各地区银行间房贷利率执行水平比较一致。专家指出，住房信贷政策是房地产调控的重要一环，为避免刺激房地产市场，预计短期内房贷利率连续大面积下行的局面难再现。
+  </text>
+  <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1251668712,1631279038&fm=26&gp=0.jpg" mode="aspectFill" class="news-img"></image>
+</view>
+<view class="line"></view>
+<view class="comment-wrapper">
+<text class="comment-title">全部评论</text>
+  <view class="comment-content">
+    <view class="comment-item">
+      <view class="comment-item-title">
+        我是评论评论评论新一线城市分别是成都、重庆、西安、天津、苏州、南京、郑州、佛山.赞！
+      </view>
+      <view class="comment-item-time">
+        <view class="comment-item-time-left">参谋长 2020-08-27 13:23:33</view>
+        <view class="comment-item-time-right">回复</view>
+      </view>
+      <view class="second-comment">
+        <view class="second-comment-item">
+          <view class="second-comment-item-title">我是回复楼上的评论，答疑完毕，接着来聊</view>
+          <view class="second-comment-item-response">
+            <view class="response1">愉快的打火机</view>
+            <view class="response">回复</view>
+            <view class="response2">参谋长</view>
+            <view class="response-time">2020-08-27 13:23:33</view>
+          </view>
+          <view class="response-btn">回复</view>
+        </view>
+        <view class="more-comment"><text class="more-text">查看更多评论</text><image src="../../../assets/image/icon_go_20_blue@2x.png" mode="aspectFill" class="goBlue"></image></view>
+      </view>
+    </view>
+    <view class="comment-item">
+      <view class="comment-item-title">
+        我是评论评论评论新一线城市分别是成都、重庆、西安、天津、苏州、南京、郑州、佛山.赞！
+      </view>
+      <view class="comment-item-time">
+        <view class="comment-item-time-left">参谋长 2020-08-27 13:23:33</view>
+        <view class="comment-item-time-right">回复</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="no-more-text">- 没有更多评论了 -</view>
+<view class="bottom-contain">
+<view class="write-content">写评论…</view>
+  <view class="write-content-btn">
+    <image src="../../../assets/image/icon_collection_20_nor@2x.png" class="bottom-img" mode="aspectFill"></image>
+    <text>收藏</text>
+  </view>
+  <view class="write-content-btn">
+    <image src="../../../assets/image/icon_forward_20_black@2x.png" class="bottom-img" mode="aspectFill"></image>
+    <text>转发</text>
+  </view>
+  <view class="write-content-btn">
+    <image src="../../../assets/image/icon_comment_20_black@2x.png" class="bottom-img" mode="aspectFill"></image>
+    <text>123</text>
+  </view>
+</view>

@@ -1,0 +1,86 @@
+/* combination/pages/post/index.wxss */
+.content{
+    padding: 0 32rpx;
+    box-sizing:border-box;
+    overflow: hidden;
+}
+.placeholderStyle{
+    font-size: 36rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #999999;
+}
+.taStyle{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
+}
+.titleInput{
+    width: 100%;
+    min-height: 98rpx;
+    border-bottom: 1px solid #EEEEEE;
+    color: #333333;
+}
+.textareaInput{
+    margin-top: 32rpx;
+    min-height: 470rpx;
+    width: 100%;
+    color: #333333;
+}
+.label{
+    width: 686rpx;
+    height: 72rpx;
+    background: #F2F6FF;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.label-text{
+    width: 32rpx;
+    height: 32rpx;
+    margin: 0 16rpx 0 8rpx;
+}
+.labelInput{
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #4077FF;
+    width: 100%;
+}
+.upload-file{
+    margin-top: 30rpx;
+}
+.van-button{
+    width: 160rpx !important;
+    height: 160rpx !important;
+    background: #F8F8F8 !important;
+}
+.van-uploader__preview-image{
+    width: 160rpx !important;
+    height: 160rpx !important;
+}
+.van-uploader__preview-delete{
+    width: 36rpx !important;
+    height: 36rpx !important;
+}
+.post-button{
+    width: 686rpx;
+    height: 88rpx;
+    background: #FFD854;
+    border-radius: 44rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 400rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+    margin-bottom: 66rpx;
+}
+.disabled{
+    background: #F8F8F8;
+}
