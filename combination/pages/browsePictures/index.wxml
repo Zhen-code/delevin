@@ -3,22 +3,28 @@
 	<view class="view-box borderBottom">
 		<text class="title" >房源视频</text>
 		<view class="video">
-			<video class="video-video" loop="{{true}}" direction object-fit="{{fill}}" show-center-play-btn='{{false}}' show-play-btn="{{true}}" show-fullscreen-btn src="https://aliyuncdn.beiru168.com/diana/7d941bf7-48e7-4539-813d-9cf3d9599ddc.mp4"></video>
+			<video class="video-video" loop="{{true}}" direction object-fit="{{fill}}" show-center-play-btn='{{false}}' show-play-btn="{{true}}" show-fullscreen-btn src="{{src}}"></video>
 		</view>
 	</view>
-	<view class="view-box">
+	<view class="view-box" style="padding-bottom:180rpx">
 		<text class="title" >房源照片</text>
-		<scroll-view class="list" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
-			<view class="image-view">
-				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
-				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
-				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
-				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
-				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
-				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
-				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
-				<image class="image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
-			</view>
-		</scroll-view>
+		<view class="image-view">
+			<block wx:for="{{list}}" wx:key="index">
+				<image class="image" data-item="{{item}}" data-index="{{index}}" bindtap="getImage" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+			</block>
+		</view>
+		<view class="addTitle" wx:if="{{list.length !== 0}}" bindtap="getItem">{{addTitle}}</view>
 	</view>
 </view>
+
+<van-popup show="{{ show }}" bind:close="onClose">
+	<view class="view-swiper">
+		<swiper indicator-dots indicator-dots="{{false}}" circular="true" current="{{current}}">
+			<block wx:for="{{list}}" wx:for-index="i" wx:key="index">
+				<swiper-item data-item="{{item}}">
+					<image class="setImage" src="https://img.yzcdn.cn/vant/cat.jpeg" ></image>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+</van-popup>

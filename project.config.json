@@ -123,6 +123,27 @@
 				},
 				{
 					"id": -1,
+					"name": "combination/pages/map/index",
+					"pathName": "combination/pages/map/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/listings/index",
+					"pathName": "combination/pages/listings/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
 					"name": "新闻详情页",
 					"pathName": "combination/pages/aspectDetail/index",
 					"query": "id=1",

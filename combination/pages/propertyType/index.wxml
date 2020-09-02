@@ -29,6 +29,7 @@
 		</view>
 
 		<!-- 区域 -->
+
 		<view class="typeTreeSelect" wx:if="{{selectType === 0}}">
 			<view class="typeTreeSelect-list">
 				<view class="typeTreeSelect-list-left">
@@ -67,6 +68,8 @@
 					</view>
 				</view>
 			</view>
+			<view class="rentalMethod-hide" bindtap="setHide">
+			</view>
 		</view>
 
 		<!-- 单价 -->
@@ -95,6 +98,8 @@
 					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
 				</view>
 			</view>
+			<view class="rentalMethod-hide" bindtap="setHide">
+			</view>
 		</view>
 
 		<!-- 户型 -->
@@ -115,6 +120,8 @@
 					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
 				</view>
 			</view>
+			<view class="rentalMethod-hide" bindtap="setHide">
+			</view>
 		</view>
 
 		<!-- 销售状态 -->
@@ -132,6 +139,8 @@
 					<text class="rentalMethod-tap-text {{conditionIndex === 0?'rentalMethod-tap-text-action':''}}" data-index="{{0}}" bindtap="conditionTab">不限条件</text>
 					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
 				</view>
+			</view>
+			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
 		</view>
 
@@ -152,6 +161,8 @@
 					<text class="rentalMethod-tap-text {{conditionIndex === 0?'rentalMethod-tap-text-action':''}}" data-index="{{0}}" bindtap="conditionTab">不限条件</text>
 					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
 				</view>
+			</view>
+			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
 		</view> -->
 
@@ -182,6 +193,8 @@
 					<text class="rentalMethod-tap-text {{conditionIndex === 0?'rentalMethod-tap-text-action':''}}" data-index="{{0}}" bindtap="conditionTab">不限条件</text>
 					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
 				</view>
+			</view>
+			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
 		</view> -->
 	</view>

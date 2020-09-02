@@ -1,0 +1,59 @@
+/* combination/pages/listings/index.wxss */
+.view {
+	width: 100%;
+	background-color: white;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.doubleTab {
+	width: 100%;
+	height: 90rpx;
+	border-bottom: 1rpx solid #eeeeee;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+}
+
+/* height: calc(100vh - {{paddingTop+44+45}}px); */
+
+.shopItem {
+	width: 100%;
+	height: 100%;
+	overflow: scroll;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+	position: fixed;
+	left: 0;
+}
+
+.shopItem-list {
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.footer {
+	width: 100%;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 180px;
+}
+
+.footer-text {
+	width: 100%;
+	text-align: center;
+	font-size: 26rpx;
+	font-weight: 400;
+	color: #999999;
+}

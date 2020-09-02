@@ -1,1 +1,54 @@
 /* combination/pages/map/index.wxss */
+.view {
+	width: 100%;
+	background-color: white;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+
+.footer {
+	width: 1005;
+	height: 200rpx;
+	background: #ffffff;
+	border-top-left-radius: 40rpx;
+	border-top-right-radius: 40rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+}
+
+.footer-index {
+	width: auto;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	margin: 0 26rpx
+}
+
+.footer-index-image {
+	width: 48rpx;
+	height: 48rpx;
+	display: block;
+}
+
+.footer-index-text {
+	font-size: 24rpx;
+	font-weight: 400;
+	color: #999999;
+}
+
+.action {
+	font-weight: bold;
+	color: #333333;
+}

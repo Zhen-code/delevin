@@ -33,6 +33,7 @@ Page({
 		scrollTop: 0,
 		triggered: false,
 		classType:"",
+		show: false,
 	},
 
 	onClose(event) {
@@ -123,6 +124,12 @@ Page({
 				})
 			}
 		}
+	},
+
+	setHide(){
+		this.setData({
+			selectType:''
+		})
 	},
 
 	changeReset() {

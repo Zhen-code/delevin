@@ -1,5 +1,6 @@
 <!--components/doubleTab/index.wxml-->
 <view class="tab">
-	<text class="tabState {{tabIndex === 0?'tabAction':''}}" data-index="{{1}}" bindtap="selectShelf">新房</text>
-	<text class="tabState {{tabIndex === 1?'tabAction':''}}" data-index="{{0}}" bindtap="selectShelf">二手房</text>
+	<block wx:for="{{tabItem}}" wx:key="index">
+		<text class="tabState {{tabIndex === index?'tabAction':''}}" data-index="{{index}}" bindtap="selectShelf">{{item}}</text>
+	</block>
 </view>

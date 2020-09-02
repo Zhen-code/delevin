@@ -29,14 +29,14 @@
 			<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">97m²</van-tag>
 			<van-tag style="margin-right:10rpx" color="#F8F8F8" text-color="#666666">近地铁</van-tag>
 		</view>
-		<view class="introduction-price" wx:if="title === '新房房源'">
+		<!-- <view class="introduction-price" wx:if="title === '新房房源'">
 			<view class="introduction-price-num">32000元/m²<text class="introduction-price-name">(最终以开发商报价为准)</text></view>
 			<image class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
-		</view>
+		</view> -->
 
-		<view class="introduction-resources" wx:else>
+		<view class="introduction-resources">
 			<!-- 二手房源 -->
-			<view class="introduction-resources-row">
+			<!-- <view class="introduction-resources-row">
 				<view class="introduction-resources-num">
 					<text>210万</text>
 					<text>总价</text>
@@ -49,9 +49,9 @@
 					<text>100m²</text>
 					<text>建筑面积</text>
 				</view>
-			</view>
+			</view> -->
 			<!-- 租房 -->
-			<view class="introduction-resources-row">
+			<!-- <view class="introduction-resources-row">
 				<view class="introduction-resources-num">
 					<text>2000元</text>
 					<text>月租</text>
@@ -64,11 +64,11 @@
 					<text>100m²</text>
 					<text>建筑面积</text>
 				</view>
-			</view>
+			</view> -->
 			<!-- 小区房源 -->
 			<view class="introduction-resources-row">
 				<view class="introduction-resources-num">
-					<text>2.5万元/m²</text>
+					<text>15万元/m²</text>
 					<text>当月均价</text>
 				</view>
 				<view class="introduction-resources-num">
@@ -76,7 +76,7 @@
 					<text>在售房源</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>42套</text>
+					<text>22套</text>
 					<text>在租房源数</text>
 				</view>
 			</view>
@@ -184,7 +184,7 @@
 	<view class="components borderBottom">
 		<view class="components-row">
 			<text class="components-title">房屋时光机</text>
-			<doubleTab></doubleTab>
+			<doubleTab tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
 		</view>
 		<view class="lineChart">
 			<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
@@ -196,7 +196,7 @@
 			<view class="surrounding-map">
 				<map id="map" longitude="113.324520" latitude="23.099994" scale="14" show-location style="width: 100%; height: 172px;"></map>
 			</view>
-			<view class="surrounding-change">
+			<view class="surrounding-change" bindtap="toMap">
 				<text class="surrounding-details">查看周边配套</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>

@@ -1,0 +1,9 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navbar":"/components/nav/index",
+    "citySearch":"/components/citySearch/index",
+    "doubleTab":"/components/doubleTab/index",
+    "shopItem":"/components/shopItem/index"
+  }
+}

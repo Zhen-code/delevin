@@ -1,11 +1,15 @@
 <!--components/citySearch/index.wxml-->
 <view class="top">
-	<view class="top-left">
+	<view class="top-left" bindtap="changeCity">
 		<text class="top-left-title">{{city}}</text>
 		<text class="top-left-border"></text>
 	</view>
-	<view class="top-right">
+	<view class="top-right" bindtap="toSearch">
 		<image class="top-right-image" src="/assets/image/icon_glass_22_d6@2x.png"></image>
 		<input class="top-right-text" placeholder="输入地名/地铁/楼盘/小区查找房源"></input>
 	</view>
 </view>
+
+<van-popup show="{{ show }}" position="bottom" round="{{true}}" custom-style="width:100%;height: 656rpx;" bind:close="onClose">
+	<van-area area-list="{{ areaList }}" columns-placeholder="{{ ['请选择', '请选择', '请选择'] }}" style="height:464rpx" bind:cancel="cancel" bind:confirm="confirm" />
+</van-popup>

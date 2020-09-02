@@ -6,6 +6,7 @@ Page({
   },
   //事件处理函数
   getPhoneNumber: function (e) {
+    console.log(e)
     var that = this;
     if (e.detail.errMsg == "getPhoneNumber:ok") {
       wx.getUserInfo({

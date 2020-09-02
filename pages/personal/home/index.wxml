@@ -16,7 +16,7 @@
 			<swiper indicator-dots autoplay="true" interval="2000" circular="true" indicator-color="white" indicator-active-color="#FFD200">
 				<block wx:for="{{bannerList}}" wx:for-index="i" wx:key="index">
 					<swiper-item data-item="{{item}}">
-						<van-image width="100%" height="320rpx" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+						<image class="swiper-item-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
 					</swiper-item>
 				</block>
 			</swiper>
@@ -62,7 +62,7 @@
 		<view class="components">
 			<view class="components-top">
 				<text class="components-top-left">推荐房源</text>
-				<doubleTab></doubleTab>
+				<doubleTab style="width:230rpx;" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
 			</view>
 			<shopItem></shopItem>
 			<shopItem></shopItem>
