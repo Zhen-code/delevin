@@ -22,7 +22,7 @@
     <view class="label">
         <image
                 class="label-text"
-                src="../../../assets/image/icon_16_blue@2x.png"></image>
+                src="../../image/icon_16_blue@2x.png"></image>
         <input
                 placeholder-class="labelInput"
                 value="{{label}}"

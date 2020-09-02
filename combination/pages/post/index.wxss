@@ -69,7 +69,6 @@
 .post-button{
     width: 686rpx;
     height: 88rpx;
-    background: #FFD854;
     border-radius: 44rpx;
     display: flex;
     justify-content: center;
@@ -79,8 +78,14 @@
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
     color: #333333;
+    background: #FFD854;
+
     margin-bottom: 66rpx;
 }
 .disabled{
-    background: #F8F8F8;
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    background: #DADDE3;
+    color: #FFFFFF;
 }

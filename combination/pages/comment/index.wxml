@@ -1,0 +1,12 @@
+<!--combination/pages/comment/index.wxml-->
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="发表评论" />
+<view class="comment-wrapper" style="padding-top:{{paddingTop}}px">
+  <textarea
+  class="comment-area"
+  value="{{commentValue}}"
+  placeholder="写评论…"
+  placeholder-class="placeStyle"
+  bindinput="commentInput">
+  </textarea>
+  <view class="comment-btn {{disable?'':'disabled'}}" catchtap="go">发表评论</view>
+</view>

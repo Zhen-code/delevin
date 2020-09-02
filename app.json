@@ -22,7 +22,8 @@
         "pages/sellHouse/index",
         "pages/listings/index",
         "pages/aspectDetail/index",
-        "pages/post/index"
+        "pages/post/index",
+        "pages/comment/index"
       ]
     }
   ],

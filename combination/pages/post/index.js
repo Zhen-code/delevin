@@ -23,13 +23,13 @@ Page({
         url: 'https://common-fd.zol-img.com.cn/g6/M00/0C/0B/ChMkKV9PWCyILa9sAABE7jtAJdcAABylAO02AAAAEUG381.jpg'
       }
           ],
-    timeFlag:1,
     disable: true
   },
+  timeFlag: 1,
   titleInput(e){
     console.log(e)
     clearTimeout(this.timeFlag);
-    setTimeout(()=>{
+    this.timeFlag=setTimeout(()=>{
       let {value} = e.detail;
       if(value===""||this.data.content===""){
         this.setData({
@@ -48,7 +48,7 @@ Page({
   contentInput(e){
     console.log(e);
     clearTimeout(this.timeFlag);
-    setTimeout(()=>{
+    this.timeFlag=setTimeout(()=>{
       let {value} = e.detail;
       if(value===""||this.data.title===""){
         this.setData({

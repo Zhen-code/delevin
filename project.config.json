@@ -153,6 +153,13 @@
 					"id": -1,
 					"name": "发帖页面",
 					"pathName": "combination/pages/post/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发表评论",
+					"pathName": "combination/pages/comment/index",
 					"scene": null
 				}
 			]
