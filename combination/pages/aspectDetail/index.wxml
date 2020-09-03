@@ -52,17 +52,17 @@
 </view>
 <view class="no-more-text">- 没有更多评论了 -</view>
 <view class="bottom-contain">
-<view class="write-content">写评论…</view>
+<view class="write-content" catch:tap="toWrite">写评论…</view>
   <view class="write-content-btn">
-    <image src="../../../assets/image/icon_collection_20_nor@2x.png" class="bottom-img" mode="aspectFill"></image>
+    <image src="../../image/icon_collection_20_nor@2x.png" class="bottom-img" mode="aspectFill"></image>
     <text>收藏</text>
   </view>
   <view class="write-content-btn">
-    <image src="../../../assets/image/icon_forward_20_black@2x.png" class="bottom-img" mode="aspectFill"></image>
+    <image src="../../image/icon_forward_20_black@2x.png" class="bottom-img" mode="aspectFill"></image>
     <text>转发</text>
   </view>
   <view class="write-content-btn">
-    <image src="../../../assets/image/icon_comment_20_black@2x.png" class="bottom-img" mode="aspectFill"></image>
+    <image src="../../image/icon_comment_20_black@2x.png" class="bottom-img" mode="aspectFill"></image>
     <text>123</text>
   </view>
 </view>

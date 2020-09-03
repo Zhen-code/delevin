@@ -1,4 +1,4 @@
-// combination/pages/aspectDetail/index.js
+// combination/pages/comment/index.js
 const topHeight = require('../../../request/topHeight.js').topHeight;
 Page({
 
@@ -6,19 +6,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    paddingTop:topHeight,
+    paddingTop: topHeight,
     bgColor: {
       "color": true,
       "border": true
     },
-
+    commentValue: '',
+    disable:true
   },
-
+  timeFlag: 1,
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+
   },
 
   /**
@@ -69,9 +70,28 @@ Page({
   onShareAppMessage: function () {
 
   },
-  toWrite(){
-    wx.navigateTo({
-      url: '/combination/pages/comment/index'
-    })
+  commentInput(e){
+    console.log(e)
+    clearTimeout(this.timeFlag);
+    this.timeFlag=setTimeout(()=>{
+      let {value} = e.detail;
+      if(value===''||value===null){
+        this.setData({
+          disable:true
+        });
+        return;
+      }else{
+        this.setData({
+          commentValue:value,
+          disable:false
+        })
+      }
+    },1000);
+  },
+  go(){
+    if (this.data.commentValue === '' || !this.data.commentValue || this.data.commentValue===null){
+      return;
+    }
+    console.log(this.data.commentValue)
   }
-});
+})
