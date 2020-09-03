@@ -1,5 +1,5 @@
-<!--combination/pages/aspectDetail/index.wxml-->
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="新闻资讯" />
+<!--combination/pages/postDetail/index.wxml-->
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="帖子详情" />
 <view class="content" style="padding-top:{{paddingTop}}px">
   <view class="content-top">
     <view class="title">Hot文章值得看:广州当前两居室排行出炉：广州恒大阳光半岛领跑</view>
@@ -66,3 +66,4 @@
     <text>123</text>
   </view>
 </view>
+

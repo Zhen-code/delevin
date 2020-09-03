@@ -25,7 +25,9 @@
 				"pages/aspectDetail/index",
 				"pages/post/index",
 				"pages/broker/index",
-				"pages/myCollection/index"
+				"pages/myCollection/index",
+				"pages/comment/index",
+				"pages/postDetail/index"
 			]
 		}
 	],
