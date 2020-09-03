@@ -57,7 +57,7 @@
     height: 100%;
 }
 
-.van-hairline--top-bottom: after {
+.van-hairline--top-bottom::after {
     border-top: none !important;
 }
 

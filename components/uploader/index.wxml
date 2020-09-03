@@ -1,0 +1,4 @@
+<!--components/uploader/index.wxml-->
+<van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="{{count}}" accept="image" multiple="true" capture="['album', 'camera']" image-fit="scaleToFill" bind:after-read="afterRead" bind:delete="deleteImg">
+	<van-image width="80" height="80" src="/combination/image/icon_add_120@2x.png" />
+</van-uploader>

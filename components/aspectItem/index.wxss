@@ -1,0 +1,48 @@
+/* components/aspectItem/index.wxss */
+.tab-item {
+	/* padding: 32rpx; */
+	box-sizing: border-box;
+	height: 244rpx;
+	width: 100%;
+	border-bottom: 1px solid #EEEEEE;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.tab-item-left {
+	width: 422rpx;
+	height: 178rpx;
+	margin-right: 24rpx;
+}
+
+.tab-item-left-title {
+	font-size: 30rpx;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #333333;
+	margin-bottom: 18rpx;
+}
+
+.tab-item-left-desc {
+	font-size: 26rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #999999;
+	margin-bottom: 4rpx;
+}
+
+.tab-item-left-time {
+	font-size: 26rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #999999;
+}
+
+.tab-item-right {
+	width: 240rpx;
+	height: 180rpx;
+	border-radius: 4rpx;
+	background: #999999;
+}

@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navbar":"/components/nav/index",
+    "doubleTab":"/components/doubleTab/index",
+    "shopItem":"/components/shopItem/index",
+    "aspectItem":"/components/aspectItem/index",
+    "estateItem":"/components/estateItem/index"
+  }
+}
