@@ -1,0 +1,11 @@
+<view>
+    <van-action-sheet
+            title="{{title}}"
+            show="{{ show }}"
+            actions="{{actions}}"
+            bind:close="onClose"
+            bind:select="selectData"
+            bind:title="title"
+    >
+    </van-action-sheet>
+</view>

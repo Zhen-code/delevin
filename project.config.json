@@ -169,6 +169,19 @@
 					"pathName": "combination/pages/myCollection/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "帖子详情",
+					"pathName": "combination/pages/postDetail/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加房源",
+					"pathName": "combination/pages/addHouseOrigin/index",
+					"scene": null
 				}
 			]
 		}

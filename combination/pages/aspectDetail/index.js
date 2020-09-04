@@ -11,7 +11,12 @@ Page({
       "color": true,
       "border": true
     },
-
+    newsImg:[
+      'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1251668712,1631279038&fm=26&gp=0.jpg',
+      'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3054075612,3413957361&fm=26&gp=0.jpg'
+    ],
+    isCollect: false,
+    title: '关于股市涨停你怎么看'
   },
 
   /**
@@ -66,12 +71,30 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (res) {
+    let { title} = this.data;
+    console.log(res);
+    if(res.from === 'button'){
+
+    }
+    return {
+      title: title,
+      path: '/combination/pages/aspectDetail/index?id='+1,
+      success: function (res) {
+        console.log('成功', res)
+      }
+    }
 
   },
   toWrite(){
     wx.navigateTo({
       url: '/combination/pages/comment/index'
     })
+  },
+  collect(){
+    let {isCollect} = this.data;
+    this.setData({
+      isCollect: !isCollect
+    });
   }
 });

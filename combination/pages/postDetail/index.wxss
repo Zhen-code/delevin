@@ -98,7 +98,7 @@
 .second-comment{
   height: auto;
   width: 100%;
-  padding: 24rpx 24rpx 18rpx 24rpx;
+  padding: 24rpx 24rpx 24rpx 24rpx;
   background: #F8F8F8;
   box-sizing: border-box;
 }
@@ -214,7 +214,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+  border: none !important;
+  background: transparent !important;
 }
+
 .write-content-btn text{
   font-size: 26rpx;
   font-family: PingFangSC-Regular, PingFang SC;

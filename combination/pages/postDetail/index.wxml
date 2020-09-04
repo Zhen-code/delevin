@@ -11,7 +11,10 @@
    <text class="content-center">
   各地银行执行水平趋一致 专家称房贷利率平稳料延续额本息和等额本金，红色的部分是还款的利息，蓝色的部分是还款的本金记者日前调研发现，近期一线城市房贷利率整体趋于平稳，各地区银行间房贷利率执行水平比较一致。专家指出，住房信贷政策是房地产调控的重要一环，为避免刺激房地产市场，预计短期内房贷利率连续大面积下行的局面难再现。
   </text>
-  <image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1251668712,1631279038&fm=26&gp=0.jpg" mode="aspectFill" class="news-img"></image>
+  <block wx:for="{{newsImg}}"
+         wx:key="*this">
+    <image src="{{item}}" mode="aspectFill" class="news-img"></image>
+  </block>
 </view>
 <view class="line"></view>
 <view class="comment-wrapper">
@@ -52,18 +55,26 @@
 </view>
 <view class="no-more-text">- 没有更多评论了 -</view>
 <view class="bottom-contain">
-<view class="write-content" catch:tap="toWrite">写评论…</view>
-  <view class="write-content-btn">
-    <image src="../../image/icon_collection_20_nor@2x.png" class="bottom-img" mode="aspectFill"></image>
+  <view class="write-content" catch:tap="toWrite">写评论…</view>
+  <button
+          class="write-content-btn"
+          bind:tap="collect">
+    <image src="{{isCollect?'../../image/icon_collection_20_pre@2x.png':'../../image/icon_collection_20_nor@2x.png'}}" class="bottom-img" mode="aspectFill"></image>
     <text>收藏</text>
-  </view>
-  <view class="write-content-btn">
-    <image src="../../image/icon_forward_20_black@2x.png" class="bottom-img" mode="aspectFill"></image>
+  </button>
+  <button
+          class="write-content-btn"
+          open-type="share">
+    <image  class="bottom-img"  src="../../image/icon_forward_20_black@2x.png" mode="aspectFill"></image>
     <text>转发</text>
-  </view>
-  <view class="write-content-btn">
+  </button>
+  <button class="write-content-btn">
     <image src="../../image/icon_comment_20_black@2x.png" class="bottom-img" mode="aspectFill"></image>
+    <text>2393</text>
+  </button>
+  <button class="write-content-btn">
+    <image src="../../image/icon_like_20_nor@2x.png" class="bottom-img" mode="aspectFill"></image>
     <text>123</text>
-  </view>
+  </button>
 </view>
 

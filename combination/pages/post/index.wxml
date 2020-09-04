@@ -1,47 +1,25 @@
 <!--combination/pages/post/index.wxml-->
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="发表帖子" />
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="发表帖子"/>
 <view class="content" style="padding-top:{{paddingTop}}px">
-	<input value="{{title}}" type="text" placeholder="请输入标题…" placeholder-class="placeholderStyle" class="titleInput" bind:input="titleInput"></input>
-	<textarea value="{{content}}" placeholder="请输入内容…" placeholder-class="taStyle" auto-height="true" adjust-position="true" disable-default-padding="true" bindinput="contentInput" class="textareaInput">
+    <input value="{{title}}" type="text" placeholder="请输入标题…" placeholder-class="placeholderStyle" class="titleInput"
+           bind:input="titleInput"></input>
+    <textarea value="{{content}}" placeholder="请输入内容…" placeholder-class="taStyle" auto-height="true"
+              adjust-position="true" disable-default-padding="true" bindinput="contentInput" class="textareaInput">
     </textarea>
-<<<<<<< HEAD
-	<view class="label">
-		<image class="label-text" src="../../../assets/image/icon_16_blue@2x.png"></image>
-		<input placeholder-class="labelInput" value="{{label}}" class="labelInput" maxlength="10" placeholder="还可以给帖子加个标签，最多10个字"></input>
-	</view>
-	<view class="upload-file">
-		<uploader count="{{count}}"></uploader>
-	</view>
-	<view class="post-button {{disable?'disabled':''}}">发表帖子</view>
-	<van-toast id="van-toast" />
+<view class="label">
+    <image
+            class="label-text"
+            src="../../image/icon_16_blue@2x.png"></image>
+    <input
+            placeholder-class="labelInput"
+            value="{{label}}"
+            class="labelInput"
+            maxlength="10"
+            placeholder="还可以给帖子加个标签，最多10个字"></input>
 </view>
-=======
-    <view class="label">
-        <image
-                class="label-text"
-                src="../../image/icon_16_blue@2x.png"></image>
-        <input
-                placeholder-class="labelInput"
-                value="{{label}}"
-                class="labelInput"
-                maxlength="10"
-                placeholder="还可以给帖子加个标签，最多10个字"></input>
-    </view>
-    <view  class="upload-file">
-        <van-uploader
-                file-list="{{ fileList }}"
-                deletable="{{ true }}"
-                max-count="9"
-                accept="image"
-                multiple="true"
-                capture="['album', 'camera']"
-                image-fit="scaleToFill"
-                bind:after-read="afterRead"
-                bind:delete="deleteImg">
-            <van-button icon="plus"></van-button>
-        </van-uploader>
-    </view>
-    <view class="post-button {{disable?'disabled':''}}">发表帖子</view>
-    <van-toast id="van-toast" />
+<view class="upload-file">
+    <uploader count="{{count}}"></uploader>
 </view>
->>>>>>> dev
+<view class="post-button {{disable?'disabled':''}}">发表帖子</view>
+<van-toast id="van-toast"/>
+</view>

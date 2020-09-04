@@ -1,5 +1,6 @@
-// combination/pages/postDetail/index.js
+// combination/pages/addHouseOrigin/index.js
 const topHeight = require('../../../request/topHeight.js').topHeight;
+
 Page({
 
   /**
@@ -11,20 +12,31 @@ Page({
       "color": true,
       "border": true
     },
-    newsImg:[
-        'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1251668712,1631279038&fm=26&gp=0.jpg',
-        'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2203904651,2859066540&fm=26&gp=0.jpg',
-        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3054075612,3413957361&fm=26&gp=0.jpg'
+    title: "房源类别",
+    show: false,
+    actions: [
+      {
+        name: '小区',
+      },
+      {
+        name: '新房/楼盘',
+      },
+      {
+        name: '租房',
+      },
+      {
+        name: '二手房'
+      }
     ],
-    isCollect: false,
-    title: '关于股市涨停你怎么看'
+    type: '',
+    houseTypeName: '小区'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+
   },
 
   /**
@@ -38,7 +50,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
 
   },
 
@@ -73,29 +84,36 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (res) {
-    let { title} = this.data;
-    console.log(res);
-    if(res.from === 'button'){
+  onShareAppMessage: function () {
 
-    }
-    return {
-      title: title,
-      path: '/combination/pages/aspectDetail/index?id='+1,
-      success: function (res) {
-        console.log('成功', res)
-      }
-    }
   },
-  toWrite() {
-    wx.navigateTo({
-      url: '/combination/pages/comment/index'
-    })
-  },
-  collect(){
-    let {isCollect} = this.data;
+  onClose(e){
     this.setData({
-      isCollect: !isCollect
+      show: false
     });
+    console.log(e)
+    if(e.detail.detail===''||e.detail.detail===null||!e.detail.detail){
+      this.setData({
+        show:false
+      });
+      return;
+    }
+    switch (e.detail.type) {
+      case 'houseType':
+        this.setData({
+          houseTypeName: e.detail.detail
+        });
+        break;
+      default:
+        break;
+    }
+  },
+  goSheet(e){
+    let {type} =  e.currentTarget.dataset;
+    console.log(type)
+    this.setData({
+      type: type,
+      show:true
+    })
   }
 });
