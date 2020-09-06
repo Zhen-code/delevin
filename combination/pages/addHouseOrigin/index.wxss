@@ -1,0 +1,41 @@
+/* combination/pages/addHouseOrigin/index.wxss */
+.wrapper{
+    height: auto;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.wrapper-type{
+    width:100%;
+    height: 100rpx;
+    margin-left: 32rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    left: 0px;
+}
+.wrapper-left{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666666;
+    flex: 1;
+}
+.wrapper-right{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 64rpx;
+    flex: 1;
+}
+.wrapper-right text{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+}
+.common-img{
+    width: 44rpx;
+    height: 44rpx;
+}

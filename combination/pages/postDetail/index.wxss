@@ -1,4 +1,4 @@
-/* combination/pages/aspectDetail/index.wxss */
+/* combination/pages/postDetail/index.wxss */
 .content{
   background: #FFFFFF;
   padding: 0 32rpx;

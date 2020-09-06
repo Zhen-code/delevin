@@ -1,13 +1,7 @@
 // combination/pages/post/index.js
-const {
-  topHeight
-} = require('../../../request/topHeight');
+const {topHeight} = require('../../../request/topHeight');
 import Toast from "../../../miniprogram_npm/vant-weapp/toast/toast";
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     paddingTop: topHeight,
     bgColor: {
@@ -19,14 +13,13 @@ Page({
     label: '',
     count:9
   },
-  titleInput(e) {
+    timeFlag: 1,
+  titleInput(e){
     console.log(e)
     clearTimeout(this.timeFlag);
-    setTimeout(() => {
-      let {
-        value
-      } = e.detail;
-      if (value === "" || this.data.content === "") {
+    this.timeFlag=setTimeout(()=>{
+      let {value} = e.detail;
+      if(value===""||this.data.content===""){
         this.setData({
           title: value,
           disable: true
@@ -43,23 +36,21 @@ Page({
   contentInput(e) {
     console.log(e);
     clearTimeout(this.timeFlag);
-    setTimeout(() => {
-      let {
-        value
-      } = e.detail;
-      if (value === "" || this.data.title === "") {
-        this.setData({
-          content: value,
-          disable: true
-        });
-        return;
-      } else {
-        this.setData({
-          content: value,
-          disable: false
-        })
-      }
-    }, 2000);
+    this.timeFlag=setTimeout(()=>{
+        let {value} = e.detail;
+        if(value===""||this.data.title===""){
+            this.setData({
+                content: value,
+                disable: true
+            });
+            return;
+        } else {
+            this.setData({
+                content: value,
+                disable: false
+            })
+        }
+        },2000);
   },
 
   /**

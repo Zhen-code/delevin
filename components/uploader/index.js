@@ -17,7 +17,6 @@ Component({
 	 */
 	data: {
 		fileList: [],
-		timeFlag: 1,
 		disable: true
 	},
 

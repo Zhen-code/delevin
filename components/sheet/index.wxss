@@ -1,0 +1,6 @@
+/* components/sheet.wxss */
+.closeIcon{
+    position: absolute;
+    top: 20rpx;
+    right: 60rpx;
+}

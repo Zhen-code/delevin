@@ -1,5 +1,5 @@
-<!--combination/pages/aspectDetail/index.wxml-->
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="新闻资讯" />
+<!--combination/pages/postDetail/index.wxml-->
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="帖子详情" />
 <view class="content" style="padding-top:{{paddingTop}}px">
   <view class="content-top">
     <view class="title">Hot文章值得看:广州当前两居室排行出炉：广州恒大阳光半岛领跑</view>
@@ -55,13 +55,13 @@
 </view>
 <view class="no-more-text">- 没有更多评论了 -</view>
 <view class="bottom-contain">
-<view class="write-content" catch:tap="toWrite">写评论…</view>
-    <button
-            class="write-content-btn"
-            bind:tap="collect">
+  <view class="write-content" catch:tap="toWrite">写评论…</view>
+  <button
+          class="write-content-btn"
+          bind:tap="collect">
     <image src="{{isCollect?'../../image/icon_collection_20_pre@2x.png':'../../image/icon_collection_20_nor@2x.png'}}" class="bottom-img" mode="aspectFill"></image>
     <text>收藏</text>
-    </button>
+  </button>
   <button
           class="write-content-btn"
           open-type="share">
@@ -77,3 +77,4 @@
     <text>123</text>
   </button>
 </view>
+

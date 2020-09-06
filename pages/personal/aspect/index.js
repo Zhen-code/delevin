@@ -64,6 +64,11 @@ Page({
     })
     console.log(e.currentTarget.dataset.id);
   },
+  goPostDetail(e){
+    wx.navigateTo({
+      url: '/combination/pages/postDetail/index?id=' + e.currentTarget.dataset.id
+    })
+  },
   post(){
     wx.navigateTo({
       url: '/combination/pages/post/index'

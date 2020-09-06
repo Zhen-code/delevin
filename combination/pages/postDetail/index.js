@@ -1,4 +1,4 @@
-// combination/pages/aspectDetail/index.js
+// combination/pages/postDetail/index.js
 const topHeight = require('../../../request/topHeight.js').topHeight;
 Page({
 
@@ -6,14 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    paddingTop:topHeight,
+    paddingTop: topHeight,
     bgColor: {
       "color": true,
       "border": true
     },
     newsImg:[
-      'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1251668712,1631279038&fm=26&gp=0.jpg',
-      'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3054075612,3413957361&fm=26&gp=0.jpg'
+        'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1251668712,1631279038&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2203904651,2859066540&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3054075612,3413957361&fm=26&gp=0.jpg'
     ],
     isCollect: false,
     title: '关于股市涨停你怎么看'
@@ -37,6 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
 
   },
 
@@ -84,9 +86,8 @@ Page({
         console.log('成功', res)
       }
     }
-
   },
-  toWrite(){
+  toWrite() {
     wx.navigateTo({
       url: '/combination/pages/comment/index'
     })
