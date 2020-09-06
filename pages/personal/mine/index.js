@@ -57,13 +57,22 @@ Component({
 			})
 		},
 		myCollection(){
-			console.log('我的收藏')
+			let tabIndex = 0;
+			wx.navigateTo({
+				url: `/combination/pages/myCollection/index?tabIndex=${tabIndex}`,
+			})
 		},
 		browseRecords(){
-			console.log('浏览记录')
+			let tabIndex = 1;
+			wx.navigateTo({
+				url: `/combination/pages/myCollection/index?tabIndex=${tabIndex}`,
+			})
 		},
 		privacyPolicy(){
-			console.log('隐私政策')
+			let link = 'www.baidu.com';
+			wx.navigateTo({
+				url: `/combination/pages/webView/index?link=${link}`,
+			})
 		},
 		customerService() {
 			wx.makePhoneCall({

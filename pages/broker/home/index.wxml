@@ -1,2 +1,100 @@
 <!--pages/broker/home/index.wxml-->
-<text>经纪人</text>
+<view class="home">
+	<navbar top="{{top}}" title="房猿通" />
+	<view class="mine-content" style="padding-top:{{paddingTop}}px">
+		<view class="mine-content-top">
+			<view class="mine-content-top-box">
+				<view class="mine-content-top-left">
+					<van-image round width="100rpx" height="100rpx" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+					<view class="mine-content-top-left-title">
+						<text class="mine-content-top-left-text">楼市君</text>
+						<text class="mine-content-top-left-type">合富置业</text>
+					</view>
+				</view>
+				<view class="mine-content-top-rigth">
+					<view class="mine-content-top-rigth-title">访客记录<text>23</text></view>
+				</view>
+			</view>
+			<text class="introductionText">阿斯顿发送到发流口水大富科技案例是可点击阿里斯顿可根据阿世纪东方阿拉山口的激是的</text>
+			<iconItem style="width:100%;margin-bottom:40rpx" houseItem="{{houseItem}}"></iconItem>
+		</view>
+		<view class="row-floor">
+			<text class="row-floor-left">我的楼盘</text>
+			<view class="row-floor-right">
+				<text class="row-floor-right-text">添加新房源</text>
+				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
+			</view>
+		</view>
+		<view class="floor">
+			<view class="floor-list">
+				<view class="floor-list-row">
+					<view class="floor-list-row-top">
+						<image class="floor-list-row-top-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+						<view class="floor-list-row-top-type">
+							<view class="floor-list-row-top-type-top">
+								<view class="top-view" bindtap="getShareIt">
+									<image class="top-view-image" src="/assets/image/icon_clean_14_white@2x.png"></image>
+									<text class="top-view-text">分享</text>
+								</view>
+								<view class="top-delete" bindtap="getDelete">
+									<image class="top-view-image" src="/assets/image/icon_clean_14_white@2x.png"></image>
+									<text class="top-delete-text">删除</text>
+								</view>
+							</view>
+							<view class="floor-list-row-top-type-bottom">
+								<view class="title">楼盘名称汉溪长隆</view>
+								<view class="column">
+									<text class="column-name">番禺·长隆</text>
+									<text class="column-price">23000元/m²</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="floor-list-row-bottom">
+						<view class="floor-list-row-bottom-top">
+							<view class="floor-list-row-bottom-name">开盘时间：
+								<text class="floor-list-row-bottom-time">2020-08-20</text>
+							</view>
+							<view class="floor-list-row-bottom-name">开盘地址：
+								<text class="floor-list-row-bottom-time">番禺区汉溪大道长隆</text>
+							</view>
+						</view>
+						<view class="floor-list-row-bottom-bottom">
+							<view class="floor-list-row-bottom-bottom-view" bindtap="getOrdinaryPurchase">
+								<image class="floor-list-row-bottom-bottom-view-image" src="/assets/image/icon_promo_16@2x.png"></image>
+								<text class="floor-list-row-bottom-bottom-view-text">推广</text>
+							</view>
+							<view class="floor-list-row-bottom-bottom-super">
+								<image class="floor-list-row-bottom-bottom-view-image" src="/assets/image/icon_fire_16@2x.png"></image>
+								<text class="floor-list-row-bottom-bottom-super-text">超级推广</text>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="floor-add">添加我的楼盘</view>
+		</view>
+	</view>
+</view>
+
+<van-popup show="{{ share }}" z-index="99999" round position="bottom" bind:close="setShareIt">
+	<view class="share-view">
+		<view class="share-view-select">
+			<view class="share-view-select-view">
+				<button open-type="share" class="share-view-select-button">
+					<image src="/assets/image/icon_link_45@2x.png"></image>
+					<text>分享链接</text>
+				</button>
+			</view>
+			<view class="share-view-select-view">
+				<button open-type="share" class="share-view-select-button">
+					<image src="/assets/image/icon_poster_45@2x.png"></image>
+					<text>分享海报</text>
+				</button>
+			</view>
+		</view>
+		<text class="share-view-no" bindtap="setShareIt">取消分享</text>
+	</view>
+</van-popup>
+
+<van-dialog id="van-dialog" />

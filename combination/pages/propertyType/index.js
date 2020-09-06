@@ -32,7 +32,6 @@ Page({
 		pageSize: 12,
 		scrollTop: 0,
 		triggered: false,
-		classType:"",
 		show: false,
 	},
 
@@ -200,30 +199,9 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		let type = '';
-		let classType = '';
-		switch (options.type) {
-			case "新房房源":
-				classType = "NEW",
-				type = options.type;
-				break;
-			case "二手房房源":
-				classType = "TOW"
-				type = options.type;
-				break;
-			case "租房房源":
-				classType = "ZUFANG"
-				type = options.type;
-				break;
-			case "小区房源":
-				classType = "XIAOQU"
-				type = options.type;
-				break;
-			default:
-		}
+		console.log(options.type,111)
 		this.setData({
-			title: type,
-			classType:classType,
+			title: options.type,
 		})
 	},
 

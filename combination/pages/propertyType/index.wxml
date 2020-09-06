@@ -208,7 +208,7 @@
 
 	<scroll-view class="list" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
 		<block>
-			<shopItem item="{{item}}" classType="{{classType}}"></shopItem>
+			<shopItem item="{{item}}"></shopItem>
 		</block>
 	</scroll-view>
 </view>

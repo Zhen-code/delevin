@@ -57,7 +57,7 @@ Page({
 			val: e.target.dataset.text,
 		})
 		wx.navigateTo({
-			url: `../searchClass/searchClass?title=${e.target.dataset.text}`,
+			url: `/combination/pages/listings/index?title=${e.target.dataset.text}`,
 		})
 	},
 

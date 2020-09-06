@@ -1,0 +1,26 @@
+/* components/iconItem/index.wxss */
+.houseType {
+	width: 100%;
+	height: auto;
+	margin-top: 24rpx;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: row;
+}
+
+.houseType-item {
+	flex: 1;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.houseType-item-name {
+	font-size: 26rpx;
+	font-weight: 400;
+	margin-top: 8rpx;
+	color: rgba(51, 51, 51, 1);
+}

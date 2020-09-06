@@ -5,7 +5,8 @@
   "dependencies": {
     "@vant/weapp": "^1.4.3",
     "vant-weapp": "^0.5.28",
-    "weapp-qrcode": "^1.0.0"
+    "weapp-qrcode": "^1.0.0",
+    "wxml-to-canvas": "^1.1.1"
   },
   "devDependencies": {
     "weui-miniprogram": "^1.0.5"

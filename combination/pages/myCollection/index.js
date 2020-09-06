@@ -23,15 +23,15 @@ Page({
 	},
 
 	topTap(e) {
-	let data = this.data;
-		if(e.currentTarget.dataset.index === 0){
+		let data = this.data;
+		if (e.currentTarget.dataset.index === 0) {
 			this.setData({
-				tabItem:data.tab1,
+				tabItem: data.tab1,
 				topTabIndex: e.currentTarget.dataset.index
 			})
-		}else{
+		} else {
 			this.setData({
-				tabItem:data.tab2,
+				tabItem: data.tab2,
 				topTabIndex: e.currentTarget.dataset.index
 			})
 		}
@@ -63,10 +63,11 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		let index = Number(options.tabIndex);
 		let data = this.data;
 		this.setData({
-			tabItem:data.tab1,
-			topTabIndex: 0,
+			tabItem: index === 0 ? data.tab1 : data.tab2,
+			topTabIndex: index,
 		})
 	},
 

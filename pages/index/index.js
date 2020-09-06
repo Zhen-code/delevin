@@ -11,7 +11,7 @@ Page({
       "border": true
     },
     Identity: false,
-    PageCur: "",
+    PageCur: "brokerHome",
     menus: {},
   },
 
@@ -23,6 +23,10 @@ Page({
 
   getData() {
     let than = this;
+    // than.setData({
+    //   PageCur: menus.masterMenuData.activeUrl,
+    //   menus: menus.masterMenuData
+    // })
     if (than.data.Identity) {
       than.setData({
         PageCur: menus.masterMenuData.activeUrl,

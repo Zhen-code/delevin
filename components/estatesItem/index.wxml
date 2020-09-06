@@ -1,4 +1,4 @@
-<!--components/estateItem/index.wxml-->
+<!--components/estatesItem/index.wxml-->
 <view class="tab-item2">
 	<view class="tab-item2-title">Hot文章值得看:广州当前两居室排行出炉</view>
 	<view class="tab-item2-desc">作作为上半年的土帖子内容显示单行内容，太长省略号为上半年的土帖子内容显示单行内容，太长省略号…</view>

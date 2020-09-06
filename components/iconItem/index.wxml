@@ -1,0 +1,7 @@
+<!--components/iconItem/index.wxml-->
+<view class="houseType">
+	<view class="houseType-item" wx:for="{{houseItem}}" data-item="{{item}}" data-index="{{index}}" data-model="{{item.name}}" wx:key="index" bindtap="changeHouseType">
+		<van-icon size="80rpx" name="{{item.icon}}" />
+		<text class="houseType-item-name">{{item.name}}</text>
+	</view>
+</view>

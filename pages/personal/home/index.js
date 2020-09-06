@@ -31,7 +31,7 @@ Component({
 		paddingTop:topHeight,
 		show: false,
 		city: "",
-		houseType: [{
+		houseItem: [{
 				"icon": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
 				"name": "新房/楼盘",
 			},
@@ -117,39 +117,6 @@ Component({
 				city: name || '未选择'
 			})
 			this.onClose();
-		},
-
-		changeHouseType(e) {
-			let type = '';
-			let name = e.currentTarget.dataset.item.name;
-			switch (name) {
-				case "新房/楼盘":
-					type = '新房房源';
-					break;
-				case "二手房":
-					type = '二手房房源';
-					break;
-				case "租房":
-					type = '租房房源';
-					break;
-				case "找小区":
-					type = '小区房源';
-					break;
-				case "房贷计算":
-					type = 'FANGDAI';
-					break;
-				default:
-			}
-			if (type === 'FANGDAI') {
-				console.log("房贷计算界面")
-				// wx.navigateTo({
-				// 	url: '/combination/pages/listingDetails/index',
-				// })
-			} else {
-				wx.navigateTo({
-					url: '/combination/pages/propertyType/index?type='+type,
-				})
-			}
 		},
 
 		toPrice() {

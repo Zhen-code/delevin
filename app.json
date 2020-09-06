@@ -3,12 +3,8 @@
 		"pages/index/index",
 		"pages/login/index",
 		"pages/template/temp/index",
-		"pages/personal/home/index",
 		"pages/personal/aspect/index",
-		"pages/personal/message/index",
-		"pages/personal/mine/index",
-		"pages/broker/home/index",
-		"components/estateItem/index"
+		"pages/personal/message/index"
 	],
 	"subpackages": [
 		{
@@ -25,11 +21,14 @@
 				"pages/aspectDetail/index",
 				"pages/post/index",
 				"pages/broker/index",
-				"pages/myCollection/index"
+				"pages/myCollection/index",
+				"pages/webView/index",
+				"pages/shareItCode/index"
 			]
 		}
 	],
 	"usingComponents": {
+		"van-dialog": "@vant/weapp/dialog/index",
 		"van-uploader": "@vant/weapp/uploader/index",
 		"van-tab": "@vant/weapp/tab/index",
 		"van-tabs": "@vant/weapp/tabs/index",

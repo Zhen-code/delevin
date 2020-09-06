@@ -26,12 +26,7 @@
 			<view class="components-top">
 				<text class="components-top-left">我要找房</text>
 			</view>
-			<view class="houseType">
-				<view class="houseType-item" wx:for="{{houseType}}" data-item="{{item}}" data-index="{{index}}" wx:key="index" bindtap="changeHouseType">
-					<van-icon size="80rpx" name="{{item.icon}}" />
-					<text class="houseType-item-name">{{item.name}}</text>
-				</view>
-			</view>
+			<iconItem houseItem="{{houseItem}}"></iconItem>
 		</view>
 
 		<view class="components border">
