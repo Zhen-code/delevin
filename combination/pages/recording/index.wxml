@@ -1,0 +1,23 @@
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="最近来访记录" />
+<view class="view" style="padding-top:{{paddingTop}}px">
+	<scroll-view class="shopItem" style="top: {{paddingTop}}px;" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
+		<block wx:for="{{item}}" wx:key="index">
+			<view class="row">
+				<view class="row-left">
+					<image class="row-left-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+					<view class="row-left-type">
+						<text class="row-left-type-name">鱼仁之</text>
+						<text class="row-left-type-phone">最近访问   2020-08-23 12:32</text>
+					</view>
+				</view>
+				<view class="row-right" bindtap="dialNumber">
+					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
+					<text class="row-right-phone">虚拟号码</text>
+				</view>
+			</view>
+		</block>
+		<view class="footer">
+			<text class="footer-text">- 到底啦 -</text>
+		</view>
+	</scroll-view>
+</view>

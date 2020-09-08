@@ -5,8 +5,8 @@
 		"citySearch":"/components/citySearch/index",
 		"navbar":"/components/nav/index",
 		"search":"/components/search/index",
-		"iconItem":"/components/iconItem/index",
 		"shopItem":"/components/shopItem/index",
-		"doubleTab":"/components/doubleTab/index"
+		"doubleTab":"/components/doubleTab/index",
+		"iconItem":"/components/iconItem/index"
 	}
 }

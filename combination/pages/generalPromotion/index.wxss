@@ -1,0 +1,242 @@
+/* combination/pages/generalPromotion/index.wxss */
+.view {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.top {
+	width: 100%;
+	height: 416rpx;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	flex-direction: column;
+	position: relative;
+}
+
+.bgImage {
+	width: 100%;
+	height: 416rpx;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.typeTitle {
+	width: 100%;
+	height: 70rpx;
+	text-align: center;
+	font-size: 40rpx;
+	font-weight: bold;
+	color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 2;
+}
+
+.topTab {
+	width: 100%;
+	height: 80rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	z-index: 2;
+	margin-top: 56rpx;
+}
+
+.topTabLift {
+	width: 50%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	position: relative;
+}
+
+.topTabLeftImage {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.topTabLiftRow {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	z-index: 3;
+}
+
+.topTabLiftRowImage {
+	width: 40rpx;
+	height: 40rpx;
+	display: block;
+}
+
+.topTabLiftRowName {
+	height: 42rpx;
+	font-size: 30rpx;
+	font-weight: bold;
+	color: #9D9EAB;
+	margin-left: 8rpx;
+}
+
+.topTabLiftRowNameAction {
+	color: #755132
+}
+
+.list {
+	width: 100%;
+	height: auto;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+	margin-top: 35rpx;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.row {
+	width: 332rpx;
+	height: 332rpx;
+	background: #F8F8F8;
+	border-radius: 4px;
+	border: 1px solid #EEEEEE;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	position: relative;
+	margin-bottom: 20rpx;
+}
+
+.rowImage {
+	width: 124rpx;
+	height: 40rpx;
+	position: absolute;
+	top:16rpx;
+	right: 16rpx;
+}
+
+.action {
+	width: 332rpx;
+	height: 332rpx;
+	background: #FFF9F3;
+	border: 1px solid #FFBA7F;
+}
+
+.rowMonth {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	font-size: 30rpx;
+	font-weight: 500;
+	color: #666666;
+}
+
+.rowPrice {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.rowPriceSymbol {
+	font-size: 26rpx;
+	font-weight: 400;
+	color: #999999;
+	text-decoration: line-through;
+	margin-right: 10rpx;
+}
+
+.rowPriceNum1 {
+	font-size: 26rpx;
+	font-weight: 400;
+	color: #999999
+}
+
+.rowPriceSymbo2 {
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #755132;
+}
+
+.rowPriceNum2 {
+	font-size: 48rpx;
+	font-weight: bold;
+	color: #755132;
+}
+
+.rowAverage {
+	width: 100%;
+	text-align: center;
+	font-size: 26rpx;
+	font-weight: 400;
+	color: #999999;
+}
+
+
+.footer {
+	width: 100%;
+	height: 136rpx;
+	padding: 0 32rpx 0 24rpx;
+	box-sizing: border-box;
+	background-color: white;
+	border-top: 1rpx solid #eeeeee;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: row;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.footerAll {
+	font-size: 36rpx;
+	font-weight: 400;
+	color: #333333;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: row;
+}
+
+.footerPrice {
+	font-size: 36rpx;
+	font-weight: 500;
+	color: #FE6300;
+}
+
+.footerShop {
+	width: 170px;
+	height: 44px;
+	background: linear-gradient(125deg, #FFDDBB 0%, #FFCB9E 100%);
+	border-radius: 22px;
+}
+
+.footerShopSurpe {
+	width: 100%;
+	height: 100%;
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #755132;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

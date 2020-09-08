@@ -21,16 +21,23 @@
 				"pages/aspectDetail/index",
 				"pages/post/index",
 				"pages/broker/index",
-        "pages/myCollection/index",
-        "pages/comment/index",
-        "pages/postDetail/index",
-        "pages/addHouseOrigin/index",
+				"pages/myCollection/index",
+				"pages/comment/index",
+				"pages/postDetail/index",
+				"pages/addHouseOrigin/index",
 				"pages/webView/index",
-				"pages/shareItCode/index"
+				"pages/shareItCode/index",
+				"pages/modify/index",
+				"pages/recording/index",
+				"pages/management/index",
+				"pages/superPromotion/index",
+				"pages/generalPromotion/index",
+				"pages/selectPromotion/index"
 			]
 		}
 	],
 	"usingComponents": {
+		"van-stepper": "@vant/weapp/stepper/index",
 		"van-dialog": "@vant/weapp/dialog/index",
 		"van-uploader": "@vant/weapp/uploader/index",
 		"van-tab": "@vant/weapp/tab/index",
@@ -67,6 +74,11 @@
 		"navigationBarTextStyle": "black"
 	},
 	"style": "v2",
-	"sitemapLocation": "sitemap.json"
+	"sitemapLocation": "sitemap.json",
+	"plugins": {
+		"chooseLocation": {
+			"version": "1.0.5",
+			"provider": "wx76a9a06e5b4e693e"
+		}
+	}
 }
-  

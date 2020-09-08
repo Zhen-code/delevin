@@ -26,7 +26,7 @@
 			<view class="components-top">
 				<text class="components-top-left">我要找房</text>
 			</view>
-			<iconItem houseItem="{{houseItem}}"></iconItem>
+			<iconItem houseItem="{{houseItem}}" bind:getTabIndex="changeHouseType"></iconItem>
 		</view>
 
 		<view class="components border">

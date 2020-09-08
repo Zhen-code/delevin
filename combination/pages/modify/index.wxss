@@ -1,0 +1,82 @@
+/* combination/pages/modify/index.wxss */
+.view {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.topImage {
+	width: 100%;
+	height: 320rpx;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.topImage-image {
+	width: 160rpx;
+	height: 160rpx;
+	border-radius: 50%;
+}
+
+.title {
+	width: 100%;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+	font-size: 30rpx;
+	font-weight: 400;
+	color: #666666;
+}
+
+.bottom {
+	width: 100%;
+	height: auto;
+	padding: 16rpx 32rpx 0 32rpx;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.textarea {
+	width: 622rpx;
+	height: 196rpx;
+	padding: 32rpx;
+	background: #F8F8F8;
+	border-radius: 4rpx;
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #333333;
+
+}
+
+.index {
+	width: auto;
+	font-size: 24rpx;
+	font-weight: 400;
+	color: #999999;
+	position: absolute;
+	bottom: 32rpx;
+	right: 64rpx;
+}
+
+.camera,
+.album,
+.hide {
+	width: 100%;
+	height: 100rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	font-size: 32rpx;
+	color: #4077FF;
+}
+
+.hide {
+	color: #333333;
+}

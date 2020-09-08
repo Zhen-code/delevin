@@ -4,7 +4,7 @@
 	<view class="mine-content" style="padding-top:{{paddingTop}}px">
 		<view class="mine-content-top">
 			<view class="mine-content-top-box">
-				<view class="mine-content-top-left">
+				<view class="mine-content-top-left" bindtap="toModify">
 					<van-image round width="100rpx" height="100rpx" src="https://img.yzcdn.cn/vant/cat.jpeg" />
 					<view class="mine-content-top-left-title">
 						<text class="mine-content-top-left-text">楼市君</text>
@@ -45,7 +45,15 @@
 				<van-icon size="40rpx" name="arrow" color="#cccccc" />
 			</view>
 		</view>
-
+		<view class="mine-content-row" bindtap="customerService">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/image/icon_service_20_black@2x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>联系客服</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
 		<view class="mine-content-bottom" bindtap="tabPortal">切换至门店端</view>
 	</view>
 </view>

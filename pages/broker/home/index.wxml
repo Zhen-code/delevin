@@ -11,12 +11,12 @@
 						<text class="mine-content-top-left-type">合富置业</text>
 					</view>
 				</view>
-				<view class="mine-content-top-rigth">
+				<view class="mine-content-top-rigth" bindtap="toRecording">
 					<view class="mine-content-top-rigth-title">访客记录<text>23</text></view>
 				</view>
 			</view>
 			<text class="introductionText">阿斯顿发送到发流口水大富科技案例是可点击阿里斯顿可根据阿世纪东方阿拉山口的激是的</text>
-			<iconItem style="width:100%;margin-bottom:40rpx" houseItem="{{houseItem}}"></iconItem>
+			<iconItem style="width:100%;margin-bottom:40rpx" houseItem="{{houseItem}}" bind:getTabIndex="changeHouseType"></iconItem>
 		</view>
 		<view class="row-floor">
 			<text class="row-floor-left">我的楼盘</text>
@@ -64,7 +64,7 @@
 								<image class="floor-list-row-bottom-bottom-view-image" src="/assets/image/icon_promo_16@2x.png"></image>
 								<text class="floor-list-row-bottom-bottom-view-text">推广</text>
 							</view>
-							<view class="floor-list-row-bottom-bottom-super">
+							<view class="floor-list-row-bottom-bottom-super" bindtap="toSuperPromotion">
 								<image class="floor-list-row-bottom-bottom-view-image" src="/assets/image/icon_fire_16@2x.png"></image>
 								<text class="floor-list-row-bottom-bottom-super-text">超级推广</text>
 							</view>
@@ -72,7 +72,7 @@
 					</view>
 				</view>
 			</view>
-			<view class="floor-add">添加我的楼盘</view>
+			<view class="floor-add" bindtap="toListings">添加我的楼盘</view>
 		</view>
 	</view>
 </view>

@@ -1,0 +1,51 @@
+<!--combination/pages/generalPromotion/index.wxml-->
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="客源管理" />
+<view class="view">
+	<view class="top">
+		<image class="bgImage" src="/combination/image/bg_black_h208@2x.png"></image>
+		<text class="typeTitle">选择套餐类型</text>
+		<view class="topTab">
+			<view class="topTabLift" data-index="{{0}}" bindtap="tabItem">
+				<image class="topTabLeftImage" src="{{index===0?actionLeftBgImage2:actionLeftBgImage1}}"></image>
+				<view class="topTabLiftRow">
+					<image class="topTabLiftRowImage" src="{{index===0?actionIconLeft2:actionIconLeft1}}"></image>
+					<text class="topTabLiftRowName {{index === 0?'topTabLiftRowNameAction':''}}">端口套餐</text>
+				</view>
+			</view>
+			<view class="topTabLift" data-index="{{1}}" bindtap="tabItem">
+				<image class="topTabLeftImage" src="{{index===1?actionRightBgImage2:actionRightBgImage1}}"></image>
+				<view class="topTabLiftRow">
+					<image class="topTabLiftRowImage" src="{{index===1?actionIconRight2:actionIconRight1}}"></image>
+					<text class="topTabLiftRowName {{index === 1?'topTabLiftRowNameAction':''}}">抢客套餐</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="list">
+		<view class="row {{tebIndex === 0?'action':''}}" data-index="{{0}}" bindtap="changeItem">
+			<image class="rowImage" src="/combination/image/label_discount_red@2x.png"></image>
+			<view class="rowMonth">3个月</view>
+			<view class="rowPrice">
+				<view class="rowPriceSymbol">￥<text class="rowPriceNum1">3000</text></view>
+				<view class="rowPriceSymbo2">￥<text class="rowPriceNum2">3000</text></view>
+			</view>
+			<view class="rowAverage">¥1000/月</view>
+		</view>
+		<view class="row {{tebIndex === 1?'action':''}}" data-index="{{1}}" bindtap="changeItem">
+			<image class="rowImage" src="/combination/image/label_discount_red@2x.png"></image>
+			<view class="rowMonth">3个月</view>
+			<view class="rowPrice">
+				<view class="rowPriceSymbol">￥<text class="rowPriceNum1">3000</text></view>
+				<view class="rowPriceSymbo2">￥<text class="rowPriceNum2">3000</text></view>
+			</view>
+			<view class="rowAverage">¥1000/月</view>
+		</view>
+	</view>
+</view>
+
+<view class="footer">
+	<view class="footerAll">合计：<text class="footerPrice">3000元</text></view>
+	<view class="footerShop">
+		<text class="footerShopSurpe">提交订单</text>
+	</view>
+</view>

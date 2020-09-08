@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navbar":"/components/nav/index",
+    "doubleTab":"/components/doubleTab/index",
+    "shopItem":"/components/shopItem/index"
+  }
+}

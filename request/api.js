@@ -1,7 +1,8 @@
  const api = {
    //登录
    login: {
-     index: '/api/access/v1/user/member/message/count',
+     login: '/api/v1/member/login/wx',
+     authorization:'/api/v1/member/login/authorization',
    },
 
    // 用户端

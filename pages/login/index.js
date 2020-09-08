@@ -2,50 +2,62 @@
 const app = getApp()
 const api = require('../../request/api').api;
 const domain = require('../../request/http.js').domain;
+const {
+  request
+} = require('../../request/request');
 Page({
   data: {
 
   },
   //事件处理函数
   getPhoneNumber: function (e) {
-    var that = this;
+    let userInfo = '';
     if (e.detail.errMsg == "getPhoneNumber:ok") {
+      let msg = e.detail;
       wx.getUserInfo({
         success: res => {
-          console.log(res.userInfo)
-          // app.globalData.userInfo = res.userInfo;
-          // wx.navigateTo({
-          //   url:"/pages/index/index"
-          // })
+          userInfo = res.userInfo;
+          wx.login({
+            success: res => {
+              if (res.code) {
+                wx.request({
+                  url: domain + api.login.authorization,
+                  data: {
+                    "code": res.code,
+                    "headImgUri": userInfo.avatarUrl,
+                    "nickName": userInfo.nickName
+                  },
+                  method: "POST",
+                  success(res) {
+                    let data = res.data.data;
+                    let source = {
+                      "encryptedData": msg.encryptedData,
+                      "iv": msg.iv,
+                      "openId": data.openId,
+                      "sessionKey": data.sessionKey,
+                    }
+                    request.login(source).then((res) => {
+                      let token = res.token
+                      wx.removeStorageSync('token')
+                      wx.setStorageSync('token', token)
+                      wx.navigateTo({
+                        url: "/pages/index/index"
+                      })
+                    }).catch((err) => {
+                      console.log(err)
+                    })
+                  },
+                  fail(err) {
+                    console.log(err)
+                  }
+                })
+              } else {
+                console.log('登录失败！')
+              }
+            }
+          })
         },
       });
-      wx.login({
-        success: res => {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-          if (res.code) {
-            console.log(res.code)
-            //发起网络请求
-            // wx.request({
-            //   url:domain+api.index.login,
-            //   data: {
-            //     thirdPartyId: res.code
-            //   },
-            //   method: "POST",
-            //   success(res) {
-            //     let token = res.data.data.token
-            //     wx.removeStorageSync('token')
-            //     wx.setStorageSync('token', token)
-            //     //获取用户个人信息
-            //   },
-            //   fail(err) {
-            //     console.log(err)
-            //   }
-            // })
-          } else {
-            console.log('登录失败！' + res.errMsg)
-          }
-        }
-      })   
     } else {
       console.log('拒绝授权')
     }

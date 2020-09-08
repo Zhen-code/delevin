@@ -25,7 +25,8 @@ Component({
     maxHeight:maxHeight,
     newTop:0,
     border:'',
-    bg:''
+    bg:'',
+    titleColor:'',
   },
   properties: {
     back:{
@@ -71,6 +72,11 @@ Component({
         if(val.border){
           this.setData({
             border:true
+          })
+        };
+        if(val.titleColor){
+          this.setData({
+            titleColor:true
           })
         }
       }
