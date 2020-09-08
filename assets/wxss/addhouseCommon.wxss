@@ -1,0 +1,48 @@
+.xq-bottom-area{
+    padding: 32rpx;
+    box-sizing:border-box;
+    height: auto;
+}
+.textAreaWrap{
+    padding: 32rpx;
+    box-sizing:border-box;
+    background: #F8F8F8;
+    width: 100%;
+    margin-bottom: 48rpx;
+}
+.upload{
+    margin-bottom: 48rpx;
+}
+.textAreaStyle{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
+}
+.tab-item-top{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666666;
+    margin-bottom: 16rpx;
+}
+.line{
+    width: 100%;
+    height: 1px;
+    background: #EEEEEE;
+    margin-top: 112rpx;
+}
+.submitBtn{
+    width: 686rpx;
+    height: 88rpx;
+    background: #FFD854;
+    border-radius: 44rpx;
+    margin: 24rpx auto 66rpx auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+}

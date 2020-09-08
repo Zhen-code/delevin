@@ -58,16 +58,15 @@
                 <input value="{{project}}" bind:input="projectInput"></input>
             </view>
         </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="xq-center">
         <view class="tab-item">
             <view class="tab-item-left">新房补贴</view>
             <view class="tab-item-right">
                 <input value="{{newHouseHelp}}" bind:input="newHouseHelpInput"></input>
             </view>
         </view>
-
-    </view>
-    <view class="split-line"></view>
-    <view class="xq-center">
         <view class="tab-item">
             <view class="tab-item-left">物业类别</view>
             <view class="tab-item-right">
@@ -130,6 +129,9 @@
                 <input value="{{lineSite}}" type="text"></input>
             </view>
         </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="xq-bottom">
         <view class="tab-item">
             <view class="tab-item-left">销售状态</view>
             <view class="tab-item-right">
@@ -149,50 +151,155 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
+                       data-type="startTime"
                        catch:tap="goTimePick"
                 ></image>
             </view>
         </view>
-<!--        <view class="tab-item">-->
-<!--            <view class="tab-item-left">开发商</view>-->
-<!--            <view class="tab-item-right">-->
-<!--                <input value="{{developers}}" type="text"></input>-->
-<!--            </view>-->
-<!--        </view>-->
-<!--        <view class="tab-item">-->
-<!--            <view class="tab-item-left">容积率</view>-->
-<!--            <view class="tab-item-right">-->
-<!--                <input value="{{capacity}}" type="text"></input>-->
-<!--            </view>-->
-<!--        </view>-->
+        <view class="tab-item">
+            <view class="tab-item-left">交盘时间</view>
+            <view class="tab-item-right">
+                <text>{{endTime}}</text>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       data-type="endTime"
+                       catch:tap="goTimePick"
+                ></image>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">开发商</view>
+            <view class="tab-item-right">
+                <input value="{{developers}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">售楼地址</view>
+            <view class="tab-item-right">
+                <input value="{{salesAddress}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">咨询电话</view>
+            <view class="tab-item-right">
+                <input value="{{telphone}}" type="number"></input>
+            </view>
+        </view>
     </view>
     <view class="split-line"></view>
-<!--    <view class="xq-bottom">-->
-<!--        <view class="tab-item">-->
-<!--            <view class="tab-item-left">绿化率</view>-->
-<!--            <view class="tab-item-right">-->
-<!--                <input value="{{greenRate}}" type="text"></input>-->
-<!--            </view>-->
-<!--        </view>-->
-<!--        <view class="tab-item">-->
-<!--            <view class="tab-item-left">停车位</view>-->
-<!--            <view class="tab-item-right">-->
-<!--                <input value="{{park}}" type="text"></input>-->
-<!--            </view>-->
-<!--        </view>-->
-<!--        <view class="tab-item">-->
-<!--            <view class="tab-item-left">物业公司</view>-->
-<!--            <view class="tab-item-right">-->
-<!--                <input value="{{propertyCompany}}" type="text"></input>-->
-<!--            </view>-->
-<!--        </view>-->
-<!--        <view class="tab-item">-->
-<!--            <view class="tab-item-left">物业费</view>-->
-<!--            <view class="tab-item-right">-->
-<!--                <input value="{{propertyFare}}" type="text"></input>-->
-<!--            </view>-->
-<!--        </view>-->
-<!--    </view>-->
+    <view class="xq-bottom">
+        <view class="tab-item">
+            <view class="tab-item-left">楼盘占地面积</view>
+            <view class="tab-item-right">
+                <input value="{{ocupyArea}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">建筑面积</view>
+            <view class="tab-item-right">
+                <input value="{{buildingArea}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">绿化率</view>
+            <view class="tab-item-right">
+                <input value="{{greenRate}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">停车位</view>
+            <view class="tab-item-right">
+                <input value="{{park}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">停车配比</view>
+            <view class="tab-item-right">
+                <input value="{{parkRate}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">规划户数</view>
+            <view class="tab-item-right">
+                <input value="{{planCount}}" type="text"></input>
+            </view>
+        </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="xq-bottom">
+        <view class="tab-item">
+            <view class="tab-item-left">楼层状况</view>
+            <view class="tab-item-right">
+                <input value="{{floorStatus}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">楼栋总数</view>
+            <view class="tab-item-right">
+                <input value="{{totalFloor}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">物业公司</view>
+            <view class="tab-item-right">
+                <input value="{{propertyCompany}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">物业费</view>
+            <view class="tab-item-right">
+                <input value="{{propertyFare}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">详细地址</view>
+            <view class="tab-item-right">
+                <text>{{address}}</text>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       catch:tap="goPickAddress"
+                ></image>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">所在区域</view>
+            <view class="tab-item-right">
+                <input value="{{area}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">邻近地铁</view>
+            <view class="tab-item-right">
+                <text>{{subway}}</text>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       data-type="subway"
+                ></image>
+            </view>
+        </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="xq-bottom-area">
+        <view class="tab-item-top">经纪人描述</view>
+        <textarea
+                class="textAreaWrap"
+                value="{{makerDesc}}"
+                placeholder="请输入经纪人描述…"
+                placeholder-class="textAreaStyle"></textarea>
+        <view class="tab-item-top">房源视频</view>
+        <view class="upload">
+            <uploader />
+        </view>
+        <view class="tab-item-top">效果图</view>
+        <view class="upload">
+            <uploader count="50"/>
+        </view>
+    </view>
+    <view class="line"></view>
+    <view class="submitBtn">添加房源</view>
     <view class="{{showTimePick?'timePickerActive':'timePicker'}}">
         <van-datetime-picker
                 type="datetime"

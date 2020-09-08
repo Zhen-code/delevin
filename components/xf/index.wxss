@@ -1,3 +1,4 @@
+@import "../../assets/wxss/addhouseCommon.wxss";
 .xq-wrapper{
     width: 100%;
     height: auto;
@@ -80,3 +81,4 @@
 .timePicker{
     display: none;
 }
+

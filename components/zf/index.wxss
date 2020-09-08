@@ -71,13 +71,18 @@
     height: 44rpx;
 }
 .timePickerActive{
-     position: fixed;
-     left: 0;
-     bottom: 0;
-     height: 378rpx;
-     z-index: 1000;
-     width: 100%;
- }
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 378rpx;
+    z-index: 1000;
+    width: 100%;
+}
 .timePicker{
     display: none;
 }
+.indoor-input{
+    width: 90rpx;
+    text-align: center;
+}
+

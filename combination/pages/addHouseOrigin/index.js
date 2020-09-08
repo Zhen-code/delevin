@@ -29,7 +29,8 @@ Page({
       }
     ],
     type: '',
-    houseTypeName: '小区'
+    houseTypeName: '小区',
+    flag: 0
   },
 
   /**
@@ -88,9 +89,6 @@ Page({
 
   },
   onClose(e){
-    this.setData({
-      show: false
-    });
     console.log(e)
     if(e.detail.detail===''||e.detail.detail===null||!e.detail.detail){
       this.setData({
@@ -98,10 +96,28 @@ Page({
       });
       return;
     }
+    if(e.detail.detail=="小区"){
+      this.setData({
+        flag: 0
+      })
+    }else if(e.detail.detail=="新房/楼盘"){
+      this.setData({
+        flag: 1
+      })
+    }else if(e.detail.detail=="租房"){
+      this.setData({
+        flag: 2
+      })
+    }else if(e.detail.detail=="二手房"){
+      this.setData({
+        flag: 3
+      })
+    }
     switch (e.detail.type) {
       case 'houseType':
         this.setData({
-          houseTypeName: e.detail.detail
+          houseTypeName: e.detail.detail,
+          show:false
         });
         break;
       default:

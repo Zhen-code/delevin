@@ -26,7 +26,13 @@ Component({
         propertyFare: '',
         address:'',
         latitude: '',
-        longitude: ''
+        longitude: '',
+        area: '',
+        subway: '',
+        makerDesc:'',
+        city: '',
+        district: '',
+        province:''
     },
     timeFlag: 1,
 
@@ -50,11 +56,12 @@ Component({
           })
         },
         goPickAddress(){
+            let {latitude,longitude} = this.data;
             const key = 'YGYBZ-XGBWW-WEERF-R7V27-PJIIK-O6BWA';
             const referer = 'delevin-mini-program'; //调用插件的app的名称
             const location = JSON.stringify({
-                latitude: this.data.latitude,
-                longitude: this.data.longitude
+                latitude: latitude,
+                longitude: longitude
             });
             wx.navigateTo({
                 url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer + '&location=' + location
@@ -245,7 +252,11 @@ Component({
             }else{
                 let { address, city, district, latitude, longitude, name, province } = location;
                 this.setData({
-                    address
+                    address:name,
+                    area: address,
+                    city: city,
+                    district:district,
+                    province: province
                 })
             }
         }

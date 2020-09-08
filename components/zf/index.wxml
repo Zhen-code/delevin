@@ -2,42 +2,20 @@
     <view class="xq-top">
         <view class="tab-item"></view>
         <view class="tab-item">
-            <view class="tab-item-left">小区名称</view>
+            <view class="tab-item-left">房源标题</view>
             <view class="tab-item-right">
                 <input value="{{name}}" bind:input="nameInput"></input>
             </view>
         </view>
         <view class="tab-item">
-            <view class="tab-item-left">户型</view>
+            <view class="tab-item-left">所属小区</view>
             <view class="tab-item-right">
-                <view class="houseType-wrap">
-              <view class="houseType-item" wx:for="{{houseType}}" wx:key="*this">
-                  {{item.name}}
-                  <van-icon name="close"
-                            data-index="{{index}}"
-                            bind:tap="deleteType"/>
-              </view>
-                </view>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
                        catch:tap="goSheet"
                        data-type="houseInType"
                 ></image>
-            </view>
-        </view>
-        <view class="tab-item">
-            <view class="tab-item-left">二手房均价</view>
-            <view class="tab-item-right">
-                <input value="{{apsh}}" bind:input="apshInput" type="number"></input>
-                <block>元/m2</block>
-            </view>
-        </view>
-        <view class="tab-item">
-            <view class="tab-item-left">租房均价</view>
-            <view class="tab-item-right">
-                <input value="{{arp}}" bind:input="arpInput" type="number"></input>
-                <block>元/月</block>
             </view>
         </view>
         <view class="tab-item">
@@ -59,47 +37,75 @@
                 ></image>
             </view>
         </view>
+        <view class="tab-item">
+            <view class="tab-item-left">月租</view>
+            <view class="tab-item-right">
+                <input value="{{monthPrice}}" bind:input="monthPriceInput" type="number"></input>
+                <block>万/月</block>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">出租方式</view>
+            <view class="tab-item-right">
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       catch:tap="goSheet"
+                       data-type="rantType"
+                ></image>
+            </view>
+        </view>
     </view>
     <view class="split-line"></view>
     <view class="xq-center">
         <view class="tab-item">
-            <view class="tab-item-left">物业类别</view>
+            <view class="tab-item-left">付款方式</view>
             <view class="tab-item-right">
-                <view class="houseType-wrap">
-                    <view class="houseType-item" wx:for="{{propertyType}}" wx:key="*this">
-                        {{item.name}}
-                        <van-icon name="close"
-                                  data-index="{{index}}"
-                                  bind:tap="deleteProperty"/>
-                    </view>
-                </view>
-                <image src="../../combination/image/icon_go_22_gray@2x.png"
-                       mode="aspectFill"
-                       class="common-img"
-                       catch:tap="goSheet"
-                       data-type="propertyType"
-                ></image>
+                <input value="{{payWay}}"></input>
             </view>
         </view>
         <view class="tab-item">
-            <view class="tab-item-left">建筑类型</view>
+            <view class="tab-item-left">建筑面积</view>
             <view class="tab-item-right">
-                <view class="houseType-wrap">
-                    <view class="houseType-item" wx:for="{{buildingType}}" wx:key="*this">
-                        {{item.name}}
-                        <van-icon name="close"
-                                  data-index="{{index}}"
-                                  bind:tap="deleteBuilding"/>
-                    </view>
-                </view>
+                <input value="{{buildingArea}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">户型</view>
+            <view class="tab-item-right">
+                <input value="{{indoorType}}" bind:input="indoorTypeInput" type="number" class="indoor-input"></input><text>室</text>
+                <input value="{{room}}" bind:input="roomInput" type="number" class="indoor-input"></input><text>房</text>
+                <input value="{{kitchen}}" bind:input="kitchenInput" type="number" class="indoor-input"></input><text>厨</text>
+                <input value="{{wei}}" bind:input="weiInput" type="number" class="indoor-input"></input><text>卫</text>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">房屋配置</view>
+            <view class="tab-item-right">
+                <input value="{{buildingConfig}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">楼层</view>
+            <view class="tab-item-right">
+                <input value="{{floorStatus}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">朝向</view>
+            <view class="tab-item-right">
+                <text>{{orient}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
                        catch:tap="goSheet"
-                       data-type="buildingType"
+                       data-type="orientType"
                 ></image>
             </view>
         </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="xq-bottom">
         <view class="tab-item">
             <view class="tab-item-left">建筑年代</view>
             <view class="tab-item-right">
@@ -113,48 +119,21 @@
             </view>
         </view>
         <view class="tab-item">
-            <view class="tab-item-left">产权年限</view>
+            <view class="tab-item-left">装修状况</view>
             <view class="tab-item-right">
-               <input value="{{cqYear}}" type="number"></input><text>年</text>
+                <text>{{zxCase}}</text>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       catch:tap="goSheet"
+                       data-type="zxCase"
+                ></image>
             </view>
         </view>
         <view class="tab-item">
-            <view class="tab-item-left">开发商</view>
+            <view class="tab-item-left">电梯</view>
             <view class="tab-item-right">
-                <input value="{{developers}}" type="text"></input>
-            </view>
-        </view>
-        <view class="tab-item">
-            <view class="tab-item-left">容积率</view>
-            <view class="tab-item-right">
-                <input value="{{capacity}}" type="text"></input>
-            </view>
-        </view>
-    </view>
-    <view class="split-line"></view>
-    <view class="xq-bottom">
-        <view class="tab-item">
-            <view class="tab-item-left">绿化率</view>
-            <view class="tab-item-right">
-                <input value="{{greenRate}}" type="text"></input>
-            </view>
-        </view>
-        <view class="tab-item">
-            <view class="tab-item-left">停车位</view>
-            <view class="tab-item-right">
-                <input value="{{park}}" type="text"></input>
-            </view>
-        </view>
-        <view class="tab-item">
-            <view class="tab-item-left">物业公司</view>
-            <view class="tab-item-right">
-                <input value="{{propertyCompany}}" type="text"></input>
-            </view>
-        </view>
-        <view class="tab-item">
-            <view class="tab-item-left">物业费</view>
-            <view class="tab-item-right">
-                <input value="{{propertyFare}}" type="text"></input>
+                <input value="{{elevator}}"></input>
             </view>
         </view>
         <view class="tab-item">
@@ -181,7 +160,6 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSheet"
                        data-type="subway"
                 ></image>
             </view>
@@ -189,7 +167,7 @@
     </view>
     <view class="split-line"></view>
     <view class="xq-bottom-area">
-       <view class="tab-item-top">经纪人描述</view>
+        <view class="tab-item-top">经纪人描述</view>
         <textarea
                 class="textAreaWrap"
                 value="{{makerDesc}}"
@@ -207,14 +185,10 @@
     <view class="line"></view>
     <view class="submitBtn">添加房源</view>
     <view class="{{showTimePick?'timePickerActive':'timePicker'}}">
-    <van-datetime-picker
-            type="year-month"
-            value="{{ currentDate }}"
-            minDate="{{minDate}}"
-            title="选择年份"
-            bind:confirm="confirm"
-            bind:cancel="cancel"
-    />
+        <van-datetime-picker
+                type="datetime"
+                value="{{ currentDate }}"
+        />
     </view>
 </view>
 <sheet

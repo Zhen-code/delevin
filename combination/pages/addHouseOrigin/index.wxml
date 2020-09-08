@@ -8,7 +8,10 @@
             <image class="common-img" src="../../image/icon_go_22_gray@2x.png" mode="widthFix" data-type="houseType" bind:tap="goSheet"></image>
         </view>
     </view>
-    <xq/>
+    <block wx:if="{{flag===0}}"><xq/></block>
+    <block wx:if="{{flag===1}}"><xf/></block>
+    <block wx:if="{{flag===2}}"><esf/></block>
+    <block wx:if="{{flag===3}}"><zf/></block>
 </view>
 <sheet  title="{{title}}"
         show="{{show}}"

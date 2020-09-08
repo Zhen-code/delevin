@@ -8,62 +8,71 @@ Component({
         show:false,
         name: '',
         houseType:[],
-        price: '',
         labelType:[{name:'有房'},{name:'没房'}],
-        project: '',
-        newHouseHelp:'',
-        propertyType:[{name:'物业类'}],
-        buildingType:[{name:'顶层建筑'}],
-        cqYear: '',
         zxCase:'',
         zxType: [{name:'毛坯',name:'简装',name:'中装',name:'精装',name:'豪装'}],
-        lineSite: '',
-        xsCase:'',
         currentDate: '',
         minDate:'',
-        startTime:'',
         showTimePick:false,
-        endTime: '',
-        developers: '',
-        salesAddress:'',
-        telphone: '',
-        ocupyArea: '',
         buildingArea: '',
-        greenRate: '',
-        park:'',
-        parkRate:'',
-        planCount: '',
         floorStatus:'',
-        totalFloor: '',
-        propertyCompany:'',
-        propertyFare:'',
         address:'',
         area:'',
         subway:'',
         latitude: '',
-        longitude: ''
+        longitude: '',
+        indoorType:'',
+        room:'',
+        kitchen:'',
+        wei:'',
+        buildingTime:'',
+        elevator:'',
+        orient:'',
+        monthPrice:'',
+        payWay:'',
+        buildingConfig:''
     },
     timeFlag: 1,
     lifetimes:{
-      ready() {
-          let min_time = new Date("1900-01-01 00:00:00").getTime();
-          let currentDate = new Date().getTime();
-          this.setData({
-              currentDate:currentDate,
-              minDate : min_time
-          });
-          wx.getLocation({
-              type: 'wgs84',
-              success: (res) => {
-                  console.log(res);
-                  let latitude = res.latitude;
-                  let longitude = res.longitude;
-                  this.setData({ latitude: latitude, longitude: longitude })
-              }
-          });
-      }
+        ready() {
+            let min_time = new Date("1900-01-01 00:00:00").getTime();
+            let currentDate = new Date().getTime();
+            this.setData({
+                currentDate:currentDate,
+                minDate : min_time
+            });
+            wx.getLocation({
+                type: 'wgs84',
+                success: (res) => {
+                    console.log(res);
+                    let latitude = res.latitude;
+                    let longitude = res.longitude;
+                    this.setData({ latitude: latitude, longitude: longitude })
+                }
+            });
+        }
     },
     methods: {
+        monthPriceInput(){
+
+        },
+        goPickTime(){
+            this.setData({
+                showTimePick: true
+            })
+        },
+        weiInput(e){
+
+        },
+        kitchenInput(e){
+
+        },
+        roomInput(e){
+
+        },
+        indoorTypeInput(){
+
+        },
         goTimePick(e){
             console.log(e)
             this.setData({
@@ -77,7 +86,6 @@ Component({
             let date = time.getDate();
             let startTime = year+month+date;
             this.setData({
-                startTime: startTime,
                 showTimePick: false
             })
         },
@@ -107,6 +115,18 @@ Component({
             const {type} = e.currentTarget.dataset;
             console.log(type);
             switch (type) {
+                case 'orientType':
+                    this.setData({
+                        type:type,
+                        show: true,
+                        title: '朝向选择',
+                        actions:[
+                            {name:'北'},{name:'南'},{name:'西'},{name:'东'},{name:'西北'},{name:'东北'},
+                            {name:'西南'},{name:'东南'},{name:'东西南'},{name:'东南北'},{name:'西南北'},
+                            {name:'东西北'}, {name:'东南西北'}
+                        ]
+                    });
+                    break;
                 case 'houseInType':
                     this.setData({
                         type:type,
@@ -126,59 +146,19 @@ Component({
                         actions:labelType
                     });
                     break;
-                case 'propertyType':
-                    const {propertyType} = this.data;
+                case 'rantType' :
                     this.setData({
                         type:type,
                         show: true,
-                        title: '物业类别',
-                        actions:propertyType
-                    });
-                    break;
-                case 'buildingType' :
-                    const {zxType} = this.data;
-                    this.setData({
-                        type:type,
-                        show: true,
-                        title: '装修状况',
-                        actions: zxType
-                    });
-                    break;
-                case 'zxCase' :
-                    const {buildingType} = this.data;
-                    this.setData({
-                        type:type,
-                        show: true,
-                        title: '建筑类型',
-                        actions: buildingType
-                    });
-                    break;
-                case 'xsCase':
-                    this.setData({
-                        type:type,
-                        show: true,
-                        title: '销售状态',
-                        actions: [{name:'在售'},{name:'待售'}]
+                        title: '出租方式选择',
+                        actions:[
+                            {name:'整租'},{name:'合租'}
+                        ]
                     });
                     break;
                 default:
                     break;
             }
-        },
-        priceInput(e){
-
-        },
-        projectInput(e){
-            console.log(e)
-        },
-        newHouseHelpInput(e){
-
-        },
-        deleteProperty(e){
-
-        },
-        deleteBuilding(e){
-
         },
         deleteLabel(e){
             console.log(e.currentTarget.dataset.index)
