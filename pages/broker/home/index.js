@@ -57,6 +57,38 @@ Component({
 			})
 		},
 
+		toRecording() {
+			wx.navigateTo({
+				url: '/combination/pages/recording/index',
+			})
+		},
+
+		changeHouseType(e) {
+			switch (e.detail) {
+				case 0:
+					wx.navigateTo({
+						url: '/combination/pages/management/index',
+					})
+					break;
+				case 1:
+					// wx.navigateTo({
+					// 	url: '/combination/pages/listings/index',
+					// })
+					break;
+				case 2:
+					// wx.navigateTo({
+					// 	url: '/combination/pages/listings/index',
+					// })
+					break;
+				case 3:
+					// wx.navigateTo({
+					// 	url: '/combination/pages/listings/index',
+					// })
+					break;
+				default:
+			}
+		},
+
 		getDelete() {
 			wx.showModal({
 				title: '删除信息',
@@ -83,11 +115,25 @@ Component({
 				confirmText: "立即购买",
 				success(res) {
 					if (res.confirm) {
-						console.log(res, 111)
+						wx.navigateTo({
+							url: '/combination/pages/generalPromotion/index',
+						})
 					} else {
 						console.log(res, 222)
 					}
 				}
+			})
+		},
+
+		toSuperPromotion(){
+			wx.navigateTo({
+				url: '/combination/pages/superPromotion/index',
+			})
+		},
+
+		toListings() {
+			wx.navigateTo({
+				url: '/combination/pages/listings/index',
 			})
 		},
 	}

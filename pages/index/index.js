@@ -15,6 +15,10 @@ Page({
     menus: {},
   },
 
+  toModify(){
+    
+  },
+
   onPageScroll(e) {
     this.setData({
       top: Number(e.scrollTop)

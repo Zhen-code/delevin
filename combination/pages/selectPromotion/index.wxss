@@ -1,0 +1,101 @@
+/* combination/pages/listings/index.wxss */
+.view {
+	width: 100%;
+	background-color: white;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.doubleTab {
+	width: 100%;
+	height: 90rpx;
+	border-bottom: 1rpx solid #eeeeee;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+}
+
+/* height: calc(100vh - {{paddingTop+44+45}}px); */
+
+.shopItem {
+	width: 100%;
+	height: 100%;
+	overflow: scroll;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+	position: fixed;
+	left: 0;
+}
+
+.shopItem-list {
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.row {
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.footer {
+	width: 100%;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 180px;
+}
+
+.footer-text {
+	width: 100%;
+	text-align: center;
+	font-size: 26rpx;
+	font-weight: 400;
+	color: #999999;
+}
+
+
+.bottom {
+	width: 100%;
+	height: 136rpx;
+	padding: 0 32rpx 0 24rpx;
+	box-sizing: border-box;
+	background-color: white;
+	border-top: 1rpx solid #eeeeee;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-direction: row;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+}
+
+.footerShopSurpe {
+	width: 100%;
+	height: 90rpx;
+	background: #FFD854;
+	border-radius: 44rpx;
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333333;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #FFD854;
+}

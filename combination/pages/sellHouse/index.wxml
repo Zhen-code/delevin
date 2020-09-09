@@ -34,9 +34,9 @@
 			</view>
 		</view>
 		<view class="view-row-content">
-			<text class="view-row-content-name">建筑面积</text>
+			<text class="view-row-content-name">建筑面积（m²）</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='area' data-model="area" placeholder="请输入建筑面积"></input>m²
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='area' data-model="area" placeholder="请输入建筑面积"></input>
 			</view>
 		</view>
 		<view class="view-row-content">
@@ -52,9 +52,9 @@
 			</view>
 		</view>
 		<view class="view-row-content">
-			<text class="view-row-content-name">期望售价</text>
+			<text class="view-row-content-name">期望售价（万元）</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='price' data-model="price" placeholder="请输入您期望的售价"></input>万元
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='price' data-model="price" placeholder="请输入您期望的售价"></input>
 			</view>
 		</view>
 	</view>

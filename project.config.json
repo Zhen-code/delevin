@@ -203,6 +203,62 @@
 					"name": "搜小区",
 					"pathName": "combination/pages/distrctSearch/index",
 					"query": "",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/modify/index",
+					"pathName": "combination/pages/modify/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/recording/index",
+					"pathName": "combination/pages/recording/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/management/index",
+					"pathName": "combination/pages/management/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/superPromotion/index",
+					"pathName": "combination/pages/superPromotion/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/superPromotion/index",
+					"pathName": "combination/pages/superPromotion/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/generalPromotion/index",
+					"pathName": "combination/pages/generalPromotion/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/superPromotion/index",
+					"pathName": "combination/pages/superPromotion/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/selectPromotion/index",
+					"pathName": "combination/pages/selectPromotion/index",
 					"scene": null
 				}
 			]

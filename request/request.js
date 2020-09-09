@@ -5,8 +5,8 @@ const request = {
   //登录注册
   login: (params) => {
     return http({
-      url: api.login.index,
-      method: "GET",
+      url: api.login.login,
+      method: "POST",
       params: params,
     });
   },

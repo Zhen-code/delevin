@@ -28,7 +28,7 @@ Component({
 	 * 组件的初始数据
 	 */
 	data: {
-		paddingTop:topHeight,
+		paddingTop: topHeight,
 		show: false,
 		city: "",
 		houseItem: [{
@@ -54,7 +54,7 @@ Component({
 		],
 		bannerList: [1, 2, 3, 4],
 		areaList: provincCityDistrict,
-		tabItem:['新房','二手房']
+		tabItem: ['新房', '二手房']
 	},
 
 	/**
@@ -91,7 +91,7 @@ Component({
 				url: '/combination/pages/searchFor/index'
 			})
 		},
-		
+
 		onClose() {
 			this.setData({
 				show: false
@@ -133,8 +133,39 @@ Component({
 			return false
 		},
 
-		getTabValue(e){
+		getTabValue(e) {
 			console.log(e.detail)
+		},
+
+		changeHouseType(e) {
+			switch (e.detail) {
+				case 0:
+					wx.navigateTo({
+						url: '/combination/pages/propertyType/index',
+					})
+					break;
+				case 1:
+					wx.navigateTo({
+						url: '/combination/pages/propertyType/index',
+					})
+					break;
+				case 2:
+					wx.navigateTo({
+						url: '/combination/pages/propertyType/index',
+					})
+					break;
+				case 3:
+					wx.navigateTo({
+						url: '/combination/pages/propertyType/index',
+					})
+					break;
+				case 4:
+					// wx.navigateTo({
+					// 	url: '/combination/pages/propertyType/index',
+					// })
+					break;
+				default:
+			}
 		},
 	},
 })

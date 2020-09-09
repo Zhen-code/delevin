@@ -21,17 +21,25 @@
 				"pages/aspectDetail/index",
 				"pages/post/index",
 				"pages/broker/index",
-        "pages/myCollection/index",
-        "pages/comment/index",
-        "pages/postDetail/index",
-        "pages/addHouseOrigin/index",
+				"pages/myCollection/index",
+				"pages/comment/index",
+				"pages/postDetail/index",
+				"pages/addHouseOrigin/index",
 				"pages/webView/index",
 				"pages/shareItCode/index",
-        "pages/distrctSearch/index"
+				"pages/modify/index",
+				"pages/recording/index",
+				"pages/management/index",
+				"pages/superPromotion/index",
+				"pages/generalPromotion/index",
+				"pages/selectPromotion/index"
+				"pages/shareItCode/index",
+        		"pages/distrctSearch/index"
 			]
 		}
 	],
 	"usingComponents": {
+		"van-stepper": "@vant/weapp/stepper/index",
 		"van-dialog": "@vant/weapp/dialog/index",
 		"van-uploader": "@vant/weapp/uploader/index",
 		"van-tab": "@vant/weapp/tab/index",

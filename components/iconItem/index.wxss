@@ -1,4 +1,5 @@
 /* components/iconItem/index.wxss */
+
 .houseType {
 	width: 100%;
 	height: auto;
