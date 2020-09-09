@@ -1,0 +1,183 @@
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="获客海报" />
+<view class="doubleTab" style="margin-top:{{paddingTop}}px;">
+	<doubleTab style="width:100%;height:70rpx;" tabItem="{{tabItem}}" bind:backTabValue="getBackTabIndex"></doubleTab>
+</view>
+<view class="tabItem" style="top:({{paddingTop}}px - 90rpx)">
+	<view class="tabItem-left">
+		<view class="tabItem-left-row {{activeKey === 0?'action':''}}" data-index="{{0}}" bindtap="onChange">分类1</view>
+		<view class="tabItem-left-row {{activeKey === 1?'action':''}}" data-index="{{1}}" bindtap="onChange">分类2</view>
+		<view class="tabItem-left-row {{activeKey === 2?'action':''}}" data-index="{{2}}" bindtap="onChange">分类3</view>
+		<view class="tabItem-left-row {{activeKey === 3?'action':''}}" data-index="{{3}}" bindtap="onChange">分类4</view>
+	</view>
+	<view class='content' wx:if="{{tabIndex === 0}}">
+		<view class='left'>
+			<block wx:for="{{leftList}}" wx:key="index">
+				<image class='pic' style='height:{{item.CoverHeight}}rpx' src='{{item.Cover}}'></image>
+				<image class='pic' style='height:{{item.CoverHeight}}rpx' src='{{item.Cover}}'></image>
+				<image class='pic' style='height:{{item.CoverHeight}}rpx' src='{{item.Cover}}'></image>
+				<image class='pic' style='height:{{item.CoverHeight}}rpx' src='{{item.Cover}}'></image>
+				<image class='pic' style='height:{{item.CoverHeight}}rpx' src='{{item.Cover}}'></image>
+			</block>
+		</view>
+		<view class='right'>
+			<block wx:for="{{rightList}}" wx:key="index">
+				<image class='pic' style='height:{{item.CoverHeight}}rpx' src='{{item.Cover}}'></image>
+				<image class='pic' style='height:{{item.CoverHeight}}rpx' src='{{item.Cover}}'></image>
+				<image class='pic' style='height:{{item.CoverHeight}}rpx' src='{{item.Cover}}'></image>
+				<image class='pic' style='height:{{item.CoverHeight}}rpx' src='{{item.Cover}}'></image>
+			</block>
+		</view>
+	</view>
+	<view class="essay" wx:if="{{tabIndex === 1}}">
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+		<view class="essay-row">
+			<view class="text {{isShow ? 'on' : ''}}">{{contents}}</view>
+			<view class="show" bindtap="toggle">
+				<text class="show-text">{{showName}}</text>
+				<van-icon name="{{iconName}}" size="24rpx" color="#999999" />
+			</view>
+			<view class="copy">
+				<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+			</view>
+		</view>
+	</view>
+</view>

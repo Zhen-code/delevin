@@ -57,6 +57,12 @@ Component({
 			})
 		},
 
+		toHomepage(){
+			wx.navigateTo({
+				url: '/combination/pages/homepage/index',
+			})
+		},
+
 		toRecording() {
 			wx.navigateTo({
 				url: '/combination/pages/recording/index',

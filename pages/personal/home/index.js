@@ -127,6 +127,10 @@ Component({
 
 		toNewsDetails(e) {
 			console.log('带参跳新闻详情界面')
+			console.log(e)
+			wx.navigateTo({
+				url: `/combination/pages/aspectDetail/index?id=${0}`,
+			})
 		},
 
 		catchTouchMove(res) {

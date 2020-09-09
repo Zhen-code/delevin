@@ -25,22 +25,29 @@ Component({
 			let item = false
 			this.triggerEvent('item', item)
 		},
+
 		toModify(){
 			wx.navigateTo({
 				url: '/combination/pages/modify/index',
 			})
 		},
+
 		myPackage() {
-			console.log('我的套餐')
+			wx.navigateTo({
+				url: '/combination/pages/myPackage/index',
+			})
 		},
+
 		myClientele() {
 			wx.navigateTo({
 				url: '/combination/pages/management/index',
 			})
 		},
+
 		privacyPolicy() {
 			console.log('隐私政策')
 		},
+
 		customerService() {
 			wx.makePhoneCall({
 				phoneNumber: '17620835317'
@@ -55,5 +62,11 @@ Component({
 			// 	})
 			// })
 		},
+
+		toShareItCode(){
+			wx.navigateTo({
+				url: '/combination/pages/shareItCode/index',
+			})
+		}
 	}
 })

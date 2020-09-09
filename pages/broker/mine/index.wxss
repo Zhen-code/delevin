@@ -45,6 +45,12 @@
 	flex-direction: row;
 }
 
+.mine-content-top-rigth-image{
+	width: 64rpx;
+	height: 64rpx;
+	display: block;
+}
+
 .mine-content-top-left-title {
 	display: flex;
 	align-items: center;

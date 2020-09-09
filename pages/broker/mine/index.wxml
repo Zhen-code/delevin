@@ -11,8 +11,8 @@
 						<text class="mine-content-top-left-type">合富置业</text>
 					</view>
 				</view>
-				<view class="mine-content-top-rigth">
-					<van-image width="64rpx" height="64rpx" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+				<view class="mine-content-top-rigth" bindtap="toShareItCode">
+					<image class="mine-content-top-rigth-image" src="/assets/image/img_qrcode_270@2x.png"></image>
 				</view>
 			</view>
 			<text class="introductionText">个人介绍介绍介绍效机增历果系别好王常属五史导效气且治前风</text>
