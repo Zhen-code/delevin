@@ -4,5 +4,5 @@
 			<image class="view-search-row-icon" bindtap="search" src="/assets/image/icon_glass_22_d6@2x.png"></image>
 			<input confirm-type="search" bindconfirm="firm" value='{{inputValue}}' bindinput="bindCode" class="view-search-row-text" placeholder="{{placeholder}}"></input>
 		</view>
-		<view wx:if="{{isCancel}}" class="cancel" bindtap="cancel">取消</view>
+		<view class="cancel" bindtap="cancel">取消</view>
 	</view>

@@ -1,4 +1,5 @@
 const chooseLocation = requirePlugin('chooseLocation');
+const {key,referer} = require('../../utils/util');
 Component({
     properties: {},
     data: {
@@ -10,9 +11,9 @@ Component({
         type: '',
         title: '',
         arp: '',
-        labelType:[{name:'有房'},{name:'没房'}],
-        propertyType:[{name:'物业类'}],
-        buildingType:[{name:'顶层建筑'}],
+        labelType:[],
+        propertyType:'',
+        buildingType:'',
         buildingTime:'',
         currentDate:  '',
         showTimePick: false,
@@ -28,15 +29,80 @@ Component({
         latitude: '',
         longitude: '',
         area: '',
-        subway: '',
+        subway: [],
         makerDesc:'',
         city: '',
         district: '',
-        province:''
+        province:'',
+        isShow: false,
+        showlabel:false,
+        showIndoor:false,
+        showTextArea:false,
+        autofocus:false
     },
     timeFlag: 1,
 
     methods: {
+        looseBlur(e){
+            let {value} = e.detail;
+                this.setData({
+                    makerDesc:value,
+                    showTextArea:false
+                });
+        },
+        goTextArea(){
+          this.setData({
+              showTextArea:true,
+              autofocus:true
+          })
+        },
+        goIndoorSheet(){
+            this.setData({
+                showIndoor:true
+            })
+        },
+        closeIndoor(e){
+            if(e.detail.detail===""){
+                this.setData({
+                    showIndoor:false
+                })
+            }else{
+                this.setData({
+                    houseType: e.detail.detail,
+                    showIndoor:false
+                })
+            }
+        },
+        goLabelSheet(){
+            this.setData({
+                showlabel:true
+            });
+        },
+        closeLabel(e){
+            if(e.detail.detail===""){
+                this.setData({
+                    showlabel:false
+                });
+            }else{
+                this.setData({
+                    showlabel:false,
+                    labelType: e.detail.detail
+                });
+            }
+        },
+        goSubWaySheet(){
+          this.setData({
+              isShow: true
+          });
+        },
+        deleteSubWay(e){
+            let {index} = e.currentTarget.dataset;
+            let {subway} = this.data;
+            subway.splice(index,1);
+            this.setData({
+                subway
+            });
+        },
         confirm(e){
             let time = new Date(e.detail);
             let year = time.getFullYear();
@@ -57,8 +123,6 @@ Component({
         },
         goPickAddress(){
             let {latitude,longitude} = this.data;
-            const key = 'YGYBZ-XGBWW-WEERF-R7V27-PJIIK-O6BWA';
-            const referer = 'delevin-mini-program'; //调用插件的app的名称
             const location = JSON.stringify({
                 latitude: latitude,
                 longitude: longitude
@@ -116,51 +180,26 @@ Component({
                 labelType
             });
         },
-        deleteProperty(e){
-
-        },
-        deleteBuilding(e){
-
-        },
         goSheet(e){
             const {type} = e.currentTarget.dataset;
             console.log(type);
             switch (type) {
-                case 'houseInType':
-                    this.setData({
-                        type:type,
-                        show: true,
-                        title: '户型选择',
-                        actions:[
-                            {name:'一室'},{name:'两室'},{name:'三室'},{name:'四室'},{name:'五室'},{name:'五室以上'}
-                        ]
-                    });
-                    break;
-                case 'labelType':
-                    const {labelType} = this.data;
-                    this.setData({
-                        type:type,
-                        show: true,
-                        title: '房源标签',
-                        actions:labelType
-                    });
-                    break;
                 case 'propertyType':
-                    const {propertyType} = this.data;
+                    // const {propertyType} = this.data;
                     this.setData({
                         type:type,
                         show: true,
                         title: '物业类别',
-                        actions:propertyType
+                        actions:[{name:'物业类别'}]
                     });
                     break;
                 case 'buildingType' :
-                    const {buildingType} = this.data;
+                    // const {buildingType} = this.data;
                     this.setData({
                         type:type,
                         show: true,
                         title: '建筑类型',
-                        actions: buildingType
+                        actions: [{name:'建筑类型'}]
                     });
                     break;
                 default:
@@ -192,23 +231,9 @@ Component({
                     });
                     break;
                 case 'labelType':
-                    let {propertyType} = this.data;
+                    let {labelType} = this.data;
                     let index2 = labelType.findIndex(item=>item.name==e.detail.detail);
                     if(index2==undefined||index2===-1){
-                        propertyType.push({name:e.detail.detail});
-                        this.setData({
-                            propertyType:propertyType,
-                            show:false
-                        });
-                    }
-                    this.setData({
-                        show:false
-                    });
-                    break;
-                case 'propertyType':
-                    let {labelType} = this.data;
-                    let index1 = labelType.findIndex(item=>item.name==e.detail.detail);
-                    if(index1==undefined||index1===-1){
                         labelType.push({name:e.detail.detail});
                         this.setData({
                             labelType:labelType,
@@ -219,8 +244,35 @@ Component({
                         show:false
                     });
                     break;
+                case 'propertyType':
+                    this.setData({
+                        show:false,
+                        propertyType:e.detail.detail
+                    });
+                    break;
+                case 'buildingType':
+                        this.setData({
+                            buildingType: e.detail.detail,
+                            show:false
+                        });
+                    break;
                 default:
                     break;
+            }
+        },
+        close(e){
+            console.log(e);
+            if(e.detail.detail===""||!e.detail.detail){
+                this.setData({
+                    isShow:false
+                });
+            }else{
+                let {subway} = this.data;
+                let newArr = Array.from(new Set([...subway,...(e.detail.detail)]))
+                this.setData({
+                   subway : newArr,
+                    isShow: false
+                });
             }
         }
     },

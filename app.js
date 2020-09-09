@@ -35,7 +35,7 @@ App({
       }
     })
   },
- 
+
   login () {
     wx.switchTab({
       url: '/pages/index/index',
@@ -58,7 +58,7 @@ App({
     // let rect = wx.getMenuButtonBoundingClientRect ? wx.getMenuButtonBoundingClientRect() : null; //胶囊按钮位置信息
     // let gap = rect.top - systemInfo.statusBarHeight;
     // this.globalData.navBarHeight = 2 * gap + rect.height; //导航栏高度
-    //动态计算每台手机状态栏到胶囊按钮间距 
+    //动态计算每台手机状态栏到胶囊按钮间距
     this.globalData.navBarHeight = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight;
     this.globalData.menuBotton = menuButtonInfo.top - systemInfo.statusBarHeight;
     this.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
@@ -76,6 +76,7 @@ App({
     maxHeight:0,
     paddingTop:0,
     list: [], // tabBar
+    districtTitle: ''//小区标题
   },
   topHeight:{
     height:0,

@@ -3,6 +3,8 @@
   "usingComponents": {
     "sheet": "/components/sheet/index",
     "van-datetime-picker": "/@vant/weapp/datetime-picker/index",
-    "uploader": "/components/uploader/index"
+    "uploader": "/components/uploader/index",
+    "chooseSubWay": "/components/chooseSubWay/index",
+    "chooseLabel": "/components/chooseLabel/index"
   }
 }

@@ -10,10 +10,11 @@
         <view class="tab-item">
             <view class="tab-item-left">所属小区</view>
             <view class="tab-item-right">
+                <text>{{districtTitle}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSheet"
+                       catch:tap="goSelectDistrct"
                        data-type="houseInType"
                 ></image>
             </view>
@@ -32,7 +33,7 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSheet"
+                       catch:tap="goLabelSheet"
                        data-type="labelType"
                 ></image>
             </view>
@@ -41,7 +42,7 @@
             <view class="tab-item-left">月租</view>
             <view class="tab-item-right">
                 <input value="{{monthPrice}}" bind:input="monthPriceInput" type="number"></input>
-                <block>万/月</block>
+                <text class="common-text">万/月</text>
             </view>
         </view>
         <view class="tab-item">
@@ -73,10 +74,10 @@
         <view class="tab-item">
             <view class="tab-item-left">户型</view>
             <view class="tab-item-right">
-                <input value="{{indoorType}}" bind:input="indoorTypeInput" type="number" class="indoor-input"></input><text>室</text>
-                <input value="{{room}}" bind:input="roomInput" type="number" class="indoor-input"></input><text>房</text>
-                <input value="{{kitchen}}" bind:input="kitchenInput" type="number" class="indoor-input"></input><text>厨</text>
-                <input value="{{wei}}" bind:input="weiInput" type="number" class="indoor-input"></input><text>卫</text>
+                <input value="{{indoorType}}" bind:input="indoorTypeInput" type="number" class="indoor-input"></input><text class="common-text">室</text>
+                <input value="{{room}}" bind:input="roomInput" type="number" class="indoor-input"></input><text class="common-text">房</text>
+                <input value="{{kitchen}}" bind:input="kitchenInput" type="number" class="indoor-input"></input><text class="common-text">厨</text>
+                <input value="{{wei}}" bind:input="weiInput" type="number" class="indoor-input"></input><text class="common-text">卫</text>
             </view>
         </view>
         <view class="tab-item">
@@ -139,7 +140,7 @@
         <view class="tab-item">
             <view class="tab-item-left">详细地址</view>
             <view class="tab-item-right">
-                <text>{{address}}</text>
+                <text class="common-text">{{address}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -156,10 +157,18 @@
         <view class="tab-item">
             <view class="tab-item-left">邻近地铁</view>
             <view class="tab-item-right">
-                <text>{{subway}}</text>
+                <view class="houseType-wrap">
+                    <view class="houseType-item" wx:for="{{subway}}" wx:key="*this">
+                        {{item}}
+                        <van-icon name="close"
+                                  data-index="{{index}}"
+                                  bind:tap="deleteSubWay"/>
+                    </view>
+                </view>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
+                       bind:tap="goSubWaySheet"
                        data-type="subway"
                 ></image>
             </view>
@@ -169,10 +178,17 @@
     <view class="xq-bottom-area">
         <view class="tab-item-top">经纪人描述</view>
         <textarea
+                wx:if="{{showTextArea}}"
+                auto-focus="{{autofocus}}"
+                bindblur="looseBlur"
                 class="textAreaWrap"
                 value="{{makerDesc}}"
                 placeholder="请输入经纪人描述…"
                 placeholder-class="textAreaStyle"></textarea>
+        <view  class="textAreaWrap" catch:tap="goTextArea" wx:else>
+            <text class="textAreaStyle" wx:if="{{makerDesc===''}}">请输入经纪人描述…</text>
+            <text class="textAreaActive" wx:else>{{makerDesc}}</text>
+        </view>
         <view class="tab-item-top">房源视频</view>
         <view class="upload">
             <uploader />
@@ -197,3 +213,5 @@
         actions="{{actions}}"
         show="{{show}}"
         bind:onClose="onClose"/>
+<chooseSubWay show="{{isShow}}" bind:close="close"/>
+<chooseLabel show="{{showlabel}}" bind:closeLabel="closeLabel"/>

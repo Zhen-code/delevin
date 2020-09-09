@@ -1,0 +1,13 @@
+<van-action-sheet show="{{show}}" title="户型选择(可多选)" bind:close="close">
+    <view class="sheetWrap">
+        <view class="wrap-top">
+            <block wx:for="{{indoorList}}" wx:key="name">
+                <view class="wrap-top-item {{item.isActive?'active':''}}" data-index="{{index}}" bind:tap="handleItem">{{item.name}}</view>
+            </block>
+        </view>
+        <view class="wrap-bottom">
+            <view class="clear" catch:tap="clear">清空</view>
+            <view class="sure" catch:tap="sure">确定</view>
+        </view>
+    </view>
+</van-action-sheet>

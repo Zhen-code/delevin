@@ -1,4 +1,6 @@
 const chooseLocation = requirePlugin('chooseLocation');
+const {key,referer} = require('../../utils/util');
+var app = getApp();
 Component({
     properties: {},
     data: {
@@ -9,7 +11,7 @@ Component({
         name: '',
         houseType:[],
         totalPrice: '',
-        labelType:[{name:'有房'},{name:'没房'}],
+        labelType:[],
         cqYear: '',
         zxCase:'',
         zxType: [{name:'毛坯',name:'简装',name:'中装',name:'精装',name:'豪装'}],
@@ -20,7 +22,7 @@ Component({
         floorStatus:'',
         address:'',
         area:'',
-        subway:'',
+        subway:[],
         latitude: '',
         longitude: '',
         indoorType:'',
@@ -29,7 +31,14 @@ Component({
         wei:'',
         buildingTime:'',
         elevator:'',
-        orient:''
+        orient:'',
+        isShow:false,
+        showlabel:false,
+        districtTitle:'',
+        showTextArea:false,
+        autofocus:false,
+        makerDesc:'',
+        city:''
     },
     timeFlag: 1,
     lifetimes:{
@@ -49,9 +58,58 @@ Component({
                     this.setData({ latitude: latitude, longitude: longitude })
                 }
             });
+            app.globalData.districtTitle = '';
         }
     },
     methods: {
+        goTextArea(){
+            this.setData({
+                showTextArea:true,
+                autofocus:true
+            })
+        },
+        looseBlur(e){
+            let {value} = e.detail;
+            this.setData({
+                makerDesc:value,
+                showTextArea:false
+            });
+        },
+        goSelectDistrct(){
+            wx.navigateTo({
+                url: '/combination/pages/distrctSearch/index'
+            })
+        },
+        closeLabel(e){
+            if(e.detail.detail===""){
+                this.setData({
+                    showlabel:false
+                });
+            }else{
+                this.setData({
+                    showlabel:false,
+                    labelType: e.detail.detail
+                });
+            }
+        },
+        goLabelSheet(){
+            this.setData({
+                showlabel:true
+            });
+        },
+        goSubWaySheet(){
+            this.setData({
+                isShow: true
+            });
+        },
+        deleteSubWay(e){
+            let {index} = e.currentTarget.dataset;
+            let {subway} = this.data;
+            subway.splice(index,1);
+            this.setData({
+                subway
+            });
+        },
         goPickTime(){
             this.setData({
                 showTimePick: true
@@ -157,13 +215,83 @@ Component({
                 labelType
             });
         },
-        onClose(){
-
+            onClose(e){
+                console.log(e)
+                const {type} = e.detail;
+                if(e.detail.detail===''||e.detail.detail===null||!e.detail.detail){
+                    this.setData({
+                        show:false
+                    });
+                    return;
+                }
+                switch (type) {
+                    case 'houseInType' :
+                        let {houseType} = this.data;
+                        let index = houseType.findIndex(item=>item.name==e.detail.detail);
+                        if(index==undefined||index===-1){
+                            houseType.push({name:e.detail.detail});
+                            this.setData({
+                                houseType:houseType,
+                                show:false
+                            });
+                        }
+                        this.setData({
+                            show:false
+                        });
+                        break;
+                    case 'labelType':
+                        let {labelType} = this.data;
+                        let index2 = labelType.findIndex(item=>item.name==e.detail.detail);
+                        if(index2==undefined||index2===-1){
+                            labelType.push({name:e.detail.detail});
+                            this.setData({
+                                labelType:labelType,
+                                show:false
+                            });
+                        }
+                        this.setData({
+                            show:false
+                        });
+                        break;
+                    case 'propertyType':
+                        this.setData({
+                            show:false,
+                            propertyType:e.detail.detail
+                        });
+                        break;
+                    case 'buildingType':
+                        this.setData({
+                            buildingType: e.detail.detail,
+                            show:false
+                        });
+                        break;
+                    case 'orientType':
+                        this.setData({
+                            orient: e.detail.detail,
+                            show:false
+                        });
+                        break;
+                    default:
+                        break;
+                }
+            },
+        close(e){
+            console.log(e);
+            if(e.detail.detail===""||!e.detail.detail){
+                this.setData({
+                    isShow:false
+                });
+            }else{
+                let {subway} = this.data;
+                let newArr = Array.from(new Set([...subway,...(e.detail.detail)]))
+                this.setData({
+                    subway : newArr,
+                    isShow: false
+                });
+            }
         },
         goPickAddress(){
             let {latitude,longitude} = this.data;
-            const key = 'YGYBZ-XGBWW-WEERF-R7V27-PJIIK-O6BWA';
-            const referer = 'delevin-mini-program'; //调用插件的app的名称
             const location = JSON.stringify({
                 latitude: latitude,
                 longitude: longitude
@@ -175,6 +303,10 @@ Component({
     },
     pageLifetimes:{
         show() {
+            let {districtTitle} = app.globalData;
+            this.setData({
+                districtTitle
+            });
             const location = chooseLocation.getLocation();
             console.log(location);
             if(location===null){
@@ -182,7 +314,9 @@ Component({
             }else{
                 let { address, city, district, latitude, longitude, name, province } = location;
                 this.setData({
-                    address
+                    address: name,
+                    area: address,
+                    city: city
                 })
             }
         }

@@ -181,6 +181,7 @@
 					"id": -1,
 					"name": "添加房源",
 					"pathName": "combination/pages/addHouseOrigin/index",
+					"query": "",
 					"scene": null
 				},
 				{
@@ -194,6 +195,14 @@
 					"id": -1,
 					"name": "combination/pages/map/index",
 					"pathName": "combination/pages/map/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜小区",
+					"pathName": "combination/pages/distrctSearch/index",
+					"query": "",
 					"scene": null
 				}
 			]

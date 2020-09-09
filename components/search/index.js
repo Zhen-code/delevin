@@ -40,9 +40,10 @@ Component({
    */
   methods: {
     bindCode: function (e) {
+      this.triggerEvent('getData',{detail:e.detail.value});
       this.setData({
         'inputValue':e.detail.value
-      })
+      });
       // var that = this;
       // var val = e.detail.value == undefined ? that.data.codes : e.detail.value; //通过这个传递数据
       // var myEventDetail = {
@@ -56,7 +57,7 @@ Component({
       })
       wx.navigateBack({
         delta: -1
-      })      
+      })
     },
     //按了搜索确认按钮后执行的方法
     firm(e) {
@@ -67,7 +68,7 @@ Component({
       }
       this.triggerEvent('firmInput', myEventDetail) //myevent自定义名称事件，父组件中使/
     },
-    
+
     search(){
       // let that = this;
       let val = this.data.inputValue

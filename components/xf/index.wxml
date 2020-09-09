@@ -21,7 +21,7 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSheet"
+                       catch:tap="goIndoorSheet"
                        data-type="houseInType"
                 ></image>
             </view>
@@ -30,7 +30,7 @@
             <view class="tab-item-left">单价</view>
             <view class="tab-item-right">
                 <input value="{{price}}" bind:input="priceInput" type="number"></input>
-                <block>元/m2</block>
+                <text class="common-text">元/m²</text>
             </view>
         </view>
         <view class="tab-item">
@@ -47,7 +47,7 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSheet"
+                       catch:tap="goLabelSheet"
                        data-type="labelType"
                 ></image>
             </view>
@@ -70,14 +70,7 @@
         <view class="tab-item">
             <view class="tab-item-left">物业类别</view>
             <view class="tab-item-right">
-                <view class="houseType-wrap">
-                    <view class="houseType-item" wx:for="{{propertyType}}" wx:key="*this">
-                        {{item.name}}
-                        <van-icon name="close"
-                                  data-index="{{index}}"
-                                  bind:tap="deleteProperty"/>
-                    </view>
-                </view>
+                <text class="common-text">{{propertyType}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -89,14 +82,7 @@
         <view class="tab-item">
             <view class="tab-item-left">建筑类型</view>
             <view class="tab-item-right">
-                <view class="houseType-wrap">
-                    <view class="houseType-item" wx:for="{{buildingType}}" wx:key="*this">
-                        {{item.name}}
-                        <van-icon name="close"
-                                  data-index="{{index}}"
-                                  bind:tap="deleteBuilding"/>
-                    </view>
-                </view>
+                <text class="common-text">{{buildingType}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -108,13 +94,13 @@
         <view class="tab-item">
             <view class="tab-item-left">产权年限</view>
             <view class="tab-item-right">
-                <input value="{{cqYear}}" type="number"></input><text>年</text>
+                <input value="{{cqYear}}" type="number"></input><text class="common-text">年</text>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">装修状况</view>
             <view class="tab-item-right">
-                <text>{{zxCase}}</text>
+                <text class="common-text">{{zxCase}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -135,7 +121,7 @@
         <view class="tab-item">
             <view class="tab-item-left">销售状态</view>
             <view class="tab-item-right">
-                <text>{{xsCase}}</text>
+                <text class="common-text">{{xsCase}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -147,7 +133,7 @@
         <view class="tab-item">
             <view class="tab-item-left">开盘时间</view>
             <view class="tab-item-right">
-                <text>{{startTime}}</text>
+                <text class="common-text">{{startTime}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -159,7 +145,7 @@
         <view class="tab-item">
             <view class="tab-item-left">交盘时间</view>
             <view class="tab-item-right">
-                <text>{{endTime}}</text>
+                <text class="common-text">{{endTime}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -255,7 +241,7 @@
         <view class="tab-item">
             <view class="tab-item-left">详细地址</view>
             <view class="tab-item-right">
-                <text>{{address}}</text>
+                <text class="common-text">{{address}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -272,10 +258,18 @@
         <view class="tab-item">
             <view class="tab-item-left">邻近地铁</view>
             <view class="tab-item-right">
-                <text>{{subway}}</text>
+                <view class="houseType-wrap">
+                    <view class="houseType-item" wx:for="{{subway}}" wx:key="*this">
+                        {{item}}
+                        <van-icon name="close"
+                                  data-index="{{index}}"
+                                  bind:tap="deleteSubWay"/>
+                    </view>
+                </view>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
+                       catch:tap="goSubWaySheet"
                        data-type="subway"
                 ></image>
             </view>
@@ -285,10 +279,17 @@
     <view class="xq-bottom-area">
         <view class="tab-item-top">经纪人描述</view>
         <textarea
+                wx:if="{{showTextArea}}"
+                auto-focus="{{autofocus}}"
+                bindblur="looseBlur"
                 class="textAreaWrap"
                 value="{{makerDesc}}"
                 placeholder="请输入经纪人描述…"
                 placeholder-class="textAreaStyle"></textarea>
+        <view  class="textAreaWrap" catch:tap="goTextArea" wx:else>
+            <text class="textAreaStyle" wx:if="{{makerDesc===''}}">请输入经纪人描述…</text>
+            <text class="textAreaActive" wx:else>{{makerDesc}}</text>
+        </view>
         <view class="tab-item-top">房源视频</view>
         <view class="upload">
             <uploader />
@@ -302,8 +303,11 @@
     <view class="submitBtn">添加房源</view>
     <view class="{{showTimePick?'timePickerActive':'timePicker'}}">
         <van-datetime-picker
-                type="datetime"
+                type="date"
                 value="{{ currentDate }}"
+                min-date="{{ minDate }}"
+                bind:confirm="confirm"
+                bind:cancel="cancel"
         />
     </view>
 </view>
@@ -313,3 +317,7 @@
         actions="{{actions}}"
         show="{{show}}"
         bind:onClose="onClose"/>
+<chooseSubWay show="{{isShow}}" bind:close="close"/>
+<chooseLabel show="{{showlabel}}" bind:closeLabel="closeLabel"/>
+<chooseIndoorType show="{{ showIndoor}}" bind:closeIndoor="closeIndoor"/>
+

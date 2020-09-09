@@ -1,0 +1,35 @@
+<van-action-sheet show="{{ show }}"
+                  title="邻近地铁(可多选)"
+                  bind:close="onClose"
+                 >
+    <view class="sheetWrap">
+        <view class="wrap-top">
+            <view class="wrap-top-left">
+                <scroll-view class="scroll-left"
+                             scroll-y>
+                    <block wx:for="{{scrollLeft}}" wx:key="id">
+                        <view class="scrollItem" catch:tap="handleLeft" data-index="{{index}}">
+                            <text>{{item.lineName}}</text>
+                            <van-icon name="success" wx:if="{{_index===index}}" color="#FFD200"/>
+                        </view>
+                    </block>
+                </scroll-view>
+            </view>
+            <view class="wrap-top-right">
+                <scroll-view class="scroll-right"
+                             scroll-y>
+                    <block wx:for="{{scrollRight}}" wx:key="name">
+                        <view class="scrollItem" catch:tap="handleRight" data-index="{{index}}">
+                            <text>{{item.name}}</text>
+                            <van-icon name="success" wx:if="{{item.active}}" color="#FFD200"/>
+                        </view>
+                    </block>
+                </scroll-view>
+            </view>
+        </view>
+        <view class="wrap-bottom">
+            <view class="clear" bind:tap="clear">清空</view>
+            <view class="sure" bind:tap="sure">确定</view>
+        </view>
+    </view>
+</van-action-sheet>

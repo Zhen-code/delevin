@@ -1,0 +1,79 @@
+.wrap{
+    box-sizing:border-box;
+}
+.search-block{
+    margin: 22rpx 0 42rpx 0;
+}
+.list{
+    padding: 0 32rpx;
+    box-sizing:border-box;
+}
+.list-item{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 267rpx;
+    border-bottom: 1px solid #EEE;
+    margin-bottom: 32rpx;
+}
+.left-img{
+    width: 212rpx;
+    height: 160rpx;
+    flex: 1;
+    margin-right: 32rpx;
+}
+.right-text{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+.right-text-title{
+    font-size: 30rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+}
+.right-text-label{
+    margin: 16rpx 0 30rpx 0;
+}
+.label{
+    padding: 8rpx;
+    display: inline-block;
+    font-size: 22rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666666;
+    background: #F8F8F8;
+    margin-right: 8rpx;
+}
+.averagePrice{
+    font-size: 26rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
+}
+.averagePrice text{
+    font-size: 36rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #FE6300;
+}
+.sellOrigin{
+    font-size: 26rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
+    margin-bottom: 32rpx;
+}
+.sellOrigin text{
+    color: #FE6300;
+}
+.bottom{
+    font-size: 26rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
+    margin: 26rpx 0;
+    text-align: center;
+}
+

@@ -66,10 +66,7 @@
 	height: 20rpx;
 	background: #F8F8F8;
 }
-/*button: not([size='mini']) {*/
-/*	width: 60rpx !important;*/
-/*	margin-left: auto;*/
-/*	margin-right: auto;*/
-/*	*/
-/*}*/
+view,text{
+	box-sizing:border-box;
+}
 

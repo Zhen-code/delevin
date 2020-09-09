@@ -1,4 +1,6 @@
 const chooseLocation = requirePlugin('chooseLocation');
+const {key,referer} = require('../../utils/util');
+var app = getApp();
 Component({
     properties: {},
     data: {
@@ -8,7 +10,7 @@ Component({
         show:false,
         name: '',
         houseType:[],
-        labelType:[{name:'有房'},{name:'没房'}],
+        labelType:[],
         zxCase:'',
         zxType: [{name:'毛坯',name:'简装',name:'中装',name:'精装',name:'豪装'}],
         currentDate: '',
@@ -18,7 +20,7 @@ Component({
         floorStatus:'',
         address:'',
         area:'',
-        subway:'',
+        subway:[],
         latitude: '',
         longitude: '',
         indoorType:'',
@@ -30,7 +32,14 @@ Component({
         orient:'',
         monthPrice:'',
         payWay:'',
-        buildingConfig:''
+        buildingConfig:'',
+        isShow:false,
+        showlabel:false,
+        districtTitle:'',
+        showTextArea:false,
+        autofocus:false,
+        makerDesc:'',
+        city: ''
     },
     timeFlag: 1,
     lifetimes:{
@@ -50,9 +59,59 @@ Component({
                     this.setData({ latitude: latitude, longitude: longitude })
                 }
             });
+            app.globalData.districtTitle = '';
         }
     },
     methods: {
+        goTextArea(){
+            this.setData({
+                showTextArea:true,
+                autofocus:true
+            })
+        },
+        looseBlur(e){
+            let {value} = e.detail;
+            this.setData({
+                makerDesc:value,
+                showTextArea:false
+            });
+        },
+        goSelectDistrct(){
+            wx.navigateTo({
+                url: '/combination/pages/distrctSearch/index'
+            })
+        },
+        closeLabel(e){
+            if(e.detail.detail===""){
+                this.setData({
+                    showlabel:false
+                });
+            }else{
+                this.setData({
+                    showlabel:false,
+                    labelType: e.detail.detail
+                });
+            }
+        },
+        goLabelSheet(){
+            this.setData({
+                showlabel:true
+            });
+        },
+        goSubWaySheet(){
+            console.log(666)
+            this.setData({
+                isShow: true
+            });
+        },
+        deleteSubWay(e){
+            let {index} = e.currentTarget.dataset;
+            let {subway} = this.data;
+            subway.splice(index,1);
+            this.setData({
+                subway
+            });
+        },
         monthPriceInput(){
 
         },
@@ -171,10 +230,23 @@ Component({
         onClose(){
 
         },
+        close(e){
+            console.log(e);
+            if(e.detail.detail===""||!e.detail.detail){
+                this.setData({
+                    isShow:false
+                });
+            }else{
+                let {subway} = this.data;
+                let newArr = Array.from(new Set([...subway,...(e.detail.detail)]))
+                this.setData({
+                    subway : newArr,
+                    isShow: false
+                });
+            }
+        },
         goPickAddress(){
             let {latitude,longitude} = this.data;
-            const key = 'YGYBZ-XGBWW-WEERF-R7V27-PJIIK-O6BWA';
-            const referer = 'delevin-mini-program'; //调用插件的app的名称
             const location = JSON.stringify({
                 latitude: latitude,
                 longitude: longitude
@@ -186,6 +258,10 @@ Component({
     },
     pageLifetimes:{
         show() {
+            let  {districtTitle} = app.globalData;
+            this.setData({
+                districtTitle
+            });
             const location = chooseLocation.getLocation();
             console.log(location);
             if(location===null){
@@ -193,7 +269,9 @@ Component({
             }else{
                 let { address, city, district, latitude, longitude, name, province } = location;
                 this.setData({
-                    address
+                    address: name,
+                    area: address,
+                    city:city
                 })
             }
         }

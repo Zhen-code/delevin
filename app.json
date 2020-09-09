@@ -1,12 +1,11 @@
 {
 	"pages": [
-    "pages/map/map",
 		"pages/index/index",
 		"pages/login/index",
 		"pages/template/temp/index",
 		"pages/personal/aspect/index",
 		"pages/personal/message/index"
-	],
+    ],
 	"subpackages": [
 		{
 			"root": "combination",
@@ -27,7 +26,8 @@
         "pages/postDetail/index",
         "pages/addHouseOrigin/index",
 				"pages/webView/index",
-				"pages/shareItCode/index"
+				"pages/shareItCode/index",
+        "pages/distrctSearch/index"
 			]
 		}
 	],
