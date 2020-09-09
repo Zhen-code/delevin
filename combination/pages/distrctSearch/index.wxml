@@ -1,0 +1,39 @@
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="搜小区" />
+<view class="wrap" style="padding-top:{{paddingTop}}px">
+    <view class="search-block">
+        <search placeholder="搜索" isCancel="{{isCancel}}" bind:getData="getData"/>
+    </view>
+    <view class="list">
+      <view class="list-item" bind:tap="selectDistrct">
+      <image class="left-img" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3309635407,3970153071&fm=26&gp=0.jpg" mode="aspectFill"></image>
+      <view class="right-text">
+        <view class="right-text-title">丽江花园 丽岛豪宅高层视野开阔 家私齐全 采光好光线好</view>
+        <view class="right-text-label">
+            <block>
+                <view class="label">地区</view>
+                <view class="label">户型</view>
+                <view class="label">建筑年代</view>
+            </block>
+        </view>
+          <view class="averagePrice">均价：<text>29303元/m²</text></view>
+          <view class="sellOrigin">在售房源：<text>20套</text></view>
+      </view>
+      </view>
+        <view class="list-item"  bind:tap="selectDistrct">
+            <image class="left-img" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3309635407,3970153071&fm=26&gp=0.jpg" mode="aspectFill"></image>
+            <view class="right-text">
+                <view class="right-text-title">丽江花园 丽岛豪宅高层视野开阔 家私齐全 采光好光线好</view>
+                <view class="right-text-label">
+                    <block>
+                        <view class="label">地区</view>
+                        <view class="label">户型</view>
+                        <view class="label">建筑年代</view>
+                    </block>
+                </view>
+                <view class="averagePrice">均价：<text>29303元/m²</text></view>
+                <view class="sellOrigin">在售房源：<text>20套</text></view>
+            </view>
+        </view>
+    </view>
+    <view class="bottom">- 到底啦 -</view>
+</view>

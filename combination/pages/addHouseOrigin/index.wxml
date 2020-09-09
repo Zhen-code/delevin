@@ -4,11 +4,14 @@
     <view class="wrapper-type" style="top:{{paddingTop}}px">
     <view class="wrapper-left">房源类别</view>
          <view class="wrapper-right">
-            <text>{{houseTypeName}}</text>
+            <text class="common-text">{{houseTypeName}}</text>
             <image class="common-img" src="../../image/icon_go_22_gray@2x.png" mode="widthFix" data-type="houseType" bind:tap="goSheet"></image>
         </view>
     </view>
-    <xq/>
+    <block wx:if="{{flag===0}}"><xq/></block>
+    <block wx:if="{{flag===1}}"><xf/></block>
+    <block wx:if="{{flag===2}}"><zf/></block>
+    <block wx:if="{{flag===3}}"><esf/></block>
 </view>
 <sheet  title="{{title}}"
         show="{{show}}"

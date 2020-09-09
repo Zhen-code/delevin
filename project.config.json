@@ -200,6 +200,13 @@
 				},
 				{
 					"id": -1,
+					"name": "搜小区",
+					"pathName": "combination/pages/distrctSearch/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
 					"name": "combination/pages/modify/index",
 					"pathName": "combination/pages/modify/index",
 					"query": "",

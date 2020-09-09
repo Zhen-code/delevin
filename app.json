@@ -5,7 +5,7 @@
 		"pages/template/temp/index",
 		"pages/personal/aspect/index",
 		"pages/personal/message/index"
-	],
+    ],
 	"subpackages": [
 		{
 			"root": "combination",
@@ -37,7 +37,8 @@
 				"pages/homepage/index",
 				"pages/sharePoster/index",
 				"pages/customerPoster/index",
-				"pages/customerArticles/index"
+				"pages/customerArticles/index",
+				"pages/distrctSearch/index"
 			]
 		}
 	],
@@ -83,9 +84,9 @@
 	"style": "v2",
 	"sitemapLocation": "sitemap.json",
 	"plugins": {
-		"chooseLocation": {
+			"chooseLocation": {
 			"version": "1.0.5",
-			"provider": "wx76a9a06e5b4e693e"
-		}
-	}
+				"provider": "wx76a9a06e5b4e693e"
+	    }
+  }
 }

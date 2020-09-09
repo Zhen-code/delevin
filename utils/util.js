@@ -14,9 +14,9 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
-/** 
- * 时间戳转化为年 月 日 时 分 秒 
- * dateStamp: 传入时间戳 
+/**
+ * 时间戳转化为年 月 日 时 分 秒
+ * dateStamp: 传入时间戳
  * 2026-06-24 00:00:00 格式
 */
 function formatTimeTwo(dateStamp) {
@@ -31,8 +31,23 @@ function formatTimeTwo(dateStamp) {
   let tempDate = Y + M + D + H + Mi + S;
   return tempDate;
 }
-
-module.exports = {
-  formatTime: formatTime,
-  formatTimeTwo
+function getTime(val) {
+  let time = new Date(val);
+  let year = time.getFullYear();
+  let month = formatNumber(time.getMonth()+1);
+  let date = formatNumber(time.getDate());
+  return (year+'/'+month+'/'+date);
 }
+const key = 'YGYBZ-XGBWW-WEERF-R7V27-PJIIK-O6BWA';
+const referer = 'delevin-mini-program'; //调用插件的app的名称
+let min_time = new Date("1900-01-01 00:00:00").getTime();
+let currentDate = new Date().getTime();
+module.exports = {
+  formatTime,
+  formatTimeTwo,
+  key,
+  referer,
+  min_time,
+  currentDate,
+  getTime
+};

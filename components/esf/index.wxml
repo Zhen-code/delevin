@@ -1,0 +1,200 @@
+<view class="xq-wrapper">
+    <view class="xq-top">
+        <view class="tab-item"></view>
+        <view class="tab-item">
+            <view class="tab-item-left">房源标题</view>
+            <view class="tab-item-right">
+                <input value="{{name}}" bind:input="nameInput"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">所属小区</view>
+            <view class="tab-item-right">
+                <text>{{districtTitle}}</text>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       catch:tap="goSelectDistrct"
+                       data-type="houseInType"
+                ></image>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">总价</view>
+            <view class="tab-item-right">
+                <input value="{{totalPrice}}" bind:input="totalPriceInput" type="number"></input>
+                <text class="common-text">万元</text>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">房源标签</view>
+            <view class="tab-item-right">
+                <view class="houseType-wrap">
+                    <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
+                        {{item.name}}
+                        <van-icon name="close"
+                                  data-index="{{index}}"
+                                  bind:tap="deleteLabel"/>
+                    </view>
+                </view>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       catch:tap="goLabelSheet"
+                       data-type="labelType"
+                ></image>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">户型</view>
+            <view class="tab-item-right">
+                <input value="{{indoorType}}" bind:input="indoorTypeInput" type="number" class="indoor-input"></input><text class="common-text">室</text>
+                <input value="{{room}}" bind:input="roomInput" type="number" class="indoor-input"></input><text class="common-text">房</text>
+                <input value="{{kitchen}}" bind:input="kitchenInput" type="number" class="indoor-input"></input><text class="common-text">厨</text>
+                <input value="{{wei}}" bind:input="weiInput" type="number" class="indoor-input"></input><text class="common-text">卫</text>
+            </view>
+        </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="xq-center">
+        <view class="tab-item">
+            <view class="tab-item-left">建筑面积</view>
+            <view class="tab-item-right">
+                <input value="{{buildingArea}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">楼层</view>
+            <view class="tab-item-right">
+                <input value="{{floorStatus}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">建筑年代</view>
+            <view class="tab-item-right">
+                <text>{{buildingTime}}</text>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       catch:tap="goPickTime"
+                       data-type="buildingTime"
+                ></image>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">产权年限</view>
+            <view class="tab-item-right">
+                <input value="{{cqYear}}" type="number"></input><text class="common-text">年</text>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">装修状况</view>
+            <view class="tab-item-right">
+                <text class="common-text">{{zxCase}}</text>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       catch:tap="goSheet"
+                       data-type="zxCase"
+                ></image>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">电梯</view>
+            <view class="tab-item-right">
+                <input value="{{elevator}}"></input>
+            </view>
+        </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="xq-bottom">
+        <view class="tab-item">
+            <view class="tab-item-left">朝向</view>
+            <view class="tab-item-right">
+                <text class="common-text">{{orient}}</text>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       catch:tap="goSheet"
+                       data-type="orientType"
+                ></image>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">详细地址</view>
+            <view class="tab-item-right">
+                <text class="common-text">{{address}}</text>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       catch:tap="goPickAddress"
+                ></image>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">所在区域</view>
+            <view class="tab-item-right">
+                <input value="{{area}}" type="text"></input>
+            </view>
+        </view>
+        <view class="tab-item">
+            <view class="tab-item-left">邻近地铁</view>
+            <view class="tab-item-right">
+                <view class="houseType-wrap">
+                    <view class="houseType-item" wx:for="{{subway}}" wx:key="*this">
+                        {{item}}
+                        <van-icon name="close"
+                                  data-index="{{index}}"
+                                  bind:tap="deleteSubWay"/>
+                    </view>
+                </view>
+                <image src="../../combination/image/icon_go_22_gray@2x.png"
+                       mode="aspectFill"
+                       class="common-img"
+                       catch:tap="goSubWaySheet"
+                       data-type="subway"
+                ></image>
+            </view>
+        </view>
+    </view>
+    <view class="split-line"></view>
+    <view class="xq-bottom-area">
+        <view class="tab-item-top">经纪人描述</view>
+        <textarea
+                wx:if="{{showTextArea}}"
+                auto-focus="{{autofocus}}"
+                bindblur="looseBlur"
+                class="textAreaWrap"
+                value="{{makerDesc}}"
+                placeholder="请输入经纪人描述…"
+                placeholder-class="textAreaStyle"></textarea>
+        <view  class="textAreaWrap" catch:tap="goTextArea" wx:else>
+            <text class="textAreaStyle" wx:if="{{makerDesc===''}}">请输入经纪人描述…</text>
+            <text class="textAreaActive" wx:else>{{makerDesc}}</text>
+        </view>
+        <view class="tab-item-top">房源视频</view>
+        <view class="upload">
+            <uploader />
+        </view>
+        <view class="tab-item-top">效果图</view>
+        <view class="upload">
+            <uploader count="50"/>
+        </view>
+    </view>
+    <view class="line"></view>
+    <view class="submitBtn">添加房源</view>
+    <view class="{{showTimePick?'timePickerActive':'timePicker'}}">
+        <van-datetime-picker
+                type="datetime"
+                value="{{ currentDate }}"
+        />
+    </view>
+</view>
+<sheet
+        title="{{title}}"
+        type="{{type}}"
+        actions="{{actions}}"
+        show="{{show}}"
+        bind:onClose="onClose"/>
+<chooseSubWay show="{{isShow}}" bind:close="close"/>
+<chooseLabel show="{{showlabel}}" bind:closeLabel="closeLabel"/>

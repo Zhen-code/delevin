@@ -39,3 +39,9 @@
     width: 44rpx;
     height: 44rpx;
 }
+.common-text{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+}

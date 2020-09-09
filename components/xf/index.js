@@ -1,3 +1,5 @@
+const chooseLocation = requirePlugin('chooseLocation');
+const {key,referer,min_time,currentDate,getTime} = require('../../utils/util');
 Component({
     properties: {},
     data: {
@@ -8,45 +10,151 @@ Component({
         name: '',
         houseType:[],
         price: '',
-        labelType:[{name:'有房'},{name:'没房'}],
+        labelType:[],
         project: '',
         newHouseHelp:'',
-        propertyType:[{name:'物业类'}],
-        buildingType:[{name:'顶层建筑'}],
+        propertyType:'',
+        buildingType:'',
         cqYear: '',
         zxCase:'',
         zxType: [{name:'毛坯',name:'简装',name:'中装',name:'精装',name:'豪装'}],
         lineSite: '',
         xsCase:'',
         currentDate: '',
+        minDate:'',
         startTime:'',
-        showTimePick:false
+        showTimePick:false,
+        endTime: '',
+        developers: '',
+        salesAddress:'',
+        telphone: '',
+        ocupyArea: '',
+        buildingArea: '',
+        greenRate: '',
+        park:'',
+        parkRate:'',
+        planCount: '',
+        floorStatus:'',
+        totalFloor: '',
+        propertyCompany:'',
+        propertyFare:'',
+        address:'',
+        area:'',
+        subway:[],
+        latitude: '',
+        longitude: '',
+        isShow: false,
+        showlabel:false,
+        showIndoor:false,
+        showTextArea:false,
+        autofocus:false,
+        makerDesc:'',
+        minDate:'',
+        showSE:1,
+        city:''
     },
     timeFlag: 1,
     lifetimes:{
       ready() {
-          let currentDate = new Date().getTime();
           this.setData({
               currentDate:currentDate,
-          })
+              minDate : min_time
+          });
+          wx.getLocation({
+              type: 'wgs84',
+              success: (res) => {
+                  console.log(res);
+                  let latitude = res.latitude;
+                  let longitude = res.longitude;
+                  this.setData({ latitude: latitude, longitude: longitude })
+              }
+          });
       }
     },
     methods: {
-        goTimePick(){
+        goTextArea(){
             this.setData({
-                showTimePick:true
+                showTextArea:true,
+                autofocus:true
+            })
+        },
+        looseBlur(e){
+            let {value} = e.detail;
+            this.setData({
+                makerDesc:value,
+                showTextArea:false
             });
         },
-        confirm(e){
-            let time = new Date(e.detail);
-            let year = time.getFullYear();
-            let month = time.getMonth();
-            let date = time.getDate();
-            let startTime = year+month+date;
+        goIndoorSheet(){
             this.setData({
-                startTime: startTime,
-                showTimePick: false
+                showIndoor:true
             })
+        },
+        closeIndoor(e){
+            if(e.detail.detail===""){
+                this.setData({
+                    showIndoor:false
+                })
+            }else{
+                this.setData({
+                    houseType: e.detail.detail,
+                    showIndoor:false
+                })
+            }
+        },
+        closeLabel(e){
+            if(e.detail.detail===""){
+                this.setData({
+                    showlabel:false
+                });
+            }else{
+                this.setData({
+                    showlabel:false,
+                    labelType: e.detail.detail
+                });
+            }
+        },
+        goLabelSheet(){
+            this.setData({
+                showlabel:true
+            });
+        },
+        deleteLabel(e){
+            console.log(e.currentTarget.dataset.index)
+            let {labelType} = this.data;
+            labelType.splice(e.currentTarget.dataset.index,1);
+            this.setData({
+                labelType
+            });
+        },
+        goTimePick(e){
+            let {type} = e.currentTarget.dataset;
+            if(type==="endTime"){
+                this.setData({
+                    showTimePick:true,
+                    showSE:2
+                });
+            }else if(type==="startTime"){
+                this.setData({
+                    showTimePick:true,
+                    showSE:1
+                });
+            }
+        },
+        confirm(e){
+            let chooseTime = getTime(e.detail);
+            let { showSE } = this.data;
+            if(showSE===1){
+                this.setData({
+                    startTime: chooseTime,
+                    showTimePick: false
+                })
+            }else{
+                this.setData({
+                    endTime: chooseTime,
+                    showTimePick: false
+                })
+            }
         },
         cancel(){
             this.setData({
@@ -74,16 +182,6 @@ Component({
             const {type} = e.currentTarget.dataset;
             console.log(type);
             switch (type) {
-                case 'houseInType':
-                    this.setData({
-                        type:type,
-                        show: true,
-                        title: '户型选择',
-                        actions:[
-                            {name:'一室'},{name:'两室'},{name:'三室'},{name:'四室'},{name:'五室'},{name:'五室以上'}
-                        ]
-                    });
-                    break;
                 case 'labelType':
                     const {labelType} = this.data;
                     this.setData({
@@ -94,30 +192,28 @@ Component({
                     });
                     break;
                 case 'propertyType':
-                    const {propertyType} = this.data;
+                    // const {propertyType} = this.data;
                     this.setData({
                         type:type,
                         show: true,
                         title: '物业类别',
-                        actions:propertyType
+                        actions:[{name:'快递类物业'}]
                     });
                     break;
                 case 'buildingType' :
-                    const {zxType} = this.data;
-                    this.setData({
-                        type:type,
-                        show: true,
-                        title: '装修状况',
-                        actions: zxType
-                    });
-                    break;
-                case 'zxCase' :
-                    const {buildingType} = this.data;
                     this.setData({
                         type:type,
                         show: true,
                         title: '建筑类型',
-                        actions: buildingType
+                        actions: [{name:'顶层建筑'}]
+                    });
+                    break;
+                case 'zxCase' :
+                    this.setData({
+                        type:type,
+                        show: true,
+                        title: '建筑类型',
+                        actions: [{name:'毛坯'},{name:'简装'},{name:'中装'},{name:'精装'},{name:'豪装'}]
                     });
                     break;
                 case 'xsCase':
@@ -155,8 +251,118 @@ Component({
                 labelType
             });
         },
-        onClose(){
+        onClose(e){
+            console.log(e)
+            const {type} = e.detail;
+            if(e.detail.detail===''||e.detail.detail===null||!e.detail.detail){
+                this.setData({
+                    show:false
+                });
+                return;
+            }
+            switch (type) {
+                case 'houseInType' :
+                    let {houseType} = this.data;
+                    let index = houseType.findIndex(item=>item.name==e.detail.detail);
+                    if(index==undefined||index===-1){
+                        houseType.push({name:e.detail.detail});
+                        this.setData({
+                            houseType:houseType,
+                            show:false
+                        });
+                    }
+                    this.setData({
+                        show:false
+                    });
+                    break;
+                case 'labelType':
+                    let {propertyType} = this.data;
+                    let index2 = labelType.findIndex(item=>item.name==e.detail.detail);
+                    if(index2==undefined||index2===-1){
+                        propertyType.push({name:e.detail.detail});
+                        this.setData({
+                            propertyType:propertyType,
+                            show:false
+                        });
+                    }
+                    this.setData({
+                        show:false
+                    });
+                    break;
+                case 'propertyType':
+                    this.setData({
+                        show:false,
+                        propertyType:e.detail.detail
+                    });
+                    break;
+                case 'buildingType':
+                    this.setData({
+                        buildingType: e.detail.detail,
+                        show:false
+                    });
+                    break;
+                case 'zxCase':
+                    this.setData({
+                        zxCase: e.detail.detail
+                    });
+                    break;
+                default:
+                    break;
+            }
+        },
+        close(e){
+            console.log(e);
+            if(e.detail.detail===""||!e.detail.detail){
+                this.setData({
+                    isShow:false
+                });
+            }else{
+                let {subway} = this.data;
+                let newArr = Array.from(new Set([...subway,...(e.detail.detail)]))
+                this.setData({
+                    subway : newArr,
+                    isShow: false
+                });
+            }
+        },
+        goSubWaySheet(){
+            this.setData({
+                isShow: true
+            });
+        },
+        goPickAddress(){
+            let {latitude,longitude} = this.data;
+            const location = JSON.stringify({
+                latitude: latitude,
+                longitude: longitude
+            });
+            wx.navigateTo({
+                url: 'plugin://chooseLocation/index?key=' + key + '&referer=' + referer + '&location=' + location
+            });
+        },
+        deleteSubWay(e){
+            let {index} = e.currentTarget.dataset;
+            let {subway} = this.data;
+            subway.splice(index,1);
+            this.setData({
+                subway
+            });
+        }
+    },
+    pageLifetimes:{
+        show() {
+            const location = chooseLocation.getLocation();
+            console.log(location);
+            if(location===null){
 
+            }else{
+                let { address, city, district, latitude, longitude, name, province } = location;
+                this.setData({
+                    address: name,
+                    area: address,
+                    city: city
+                })
+            }
         }
     }
 });

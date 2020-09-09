@@ -59,7 +59,8 @@
 				<text class="components-top-left">推荐房源</text>
 				<doubleTab style="width:230rpx;" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
 			</view>
-			<shopItem></shopItem>
+
+			<shopItem bindtap="toDetails"></shopItem>
 			<shopItem></shopItem>
 			<shopItem></shopItem>
 		</view>

@@ -139,6 +139,13 @@ Component({
 
 		getTabValue(e) {
 			console.log(e.detail)
+
+		},
+
+		toDetails(){
+			wx.navigateTo({
+				url: '/combination/pages/listingDetails/index',
+			})
 		},
 
 		changeHouseType(e) {

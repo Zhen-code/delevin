@@ -3,6 +3,9 @@
   "usingComponents": {
     "navbar": "/components/nav/index",
     "sheet": "/components/sheet/index",
-    "xq": "/components/xq/index"
+    "xq": "/components/xq/index",
+    "xf": "/components/xf/index",
+    "esf": "/components/esf/index",
+    "zf": "/components/zf/index"
   }
 }

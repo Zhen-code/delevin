@@ -33,7 +33,7 @@
 						<view class="floor-list-row-top-type">
 							<view class="floor-list-row-top-type-top">
 								<view class="top-view" bindtap="getShareIt">
-									<image class="top-view-image" src="/assets/image/icon_clean_14_white@2x.png"></image>
+									<image class="top-view-image" src="/assets/image/icon_share_14_black@2x.png"></image>
 									<text class="top-view-text">分享</text>
 								</view>
 								<view class="top-delete" bindtap="getDelete">

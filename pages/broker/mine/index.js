@@ -67,6 +67,28 @@ Component({
 			wx.navigateTo({
 				url: '/combination/pages/shareItCode/index',
 			})
-		}
+		},
+
+		outLogin(){
+			wx.showModal({
+				title: '退出登录',
+				content: '是否退出登录，清除数据？',
+				showCancel: true,
+				cancelText: "取消",
+				confirmText: "确定",
+				success: function (res) {
+					if (res.cancel) {
+						 //点击取消,默认隐藏弹框
+						 console.log('取消')
+					} else {
+						 //点击确定
+						 console.log('确定')
+						 wx.redirectTo({
+							url:"/pages/login/index"
+						})
+					}
+			 },
+			})
+		},
 	}
 })

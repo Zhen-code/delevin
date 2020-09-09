@@ -54,6 +54,9 @@
 				<van-icon size="40rpx" name="arrow" color="#cccccc" />
 			</view>
 		</view>
-		<view class="mine-content-bottom" bindtap="tabPortal">切换至门店端</view>
+		<view class="mine-content-out" bindtap="outLogin">
+			<text>退出登录</text>
+		</view>
+		<view class="mine-content-bottom" bindtap="tabPortal">切换至用户端</view>
 	</view>
 </view>

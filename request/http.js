@@ -1,5 +1,5 @@
-const domain = "http://192.168.2.27:8080";
-// const domain = "https://dev.delevin.beiru168.com";
+// const domain = "http://192.168.2.27:8080";
+const domain = "https://dev.delevin.beiru168.com";
 let header = {
   Authorization: wx.getStorageSync('token') || '',
 }

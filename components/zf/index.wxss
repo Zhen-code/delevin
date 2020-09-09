@@ -1,0 +1,9 @@
+@import "../../assets/wxss/addhouseCommon.wxss";
+.timePicker{
+    display: none;
+}
+.indoor-input{
+    width: 90rpx;
+    text-align: center;
+}
+
