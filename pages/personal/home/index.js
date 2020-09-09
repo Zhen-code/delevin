@@ -2,6 +2,9 @@
 const {
 	provincCityDistrict
 } = require('../../../request/provinces')
+const {
+  request
+} = require('../../../request/request');
 var QQMapWX = require('../../../utils/qqmap-wx-jssdk');
 var qqmapsdk;
 var key = 'XRUBZ-XN6KX-IYQ4H-7XZUT-AZWLJ-4PBIA';
@@ -22,6 +25,9 @@ Component({
 	},
 	created() {
 		this.getLocation()
+		this.getBanner();
+		this.getIcon();
+		this.getNews()
 	},
 
 	/**
@@ -52,7 +58,8 @@ Component({
 				"name": "房贷计算",
 			}
 		],
-		bannerList: [1, 2, 3, 4],
+		bannerList: [],
+		newsList: [],
 		areaList: provincCityDistrict,
 		tabItem: ['新房', '二手房']
 	},
@@ -61,6 +68,48 @@ Component({
 	 * 组件的方法列表
 	 */
 	methods: {
+		getBanner(){
+			request.banner().then((res) => {
+				this.setData({
+					bannerList:res
+				})
+      }).catch((err) => {
+        wx.showToast({
+          title: err,
+          icon: 'none',
+          duration: 2500
+        })
+      })
+		},
+
+		getIcon(){
+			request.icon().then((res) => {
+				// this.setData({
+				// 	houseItem:res
+				// })
+      }).catch((err) => {
+        wx.showToast({
+          title: err,
+          icon: 'none',
+          duration: 2500
+        })
+      })
+		},
+
+		getNews(){
+			request.news().then((res) => {
+				this.setData({
+					newsList:res
+				})
+      }).catch((err) => {
+        wx.showToast({
+          title: err,
+          icon: 'none',
+          duration: 2500
+        })
+      })
+		},
+
 		getLocation() {
 			let that = this;
 			wx.getLocation({

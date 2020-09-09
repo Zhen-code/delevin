@@ -12,9 +12,23 @@ const request = {
   },
 
   //用户首页
-  personalHome: (params) => {
+  banner: (params) => {
     return http({
-      url: api.personalHome.index,
+      url: api.personalHome.banner,
+      method: "GET",
+      params: params,
+    });
+  },
+  icon: (params) => {
+    return http({
+      url: api.personalHome.icon,
+      method: "GET",
+      params: params,
+    });
+  },
+  news: (params) => {
+    return http({
+      url: api.personalHome.news,
       method: "GET",
       params: params,
     });
