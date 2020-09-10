@@ -235,13 +235,6 @@
 				},
 				{
 					"id": -1,
-					"name": "combination/pages/superPromotion/index",
-					"pathName": "combination/pages/superPromotion/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "combination/pages/generalPromotion/index",
 					"pathName": "combination/pages/generalPromotion/index",
 					"query": "",
@@ -258,13 +251,6 @@
 					"id": -1,
 					"name": "combination/pages/selectPromotion/index",
 					"pathName": "combination/pages/selectPromotion/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
 					"query": "",
 					"scene": null
 				},
@@ -298,15 +284,9 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "combination/pages/customerArticles/index",
 					"pathName": "combination/pages/customerArticles/index",
+					"query": "",
 					"scene": null
 				}
 			]

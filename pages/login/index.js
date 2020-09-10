@@ -9,14 +9,15 @@ Page({
   data: {
 
   },
+
   //事件处理函数
   getPhoneNumber: function (e) {
     let userInfo = '';
     if (e.detail.errMsg == "getPhoneNumber:ok") {
       let msg = e.detail;
       wx.getUserInfo({
-        success: res => {
-          userInfo = res.userInfo;
+        success(res) {
+          userInfo = res.userInfo
           wx.login({
             success: res => {
               if (res.code) {
@@ -56,8 +57,8 @@ Page({
               }
             }
           })
-        },
-      });
+        }
+      })
     } else {
       console.log('拒绝授权')
     }
