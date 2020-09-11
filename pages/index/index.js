@@ -23,18 +23,16 @@ Page({
 
   getData() {
     let than = this;
-    // than.setData({
-    //   PageCur: menus.masterMenuData.activeUrl,
-    //   menus: menus.masterMenuData
-    // })
     if (than.data.Identity) {
+      // menus.masterMenuData.activeUrl = 'brokerHome'
       than.setData({
-        PageCur: menus.masterMenuData.activeUrl,
+        PageCur: 'brokerHome',
         menus: menus.masterMenuData
       })
     } else {
+      // menus.agentMenuData.activeUrl = 'home'
       than.setData({
-        PageCur: menus.agentMenuData.activeUrl,
+        PageCur: 'home',
         menus: menus.agentMenuData
       })
     }
@@ -54,12 +52,12 @@ Page({
   getItem(e) {
     if (e.detail) {
       this.setData({
-        PageCur: menus.masterMenuData.activeUrl,
+        PageCur: 'brokerHome',
         Identity: e.detail
       })
     } else {
       this.setData({
-        PageCur: menus.agentMenuData.activeUrl,
+        PageCur: 'home',
         Identity: e.detail
       })
     }

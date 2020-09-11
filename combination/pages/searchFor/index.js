@@ -43,7 +43,7 @@ Page({
 			wx.navigateTo({
 				url: `/combination/pages/listings/index?title=${e.detail.val}`,
 			})
-		
+
 		} else {
 			Notify.default({
 				type: 'warning',
@@ -53,9 +53,17 @@ Page({
 	},
 
 	changeTap(e) {
+		this.data.data.unshift(e.target.dataset.text);
+		let data = this.data.data;
+		let resultArr;
+		resultArr = data.filter(function (item, index, self) {
+			return self.indexOf(item) == index;
+		});
 		this.setData({
 			val: e.target.dataset.text,
+			list: resultArr
 		})
+		wx.setStorageSync('list', this.data.list)
 		wx.navigateTo({
 			url: `/combination/pages/listings/index?title=${e.target.dataset.text}`,
 		})
@@ -75,16 +83,16 @@ Page({
 	 */
 	onLoad: function (options) {
 		var list = wx.getStorageSync('list');
-		if(list){
+		if (list) {
 			this.setData({
-				list:list,
-				data:list
+				list: list,
+				data: list
 			})
-		}else{
+		} else {
 			this.setData({
-				list:[],
-				data:[],
-				val:'',
+				list: [],
+				data: [],
+				val: '',
 			})
 		}
 	},

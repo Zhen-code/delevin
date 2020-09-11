@@ -10,6 +10,21 @@ const request = {
       params: params,
     });
   },
+  
+  //消息列表
+  messageList: (params) => {
+    return http({
+      url: api.message.messageList,
+      method: "GET",
+      params: params,
+    });
+  },
+  messageDetails: (params) => {
+    return http({
+      url: api.message.messageDetails+params.messageId,
+      method: "GET",
+    });
+  },
 
   //用户首页
   banner: (params) => {

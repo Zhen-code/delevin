@@ -6,10 +6,10 @@
    },
 
    // 用户信息
-   information:{
-     info:'/api/access/v1/member/info',
-     infoUpData:'/api/access/v1/user/member/info/update',
-     code:'/api/access/v1/member/captcha/'
+   information: {
+     info: '/api/access/v1/member/info',
+     infoUpData: '/api/access/v1/user/member/info/update',
+     code: '/api/access/v1/member/captcha/'
    },
 
    // 上传图片/视频
@@ -19,9 +19,9 @@
    },
 
    // 消息
-   message:{
-     messageList:'/api/access/v1/member/message/list',
-     messageDetails:'/api/access/v1/member/message/details/',
+   message: {
+     messageList: '/api/access/v1/member/message/list',
+     messageDetails: '/api/access/v1/member/message/details/',
    },
 
    // 用户端

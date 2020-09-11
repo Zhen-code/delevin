@@ -1,23 +1,44 @@
 // combination/pages/message/index.js
-const topHeight = require('../../../request/topHeight.js').topHeight
+const topHeight = require('../../../request/topHeight.js').topHeight;
+const {
+	request
+} = require('../../../request/request')
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		paddingTop:topHeight,
+		paddingTop: topHeight,
 		bgColor: {
-      "color": true,
-      "border": true
-    },
+			"color": true,
+			"border": true
+		},
+		data:{},
+	},
+
+	getData(id) {
+		request.messageDetails({
+			'messageId': id
+		}).then((res) => {
+			this.setData({
+				data:res
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		console.log(options)
+		this.getData(options.id);
 	},
 
 	/**

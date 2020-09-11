@@ -20,6 +20,24 @@ Page({
 		pageSize: 12,
 		scrollTop: 0,
 		triggered: false,
+		favorites: "取消收藏",
+	},
+
+	onClose(event) {
+		wx.showModal({
+			title: '我的收藏',
+			content: '是否确认取消收藏？',
+			showCancel: true,
+			cancelText: "取消",
+			confirmText: "确定",
+			success(res) {
+				if (res.confirm) {
+					console.log(res, 111)
+				} else {
+					console.log(res, 222)
+				}
+			}
+		})
 	},
 
 	topTap(e) {
