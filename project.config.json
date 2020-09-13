@@ -288,6 +288,13 @@
 					"pathName": "combination/pages/customerArticles/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "看点首页",
+					"pathName": "pages/personal/aspect/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

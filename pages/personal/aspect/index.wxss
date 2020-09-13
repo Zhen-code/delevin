@@ -147,7 +147,7 @@
 
 .tab-item2 {
     min-height: 210rpx;
-    margin: 0 32rpx 32rpx 32rpx;
+    margin: 0 32rpx 0rpx 32rpx;
     border-bottom: 1px solid #EEEEEE;
     padding: 32rpx 0;
 }
