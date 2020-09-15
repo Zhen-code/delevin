@@ -6,10 +6,10 @@
 	</view>
 	<view class="top-right" bindtap="toSearch">
 		<image class="top-right-image" src="/assets/image/icon_glass_22_d6@2x.png"></image>
-		<input class="top-right-text" placeholder="输入地名/地铁/楼盘/小区查找房源"></input>
+		<input class="top-right-text" placeholder="{{placeholder}}"></input>
 	</view>
 </view>
 
-<van-popup show="{{ show }}" position="bottom" round="{{true}}" custom-style="width:100%;height: 656rpx;" bind:close="onClose">
-	<van-area area-list="{{ areaList }}" columns-placeholder="{{ ['请选择', '请选择', '请选择'] }}" style="height:464rpx" bind:cancel="cancel" bind:confirm="confirm" />
+<van-popup show="{{ show }}" position="bottom" z-index="999999999" round="{{true}}" custom-style="width:100%;height: 500rpx;" bind:close="onClose">
+	<van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" bind:cancel="cancel" bind:confirm="confirm" />
 </van-popup>

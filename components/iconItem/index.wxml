@@ -1,6 +1,6 @@
 		<view class="houseType">
 			<view class="houseType-item" wx:for="{{houseItem}}" data-item="{{item}}" data-index="{{index}}" wx:key="index" bindtap="tabItem">
-				<van-icon size="80rpx" name="{{item.icon}}" />
-				<text class="houseType-item-name">{{item.name}}</text>
+				<van-icon size="80rpx" name="{{item.iconUri}}" />
+				<text class="houseType-item-name">{{item.iconType}}</text>
 			</view>
 		</view>

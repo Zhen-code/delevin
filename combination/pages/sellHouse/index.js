@@ -1,4 +1,7 @@
 // combination/pages/sellHouse/index.js
+const {
+	request
+} = require('../../../request/request');
 const topHeight = require('../../../request/topHeight.js').topHeight
 Page({
 
@@ -28,9 +31,15 @@ Page({
 	},
 
 	getInputValue(e) {
-		this.setData({
-			[`${e.currentTarget.dataset.model}`]: e.detail.value,
-		});
+		if (e.detail.value) {
+			this.setData({
+				[`${e.currentTarget.dataset.model}`]: e.detail.value,
+			});
+		} else {
+			this.setData({
+				[`${e.currentTarget.dataset.model}`]: e.detail.value,
+			});
+		}
 	},
 
 	countDown(that, count) {
@@ -54,11 +63,21 @@ Page({
 	getCode() {
 		if (this.data.phone) {
 			if (this.data.counting) {
-				this.countDown(this, 60)
-				wx.showToast({
-					title: '验证码已发送',
-					icon: 'success',
-					duration: 2500
+				request.code({
+					'phone': this.data.phone,
+				}).then((res) => {
+					this.countDown(this, 60)
+					wx.showToast({
+						title: '验证码已发送',
+						icon: 'success',
+						duration: 2500
+					})
+				}).catch((err) => {
+					wx.showToast({
+						title: '发送失败',
+						icon: 'success',
+						duration: 2500
+					})
 				})
 			} else {
 				wx.showToast({
@@ -75,19 +94,45 @@ Page({
 			})
 		}
 	},
-	
+
 	submit() {
-		console.log(this.data.city)
-		console.log(this.data.community)
-		console.log(this.data.adddress)
-		console.log(this.data.building)
-		console.log(this.data.unitType)
-		console.log(this.data.area)
-		console.log(this.data.floor)
-		console.log(this.data.towards)
-		console.log(this.data.price)
-		console.log(this.data.phone)
-		console.log(this.data.code)
+		let then = this.data;
+		if (then.city && then.community && then.adddress && then.building && then.unitType && then.area && then.floor && then.towards && then.price && then.name && then.phone && then.code !== '') {
+			request.newListingsList({
+				"buildingUnit": then.building,
+				"city": then.city,
+				"code": then.code,
+				"detailsAddress": then.adddress,
+				"floor": then.floor,
+				"floorage": then.area,
+				"houseType": then.unitType,
+				"nickName": then.name,
+				"orientation": then.towards,
+				"phone": then.phone,
+				"region": then.community,
+				"sellingPrice": then.price
+			}).then((res) => {
+				console.log(res)
+				wx.showToast({
+					title: '提交成功',
+					icon: 'success',
+					duration: 2500
+				})
+			}).catch((err) => {
+				console.log(err)
+				wx.showToast({
+					title: '提交失败',
+					icon: 'success',
+					duration: 2500
+				})
+			})
+		} else {
+			wx.showToast({
+				title: '请完善资料',
+				icon: 'none',
+				duration: 2500
+			})
+		}
 	},
 
 	/**

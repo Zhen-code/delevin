@@ -17,6 +17,7 @@ Page({
 		pageSize: 12,
 		scrollTop: 0,
 		triggered: false,
+		placeholder:'',
 	},
 
 	scrollTop() {
@@ -47,6 +48,9 @@ Page({
 	 */
 	onLoad: function (options) {
 		console.log(options)
+		this.setData({
+			placeholder:options.title
+		})
 	},
 
 	/**

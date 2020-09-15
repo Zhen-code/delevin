@@ -1,14 +1,17 @@
 // pages/personal/home/index.js
+const app = getApp()
 const {
 	provincCityDistrict
 } = require('../../../request/provinces')
 const {
-  request
+	request
 } = require('../../../request/request');
 var QQMapWX = require('../../../utils/qqmap-wx-jssdk');
 var qqmapsdk;
 var key = 'XRUBZ-XN6KX-IYQ4H-7XZUT-AZWLJ-4PBIA';
 const topHeight = require('../../../request/topHeight.js').topHeight
+const api = require('../../../request/api').api;
+const domain = require('../../../request/http.js').domain;
 Component({
 	/**
 	 * 组件的属性列表
@@ -23,11 +26,13 @@ Component({
 			value: 0,
 		}
 	},
+
 	created() {
 		this.getLocation()
 		this.getBanner();
 		this.getIcon();
-		this.getNews()
+		this.getNews();
+		this.getListingsList();
 	},
 
 	/**
@@ -36,6 +41,7 @@ Component({
 	data: {
 		paddingTop: topHeight,
 		show: false,
+		showInfo: true,
 		city: "",
 		houseItem: [{
 				"icon": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
@@ -61,53 +67,56 @@ Component({
 		bannerList: [],
 		newsList: [],
 		areaList: provincCityDistrict,
-		tabItem: ['新房', '二手房']
+		tabItem: ['新房', '二手房'],
+		pageSize: 12,
+		pageIndex: 1,
+		listingsList: [],
 	},
 
 	/**
 	 * 组件的方法列表
 	 */
 	methods: {
-		getBanner(){
+		getBanner() {
 			request.banner().then((res) => {
 				this.setData({
-					bannerList:res
+					bannerList: res
 				})
-      }).catch((err) => {
-        wx.showToast({
-          title: err,
-          icon: 'none',
-          duration: 2500
-        })
-      })
+			}).catch((err) => {
+				wx.showToast({
+					title: err,
+					icon: 'none',
+					duration: 2500
+				})
+			})
 		},
 
-		getIcon(){
+		getIcon() {
 			request.icon().then((res) => {
-				// this.setData({
-				// 	houseItem:res
-				// })
-      }).catch((err) => {
-        wx.showToast({
-          title: err,
-          icon: 'none',
-          duration: 2500
-        })
-      })
+				this.setData({
+					houseItem: res
+				})
+			}).catch((err) => {
+				wx.showToast({
+					title: err,
+					icon: 'none',
+					duration: 2500
+				})
+			})
 		},
 
-		getNews(){
+		getNews() {
 			request.news().then((res) => {
 				this.setData({
-					newsList:res
+					newsList: res
 				})
-      }).catch((err) => {
-        wx.showToast({
-          title: err,
-          icon: 'none',
-          duration: 2500
-        })
-      })
+			}).catch((err) => {
+				wx.showToast({
+					title: err,
+					icon: 'none',
+					duration: 2500
+				})
+			})
 		},
 
 		getLocation() {
@@ -186,15 +195,52 @@ Component({
 			return false
 		},
 
-		getTabValue(e) {
-			console.log(e.detail)
-
+		getListingsList() {
+			request.newListingsList({
+				"pageSize": 3,
+				"pageIndex": 1,
+			}).then((res) => {
+				this.setData({
+					listingsList: res.list
+				})
+			}).catch((err) => {
+				console.log(err)
+			})
 		},
 
-		toDetails(){
-			wx.navigateTo({
-				url: '/combination/pages/listingDetails/index',
-			})
+		getTabValue(e) {
+			if (e.detail === 0) {
+				request.newListingsList({
+					"pageSize": 3,
+					"pageIndex": 1,
+				}).then((res) => {
+					this.setData({
+						listingsList: [],
+						listingsList: res.list
+					})
+				}).catch((err) => {
+					console.log(err)
+				})
+			} else {
+				request.towListingsList({
+					"pageSize": 3,
+					"pageIndex": 1,
+				}).then((res) => {
+					this.setData({
+						listingsList: [],
+						listingsList: res.list
+					})
+				}).catch((err) => {
+					console.log(err)
+				})
+			}
+		},
+
+		toDetails(e) {
+			console.log(e.currentTarget.dataset.item.id)
+			// wx.navigateTo({
+			// 	url: '/combination/pages/listingDetails/index',
+			// })
 		},
 
 		changeHouseType(e) {
@@ -227,5 +273,11 @@ Component({
 				default:
 			}
 		},
+
+		changeShowInfo() {
+			this.setData({
+				showInfo: false,
+			})
+		}
 	},
 })

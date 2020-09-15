@@ -23,7 +23,7 @@
 		</view>
 		<view class="view-content-content">
 			<block wx:for="{{popular}}" data-index="{{index}}" wx:key="index">
-				<text class="view-content-content-popular" bindtap="changeTap" data-text='{{item}}'>{{item}}</text>
+				<text class="view-content-content-popular" bindtap="changeTap" data-text='{{item}}'>{{item.keyword}}</text>
 			</block>
 		</view>
 	</view>

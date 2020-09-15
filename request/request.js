@@ -10,6 +10,36 @@ const request = {
       params: params,
     });
   },
+
+  //用户信息
+  information: () => {
+    return http({
+      url: api.information.info,
+      method: "GET",
+    });
+  },
+  code: (params) => {
+    return http({
+      url: api.information.code+params.phone,
+      method: "POST",
+    });
+  },
+
+  //推荐新、二房源
+  newListingsList: (params) => {
+    return http({
+      url: api.listings.newListingsList,
+      method: "GET",
+      params: params,
+    });
+  },
+  towListingsList: (params) => {
+    return http({
+      url: api.listings.towListingsList,
+      method: "GET",
+      params: params,
+    });
+  },
   
   //消息列表
   messageList: (params) => {
@@ -34,10 +64,23 @@ const request = {
       params: params,
     });
   },
+  search: (params) => {
+    return http({
+      url: api.personalHome.search,
+      method: "GET",
+    });
+  },
   icon: (params) => {
     return http({
       url: api.personalHome.icon,
       method: "GET",
+      params: params,
+    });
+  },
+  sellHouse: (params) => {
+    return http({
+      url: api.listings.sellHouse,
+      method: "POST",
       params: params,
     });
   },

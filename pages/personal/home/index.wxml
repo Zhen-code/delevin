@@ -59,10 +59,9 @@
 				<text class="components-top-left">推荐房源</text>
 				<doubleTab style="width:230rpx;" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
 			</view>
-
-			<shopItem bindtap="toDetails"></shopItem>
-			<shopItem></shopItem>
-			<shopItem></shopItem>
+			<block wx:for="{{listingsList}}" wx:key="index">
+				<shopItem item="{{item}}" data-item="{{item}}" bindtap="toDetails"></shopItem>
+			</block>
 		</view>
 
 		<view class="home-bottom">
@@ -71,6 +70,6 @@
 	</view>
 </view>
 
-<van-popup show="{{ show }}" position="bottom" round="{{true}}" custom-style="width:100%;height: 656rpx;" bind:close="onClose">
-	<van-area area-list="{{ areaList }}" columns-placeholder="{{ ['请选择', '请选择', '请选择'] }}" style="height:464rpx" bind:cancel="cancel" bind:confirm="confirm" />
+<van-popup show="{{ show }}" position="bottom" z-index="999999999" round="{{true}}" custom-style="width:100%;height: 500rpx;" bind:close="onClose">
+	<van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" bind:cancel="cancel" bind:confirm="confirm" />
 </van-popup>

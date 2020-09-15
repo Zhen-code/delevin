@@ -1,10 +1,9 @@
 {
 	"pages": [
-		"pages/index/index",
 		"pages/login/index",
+		"pages/index/index",
 		"pages/template/temp/index",
-		"pages/personal/aspect/index",
-		"pages/personal/message/index"
+		"pages/personal/aspect/index"
     ],
 	"subpackages": [
 		{

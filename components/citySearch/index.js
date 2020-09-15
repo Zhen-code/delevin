@@ -7,7 +7,10 @@ Component({
 	 * 组件的属性列表
 	 */
 	properties: {
-
+		placeholder:{
+			type:String,
+			value:'输入地名/地铁/楼盘/小区查找房源',
+		}
 	},
 
 	/**
@@ -15,15 +18,16 @@ Component({
 	 */
 	data: {
 		show: false,
-		city:"广州市",
+		city: "广州市",
 		areaList: provincCityDistrict,
+		placeholder: "输入地名/地铁/楼盘/小区查找房源",
 	},
 
 	/**
 	 * 组件的方法列表
 	 */
 	methods: {
-		changeCity(){
+		changeCity() {
 			this.setData({
 				show: true
 			});
@@ -56,7 +60,7 @@ Component({
 			this.onClose();
 		},
 
-		toSearch(){
+		toSearch() {
 			wx.navigateTo({
 				url: `/combination/pages/searchFor/index`,
 			})

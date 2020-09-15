@@ -1,5 +1,11 @@
 // pages/_index/_index.js
+const app = getApp()
 var menus = require('../../datas/js/menus');
+const api = require('../../request/api').api;
+const domain = require('../../request/http.js').domain;
+const {
+  request
+} = require('../../request/request.js');
 Page({
   /**
    * 页面的初始数据
@@ -11,6 +17,7 @@ Page({
       "border": true
     },
     Identity: false,
+    showInfo: false,
     PageCur: "brokerHome",
     menus: {},
   },
@@ -23,6 +30,11 @@ Page({
 
   getData() {
     let than = this;
+    request.information().then((res)=>{
+      console.log(res)
+    }).catch((err)=>{
+      console.log(err)
+    })
     if (than.data.Identity) {
       // menus.masterMenuData.activeUrl = 'brokerHome'
       than.setData({
@@ -64,11 +76,64 @@ Page({
     this.getData();
   },
 
+  getUserInfo(e) {
+    let than = this;
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              let loginInfo = app.globalData.loginInfo;
+              let data = {
+                "encryptedData": loginInfo.encryptedData,
+                "headImgUri": res.userInfo.avatarUrl,
+                "iv": loginInfo.unionId,
+                "nickName": res.userInfo.nickName,
+                "openId": loginInfo.openId,
+                "sessionKey": loginInfo.sessionKey,
+              }
+              request.login(data).then((res) => {
+                let token = res.token;
+                console.log(res.token, 1111)
+                wx.removeStorageSync('token')
+                wx.setStorageSync('token', token)
+                than.setData({
+                  showInfo: false,
+                })
+              }).catch((err) => {
+                wx.showToast({
+                  title: '获取失败，请重新登录',
+                  icon: 'none',
+                  duration: 2500
+                })
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let then = this;
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          then.setData({
+            showInfo: false,
+          })
+        } else {
+          then.setData({
+            showInfo: true,
+          })
+        }
+      }
+    })
   },
 
   /**

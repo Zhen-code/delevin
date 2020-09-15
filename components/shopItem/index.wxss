@@ -64,8 +64,8 @@
 
 .item-right-title {
 	width: 100%;
-	height: 68rpx;
-	line-height: 34rpx;
+	height: 70rpx;
+	line-height: 35rpx;
 	text-align: left;
 	font-size: 30rpx;
 	font-weight: bold;
