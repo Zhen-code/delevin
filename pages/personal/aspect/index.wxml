@@ -4,6 +4,7 @@
    <view class="tab {{_index=='0'?'tbActive':''}}" data-index="0" bind:tap="toggleTab">新闻资讯</view>
    <view class="tab {{_index=='1'?'tbActive':''}}" data-index="1" bind:tap="toggleTab">地产315</view>
   </view>
+
   <view class="tabContent" hidden="{{_index!=='0'}}">
     <van-tabs
             nav-class="scrollTab"
