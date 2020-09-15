@@ -1,5 +1,7 @@
 // combination/pages/aspectDetail/index.js
 const topHeight = require('../../../request/topHeight.js').topHeight;
+const {api} = require('../../../request/api');
+const {http} = require('../../../request/http');
 Page({
 
   /**
@@ -18,12 +20,24 @@ Page({
     isCollect: false,
     title: '关于股市涨停你怎么看'
   },
-
+  getNewsDetail(id){
+    http({
+      url: api.personalHome.newsDetail(id),
+      method: 'GET',
+      params:{}
+    }).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err);
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log(options)
+    let {id} = options;
+    this.getNewsDetail(id);
   },
 
   /**
