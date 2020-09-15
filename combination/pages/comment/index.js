@@ -1,5 +1,7 @@
 // combination/pages/comment/index.js
 const topHeight = require('../../../request/topHeight.js').topHeight;
+const {http} = require('../../../request/http');
+const {api} = require('../../../request/api');
 Page({
 
   /**
@@ -15,11 +17,16 @@ Page({
     disable:true
   },
   timeFlag: 1,
+  targetId: '',
+  type: '',
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
+    let {targetId,type} = options;
+    this.targetId = targetId;
+    this.type = type;
   },
 
   /**
@@ -90,8 +97,37 @@ Page({
   },
   go(){
     if (this.data.commentValue === '' || !this.data.commentValue || this.data.commentValue===null){
+      console.log(7878)
       return;
     }
-    console.log(this.data.commentValue)
+    if(this.type === "NEWS") {
+      http({
+        url: api.personalHome.commentNewPost,
+        method: 'POST',
+        params: {
+          content: this.data.commentValue,
+          targetId: this.targetId,
+          type: "NEWS"
+        }
+      }).then(res=>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err);
+      })
+    }else if(this.type === "POST"){
+      http({
+        url: api.personalHome.commentNewPost,
+        method: 'POST',
+        params: {
+          content: this.data.commentValue,
+          targetId: this.targetId,
+          type: "POST"
+        }
+      }).then(res=>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err);
+      })
+    }
   }
 })

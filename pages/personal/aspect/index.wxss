@@ -228,7 +228,7 @@
     position: fixed;
     width: 104rpx;
     height: 104rpx;
-    bottom: 240px;
+    bottom: 100px;
     left: 614rpx;
     z-index: 5000;
 }

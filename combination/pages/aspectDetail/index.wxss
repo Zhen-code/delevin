@@ -36,6 +36,7 @@
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #333333;
+  margin-top: 22rpx;
 }
 .news-img{
   width: 686rpx;

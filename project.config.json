@@ -295,6 +295,12 @@
 					"pathName": "pages/personal/aspect/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "帖子发布",
+					"pathName": "combination/pages/post/index",
+					"scene": null
 				}
 			]
 		}

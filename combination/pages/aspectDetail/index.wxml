@@ -2,19 +2,19 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="新闻资讯" />
 <view class="content" style="padding-top:{{paddingTop}}px">
   <view class="content-top">
-    <view class="title">Hot文章值得看:广州当前两居室排行出炉：广州恒大阳光半岛领跑</view>
+    <view class="title">{{title}}</view>
     <view class="second-bar">
-      <view class="second-bar-left">参谋长说房俱乐部</view>
-      <view>2020-08-27 13:23:33</view>
+      <view class="second-bar-left">{{author}}</view>
+      <view>{{time}}</view>
     </view>
   </view>
-   <text class="content-center">
-  各地银行执行水平趋一致 专家称房贷利率平稳料延续额本息和等额本金，红色的部分是还款的利息，蓝色的部分是还款的本金记者日前调研发现，近期一线城市房贷利率整体趋于平稳，各地区银行间房贷利率执行水平比较一致。专家指出，住房信贷政策是房地产调控的重要一环，为避免刺激房地产市场，预计短期内房贷利率连续大面积下行的局面难再现。
-  </text>
-  <block wx:for="{{newsImg}}"
-         wx:key="*this">
-    <image src="{{item}}" mode="aspectFill" class="news-img"></image>
-  </block>
+   <view class="content-center">
+     <rich-text nodes="{{nodes}}" type="text"></rich-text>
+  </view>
+<!--  <block wx:for="{{newsImg}}"-->
+<!--         wx:key="*this">-->
+<!--    <image src="{{item}}" mode="aspectFill" class="news-img"></image>-->
+<!--  </block>-->
 </view>
 <view class="line"></view>
 <view class="comment-wrapper">

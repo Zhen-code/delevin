@@ -1,5 +1,7 @@
 {
   "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
   "usingComponents": {
     "navbar":"/components/nav/index"
   }

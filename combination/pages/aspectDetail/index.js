@@ -18,15 +18,25 @@ Page({
       'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3054075612,3413957361&fm=26&gp=0.jpg'
     ],
     isCollect: false,
-    title: '关于股市涨停你怎么看'
+    title: '',
+    author: '',
+    time: '',
+    nodes: ''
   },
+  targetId: '',
   getNewsDetail(id){
     http({
-      url: api.personalHome.newsDetail(id),
+      url: api.personalHome.newsDetail(3),
       method: 'GET',
       params:{}
     }).then(res=>{
       console.log(res)
+      this.setData({
+        title: res.name,
+        author: res.author,
+        time: res.createDate,
+        nodes: res.newsDetails.replace(/\<img /gi,'<img class="news-img" ')
+      });
     }).catch(err=>{
       console.log(err);
     })
@@ -37,6 +47,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let {id} = options;
+    this.targetId = id;
     this.getNewsDetail(id);
   },
 
@@ -102,7 +113,7 @@ Page({
   },
   toWrite(){
     wx.navigateTo({
-      url: '/combination/pages/comment/index'
+      url: '/combination/pages/comment/index?targetId='+this.targetId+'&type='+'NEWS'
     })
   },
   collect(){

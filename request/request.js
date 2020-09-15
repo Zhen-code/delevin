@@ -40,7 +40,7 @@ const request = {
       params: params,
     });
   },
-  
+
   //消息列表
   messageList: (params) => {
     return http({
@@ -100,7 +100,11 @@ const request = {
       params: params,
     });
   },
+
 }
+
+
+
 
 module.exports = {
   request,
