@@ -16,7 +16,7 @@
 			</block>
 		</view>
 		<view class="item-right-typeMoney">
-			<view class="price" wx:if="{{item.unitPrice}}">{{item.unitPrice}}元/m² <image style="margin-left:5px" class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
+			<view class="price" wx:if="{{item.unitPrice || item.housePrice}}">{{item.unitPrice || item.housePrice}}元/m² <image style="margin-left:5px" class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
 			</view>
 			<view class="price" wx:if="{{item.totalPrice}}">{{item.totalPrice}}万 <text>({{item.avgPrice}}元/m²)</text></view>
 			<!-- <van-tag size="large" color="#FFC51D" text-color="#333333" type="warning">添加</van-tag> -->

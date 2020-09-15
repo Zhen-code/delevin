@@ -1,4 +1,7 @@
 // combination/pages/myCollection/index.js
+const {
+	request
+} = require('../../../request/request');
 const topHeight = require('../../../request/topHeight.js').topHeight
 Page({
 
@@ -15,7 +18,8 @@ Page({
 		tabItem: [],
 		tab1: ['新房/楼盘', '二手房', '租房', '小区房'],
 		tab2: ['新闻', '地产315'],
-		item: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+		item: [],
+		type: '新房',
 		pageIndex: 1,
 		pageSize: 12,
 		scrollTop: 0,
@@ -55,6 +59,15 @@ Page({
 		}
 	},
 
+	getTabIndex(e){
+		console.log(e.detail,122)
+		if(this.data.topTabIndex === 0){
+			console.log(this.data.topTabIndex,0)
+		}else{
+			console.log(this.data.topTabIndex,1)
+		}
+	},
+
 	scrollTop() {
 		wx.pageScrollTo({
 			scrollTop: 0
@@ -75,12 +88,28 @@ Page({
 	},
 
 	getData() {
-
+		request.myFavoritesHouse({
+			"pageSize": this.data.pageSize,
+			"pageIndex": this.data.pageIndex,
+			"type": this.data.type,
+		}).then((res) => {
+			console.log(res.list)
+			this.setData({
+				item: res.list
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '数据错误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
 	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.getData()
 		let index = Number(options.tabIndex);
 		let data = this.data;
 		this.setData({
