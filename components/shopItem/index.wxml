@@ -1,25 +1,25 @@
 <!--components/shopItem/index.wxml-->
 <view class="item padding">
 	<view class="item-left">
-		<van-image width="106" height="80" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+		<!-- <view class="item-left-no">
+			<text class="item-left-text">已下架</text>
+		</view> -->
+		<image class="item-left-image" src="{{item.coverUri}}"></image>
 	</view>
 	<view class="item-right">
-		<view class="item-right-title">华标峰湖御境 精装修 家私家电齐全 通风采光好华标峰湖御境 精装修 家私家电齐全</view>
+		<view class="item-right-title">{{item.title}}</view>
 		<view class="item-right-content">
-			<image class="item-right-content-icon1" src="/assets/image/label_forsell_blue@2x.png"></image>
-			<image class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
-			<image class="item-right-content-icon3" src="/assets/image/label_sell_orange@2x.png"></image>
-			<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">97m²</van-tag>
-			<van-tag style="margin-right:10rpx" color="#F8F8F8" text-color="#666666">近地铁</van-tag>
-			<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">97m²</van-tag>
-			<van-tag style="margin-right:10rpx" color="#F8F8F8" text-color="#666666">近地铁</van-tag>
-			<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">97m²</van-tag>
-			<van-tag style="margin-right:10rpx" color="#F8F8F8" text-color="#666666">近地铁</van-tag>
+			<image class="item-right-content-icon1" wx:if="{{item.salesStatus === 'FOR_SALE'}}" src="/assets/image/label_forsell_blue@2x.png"></image>
+			<image class="item-right-content-icon3" wx:if="{{item.salesStatus === 'ON_SALE'}}" src="/assets/image/label_sell_orange@2x.png"></image>
+			<block wx:for="{{item.houseLabel}}" wx:key="index">
+				<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">{{item}}</van-tag>
+			</block>
 		</view>
 		<view class="item-right-typeMoney">
-			<!-- <view class="price">32000元/m² <image style="margin-left:5px" class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image></view> -->
-			<view class="price">160万<text> (19000元/m²)</text></view>
-			<van-tag size="large" color="#FFC51D" text-color="#333333" type="warning">添加</van-tag>
+			<view class="price" wx:if="{{item.unitPrice}}">{{item.unitPrice}}元/m² <image style="margin-left:5px" class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
+			</view>
+			<view class="price" wx:if="{{item.totalPrice}}">{{item.totalPrice}}万 <text>({{item.avgPrice}}元/m²)</text></view>
+			<!-- <van-tag size="large" color="#FFC51D" text-color="#333333" type="warning">添加</van-tag> -->
 			<!-- <van-tag size="large" color="#EEEEEE" text-color="#999999" type="warning">已添加</van-tag> -->
 			<!-- <view class="item-right-typeNum">
 				<view class="item-right-typeNum-ping">均价：<text>29303元/m²</text></view>

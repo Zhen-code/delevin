@@ -1,0 +1,152 @@
+<view class="mine">
+	<navbar backHome="{{true}}" top="{{top}}" title="经纪人主页" />
+	<view class="mine-content" style="padding-top:{{paddingTop}}px;min-height: calc(100vh - {{paddingTop}}px);">
+		<view class="mine-content-top">
+			<view class="mine-content-top-box">
+				<view class="mine-content-top-left">
+					<van-image round width="100rpx" height="100rpx" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+					<view class="mine-content-top-left-title">
+						<text class="mine-content-top-left-text">楼市君</text>
+						<text class="mine-content-top-left-type">合富置业</text>
+					</view>
+				</view>
+				<view class="mine-content-top-rigth">
+					<image class="mine-content-top-rigth-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
+				</view>
+			</view>
+			<text class="introductionText">个人介绍介绍介绍效机增历果系别好王常属五史导效气且治前风</text>
+		</view>
+		<view class="floor">
+			<view class="floor-list">
+				<view class="floor-list-row">
+					<view class="floor-list-row-top">
+						<image class="floor-list-row-top-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+						<view class="floor-list-row-top-type">
+							<view class="floor-list-row-top-type-top"></view>
+							<view class="floor-list-row-top-type-bottom">
+								<view class="title">楼盘名称汉溪长隆</view>
+								<view class="column">
+									<text class="column-name">番禺·长隆</text>
+									<text class="column-price">23000元/m²</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="floor-list-row-bottom">
+						<view class="floor-list-row-bottom-top">
+							<view class="floor-list-row-bottom-name">开盘时间：
+								<text class="floor-list-row-bottom-time">2020-08-20</text>
+							</view>
+							<view class="floor-list-row-bottom-name">开盘地址：
+								<text class="floor-list-row-bottom-time">番禺区汉溪大道长隆</text>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="floor-list-row">
+					<view class="floor-list-row-top">
+						<image class="floor-list-row-top-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+						<view class="floor-list-row-top-type">
+							<view class="floor-list-row-top-type-top"></view>
+							<view class="floor-list-row-top-type-bottom">
+								<view class="title">楼盘名称汉溪长隆</view>
+								<view class="column">
+									<text class="column-name">番禺·长隆</text>
+									<text class="column-price">23000元/m²</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="floor-list-row-bottom">
+						<view class="floor-list-row-bottom-top">
+							<view class="floor-list-row-bottom-name">开盘时间：
+								<text class="floor-list-row-bottom-time">2020-08-20</text>
+							</view>
+							<view class="floor-list-row-bottom-name">开盘地址：
+								<text class="floor-list-row-bottom-time">番禺区汉溪大道长隆</text>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="floor-list-row">
+					<view class="floor-list-row-top">
+						<image class="floor-list-row-top-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+						<view class="floor-list-row-top-type">
+							<view class="floor-list-row-top-type-top"></view>
+							<view class="floor-list-row-top-type-bottom">
+								<view class="title">楼盘名称汉溪长隆</view>
+								<view class="column">
+									<text class="column-name">番禺·长隆</text>
+									<text class="column-price">23000元/m²</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="floor-list-row-bottom">
+						<view class="floor-list-row-bottom-top">
+							<view class="floor-list-row-bottom-name">开盘时间：
+								<text class="floor-list-row-bottom-time">2020-08-20</text>
+							</view>
+							<view class="floor-list-row-bottom-name">开盘地址：
+								<text class="floor-list-row-bottom-time">番禺区汉溪大道长隆</text>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="floor-list-row">
+					<view class="floor-list-row-top">
+						<image class="floor-list-row-top-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+						<view class="floor-list-row-top-type">
+							<view class="floor-list-row-top-type-top"></view>
+							<view class="floor-list-row-top-type-bottom">
+								<view class="title">楼盘名称汉溪长隆</view>
+								<view class="column">
+									<text class="column-name">番禺·长隆</text>
+									<text class="column-price">23000元/m²</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="floor-list-row-bottom">
+						<view class="floor-list-row-bottom-top">
+							<view class="floor-list-row-bottom-name">开盘时间：
+								<text class="floor-list-row-bottom-time">2020-08-20</text>
+							</view>
+							<view class="floor-list-row-bottom-name">开盘地址：
+								<text class="floor-list-row-bottom-time">番禺区汉溪大道长隆</text>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="floor-list-row">
+					<view class="floor-list-row-top">
+						<image class="floor-list-row-top-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+						<view class="floor-list-row-top-type">
+							<view class="floor-list-row-top-type-top"></view>
+							<view class="floor-list-row-top-type-bottom">
+								<view class="title">楼盘名称汉溪长隆</view>
+								<view class="column">
+									<text class="column-name">番禺·长隆</text>
+									<text class="column-price">23000元/m²</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="floor-list-row-bottom">
+						<view class="floor-list-row-bottom-top">
+							<view class="floor-list-row-bottom-name">开盘时间：
+								<text class="floor-list-row-bottom-time">2020-08-20</text>
+							</view>
+							<view class="floor-list-row-bottom-name">开盘地址：
+								<text class="floor-list-row-bottom-time">番禺区汉溪大道长隆</text>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="home-bottom">
+				<text>- 到底啦 -</text>
+			</view>
+		</view>
+	</view>
+</view>

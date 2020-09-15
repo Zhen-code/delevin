@@ -1,3 +1,4 @@
 {
+  "navigationStyle": "custom",
   "usingComponents": { "wxml-to-canvas": "../../miniprogram_npm/wxml-to-canvas"}
 }

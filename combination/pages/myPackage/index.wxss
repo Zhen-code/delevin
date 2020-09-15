@@ -1,0 +1,98 @@
+/* combination/pages/myPackage/index.wxss */
+.view {
+	width: 100%;
+	background-color: #F8F8F8;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.doubleTab {
+	width: 100%;
+	height: 90rpx;
+	border-bottom: 1rpx solid #eeeeee;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+	background-color: white;
+}
+
+.shopItem {
+	width: 100%;
+	height: 100%;
+	overflow: scroll;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.row {
+	width: 686rpx;
+	height: 320rpx;
+	background: #FFFFFF;
+	padding: 32rpx;
+	box-sizing: border-box;
+	border-radius: 8rpx;
+	margin-top: 30rpx;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-direction: column;
+	position: relative;
+}
+
+.row:last-child{
+	margin-bottom: 30rpx;
+}
+
+.typeImage{
+	width: 150rpx;
+	height: 150rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.image{
+	width: 150rpx;
+	height: 150rpx;
+}
+
+.row-item {
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: row;
+}
+
+.row-item-key {
+	width: 140rpx;
+	height: 100%;
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #999999;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	margin-right: 32rpx;
+}
+
+.row-item-value {
+	flex: 1;
+	height: 100%;
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #333333;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	text-align: left;
+}

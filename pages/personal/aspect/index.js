@@ -1,5 +1,8 @@
 // pages/watchhot/watchhot.js
 const {topHeight} = require('../../../request/topHeight');
+const {http} = require('../../../request/http');
+const {api} = require('../../../request/api');
+
 Page({
 
   /**
@@ -14,40 +17,22 @@ Page({
     _index: '0',
     active: 0,
     tabActive: 0,
-    list: [
-      {
-        id: 0,
-        title: '分类12',
-        src: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1488135411,3051215224&fm=26&gp=0.jpg'
-      },
-      {
-        id: 2,
-        title: 'BA',
-        src: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3545561584,783374626&fm=26&gp=0.jpg'
-      },
-      {
-        id: 3,
-        title: 'CA',
-        src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3553848721,101904718&fm=26&gp=0.jpg'
-      },
-      {
-        id: 4,
-        title: 'VA',
-        src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3553848721,101904718&fm=26&gp=0.jpg'
-      },
-      {
-        id: 5,
-        title: 'EA',
-        src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3553848721,101904718&fm=26&gp=0.jpg'
-      },
-      {
-        id: 6,
-        title: 'TA',
-        src: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3553848721,101904718&fm=26&gp=0.jpg'
-      }
-    ]
+    list: [],
+    fId: 0,
+    newsList: [],
+    postList:[],
+    isBottom: true,
+    isPostBottom: true
   },
+  pageIndex: 1,
+  pageSize: 10,
+  pageTotal: 0,
+  classifyId: 0,
+  postPIndex:1,
+  postPSize: 10,
+  postPTotal: 0,
   toggleTab(e) {
+    console.log(this.data.list)
     this.setData({
       _index: e.target.dataset.index
     })
@@ -55,8 +40,15 @@ Page({
   onChange(event) {
     console.log(event.detail);
     this.setData({
-      tabActive: event.detail.index
-    })
+      tabActive: event.detail.index,
+      newsList:[]
+    });
+    this.pageIndex = 1;
+    let {index} =  event.detail;
+    let {list} = this.data;
+    let classifyId = list[index]['id'];
+    this.classifyId = classifyId;
+    this.getNewsList(classifyId);
   },
   goHouseDetal(e){
     wx.navigateTo({
@@ -74,11 +66,108 @@ Page({
       url: '/combination/pages/post/index'
     })
   },
+  getNewsList(classifyId){
+    http({
+      url: api.personalHome.newsList,
+      method: 'GET',
+      params:{
+        classifyId: classifyId,
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize
+      }
+    }).then(res=>{
+      console.log(res)
+      let isBottom = true;
+      if(res.pageIndex>=res.pageTotal){
+
+      }else{
+        isBottom = false;
+      }
+      this.pageTotal = res.pageTotal;
+      let {newsList} = this.data;
+      let resList = res.list || [];
+      this.setData({
+        newsList: [...newsList,...resList],
+        isBottom:isBottom
+      });
+    }).catch(err=>{
+      console.log(err);
+    })
+  },
+  getArticleClassify(){
+    http({
+      url: api.personalHome.articleClassify,
+      method: 'GET',
+      params:{
+        type: 'NEWS'
+      }
+    }).then(res=>{
+      console.log(res);
+        this.setData({
+          list: res|| [],
+          fId: res[0]['id']|| 0,
+        })
+    }).then(()=>{
+      http({
+        url: api.personalHome.newsList,
+        method: 'GET',
+        params:{
+          classifyId: this.data.fId,
+          pageIndex: this.pageIndex,
+          pageSize: this.pageSize
+        }
+      }).then(res=>{
+        console.log(res)
+        let isBottom = true;
+        if(res.pageIndex>=res.pageTotal){
+
+        }else{
+          isBottom = false;
+        }
+        this.pageTotal = res.pageTotal;
+        this.setData({
+          newsList: res.list,
+          isBottom:isBottom
+        });
+      }).catch(err=>{
+        console.log(err);
+      })
+    }).catch(err=>{
+      console.log(err);
+    })
+  },
+  getPostList(){
+    http({
+      url: api.personalHome.postList,
+      method: 'GET',
+      params:{
+        pageIndex: this.postPIndex,
+        pageSize: this.postPSize
+      }
+    }).then(res=>{
+      console.log(res)
+      let isPostBottom = true;
+      if(res.pageIndex>=res.pageTotal){
+
+      }else{
+        isPostBottom = false;
+      }
+      this.postPTotal = res.pageTotal;
+      let {postList} = this.data;
+      let resList = res.list || [];
+      this.setData({
+        postList: [...postList,...resList],
+        isPostBottom:isPostBottom
+      });
+    }).catch(err=>{
+      console.log(err);
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getArticleClassify();
   },
 
   /**
@@ -92,7 +181,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getPostList();
   },
 
   /**
@@ -120,6 +209,25 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if(this.data._index == 0){
+      this.pageIndex++;
+      if(this.pageIndex>this.pageTotal){
+        this.setData({
+          isBottom: true
+        })
+      }else{
+        this.getNewsList(this.classifyId);
+      }
+    }else if(this.data._index == 1){
+      this.postPIndex++;
+      if(this.postPIndex>this.postPTotal){
+        this.setData({
+          isPostBottom: true
+        })
+      }else{
+        this.getPostList();
+      }
+    }
 
   },
 

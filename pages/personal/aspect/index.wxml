@@ -14,66 +14,65 @@
       <van-tab wx:for="{{list}}"
                wx:key="id"
                data-index="{{index}}"
-               title="{{item.title}}"
+               title="{{item.name}}"
                tab-class="tabStyle"
                tab-active-class="tabActiveStyle"
       >
         <view class="tabContent" hidden="{{tabActive!==index}}">
-            <view class="tab-item" catchtap="goHouseDetal" data-id="0">
+            <view
+                    wx:for="{{newsList}}"
+                    wx:key="id"
+                    class="tab-item"
+                    catchtap="goHouseDetal"
+                    data-id="{{item.id}}"
+                    >
                     <view class="tab-item-left">
-                        <view class="tab-item-left-title">最后2天！龙湖88嗨购节收官在即 震撼福利错过不再</view>
+                        <view class="tab-item-left-title">{{item.name}}</view>
                         <view class="tab-item-left-desc">
-                            <text>广州特价房</text>
+                            <text>{{item.source}}</text>
                             <text class="split-line">|</text>
-                            <text>房价参谋长广州分部</text>
+                            <text>{{item.author}}</text>
                         </view>
-                        <view class="tab-item-left-time">2020-08-27 13:23:33</view>
+                        <view class="tab-item-left-time">{{item.createDate}}</view>
                     </view>
-                    <image src="{{item.src}}" class="tab-item-right" mode="aspectFill"></image>
+                    <image src="{{item.coverUri}}" class="tab-item-right" mode="aspectFill"></image>
             </view>
-            <view class="tab-item" catchtap="goHouseDetal" data-id="1">
-            <view class="tab-item-left">
-              <view class="tab-item-left-title">最后2天！龙湖88嗨购节收官在即 震撼福利错过不再</view>
-              <view class="tab-item-left-desc">
-                <text>广州特价房</text>
-                <text class="split-line">|</text>
-                <text>房价参谋长广州分部</text>
-              </view>
-              <view class="tab-item-left-time">2020-08-27 13:23:33</view>
-            </view>
-            <image src="{{item.src}}" class="tab-item-right" mode="aspectFill"></image>
-          </view>
-            <view class="bottom-text">- 到底啦 -</view>
+            <view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
         </view>
       </van-tab>
     </van-tabs>
   </view>
   <view class="tabContent" hidden="{{_index!=='1'}}">
-      <view class="tab-item2" catchtap="goPostDetail" data-id="0">
-        <view class="tab-item2-title">Hot文章值得看:广州当前两居室排行出炉</view>
-        <view class="tab-item2-desc">作作为上半年的土帖子内容显示单行内容，太长省略号为上半年的土帖子内容显示单行内容，太长省略号…</view>
-        <view class="tab-item2-label"># 标签标签标签标签标签</view>
+      <view
+              wx:for="{{postList}}"
+              wx:key="id"
+              class="tab-item2"
+              catchtap="goPostDetail"
+              data-id="{{item.id}}">
+        <view class="tab-item2-title">{{item.title}}</view>
+        <view class="tab-item2-desc">{{item.content}}</view>
+        <view class="tab-item2-label">#{{item.label}}</view>
         <view class="tab-item2-time">
           <view class="tab-item2-time-left">
             <text>最新回复</text>
-            <text>2020-08-27 13:23:33</text>
+            <text>{{item.createDate}}</text>
           </view>
          <view class="tab-item2-time-center">
           <image src="../../../assets/image/icon_comment_16_grey@2x.png"
           class="postImg"
           mode="aspectFill"></image>
-            <text>9999</text>
+            <text>{{item.commentNumber}}</text>
           </view>
          <view class="tab-item2-time-right">
             <image
             src="../../../assets/image/icon_like_16_grey@2x.png"
             class="postImg"
              mode="aspectFill"></image>
-            <text>9999</text>
+            <text>{{item.number}}</text>
          </view>
         </view>
       </view>
-      <view class="bottom-text">- 到底啦 -</view>
-      <image class="send" src="http://chuantu.xyz/t6/740/1599046698x992248267.png" catch:tap="post"></image>
+      <view class="bottom-text" wx:if="{{isPostBottom}}">- 到底啦 -</view>
+      <image class="send" src="" catch:tap="post"></image>
   </view>
 </view>

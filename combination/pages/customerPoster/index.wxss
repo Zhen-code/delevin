@@ -1,0 +1,180 @@
+/* combination/pages/customerPoster/index.wxss */
+.view {
+	width: 100%;
+	background-color: white;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.doubleTab {
+	width: 100%;
+	height: 90rpx;
+	border-bottom: 1rpx solid #eeeeee;
+	padding: 0 32rpx;
+	box-sizing: border-box;
+}
+
+.tabItem {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-direction: row;
+	background-color: white;
+	position: fixed;
+	left: 0;
+	overflow: scroll;
+}
+
+.tabItem-left {
+	width: 200rpx;
+	height: 80vh;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+	background-color: #F8F8F8;
+}
+
+.tabItem-left-row {
+	width: 200rpx;
+	height: 100rpx;
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #666666;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.action {
+	color: #333333;
+	font-weight: bold;
+	background-color: white;
+	position: relative;
+}
+
+.action::before {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	content: '';
+	width: 8rpx;
+	height: 40rpx;
+	background: rgba(255, 210, 0, 1);
+	border-radius: 4rpx;
+	transform: translate(0,-50%);
+}
+
+.content {
+	width: 100%;
+	height: 80vh;
+	display: flex;
+	flex-direction: row;
+	margin: 20rpx;
+	overflow: scroll;
+	box-sizing: border-box;
+}
+
+.left {
+	flex: 1;
+}
+
+.right {
+	flex: 1;
+	margin-left: 20rpx;
+}
+
+.pic {
+	border-radius: 10rpx;
+	width:240rpx;
+	margin-bottom: 20rpx;
+}
+
+.pic:last-child {
+	margin-bottom: 0;
+}
+
+.essay {
+	flex: 1;
+	height: 80vh;
+	border-radius: 4rpx;
+	margin: 24rpx 24rpx 0 24rpx;
+	overflow: scroll;
+}
+
+.essay-row {
+	width: 100%;
+	height: auto;
+	padding: 24rpx 24rpx 0 24rpx;
+	margin-bottom: 24rpx;
+	box-sizing: border-box;
+	background: #F8F8F8;
+}
+
+.text {
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-overflow: -o-ellipsis-lastline;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+	font-size: 26rpx;
+	font-weight: 400;
+	color: #333333;
+	line-height: 48rpx;
+}
+
+.on {
+	display: block;
+	text-overflow: clip;
+	overflow: visible;
+}
+
+.show {
+	width: 100%;
+	height: 60rpx;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-direction: row;
+	border-bottom: 1rpx solid #EEEEEE;
+}
+
+.show-text {
+	font-size: 24rpx;
+	font-weight: 400;
+	color: #999999;
+	margin-right: 6rpx;
+}
+
+.show-image {
+	width: 24rpx;
+	height: 24rpx;
+}
+
+.copy {
+	width: 100%;
+	height: 88rpx;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.copy-text {
+	width: 80rpx;
+	height: 40rpx;
+	border-radius: 2rpx;
+	border: 2rpx solid #F44336;
+	font-size: 24rpx;
+	font-weight: 400;
+	color: #F44336;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

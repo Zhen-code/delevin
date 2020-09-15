@@ -5,11 +5,11 @@
 			<view class="view-top-video-play">
 				<image src="/combination/image/icon_play_50@2x.png"></image>
 			</view>
-			<van-image width="272" height="204" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+			<image class="view-top-video-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
 		</view>
 		<view class="view-top-image">
-			<van-image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-			<van-image width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+			<image class="view-top-image-top" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+			<image class="view-top-image-top" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
 			<view class="view-top-image-show">
 				<text class="view-top-image-show-num">+123</text>
 				<text class="view-top-image-show-add">查看更多</text>
@@ -184,7 +184,9 @@
 	<view class="components borderBottom">
 		<view class="components-row">
 			<text class="components-title">房屋时光机</text>
-			<doubleTab tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
+			<view class="doubleTab">
+				<doubleTab tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
+			</view>
 		</view>
 		<view class="lineChart">
 			<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>

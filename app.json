@@ -1,10 +1,9 @@
 {
 	"pages": [
-		"pages/index/index",
 		"pages/login/index",
+		"pages/index/index",
 		"pages/template/temp/index",
-		"pages/personal/aspect/index",
-		"pages/personal/message/index"
+		"pages/personal/aspect/index"
     ],
 	"subpackages": [
 		{
@@ -33,11 +32,19 @@
 				"pages/superPromotion/index",
 				"pages/generalPromotion/index",
 				"pages/selectPromotion/index",
-        		"pages/distrctSearch/index"
+				"pages/myPackage/index",
+				"pages/homepage/index",
+				"pages/sharePoster/index",
+				"pages/customerPoster/index",
+				"pages/customerArticles/index",
+				"pages/distrctSearch/index"
 			]
 		}
 	],
 	"usingComponents": {
+		"van-swipe-cell": "@vant/weapp/swipe-cell/index",
+		"van-sidebar": "@vant/weapp/sidebar/index",
+		"van-sidebar-item": "@vant/weapp/sidebar-item/index",
 		"van-stepper": "@vant/weapp/stepper/index",
 		"van-dialog": "@vant/weapp/dialog/index",
 		"van-uploader": "@vant/weapp/uploader/index",
@@ -55,12 +62,11 @@
 		"van-notice-bar": "@vant/weapp/notice-bar/index",
 		"van-tag": "@vant/weapp/tag/index",
 		"van-icon": "@vant/weapp/icon/index",
-		"van-button": "/@vant/weapp/button/index",
-		"van-toast": "/@vant/weapp/toast/index",
-		"van-image": "/@vant/weapp/image/index",
-		"van-tabbar": "/@vant/weapp/tabbar/index",
-		"van-tabbar-item": "/@vant/weapp/tabbar-item/index",
-		"van-action-sheet": "/@vant/weapp/action-sheet/index"
+		"van-button": "@vant/weapp/button/index",
+		"van-toast": "@vant/weapp/toast/index",
+		"van-image": "@vant/weapp/image/index",
+		"van-tabbar": "@vant/weapp/tabbar/index",
+		"van-tabbar-item": "@vant/weapp/tabbar-item/index"
 	},
 	"requiredBackgroundModes": [
 		"location"

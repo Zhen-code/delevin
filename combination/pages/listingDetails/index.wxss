@@ -2,7 +2,7 @@
 .view {
 	width: 100%;
 	height: 100%;
-	padding-top: 88px;
+	padding-top: 176rpx;
 	display: flex;
 	align-items: flex-start;
 	justify-content: flex-start;
@@ -21,13 +21,18 @@
 }
 
 .view-top-video {
-	width: 272px;
+	width: 544rpx;
 	height: 100%;
 	position: relative;
 }
 
+.view-top-video-image{
+	width: 544rpx;
+	height: 100%;
+}
+
 .view-top-video-play {
-	width: 272px;
+	width: 544rpx;
 	height: 100%;
 	display: flex;
 	align-items: center;
@@ -40,8 +45,8 @@
 }
 
 .view-top-video-play image {
-	width: 50px;
-	height: 50px;
+	width: 100rpx;
+	height: 100rpx;
 }
 
 .view-top-image {
@@ -54,9 +59,14 @@
 	position: relative;
 }
 
+.view-top-image-top{
+	width: 200rpx;
+	height: 200rpx;
+}
+
 .view-top-image-show {
-	width: 100px;
-	height: 100px;
+	width: 200rpx;
+	height: 200rpx;
 	background: #000000;
 	opacity: 0.4;
 	display: flex;
@@ -84,7 +94,7 @@
 
 .view-video {
 	width: 100%;
-	height: 206px;
+	height: 412rpx;
 }
 
 .components {
@@ -123,11 +133,11 @@
 }
 
 .components:last-child {
-	margin-bottom: 80px;
+	margin-bottom: 160rpx;
 }
 
 .components-tab {
-	width: 130px;
+	width: 260rpx;
 	height: 100%;
 	display: flex;
 	align-items: center;
@@ -138,12 +148,12 @@
 .description {
 	width: 100%;
 	height: auto;
-	font-size: 16px;
+	font-size: 32epx;
 	font-weight: 500;
 	color: #666666;
-	line-height: 26px;
+	line-height: 52rpx;
 	margin-top: 24rpx;
-	margin-bottom: 16px;
+	margin-bottom: 32rpx;
 }
 
 .information {
@@ -185,13 +195,13 @@
 }
 
 .information-row-left-info-name {
-	font-size: 15px;
+	font-size: 30rpx;
 	font-weight: 400;
 	color: #333333;
 }
 
 .information-row-left-info-type {
-	font-size: 13px;
+	font-size: 26rpx;
 	font-weight: 400;
 	color: #999999;
 }
@@ -204,12 +214,12 @@
 }
 
 .information-row-right-image {
-	width: 40px;
-	height: 40px;
+	width: 80rpx;
+	height: 80rpx;
 }
 
 .information-row-right-phone {
-	font-size: 10px;
+	font-size: 20rpx;
 	font-weight: 400;
 	color: #999999;
 	margin-left: 8rpx;
@@ -232,7 +242,7 @@
 
 .comment-name {
 	width: 100%;
-	font-size: 14px;
+	font-size: 28rpx;
 	font-weight: 400;
 	color: #666666;
 	margin-bottom: 8rpx;
@@ -247,7 +257,7 @@
 }
 
 .comment-key {
-	font-size: 12px;
+	font-size: 24rpx;
 	font-weight: 400;
 	color: #999999;
 	margin-right: 32rpx;
@@ -258,7 +268,7 @@
 }
 
 .comment-value {
-	font-size: 12px;
+	font-size: 24rpx;
 	font-weight: 400;
 	color: #FE6300;
 }
@@ -273,7 +283,7 @@
 
 .comment-time {
 	width: 100%;
-	font-size: 12px;
+	font-size: 24rpx;
 	font-weight: 400;
 	color: #999999;
 }
@@ -290,12 +300,12 @@
 
 .surrounding-map {
 	width: 100%;
-	height: 172px;
+	height: 374rpx;
 }
 
 .surrounding-change {
 	width: 100%;
-	height: 44px;
+	height: 88rpx;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -304,7 +314,7 @@
 }
 
 .surrounding-details {
-	font-size: 13px;
+	font-size: 26rpx;
 	font-weight: 400;
 	color: #4077FF;
 	margin-right: 5rpx;
@@ -337,7 +347,7 @@
 
 .introduction-title {
 	flex: 1;
-	font-size: 16px;
+	font-size: 32rpx;
 	font-weight: bold;
 	color: #333333;
 	line-height: 22px;
@@ -377,7 +387,7 @@
 
 .introduction-resources-num {
 	flex: 1;
-	height: 87px;
+	height: 174rpx;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -387,13 +397,13 @@
 .introduction-resources-num text:nth-child(1) {
 	width: 100%;
 	text-align: center;
-	font-size: 18px;
+	font-size: 36rpx;
 	font-weight: bold;
 	color: #FE6300;
 }
 
 .introduction-resources-num text:nth-child(2) {
-	font-size: 13px;
+	font-size: 26rpx;
 	font-weight: 400;
 	color: #999999;
 	margin-top: 8rpx;
@@ -401,7 +411,7 @@
 
 .introduction-resources-go {
 	width: 100%;
-	height: 28px;
+	height: 56rpx;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
@@ -409,7 +419,7 @@
 }
 
 .introduction-resources-go-price {
-	font-size: 13px;
+	font-size: 26rpx;
 	font-weight: 400;
 	color: #4077FF;
 	margin-right: 4rpx;
@@ -426,7 +436,7 @@
 
 .introduction-specification-add {
 	width: 100%;
-	height: 20px;
+	height: 40rpx;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -435,7 +445,7 @@
 }
 
 .introduction-specification-add-title {
-	font-size: 13px;
+	font-size: 26rpx;
 	font-weight: 400;
 	color: #4077FF;
 	margin-right: 5rpx;
@@ -461,14 +471,14 @@
 }
 
 .marginTop {
-	margin-top: 15px;
+	margin-top: 30rpx;
 }
 
 .name-type {
 	min-width: 50%;
 	max-width: 100%;
-	margin-top: 8px;
-	font-size: 14px;
+	margin-top: 16rpx;
+	font-size: 28rpx;
 	font-weight: 400;
 	color: #999999;
 	display: flex;
@@ -478,7 +488,7 @@
 }
 
 .name-typeValue {
-	font-size: 14px;
+	font-size: 28rpx;
 	font-weight: 400;
 	color: #333333;
 }
@@ -490,27 +500,28 @@
 
 .bottom-phone {
 	width: 100%;
-	height: 70px;
+	height: 140rpx;
 	position: fixed;
 	left: 0;
 	right: 0;
 	bottom: 0;
 	background: #FFFFFF;
+	z-index: 99;
 }
 
 .bottom-phone-text {
 	flex: 1;
-	height: 40px;
-	margin: 0 16px;
+	height: 80rpx;
+	margin: 0 32rpx;
 	background: #FFD854;
-	border-radius: 22px;
-	font-size: 16px;
+	border-radius: 44rpx;
+	font-size: 32rpx;
 	font-weight: bold;
 	color: #333333;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 10px;
+	margin-top: 20rpx;
 }
 
 .lineChart {
@@ -523,7 +534,7 @@
 .qiun-charts,
 .charts {
 	width: 100%;
-	height: 200px;
+	height: 400rpx;
 	background-color: #FFFFFF;
 }
 
@@ -543,7 +554,7 @@
 	align-items: flex-start;
 	justify-content: flex-start;
 	flex-direction: column;
-	padding: 12px 0;
+	padding: 24rpx 0;
 	border-bottom: 1rpx solid #eeeeee;
 }
 
@@ -557,40 +568,40 @@
 	align-items: flex-start;
 	justify-content: flex-start;
 	flex-direction: row;
-	font-size: 15px;
+	font-size: 30rpx;
 	font-weight: bold;
 	color: #333333;
 }
 
 .record-sky-num {
-	font-size: 15px;
+	font-size: 30rpx;
 	font-weight: 500;
 	color: #333333;
-	margin-left: 12px;
+	margin-left: 24rpx;
 }
 
 .record-price,
 .record-time {
 	flex: 1;
-	font-size: 13px;
+	font-size: 26rpx;
 	font-weight: 400;
 	color: #999999;
 }
 
 .record-price {
-	margin-top: 5px;
-	margin-bottom: 4px;
+	margin-top: 10rpx;
+	margin-bottom: 8rpx;
 }
 
 .record-price-num {
-	font-size: 18px;
+	font-size: 36rpx;
 	font-weight: bold;
 	color: #FE6300;
 }
 
 .record-price-money,
 .record-time-num {
-	font-size: 13px;
+	font-size: 26rpx;
 	font-weight: 400;
 	color: #333333;
 }
@@ -601,20 +612,23 @@
 	align-items: flex-end;
 	justify-content: space-between;
 	flex-direction: row;
-	padding: 12px 0 14px;
+	padding: 24rpx 0 28rpx;
 	border-bottom: 1rpx solid #eeeeee;
 }
 
 .introduction-price-num {
-	font-size: 20px;
+	font-size: 40rpx;
 	font-weight: bold;
 	color: #FE6300;
 }
 
 .introduction-price-name {
-
-	font-size: 12px;
-	font-family: PingFangSC-Regular, PingFang SC;
+	font-size: 24rpx;
 	font-weight: 400;
 	color: #999999;
+}
+
+.doubleTab{
+	width: 230rpx;
+	height: 100%;
 }

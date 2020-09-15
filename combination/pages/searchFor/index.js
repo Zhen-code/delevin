@@ -1,4 +1,7 @@
 // pages/searchFor/searchFor.js
+const {
+  request
+} = require('../../../request/request');
 const Notify = require('../../miniprogram_npm/@vant/weapp/notify/notify');
 const topHeight = require('../../../request/topHeight.js').topHeight
 Page({
@@ -9,7 +12,7 @@ Page({
 		val: '',
 		data: [],
 		list: [],
-		popular: ["碧桂园", "港龙城", "九榕府", "星河湾", "华辉新都", "红荔花园", "荣大滨河湾"],
+		popular: [],
 		paddingTop: topHeight,
 		bgColor: {
 			"color": true,
@@ -43,7 +46,7 @@ Page({
 			wx.navigateTo({
 				url: `/combination/pages/listings/index?title=${e.detail.val}`,
 			})
-		
+
 		} else {
 			Notify.default({
 				type: 'warning',
@@ -53,11 +56,20 @@ Page({
 	},
 
 	changeTap(e) {
+		let text = e.target.dataset.text.keyword || e.target.dataset.text;
+		this.data.data.unshift(text);
+		let data = this.data.data;
+		let resultArr;
+		resultArr = data.filter(function (item, index, self) {
+			return self.indexOf(item) == index;
+		});
 		this.setData({
-			val: e.target.dataset.text,
+			val: text,
+			list: resultArr
 		})
+		wx.setStorageSync('list', this.data.list)
 		wx.navigateTo({
-			url: `/combination/pages/listings/index?title=${e.target.dataset.text}`,
+			url: `/combination/pages/listings/index?title=${text}`,
 		})
 	},
 
@@ -70,21 +82,33 @@ Page({
 		})
 	},
 
+	getData(){
+		request.search().then((res)=>{
+			this.setData({
+				popular: [],
+				popular:res
+			})
+		}).catch((err)=>{
+			console.log(err)
+		})
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.getData();
 		var list = wx.getStorageSync('list');
-		if(list){
+		if (list) {
 			this.setData({
-				list:list,
-				data:list
+				list: list,
+				data: list
 			})
-		}else{
+		} else {
 			this.setData({
-				list:[],
-				data:[],
-				val:'',
+				list: [],
+				data: [],
+				val: '',
 			})
 		}
 	},

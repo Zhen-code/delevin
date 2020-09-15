@@ -1,53 +1,53 @@
-/* pages/downloadImgAndShare/downloadImgAndShare.wxss */
+
 page {
   height: 100%;
   overflow: hidden;
 }
 
 .widget {
-  width: 600rpx;
-  height: 400rpx;
+  width: 750rpx;
+  height: 100%;
 }
 
 .down_load_box {
   width: 100%;
   height: 100%;
   position: relative;
-  background: #FFA70E;
+  background: #F7CF29;
 }
 
 .down_sec_box {
-  width: 100%;
-  /* transform: scale(0.5);
-  transform-origin: 0% 0%; */
-}
-
-.down_img {
   width: 100%;
 }
 
 .down_load_btn {
   position: absolute;
-  bottom: 0;
+  bottom: 240rpx;
   left: 0;
-  z-index: 1;
+  right:0;
+  z-index: 1111111111;
   width: 100%;
   text-align: center;
   line-height: 120rpx;
   height: 120rpx;
   color: #fff;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .inner_box {
-  width: 80%;
-  background: #FFA70E;
-  /* #768bff; */
-  margin: 0 auto;
-  border-radius: 50rpx;
-  line-height: 80rpx;
+  width: 376rpx;
   height: 80rpx;
-  box-sizing: border-box;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333333;
+  border-radius: 40rpx;
+  border: 1px solid #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .myCanvasCode11111 {
@@ -55,3 +55,5 @@ page {
   height: 200rpx;
   display: none;
 }
+
+

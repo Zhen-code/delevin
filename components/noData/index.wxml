@@ -1,0 +1,6 @@
+<view class="view" style="height: {{height}}vh">
+	<view class="view-row">
+		<image class="view-row-image" src="/assets/image/pic_empty@2x.png"></image>
+		<text class="view-row-title">暂无数据</text>
+	</view>
+</view>

@@ -1,6 +1,6 @@
 {
-  "navigationBarTitleText": "系统消息",
-  "usingComponents": {
-    "navbar":"/components/nav/index"
-  }
+	"component": true,
+	"usingComponents": {
+		"navbar":"/components/nav/index"
+	}
 }

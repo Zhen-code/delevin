@@ -8,6 +8,10 @@
 		<textarea class="textarea" bindinput="getText" maxlength="30" placeholder="请输入您的内容…"></textarea>
 		<text class="index">{{index}}/30</text>
 	</view>
+
+	<view class="footer">
+		<text class="footerText">提交</text>
+	</view>
 </view>
 
 <van-popup show="{{ show }}" position="bottom" z-index="999999" custom-style="width:100%;height:300rpx;" round bind:close="onClose">

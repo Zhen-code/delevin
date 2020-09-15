@@ -9,15 +9,20 @@
 		<doubleTab style="width:100%;height:70rpx;" tabItem="{{tabItem}}"></doubleTab>
 	</view>
 	<scroll-view class="shopItem" style="top: {{paddingTop+44+61}}px;" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
-		<!-- <block wx:for="{{item}}" wx:key="index">
-			<shopItem></shopItem>
-		</block> -->
+		<block wx:for="{{item}}" wx:key="index">
+			<van-swipe-cell right-width="{{ 80 }}" id="swipe-cell" async-close bind:close="onClose">
+				<van-cell-group>
+					<shopItem></shopItem>
+				</van-cell-group>
+				<view slot="right">{{favorites}}</view>
+			</van-swipe-cell>
+		</block>
 		<!-- <block wx:for="{{item}}" wx:key="index">
 			<aspectItem></aspectItem>
 		</block> -->
-		<block wx:for="{{item}}" wx:key="index">
+		<!-- <block wx:for="{{item}}" wx:key="index">
 			<estateItem></estateItem>
-		</block>
+		</block> -->
 		<view class="footer">
 			<text class="footer-text">- 到底啦 -</text>
 		</view>

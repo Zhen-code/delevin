@@ -1,4 +1,6 @@
-
+const {
+  request
+} = require('../../../request/request');
 const topHeight = require('../../../request/topHeight.js').topHeight
 import uCharts from "../../../utils/u-charts.min.js"
 var _self;
@@ -34,6 +36,9 @@ Page({
 		wx.navigateTo({
 			url:"/combination/pages/map/index"
 		})
+	},
+	getData(){
+		// request. 
 	},
 	changeArrow() {
 		let state = this.data.stlectState;

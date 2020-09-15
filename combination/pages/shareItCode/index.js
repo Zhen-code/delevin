@@ -15,13 +15,10 @@ Page({
     showSaveBtn2: false,
     reportOrClassOverFlag: {
       codeUrl: '',
-      studentName: '逯雷雨',
-      bookName: '新的小说',
-      totalSay: '888',
-      totalWord: '888',
-      totalDay: '999',
+      name: '吴加良',
+      phone: '17620835317',
+      text: '今天房猿通开发了二维码界面',
       bookUrl: 'https://quxue-data.oss-cn-beijing.aliyuncs.com/shop/product_test/KN6xszcjS7F4ByRRsAsZ.jpg',
-      headUrl: 'https://quxue-data.oss-cn-beijing.aliyuncs.com/shop/product_test/KN6xszcjS7F4ByRRsAsZ.jpg'
     },
     qrcodeUrl: ''
   },
@@ -209,11 +206,6 @@ Page({
    */
   onLoad: function (options) {
     this.widget = this.selectComponent('.widget');
-    // this.widget2 = this.selectComponent('.widget2');
-    // let reportOrClassOverFlag = wx.getStorageSync('reportOrClassOverFlag')
-    // this.setData({
-    //   reportOrClassOverFlag: reportOrClassOverFlag
-    // });
     wx.getSystemInfo({
       complete: (res) => {
         this.setData({
@@ -222,18 +214,10 @@ Page({
       },
     })
     this.creatCode();
-    // 1 学生报告  2 结课
-    // if (reportOrClassOverFlag.type == 1) {
-    //   this.creatCode();
-    //   // this.getData();
-    // } else {
-    //   this.getClassOverImage()
-    // }
   },
   creatCode() {
     //动态生成二维码
     let that = this;
-    console.log(drawQrcode)
     let myClassAcId = wx.getStorageSync('myClassAcId'),
       orgObj = wx.getStorageSync('orgObj')
     // drawQrcode.clear()
@@ -243,16 +227,7 @@ Page({
       width: 150,
       height: 150,
       canvasId: 'myQrcode',
-      // ctx: wx.createCanvasContext('myQrcode'),
       text: shareUrl,
-      // v1.0.0+版本支持在二维码上绘制图片
-      // image: {
-      //   imageResource: '../../image/class/dakaday.png',
-      //   dx: 70,
-      //   dy: 70,
-      //   dWidth: 60,
-      //   dHeight: 60
-      // },
       callback(e) {
         // 使用 setTimeout, 避免部分安卓机转出来的二维码图片不完整
         if (e.errMsg == "drawCanvas:ok") {
@@ -282,26 +257,21 @@ Page({
     })
   },
   renderToCanvas(codeUrl) {
-    console.log(codeUrl)
     let that = this;
     this.setData({
       reportOrClassOverFlag: {
         codeUrl: codeUrl,
-        studentName: '逯雷雨',
-        bookName: '新的小说',
-        totalSay: '888',
-        totalWord: '888',
-        totalDay: '999',
+        codeUrl: '',
+        name: '吴加良',
+        phone: '17620835317',
+        text: '今天房猿通开发了二维码界面',
         bookUrl: 'https://quxue-data.oss-cn-beijing.aliyuncs.com/shop/product_test/KN6xszcjS7F4ByRRsAsZ.jpg',
-        headUrl: 'https://quxue-data.oss-cn-beijing.aliyuncs.com/shop/product_test/KN6xszcjS7F4ByRRsAsZ.jpg'
       }
     })
-    console.log(this.data.reportOrClassOverFlag)
     let wxml = _wxml(this.data.reportOrClassOverFlag);
     let screenWidth = this.data.heightObj.screenWidth,
       screenHeight = this.data.heightObj.screenHeight,
       windowHeight = this.data.heightObj.windowHeight
-    console.log(screenWidth, screenHeight, windowHeight)
 
     /**
      * 画布大一点就不行了 canvas尺寸是750*1334rpx 高度超出这个多一些就gg了
@@ -309,12 +279,10 @@ Page({
      * */
     let width = (screenWidth),
       height = (windowHeight)
-    console.log(width, height)
     let style = _style(width, height, 1, this.data.reportOrClassOverFlag);
     that.setData({
       showSaveBtn2: true
     })
-    console.log(this.widget);
     setTimeout(() => {
       this.widget.renderToCanvas({
         wxml,
@@ -347,34 +315,6 @@ Page({
       })
       return;
     }
-    // let wxml = _wxml(this.data.reportOrClassOverFlag);
-    // let style = _style(this.data.heightObj.windowWidth, this.data.heightObj.windowHeight, 2, this.data.reportOrClassOverFlag);
-    // console.log(this.widget2);
-    // this.widget2.renderToCanvas({
-    //   wxml,
-    //   style
-    // }).then((res) => {
-    //   console.log('container', res.layoutBox)
-    //   this.widget2.canvasToTempFilePath({
-    //     quality: 0.5,
-    //     fileType: 'jpg',
-    //     success(res) {
-    //       console.log(res)
-    //     },
-    //     fail (err) {
-    //       console.log(err)
-    //     }
-    //   }).then(res => {
-    //     let obj = {
-    //       img: res.tempFilePath,
-    //       type: 2,
-    //       content: '保存成功，快去分享吧',
-    //     }
-    //     savePoster(obj)
-    //   }).catch(err => {
-    //     console.log(err)
-    //   })
-    // })
     const p2 = this.widget.canvasToTempFilePath({
         // quality: 1,
         // fileType: 'jpg'
@@ -386,11 +326,6 @@ Page({
           content: '保存成功，快去分享吧',
         }
         saveLocalPoster(obj)
-        // this.setData({
-        //   src: res.tempFilePath,
-        //   width: this.container.layoutBox.width,
-        //   height: this.container.layoutBox.height
-        // })
       })
   },
 

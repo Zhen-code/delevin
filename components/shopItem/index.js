@@ -20,7 +20,7 @@ Component({
 					typeClass:val
 				})
 			}
-    }
+		},
   },
 
 	/**

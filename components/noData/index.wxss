@@ -1,0 +1,33 @@
+/* components/noData/index.wxss */
+.view {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.view-row {
+	width: 400rpx;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.view-row-image {
+	width: 400rpx;
+	height: 400rpx;
+	display: block;
+}
+
+.view-row-title {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #999999;
+	margin-top: 20rpx;
+}

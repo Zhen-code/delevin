@@ -1,11 +1,17 @@
 // pages/personal/home/index.js
+const app = getApp()
 const {
 	provincCityDistrict
 } = require('../../../request/provinces')
+const {
+	request
+} = require('../../../request/request');
 var QQMapWX = require('../../../utils/qqmap-wx-jssdk');
 var qqmapsdk;
 var key = 'XRUBZ-XN6KX-IYQ4H-7XZUT-AZWLJ-4PBIA';
 const topHeight = require('../../../request/topHeight.js').topHeight
+const api = require('../../../request/api').api;
+const domain = require('../../../request/http.js').domain;
 Component({
 	/**
 	 * 组件的属性列表
@@ -20,8 +26,13 @@ Component({
 			value: 0,
 		}
 	},
+
 	created() {
 		this.getLocation()
+		this.getBanner();
+		this.getIcon();
+		this.getNews();
+		this.getListingsList();
 	},
 
 	/**
@@ -30,6 +41,7 @@ Component({
 	data: {
 		paddingTop: topHeight,
 		show: false,
+		showInfo: true,
 		city: "",
 		houseItem: [{
 				"icon": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
@@ -52,15 +64,61 @@ Component({
 				"name": "房贷计算",
 			}
 		],
-		bannerList: [1, 2, 3, 4],
+		bannerList: [],
+		newsList: [],
 		areaList: provincCityDistrict,
-		tabItem: ['新房', '二手房']
+		tabItem: ['新房', '二手房'],
+		pageSize: 12,
+		pageIndex: 1,
+		listingsList: [],
 	},
 
 	/**
 	 * 组件的方法列表
 	 */
 	methods: {
+		getBanner() {
+			request.banner().then((res) => {
+				this.setData({
+					bannerList: res
+				})
+			}).catch((err) => {
+				wx.showToast({
+					title: err,
+					icon: 'none',
+					duration: 2500
+				})
+			})
+		},
+
+		getIcon() {
+			request.icon().then((res) => {
+				this.setData({
+					houseItem: res
+				})
+			}).catch((err) => {
+				wx.showToast({
+					title: err,
+					icon: 'none',
+					duration: 2500
+				})
+			})
+		},
+
+		getNews() {
+			request.news().then((res) => {
+				this.setData({
+					newsList: res
+				})
+			}).catch((err) => {
+				wx.showToast({
+					title: err,
+					icon: 'none',
+					duration: 2500
+				})
+			})
+		},
+
 		getLocation() {
 			let that = this;
 			wx.getLocation({
@@ -127,14 +185,62 @@ Component({
 
 		toNewsDetails(e) {
 			console.log('带参跳新闻详情界面')
+			console.log(e)
+			wx.navigateTo({
+				url: `/combination/pages/aspectDetail/index?id=${0}`,
+			})
 		},
 
 		catchTouchMove(res) {
 			return false
 		},
 
+		getListingsList() {
+			request.newListingsList({
+				"pageSize": 3,
+				"pageIndex": 1,
+			}).then((res) => {
+				this.setData({
+					listingsList: res.list
+				})
+			}).catch((err) => {
+				console.log(err)
+			})
+		},
+
 		getTabValue(e) {
-			console.log(e.detail)
+			if (e.detail === 0) {
+				request.newListingsList({
+					"pageSize": 3,
+					"pageIndex": 1,
+				}).then((res) => {
+					this.setData({
+						listingsList: [],
+						listingsList: res.list
+					})
+				}).catch((err) => {
+					console.log(err)
+				})
+			} else {
+				request.towListingsList({
+					"pageSize": 3,
+					"pageIndex": 1,
+				}).then((res) => {
+					this.setData({
+						listingsList: [],
+						listingsList: res.list
+					})
+				}).catch((err) => {
+					console.log(err)
+				})
+			}
+		},
+
+		toDetails(e) {
+			console.log(e.currentTarget.dataset.item.id)
+			// wx.navigateTo({
+			// 	url: '/combination/pages/listingDetails/index',
+			// })
 		},
 
 		changeHouseType(e) {
@@ -167,5 +273,11 @@ Component({
 				default:
 			}
 		},
+
+		changeShowInfo() {
+			this.setData({
+				showInfo: false,
+			})
+		}
 	},
 })
