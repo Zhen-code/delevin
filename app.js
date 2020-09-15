@@ -14,19 +14,20 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (res.code) {
-          wx.request({
-            url: domain + api.login.authorization,
-            data: {
-              "code": res.code,
-            },
-            method: "POST",
-            success(res) {
-              console.log(res.data)
-            },
-            fail(err) {
-              console.log(err)
-            }
-          })
+          console.log(res.code)
+          // wx.request({
+          //   url: domain + api.login.authorization,
+          //   data: {
+          //     "code": res.code,
+          //   },
+          //   method: "POST",
+          //   success(res) {
+          //     console.log(res.data)
+          //   },
+          //   fail(err) {
+          //     console.log(err)
+          //   }
+          // })
         }
       }
     })

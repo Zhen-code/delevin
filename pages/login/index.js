@@ -27,7 +27,7 @@ Page({
               success(res) {
                 let rese = res.data.data;
                 app.globalData.loginInfo.encryptedData = numberData.encryptedData;
-                app.globalData.loginInfo.unionId = numberData.iv;
+                app.globalData.loginInfo.iv = numberData.iv;
                 app.globalData.loginInfo.openId = rese.openId;
                 app.globalData.loginInfo.sessionKey = rese.sessionKey;
                 wx.getSetting({
@@ -36,6 +36,7 @@ Page({
                       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
                       wx.getUserInfo({
                         success: function (res) {
+                          console.log(rese,12333)
                           request.login({
                             "encryptedData": numberData.encryptedData,
                             "headImgUri": res.userInfo.avatarUrl,
@@ -45,8 +46,8 @@ Page({
                             "sessionKey": rese.sessionKey,
                           }).then((res) => {
                             let token = res.token;
-                            console.log(token, 1111222)
-                            // wx.removeStorageSync('token')
+                            console.log(token)
+                            wx.removeStorageSync('token')
                             wx.setStorageSync('token', token)
                             wx.showToast({
                               title: '登录成功',
@@ -74,7 +75,6 @@ Page({
                         "openId": rese.openId,
                         "sessionKey": rese.sessionKey,
                       }).then((res) => {
-                        console.log(res.token, 1111)
                         let token = res.token;
                         wx.removeStorageSync('token')
                         wx.setStorageSync('token', token);

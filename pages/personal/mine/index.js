@@ -20,10 +20,6 @@ Component({
 		}
 	},
 
-	created() {
-		this.getData()
-	},
-
 	/**
 	 * 组件的初始数据
 	 */
@@ -43,15 +39,7 @@ Component({
 			let item = true
 			this.triggerEvent('item', item)
 		},
-		getData() {
-			request.information().then((res) => {
-				this.setData({
-					userInfo:res,
-				})
-			}).catch((err) => {
-				console.log(err)
-			})
-		},
+
 		outLogin() {
 			wx.showModal({
 				title: '退出登录',

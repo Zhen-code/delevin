@@ -20,6 +20,7 @@ Page({
     showInfo: false,
     PageCur: "brokerHome",
     menus: {},
+    userInfo:{},
   },
 
   onPageScroll(e) {
@@ -30,9 +31,11 @@ Page({
 
   getData() {
     let than = this;
-    request.information().then((res)=>{
-      console.log(res)
-    }).catch((err)=>{
+    request.information().then((res) => {
+      this.setData({
+        userInfo:res,
+      })
+    }).catch((err) => {
       console.log(err)
     })
     if (than.data.Identity) {
@@ -88,7 +91,7 @@ Page({
               let data = {
                 "encryptedData": loginInfo.encryptedData,
                 "headImgUri": res.userInfo.avatarUrl,
-                "iv": loginInfo.unionId,
+                "iv": loginInfo.iv,
                 "nickName": res.userInfo.nickName,
                 "openId": loginInfo.openId,
                 "sessionKey": loginInfo.sessionKey,
