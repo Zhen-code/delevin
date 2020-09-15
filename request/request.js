@@ -56,6 +56,36 @@ const request = {
     });
   },
 
+  // 收藏
+  addFavorites: (params) => {
+    return http({
+      url: api.favorites.addFavorites,
+      method: "POST",
+      params: params,
+    });
+  },
+  cancelFavorites: (params) => {
+    return http({
+      url: api.favorites.cancelFavorites,
+      method: "POST",
+      params: params,
+    });
+  },
+  myFavoritesHouse: (params) => {
+    return http({
+      url: api.favorites.myFavoritesHouse,
+      method: "GET",
+      params: params,
+    });
+  },
+  myFavoritesOther: (params) => {
+    return http({
+      url: api.favorites.myFavoritesOther,
+      method: "GET",
+      params: params,
+    });
+  },
+
   //用户首页
   banner: (params) => {
     return http({

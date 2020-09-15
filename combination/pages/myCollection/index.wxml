@@ -6,13 +6,13 @@
 		<text class="top-tab {{topTabIndex === 1?'top-tab-action':''}}" data-index="{{1}}" bindtap="topTap">其他</text>
 	</view>
 	<view class="doubleTab">
-		<doubleTab style="width:100%;height:70rpx;" tabItem="{{tabItem}}"></doubleTab>
+		<doubleTab style="width:100%;height:70rpx;" bind:backTabValue="getTabIndex" tabItem="{{tabItem}}"></doubleTab>
 	</view>
 	<scroll-view class="shopItem" style="top: {{paddingTop+44+61}}px;" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
 		<block wx:for="{{item}}" wx:key="index">
 			<van-swipe-cell right-width="{{ 80 }}" id="swipe-cell" async-close bind:close="onClose">
 				<van-cell-group>
-					<shopItem></shopItem>
+					<shopItem item="{{item}}"></shopItem>
 				</van-cell-group>
 				<view slot="right">{{favorites}}</view>
 			</van-swipe-cell>
