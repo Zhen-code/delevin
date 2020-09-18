@@ -22,7 +22,8 @@ Page({
     newsList: [],
     postList:[],
     isBottom: true,
-    isPostBottom: true
+    isPostBottom: true,
+    triggered: false
   },
   pageIndex: 1,
   pageSize: 10,
@@ -31,6 +32,42 @@ Page({
   postPIndex:1,
   postPSize: 10,
   postPTotal: 0,
+  scrollTop() {
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
+  },
+  topList(){
+    console.log('下拉')
+    // this.pageIndex = 1;
+    this.getArticleClassify();
+    this.getPostList();
+    this.setData({
+      triggered: false,
+    })
+  },
+  scrollList(){
+    console.log('上拉')
+    if(this.data._index == 0){
+      this.pageIndex++;
+      if(this.pageIndex>this.pageTotal){
+        this.setData({
+          isBottom: true
+        })
+      }else{
+        this.getNewsList(this.classifyId);
+      }
+    }else if(this.data._index == 1){
+      this.postPIndex++;
+      if(this.postPIndex>this.postPTotal){
+        this.setData({
+          isPostBottom: true
+        })
+      }else{
+        this.getPostList();
+      }
+    }
+  },
   toggleTab(e) {
     console.log(this.data.list)
     this.setData({
@@ -168,7 +205,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.stopPullDownRefresh();
     this.getArticleClassify();
     this.getPostList();
   },
@@ -205,33 +241,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.pageIndex = 1;
-    this.onLoad();
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if(this.data._index == 0){
-      this.pageIndex++;
-      if(this.pageIndex>this.pageTotal){
-        this.setData({
-          isBottom: true
-        })
-      }else{
-        this.getNewsList(this.classifyId);
-      }
-    }else if(this.data._index == 1){
-      this.postPIndex++;
-      if(this.postPIndex>this.postPTotal){
-        this.setData({
-          isPostBottom: true
-        })
-      }else{
-        this.getPostList();
-      }
-    }
+
 
   },
 

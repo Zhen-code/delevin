@@ -165,7 +165,7 @@
             <view class="tab-item-right">
                 <view class="houseType-wrap">
                     <view class="houseType-item" wx:for="{{subway}}" wx:key="*this">
-                        {{item}}
+                        {{item.lineName+''+item.routeStop}}
                         <van-icon name="close"
                                   data-index="{{index}}"
                                   bind:tap="deleteSubWay"/>
@@ -197,7 +197,15 @@
         </view>
         <view class="tab-item-top">房源视频</view>
         <view class="upload">
-            <uploader />
+           <uploaderVideo bind:getVideoUrl="getVideoUrl"/>
+            <view class="videoWrap" wx:if="{{videoUrl!==''}}">
+                <video src="{{videoUrl}}"
+                       show-mute-btn
+                       enable-play-gesture
+                       vslide-gesture
+                       object-fit="contain"
+                ></video>
+            </view>
         </view>
         <view class="tab-item-top">效果图</view>
         <view class="upload">
@@ -205,7 +213,7 @@
         </view>
     </view>
     <view class="line"></view>
-    <view class="submitBtn">添加房源</view>
+    <view class="submitBtn" catch:tap="addXQ">添加房源</view>
     <view class="{{showTimePick?'timePickerActive':'timePicker'}}">
     <van-datetime-picker
             toolbar-class="toolbar"
@@ -225,6 +233,6 @@
         show="{{show}}"
         bind:onClose="onClose"/>
 
-<chooseSubWay show="{{isShow}}" bind:close="close"/>
-<chooseLabel show="{{showlabel}}" bind:closeLabel="closeLabel"/>
-<chooseIndoorType show="{{ showIndoor}}" bind:closeIndoor="closeIndoor"/>
+<chooseSubWay wx:if="{{isShow}}" show="{{isShow}}" bind:close="close" province="{{province}}" city="{{city}}"/>
+<chooseLabel wx:if="{{showlabel}}" show="{{showlabel}}" bind:closeLabel="closeLabel"/>
+<chooseIndoorType wx:if="{{showIndoor}}" show="{{ showIndoor}}" bind:closeIndoor="closeIndoor"/>

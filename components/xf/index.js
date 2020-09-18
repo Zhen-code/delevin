@@ -1,7 +1,12 @@
 const chooseLocation = requirePlugin('chooseLocation');
 const {key,referer,min_time,currentDate,getTime} = require('../../utils/util');
 Component({
-    properties: {},
+    properties: {
+        houseProperty:{
+            type: Array,
+            value: []
+        }
+    },
     data: {
         title: '',
         type: '',
@@ -56,6 +61,7 @@ Component({
     timeFlag: 1,
     lifetimes:{
       ready() {
+          console.log(this.properties.houseProperty)
           this.setData({
               currentDate:currentDate,
               minDate : min_time
@@ -192,12 +198,17 @@ Component({
                     });
                     break;
                 case 'propertyType':
-                    // const {propertyType} = this.data;
+                    const propertyType = (this.properties.houseProperty).map(v=>{
+                        return {
+                            name: v.name
+                        }
+                    });
+                    console.log(propertyType)
                     this.setData({
                         type:type,
                         show: true,
                         title: '物业类别',
-                        actions:[{name:'快递类物业'}]
+                        actions:propertyType
                     });
                     break;
                 case 'buildingType' :

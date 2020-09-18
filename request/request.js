@@ -202,6 +202,21 @@ const request = {
       method: 'GET',
       params: params
     })
+  },
+
+  getHouseProperty: ()=>{
+      return http({
+        url: '/api/access/v1/house/property/classify/list',
+        method: 'GET',
+        params:{}
+      })
+  },
+  getConstructClassify: ()=>{
+      return http({
+        url: '/api/access/v1/house/construct/classify/list',
+        method: 'GET',
+        params:{}
+      })
   }
 
 }

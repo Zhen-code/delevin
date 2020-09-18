@@ -275,35 +275,27 @@
 					"query": "",
 					"scene": null
 				},
-				
 				{
-          "id": -1,
-          "name": "combination/pages/homepage/index",
-          "pathName": "combination/pages/homepage/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/customerPoster/index",
-          "pathName": "combination/pages/customerPoster/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/customerArticles/index",
-          "pathName": "combination/pages/customerArticles/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "看点首页",
-          "pathName": "pages/personal/aspect/index",
-          "query": "",
-          "scene": null
-        },
+					"id": -1,
+					"name": "combination/pages/homepage/index",
+					"pathName": "combination/pages/homepage/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/customerPoster/index",
+					"pathName": "combination/pages/customerPoster/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "combination/pages/customerArticles/index",
+					"pathName": "combination/pages/customerArticles/index",
+					"query": "",
+					"scene": null
+				},
 				{
 					"id": -1,
 					"name": "帖子发布",
@@ -323,6 +315,13 @@
 					"name": "新闻详情",
 					"pathName": "combination/pages/aspectDetail/index",
 					"query": "id=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "看点首页",
+					"pathName": "pages/aspect/index",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -10,17 +10,28 @@
 			<van-tab wx:for="{{list}}" wx:key="id" data-index="{{index}}" title="{{item.name}}" tab-class="tabStyle"
 				tab-active-class="tabActiveStyle">
 				<view class="tabContent" hidden="{{tabActive!==index}}">
-					<view wx:for="{{newsList}}" wx:key="id" class="tab-item" catchtap="goHouseDetal" data-id="{{item.id}}">
-						<view class="tab-item-left">
-							<view class="tab-item-left-title">{{item.name}}</view>
-							<view class="tab-item-left-desc">
-								<text>{{item.source}}</text>
-								<text class="split-line">|</text>
-								<text>{{item.author}}</text>
+					<view class="message-view">
+						<scroll-view
+									class="view-list"
+									 refresher-enabled="true"
+									 scroll-into-view="{{toView}}"
+									 refresher-triggered="{{triggered}}"
+									 bindrefresherrefresh="topList"
+									 bindscrolltolower="scrollList"
+									 scroll-y="true">
+							<view wx:for="{{newsList}}" wx:key="id" class="tab-item" catchtap="goHouseDetal" data-id="{{item.id}}">
+								<view class="tab-item-left">
+									<view class="tab-item-left-title">{{item.name}}</view>
+									<view class="tab-item-left-desc">
+										<text>{{item.source}}</text>
+										<text class="split-line">|</text>
+										<text>{{item.author}}</text>
+									</view>
+									<view class="tab-item-left-time">{{item.createDate}}</view>
+								</view>
+								<image src="{{item.coverUri}}" class="tab-item-right" mode="aspectFill"></image>
 							</view>
-							<view class="tab-item-left-time">{{item.createDate}}</view>
-						</view>
-						<image src="{{item.coverUri}}" class="tab-item-right" mode="aspectFill"></image>
+						</scroll-view>
 					</view>
 					<view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
 				</view>

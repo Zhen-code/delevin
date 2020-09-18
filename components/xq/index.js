@@ -1,7 +1,13 @@
 const chooseLocation = requirePlugin('chooseLocation');
 const {key,referer} = require('../../utils/util');
+const {request} = require('../../request/request');
+const {http} = request('../../request/http');
 Component({
-    properties: {},
+    properties: {
+        test: {
+            type: String
+        }
+    },
     data: {
         name: '',
         houseType:[],
@@ -38,11 +44,22 @@ Component({
         showlabel:false,
         showIndoor:false,
         showTextArea:false,
-        autofocus:false
+        autofocus:false,
+        videoUrl: ''
     },
     timeFlag: 1,
-
+    propertyTypeArray:[],
+    constructClassify: [],
     methods: {
+        getVideoUrl(e){
+            console.log(e)
+            if(e.detail.e === ''|| !e.detail.e){
+                return
+            }
+            this.setData({
+                videoUrl: e.detail.e
+            });
+        },
         looseBlur(e){
             let {value} = e.detail;
                 this.setData({
@@ -91,6 +108,14 @@ Component({
             }
         },
         goSubWaySheet(){
+            let { city,province} = this.data;
+            if(city===''&&province===''){
+                wx.showToast({
+                    title: '请选择地址',
+                    icon: "none"
+                });
+                // return
+            }
           this.setData({
               isShow: true
           });
@@ -183,23 +208,22 @@ Component({
         goSheet(e){
             const {type} = e.currentTarget.dataset;
             console.log(type);
+            let that = this;
             switch (type) {
                 case 'propertyType':
-                    // const {propertyType} = this.data;
                     this.setData({
                         type:type,
                         show: true,
                         title: '物业类别',
-                        actions:[{name:'物业类别'}]
+                        actions: that.propertyTypeArray
                     });
                     break;
                 case 'buildingType' :
-                    // const {buildingType} = this.data;
                     this.setData({
                         type:type,
                         show: true,
                         title: '建筑类型',
-                        actions: [{name:'建筑类型'}]
+                        actions: that.constructClassify
                     });
                     break;
                 default:
@@ -251,6 +275,7 @@ Component({
                     });
                     break;
                 case 'buildingType':
+                    console.log(e.detail.detail)
                         this.setData({
                             buildingType: e.detail.detail,
                             show:false
@@ -262,21 +287,106 @@ Component({
         },
         close(e){
             console.log(e);
-            if(e.detail.detail===""||!e.detail.detail){
+            if(e.detail.detail.length === 0 ||!e.detail.detail){
                 this.setData({
                     isShow:false
                 });
             }else{
                 let {subway} = this.data;
-                let newArr = Array.from(new Set([...subway,...(e.detail.detail)]))
+                let newArr = subway.concat(e.detail.detail);
+                let newArray = [];
+                let obj = {};
+                for (let i = 0; i < newArr.length; i++) {
+                    if (!obj[newArr[i].routeStop]) {
+                        newArray.push(newArr[i]);
+                        obj[newArr[i].routeStop] = true;
+                    }
+                }
+                console.log(newArray);
                 this.setData({
-                   subway : newArr,
+                   subway : newArray,
                     isShow: false
                 });
             }
+        },
+        addXQ(){
+            // http({
+            //     url: '/api/access/v1/house/residential/quarters/add',
+            //     method: 'POST',
+            //     params: {
+            //         "averagePrice": this.apsh,
+            //         "builtYear": this.buildingTime,
+            //         "city": this.city,
+            //         "constructClassifyId": this.constructClassifyId,
+            //         "description": '',
+            //         "designSketch": [
+            //             "http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/547db840-e288-4ded-97b7-31c630d2e7d0.jpg",
+            //             "http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/547db840-e288-4ded-97b7-31c630d2e7d0.jpg"
+            //         ],
+            //         "detailsAddress": "广州市番禺区钟村街道汉溪社区汉溪大道东290号",
+            //         "developers": "李林",
+            //         "greenCoverage": "69.3",
+            //         "houseLabel": [
+            //             "标签1",
+            //             "标签2"
+            //         ],
+            //         "houseType": [
+            //             "1",
+            //             "2"
+            //         ],
+            //         "houseVideo": "https://aliyuncdn.beiru168.com/diana/eb07a841-f327-475b-a781-eb35b833f1f0.mp4",
+            //         "latitude": 21.63534413,
+            //         "longitude": 113.25456442,
+            //         "metro": [
+            //             {
+            //                 "lineName": "3号线",
+            //                 "routeStop": "汉溪长隆"
+            //             },
+            //             {
+            //                 "lineName": "3号线",
+            //                 "routeStop": "钟村"
+            //             }
+            //         ],
+            //         "parkingSpace": "96.3",
+            //         "plotRatio": "96.3",
+            //         "property": 60,
+            //         "propertyClassifyId": 1,
+            //         "propertyCompany": "贝如科技",
+            //         "propertyFee": "1000/月",
+            //         "province": "广东省",
+            //         "region": "番禺区",
+            //         "rentalAveragePrice": 2010,
+            //         "street": "钟村街道",
+            //         "title": "碧桂园学区房一期开售，首付仅需15万"
+            //     }
+            // }).then(res=>{
+            //     console.log(res)
+            // }).catch(err=>{
+            //     console.log(err)
+            // })
+
         }
     },
     lifetimes:{
+
+        created() {
+            console.log(request)
+            let that = this;
+            request.getHouseProperty().then(res=>{
+                that.propertyTypeArray = res.map(v=>{
+                    return {
+                        name: v.name
+                    }
+                })
+            });
+            request.getConstructClassify().then(res=>{
+                that.constructClassify = res.map(v=>{
+                    return{
+                        name: v.name
+                    }
+                });
+            });
+            },
         ready() {
             let min_time = new Date("1900-01-01 00:00:00").getTime();
             let currentDate = new Date().getTime();

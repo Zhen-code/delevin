@@ -1,35 +1,21 @@
+const {http} = require('../../request/http');
 Component({
     properties: {
         show: {
             type: Boolean,
             value: false
+        },
+        province:{
+            type: String,
+            value: ''
+        },
+        city:{
+            type: String,
+            value: ''
         }
     },
     data: {
-        list:[
-            {
-                "city": "广州市",
-                "createDate": "2018-03-12 21:32:33",
-                "id": 1,
-                "lineName": "3号线",
-                "province": "广东省",
-                "routeStop": [
-                    "汉溪长隆",
-                    "钟村"
-                ]
-            },
-            {
-                "city": "广州市",
-                "createDate": "2018-03-12 21:32:33",
-                "id": 2,
-                "lineName": "2号线",
-                "province": "广东省",
-                "routeStop": [
-                    "汉溪",
-                    "南村"
-                ]
-            }
-        ],
+        list:[],
         scrollLeft:[],
         scrollRight:[],
         _index: 0
@@ -60,25 +46,36 @@ Component({
             });
         },
         getList(){
-            // http({
-            //   url: '/api/access/v1/house/metro/line/list',
-            //
-            // })
-            let {list} = this.data;
-            let scrollLeft = list.map(item=>{
-                return {
-                    lineName: item.lineName
+            let that = this;
+            let {province,city} = this.properties;
+            http({
+                url: '/api/access/v1/house/metro/line/list',
+                method: 'GET',
+                params:{
+                    city: city,
+                    proviince: province
                 }
-            });
-            let scrollRight = (list[0].routeStop).map(item=>{
-                return{
-                    name: item,
-                    active:false
-                }
-            });
-            this.setData({
-                scrollLeft,
-                scrollRight
+            }).then(res=>{
+                console.log(res)
+                let scrollLeft = res.map(item=>{
+                    return {
+                        lineName: item.lineName
+                    }
+                });
+                let scrollRight = (res[0].routeStop).map(item=>{
+                    return{
+                        name: item,
+                        active:false
+                    }
+                });
+                that.setData({
+                    scrollLeft,
+                    scrollRight,
+                    list: res
+                });
+
+            }).catch(err=>{
+                console.log(err)
             });
         },
         onClose(){
@@ -100,7 +97,13 @@ Component({
             console.log(lineName);
             let routeStop = scrollRight.filter(item=>item.active===true);
             console.log(routeStop);
-            let chooseSubWay = routeStop.map(item=> lineName+'/'+item.name);
+            // let chooseSubWay = routeStop.map(item=> lineName+'/'+item.name);
+            let chooseSubWay = routeStop.map(item=> {
+                return{
+                    lineName: lineName,
+                    routeStop: item.name
+                }
+            });
             this.triggerEvent('close',{detail:chooseSubWay});
         }
     },
@@ -109,7 +112,7 @@ Component({
             // wx.nextTick(()=>{
             //     this.getList();
             // });
-            this.getList()
+            this.getList();
         }
     }
 });
