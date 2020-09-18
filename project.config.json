@@ -1,302 +1,306 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": false,
-		"userConfirmedUseCompilerModuleSwitch": true
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.12.2",
-	"appid": "wxe0ce08c67e4c6d85",
-	"projectname": "delevin-mini-program",
-	"cloudfunctionTemplateRoot": "",
-	"watchOptions": {
-		"ignore": []
-	},
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"scripts": {},
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "combination/pages/searchFor/index",
-					"pathName": "combination/pages/searchFor/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/message/index",
-					"pathName": "combination/pages/message/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "combination/pages/listingDetails/index",
-					"pathName": "combination/pages/listingDetails/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/listingDetails/index.wxml",
-					"pathName": "combination/pages/listingDetails/index.wxml",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/listingDetails/index",
-					"pathName": "combination/pages/listingDetails/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/propertyType/index",
-					"pathName": "combination/pages/propertyType/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/browsePictures/index",
-					"pathName": "combination/pages/browsePictures/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/sellHouse/index",
-					"pathName": "combination/pages/sellHouse/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/map/index",
-					"pathName": "combination/pages/map/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/listings/index",
-					"pathName": "combination/pages/listings/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "新闻详情页",
-					"pathName": "combination/pages/aspectDetail/index",
-					"query": "id=1",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "发帖页面",
-					"pathName": "combination/pages/post/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 13,
-					"name": "combination/pages/broker/index",
-					"pathName": "combination/pages/broker/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/myCollection/index",
-					"pathName": "combination/pages/myCollection/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "帖子详情",
-					"pathName": "combination/pages/postDetail/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "添加房源",
-					"pathName": "combination/pages/addHouseOrigin/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/shareItCode/index",
-					"pathName": "combination/pages/shareItCode/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/map/index",
-					"pathName": "combination/pages/map/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "搜小区",
-					"pathName": "combination/pages/distrctSearch/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/modify/index",
-					"pathName": "combination/pages/modify/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/recording/index",
-					"pathName": "combination/pages/recording/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/management/index",
-					"pathName": "combination/pages/management/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/superPromotion/index",
-					"pathName": "combination/pages/superPromotion/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/generalPromotion/index",
-					"pathName": "combination/pages/generalPromotion/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/superPromotion/index",
-					"pathName": "combination/pages/superPromotion/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/selectPromotion/index",
-					"pathName": "combination/pages/selectPromotion/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/myPackage/index",
-					"pathName": "combination/pages/myPackage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/modify/index",
-					"pathName": "combination/pages/modify/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/homepage/index",
-					"pathName": "combination/pages/homepage/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/customerPoster/index",
-					"pathName": "combination/pages/customerPoster/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "combination/pages/customerArticles/index",
-					"pathName": "combination/pages/customerArticles/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "看点首页",
-					"pathName": "pages/personal/aspect/index",
-					"query": "",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "useMultiFrameRuntime": false,
+    "useApiHook": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.12.2",
+  "appid": "wxe0ce08c67e4c6d85",
+  "projectname": "delevin-mini-program",
+  "cloudfunctionTemplateRoot": "",
+  "watchOptions": {
+    "ignore": []
+  },
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": [
+        {
+          "id": -1,
+          "name": "combination/pages/searchFor/index",
+          "pathName": "combination/pages/searchFor/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/message/index",
+          "pathName": "combination/pages/message/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "combination/pages/listingDetails/index",
+          "pathName": "combination/pages/listingDetails/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/listingDetails/index.wxml",
+          "pathName": "combination/pages/listingDetails/index.wxml",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/listingDetails/index",
+          "pathName": "combination/pages/listingDetails/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/propertyType/index",
+          "pathName": "combination/pages/propertyType/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/browsePictures/index",
+          "pathName": "combination/pages/browsePictures/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/sellHouse/index",
+          "pathName": "combination/pages/sellHouse/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/map/index",
+          "pathName": "combination/pages/map/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/listings/index",
+          "pathName": "combination/pages/listings/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "新闻详情页",
+          "pathName": "combination/pages/aspectDetail/index",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发帖页面",
+          "pathName": "combination/pages/post/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 13,
+          "name": "combination/pages/broker/index",
+          "pathName": "combination/pages/broker/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/myCollection/index",
+          "pathName": "combination/pages/myCollection/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "帖子详情",
+          "pathName": "combination/pages/postDetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加房源",
+          "pathName": "combination/pages/addHouseOrigin/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/shareItCode/index",
+          "pathName": "combination/pages/shareItCode/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/map/index",
+          "pathName": "combination/pages/map/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "搜小区",
+          "pathName": "combination/pages/distrctSearch/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/modify/index",
+          "pathName": "combination/pages/modify/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/recording/index",
+          "pathName": "combination/pages/recording/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/management/index",
+          "pathName": "combination/pages/management/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/superPromotion/index",
+          "pathName": "combination/pages/superPromotion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/generalPromotion/index",
+          "pathName": "combination/pages/generalPromotion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/superPromotion/index",
+          "pathName": "combination/pages/superPromotion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/selectPromotion/index",
+          "pathName": "combination/pages/selectPromotion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/myPackage/index",
+          "pathName": "combination/pages/myPackage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/modify/index",
+          "pathName": "combination/pages/modify/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/homepage/index",
+          "pathName": "combination/pages/homepage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/customerPoster/index",
+          "pathName": "combination/pages/customerPoster/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/customerArticles/index",
+          "pathName": "combination/pages/customerArticles/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "看点首页",
+          "pathName": "pages/personal/aspect/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

@@ -21,8 +21,8 @@
    favorites: {
      addFavorites: '/api/access/v1/member/collection/add',
      cancelFavorites: '/api/access/v1/member/collection/cancel',
-     myFavoritesHouse: '/api/access/v1/member/collection/house/list',
-     myFavoritesOther: '/api/access/v1/member/collection/list',
+     myFavoritesHouse: '/api/access/v1/member/collection/house/list/',
+     myFavoritesOther: '/api/access/v1/member/collection/list/',
    },
 
    //房源
@@ -30,6 +30,15 @@
      newListingsList: '/api/access/v1/house/introduction/estate/list',
      towListingsList: '/api/access/v1/house/introduction/second/hand/list',
      sellHouse: '/api/access/v1/house/selling/add',
+     newListings:'/api/access/v1/house/estate/list',
+     newListingsDetails:'/api/access/v1/house/estate/details/',
+     towListings:'/api/access/v1/house/second/hand/list',
+     towListingsDetails:'/api/access/v1/house/second/hand/details/',
+     tenancyListings:'/api/access/v1/house/tenancy/list',
+     tenancyListingsDetails:'/api/access/v1/house/tenancy/details/',
+     quartersListings:'/api/access/v1/house/residential/quarters/list',
+     quartersListingsDetails:'/api/access/v1/house/residential/quarters/details/',
+     likeListings:'/api/access/v1/house/guess/like/list',
    },
 
    // 消息

@@ -19,6 +19,8 @@ Component({
 	data: {
 		show: false,
 		city: "广州市",
+		value:"",
+		name:'',
 		areaList: provincCityDistrict,
 		placeholder: "输入地名/地铁/楼盘/小区查找房源",
 	},
@@ -57,13 +59,26 @@ Component({
 			this.setData({
 				city: name || '未选择'
 			})
+			this.triggerEvent("getCityValue", name);
 			this.onClose();
 		},
 
-		toSearch() {
-			wx.navigateTo({
-				url: `/combination/pages/searchFor/index`,
+		search(e){
+			let type = {
+				"name":this.data.city,
+				"value":this.data.value
+			}
+			this.triggerEvent("getSearchValue", type);
+		},
+
+		chanheValue(e) {
+			this.setData({
+				value:e.detail.value
 			})
+			this.triggerEvent("getInputValue", e.detail.value);
+			// wx.navigateTo({
+			// 	url: `/combination/pages/searchFor/index`,
+			// })
 		}
 	}
 })

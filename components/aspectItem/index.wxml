@@ -1,13 +1,13 @@
 <!--components/aspectItem/index.wxml-->
 <view class="tab-item">
 	<view class="tab-item-left">
-		<view class="tab-item-left-title">最后2天！龙湖88嗨购节收官在即 震撼福利错过不再</view>
+		<view class="tab-item-left-title">{{item.title}}</view>
 		<view class="tab-item-left-desc">
-			<text>广州特价房</text>
+			<text>{{item.title}}</text>
 			<text class="split-line">|</text>
-			<text>房价参谋长广州分部</text>
+			<text>{{item.title}}</text>
 		</view>
-		<view class="tab-item-left-time">2020-08-27 13:23:33</view>
+		<view class="tab-item-left-time">{{item.createDate}}</view>
 	</view>
-	<image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1488135411,3051215224&fm=26&gp=0.jpg" class="tab-item-right" mode="aspectFill"></image>
+	<image src="{{item.imageUri}}" class="tab-item-right" mode="aspectFill"></image>
 </view>

@@ -5,6 +5,7 @@
     "doubleTab":"/components/doubleTab/index",
     "shopItem":"/components/shopItem/index",
     "aspectItem":"/components/aspectItem/index",
-    "estateItem":"/components/estatesItem/index"
+    "estateItem":"/components/estatesItem/index",
+    "noData":"/components/noData/index"
   }
 }

@@ -1,4 +1,3 @@
-@import "../../assets/wxss/addhouseCommon.wxss";
 .timePicker{
     display: none;
 }

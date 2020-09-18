@@ -20,7 +20,7 @@ const request = {
   },
   code: (params) => {
     return http({
-      url: api.information.code+params.phone,
+      url: api.information.code + params.phone,
       method: "POST",
     });
   },
@@ -40,7 +40,72 @@ const request = {
       params: params,
     });
   },
-  
+
+  // 房源列表
+  newListings: (params) => {
+    return http({
+      url: api.listings.newListings,
+      method: "GET",
+      params: params,
+    });
+  },
+  towListings: (params) => {
+    return http({
+      url: api.listings.towListings,
+      method: "GET",
+      params: params,
+    });
+  },
+  tenancyListings: (params) => {
+    return http({
+      url: api.listings.tenancyListings,
+      method: "GET",
+      params: params,
+    });
+  },
+  quartersListings: (params) => {
+    return http({
+      url: api.listings.quartersListings,
+      method: "GET",
+      params: params,
+    });
+  },
+
+  //房源列表详情
+  newListingsDetails: (params) => {
+    return http({
+      url: api.listings.newListingsDetails+params.houseId,
+      method: "GET",
+    });
+  },
+  towListingsDetails: (params) => {
+    return http({
+      url: api.listings.towListingsDetails+params.houseId,
+      method: "GET",
+    });
+  },
+  tenancyListingsDetails: (params) => {
+    return http({
+      url: api.listings.tenancyListingsDetails+params.houseId,
+      method: "GET",
+    });
+  },
+  quartersListingsDetails: (params) => {
+    return http({
+      url: api.listings.quartersListingsDetails+params.houseId,
+      method: "GET",
+    });
+  },
+
+  // 猜你喜欢
+  likeListings: (params) => {
+    return http({
+      url: api.listings.likeListings,
+      method: "GET",
+      params:params,
+    });
+  },
+
   //消息列表
   messageList: (params) => {
     return http({
@@ -51,7 +116,7 @@ const request = {
   },
   messageDetails: (params) => {
     return http({
-      url: api.message.messageDetails+params.messageId,
+      url: api.message.messageDetails + params.messageId,
       method: "GET",
     });
   },
@@ -73,14 +138,14 @@ const request = {
   },
   myFavoritesHouse: (params) => {
     return http({
-      url: api.favorites.myFavoritesHouse,
+      url: api.favorites.myFavoritesHouse + params.type,
       method: "GET",
       params: params,
     });
   },
   myFavoritesOther: (params) => {
     return http({
-      url: api.favorites.myFavoritesOther,
+      url: api.favorites.myFavoritesOther + params.type,
       method: "GET",
       params: params,
     });

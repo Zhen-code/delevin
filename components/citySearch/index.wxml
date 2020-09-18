@@ -4,9 +4,9 @@
 		<text class="top-left-title">{{city}}</text>
 		<text class="top-left-border"></text>
 	</view>
-	<view class="top-right" bindtap="toSearch">
-		<image class="top-right-image" src="/assets/image/icon_glass_22_d6@2x.png"></image>
-		<input class="top-right-text" placeholder="{{placeholder}}"></input>
+	<view class="top-right">
+		<image class="top-right-image" bindtap="search" src="/assets/icon_glass_22_d6@2x.png"></image>
+		<input class="top-right-text" bindinput="chanheValue" placeholder="{{placeholder}}"></input>
 	</view>
 </view>
 

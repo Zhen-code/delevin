@@ -1,0 +1,102 @@
+<!--pages/personal/mine/index.wxml-->
+<view class="mine">
+	<navbar title="个人中心" />
+	<view class="mine-content" style="padding-top:{{paddingTop}}px">
+		<view class="mine-content-top">
+			<view class="mine-content-top-row">
+				<view class="mine-content-top-left" data-item="{{show}}" bindtap="toModify">
+					<van-image round width="100rpx" height="100rpx" src="{{userInfo.headImgUri}}" />
+					<view class="mine-content-top-left-title">
+						<text class="mine-content-top-left-text">{{userInfo.nickname}}</text>
+						<text class="mine-content-top-left-type" wx:if="{{show}}">{{userInfo.storeName}}</text>
+					</view>
+				</view>
+				<view class="mine-content-top-rigth" wx:if="{{!show}}" bindtap="tabBroker">
+					<text class="mine-content-top-rigth-text">认证为经纪人</text>
+					<van-icon size="30rpx" name="arrow" color="#88ABFF" />
+				</view>
+				<view class="mine-content-top-rigth" wx:if="{{show}}" bindtap="toShareItCode">
+					<image class="mine-content-top-rigth-image" src="/assets/img_qrcode_270@2x.png"></image>
+				</view>
+			</view>
+			<text class="introductionText" wx:if="{{show}}">{{userInfo.synopsis}}</text>
+		</view>
+
+		<!-- <view class="mine-content-top" wx:if="{{show}}">
+			<view class="mine-content-top-box">
+				<view class="mine-content-top-left" bindtap="toModify">
+					<van-image round width="100rpx" height="100rpx" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+					<view class="mine-content-top-left-title">
+						<text class="mine-content-top-left-text">楼市君</text>
+						<text class="mine-content-top-left-type">合富置业</text>
+					</view>
+				</view>
+				<view class="mine-content-top-rigth" bindtap="toShareItCode">
+					<image class="mine-content-top-rigth-image" src="/assets/img_qrcode_270@2x.png"></image>
+				</view>
+			</view>
+			<text class="introductionText">个人介绍介绍介绍效机增历果系别好王常属五史导效气且治前风</text>
+		</view> -->
+
+		<view class="mine-content-row" bindtap="myPackage" wx:if="{{show}}">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/icon_set_20_black@2x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>我的套餐</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
+		<view class="mine-content-row" bindtap="myClientele" wx:if="{{show}}">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/icon_customer_20_black@2x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>我的客源</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
+		<view class="mine-content-row" bindtap="myCollection" wx:if="{{!show}}">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/icon_collection_20_black@3x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>我的收藏</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
+		<view class="mine-content-row" bindtap="browseRecords" wx:if="{{!show}}">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/icon_history_20_black@3x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>浏览记录</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
+		<view class="mine-content-row" bindtap="privacyPolicy">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/icon_policy_20_black@2x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>隐私政策</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
+		<view class="mine-content-row" bindtap="customerService">
+			<view class="mine-content-row-left">
+				<image class="mine-content-row-left-icon" src="/assets/icon_service_20_black@2x.png"></image>
+			</view>
+			<view class="mine-content-row-right">
+				<text>联系客服</text>
+				<van-icon size="40rpx" name="arrow" color="#cccccc" />
+			</view>
+		</view>
+
+		<view class="mine-content-out" bindtap="outLogin">
+			<text>退出登录</text>
+		</view>
+
+		<view class="mine-content-bottom" bindtap="getTab">{{tabTitle}}</view>
+	</view>
+</view>

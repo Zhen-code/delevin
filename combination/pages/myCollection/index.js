@@ -14,12 +14,14 @@ Page({
 			"color": true,
 			"border": true
 		},
+		tabIndex:0,
 		topTabIndex: 0,
+		navTabIndex: 0,
 		tabItem: [],
 		tab1: ['新房/楼盘', '二手房', '租房', '小区房'],
 		tab2: ['新闻', '地产315'],
 		item: [],
-		type: '新房',
+		type: 'ESTATE',
 		pageIndex: 1,
 		pageSize: 12,
 		scrollTop: 0,
@@ -28,6 +30,8 @@ Page({
 	},
 
 	onClose(event) {
+		let than = this;
+		let items = event.currentTarget.dataset.item;
 		wx.showModal({
 			title: '我的收藏',
 			content: '是否确认取消收藏？',
@@ -36,9 +40,26 @@ Page({
 			confirmText: "确定",
 			success(res) {
 				if (res.confirm) {
-					console.log(res, 111)
-				} else {
-					console.log(res, 222)
+					request.cancelFavorites({
+						"targetId": items.targetId,
+						"type": items.type
+					}).then((res)=>{
+						wx.showToast({
+							title: '取消成功',
+							icon: 'success',
+							duration: 2500
+						})
+						// than.setData({
+
+						// })
+						than.getData();
+					}).catch((err)=>{
+						wx.showToast({
+							title: '数据错误',
+							icon: 'none',
+							duration: 2500
+						})
+					})
 				}
 			}
 		})
@@ -48,24 +69,93 @@ Page({
 		let data = this.data;
 		if (e.currentTarget.dataset.index === 0) {
 			this.setData({
+				item: [],
+				tabIndex:0,
+				pageIndex: 1,
 				tabItem: data.tab1,
 				topTabIndex: e.currentTarget.dataset.index
 			})
 		} else {
 			this.setData({
+				item: [],
+				type: 'NEWS',
+				tabIndex:0,
+				pageIndex: 1,
 				tabItem: data.tab2,
 				topTabIndex: e.currentTarget.dataset.index
 			})
 		}
+		this.getData();
 	},
 
-	getTabIndex(e){
-		console.log(e.detail,122)
-		if(this.data.topTabIndex === 0){
-			console.log(this.data.topTabIndex,0)
-		}else{
-			console.log(this.data.topTabIndex,1)
+	getTabIndex(e) {
+		if (this.data.topTabIndex === 0) {
+			switch (e.detail) {
+				case 0: {
+					this.setData({
+						type: 'ESTATE',
+						item: [],
+						navTabIndex: e.detail,
+						pageIndex: 1,
+					})
+					break
+				};
+			case 1: {
+				this.setData({
+					type: 'SECOND_HAND',
+					item: [],
+					navTabIndex: e.detail,
+					pageIndex: 1,
+				})
+				break
+			};
+			case 2: {
+				this.setData({
+					type: 'TENANCY',
+					item: [],
+					navTabIndex: e.detail,
+					pageIndex: 1,
+				})
+				break
+			};
+			case 3: {
+				this.setData({
+					type: 'RESIDENTIAL_QUARTERS',
+					item: [],
+					navTabIndex: e.detail,
+					pageIndex: 1,
+				})
+				break
+			};
+			}
+		} else {
+			this.setData({
+				item: [],
+				tabIndex:0,
+				pageIndex: 1,
+			})
 		}
+		this.getData()
+	},
+
+	tabItemIndex(e){
+		let index = e.currentTarget.dataset.index;
+		if(index === 0){
+			this.setData({
+				type:'NEWS',
+				item: [],
+				pageIndex: 1,
+				tabIndex:e.currentTarget.dataset.index
+			})
+		}else{
+			this.setData({
+				type:'POST',
+				item: [],
+				pageIndex: 1,
+				tabIndex:e.currentTarget.dataset.index
+			})
+		}
+		this.getData()
 	},
 
 	scrollTop() {
@@ -76,7 +166,6 @@ Page({
 
 	topList() {
 		this.setData({
-			// pageIndex: 1,
 			triggered: false,
 		})
 		this.getData()
@@ -88,14 +177,22 @@ Page({
 	},
 
 	getData() {
-		request.myFavoritesHouse({
+		let requests = '';
+		if (this.data.topTabIndex === 0) {
+			requests = request.myFavoritesHouse
+		} else {
+			requests = request.myFavoritesOther
+		}
+		requests({
 			"pageSize": this.data.pageSize,
 			"pageIndex": this.data.pageIndex,
 			"type": this.data.type,
 		}).then((res) => {
-			console.log(res.list)
+			let list = this.data.item;
+			list.push(...res.list)
 			this.setData({
-				item: res.list
+				item: list,
+				pageIndex: this.data.pageIndex + 1,
 			})
 		}).catch((err) => {
 			wx.showToast({
@@ -109,12 +206,13 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		this.getData()
 		let index = Number(options.tabIndex);
 		let data = this.data;
 		this.setData({
 			tabItem: index === 0 ? data.tab1 : data.tab2,
 			topTabIndex: index,
+		},()=>{
+			this.getData()
 		})
 	},
 

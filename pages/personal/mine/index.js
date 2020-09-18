@@ -1,6 +1,5 @@
 // pages/personal/mine/index.js
 const app = getApp()
-var menus = require('../../../datas/js/menus');
 const {
   request
 } = require('../../../request/request.js');

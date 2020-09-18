@@ -1,6 +1,6 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
 <view class="view" style="top:{{paddingTop}}px">
-	<citySearch style="width:100%"></citySearch>
+	<citySearch style="width:100%" bind:getCityValue="getCityValue" bind:getInputValue="getInputValue" bind:getSearchValue="getSearchValue"></citySearch>
 
 	<view class="type">
 		<view class="type-index" data-index="{{0}}" bindtap="selectTab">
@@ -29,7 +29,6 @@
 		</view>
 
 		<!-- 区域 -->
-
 		<view class="typeTreeSelect" wx:if="{{selectType === 0}}">
 			<view class="typeTreeSelect-list">
 				<view class="typeTreeSelect-list-left">
@@ -207,8 +206,8 @@
 	</view>
 
 	<scroll-view class="list" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
-		<block>
-			<shopItem item="{{item}}"></shopItem>
+		<block wx:for="{{item}}" wx:key="index">
+			<shopItem item="{{item}}" data-item="{{item}}" bindtap="toListingDetails"></shopItem>
 		</block>
 	</scroll-view>
 </view>

@@ -7,7 +7,7 @@ Component({
 		tabItem:{
 			type:Array,
 			value:[],
-		}
+		},
 	},
 
 	/**

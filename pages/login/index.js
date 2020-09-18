@@ -55,7 +55,7 @@ Page({
                               duration: 2500
                             })
                             wx.reLaunch({
-                              url: "/pages/index/index"
+                              url: "/pages/mine/index"
                             })
                           }).catch((err) => {
                             wx.showToast({
@@ -84,7 +84,7 @@ Page({
                           duration: 2500
                         })
                         wx.reLaunch({
-                          url: "/pages/index/index"
+                          url: "/pages/mine/index"
                         })
                       }).catch((err) => {
                         wx.showToast({

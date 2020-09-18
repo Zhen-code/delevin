@@ -42,17 +42,6 @@ App({
         this.setNavBarInfo()
       }
     })
-
-    wx.checkSession({
-      success() {
-        //session_key 未过期，并且在本生命周期一直有效
-
-      },
-      fail() {
-        // session_key 已经失效，需要重新执行登录流程
-        // wx.login() //重新登录
-      }
-    })
   },
 
   setNavBarInfo() {
@@ -61,7 +50,7 @@ App({
     let system = systemInfo.system.toLowerCase();
     let _height = 0;
     if (system.match("android")) {
-      _height = 8;
+      _height = 7.5;
     } else if (system.match("ios")) {
       _height = 4;
     }
@@ -90,7 +79,9 @@ App({
     maxHeight: 0,
     paddingTop: 0,
     list: [], // tabBar
-    districtTitle: '' //小区标题
+    districtTitle: '', //小区标题
+    state:true,
+    city:'',
   },
   topHeight: {
     height: 0,

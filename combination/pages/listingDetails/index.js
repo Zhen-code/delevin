@@ -1,5 +1,5 @@
 const {
-  request
+	request
 } = require('../../../request/request');
 const topHeight = require('../../../request/topHeight.js').topHeight
 import uCharts from "../../../utils/u-charts.min.js"
@@ -11,35 +11,35 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		paddingTop:topHeight,
+		paddingTop: topHeight,
+		id: '',
+		type: '',
 		title: "",
+		item: '',
 		bgColor: {
 			"color": true,
 			"border": false
-		},
-		favorites: {
-			"id": 0
 		},
 		stlectState: false,
 		stlectData: "查看更多",
 		stlectName: "arrow-down",
 		cWidth: '',
 		cHeight: '',
-		tabItem:['新房','二手房']
+		tabItem: ['新房', '二手房']
 	},
-	tovideoImage(){
+
+	tovideoImage() {
 		wx.navigateTo({
-			url:"/combination/pages/browsePictures/index"
+			url: "/combination/pages/browsePictures/index"
 		})
 	},
-	toMap(){
+
+	toMap() {
 		wx.navigateTo({
-			url:"/combination/pages/map/index"
+			url: "/combination/pages/map/index"
 		})
 	},
-	getData(){
-		// request. 
-	},
+
 	changeArrow() {
 		let state = this.data.stlectState;
 		if (state) {
@@ -56,31 +56,127 @@ Page({
 			})
 		}
 	},
-	getTabValue(e){
+
+	getTabValue(e) {
 		console.log(e.detail)
 	},
+
+	getData() {
+		let requests = '';
+		switch (this.data.title) {
+			case '新房房源':
+				requests = request.newListingsDetails
+				break;
+			case '二手房房源':
+				requests = request.towListingsDetails
+				break;
+			case '租房房源':
+				requests = request.tenancyListingsDetails
+				break;
+			case '小区房源':
+				requests = request.quartersListingsDetails
+				break;
+			default:
+		}
+		requests({
+			"houseId": this.data.id,
+		}).then((res) => {
+			let list = res.map((item, index) => {
+				switch (item.decorationStatus) {
+					case 'ROUGHCAST':
+						item.decorationsStatus = '毛坯'
+						break;
+					case 'PAPERBACK':
+						item.decorationsStatus = '简装'
+						break;
+					case 'CHINESE_DRESS':
+						item.decorationsStatus = '中装'
+						break;
+					case 'HARDCOVER':
+						item.decorationsStatus = '精装'
+						break;
+					case 'HAUTE_COUTURE':
+						item.decorationsStatus = '豪装'
+						break;
+					default:
+				};
+				item.type = this.data.type;
+				return item;
+			})
+			this.setData({
+				item: list,
+			})
+			let item = {
+				houseId: res.id,
+				houseMold: this.data.type
+			}
+			this.getLikeListings(item);
+		}).catch((err) => {
+			wx.showToast({
+				title: '数据有误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	getLikeListings(item) {
+		request.likeListings({
+			"houseId": item.houseId,
+			"houseMold": item.houseMold,
+		}).then((res) => {
+			this.setData({
+				list: res.list
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '数据有误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	toHomepage(e) {
+		wx.navigateTo({
+			url: `/combination/pages/homepage/index?link=${e.currentTarget.dataset.item.agentId}`,
+		})
+	},
+
+	callPheon(e) {
+		console.log(e.currentTarget.dataset.item)
+		wx.makePhoneCall({
+			phoneNumber: e.currentTarget.dataset.item.phone
+		})
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
 		let type = "";
-		switch (options.type) {
-			case "NEW":
-				type = "新房房源";
+		let item = JSON.parse(options.item)
+		switch (item.title) {
+			case "新房房源":
+				type = "ESTATE";
 				break;
-			case "TOW":
-				type = "二手房房源";
+			case "二手房房源":
+				type = "SECOND_HAND";
 				break;
-			case "ZUFANG":
-				type = "租房房源";
+			case "租房房源":
+				type = "TENANCY";
 				break;
-			case "XIAOQU":
-				type = "小区房源";
+			case "小区房源":
+				type = "RESIDENTIAL_QUARTERS";
 				break;
 			default:
 		}
 		this.setData({
-			title: type,
+			type: type,
+			id: item.id,
+			title: item.title,
+		}, () => {
+			this.getData();
 		})
 		_self = this;
 		this.cWidth = wx.getSystemInfoSync().windowWidth;

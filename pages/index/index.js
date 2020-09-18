@@ -1,6 +1,6 @@
 // pages/_index/_index.js
 const app = getApp()
-var menus = require('../../datas/js/menus');
+// var menus = require('../../datas/js/menus');
 const api = require('../../request/api').api;
 const domain = require('../../request/http.js').domain;
 const {
@@ -38,45 +38,6 @@ Page({
     }).catch((err) => {
       console.log(err)
     })
-    if (than.data.Identity) {
-      // menus.masterMenuData.activeUrl = 'brokerHome'
-      than.setData({
-        PageCur: 'brokerHome',
-        menus: menus.masterMenuData
-      })
-    } else {
-      // menus.agentMenuData.activeUrl = 'home'
-      than.setData({
-        PageCur: 'home',
-        menus: menus.agentMenuData
-      })
-    }
-  },
-
-  /* ColorUI页面跳转方式 */
-  NavChange(e) {
-    var cur = e.currentTarget.dataset.cur;
-    if (cur) {
-      this.setData({
-        PageCur: cur,
-        "menus.activeUrl": cur
-      })
-    }
-  },
-
-  getItem(e) {
-    if (e.detail) {
-      this.setData({
-        PageCur: 'brokerHome',
-        Identity: e.detail
-      })
-    } else {
-      this.setData({
-        PageCur: 'home',
-        Identity: e.detail
-      })
-    }
-    this.getData();
   },
 
   getUserInfo(e) {

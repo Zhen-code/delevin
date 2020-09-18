@@ -8,10 +8,10 @@
 			<image class="view-top-video-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
 		</view>
 		<view class="view-top-image">
-			<image class="view-top-image-top" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
-			<image class="view-top-image-top" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+			<image class="view-top-image-top" src="{{item.designSketch[0]}}"></image>
+			<image class="view-top-image-top" src="{{item.designSketch[1]}}"></image>
 			<view class="view-top-image-show">
-				<text class="view-top-image-show-num">+123</text>
+				<text class="view-top-image-show-num">+{{item.designSketch.length}}</text>
 				<text class="view-top-image-show-add">查看更多</text>
 			</view>
 		</view>
@@ -19,42 +19,45 @@
 
 	<view class="introduction borderBottom">
 		<view class="introduction-top">
-			<text class="introduction-title">2233亚运城番禺亚运板块热门高性价比楼盘亚运城天逸新组团8栋和9栋</text>
-			<favorites data="{{favorites}}"></favorites>
+			<text class="introduction-title">{{item.title}}</text>
+			<favorites data="{{item}}"></favorites>
 		</view>
 		<view class="introduction-type">
-			<image class="item-right-content-icon1" src="/assets/image/label_forsell_blue@2x.png"></image>
-			<image class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
-			<image class="item-right-content-icon3" src="/assets/image/label_sell_orange@2x.png"></image>
-			<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">97m²</van-tag>
-			<van-tag style="margin-right:10rpx" color="#F8F8F8" text-color="#666666">近地铁</van-tag>
+			<image class="item-right-content-icon1" wx:if="{{item.salesStatus === 'FOR_SALE' && type === 'ESTATE'}}"
+				src="/combination/image/label_forsell_blue@2x.png"></image>
+			<image class="item-right-content-icon3" wx:if="{{item.salesStatus === 'ON_SALE' && type === 'ESTATE'}}"
+				src="/combination/image/label_sell_orange@2x.png"></image>
+			<block wx:for="{{item.houseLabel}}" wx:key="index">
+				<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">{{item}}</van-tag>
+			</block>
 		</view>
-		<!-- <view class="introduction-price" wx:if="title === '新房房源'">
-			<view class="introduction-price-num">32000元/m²<text class="introduction-price-name">(最终以开发商报价为准)</text></view>
-			<image class="item-right-content-icon2" src="/assets/image/label_newhouse_red@2x.png"></image>
-		</view> -->
+		<view class="introduction-price" wx:if="{{type === 'ESTATE'}}">
+			<view class="introduction-price-num">{{item.unitPrice}}元/m²<text
+					class="introduction-price-name">(最终以开发商报价为准)</text></view>
+			<image class="item-right-content-icon2" src="/combination/image/label_newhouse_red@2x.png"></image>
+		</view>
 
-		<view class="introduction-resources">
+		<view class="introduction-resources" wx:if="{{type !== 'ESTATE'}}">
 			<!-- 二手房源 -->
-			<!-- <view class="introduction-resources-row">
+			<view class="introduction-resources-row" wx:if="{{type === 'SECOND_HAND'}}">
 				<view class="introduction-resources-num">
-					<text>210万</text>
+					<text>{{item.totalPrice}}万</text>
 					<text>总价</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>3室2厅1卫</text>
+					<text>{{item.houseType}}室{{item.houseHall}}厅{{item.houseToilet}}卫</text>
 					<text>户型</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>100m²</text>
+					<text>{{item.floorage}}m²</text>
 					<text>建筑面积</text>
 				</view>
-			</view> -->
+			</view>
 			<!-- 租房 -->
-			<!-- <view class="introduction-resources-row">
+			<view class="introduction-resources-row" wx:if="{{type === 'TENANCY'}}">
 				<view class="introduction-resources-num">
-					<text>2000元</text>
-					<text>月租</text>
+					<text>{{item.monthRent}}元</text>
+					<text>{{item.rentType === 'WHOLE_RENT'?'整租':'合租'}}</text>
 				</view>
 				<view class="introduction-resources-num">
 					<text>3室2厅1卫</text>
@@ -64,19 +67,19 @@
 					<text>100m²</text>
 					<text>建筑面积</text>
 				</view>
-			</view> -->
+			</view>
 			<!-- 小区房源 -->
-			<view class="introduction-resources-row">
+			<view class="introduction-resources-row" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
 				<view class="introduction-resources-num">
-					<text>15万元/m²</text>
+					<text>{{item.rentalAveragePrice}}元/m²</text>
 					<text>当月均价</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>59套</text>
+					<text>{{item.saleCount}}套</text>
 					<text>在售房源</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>22套</text>
+					<text>{{item.rentCount}}套</text>
 					<text>在租房源数</text>
 				</view>
 			</view>
@@ -86,39 +89,40 @@
 			</view>
 		</view>
 
-
 		<!-- 新房详情 -->
-		<view class="introduction-specification">
+		<view class="introduction-specification" wx:if="{{type === 'ESTATE'}}">
 			<text class="components-title marginTop">楼盘基本信息</text>
 			<view class="introduction-specification-bottom">
-				<view class="name-type">楼盘名称：<text class="name-typeValue">番禺大道汉溪长隆新光快速</text></view>
-				<view class="name-type">产权年限：<text class="name-typeValue">70</text></view>
-				<view class="name-type" wx:if="{{stlectState}}">物业类别：<text class="name-typeValue">住宅</text></view>
-				<view class="name-type" wx:if="{{stlectState}}">装修状况：<text class="name-typeValue">精装修</text></view>
-				<view class="name-type" wx:if="{{stlectState}}">环线位置：<text class="name-typeValue">暂无</text></view>
+				<view class="name-type">楼盘名称：<text class="name-typeValue">{{item.developers}}</text></view>
+				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property}}</text></view>
+				<view class="name-type" wx:if="{{stlectState}}">物业类别：<text class="name-typeValue">{{item.propertyClassifyId}}</text></view>
+				<view class="name-type" wx:if="{{stlectState}}">装修状况：<text class="name-typeValue">{{item.decorationsStatus}}</text></view>
+				<view class="name-type" wx:if="{{stlectState}}">环线位置：<text class="name-typeValue">{{item.loopLocation}}</text>
+				</view>
 			</view>
 			<text class="components-title marginTop" wx:if="{{stlectState}}">销售信息</text>
 			<view class="introduction-specification-bottom" wx:if="{{stlectState}}">
-				<view class="name-type">销售状态：<text class="name-typeValue">埃里克京东方</text></view>
-				<view class="name-type">开盘时间：<text class="name-typeValue">2020-01-01</text></view>
-				<view class="name-type">交房时间：<text class="name-typeValue">2020-01-01</text></view>
-				<view class="name-type">楼盘优惠：<text class="name-typeValue">95折</text></view>
-				<view class="name-type">装修状况：<text class="name-typeValue">暂无</text></view>
-				<view class="name-type">开发商：<text class="name-typeValue">奥科吉束带结发京东方</text></view>
-				<view class="name-type">楼盘地址：<text class="name-typeValue">按季度法卡萨老地方</text></view>
-				<view class="name-type">咨询电话：<text class="name-typeValue">020-294876593</text></view>
+				<view class="name-type">销售状态：<text class="name-typeValue">{{item.salesStatus === 'ON_SALE'?'在售':'待售'}}</text>
+				</view>
+				<view class="name-type">开盘时间：<text class="name-typeValue">{{item.openingDate}}</text></view>
+				<view class="name-type">交房时间：<text class="name-typeValue">{{item.deliveryDate}}</text></view>
+				<!-- <view class="name-type">楼盘优惠：<text class="name-typeValue">{{item.loopLocation}}</text></view> -->
+				<view class="name-type">新房补贴<text class="name-typeValue">{{item.houseSubsidy}}</text></view>
+				<view class="name-type">开发商：<text class="name-typeValue">{{item.developers}}</text></view>
+				<view class="name-type">楼盘地址：<text class="name-typeValue">{{item.province}}{{item.salesAddress}}</text></view>
+				<view class="name-type">咨询电话：<text class="name-typeValue">{{item.telephone}}</text></view>
 			</view>
 			<text class="components-title marginTop" wx:if="{{stlectState}}">小区规划</text>
 			<view class="introduction-specification-bottom" wx:if="{{stlectState}}">
-				<view class="name-type">占地面积：<text class="name-typeValue">埃里克京东方</text></view>
-				<view class="name-type">建筑面积：<text class="name-typeValue">2020-01-01</text></view>
-				<view class="name-type">绿化率：<text class="name-typeValue">80%</text></view>
-				<view class="name-type">停车位：<text class="name-typeValue">2398</text></view>
-				<view class="name-type">停车配比：<text class="name-typeValue">暂无</text></view>
-				<view class="name-type">规划户数：<text class="name-typeValue">239</text></view>
-				<view class="name-type">楼层状况：<text class="name-typeValue">暂无</text></view>
-				<view class="name-type">物业费：<text class="name-typeValue">暂无</text></view>
-				<view class="name-type">物业公司：<text class="name-typeValue">暂无</text></view>
+				<view class="name-type">占地面积：<text class="name-typeValue">{{item.areaCovered}}</text></view>
+				<view class="name-type">建筑面积：<text class="name-typeValue">{{item.floorage}}</text></view>
+				<view class="name-type">绿化率：<text class="name-typeValue">{{item.greenCoverage}}</text></view>
+				<view class="name-type">停车位：<text class="name-typeValue">{{item.parkingSpace}}</text></view>
+				<view class="name-type">停车配比：<text class="name-typeValue">{{item.parkingRatio}}</text></view>
+				<view class="name-type">规划户数：<text class="name-typeValue">{{item.plannedHouseholds}}</text></view>
+				<view class="name-type">楼层状况：<text class="name-typeValue">{{item.floorCondition}}</text></view>
+				<view class="name-type">物业费：<text class="name-typeValue">{{item.propertyFee}}</text></view>
+				<view class="name-type">物业公司：<text class="name-typeValue">{{item.propertyCompany}}</text></view>
 			</view>
 			<view class="introduction-specification-add" bindtap="changeArrow">
 				<text class="introduction-specification-add-title">{{stlectData}}</text>
@@ -127,64 +131,66 @@
 		</view>
 
 		<!-- 二手房详情 -->
-		<!-- <view class="introduction-specification">
+		<view class="introduction-specification" wx:if="{{type === 'SECOND_HAND'}}">
 			<view class="introduction-specification-top">
-				<view class="name-type">单价：<text class="name-typeValue">25510元/m²</text></view>
-				<view class="name-type">年代：<text class="name-typeValue">2017</text></view>
-				<view class="name-type">楼层：<text class="name-typeValue">东南</text></view>
-				<view class="name-type">产权：<text class="name-typeValue">70</text></view>
-				<view class="name-type">朝向：<text class="name-typeValue">东南</text></view>
-				<view class="name-type">装修：<text class="name-typeValue">精装修</text></view>
-				<view class="name-type">楼型：<text class="name-typeValue">塔楼</text></view>
-				<view class="name-type">电梯：<text class="name-typeValue">2梯5户</text></view>
+				<view class="name-type">单价：<text class="name-typeValue">{{item.price}}元/m²</text></view>
+				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear}}</text></view>
+				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition}}</text></view>
+				<view class="name-type">产权：<text class="name-typeValue">{{item.property}}</text></view>
+				<view class="name-type">朝向：<text class="name-typeValue">{{item.orientation}}</text></view>
+				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationStatus}}</text></view>
+				<view class="name-type">楼型：<text class="name-typeValue">{{item.floorCondition}}</text></view>
+				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator}}梯</text></view>
 			</view>
 			<view class="introduction-specification-bottom">
-				<view class="name-type">发布时间：<text class="name-typeValue">2020-08-23</text></view>
-				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">锦绣香江</text></view>
-				<view class="name-type">首付月供：<text class="name-typeValue name-typeValueColor">预计100万元，月供8000</text></view>
+				<view class="name-type">发布时间：<text class="name-typeValue">{{item.dateFor}}</text></view>
+				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersId}}</text></view>
+				<view class="name-type">首付月供：<text
+						class="name-typeValue name-typeValueColor">预计{{item.downPayment}}万元，月供{{item.monthlyContribution}}元</text>
+				</view>
 			</view>
-		</view> -->
+		</view>
 
 		<!-- 租房 -->
-		<!-- <view class="introduction-specification">
-		<view class="introduction-specification-top">
-			<view class="name-type">楼层：<text class="name-typeValue">高</text></view>
-			<view class="name-type">地铁：<text class="name-typeValue">汉溪长隆站</text></view>
-			<view class="name-type">朝向：<text class="name-typeValue">东南</text></view>
-			<view class="name-type">装修：<text class="name-typeValue">简约现代</text></view>
-			<view class="name-type">电梯：<text class="name-typeValue">2梯5户</text></view>
-			<view class="name-type">年代：<text class="name-typeValue">2017</text></view>
+		<view class="introduction-specification" wx:if="{{type === 'TENANCY'}}">
+			<view class="introduction-specification-top">
+				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition}}</text></view>
+				<view class="name-type">地铁：<text class="name-typeValue">暂无</text></view>
+				<view class="name-type">朝向：<text class="name-typeValue">{{item.floorCondition}}</text></view>
+				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationStatus}}</text></view>
+				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator}}梯</text></view>
+				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear}}</text></view>
+			</view>
+			<view class="introduction-specification-bottom">
+				<view class="name-type">付款方式：<text class="name-typeValue">{{item.payMethod}} 押二付一</text></view>
+				<view class="name-type">发布时间：<text class="name-typeValue">暂无</text></view>
+				<view class="name-type">房屋配置：<text class="name-typeValue">{{item.houseDisposal}} 空调、洗衣机、电视机、床</text></view>
+				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersId}}</text></view>
+			</view>
 		</view>
-		<view class="introduction-specification-bottom">
-			<view class="name-type">付款方式：<text class="name-typeValue">押二付一</text></view>
-			<view class="name-type">发布时间：<text class="name-typeValue">2020-08-23</text></view>
-			<view class="name-type">房屋配置：<text class="name-typeValue">空调、洗衣机、电视机、床</text></view>
-			<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">锦绣香江</text></view>
-		</view>
-	</view> -->
 
 		<!-- 小区房 -->
-		<!-- <view class="introduction-specification">
-		<view class="introduction-specification-bottom">
-			<view class="name-type">小区地址：<text class="name-typeValue">番禺区汉溪大道新光快速交汇处</text></view>
+		<view class="introduction-specification" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
+			<view class="introduction-specification-bottom">
+				<view class="name-type">小区地址：<text class="name-typeValue">{{item.province}}{{item.detailsAddress}}</text></view>
+			</view>
+			<view class="introduction-specification-top">
+				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property}}</text></view>
+				<view class="name-type">容积率：<text class="name-typeValue">{{item.plotRatio}}</text></view>
+				<view class="name-type">物业类别：<text class="name-typeValue">{{item.propertyClassifyId}}</text></view>
+				<view class="name-type">停车位：<text class="name-typeValue">{{item.parkingSpace}}</text></view>
+				<view class="name-type">建筑年代：<text class="name-typeValue">{{item.createDate}}</text></view>
+				<view class="name-type">物业费：<text class="name-typeValue">{{item.propertyFee}}</text></view>
+				<view class="name-type">物业公司：<text class="name-typeValue">{{item.propertyCompany}}</text></view>
+				<view class="name-type">绿化率：<text class="name-typeValue">{{item.greenCoverage}}%</text></view>
+			</view>
 		</view>
-		<view class="introduction-specification-top">
-			<view class="name-type">产权年限：<text class="name-typeValue">70</text></view>
-			<view class="name-type">容积率：<text class="name-typeValue">暂无</text></view>
-			<view class="name-type">物业类别：<text class="name-typeValue">住宅</text></view>
-			<view class="name-type">停车位：<text class="name-typeValue">暂无</text></view>
-			<view class="name-type">建筑年代：<text class="name-typeValue">2017</text></view>
-			<view class="name-type">物业费：<text class="name-typeValue">暂无</text></view>
-			<view class="name-type">物业公司：<text class="name-typeValue">时代地产</text></view>
-			<view class="name-type">绿化率：<text class="name-typeValue">80%</text></view>
-		</view>
-	</view> -->
 	</view>
 
 	<view class="components borderBottom">
 		<view class="components-row">
 			<text class="components-title">房屋时光机</text>
-			<view class="doubleTab">
+			<view class="doubleTab" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
 				<doubleTab tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
 			</view>
 		</view>
@@ -196,116 +202,79 @@
 		<text class="components-title">位置周边</text>
 		<view class="surrounding">
 			<view class="surrounding-map">
-				<map id="map" longitude="113.324520" latitude="23.099994" scale="14" show-location style="width: 100%; height: 172px;"></map>
+				<map id="map" longitude="{{item.longitude}}" latitude="{{item.latitude}}" scale="14" show-location
+					style="width: 100%; height: 172px;"></map>
 			</view>
 			<view class="surrounding-change" bindtap="toMap">
 				<text class="surrounding-details">查看周边配套</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>
-			<view class="surrounding-show">
-				<van-image width="343" height="172" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+			<view class="surrounding-show" wx:if="{{item.advertDisplay}}">
+				<van-image width="343" height="172" src="{{item.advertUri}}" />
 			</view>
 		</view>
 	</view>
 	<view class="components">
 		<text class="components-title">推荐经纪人</text>
 		<view class="information">
-			<view class="information-row">
-				<view class="information-row-left">
-					<van-image round width="40" height="40" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-					<view class="information-row-left-info">
-						<text class="information-row-left-info-name">殳松光</text>
-						<text class="information-row-left-info-type">链家</text>
+			<block wx:for="{{item.pushAgents}}" wx:key="index">
+				<view class="information-row">
+					<view class="information-row-left" data-item="{{item}}" bindtap="toHomepage">
+						<van-image round width="40" height="40" src="{{item.headImgUri}}" />
+						<view class="information-row-left-info">
+							<text class="information-row-left-info-name">{{item.realName}}</text>
+							<text class="information-row-left-info-type">{{item.storeName}}</text>
+						</view>
+					</view>
+					<view class="information-row-right" data-item="{{item}}" bindtap="callPheon">
+						<image class="information-row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
+						<text class="information-row-right-phone">虚拟号码</text>
 					</view>
 				</view>
-				<view class="information-row-right">
-					<image class="information-row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
-					<text class="information-row-right-phone">虚拟号码</text>
-				</view>
-			</view>
-			<view class="information-row">
-				<view class="information-row-left">
-					<van-image round width="40" height="40" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-					<view class="information-row-left-info">
-						<text class="information-row-left-info-name">殳松光</text>
-						<text class="information-row-left-info-type">链家</text>
-					</view>
-				</view>
-				<view class="information-row-right">
-					<image class="information-row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
-					<text class="information-row-right-phone">虚拟号码</text>
-				</view>
-			</view>
+			</block>
 		</view>
 	</view>
 	<view class="components borderBottom">
 		<text class="components-title">经纪人描述</text>
-		<text class="description">原料也经备几很与将易的少织个断回地动对民后走半门话真且安可飞运义维会铁走别建几学调圆先精关见划很七社建可半委得火往资济想名自办须斗。压求半别做下受积术院第务七技时话得你从响大育中农内政非科下济造半极土知多近由</text>
+		<text class="description">{{item.description}}</text>
 	</view>
 	<view class="components borderBottom">
 		<text class="components-title">全网点评</text>
-		<view class="comment">
-			<view class="comment-name">柏颖珊</view>
-			<view class="comment-type">
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
+		<block wx:for="{{item.comments}}" wx:key="index">
+			<view class="comment">
+				<view class="comment-name">{{item.reviewers}}</view>
+				<view class="comment-type">
+					<view class="comment-key">价格 <text class="comment-value">{{item.priceScore}}</text></view>
+					<view class="comment-key">地段 <text class="comment-value">{{item.lotScore}}</text></view>
+					<view class="comment-key">交通 <text class="comment-value">{{item.trafficScore}}</text></view>
+					<view class="comment-key">配套 <text class="comment-value">{{item.matchingScore}}</text></view>
+					<view class="comment-key">环境 <text class="comment-value">{{item.environmentalScore}}</text></view>
+				</view>
+				<view class="comment-text">{{item.content}}</view>
+				<view class="comment-time">评论时间：{{item.createDate}}</view>
 			</view>
-			<view class="comment-text">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</view>
-			<view class="comment-time">评论时间：2020-08-23</view>
-		</view>
-		<view class="comment">
-			<view class="comment-name">柏颖珊</view>
-			<view class="comment-type">
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-			</view>
-			<view class="comment-text">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</view>
-			<view class="comment-time">评论时间：2020-08-23</view>
-		</view>
-		<view class="comment">
-			<view class="comment-name">柏颖珊</view>
-			<view class="comment-type">
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-				<view class="comment-key">价格 <text class="comment-value">5.0</text></view>
-			</view>
-			<view class="comment-text">评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容评论内容</view>
-			<view class="comment-time">评论时间：2020-08-23</view>
-		</view>
+		</block>
 	</view>
-	<view class="components borderBottom">
+	<view class="components borderBottom" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
 		<text class="components-title">成交记录</text>
 		<view class="record">
-			<view class="record-row">
-				<view class="record-sky">5室2厅3卫<text class="record-sky-num">225m²</text></view>
-				<view class="record-price">成交金额：<text class="record-price-num">932万</text><text class="record-price-money"> 29303元/m²</text></view>
-				<view class="record-time">成交日期：<text class="record-time-num">2020-08-23</text></view>
-			</view>
-			<view class="record-row">
-				<view class="record-sky">5室2厅3卫<text class="record-sky-num">225m²</text></view>
-				<view class="record-price">成交金额：<text class="record-price-num">932万</text><text class="record-price-money"> 29303元/m²</text></view>
-				<view class="record-time">成交日期：<text class="record-time-num">2020-08-23</text></view>
-			</view>
-			<view class="record-row">
-				<view class="record-sky">5室2厅3卫<text class="record-sky-num">225m²</text></view>
-				<view class="record-price">成交金额：<text class="record-price-num">932万</text><text class="record-price-money"> 29303元/m²</text></view>
-				<view class="record-time">成交日期：<text class="record-time-num">2020-08-23</text></view>
-			</view>
+			<block wx:for="{{item.transactionRecord}}" wx:key="index">
+				<view class="record-row">
+					<view class="record-sky">{{item.houseType}}室{{item.houseHall}}厅{{item.houseToilet}}卫<text
+							class="record-sky-num">{{item.floorage}}m²</text></view>
+					<view class="record-price">成交金额：<text class="record-price-num">{{item.transactionAmount}}万</text><text
+							class="record-price-money">
+							{{item.createDate}}元/m²</text></view>
+					<view class="record-time">成交日期：<text class="record-time-num">{{item.transactionDate}}</text></view>
+				</view>
+			</block>
 		</view>
 	</view>
 	<view class="components">
 		<text class="components-title">猜你喜欢</text>
-		<shopItem></shopItem>
-		<shopItem></shopItem>
-		<shopItem></shopItem>
+		<block wx:for="{{list}}" wx:key="index">
+			<shopItem item="{{item}}"></shopItem>
+		</block>
 	</view>
 </view>
 <view class="bottom-phone"><text class="bottom-phone-text">电话咨询</text></view>

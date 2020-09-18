@@ -3,10 +3,10 @@
 	  <view class="custom_nav_box" style="height:{{navbarHeight}}px;">
 		<view class="search-box" style="top:{{statusBarHeight + 4}}px; height:{{cusnavH}}px;">
 			<view class="cancel" bindtap="toBack">
-				<image style="width:48rpx;height:48rpx" src="/assets/image/icon_back_24_black@2x.png"></image>
+				<image style="width:48rpx;height:48rpx" src="/assets/icon_back_24_black@2x.png"></image>
 			</view>
 			<view class="view-search-row">
-				<image class="view-search-row-icon" src="/assets/image/icon_glass_22_d6@2x.png"></image>
+				<image class="view-search-row-icon" src="/assets/icon_glass_22_d6@2x.png"></image>
 				<input confirm-type="search" value='{{inputValue}}' bindconfirm="firm" bindinput="bindCode" class="view-search-row-text" placeholder="{{placeholder}}"></input>
 			</view>
 		</view>
