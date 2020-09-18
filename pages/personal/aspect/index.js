@@ -95,6 +95,7 @@ Page({
     })
   },
   getArticleClassify(){
+    console.log(666)
     http({
       url: api.personalHome.articleClassify,
       method: 'GET',

@@ -13,13 +13,38 @@ Page({
       "color": true,
       "border": true
     },
-    newsImg:[
-        'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1251668712,1631279038&fm=26&gp=0.jpg',
-        'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2203904651,2859066540&fm=26&gp=0.jpg',
-        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3054075612,3413957361&fm=26&gp=0.jpg'
-    ],
-    isCollect: false,
-    title: '关于股市涨停你怎么看'
+    author: '',
+    newsImg:[],
+    title: '',
+    content:'',
+    createDate:'',
+    commentNumber: 0,
+    number: 0,
+    collect: 'NO',
+    like: '',
+    commentList:[],
+    placeHolder: '666',
+    showTextArea: false,
+    id:'',
+    winHeight: '',
+    tabScrollTop: 0,
+    top: 0,
+    rpxR: 0
+  },
+  id: '',
+  timeFlag: 1,
+  toReply(e){
+    console.log(e)
+    let {fatherid , targertid ,name} = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: '../replyComment/index?fatherid='+fatherid+'&targertid='+targertid+'&nickName='+ name+'&type='+'posts'
+    });
+  },
+  bindconfirm(){
+    console.log(666)
+    this.setData({
+      showTextArea: false
+    })
   },
   getPostDetail(id){
     http({
@@ -27,7 +52,41 @@ Page({
       method: 'GET',
       params:{}
     }).then(res=>{
-      console.log(res)
+      console.log(res);
+      let newsImg = [];
+      if(res.imageUri) {
+        newsImg = res.imageUri.split(',');
+      }
+      this.setData({
+        title: res.title,
+        content: res.content,
+        createDate: res.createDate,
+        newsImg: newsImg,
+        commentNumber: res.commentNumber,
+        number: res.number,
+        collect: res.collect,
+        commentList: res.commentList,
+        like: res.like,
+        author: res.author
+      });
+    }).then(()=>{
+      let that = this;
+      let toRpx = 0;
+      wx.getSystemInfo({
+        success: (res)=>{
+          toRpx = 750/res.windowWidth;
+        }
+      });
+      let query = wx.createSelectorQuery();
+      query.select('#tab-comment').boundingClientRect((res=>{
+        console.log(res)
+        console.log(res.top)
+        let top = res.top*toRpx;
+        that.setData({
+          tabScrollTop: top
+        })
+      })).exec();
+
     }).catch(err=>{
       console.log(err);
     })
@@ -38,22 +97,81 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let {id} = options;
+    this.setData({
+      id
+    });
+    this.id = id;
     this.getPostDetail(id);
   },
-
+  onPageScroll(options) {
+    // console.log(options)
+    clearTimeout(this.timeFlag);
+    this.timeFlag = setTimeout(()=>{
+      this.setData({
+        top: options.scrollTop
+      })
+    },1000);
+  },
+  goComment(){
+    let { tabScrollTop } = this.data;
+    wx.pageScrollTo({
+      scrollTop: tabScrollTop
+    })
+  },
+  like(){
+    let that = this;
+    let {like} = this.data;
+    if(like == 'NO'){
+      http({
+        url: '/api/access/v1/post/like',
+        method: 'POST',
+        params:{
+          id: this.id
+        }
+      }).then(res=>{
+        console.log(res);
+        that.getPostDetail(that.id);
+      }).catch(err=>{
+        console.log(err);
+      })
+    }else if(like == 'YES'){
+      http({
+        url: '/api/access/v1/post/like/cancel',
+        method: 'POST',
+        params:{
+          id: this.id
+        }
+      }).then(res=>{
+        console.log(res);
+        that.getPostDetail(that.id);
+      }).catch(err=>{
+        console.log(err);
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    let that = this;
+    wx.getSystemInfo({
+      success: (res)=>{
+        let clientHeight = res.windowHeight;
+        let clientWidth = res.windowWidth;
+        let rpxR = 750/clientWidth;
+        let calc = clientHeight * rpxR;
+        that.setData({
+          winHeight: calc
+        })
+      }
+    });
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-
+    this.getPostDetail(this.id);
   },
 
   /**
@@ -78,13 +196,6 @@ Page({
   },
 
   /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
@@ -95,7 +206,7 @@ Page({
     }
     return {
       title: title,
-      path: '/combination/pages/aspectDetail/index?id='+1,
+      path: '/combination/pages/aspectDetail/index?id='+this.id,
       success: function (res) {
         console.log('成功', res)
       }
@@ -103,13 +214,39 @@ Page({
   },
   toWrite() {
     wx.navigateTo({
-      url: '/combination/pages/comment/index'
+      url: '/combination/pages/comment/index?targetId='+this.id+'&type='+'POST'
     })
   },
   collect(){
-    let {isCollect} = this.data;
-    this.setData({
-      isCollect: !isCollect
-    });
+    let that = this;
+    let {collect} = this.data;
+    if(collect == 'NO'){
+     http({
+       url: '/api/access/v1/member/collection/add',
+       method: 'POST',
+       params:{
+         "targetId": Number(that.id),
+         "type": "POST"
+       }
+     }).then(res=>{
+       console.log(res)
+     }).catch(err=>{
+       console.log(err);
+     })
+    }else if(collect == 'YES'){
+      http({
+        url: '/api/access/v1/member/collection/cancel',
+        method: 'POST',
+        params:{
+          "targetId": Number(that.id),
+          "type": "POST"
+        }
+      }).then(res=>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err);
+      })
+    }
+    that.getPostDetail(that.id);
   }
 });

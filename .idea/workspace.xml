@@ -2,15 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e5b01d6-da30-4d9f-b288-589dbdd42b3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/myCollection/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/myCollection/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/myCollection/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/myCollection/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/combination/pages/replyComment/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/combination/pages/replyComment/index.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/combination/pages/replyComment/index.wxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/combination/pages/replyComment/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/aspectDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/aspectDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/aspectDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/aspectDetail/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/aspectDetail/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/aspectDetail/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/comment/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/comment/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/post/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/post/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/post/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/post/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/postDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/postDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/postDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/postDetail/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/postDetail/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/postDetail/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/uploader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/uploader/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram_npm/@vant/weapp/swipe-cell/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/@vant/weapp/swipe-cell/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram_npm/eventemitter3/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/eventemitter3/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram_npm/extend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/extend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram_npm/weapp-qrcode/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/weapp-qrcode/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram_npm/widget-ui/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/widget-ui/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/personal/aspect/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/personal/aspect/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/personal/aspect/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/personal/aspect/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/http.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/request.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Wechat mini program page js file(Page API)" />
+        <option value="Wechat mini program page json file(Page API)" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -24,13 +55,25 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="E:/alistar-manager" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -44,6 +87,7 @@
       <updated>1599827242627</updated>
       <workItem from="1599827244198" duration="667000" />
       <workItem from="1600153720324" duration="6000" />
+      <workItem from="1600305217699" duration="25706000" />
     </task>
     <servers />
   </component>
@@ -51,13 +95,30 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2660" y="275" key="FileChooserDialogImpl" timestamp="1600153724913">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="573" y="228" key="CommitChangelistDialog2" timestamp="1600306064804">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="573" y="228" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600306064804" />
+    <state x="184" y="92" key="DiffContextDialog" timestamp="1600306062887">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="92" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600306062887" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1600395936752">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600153724913" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600395936752" />
     <state x="2709" y="230" key="RollbackChangesDialog" timestamp="1599827305150">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2709" y="230" key="RollbackChangesDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1599827305150" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1600219377300">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600219377300" />
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600219388153">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600219388153" />
   </component>
 </project>

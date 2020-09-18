@@ -25,6 +25,7 @@ Component({
 	 */
 	methods: {
 		afterRead(event) {
+			var that = this;
 			const {
 				file
 			} = event.detail;
@@ -33,45 +34,73 @@ Component({
 			});
 			console.log(file)
 			for (let i = 0; i < pathArray.length; i++) {
-				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
 				wx.uploadFile({
-					url: 'http://my.zol.com.cn/index.php?c=Ajax_User&a=uploadImg', // 仅为示例，非真实的接口地址
+					url: domain+api.upload.imgVideoUpload, // 仅为示例，非真实的接口地址
 					filePath: pathArray[i],
-					name: 'myPhoto',
-					formData: {
-						user: 'user'
-					},
+					name: 'file',
 					success: (response) => {
+						console.log(response)
 						let res = JSON.parse(response.data);
-						let {
-							url
-						} = res;
-						if (url !== null && url !== '') {
-							url = url.replace("\\", '');
+						if(res.code === 200){
+							let {fileUri} = res.data;
+							console.log(fileUri);
+							let {fileList} = this.data;
+							this.setData({
+								fileList: [...fileList,{url:fileUri}]
+							});
 						}
-						let {
-							fileList
-						} = this.data;
-						fileList.push({
-							url
-						});
-						this.setData({
-							fileList
-						});
-						wx.showToast({
-							title: '上传成功！',
-							icon: 'success',
-							duration: 2500
-						})
 					},
 					fail(err) {
 						wx.showToast({
-							title: err,
-							icon: 'none',
-							duration: 2500
-						})
+										title: '上传失败！',
+										icon: 'none',
+										duration: 1000
+									})
 					},
+					complete(){
+						console.log(that.data)
+						that.triggerEvent('getImgs',{e:that.data.fileList});
+					}
 				});
+				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+				// wx.uploadFile({
+				// 	url: 'http://my.zol.com.cn/index.php?c=Ajax_User&a=uploadImg', // 仅为示例，非真实的接口地址
+				// 	filePath: pathArray[i],
+				// 	name: 'myPhoto',
+				// 	formData: {
+				// 		user: 'user'
+				// 	},
+				// 	success: (response) => {
+				// 		let res = JSON.parse(response.data);
+				// 		let {
+				// 			url
+				// 		} = res;
+				// 		if (url !== null && url !== '') {
+				// 			url = url.replace("\\", '');
+				// 		}
+				// 		let {
+				// 			fileList
+				// 		} = this.data;
+				// 		fileList.push({
+				// 			url
+				// 		});
+				// 		this.setData({
+				// 			fileList
+				// 		});
+				// 		wx.showToast({
+				// 			title: '上传成功！',
+				// 			icon: 'success',
+				// 			duration: 2500
+				// 		})
+				// 	},
+				// 	fail(err) {
+				// 		wx.showToast({
+				// 			title: err,
+				// 			icon: 'none',
+				// 			duration: 2500
+				// 		})
+				// 	},
+				// });
 			}
 		},
 		deleteImg(e) {

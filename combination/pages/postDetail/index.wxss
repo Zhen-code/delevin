@@ -181,6 +181,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 112rpx;
 }
 .bottom-contain{
   position: fixed;
@@ -217,7 +218,7 @@
   padding: 0 !important;
   margin: 0 !important;
   width: auto !important;
-  border: none !important;
+  border: 1px solid #FFF !important;
   background: transparent !important;
 }
 
@@ -230,4 +231,25 @@
 .bottom-img{
   height: 40rpx;
   width: 40rpx;
+}
+.second-comment-items{
+  padding: 6rpx;
+}
+.fixText{
+  position: fixed;
+  left: 0;
+  bottom: 160rpx;
+  width: 100%;
+  /* display: block; */
+  min-height: 180rpx;
+  background: #FFF;
+  box-sizing:border-box;
+  padding: 20rpx;
+  line-height: 40rpx;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start
+}
+.placeholder-style{
+  color: #999999;
 }

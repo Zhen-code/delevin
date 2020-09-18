@@ -131,6 +131,14 @@ const request = {
     });
   },
 
+  constructClassify: (params)=> {
+    return http({
+      url: api.broker.constructList,
+      method: 'GET',
+      params: params
+    })
+  }
+
 }
 
 

@@ -11,6 +11,7 @@
             class="label-text"
             src="../../image/icon_16_blue@2x.png"></image>
     <input
+            bind:input="labelInput"
             placeholder-class="labelInput"
             value="{{label}}"
             class="labelInput"
@@ -18,8 +19,8 @@
             placeholder="还可以给帖子加个标签，最多10个字"></input>
 </view>
 <view class="upload-file">
-    <uploader count="{{count}}"></uploader>
+    <uploader count="{{count}}" bind:getImgs="postImgs"></uploader>
 </view>
-<view class="post-button {{disable?'disabled':''}}">发表帖子</view>
+<view class="post-button {{disable?'disabled':''}}" catch:tap="commit">发表帖子</view>
 <van-toast id="van-toast"/>
 </view>

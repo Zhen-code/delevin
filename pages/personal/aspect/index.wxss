@@ -80,7 +80,7 @@
 .van-tabs__line {
     position: absolute;
     bottom: -4rpx !important;
-    left: -14rpx !important;
+    left: 6% !important;
     z-index: 1;
     width: 44rpx !important;
     height: 3px;

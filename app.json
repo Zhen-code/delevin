@@ -37,7 +37,8 @@
 				"pages/sharePoster/index",
 				"pages/customerPoster/index",
 				"pages/customerArticles/index",
-				"pages/distrctSearch/index"
+				"pages/distrctSearch/index",
+				"pages/replyComment/index"
 			]
 		}
 	],

@@ -25,7 +25,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let {targetId,type} = options;
-    this.targetId = targetId;
+    this.targetId = Number(targetId);
     this.type = type;
   },
 
@@ -97,7 +97,6 @@ Page({
   },
   go(){
     if (this.data.commentValue === '' || !this.data.commentValue || this.data.commentValue===null){
-      console.log(7878)
       return;
     }
     if(this.type === "NEWS") {
