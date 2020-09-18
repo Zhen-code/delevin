@@ -26,22 +26,21 @@ Page({
 		showInfo: true,
 		city: "",
 		houseItem1: [],
-		houseItem2: [
-			{
-				"iconUri":"https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType":"客源管理",
+		houseItem2: [{
+				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
+				"iconType": "客源管理",
 			},
 			{
-				"iconUri":"https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType":"获客文章",
+				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
+				"iconType": "获客文章",
 			},
 			{
-				"iconUri":"https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType":"获客海报",
+				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
+				"iconType": "获客海报",
 			},
 			{
-				"iconUri":"https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType":"房贷计算",
+				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
+				"iconType": "房贷计算",
 			}
 		],
 		bannerList: [],
@@ -51,8 +50,9 @@ Page({
 		pageSize: 12,
 		pageIndex: 1,
 		listingsList: [],
-		type:false,
-		title:'新房房源',
+		type: false,
+		title: '新房房源',
+		showInfo: false,
 	},
 
 	onPageScroll(e) {
@@ -249,7 +249,7 @@ Page({
 				"pageIndex": 1,
 			}).then((res) => {
 				this.setData({
-					title:'新房房源',
+					title: '新房房源',
 					listingsList: [],
 					listingsList: res.list
 				})
@@ -262,7 +262,7 @@ Page({
 				"pageIndex": 1,
 			}).then((res) => {
 				this.setData({
-					title:'二手房房源',
+					title: '二手房房源',
 					listingsList: [],
 					listingsList: res.list
 				})
@@ -274,8 +274,8 @@ Page({
 
 	toDetails(e) {
 		let item = JSON.stringify({
-			'title':this.data.title,
-			"id":e.currentTarget.dataset.item.id,
+			'title': this.data.title,
+			"id": e.currentTarget.dataset.item.id,
 		})
 		wx.navigateTo({
 			url: `/combination/pages/listingDetails/index?item=${item}`,
@@ -424,6 +424,45 @@ Page({
 		})
 	},
 
+	getUserInfo(e) {
+    let than = this;
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function (res) {
+              let loginInfo = app.globalData.loginInfo;
+              let data = {
+                "encryptedData": loginInfo.encryptedData,
+                "headImgUri": res.userInfo.avatarUrl,
+                "iv": loginInfo.iv,
+                "nickName": res.userInfo.nickName,
+                "openId": loginInfo.openId,
+                "sessionKey": loginInfo.sessionKey,
+              }
+              request.login(data).then((res) => {
+                let token = res.token;
+                console.log(res.token, 1111)
+                wx.removeStorageSync('token')
+                wx.setStorageSync('token', token)
+                than.setData({
+                  showInfo: false,
+                })
+              }).catch((err) => {
+                wx.showToast({
+                  title: '获取失败，请重新登录',
+                  icon: 'none',
+                  duration: 2500
+                })
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -434,6 +473,21 @@ Page({
 		this.getIcon();
 		this.getNews();
 		this.getListingsList();
+		let then = this;
+		wx.getSetting({
+			success(res) {
+				if (res.authSetting['scope.userInfo']) {
+					// 已经授权，可以直接调用 getUserInfo 获取头像昵称
+					then.setData({
+						showInfo: false,
+					})
+				} else {
+					then.setData({
+						showInfo: true,
+					})
+				}
+			}
+		})
 	},
 
 	/**
@@ -448,7 +502,7 @@ Page({
 	 */
 	onShow: function () {
 		this.setData({
-			type:app.globalData.state
+			type: app.globalData.state
 		})
 	},
 

@@ -228,4 +228,12 @@
 	</view>
 </van-popup>
 
-<van-dialog id="van-dialog" />
+<view class="info" wx:if='{{showInfo}}'>
+	<view class="info-view">
+		<text class="info-view-title">微信授权</text>
+		<text class="info-view-text">为展示用户头像、昵称，需要获得您的公开信息（昵称、图像）</text>
+		<view class="info-view-bottom">
+			<button open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取登录</button>
+		</view>
+	</view>
+</view>

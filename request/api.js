@@ -73,6 +73,7 @@
     delete:'/api/access/v1/house/around/del',
     list:'/api/access/v1/house/around/list/{agentId}',
     promote:'/api/access/v1/house/around/promotion',
+       constructList:'/api/access/v1/house/construct/classify/list',//建筑类型列表
    },
  }
  module.exports = {

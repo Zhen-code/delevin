@@ -29,7 +29,7 @@ Page({
 				index: 1,
 				text: '看点',
 				iconPath: '/image/tabbar/icon_tab2_24_nor@2x.png',
-				selectedIconPath: '/image/tabbar/icon_tab2_24_pre@2x.png'
+				selectedIconPath: '/image/tabbar/icon_tab2_24_pre@2x.png',
 			})
 		} else {
 			this.setData({
@@ -41,7 +41,7 @@ Page({
 				index: 1,
 				text: '房源',
 				iconPath: '/image/tabbar/icon_tab9_24_nor@2x.png',
-				selectedIconPath: '/image/tabbar/icon_tab9_24_pre@2x.png'
+				selectedIconPath: '/image/tabbar/icon_tab9_24_pre@2x.png',
 			})
 		}
 	},

@@ -73,6 +73,6 @@
         </view>
       </view>
       <view class="bottom-text" wx:if="{{isPostBottom}}">- 到底啦 -</view>
-      <image class="send" src="" catch:tap="post"></image>
+      <image class="send" src="/assets/image/iconedit@2x.png" catch:tap="post"></image>
   </view>
 </view>

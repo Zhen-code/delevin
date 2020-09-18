@@ -1,6 +1,7 @@
 // combination/pages/post/index.js
 const {topHeight} = require('../../../request/topHeight');
-import Toast from "../../../miniprogram_npm/vant-weapp/toast/toast";
+const { http } = require('../../../request/http');
+const { api } = require('../../../request/api');
 Page({
   data: {
     paddingTop: topHeight,
@@ -11,7 +12,8 @@ Page({
     title: '',
     content: '',
     label: '',
-    count:9
+    count:9,
+    imgs: []
   },
     timeFlag: 1,
   titleInput(e){
@@ -51,6 +53,50 @@ Page({
             })
         }
         },2000);
+  },
+  labelInput(e){
+    clearTimeout(this.timeFlag);
+    this.timeFlag = setTimeout(()=>{
+      let {value} = e.detail;
+      this.setData({
+        label: value
+      })
+    },1000);
+  },
+  postImgs(e){
+    console.log(e)
+    let imgs = e.detail['e'];
+    this.setData({
+      imgs
+    });
+  },
+  commit(){
+    let {title,content,label,imgs} = this.data;
+    if(title===''|| content===''){
+      return;
+    }
+    let imgArray = imgs.map(item=>{
+      return item.url;
+    });
+    let imageUri = '';
+    if(imgArray.length!==0){
+      imageUri = imgArray.join(',');
+      console.log(imageUri)
+    }
+    http({
+      url: api.personalHome.addPost,
+      method: 'POST',
+      params:{
+        "content": content,
+        "imageUri": imageUri,
+        "label": label,
+        "title": title
+      }
+    }).then(res=>{
+      console.log(res);
+    }).catch(err=>{
+      console.log(err);
+    })
   },
 
   /**
@@ -99,7 +145,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log(666)
+
   },
 
   /**

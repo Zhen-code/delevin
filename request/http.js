@@ -5,10 +5,10 @@ let header = {
 }
 const http = (config) => {
   return new Promise((resolve, reject) => {
-    // let params = { ...config };
-    // wx.showLoading({
-    //   title: '加载中',
-    // })
+    let params = { ...config };
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.request({
       url: domain + config.url,
       data: config.params,
@@ -19,7 +19,7 @@ const http = (config) => {
       },
       method: config.method,
       success: function (res) {
-        // wx.hideLoading();
+        wx.hideLoading();
         if (res.data.code === 200) {
           resolve(res.data.data);
         } else if (res.data.code === 403) {
@@ -35,25 +35,25 @@ const http = (config) => {
           },1500)
         } else {
           reject(res)
-          // wx.showToast({
-          //   title: res.data.msg,
-          //   icon: "none"
-          // })
+          wx.showToast({
+            title: res.data.msg,
+            icon: "none"
+          })
         }
-        // resolve(res.data);
+        resolve(res.data);
       },
       fail: function (err) {
         // fail调用接口失败
-        // reject(err);
-        // wx.showToast({
-        //   title: '网络错误',
-        //   icon: "none"
-        // })
+        reject(err);
+        wx.showToast({
+          title: '网络错误',
+          icon: "none"
+        })
       },
       complete: function () {
-        // setTimeout(() => {
-        //   wx.hideLoading();
-        // }, 1000)
+        setTimeout(() => {
+          wx.hideLoading();
+        }, 1000)
       }
     });
   });

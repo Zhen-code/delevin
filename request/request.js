@@ -195,7 +195,19 @@ const request = {
       params: params,
     });
   },
+
+  constructClassify: (params)=> {
+    return http({
+      url: api.broker.constructList,
+      method: 'GET',
+      params: params
+    })
+  }
+
 }
+
+
+
 
 module.exports = {
   request,

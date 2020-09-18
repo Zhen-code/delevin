@@ -36,6 +36,7 @@
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
   color: #333333;
+  margin-top: 22rpx;
 }
 .news-img{
   width: 686rpx;
@@ -106,6 +107,7 @@
   width: 100%;
   height: auto;
   border-bottom: 1px solid #EEEEEE;
+  margin-bottom: 10rpx;
 }
 .second-comment-item-title{
   font-size: 30rpx;
@@ -181,6 +183,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 120rpx;
 }
 .bottom-contain{
   position: fixed;
@@ -230,4 +233,7 @@
 .bottom-img{
   height: 40rpx;
   width: 40rpx;
+}
+.second-comment-inline{
+  margin-bottom: 20rpx;
 }

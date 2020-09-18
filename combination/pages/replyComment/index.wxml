@@ -1,0 +1,12 @@
+<!--combination/pages/comment/index.wxml-->
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="评论回复" />
+<view class="comment-wrapper" style="padding-top:{{paddingTop}}px">
+    <textarea
+            class="comment-area"
+            value="{{commentValue}}"
+            placeholder="{{placeholder}}"
+            placeholder-class="placeStyle"
+            bindinput="commentInput">
+    </textarea>
+    <view class="comment-btn {{disable?'':'disabled'}}" catchtap="go">确定回复</view>
+</view>

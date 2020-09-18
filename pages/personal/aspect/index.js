@@ -95,6 +95,7 @@ Page({
     })
   },
   getArticleClassify(){
+    console.log(666)
     http({
       url: api.personalHome.articleClassify,
       method: 'GET',
@@ -167,7 +168,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.stopPullDownRefresh();
     this.getArticleClassify();
+    this.getPostList();
   },
 
   /**
@@ -181,7 +184,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getPostList();
+
   },
 
   /**
@@ -202,7 +205,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.pageIndex = 1;
+    this.onLoad();
   },
 
   /**

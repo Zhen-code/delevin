@@ -1,2 +1,57 @@
-<!--pages/tabBar/aspect/index.wxml-->
-<text>看点</text>
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="看点" />
+<view class="container" style="padding-top:{{paddingTop}}px">
+	<view class="tabbar">
+		<view class="tab {{_index=='0'?'tbActive':''}}" data-index="0" bind:tap="toggleTab">新闻资讯</view>
+		<view class="tab {{_index=='1'?'tbActive':''}}" data-index="1" bind:tap="toggleTab">地产315</view>
+	</view>
+
+	<view class="tabContent" hidden="{{_index!=='0'}}">
+		<van-tabs nav-class="scrollTab" color="#FFD854" active="{{ active }}" bind:change="onChange">
+			<van-tab wx:for="{{list}}" wx:key="id" data-index="{{index}}" title="{{item.name}}" tab-class="tabStyle"
+				tab-active-class="tabActiveStyle">
+				<view class="tabContent" hidden="{{tabActive!==index}}">
+					<view wx:for="{{newsList}}" wx:key="id" class="tab-item" catchtap="goHouseDetal" data-id="{{item.id}}">
+						<view class="tab-item-left">
+							<view class="tab-item-left-title">{{item.name}}</view>
+							<view class="tab-item-left-desc">
+								<text>{{item.source}}</text>
+								<text class="split-line">|</text>
+								<text>{{item.author}}</text>
+							</view>
+							<view class="tab-item-left-time">{{item.createDate}}</view>
+						</view>
+						<image src="{{item.coverUri}}" class="tab-item-right" mode="aspectFill"></image>
+					</view>
+					<view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
+				</view>
+			</van-tab>
+		</van-tabs>
+	</view>
+	<view class="tabContent" hidden="{{_index!=='1'}}">
+		<view wx:for="{{postList}}" wx:key="id" class="tab-item2" catchtap="goPostDetail" data-id="{{item.id}}">
+			<view class="tab-item2-title">{{item.title}}</view>
+			<view class="tab-item2-desc">{{item.content}}</view>
+			<view class="tab-item2-label">#{{item.label}}</view>
+			<view class="tab-item2-time">
+				<view class="tab-item2-time-left">
+					<text>最新回复</text>
+					<text>{{item.createDate}}</text>
+				</view>
+				<view class="tab-item2-time-center">
+					<image src="/assets/icon_comment_16_grey@2x.png" class="postImg" mode="aspectFill"></image>
+					<text>{{item.commentNumber}}</text>
+				</view>
+				<view class="tab-item2-time-right">
+					<image src="/assets/icon_like_16_grey@2x.png" class="postImg" mode="aspectFill"></image>
+					<text>{{item.number}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="bottom-text" wx:if="{{isPostBottom}}">- 到底啦 -</view>
+		<image class="send" src="/assets/iconedit@2x.png" catch:tap="post"></image>
+	</view>
+</view>
+
+<!-- <view class="view" style="padding-top:{{paddingTop}}px">
+	房源
+</view> -->
