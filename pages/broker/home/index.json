@@ -1,7 +1,0 @@
-{
-	"component": true,
-	"usingComponents": {
-		"navbar":"/components/nav/index",
-		"iconItem":"/components/iconItem/index"
-	}
-}
