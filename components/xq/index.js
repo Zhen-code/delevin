@@ -1,12 +1,10 @@
 const chooseLocation = requirePlugin('chooseLocation');
 const {key,referer} = require('../../utils/util');
 const {request} = require('../../request/request');
-const {http} = request('../../request/http');
+const {http} = require('../../request/http');
 Component({
     properties: {
-        test: {
-            type: String
-        }
+
     },
     data: {
         name: '',
@@ -50,6 +48,10 @@ Component({
     timeFlag: 1,
     propertyTypeArray:[],
     constructClassify: [],
+    constructClassifyId: '',
+    imgs: [],
+    houseType: [],
+    propertyClassifyId: '',
     methods: {
         getVideoUrl(e){
             console.log(e)
@@ -79,11 +81,12 @@ Component({
             })
         },
         closeIndoor(e){
-            if(e.detail.detail===""){
+            if(e.detail.detail.length===0 || e.detail.detail===''){
                 this.setData({
                     showIndoor:false
                 })
             }else{
+                this.houseType = e.detail.detail.map(v=>v.id);
                 this.setData({
                     houseType: e.detail.detail,
                     showIndoor:false
@@ -96,14 +99,16 @@ Component({
             });
         },
         closeLabel(e){
-            if(e.detail.detail===""){
+            console.log(e);
+            if(e.detail['detail'].length===0){
                 this.setData({
                     showlabel:false
                 });
             }else{
+                let labelTypeArray = e.detail['detail'].map(v=>v.name);
                 this.setData({
                     showlabel:false,
-                    labelType: e.detail.detail
+                    labelType: labelTypeArray
                 });
             }
         },
@@ -231,9 +236,10 @@ Component({
             }
         },
         onClose(e){
+            let that = this;
             console.log(e)
             const {type} = e.detail;
-            if(e.detail.detail===''||e.detail.detail===null||!e.detail.detail){
+            if(e.detail.detail===''||e.detail.detail===null||!e.detail.detail||(e.detail.detail).length===0){
                 this.setData({
                     show:false
                 });
@@ -245,12 +251,12 @@ Component({
                     let index = houseType.findIndex(item=>item.name==e.detail.detail);
                     if(index==undefined||index===-1){
                         houseType.push({name:e.detail.detail});
-                        this.setData({
+                        that.setData({
                             houseType:houseType,
                             show:false
                         });
                     }
-                    this.setData({
+                    that.setData({
                         show:false
                     });
                     break;
@@ -264,19 +270,22 @@ Component({
                             show:false
                         });
                     }
-                    this.setData({
+                    that.setData({
                         show:false
                     });
                     break;
                 case 'propertyType':
-                    this.setData({
+                    let propertyTypeArr = that.propertyTypeArray.filter(v=>v.name === e.detail.detail);
+                    that.propertyClassifyId = propertyTypeArr[0]['id'];
+                    that.setData({
                         show:false,
                         propertyType:e.detail.detail
                     });
                     break;
                 case 'buildingType':
-                    console.log(e.detail.detail)
-                        this.setData({
+                    let buildingType = that.constructClassify.filter(v=>v.name === e.detail.detail);
+                    that.constructClassifyId = buildingType[0]['id'];
+                        that.setData({
                             buildingType: e.detail.detail,
                             show:false
                         });
@@ -287,7 +296,7 @@ Component({
         },
         close(e){
             console.log(e);
-            if(e.detail.detail.length === 0 ||!e.detail.detail){
+            if(e.detail.detail.length === 0){
                 this.setData({
                     isShow:false
                 });
@@ -309,80 +318,126 @@ Component({
                 });
             }
         },
+        getImgs(e){
+            this.imgs = (e.detail.e).map(v=>v.url);
+        },
+        developersInput(e){
+          clearTimeout(this.timeFlag);
+          this.timeFlag = setTimeout(()=>{
+              this.setData({
+                  developers: e.detail.value
+              })
+          },2000);
+        },
+        greenRateInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    greenRate: e.detail.value
+                })
+            },2000);
+        },
+        parkInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    park: e.detail.value
+                })
+            },2000);
+        },
+        capacityInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    capacity: e.detail.value
+                })
+            },2000);
+        },
+        cqYearInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    cqYear: e.detail.value
+                })
+            },2000);
+        },
+        propertyCompanyInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    propertyCompany: e.detail.value
+                })
+            },2000);
+        },
+        propertyFareInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    propertyFare: e.detail.value
+                })
+            },2000);
+        },
         addXQ(){
-            // http({
-            //     url: '/api/access/v1/house/residential/quarters/add',
-            //     method: 'POST',
-            //     params: {
-            //         "averagePrice": this.apsh,
-            //         "builtYear": this.buildingTime,
-            //         "city": this.city,
-            //         "constructClassifyId": this.constructClassifyId,
-            //         "description": '',
-            //         "designSketch": [
-            //             "http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/547db840-e288-4ded-97b7-31c630d2e7d0.jpg",
-            //             "http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/547db840-e288-4ded-97b7-31c630d2e7d0.jpg"
-            //         ],
-            //         "detailsAddress": "广州市番禺区钟村街道汉溪社区汉溪大道东290号",
-            //         "developers": "李林",
-            //         "greenCoverage": "69.3",
-            //         "houseLabel": [
-            //             "标签1",
-            //             "标签2"
-            //         ],
-            //         "houseType": [
-            //             "1",
-            //             "2"
-            //         ],
-            //         "houseVideo": "https://aliyuncdn.beiru168.com/diana/eb07a841-f327-475b-a781-eb35b833f1f0.mp4",
-            //         "latitude": 21.63534413,
-            //         "longitude": 113.25456442,
-            //         "metro": [
-            //             {
-            //                 "lineName": "3号线",
-            //                 "routeStop": "汉溪长隆"
-            //             },
-            //             {
-            //                 "lineName": "3号线",
-            //                 "routeStop": "钟村"
-            //             }
-            //         ],
-            //         "parkingSpace": "96.3",
-            //         "plotRatio": "96.3",
-            //         "property": 60,
-            //         "propertyClassifyId": 1,
-            //         "propertyCompany": "贝如科技",
-            //         "propertyFee": "1000/月",
-            //         "province": "广东省",
-            //         "region": "番禺区",
-            //         "rentalAveragePrice": 2010,
-            //         "street": "钟村街道",
-            //         "title": "碧桂园学区房一期开售，首付仅需15万"
-            //     }
-            // }).then(res=>{
-            //     console.log(res)
-            // }).catch(err=>{
-            //     console.log(err)
-            // })
-
+            http({
+                url: '/api/access/v1/house/residential/quarters/add',
+                method: 'POST',
+                params: {
+                    "averagePrice": this.apsh,
+                    "builtYear": this.buildingTime,
+                    "city": this.city,
+                    "constructClassifyId": this.constructClassifyId,
+                    "description": this.data.makerDesc,
+                    "designSketch": this.imgs,
+                    "detailsAddress": this.data.address,
+                    "developers": this.data.developers,
+                    "greenCoverage": this.data.greenRate,
+                    "houseLabel": this.data.labelType,
+                    "houseType":  this.houseType,
+                    "houseVideo": this.data.videoUrl,
+                    "latitude": this.latitude,
+                    "longitude": this.longitude,
+                    "metro": this.data.subway,
+                    "parkingSpace": this.data.park,
+                    "plotRatio": this.data.capacity,
+                    "property": this.data.cqYear,
+                    "propertyClassifyId": this.propertyClassifyId,
+                    "propertyCompany": this.data.propertyCompany,
+                    "propertyFee": this.data.propertyFare,
+                    "province": this.data.province,
+                    "region": this.data.district,
+                    "rentalAveragePrice": this.data.arp,
+                    "street": this.data.area,
+                    "title": this.data.title
+                }
+            }).then(res=>{
+                console.log(res)
+                if(res.data['code'] === 500){
+                    wx.showToast({
+                        title: res.data['msg']
+                    })
+                }
+            }).catch(err=>{
+                console.log(err)
+            })
         }
     },
     lifetimes:{
 
         created() {
-            console.log(request)
             let that = this;
             request.getHouseProperty().then(res=>{
                 that.propertyTypeArray = res.map(v=>{
                     return {
-                        name: v.name
+                        name: v.name,
+                        id: v.id
                     }
                 })
             });
             request.getConstructClassify().then(res=>{
                 that.constructClassify = res.map(v=>{
                     return{
-                        name: v.name
+                        name: v.name,
+                        id: v.id
                     }
                 });
             });

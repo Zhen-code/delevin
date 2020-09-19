@@ -58,7 +58,7 @@ Component({
 									})
 					},
 					complete(){
-						console.log(that.data)
+						console.log(that.data);
 						that.triggerEvent('getImgs',{e:that.data.fileList});
 					}
 				});

@@ -6,7 +6,12 @@ Component({
         }
     },
     data: {
-        indoorList:[{name:'一室',isActive:false},{name:'两室',isActive:false},{name:'三室',isActive:false},{name:'四室',isActive:false},{name:'五室',isActive:false},{name:'五室以上',isActive:false}]
+        indoorList:[{name:'一室',id: 1,isActive:false},
+                    {name:'两室',id: 2,isActive:false},
+                    {name:'三室',id: 3,isActive:false},
+                    {name:'四室',id: 4,isActive:false},
+                    {name:'五室',id: 5,isActive:false},
+                    {name:'五室以上',id: 6,isActive:false}]
     },
     methods:{
         handleItem(e){

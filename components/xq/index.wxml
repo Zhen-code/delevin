@@ -45,7 +45,7 @@
             <view class="tab-item-right">
                 <view class="houseType-wrap">
                     <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
-                        {{item.name}}
+                        {{item}}
                         <van-icon name="close"
                                   data-index="{{index}}"
                                   bind:tap="deleteLabel"/>
@@ -101,19 +101,19 @@
         <view class="tab-item">
             <view class="tab-item-left">产权年限</view>
             <view class="tab-item-right">
-               <input value="{{cqYear}}" type="number"></input><text class="common-text">年</text>
+               <input value="{{cqYear}}" type="number" bind:input="cqYearInput"></input><text class="common-text">年</text>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">开发商</view>
             <view class="tab-item-right">
-                <input value="{{developers}}" type="text"></input>
+                <input value="{{developers}}" type="text" bind:input="developersInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">容积率</view>
             <view class="tab-item-right">
-                <input value="{{capacity}}" type="text"></input>
+                <input value="{{capacity}}" type="text" bind:input="capacityInput"></input>
             </view>
         </view>
     </view>
@@ -122,25 +122,25 @@
         <view class="tab-item">
             <view class="tab-item-left">绿化率</view>
             <view class="tab-item-right">
-                <input value="{{greenRate}}" type="text"></input>
+                <input value="{{greenRate}}" type="text" bind:input="greenRateInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">停车位</view>
             <view class="tab-item-right">
-                <input value="{{park}}" type="text"></input>
+                <input value="{{park}}" type="text" bind:input="parkInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">物业公司</view>
             <view class="tab-item-right">
-                <input value="{{propertyCompany}}" type="text"></input>
+                <input value="{{propertyCompany}}" type="text" bind:input="propertyCompanyInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">物业费</view>
             <view class="tab-item-right">
-                <input value="{{propertyFare}}" type="text"></input>
+                <input value="{{propertyFare}}" type="text" bind:input="propertyFareInput"></input>
             </view>
         </view>
         <view class="tab-item">
@@ -209,7 +209,7 @@
         </view>
         <view class="tab-item-top">效果图</view>
         <view class="upload">
-            <uploader count="50"/>
+            <uploader count="50" bind:getImgs="getImgs"/>
         </view>
     </view>
     <view class="line"></view>

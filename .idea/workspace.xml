@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6e5b01d6-da30-4d9f-b288-589dbdd42b3f" name="Default Changelist" comment="feat:添加小区房源数据">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/uploadVideo/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/uploadVideo/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/uploadVideo/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/uploadVideo/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/addHouseOrigin/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/addHouseOrigin/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/addHouseOrigin/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/addHouseOrigin/index.wxml" afterDir="false" />
+    <list default="true" id="b17f1fa7-9f66-4c85-a234-51ad2c9e51fe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/chooseIndoorType/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/chooseIndoorType/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/chooseIndoorType/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/chooseIndoorType/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/chooseLabel/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/chooseLabel/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/chooseSubWay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/chooseSubWay/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/chooseSubWay/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/chooseSubWay/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/xf/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/xf/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/uploader/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/uploader/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/xq/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/xq/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/xq/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/xq/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/xq/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/xq/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/xq/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/xq/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miniprogram_npm/eventemitter3/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/eventemitter3/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram_npm/eventemitter3/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/eventemitter3/index.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miniprogram_npm/extend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/extend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram_npm/extend/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/extend/index.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miniprogram_npm/weapp-qrcode/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/weapp-qrcode/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/miniprogram_npm/weapp-qrcode/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/weapp-qrcode/index.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/miniprogram_npm/widget-ui/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/miniprogram_npm/widget-ui/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/request/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/request/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/request.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +38,7 @@
     <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1hMiDbiT34H9qdYvLtyJigtuY8p" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -166,21 +157,37 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/xq/index.js</url>
-          <line>109</line>
-          <properties lambdaOrdinal="-1" />
+          <line>114</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/xq/index.js</url>
-          <line>287</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="5" />
+          <line>286</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/xq/index.js</url>
-          <line>277</line>
+          <line>320</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="7" />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/components/xq/index.js</url>
+          <line>325</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/components/xq/index.js</url>
+          <line>100</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/components/xq/index.js</url>
+          <line>276</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
