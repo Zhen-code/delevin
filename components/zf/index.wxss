@@ -1,9 +1,208 @@
+/*底部添加房源按钮区域样式*/
+.xq-bottom-area{
+    padding: 32rpx;
+    box-sizing:border-box;
+    height: auto;
+}
+.textAreaWrap{
+    padding: 32rpx;
+    box-sizing:border-box;
+    background: #F8F8F8;
+    width: 100%;
+    min-height: 260rpx;
+    margin-bottom: 48rpx;
+    position: relative;
 
+}
+.upload{
+    margin-bottom: 48rpx;
+}
+.textAreaStyle{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
+}
+.tab-item-top{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666666;
+    margin-bottom: 16rpx;
+}
+.line{
+    width: 100%;
+    height: 1px;
+    background: #EEEEEE;
+    margin-top: 112rpx;
+}
+.submitBtn{
+    width: 686rpx;
+    height: 88rpx;
+    background: #FFD854;
+    border-radius: 44rpx;
+    margin: 24rpx auto 66rpx auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+}
+/*多选展示框样式*/
+.houseType-wrap{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.houseType-item{
+    min-width: 122rpx;
+    min-height: 52rpx;
+    background: #F8F8F8;
+    border-radius: 4rpx;
+    padding: 8rpx;
+    box-sizing:border-box;
+    font-size: 26rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666666;
+    margin: 16rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+/*右侧选择图片*/
+.common-img{
+    width: 44rpx;
+    height: 44rpx;
+}
+/*顶部样式*/
+.xq-wrapper{
+    width: 100%;
+    height: auto;
+}
+.xq-top{
+    padding-left: 32rpx;
+    box-sizing:border-box;
+}
+.xq-center{
+    padding-left: 32rpx;
+    box-sizing:border-box;
+}
+.xq-bottom{
+    padding-left: 32rpx;
+    box-sizing:border-box;
+}
+/*分割线*/
+.split-line{
+    width: 750rpx;
+    height: 20rpx;
+    background: #F8F8F8;
+}
+/*单元格左右项样式*/
+.tab-item{
+    width: 100%;
+    min-height: 100rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 32rpx;
+    box-sizing:border-box;
+    border-bottom: 1px solid #EEEEEE;
+}
+.tab-item-left{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666666;
+    flex: 1;
+}
+.tab-item-right{
+    flex: 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+/*时间选择器*/
+.timePickerActive{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 580rpx;
+    z-index: 3000;
+    width: 100%;
+    overflow: hidden;
+}
+input{
+    text-align: right;
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+    width: 60%;
+}
+.common-text{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+}
+.toolbar{
+    border: 1px solid #EEE !important;
+}
+.textAreaActive{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+}
+.houseType-wrap{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.houseType-item{
+    width: 122rpx;
+    height: 52rpx;
+    background: #F8F8F8;
+    border-radius: 4rpx;
+    padding: 8rpx;
+    box-sizing:border-box;
+    font-size: 26rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666666;
+    margin: 16rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.common-img{
+    width: 44rpx;
+    height: 44rpx;
+}
+.timePickerActive{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 378rpx;
+    z-index: 1000;
+    width: 100%;
+}
 .timePicker{
     display: none;
 }
-.indoor-input{
-    width: 90rpx;
-    text-align: center;
+.videoWrap{
+    width: 100%;
+    height: auto;
 }
+
+.videoWrap video{
+    width: 100%;
+    position: relative;
+}
+
 

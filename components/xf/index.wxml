@@ -38,7 +38,7 @@
             <view class="tab-item-right">
                 <view class="houseType-wrap">
                     <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
-                        {{item.name}}
+                        {{item}}
                         <van-icon name="close"
                                   data-index="{{index}}"
                                   bind:tap="deleteLabel"/>
@@ -94,7 +94,7 @@
         <view class="tab-item">
             <view class="tab-item-left">产权年限</view>
             <view class="tab-item-right">
-                <input value="{{cqYear}}" type="number"></input><text class="common-text">年</text>
+                <input value="{{cqYear}}" bind:input="cqYearInput" type="number"></input><text class="common-text">年</text>
             </view>
         </view>
         <view class="tab-item">
@@ -112,7 +112,7 @@
         <view class="tab-item">
             <view class="tab-item-left">环线位置</view>
             <view class="tab-item-right">
-                <input value="{{lineSite}}" type="text"></input>
+                <input value="{{lineSite}}" type="text" bind:input="lineSiteInput"></input>
             </view>
         </view>
     </view>
@@ -157,19 +157,19 @@
         <view class="tab-item">
             <view class="tab-item-left">开发商</view>
             <view class="tab-item-right">
-                <input value="{{developers}}" type="text"></input>
+                <input value="{{developers}}" type="text" ></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">售楼地址</view>
             <view class="tab-item-right">
-                <input value="{{salesAddress}}" type="text"></input>
+                <input value="{{salesAddress}}" bind:input="salesAddressInput" type="text"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">咨询电话</view>
             <view class="tab-item-right">
-                <input value="{{telphone}}" type="number"></input>
+                <input value="{{telphone}}" bind:input="telphoneInput" type="number"></input>
             </view>
         </view>
     </view>
@@ -178,37 +178,37 @@
         <view class="tab-item">
             <view class="tab-item-left">楼盘占地面积</view>
             <view class="tab-item-right">
-                <input value="{{ocupyArea}}" type="text"></input>
+                <input value="{{ocupyArea}}" type="text" bind:input="ocupyAreaInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">建筑面积</view>
             <view class="tab-item-right">
-                <input value="{{buildingArea}}" type="text"></input>
+                <input value="{{buildingArea}}" type="number" bind:input="buildingAreaInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">绿化率</view>
             <view class="tab-item-right">
-                <input value="{{greenRate}}" type="text"></input>
+                <input value="{{greenRate}}" type="text" bind:input="greenRateInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">停车位</view>
             <view class="tab-item-right">
-                <input value="{{park}}" type="text"></input>
+                <input value="{{park}}" type="text" bind:input="parkInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">停车配比</view>
             <view class="tab-item-right">
-                <input value="{{parkRate}}" type="text"></input>
+                <input value="{{parkRate}}" type="text" bind:input="parkRateInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">规划户数</view>
             <view class="tab-item-right">
-                <input value="{{planCount}}" type="text"></input>
+                <input value="{{planCount}}" type="text" bind:input="planCountInput"></input>
             </view>
         </view>
     </view>
@@ -217,25 +217,25 @@
         <view class="tab-item">
             <view class="tab-item-left">楼层状况</view>
             <view class="tab-item-right">
-                <input value="{{floorStatus}}" type="text"></input>
+                <input value="{{floorStatus}}" type="text" bind:input="floorStatusInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">楼栋总数</view>
             <view class="tab-item-right">
-                <input value="{{totalFloor}}" type="text"></input>
+                <input value="{{totalFloor}}" type="text" bind:input="totalFloorInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">物业公司</view>
             <view class="tab-item-right">
-                <input value="{{propertyCompany}}" type="text"></input>
+                <input value="{{propertyCompany}}" type="text" bind:input="propertyCompanyInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">物业费</view>
             <view class="tab-item-right">
-                <input value="{{propertyFare}}" type="text"></input>
+                <input value="{{propertyFare}}" type="text" bind:input="propertyFareInput"></input>
             </view>
         </view>
         <view class="tab-item">
@@ -292,15 +292,23 @@
         </view>
         <view class="tab-item-top">房源视频</view>
         <view class="upload">
-            <uploader />
+            <uploaderVideo bind:getVideoUrl="getVideoUrl"/>
+            <view class="videoWrap" wx:if="{{videoUrl!==''}}">
+                <video src="{{videoUrl}}"
+                       show-mute-btn
+                       enable-play-gesture
+                       vslide-gesture
+                       object-fit="contain"
+                ></video>
+            </view>
         </view>
         <view class="tab-item-top">效果图</view>
         <view class="upload">
-            <uploader count="50"/>
+            <uploader count="50" bind:getImgs="getImgs"/>
         </view>
     </view>
     <view class="line"></view>
-    <view class="submitBtn">添加房源</view>
+    <view class="submitBtn" catch:tap="addHouse">添加房源</view>
     <view class="{{showTimePick?'timePickerActive':'timePicker'}}">
         <van-datetime-picker
                 type="date"
@@ -317,7 +325,7 @@
         actions="{{actions}}"
         show="{{show}}"
         bind:onClose="onClose"/>
-<chooseSubWay show="{{isShow}}" bind:close="close"/>
-<chooseLabel show="{{showlabel}}" bind:closeLabel="closeLabel"/>
+<chooseSubWay wx:if="{{isShow}}" show="{{isShow}}" bind:close="close" province="{{province}}" city="{{city}}"/>
+<chooseLabel wx:if="{{showlabel}}"  show="{{showlabel}}" bind:closeLabel="closeLabel"/>
 <chooseIndoorType show="{{ showIndoor}}" bind:closeIndoor="closeIndoor"/>
 

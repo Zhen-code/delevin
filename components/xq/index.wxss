@@ -14,7 +14,7 @@
     position: relative;
 
 }
-.upload{
+.upload{ /*图片视频上传按钮样式*/
     margin-bottom: 48rpx;
 }
 .textAreaStyle{
@@ -131,7 +131,7 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    height: 500rpx;
+    height: 580rpx;
     z-index: 3000;
     width: 100%;
     overflow: hidden;
@@ -142,6 +142,7 @@ input{
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: #333333;
+    width: 60%;
 }
 .common-text{
     font-size: 30rpx;
@@ -161,84 +162,6 @@ input{
 .xq-wrapper{
     width: 100%;
     height: auto;
-}
-.xq-top{
-    padding-left: 32rpx;
-    box-sizing:border-box;
-}
-.xq-center{
-    padding-left: 32rpx;
-    box-sizing:border-box;
-}
-.xq-bottom{
-    padding-left: 32rpx;
-    box-sizing:border-box;
-}
-.split-line{
-    width: 750rpx;
-    height: 20rpx;
-    background: #F8F8F8;
-}
-.tab-item{
-    width: 100%;
-    min-height: 100rpx;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 32rpx;
-    box-sizing:border-box;
-    border-bottom: 1px solid #EEEEEE;
-}
-.tab-item-left{
-    font-size: 30rpx;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: #666666;
-    flex: 1;
-}
-.tab-item-right{
-    flex: 3;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-}
-.houseType-wrap{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-.houseType-item{
-    width: 122rpx;
-    height: 52rpx;
-    background: #F8F8F8;
-    border-radius: 4rpx;
-    padding: 8rpx;
-    box-sizing:border-box;
-    font-size: 26rpx;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: #666666;
-    margin: 16rpx;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.common-img{
-    width: 44rpx;
-    height: 44rpx;
-}
-.timePickerActive{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 378rpx;
-    z-index: 1000;
-    width: 100%;
-}
-.timePicker{
-    display: none;
 }
 .timePicker{
     display: none;
