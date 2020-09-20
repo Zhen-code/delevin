@@ -1,7 +1,6 @@
-/* pages/personal/aspect/index.wxss */
+/* 请勿删除！！！！！！ */
 .container {
 	width: 100%;
-	height: 100vh;
 	background: #FFF;
 	box-sizing: border-box;
 }
@@ -238,7 +237,15 @@
 }
 .message-view{
 	width: 100%;
-	height: 100vh;
-	background: aqua;
+	height: 80vh;
 	box-sizing: border-box;
+}
+.noRefresh{
+	display: none;
+}
+.refresh{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }

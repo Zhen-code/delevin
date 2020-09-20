@@ -1,4 +1,6 @@
+<!--下拉刷新功能已经更新，无需重复修改9.20！！！！！！！！！！！！！！！！-->
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="看点" />
+<!--下拉刷新功能已经更新，无需重复修改9.20！！！！！！！！！！！！！！！！-->
 <view class="container" style="padding-top:{{paddingTop}}px">
 	<view class="tabbar">
 		<view class="tab {{_index=='0'?'tbActive':''}}" data-index="0" bind:tap="toggleTab">新闻资讯</view>
@@ -13,12 +15,21 @@
 					<view class="message-view">
 						<scroll-view
 									class="view-list"
-									 refresher-enabled="true"
-									 scroll-into-view="{{toView}}"
-									 refresher-triggered="{{triggered}}"
-									 bindrefresherrefresh="topList"
-									 bindscrolltolower="scrollList"
-									 scroll-y="true">
+									scroll-y="{{!isIndrag}}"
+									bindscroll="scroll"
+									bindscrolltolower="scrollList"
+									 >
+							<view wx:if="{{hei<80}}" style='height:{{hei}}rpx' class='{{hei===0?"noRefresh":"refresh"}}'>
+								<image src="/assets/image/loading.png" mode="aspectFill" style="width:50rpx;height:50rpx;"></image>
+							</view>
+							<view  wx:else style='height:{{hei}}rpx' class='{{hei===0?"noRefresh":"refresh"}}'>
+								<image src="/assets/image/loading.gif" mode="aspectFill" style="width:50rpx;height:50rpx;"></image>
+							</view>
+							<view class="column"
+							      bind:touchstart="start"
+								  bindtouchend='end'
+								  bindtouchmove='move'
+									>
 							<view wx:for="{{newsList}}" wx:key="id" class="tab-item" catchtap="goHouseDetal" data-id="{{item.id}}">
 								<view class="tab-item-left">
 									<view class="tab-item-left-title">{{item.name}}</view>
@@ -31,14 +42,33 @@
 								</view>
 								<image src="{{item.coverUri}}" class="tab-item-right" mode="aspectFill"></image>
 							</view>
+							</view>
 						</scroll-view>
+						<view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
 					</view>
-					<view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
 				</view>
 			</van-tab>
 		</van-tabs>
 	</view>
 	<view class="tabContent" hidden="{{_index!=='1'}}">
+		<view class="message-view">
+			<scroll-view
+					class="view-list"
+					scroll-y="{{!isIndrag}}"
+					bindscroll="scroll"
+					bindscrolltolower="scrollList"
+			>
+				<view wx:if="{{hei<80}}" style='height:{{hei}}rpx' class='{{hei===0?"noRefresh":"refresh"}}'>
+					<image src="/assets/image/loading.png" mode="aspectFill" style="width:50rpx;height:50rpx;"></image>
+				</view>
+				<view  wx:else style='height:{{hei}}rpx' class='{{hei===0?"noRefresh":"refresh"}}'>
+					<image src="/assets/image/loading.gif" mode="aspectFill" style="width:50rpx;height:50rpx;"></image>
+				</view>
+				<view class="column"
+					  bind:touchstart="start"
+					  bindtouchend='end'
+					  bindtouchmove='move'
+				>
 		<view wx:for="{{postList}}" wx:key="id" class="tab-item2" catchtap="goPostDetail" data-id="{{item.id}}">
 			<view class="tab-item2-title">{{item.title}}</view>
 			<view class="tab-item2-desc">{{item.content}}</view>
@@ -58,11 +88,11 @@
 				</view>
 			</view>
 		</view>
-		<view class="bottom-text" wx:if="{{isPostBottom}}">- 到底啦 -</view>
+				</view>
+			</scroll-view>
+			<view class="bottom-text" wx:if="{{isPostBottom}}">- 到底啦 -</view>
+		</view>
 		<image class="send" src="/assets/iconedit@2x.png" catch:tap="post"></image>
 	</view>
 </view>
 
-<!-- <view class="view" style="padding-top:{{paddingTop}}px">
-	房源
-</view> -->
