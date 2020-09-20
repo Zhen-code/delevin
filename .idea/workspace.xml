@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b17f1fa7-9f66-4c85-a234-51ad2c9e51fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/image/loading.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/image/loading.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="b17f1fa7-9f66-4c85-a234-51ad2c9e51fe" name="Default Changelist" comment="feat:新房接口数据与房源样式重新添加">
       <change beforePath="$PROJECT_DIR$/components/chooseIndoorType/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/chooseIndoorType/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/chooseLabel/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/chooseLabel/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/chooseSubWay/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/chooseSubWay/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/sheet/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/sheet/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/uploadVideo/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/uploadVideo/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/request.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600526780414</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="change:看点数据列表更改下拉刷新功能">
+      <created>1600616417685</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600616417685</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,21 +126,23 @@
     <MESSAGE value="feat:看点模块接口数据功能" />
     <MESSAGE value="feat:小区接口数据" />
     <MESSAGE value="feat:新房接口数据与房源样式重新添加" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:新房接口数据与房源样式重新添加" />
+    <MESSAGE value="change:看点数据列表更改下拉刷新功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="change:看点数据列表更改下拉刷新功能" />
   </component>
   <component name="WindowStateProjectService">
     <state x="469" y="213" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600616168720">
       <screen x="0" y="0" width="1600" height="866" />
     </state>
     <state x="469" y="213" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.866@0.0.1600.866" timestamp="1600616168720" />
-    <state x="478" y="0" key="CommitChangelistDialog2" timestamp="1600616249383">
+    <state x="478" y="0" key="CommitChangelistDialog2" timestamp="1600616473995">
       <screen x="0" y="0" width="1600" height="866" />
     </state>
-    <state x="478" y="0" key="CommitChangelistDialog2/0.0.1600.866@0.0.1600.866" timestamp="1600616249383" />
+    <state x="478" y="0" key="CommitChangelistDialog2/0.0.1600.866@0.0.1600.866" timestamp="1600616473995" />
     <state x="573" y="228" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1600429501915" />
-    <state x="184" y="92" width="1536" height="858" key="DiffContextDialog" timestamp="1600428153158">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="153" y="77" width="1536" height="858" key="DiffContextDialog" timestamp="1600616459539">
+      <screen x="0" y="0" width="1600" height="866" />
     </state>
+    <state x="153" y="77" key="DiffContextDialog/0.0.1600.866@0.0.1600.866" timestamp="1600616459539" />
     <state x="184" y="92" width="1536" height="858" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600428153158" />
     <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1600395936752">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -165,10 +169,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1600427944986" />
-    <state x="460" y="197" key="Vcs.Push.Dialog.v2" timestamp="1600526836387">
+    <state x="460" y="197" key="Vcs.Push.Dialog.v2" timestamp="1600616426725">
       <screen x="0" y="0" width="1600" height="866" />
     </state>
-    <state x="460" y="197" key="Vcs.Push.Dialog.v2/0.0.1600.866@0.0.1600.866" timestamp="1600526836387" />
+    <state x="460" y="197" key="Vcs.Push.Dialog.v2/0.0.1600.866@0.0.1600.866" timestamp="1600616426725" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600398275278" />
     <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600422420398">
       <screen x="0" y="0" width="1920" height="1040" />

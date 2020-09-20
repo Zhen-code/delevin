@@ -196,7 +196,7 @@ const request = {
     });
   },
 
-  constructClassify: (params)=> {
+  constructClassify: (params)=> {//建筑类型列表(勿删)
     return http({
       url: api.broker.constructList,
       method: 'GET',
@@ -204,14 +204,14 @@ const request = {
     })
   },
 
-  getHouseProperty: ()=>{
+  getHouseProperty: ()=>{//物业(勿删)
       return http({
         url: '/api/access/v1/house/property/classify/list',
         method: 'GET',
         params:{}
       })
   },
-  getConstructClassify: ()=>{
+  getConstructClassify: ()=>{//建筑类型列表(勿删)
       return http({
         url: '/api/access/v1/house/construct/classify/list',
         method: 'GET',

@@ -1,4 +1,4 @@
-<!--components/uploader/index.wxml-->
+<!--请勿删除！-->
 <van-uploader
               name="videoFile"
               accept="video"
