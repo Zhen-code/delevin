@@ -142,7 +142,7 @@ input{
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: #333333;
-    width: 60%;
+    width: 80%;
 }
 .common-text{
     font-size: 30rpx;
@@ -159,39 +159,6 @@ input{
     font-weight: 400;
     color: #333333;
 }
-.houseType-wrap{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-.houseType-item{
-    width: 122rpx;
-    height: 52rpx;
-    background: #F8F8F8;
-    border-radius: 4rpx;
-    padding: 8rpx;
-    box-sizing:border-box;
-    font-size: 26rpx;
-    font-family: PingFangSC-Regular, PingFang SC;
-    font-weight: 400;
-    color: #666666;
-    margin: 16rpx;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.common-img{
-    width: 44rpx;
-    height: 44rpx;
-}
-.timePickerActive{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 378rpx;
-    z-index: 1000;
-    width: 100%;
-}
 .timePicker{
     display: none;
 }
@@ -204,5 +171,9 @@ input{
     width: 100%;
     position: relative;
 }
+.areaInput{
+    width: 90%;
+}
+
 
 

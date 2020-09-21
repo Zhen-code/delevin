@@ -323,6 +323,12 @@
 					"pathName": "pages/aspect/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜小区",
+					"pathName": "combination/pages/distrctSearch/index",
+					"scene": null
 				}
 			]
 		}

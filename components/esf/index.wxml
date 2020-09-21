@@ -10,7 +10,7 @@
         <view class="tab-item">
             <view class="tab-item-left">所属小区</view>
             <view class="tab-item-right">
-                <text>{{districtTitle}}</text>
+                <text class="common-text">{{districtTitle}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -22,7 +22,7 @@
         <view class="tab-item">
             <view class="tab-item-left">总价</view>
             <view class="tab-item-right">
-                <input value="{{totalPrice}}" bind:input="totalPriceInput" type="number"></input>
+                <input value="{{totalPrice}}" bind:input="totalPriceInput" type="digit"></input>
                 <text class="common-text">万元</text>
             </view>
         </view>
@@ -31,7 +31,7 @@
             <view class="tab-item-right">
                 <view class="houseType-wrap">
                     <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
-                        {{item.name}}
+                        {{item}}
                         <van-icon name="close"
                                   data-index="{{index}}"
                                   bind:tap="deleteLabel"/>
@@ -60,19 +60,19 @@
         <view class="tab-item">
             <view class="tab-item-left">建筑面积</view>
             <view class="tab-item-right">
-                <input value="{{buildingArea}}" type="text"></input>
+                <input value="{{buildingArea}}" bind:input="buildingAreaInput" type="number"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">楼层</view>
             <view class="tab-item-right">
-                <input value="{{floorStatus}}" type="text"></input>
+                <input value="{{floorStatus}}" bind:input="floorStatusInput" type="text"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">建筑年代</view>
             <view class="tab-item-right">
-                <text>{{buildingTime}}</text>
+                <text class="common-text">{{buildingTime}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -84,7 +84,7 @@
         <view class="tab-item">
             <view class="tab-item-left">产权年限</view>
             <view class="tab-item-right">
-                <input value="{{cqYear}}" type="number"></input><text class="common-text">年</text>
+                <input value="{{cqYear}}" bind:input="cqYearInput" type="number"></input><text class="common-text">年</text>
             </view>
         </view>
         <view class="tab-item">
@@ -102,7 +102,7 @@
         <view class="tab-item">
             <view class="tab-item-left">电梯</view>
             <view class="tab-item-right">
-                <input value="{{elevator}}"></input>
+                <input value="{{elevator}}" bind:input="elevatorInput"></input>
             </view>
         </view>
     </view>
@@ -134,7 +134,7 @@
         <view class="tab-item">
             <view class="tab-item-left">所在区域</view>
             <view class="tab-item-right">
-                <input value="{{area}}" type="text"></input>
+                <input value="{{area}}" type="text" class="areaInput"></input>
             </view>
         </view>
         <view class="tab-item">
@@ -142,7 +142,7 @@
             <view class="tab-item-right">
                 <view class="houseType-wrap">
                     <view class="houseType-item" wx:for="{{subway}}" wx:key="*this">
-                        {{item}}
+                        {{item.lineName+''+item.routeStop}}
                         <van-icon name="close"
                                   data-index="{{index}}"
                                   bind:tap="deleteSubWay"/>
@@ -174,19 +174,32 @@
         </view>
         <view class="tab-item-top">房源视频</view>
         <view class="upload">
-            <uploader />
+            <uploaderVideo bind:getVideoUrl="getVideoUrl"/>
+            <view class="videoWrap" wx:if="{{videoUrl!==''}}">
+                <video src="{{videoUrl}}"
+                       show-mute-btn
+                       enable-play-gesture
+                       vslide-gesture
+                       object-fit="contain"
+                ></video>
+            </view>
         </view>
         <view class="tab-item-top">效果图</view>
         <view class="upload">
-            <uploader count="50"/>
+            <uploader count="50" bind:getImgs="getImgs"/>
         </view>
     </view>
     <view class="line"></view>
-    <view class="submitBtn">添加房源</view>
+    <view class="submitBtn" catch:tap="addHouse">添加房源</view>
     <view class="{{showTimePick?'timePickerActive':'timePicker'}}">
         <van-datetime-picker
-                type="datetime"
+                toolbar-class="toolbar"
+                type="year-month"
                 value="{{ currentDate }}"
+                minDate="{{minDate}}"
+                title="选择年份"
+                bind:confirm="confirm"
+                bind:cancel="cancel"
         />
     </view>
 </view>

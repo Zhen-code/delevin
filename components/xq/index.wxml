@@ -157,7 +157,7 @@
         <view class="tab-item">
             <view class="tab-item-left">所在区域</view>
             <view class="tab-item-right">
-                <input value="{{area}}" type="text"></input>
+                <input value="{{area}}" type="text" class="areaInput"></input>
             </view>
         </view>
         <view class="tab-item">

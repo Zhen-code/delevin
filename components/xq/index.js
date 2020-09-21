@@ -322,52 +322,34 @@ Component({
             this.imgs = (e.detail.e).map(v=>v.url);
         },
         developersInput(e){
-          clearTimeout(this.timeFlag);
-          this.timeFlag = setTimeout(()=>{
               this.setData({
                   developers: e.detail.value
               })
-          },2000);
         },
         greenRateInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     greenRate: e.detail.value
                 })
-            },2000);
         },
         parkInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     park: e.detail.value
                 })
-            },2000);
         },
         capacityInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     capacity: e.detail.value
                 })
-            },2000);
         },
         cqYearInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     cqYear: e.detail.value
                 })
-            },2000);
         },
         propertyCompanyInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     propertyCompany: e.detail.value
                 })
-            },2000);
         },
         propertyFareInput(e){
             clearTimeout(this.timeFlag);
@@ -378,6 +360,9 @@ Component({
             },2000);
         },
         addXQ(){
+            wx.showLoading({
+                title: '加载中'
+            });
             http({
                 url: '/api/access/v1/house/residential/quarters/add',
                 method: 'POST',
@@ -410,13 +395,19 @@ Component({
                     "title": this.data.title
                 }
             }).then(res=>{
+                wx.hideLoading();
                 console.log(res)
+                wx.showToast({
+                   title: '添加成功！',
+                   icon: "success"
+                });
                 if(res.data['code'] === 500){
                     wx.showToast({
                         title: res.data['msg']
                     })
                 }
             }).catch(err=>{
+                wx.hideLoading();
                 console.log(err)
             })
         }

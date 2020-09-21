@@ -92,10 +92,18 @@ Component({
             });
         },
         sure(){
+            if(this.data['list'].length===0){
+                this.triggerEvent('close',{detail:[]});
+                return;
+            }
             let {_index,scrollLeft,scrollRight}=this.data;
             let lineName = scrollLeft[_index]['lineName'];
             console.log(lineName);
             let routeStop = scrollRight.filter(item=>item.active===true);
+            if(routeStop.length === 0){
+                this.triggerEvent('close',{detail:[]});
+                return;
+            }
             console.log(routeStop);
             // let chooseSubWay = routeStop.map(item=> lineName+'/'+item.name);
             let chooseSubWay = routeStop.map(item=> {

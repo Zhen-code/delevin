@@ -4,36 +4,48 @@
         <search placeholder="搜索" isCancel="{{isCancel}}" bind:getData="getData"/>
     </view>
     <view class="list">
-      <view class="list-item" bind:tap="selectDistrct">
-      <image class="left-img" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3309635407,3970153071&fm=26&gp=0.jpg" mode="aspectFill"></image>
-      <view class="right-text">
-        <view class="right-text-title">丽江花园 丽岛豪宅高层视野开阔 家私齐全 采光好光线好</view>
-        <view class="right-text-label">
-            <block>
-                <view class="label">地区</view>
-                <view class="label">户型</view>
-                <view class="label">建筑年代</view>
-            </block>
-        </view>
-          <view class="averagePrice">均价：<text>29303元/m²</text></view>
-          <view class="sellOrigin">在售房源：<text>20套</text></view>
-      </view>
-      </view>
-        <view class="list-item"  bind:tap="selectDistrct">
-            <image class="left-img" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3309635407,3970153071&fm=26&gp=0.jpg" mode="aspectFill"></image>
-            <view class="right-text">
-                <view class="right-text-title">丽江花园 丽岛豪宅高层视野开阔 家私齐全 采光好光线好</view>
-                <view class="right-text-label">
-                    <block>
-                        <view class="label">地区</view>
-                        <view class="label">户型</view>
-                        <view class="label">建筑年代</view>
-                    </block>
+        <view class="message-view">
+            <scroll-view
+                    class="view-list"
+                    scroll-y="{{!isIndrag}}"
+                    bindscroll="scroll"
+                    bindscrolltolower="scrollList"
+            >
+                <view wx:if="{{hei<80}}" style='height:{{hei}}rpx' class='{{hei===0?"noRefresh":"refresh"}}'>
+                    <image src="/assets/image/loading.png" mode="aspectFill" style="width:50rpx;height:50rpx;"></image>
                 </view>
-                <view class="averagePrice">均价：<text>29303元/m²</text></view>
-                <view class="sellOrigin">在售房源：<text>20套</text></view>
-            </view>
+                <view  wx:else style='height:{{hei}}rpx' class='{{hei===0?"noRefresh":"refresh"}}'>
+                    <image src="/assets/image/loading.gif" mode="aspectFill" style="width:50rpx;height:50rpx;"></image>
+                </view>
+                <view class="column"
+                      bind:touchstart="start"
+                      bindtouchend='end'
+                      bindtouchmove='move'
+                >
+                    <view class="list-item"
+                          wx:for="{{list}}"
+                          wx:key="id"
+                          data-id="{{item.id}}"
+                          data-title="{{item.title}}"
+                          bind:tap="selectDistrct">
+                        <image class="left-img" src="{{item.coverUri}}" mode="aspectFill"></image>
+                        <view class="right-text">
+                            <view class="right-text-title">{{item.title}}</view>
+                            <view class="right-text-label">
+                                <block>
+                                    <view class="label">{{item.region}}</view>
+                                    <view class="label">{{item.builtYear}}</view>
+                                </block>
+                            </view>
+                            <view class="averagePrice">二手房均价：<text>{{item.averagePrice}}元/m²</text></view>
+                            <view class="averagePrice">租房均价：<text>{{item.rentalAveragePrice}}元/m²</text></view>
+                            <view class="sellOrigin">在售房源：<text>{{item.houseCount}}套</text></view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
         </view>
+
     </view>
     <view class="bottom">- 到底啦 -</view>
 </view>

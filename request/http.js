@@ -16,7 +16,8 @@ const http = (config) => {
         Authorization: wx.getStorageSync('token')
       }, config.header) : {
         // Authorization: wx.getStorageSync('token') || '',
-        Authorization: 'token-FPeYaxOQhmxPmUnwNAdKZwNsdNKMlGxPmJtaWnfeLvetjAby',
+        // Authorization: 'token-FPeYaxOQhmxPmUnwNAdKZwNsdNKMlGxPmJtaWnfeLvetjAby',
+        Authorization: 'token-ZVPCXWAkJKKXlFgVnQdwneNPwQVYGxncHMBHmfayphGbiXjZ'
       },
       method: config.method,
       success: function (res) {

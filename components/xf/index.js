@@ -1,5 +1,5 @@
 const chooseLocation = requirePlugin('chooseLocation');
-const {key,referer,min_time,currentDate,getTime} = require('../../utils/util');
+const {key,referer,min_time,currentDate,getTime,formatTimeTwo} = require('../../utils/util');
 const {http} = require('../../request/http');
 const {request} = require('../../request/request');
 Component({
@@ -76,6 +76,26 @@ Component({
         propertyClassifyId: '',
         propertyTypeArray:[],
         saleStatuVal: '',
+        pageLifetimes:{
+        show() {
+            const location = chooseLocation.getLocation();
+            console.log(location);
+            if(location===null){
+
+            }else{
+                let { address, city, district, latitude, longitude, name, province } = location;
+                this.setData({
+                    address: name,
+                    area: address,
+                    city: city,
+                    district,
+                    latitude,
+                    longitude,
+                    province
+                })
+            }
+        }
+    },
         lifetimes:{
         created() {
             let that = this;
@@ -113,19 +133,19 @@ Component({
             });
         }
     },
-        methods: {
-            getVideoUrl(e){
-                console.log(e)
-                if(e.detail.e === ''|| !e.detail.e){
-                    return
-                }
-                this.setData({
-                    videoUrl: e.detail.e
-                });
-            },
-            getImgs(e){
-                this.imgs = (e.detail.e).map(v=>v.url);
-            },
+         methods: {
+        getVideoUrl(e){
+            console.log(e)
+            if(e.detail.e === ''|| !e.detail.e){
+                return
+            }
+            this.setData({
+                videoUrl: e.detail.e
+            });
+        },
+        getImgs(e){
+            this.imgs = (e.detail.e).map(v=>v.url);
+        },
         goTextArea(){
             this.setData({
                 showTextArea:true,
@@ -145,13 +165,20 @@ Component({
             })
         },
         closeIndoor(e){
-            if(e.detail.detail===""){
+            console.log(e)
+            if(e.detail.detail===""|| e.detail['detail'].length===0){
                 this.setData({
                     showIndoor:false
                 })
             }else{
+                let houseTypeArray = e.detail['detail'].map(v=>{
+                    return{
+                        name: v.name,
+                        id: v.id
+                    }
+                });
                 this.setData({
-                    houseType: e.detail.detail,
+                    houseType: houseTypeArray,
                     showIndoor:false
                 })
             }
@@ -197,7 +224,8 @@ Component({
             }
         },
         confirm(e){
-            let chooseTime = getTime(e.detail);
+            let chooseTime = formatTimeTwo(e.detail);
+            console.log(chooseTime)
             let { showSE } = this.data;
             if(showSE===1){
                 this.setData({
@@ -223,7 +251,7 @@ Component({
                 this.setData({
                     name: e.detail.value
                 })
-            },2000);
+            },500);
         },
         deleteType(e){
             console.log(e.currentTarget.dataset.index)
@@ -299,7 +327,7 @@ Component({
                 this.setData({
                     price: e.detail.value
                 });
-            },2000);
+            },500);
         },
         projectInput(e){
             clearTimeout(this.timeFlag);
@@ -307,26 +335,26 @@ Component({
                 this.setData({
                     project: e.detail.value
                 });
-            },2000);
+            },500);
         },
         newHouseHelpInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        newHouseHelp: e.detail.value
-                    })
-                },2000);
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    newHouseHelp: e.detail.value
+                })
+            },500);
 
         },
-            propertyCompanyInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        propertyCompany: e.detail.value
-                    })
-                },2000);
+        propertyCompanyInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    propertyCompany: e.detail.value
+                })
+            },500);
 
-            },
+        },
         deleteProperty(e){
 
         },
@@ -352,20 +380,6 @@ Component({
                 return;
             }
             switch (type) {
-                case 'houseInType' :
-                    let {houseType} = this.data;
-                    let index = houseType.findIndex(item=>item.name==e.detail.detail);
-                    if(index==undefined||index===-1){
-                        houseType.push({name:e.detail.detail});
-                        this.setData({
-                            houseType:houseType,
-                            show:false
-                        });
-                    }
-                    this.setData({
-                        show:false
-                    });
-                    break;
                 case 'propertyType':
                     let propertyTypeArr = that.propertyTypeArray.filter(v=>v.name === e.detail.detail);
                     that.propertyClassifyId = propertyTypeArr[0]['id'];
@@ -450,118 +464,113 @@ Component({
             });
         },
         ocupyAreaInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
-                this.setData({
-                    ocupyArea: e.detail.value
-                });
-            },2000);
+            this.setData({
+                ocupyArea: e.detail.value
+            });
         },
         totalFloorInput(e){
+            this.setData({
+                totalFloor: e.detail.value
+            });
+        },
+        developersInput(e){
             clearTimeout(this.timeFlag);
             this.timeFlag = setTimeout(()=>{
                 this.setData({
-                    totalFloor: e.detail.value
-                });
+                    developers: e.detail.value
+                })
+            },500);
+        },
+        buildingAreaInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    buildingArea: e.detail.value
+                })
+            },500);
+        },
+        floorStatusInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    floorStatus: e.detail.value
+                })
             },2000);
         },
-            developersInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        floorStatus: e.detail.value
-                    })
-                },2000);
-            },
-            buildingAreaInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        buildingArea: e.detail.value
-                    })
-                },2000);
-            },
-            floorStatusInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        developers: e.detail.value
-                    })
-                },2000);
-            },
-            greenRateInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        greenRate: e.detail.value
-                    })
-                },2000);
-            },
-            lineSiteInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        lineSite: e.detail.value
-                    })
-                },2000);
-            },
-            parkRateInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        parkRate: e.detail.value
-                    })
-                },2000);
-            },
-            parkInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        park: e.detail.value
-                    })
-                },2000);
-            },
-            planCountInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        planCount: e.detail.value
-                    })
-                },2000);
-            },
-            planCountInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        cqYearInput: e.detail.value
-                    })
-                },2000);
-            },
-            propertyFareInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        propertyFare: e.detail.value
-                    })
-                },2000);
-            },
-            salesAddressInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        salesAddress: e.detail.value
-                    })
-                },2000);
-            },
-            telphoneInput(e){
-                clearTimeout(this.timeFlag);
-                this.timeFlag = setTimeout(()=>{
-                    this.setData({
-                        telphone: e.detail.value
-                    })
-                },2000);
-            },
+        greenRateInput(e){
+            this.setData({
+                greenRate: e.detail.value
+            })
+        },
+        lineSiteInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    lineSite: e.detail.value
+                })
+            },2000);
+        },
+        parkRateInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    parkRate: e.detail.value
+                })
+            },500);
+        },
+        parkInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    park: e.detail.value
+                })
+            },500);
+        },
+        planCountInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    planCount: e.detail.value
+                })
+            },500);
+        },
+        propertyFareInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    propertyFare: e.detail.value
+                })
+            },500);
+        },
+        salesAddressInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    salesAddress: e.detail.value
+                })
+            },500);
+        },
+        telphoneInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    telphone: e.detail.value
+                })
+            },500);
+        },
+        cqYearInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    cqYear: e.detail.value
+                })
+            },500);
+        },
         addHouse(){
+            wx.showLoading({
+                title: '加载中'
+            });
+            let houseTypeId = this.data.houseType.map(v=>v.id);
             http({
                 url: '/api/access/v1/house/estate/add',
                 method: 'POST',
@@ -575,24 +584,24 @@ Component({
                     "description": this.data.makerDesc,
                     "designSketch":  this.imgs,
                     "detailsAddress": this.data.address,
-                    "developers": this.developers,
+                    "developers": this.data.developers,
                     "floorCondition": this.data.floorStatus,
-                    "floorage": this.data.buildingArea,
+                    "floorage": Number(this.data.buildingArea),
                     "greenCoverage": this.data.greenRate,
-                    "houseLabel": this.labelType,
-                    "houseSubsidy": this.newHouseHelp,
-                    "houseType": this.houseType,
+                    "houseLabel": this.data.labelType,
+                    "houseSubsidy": this.data.newHouseHelp,
+                    "houseType": houseTypeId,
                     "houseVideo":  this.data.videoUrl,
                     "latitude": this.data.latitude,
                     "longitude": this.data.longitude,
                     "loopLocation": this.data.lineSite,
-                    "metro": this.subway,
+                    "metro": this.data.subway,
                     "openingDate": this.data.startTime,
                     "parkingRatio": this.data.parkRate,
                     "parkingSpace": this.data.park,
                     "plannedHouseholds": this.data.planCount,
                     "projectFeatures": this.data.project,
-                    "property": this.data.cqYearInput,
+                    "property": this.data.cqYear,
                     "propertyClassifyId": this.propertyClassifyId,
                     "propertyCompany": this.data.propertyCompany,
                     "propertyFee": this.data.propertyFare,
@@ -606,32 +615,19 @@ Component({
                     "unitPrice": this.data.price
                 }
             }).then(res=>{
+                wx.hideLoading();
                 console.log(res)
+                wx.showToast({
+                    title: '添加成功！',
+                    icon: "success",
+                    duration:2000
+                });
             }).catch(err=>{
+                wx.hideLoading();
                 console.log(err)
             })
 
         }
     },
-        pageLifetimes:{
-        show() {
-            const location = chooseLocation.getLocation();
-            console.log(location);
-            if(location===null){
-
-            }else{
-                let { address, city, district, latitude, longitude, name, province } = location;
-                this.setData({
-                    address: name,
-                    area: address,
-                    city: city,
-                    district,
-                    latitude,
-                    longitude,
-                    province
-                })
-            }
-        }
-    }
 
 });

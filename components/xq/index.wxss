@@ -142,7 +142,7 @@ input{
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: #333333;
-    width: 60%;
+    width: 80%;
 }
 .common-text{
     font-size: 30rpx;
@@ -174,4 +174,7 @@ input{
 .videoWrap video{
     width: 100%;
     position: relative;
+}
+.areaInput{
+    width: 90%;
 }
