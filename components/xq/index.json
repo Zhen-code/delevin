@@ -4,6 +4,7 @@
     "sheet": "/components/sheet/index",
     "van-datetime-picker": "/@vant/weapp/datetime-picker/index",
     "uploader": "/components/uploader/index",
+    "uploaderVideo": "/components/uploadVideo/index",
     "chooseSubWay": "/components/chooseSubWay/index",
     "chooseLabel": "/components/chooseLabel/index",
     "chooseIndoorType": "/components/chooseIndoorType/index"

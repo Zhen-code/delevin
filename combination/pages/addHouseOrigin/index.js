@@ -1,6 +1,6 @@
 // combination/pages/addHouseOrigin/index.js
 const topHeight = require('../../../request/topHeight.js').topHeight;
-
+const {request} = require('../../../request/request');
 Page({
 
   /**
@@ -30,7 +30,8 @@ Page({
     ],
     type: '',
     houseTypeName: '小区',
-    flag: 0
+    flag: 0,
+    houseProperty: [],
   },
 
   /**
@@ -51,6 +52,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    request.getHouseProperty().then(res=>{
+      console.log(res);
+      this.setData({
+        houseProperty: res
+      })
+    }).catch(err=>{
+      console.log(err);
+    })
 
   },
 

@@ -1,5 +1,6 @@
 const chooseLocation = requirePlugin('chooseLocation');
 const {key,referer} = require('../../utils/util');
+let {http} = require('../../request/http');
 var app = getApp();
 Component({
     properties: {},
@@ -14,7 +15,17 @@ Component({
         labelType:[],
         cqYear: '',
         zxCase:'',
-        zxType: [{name:'毛坯',name:'简装',name:'中装',name:'精装',name:'豪装'}],
+        zxArray: [
+            {name:'毛坯',value:'ROUGHCAST'},
+            {name:'简装',value:'PAPERBACK'},
+            {name:'中装',value: 'CHINESE_DRESS'},
+            {name:'精装',value: 'HARDCOVER'},
+            {name:'豪装',value: 'HAUTE_COUTURE'}],
+        orientArray:[
+            {name:'北',value:'NORTH'},{name:'南',value:'SOUTH'},{name:'西',value:'WEST'},{name:'东',value:'EAST'},{name:'西北',value:'NORTHWEST'},{name:'东北',value:'NORTHEAST'},
+            {name:'西南',value:'SOUTHWEST'},{name:'东南',value:'SOUTHEAST'},{name:'东西南',value:'EAST_WEST_SOUTH'},{name:'东南北',value:'SOUTHEAST_NORTH'},{name:'西南北',value:'SOUTHWEST_NORTH'},
+            {name:'东西北',value:'EAST_WEST_NORTH'}, {name:'东南西北',value:'SOUTHEAST_NORTHWEST'}
+        ],
         currentDate: '',
         minDate:'',
         showTimePick:false,
@@ -38,9 +49,16 @@ Component({
         showTextArea:false,
         autofocus:false,
         makerDesc:'',
-        city:''
+        city:'',
+        district:'',
+        province:'',
+        videoUrl:'',
+        districtId:''
     },
     timeFlag: 1,
+    imgs: [],
+    decorationStatus: '',
+    orientValue:'',
     lifetimes:{
         ready() {
             let min_time = new Date("1900-01-01 00:00:00").getTime();
@@ -62,6 +80,125 @@ Component({
         }
     },
     methods: {
+        floorStatusInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    floorStatus: e.detail.value
+                })
+            },2000);
+        },
+        elevatorInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    elevator: e.detail.value
+                })
+            },2000);
+        },
+        getImgs(e){
+            this.imgs = (e.detail.e).map(v=>v.url);
+        },
+        addHouse(){
+            wx.showLoading({
+                title: '加载中'
+            });
+            // return
+          http({
+              url: '/api/access/v1/house/second/hand/add',
+              method: 'POST',
+              params:{
+                  "builtYear": this.data.buildingTime,
+                  "city": this.data.city,
+                  "decorationStatus": this.decorationStatus,
+                  "description": this.data.makerDesc,
+                  "designSketch": this.imgs,
+                  "detailsAddress": this.data.area,
+                  "elevator": this.data.elevator,
+                  "floorCondition": this.data.floorStatus,
+                  "floorage": this.data.buildingArea,
+                  "houseHall": this.data.room,
+                  "houseKitchen": this.data.kitchen,
+                  "houseLabel": this.data.labelType,
+                  "houseToilet": this.data.wei,
+                  "houseType":  this.data.indoorType,
+                  "houseVideo": this.data.videoUrl,
+                  "latitude": this.data.latitude,
+                  "longitude": this.data.longitude,
+                  "metro": this.data.subway,
+                  "orientation": this.orientValue,
+                  "property": this.data.cqYear,
+                  "province": this.data.province,
+                  "quartersId": this.data.districtId,
+                  "region": this.data.district,
+                  "street": this.data.address,
+                  "title": this.data.name,
+                  "totalPrice": this.data.totalPrice
+              }
+          }).then(res=>{
+              wx.hideLoading();
+              console.log(res)
+              wx.showToast({
+                  title: '添加成功！',
+                  icon: "success",
+                  duration:2000
+              });
+          }).catch(err=>{
+              wx.hideLoading();
+              console.log(err)
+          })
+        },
+        getVideoUrl(e){
+            console.log(e)
+            if(e.detail.e === ''|| !e.detail.e){
+                return
+            }
+            this.setData({
+                videoUrl: e.detail.e
+            });
+        },
+        cqYearInput(e){
+            this.setData({
+                cqYear: e.detail.value
+            })
+        },
+        kitchenInput(e){
+            this.setData({
+                kitchen: e.detail.value
+            })
+        },
+        roomInput(e){
+            console.log(e)
+            this.setData({
+                room: e.detail.value
+            })
+        },
+        buildingAreaInput(e){
+                this.setData({
+                    buildingArea: e.detail.value
+                })
+        },
+        weiInput(e){
+            this.setData({
+                wei: e.detail.value
+            })
+        },
+        floorStatusInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    floorStatus: e.detail.value
+                })
+            },2000);
+        },
+        elevatorInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    elevator: e.detail.value
+                })
+            },2000);
+        },
         goTextArea(){
             this.setData({
                 showTextArea:true,
@@ -81,14 +218,16 @@ Component({
             })
         },
         closeLabel(e){
-            if(e.detail.detail===""){
+            console.log(e)
+            if(e.detail.detail===""||e.detail.length===0){
                 this.setData({
                     showlabel:false
                 });
             }else{
+                let labelTypeArray = e.detail['detail'].map(v=>v.name);
                 this.setData({
                     showlabel:false,
-                    labelType: e.detail.detail
+                    labelType: labelTypeArray
                 });
             }
         },
@@ -115,17 +254,10 @@ Component({
                 showTimePick: true
             })
         },
-        weiInput(e){
-
-        },
-        kitchenInput(e){
-
-        },
-        roomInput(e){
-
-        },
-        indoorTypeInput(){
-
+        indoorTypeInput(e){
+            this.setData({
+                indoorType: e.detail.value
+            })
         },
         goTimePick(e){
             console.log(e)
@@ -138,9 +270,9 @@ Component({
             let year = time.getFullYear();
             let month = time.getMonth();
             let date = time.getDate();
-            let startTime = year+month+date;
             this.setData({
-                showTimePick: false
+                showTimePick: false,
+                buildingTime: year
             })
         },
         cancel(){
@@ -168,16 +300,17 @@ Component({
         goSheet(e){
             const {type} = e.currentTarget.dataset;
             console.log(type);
+            let that = this;
             switch (type) {
                 case 'orientType':
                     this.setData({
                         type:type,
                         show: true,
                         title: '朝向选择',
-                        actions:[
-                            {name:'北'},{name:'南'},{name:'西'},{name:'东'},{name:'西北'},{name:'东北'},
-                            {name:'西南'},{name:'东南'},{name:'东西南'},{name:'东南北'},{name:'西南北'},
-                            {name:'东西北'}, {name:'东南西北'}
+                        actions: [
+                            {name:'北',value:'NORTH'},{name:'南',value:'SOUTH'},{name:'西',value:'WEST'},{name:'东',value:'EAST'},{name:'西北',value:'NORTHWEST'},{name:'东北',value:'NORTHEAST'},
+                            {name:'西南',value:'SOUTHWEST'},{name:'东南',value:'SOUTHEAST'},{name:'东西南',value:'EAST_WEST_SOUTH'},{name:'东南北',value:'SOUTHEAST_NORTH'},{name:'西南北',value:'SOUTHWEST_NORTH'},
+                            {name:'东西北',value:'EAST_WEST_NORTH'}, {name:'东南西北',value:'SOUTHEAST_NORTHWEST'}
                         ]
                     });
                     break;
@@ -200,12 +333,22 @@ Component({
                         actions:labelType
                     });
                     break;
+                case 'zxCase' :
+                    this.setData({
+                        type:type,
+                        show: true,
+                        title: '装修状况',
+                        actions: that.data.zxArray,
+                    });
+                    break;
                 default:
                     break;
             }
         },
         totalPriceInput(e){
-
+                this.setData({
+                    totalPrice: e.detail.value
+                })
         },
         deleteLabel(e){
             console.log(e.currentTarget.dataset.index)
@@ -217,6 +360,7 @@ Component({
         },
             onClose(e){
                 console.log(e)
+                let that = this;
                 const {type} = e.detail;
                 if(e.detail.detail===''||e.detail.detail===null||!e.detail.detail){
                     this.setData({
@@ -266,8 +410,18 @@ Component({
                         });
                         break;
                     case 'orientType':
-                        this.setData({
+                        let newArray = that.data.orientArray.filter(v=>v.name===e.detail.detail);
+                        that.orientValue = newArray[0]['value'];
+                        that.setData({
                             orient: e.detail.detail,
+                            show:false
+                        });
+                        break;
+                    case 'zxCase':
+                        let zxItem = that.data.zxArray.filter(v=>v.name === e.detail.detail);
+                        that.decorationStatus = zxItem[0]['value'];
+                        that.setData({
+                            zxCase: e.detail.detail,
                             show:false
                         });
                         break;
@@ -277,15 +431,24 @@ Component({
             },
         close(e){
             console.log(e);
-            if(e.detail.detail===""||!e.detail.detail){
+            if(e.detail.detail.length === 0){
                 this.setData({
                     isShow:false
                 });
             }else{
                 let {subway} = this.data;
-                let newArr = Array.from(new Set([...subway,...(e.detail.detail)]))
+                let newArr = subway.concat(e.detail.detail);
+                let newArray = [];
+                let obj = {};
+                for (let i = 0; i < newArr.length; i++) {
+                    if (!obj[newArr[i].routeStop]) {
+                        newArray.push(newArr[i]);
+                        obj[newArr[i].routeStop] = true;
+                    }
+                }
+                console.log(newArray);
                 this.setData({
-                    subway : newArr,
+                    subway : newArray,
                     isShow: false
                 });
             }
@@ -303,9 +466,10 @@ Component({
     },
     pageLifetimes:{
         show() {
-            let {districtTitle} = app.globalData;
+            let {districtTitle,districtId} = app.globalData;
             this.setData({
-                districtTitle
+                districtTitle,
+                districtId
             });
             const location = chooseLocation.getLocation();
             console.log(location);
@@ -316,7 +480,11 @@ Component({
                 this.setData({
                     address: name,
                     area: address,
-                    city: city
+                    city: city,
+                    district,
+                    latitude,
+                    longitude,
+                    province
                 })
             }
         }

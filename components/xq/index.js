@@ -1,7 +1,11 @@
 const chooseLocation = requirePlugin('chooseLocation');
 const {key,referer} = require('../../utils/util');
+const {request} = require('../../request/request');
+const {http} = require('../../request/http');
 Component({
-    properties: {},
+    properties: {
+
+    },
     data: {
         name: '',
         houseType:[],
@@ -38,11 +42,26 @@ Component({
         showlabel:false,
         showIndoor:false,
         showTextArea:false,
-        autofocus:false
+        autofocus:false,
+        videoUrl: ''
     },
     timeFlag: 1,
-
+    propertyTypeArray:[],
+    constructClassify: [],
+    constructClassifyId: '',
+    imgs: [],
+    houseType: [],
+    propertyClassifyId: '',
     methods: {
+        getVideoUrl(e){
+            console.log(e)
+            if(e.detail.e === ''|| !e.detail.e){
+                return
+            }
+            this.setData({
+                videoUrl: e.detail.e
+            });
+        },
         looseBlur(e){
             let {value} = e.detail;
                 this.setData({
@@ -62,11 +81,12 @@ Component({
             })
         },
         closeIndoor(e){
-            if(e.detail.detail===""){
+            if(e.detail.detail.length===0 || e.detail.detail===''){
                 this.setData({
                     showIndoor:false
                 })
             }else{
+                this.houseType = e.detail.detail.map(v=>v.id);
                 this.setData({
                     houseType: e.detail.detail,
                     showIndoor:false
@@ -79,18 +99,28 @@ Component({
             });
         },
         closeLabel(e){
-            if(e.detail.detail===""){
+            console.log(e);
+            if(e.detail['detail'].length===0){
                 this.setData({
                     showlabel:false
                 });
             }else{
+                let labelTypeArray = e.detail['detail'].map(v=>v.name);
                 this.setData({
                     showlabel:false,
-                    labelType: e.detail.detail
+                    labelType: labelTypeArray
                 });
             }
         },
         goSubWaySheet(){
+            let { city,province} = this.data;
+            if(city===''&&province===''){
+                wx.showToast({
+                    title: '请选择地址',
+                    icon: "none"
+                });
+                // return
+            }
           this.setData({
               isShow: true
           });
@@ -183,23 +213,22 @@ Component({
         goSheet(e){
             const {type} = e.currentTarget.dataset;
             console.log(type);
+            let that = this;
             switch (type) {
                 case 'propertyType':
-                    // const {propertyType} = this.data;
                     this.setData({
                         type:type,
                         show: true,
                         title: '物业类别',
-                        actions:[{name:'物业类别'}]
+                        actions: that.propertyTypeArray
                     });
                     break;
                 case 'buildingType' :
-                    // const {buildingType} = this.data;
                     this.setData({
                         type:type,
                         show: true,
                         title: '建筑类型',
-                        actions: [{name:'建筑类型'}]
+                        actions: that.constructClassify
                     });
                     break;
                 default:
@@ -207,9 +236,10 @@ Component({
             }
         },
         onClose(e){
+            let that = this;
             console.log(e)
             const {type} = e.detail;
-            if(e.detail.detail===''||e.detail.detail===null||!e.detail.detail){
+            if(e.detail.detail===''||e.detail.detail===null||!e.detail.detail||(e.detail.detail).length===0){
                 this.setData({
                     show:false
                 });
@@ -221,12 +251,12 @@ Component({
                     let index = houseType.findIndex(item=>item.name==e.detail.detail);
                     if(index==undefined||index===-1){
                         houseType.push({name:e.detail.detail});
-                        this.setData({
+                        that.setData({
                             houseType:houseType,
                             show:false
                         });
                     }
-                    this.setData({
+                    that.setData({
                         show:false
                     });
                     break;
@@ -240,18 +270,22 @@ Component({
                             show:false
                         });
                     }
-                    this.setData({
+                    that.setData({
                         show:false
                     });
                     break;
                 case 'propertyType':
-                    this.setData({
+                    let propertyTypeArr = that.propertyTypeArray.filter(v=>v.name === e.detail.detail);
+                    that.propertyClassifyId = propertyTypeArr[0]['id'];
+                    that.setData({
                         show:false,
                         propertyType:e.detail.detail
                     });
                     break;
                 case 'buildingType':
-                        this.setData({
+                    let buildingType = that.constructClassify.filter(v=>v.name === e.detail.detail);
+                    that.constructClassifyId = buildingType[0]['id'];
+                        that.setData({
                             buildingType: e.detail.detail,
                             show:false
                         });
@@ -262,21 +296,143 @@ Component({
         },
         close(e){
             console.log(e);
-            if(e.detail.detail===""||!e.detail.detail){
+            if(e.detail.detail.length === 0){
                 this.setData({
                     isShow:false
                 });
             }else{
                 let {subway} = this.data;
-                let newArr = Array.from(new Set([...subway,...(e.detail.detail)]))
+                let newArr = subway.concat(e.detail.detail);
+                let newArray = [];
+                let obj = {};
+                for (let i = 0; i < newArr.length; i++) {
+                    if (!obj[newArr[i].routeStop]) {
+                        newArray.push(newArr[i]);
+                        obj[newArr[i].routeStop] = true;
+                    }
+                }
+                console.log(newArray);
                 this.setData({
-                   subway : newArr,
+                   subway : newArray,
                     isShow: false
                 });
             }
+        },
+        getImgs(e){
+            this.imgs = (e.detail.e).map(v=>v.url);
+        },
+        developersInput(e){
+              this.setData({
+                  developers: e.detail.value
+              })
+        },
+        greenRateInput(e){
+                this.setData({
+                    greenRate: e.detail.value
+                })
+        },
+        parkInput(e){
+                this.setData({
+                    park: e.detail.value
+                })
+        },
+        capacityInput(e){
+                this.setData({
+                    capacity: e.detail.value
+                })
+        },
+        cqYearInput(e){
+                this.setData({
+                    cqYear: e.detail.value
+                })
+        },
+        propertyCompanyInput(e){
+                this.setData({
+                    propertyCompany: e.detail.value
+                })
+        },
+        propertyFareInput(e){
+            clearTimeout(this.timeFlag);
+            this.timeFlag = setTimeout(()=>{
+                this.setData({
+                    propertyFare: e.detail.value
+                })
+            },2000);
+        },
+        addXQ(){
+            wx.showLoading({
+                title: '加载中'
+            });
+            http({
+                url: '/api/access/v1/house/residential/quarters/add',
+                method: 'POST',
+                params: {
+                    "averagePrice": this.apsh,
+                    "builtYear": this.buildingTime,
+                    "city": this.city,
+                    "constructClassifyId": this.constructClassifyId,
+                    "description": this.data.makerDesc,
+                    "designSketch": this.imgs,
+                    "detailsAddress": this.data.address,
+                    "developers": this.data.developers,
+                    "greenCoverage": this.data.greenRate,
+                    "houseLabel": this.data.labelType,
+                    "houseType":  this.houseType,
+                    "houseVideo": this.data.videoUrl,
+                    "latitude": this.latitude,
+                    "longitude": this.longitude,
+                    "metro": this.data.subway,
+                    "parkingSpace": this.data.park,
+                    "plotRatio": this.data.capacity,
+                    "property": this.data.cqYear,
+                    "propertyClassifyId": this.propertyClassifyId,
+                    "propertyCompany": this.data.propertyCompany,
+                    "propertyFee": this.data.propertyFare,
+                    "province": this.data.province,
+                    "region": this.data.district,
+                    "rentalAveragePrice": this.data.arp,
+                    "street": this.data.area,
+                    "title": this.data.title
+                }
+            }).then(res=>{
+                wx.hideLoading();
+                console.log(res)
+                wx.showToast({
+                   title: '添加成功！',
+                   icon: "success"
+                });
+                if(res.data['code'] === 500){
+                    wx.showToast({
+                        title: res.data['msg']
+                    })
+                }
+            }).catch(err=>{
+                wx.hideLoading();
+                console.log(err)
+            })
         }
     },
     lifetimes:{
+
+        created() {
+            let that = this;
+            request.getHouseProperty().then(res=>{
+                that.propertyTypeArray = res.map(v=>{
+                    return {
+                        name: v.name,
+                        id: v.id
+                    }
+                })
+            });
+            request.getConstructClassify().then(res=>{
+                that.constructClassify = res.map(v=>{
+                    return{
+                        name: v.name,
+                        id: v.id
+                    }
+                });
+            });
+            },
         ready() {
             let min_time = new Date("1900-01-01 00:00:00").getTime();
             let currentDate = new Date().getTime();

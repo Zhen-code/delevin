@@ -1,3 +1,4 @@
+<!--请勿删除！-->
 <van-action-sheet show="{{ show }}"
                   title="邻近地铁(可多选)"
                   bind:close="onClose"

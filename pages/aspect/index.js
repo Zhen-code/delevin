@@ -1,8 +1,11 @@
 // pages/watchhot/watchhot.js
+//功能已经更新，请勿删除！！！！！！！！！！！！！！！！
+//功能已经更新，请勿删除！！！！！！！！！！！！！！！！
 const {topHeight} = require('../../request/topHeight');
 const {http} = require('../../request/http');
 const {api} = require('../../request/api');
-
+var sy = 0;
+//功能已经更新，请勿删除！！！！！！！！！！！！！！！！
 Page({
 
   /**
@@ -22,7 +25,12 @@ Page({
     newsList: [],
     postList:[],
     isBottom: true,
-    isPostBottom: true
+    isPostBottom: true,
+    triggered: false,
+    isIndrag: false,
+    scrollTop: 0,
+    hei: 0,
+    desc: '下拉刷新'
   },
   pageIndex: 1,
   pageSize: 10,
@@ -31,6 +39,123 @@ Page({
   postPIndex:1,
   postPSize: 10,
   postPTotal: 0,
+  timeFlag: 1,
+  i:0,
+  start(e){
+    sy = e.touches[0].clientY;
+  },
+  end(e){
+    // console.log(e)
+    sy = 0;
+    let that = this;
+    // console.log('离开高度'+this.data.hei)
+    if(this.data.hei>80){
+      this.setData({
+        desc: '正在刷新',
+        hei: 80
+      });
+      that.pageIndex = 1;
+      if(that.data._index == 0){
+        that.getNewsList(that.classifyId);
+      }else if(that.data._index == 1){
+        that.getPostList();
+      }
+      // console.log('下拉刷新了')
+    }else{
+      this.setData({
+        desc: '下拉刷新',
+        hei: 0,
+        isIndrag: false
+      })
+    }
+  },
+  move(e){
+    // console.log(e)
+    let delta = e.touches[0].clientY - sy;
+    if(this.data.hei<=0 && delta<=0){
+      console.log('上拉')
+      return
+    }
+    if(this.data.scrollTop>0){
+      return;
+    }
+    if(this.data.scrollTop<=0){
+      // console.log('触发顶部，scrollTopo<=0')
+      console.log(this.data.scrollTop);
+      if(!this.data.isIndrag){
+        this.setData({
+          isIndrag: true
+        })
+      }
+      var tempdelta = 0;
+      if(delta>0){
+        console.log('正在下拉')
+        if(this.data.hei>80){
+          // console.log('hei='+'80')
+          this.setData({
+            desc: '松开刷新'
+          })
+          tempdelta =  this.data.hei+delta/ (this.data.hei - 80)
+        }else{
+          // console.log('hei未达到80')
+          this.setData({
+            desc: '下拉刷新'
+          });
+          tempdelta = this.data.hei+delta;
+        }
+      }else{
+        // console.log('正在上拉'+this.data.hei + delta)
+        tempdelta = this.data.hei + delta;
+        if(tempdelta<=0){
+          tempdelta = 0;
+        }
+        this.setData({
+          desc: '下拉刷新'
+        })
+      }
+      this.setData({
+        hei: tempdelta
+      })
+    }
+    sy = e.touches[0].clientY;
+  },
+  scroll(e){
+    clearTimeout(this.timeFlag);
+    this.timeFlag = setTimeout(()=>{
+      let st = e.detail.scrollTop;
+      // console.log('st='+st)
+      this.setData({
+        scrollTop: st
+      })
+    },200);
+  },
+  scrollList(){
+    this.i = (this.i)+1;
+    if(this.i>=2){
+      return
+    }
+    if(this.data._index == 0){
+      this.pageIndex++;
+      if(this.pageIndex>this.pageTotal){
+        this.i = 0;
+        this.setData({
+          isBottom: true
+        })
+      }else{
+        this.getNewsList(this.classifyId);
+      }
+    }else if(this.data._index == 1){
+      this.postPIndex++;
+      if(this.postPIndex>this.postPTotal){
+        this.i = 0;
+        this.setData({
+          isPostBottom: true
+        })
+      }else{
+        this.getPostList();
+      }
+    }
+  },
   toggleTab(e) {
     console.log(this.data.list)
     this.setData({
@@ -86,11 +211,27 @@ Page({
       this.pageTotal = res.pageTotal;
       let {newsList} = this.data;
       let resList = res.list || [];
-      this.setData({
-        newsList: [...newsList,...resList],
-        isBottom:isBottom
-      });
-    }).catch(err=>{
+      if(this.data.hei>=80){
+        this.setData({
+          newsList: resList,
+          isBottom:isBottom
+        })
+      }else{
+        this.setData({
+          newsList: [...newsList,...resList],
+          isBottom:isBottom
+        });
+      }
+    }).then(()=>{
+          this.i = 0;
+          this.setData({
+            scrollTop: 0,
+            hei: 0,
+            isIndrag: false,
+            desc: '下拉刷新'
+          })
+        }
+    ).catch(err=>{
       console.log(err);
     })
   },
@@ -156,10 +297,24 @@ Page({
       this.postPTotal = res.pageTotal;
       let {postList} = this.data;
       let resList = res.list || [];
+      if(this.data.hei>=80){
+        this.setData({
+          postList: [...postList,...resList],
+          isPostBottom:isPostBottom
+        });
+      }else{
+        this.setData({
+          postList: resList,
+          isPostBottom:isPostBottom
+        });
+      }
+    }).then(()=>{
       this.setData({
-        postList: [...postList,...resList],
-        isPostBottom:isPostBottom
-      });
+        scrollTop: 0,
+        hei: 0,
+        isIndrag: false,
+        desc: '下拉刷新'
+      })
     }).catch(err=>{
       console.log(err);
     })
@@ -168,7 +323,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.stopPullDownRefresh();
     this.getArticleClassify();
     this.getPostList();
   },
@@ -198,40 +352,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    this.pageIndex = 1;
-    this.onLoad();
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    if(this.data._index == 0){
-      this.pageIndex++;
-      if(this.pageIndex>this.pageTotal){
-        this.setData({
-          isBottom: true
-        })
-      }else{
-        this.getNewsList(this.classifyId);
-      }
-    }else if(this.data._index == 1){
-      this.postPIndex++;
-      if(this.postPIndex>this.postPTotal){
-        this.setData({
-          isPostBottom: true
-        })
-      }else{
-        this.getPostList();
-      }
-    }
 
   },
 

@@ -1,0 +1,12 @@
+<!--请勿删除！-->
+<van-uploader
+              name="videoFile"
+              accept="video"
+              deletable="{{ true }}"
+              capture="['album', 'camera']"
+              max-count="1"
+              compressed="true"
+              bind:after-read="afterRead"
+              bind:delete="deleteImg">
+    <van-image width="80" height="80" src="/combination/image/icon_add_120@2x.png" />
+</van-uploader>

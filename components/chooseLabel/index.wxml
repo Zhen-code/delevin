@@ -1,3 +1,4 @@
+<!--请勿删除！-->
 <van-action-sheet show="{{show}}" title="房源标签(最多5个)" bind:close="close">
     <view class="sheetWrap">
         <view class="wrap-top">

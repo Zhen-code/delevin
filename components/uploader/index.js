@@ -65,10 +65,9 @@ Component({
 							duration: 1000
 						})
 					},
-					complete() {
-						that.triggerEvent('getImgs', {
-							e: that.data.fileList
-						});
+					complete(){
+						console.log(that.data);
+						that.triggerEvent('getImgs',{e:that.data.fileList});
 					}
 				});
 				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式

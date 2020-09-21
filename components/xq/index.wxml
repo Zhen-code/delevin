@@ -45,7 +45,7 @@
             <view class="tab-item-right">
                 <view class="houseType-wrap">
                     <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
-                        {{item.name}}
+                        {{item}}
                         <van-icon name="close"
                                   data-index="{{index}}"
                                   bind:tap="deleteLabel"/>
@@ -101,19 +101,19 @@
         <view class="tab-item">
             <view class="tab-item-left">产权年限</view>
             <view class="tab-item-right">
-               <input value="{{cqYear}}" type="number"></input><text class="common-text">年</text>
+               <input value="{{cqYear}}" type="number" bind:input="cqYearInput"></input><text class="common-text">年</text>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">开发商</view>
             <view class="tab-item-right">
-                <input value="{{developers}}" type="text"></input>
+                <input value="{{developers}}" type="text" bind:input="developersInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">容积率</view>
             <view class="tab-item-right">
-                <input value="{{capacity}}" type="text"></input>
+                <input value="{{capacity}}" type="text" bind:input="capacityInput"></input>
             </view>
         </view>
     </view>
@@ -122,25 +122,25 @@
         <view class="tab-item">
             <view class="tab-item-left">绿化率</view>
             <view class="tab-item-right">
-                <input value="{{greenRate}}" type="text"></input>
+                <input value="{{greenRate}}" type="text" bind:input="greenRateInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">停车位</view>
             <view class="tab-item-right">
-                <input value="{{park}}" type="text"></input>
+                <input value="{{park}}" type="text" bind:input="parkInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">物业公司</view>
             <view class="tab-item-right">
-                <input value="{{propertyCompany}}" type="text"></input>
+                <input value="{{propertyCompany}}" type="text" bind:input="propertyCompanyInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">物业费</view>
             <view class="tab-item-right">
-                <input value="{{propertyFare}}" type="text"></input>
+                <input value="{{propertyFare}}" type="text" bind:input="propertyFareInput"></input>
             </view>
         </view>
         <view class="tab-item">
@@ -157,7 +157,7 @@
         <view class="tab-item">
             <view class="tab-item-left">所在区域</view>
             <view class="tab-item-right">
-                <input value="{{area}}" type="text"></input>
+                <input value="{{area}}" type="text" class="areaInput"></input>
             </view>
         </view>
         <view class="tab-item">
@@ -165,7 +165,7 @@
             <view class="tab-item-right">
                 <view class="houseType-wrap">
                     <view class="houseType-item" wx:for="{{subway}}" wx:key="*this">
-                        {{item}}
+                        {{item.lineName+''+item.routeStop}}
                         <van-icon name="close"
                                   data-index="{{index}}"
                                   bind:tap="deleteSubWay"/>
@@ -197,15 +197,23 @@
         </view>
         <view class="tab-item-top">房源视频</view>
         <view class="upload">
-            <uploader />
+           <uploaderVideo bind:getVideoUrl="getVideoUrl"/>
+            <view class="videoWrap" wx:if="{{videoUrl!==''}}">
+                <video src="{{videoUrl}}"
+                       show-mute-btn
+                       enable-play-gesture
+                       vslide-gesture
+                       object-fit="contain"
+                ></video>
+            </view>
         </view>
         <view class="tab-item-top">效果图</view>
         <view class="upload">
-            <uploader count="50"/>
+            <uploader count="50" bind:getImgs="getImgs"/>
         </view>
     </view>
     <view class="line"></view>
-    <view class="submitBtn">添加房源</view>
+    <view class="submitBtn" catch:tap="addXQ">添加房源</view>
     <view class="{{showTimePick?'timePickerActive':'timePicker'}}">
     <van-datetime-picker
             toolbar-class="toolbar"
@@ -225,6 +233,6 @@
         show="{{show}}"
         bind:onClose="onClose"/>
 
-<chooseSubWay show="{{isShow}}" bind:close="close"/>
-<chooseLabel show="{{showlabel}}" bind:closeLabel="closeLabel"/>
-<chooseIndoorType show="{{ showIndoor}}" bind:closeIndoor="closeIndoor"/>
+<chooseSubWay wx:if="{{isShow}}" show="{{isShow}}" bind:close="close" province="{{province}}" city="{{city}}"/>
+<chooseLabel wx:if="{{showlabel}}" show="{{showlabel}}" bind:closeLabel="closeLabel"/>
+<chooseIndoorType wx:if="{{showIndoor}}" show="{{ showIndoor}}" bind:closeIndoor="closeIndoor"/>

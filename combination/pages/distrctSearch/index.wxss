@@ -76,4 +76,21 @@
     margin: 26rpx 0;
     text-align: center;
 }
-
+.message-view{
+    width: 100%;
+    height: 80vh;
+    box-sizing: border-box;
+}
+.view-list{
+    width: 100%;
+    height: 100%;
+}
+.noRefresh{
+    display: none;
+}
+.refresh{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

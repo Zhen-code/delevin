@@ -15,7 +15,9 @@ const http = (config) => {
       header: config.header ? Object.assign({
         Authorization: wx.getStorageSync('token')
       }, config.header) : {
-        Authorization: wx.getStorageSync('token') || '',
+        // Authorization: wx.getStorageSync('token') || '',
+        // Authorization: 'token-FPeYaxOQhmxPmUnwNAdKZwNsdNKMlGxPmJtaWnfeLvetjAby',
+        Authorization: 'token-ZVPCXWAkJKKXlFgVnQdwneNPwQVYGxncHMBHmfayphGbiXjZ'
       },
       method: config.method,
       success: function (res) {
@@ -27,12 +29,12 @@ const http = (config) => {
             title: "为确保能向您提供最准确的服务，请重新登录",
             icon: "none"
           });
-          reject("请重新登录");
-          setTimeout(()=>{
-            wx.navigateTo({
-              url: "/pages/login/index"
-            })
-          },1500)
+          // reject("请重新登录");
+          // setTimeout(()=>{
+          //   wx.navigateTo({
+          //     url: "/pages/login/index"
+          //   })
+          // },1500)
         } else {
           reject(res)
           wx.showToast({
@@ -52,7 +54,7 @@ const http = (config) => {
       },
       complete: function () {
         setTimeout(() => {
-          wx.hideLoading();
+          // wx.hideLoading();
         }, 1000)
       }
     });

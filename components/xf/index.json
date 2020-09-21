@@ -6,6 +6,7 @@
     "uploader": "/components/uploader/index",
     "chooseSubWay": "/components/chooseSubWay/index",
     "chooseLabel": "/components/chooseLabel/index",
-    "chooseIndoorType": "/components/chooseIndoorType/index"
+    "chooseIndoorType": "/components/chooseIndoorType/index",
+    "uploaderVideo": "/components/uploadVideo/index"
   }
 }
