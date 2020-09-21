@@ -1,4 +1,5 @@
-// combination/pages/homepage/index.js
+// combination/pages/chooseAnInstitution/index.js
+const app = getApp()
 const {
 	request
 } = require('../../../request/request.js');
@@ -9,30 +10,62 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		top:0,
 		paddingTop: topHeight,
 		bgColor: {
-			"color": false,
-			"border": false,
+			"color": true,
+			"border": false
 		},
-		agentId:"",
-		userInfo: {},
+		placeholder:"搜索机构",
+		keyword:'',
+		list: [],
+		pageIndex: 1,
+		pageSize: 12,
+		scrollTop: 0,
+		triggered: false,
 	},
 
-  onPageScroll(e) {
-    this.setData({
-      top: Number(e.scrollTop)
-    })
+	search(e) {
+		this.setData({
+			list:[],
+			pageIndex:1,
+			keyword:e.detail.val,
+		},()=>{
+			this.getData()
+		})
 	},
-	
-	getData(){
-		request.brokerHome({
-			"agentId":this.data.agentId
-		}).then((res)=>{
+
+	scrollTop() {
+		wx.pageScrollTo({
+			scrollTop: 0
+		})
+	},
+
+	topList() {
+		this.setData({
+			triggered: false,
+		})
+		this.getData()
+	},
+
+	//滚动加载
+	scrollList() {
+		this.getData()
+	},
+
+	getData() {
+		let {keyword,pageSize,pageIndex,list,} = this.data;
+		request.storeList({
+			"keyword":keyword,
+			"pageSize": pageSize,
+			"pageIndex": pageIndex,
+		}).then((res) => {
+			let data = list;
+			data.push(...res.list)
 			this.setData({
-				userInfo:res
+				list: data,
+				pageIndex: pageIndex + 1,
 			})
-		}).catch((err)=>{
+		}).catch((err) => {
 			wx.showToast({
 				title: '请求失败',
 				icon: 'none',
@@ -41,10 +74,10 @@ Page({
 		})
 	},
 
-	toPhone(e){
-		let phone = e.currentTarget.dataset.item;
-		wx.makePhoneCall({
-			phoneNumber: phone
+	backData(e){
+		app.globalData.storeInfo = e.currentTarget.dataset;
+		wx.navigateBack({
+			delta: -1
 		})
 	},
 
@@ -52,11 +85,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		this.setData({
-			agentId:options.agentId,
-		},()=>{
-			this.getData()
-		})
+		this.getData();
 	},
 
 	/**

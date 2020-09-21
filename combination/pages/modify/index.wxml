@@ -5,12 +5,12 @@
 	</view>
 	<text class="title">个人介绍</text>
 	<view class="bottom">
-		<textarea class="textarea" bindinput="getText" maxlength="30" placeholder="请输入您的内容…"></textarea>
+		<textarea class="textarea" value="{{textarea}}" bindinput="getText" maxlength="30" placeholder="请输入您的内容…"></textarea>
 		<text class="index">{{index}}/30</text>
 	</view>
 
 	<view class="footer">
-		<text class="footerText">提交</text>
+		<text class="footerText" bindtap="submit">提交</text>
 	</view>
 </view>
 

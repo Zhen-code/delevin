@@ -11,6 +11,7 @@ Page({
 	 */
 	data: {
 		show: false,
+		userInfo: {},
 		paddingTop: topHeight,
 		tabTitle: "切换至经纪端",
 	},
@@ -68,10 +69,14 @@ Page({
 		})
 	},
 
-	tabBroker() {
-		wx.navigateTo({
-			url: `/combination/pages/broker/index`,
-		})
+	tabBroker(e) {
+		if (e.currentTarget.dataset.item === "AGENT") {
+			this.getTab()
+		} else {
+			wx.navigateTo({
+				url: `/combination/pages/broker/index`,
+			})
+		}
 	},
 
 	myCollection() {
@@ -88,32 +93,52 @@ Page({
 		})
 	},
 
-	privacyPolicy() {
-		let link = 'www.baidu.com';
-		wx.navigateTo({
-			url: `/combination/pages/webView/index?link=${link}`,
+	privacyPolicy(e) {
+		let obj = {}
+		if (!this.data.show) {
+			obj.type = 'USER_PRIVACY_POLICY';
+			obj.title = '用户隐私政策'
+		} else {
+			obj.type = 'BROKER_PRIVACY_POLICY';
+			obj.title = '经纪人隐私政策'
+		}
+		request.link({
+			'type': obj.type
+		}).then((res) => {
+			obj.type = res.type;
+			obj.link = res.link;
+			let item = JSON.stringify(obj)
+			wx.navigateTo({
+				url: `/combination/pages/webView/index?item=${item}`,
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '数据错误',
+				icon: 'none',
+				duration: 2500
+			})
 		})
 	},
 
 	customerService() {
-		wx.makePhoneCall({
-			phoneNumber: '17620835317'
+		request.phone().then((res) => {
+			wx.makePhoneCall({
+				phoneNumber: res.serviceHotLine
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '数据错误',
+				icon: 'none',
+				duration: 2500
+			})
 		})
-		// request.getPhome().then((res) => {
-
-		// }).catch((err) => {
-		// 	wx.showToast({
-		// 		title: err,
-		// 		icon: 'none',
-		// 		duration: 2500
-		// 	})
-		// })
 	},
 
 	toModify(e) {
+		let item = JSON.stringify(this.data.userInfo)
 		if (e.currentTarget.dataset.item) {
 			wx.navigateTo({
-				url: '/combination/pages/modify/index',
+				url: '/combination/pages/modify/index?item=' + item,
 			})
 		}
 	},
@@ -131,8 +156,19 @@ Page({
 	},
 
 	getData() {
-		let than = this;
 		request.information().then((res) => {
+			switch (res.resultStatus) {
+				case 'AUDITING':
+					res.resultStatusType = '审核中'
+					break;
+				case 'PASS':
+					res.resultStatusType = '审核通过'
+					break;
+				case 'REFUSE':
+					res.resultStatusType = '审核拒绝'
+					break;
+				default:
+			}
 			this.setData({
 				userInfo: res,
 			})
@@ -145,7 +181,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		this.getData()
+
 	},
 
 	/**
@@ -159,7 +195,7 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		this.getData()
 	},
 
 	/**

@@ -11,8 +11,9 @@
 						<text class="mine-content-top-left-type" wx:if="{{show}}">{{userInfo.storeName}}</text>
 					</view>
 				</view>
-				<view class="mine-content-top-rigth" wx:if="{{!show}}" bindtap="tabBroker">
-					<text class="mine-content-top-rigth-text">认证为经纪人</text>
+				<view class="mine-content-top-rigth" wx:if="{{!show}}" data-item="{{userInfo.identity}}" bindtap="tabBroker">
+					<text class="mine-content-top-rigth-text" wx:if="{{userInfo.identity === 'MEMBER'}}">{{userInfo.resultStatusType || '认证为经纪人'}}</text>
+					<text class="mine-content-top-rigth-text" wx:if="{{userInfo.identity === 'AGENT'}}">切换经纪端</text>
 					<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 				</view>
 				<view class="mine-content-top-rigth" wx:if="{{show}}" bindtap="toShareItCode">
@@ -21,22 +22,6 @@
 			</view>
 			<text class="introductionText" wx:if="{{show}}">{{userInfo.synopsis}}</text>
 		</view>
-
-		<!-- <view class="mine-content-top" wx:if="{{show}}">
-			<view class="mine-content-top-box">
-				<view class="mine-content-top-left" bindtap="toModify">
-					<van-image round width="100rpx" height="100rpx" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-					<view class="mine-content-top-left-title">
-						<text class="mine-content-top-left-text">楼市君</text>
-						<text class="mine-content-top-left-type">合富置业</text>
-					</view>
-				</view>
-				<view class="mine-content-top-rigth" bindtap="toShareItCode">
-					<image class="mine-content-top-rigth-image" src="/assets/img_qrcode_270@2x.png"></image>
-				</view>
-			</view>
-			<text class="introductionText">个人介绍介绍介绍效机增历果系别好王常属五史导效气且治前风</text>
-		</view> -->
 
 		<view class="mine-content-row" bindtap="myPackage" wx:if="{{show}}">
 			<view class="mine-content-row-left">
@@ -97,6 +82,6 @@
 			<text>退出登录</text>
 		</view>
 
-		<view class="mine-content-bottom" bindtap="getTab">{{tabTitle}}</view>
+		<view class="mine-content-bottom"wx:if="{{show}}" bindtap="getTab">{{tabTitle}}</view>
 	</view>
 </view>

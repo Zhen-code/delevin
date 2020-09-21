@@ -10,6 +10,8 @@
      info: '/api/access/v1/member/info',
      infoUpData: '/api/access/v1/user/member/info/update',
      code: '/api/access/v1/member/captcha/',
+     phone:'/api/access/v1/member/service-hot-line/list',
+     link:'/api/access/v1/app/link',
    },
 
    // 上传图片/视频
@@ -25,6 +27,13 @@
      myFavoritesOther: '/api/access/v1/member/collection/list/',
    },
 
+   //浏览
+   browse:{
+    browseListingsList:'/api/access/v1/member/browsing/history/house/list/',
+    browseOtherList:'/api/access/v1/member/browsing/history/list/',
+   },
+
+
    //房源
    listings: {
      newListingsList: '/api/access/v1/house/introduction/estate/list',
@@ -39,6 +48,11 @@
      quartersListings:'/api/access/v1/house/residential/quarters/list',
      quartersListingsDetails:'/api/access/v1/house/residential/quarters/details/',
      likeListings:'/api/access/v1/house/guess/like/list',
+   },
+
+   // 门店
+   operation:{
+    storeList :'/api/access/v1/store/list'
    },
 
    // 消息
@@ -69,11 +83,11 @@
    broker: {
     application:'/api/access/v1/member/agent/certified',
     result:'/api/access/v1/member/agent/certified/result',
-    home:'/api/access/v1/member/agent/details/{agentId}',
+    home:'/api/access/v1/member/agent/details/',
     delete:'/api/access/v1/house/around/del',
-    list:'/api/access/v1/house/around/list/{agentId}',
+    list:'/api/access/v1/house/around/list/',
     promote:'/api/access/v1/house/around/promotion',
-       constructList:'/api/access/v1/house/construct/classify/list',//建筑类型列表
+    constructList:'/api/access/v1/house/construct/classify/list',//建筑类型列表
    },
  }
  module.exports = {

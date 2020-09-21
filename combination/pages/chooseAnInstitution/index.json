@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navbar": "/components/nav/index",
+    "search":"/components/search/index",
+    "noData":"/components/noData/index"
+  }
+}

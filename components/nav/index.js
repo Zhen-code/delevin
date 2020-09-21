@@ -90,8 +90,8 @@ Component({
       })
     },
     toHome() {
-      wx.navigateTo({
-        url: `/pages/index/index`
+      wx.switchTab({
+        url: `/pages/home/index`
       })
     },
   }

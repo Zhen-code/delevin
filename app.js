@@ -82,6 +82,7 @@ App({
     districtTitle: '', //小区标题
     state:true,
     city:'',
+    storeInfo:{},
   },
   topHeight: {
     height: 0,

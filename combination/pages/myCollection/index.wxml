@@ -1,5 +1,5 @@
 <!--combination/pages/myCollection/index.wxml-->
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="我的收藏" />
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
 <view class="view" style="padding-top:{{paddingTop}}px">
 	<view class="top">
 		<text class="top-tab {{topTabIndex === 0?'top-tab-action':''}}" data-index="{{0}}" bindtap="topTap">房源</text>

@@ -18,6 +18,10 @@
 	position: relative;
 }
 
+.hide{
+	display: none;
+}
+
 .top-image {
 	width: 686rpx;
 	height: 152rpx;

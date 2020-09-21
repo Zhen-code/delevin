@@ -27,6 +27,7 @@ Page({
 		scrollTop: 0,
 		triggered: false,
 		favorites: "取消收藏",
+		title:'',
 	},
 
 	onClose(event) {
@@ -178,10 +179,18 @@ Page({
 
 	getData() {
 		let requests = '';
-		if (this.data.topTabIndex === 0) {
-			requests = request.myFavoritesHouse
-		} else {
-			requests = request.myFavoritesOther
+		if(this.data.title === '我的收藏'){
+			if (this.data.topTabIndex === 0) {
+				requests = request.myFavoritesHouse
+			} else {
+				requests = request.myFavoritesOther
+			}
+		}else{
+			if (this.data.topTabIndex === 0) {
+				requests = request.browseListingsList
+			} else {
+				requests = request.browseOtherList
+			}
 		}
 		requests({
 			"pageSize": this.data.pageSize,
@@ -211,6 +220,7 @@ Page({
 		this.setData({
 			tabItem: index === 0 ? data.tab1 : data.tab2,
 			topTabIndex: index,
+			title:index === 0?'我的收藏':'浏览记录'
 		},()=>{
 			this.getData()
 		})

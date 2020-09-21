@@ -1,2 +1,4 @@
 <!--combination/pages/webView/index.wxml-->
-<web-view src="{{link}}"></web-view>
+<view class="view">
+	<web-view class="webView" src="{{link}}"></web-view>
+</view>

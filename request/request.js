@@ -18,10 +18,30 @@ const request = {
       method: "GET",
     });
   },
+  infoUpData: (params) => {
+    return http({
+      url: api.information.infoUpData,
+      method: "POST",
+      params:params
+    });
+  },
   code: (params) => {
     return http({
       url: api.information.code + params.phone,
       method: "POST",
+    });
+  },
+  phone: () => {
+    return http({
+      url: api.information.phone,
+      method: "GET",
+    });
+  },
+  link: (params) => {
+    return http({
+      url: api.information.link,
+      method: "POST",
+      params:params,
     });
   },
 
@@ -150,6 +170,29 @@ const request = {
       params: params,
     });
   },
+  browseListingsList: (params) => {
+    return http({
+      url: api.browse.browseListingsList + params.type,
+      method: "GET",
+      params: params,
+    });
+  },
+  browseOtherList: (params) => {
+    return http({
+      url: api.browse.browseOtherList + params.type,
+      method: "GET",
+      params: params,
+    });
+  },
+
+  // 运营
+  storeList: (params) => {
+    return http({
+      url: api.operation.storeList,
+      method: "GET",
+      params: params,
+    });
+  },
 
   //用户首页
   banner: (params) => {
@@ -196,11 +239,40 @@ const request = {
     });
   },
 
+  application:(params)=> {
+    return http({
+      url: api.broker.application,
+      method: 'POST',
+      params: params
+    })
+  },
+
+  result:()=> {
+    return http({
+      url: api.broker.result,
+      method: 'GET',
+    })
+  },
+
   constructClassify: (params)=> {
     return http({
       url: api.broker.constructList,
       method: 'GET',
       params: params
+    })
+  },
+
+  brokerHome: (params)=> {
+    return http({
+      url: api.broker.home+params.agentId,
+      method: 'GET',
+    })
+  },
+  
+  brokerList: (params)=> {
+    return http({
+      url: api.broker.list+params.agentId,
+      method: 'GET',
     })
   }
 

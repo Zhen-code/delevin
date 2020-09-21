@@ -44,6 +44,7 @@ Page({
 			}
 		],
 		bannerList: [],
+		brokerList:[],
 		newsList: [],
 		areaList: provincCityDistrict,
 		tabItem: ['新房', '二手房'],
@@ -65,9 +66,31 @@ Page({
 		request.information().then((res) => {
 			this.setData({
 				userInfo: res,
+			},()=>{
+				this.getBrokerList()
 			})
 		}).catch((err) => {
-			console.log(err)
+			wx.showToast({
+				title: '数据错误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	getBrokerList() {
+		request.brokerList({
+			agentId:this.data.userInfo.agentId
+		}).then((res) => {
+			this.setData({
+				brokerList: res,
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '数据错误',
+				icon: 'none',
+				duration: 2500
+			})
 		})
 	},
 
@@ -365,8 +388,15 @@ Page({
 	},
 
 	toHomepage() {
+		let agentId = this.data.userInfo.agentId
 		wx.navigateTo({
-			url: '/combination/pages/homepage/index',
+			url: `/combination/pages/homepage/index?agentId=${agentId}`,
+		})
+	},
+
+	toAddHouseOrigin(){
+		wx.navigateTo({
+			url: '/combination/pages/addHouseOrigin/index',
 		})
 	},
 

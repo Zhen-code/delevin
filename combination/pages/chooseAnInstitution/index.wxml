@@ -1,0 +1,18 @@
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="选择机构" />
+<view class="view" style="padding-top:{{paddingTop}}px">
+	<view class="view-search">
+		<search isCancel bind:search="search" bind:firmInput="search" placeholder="{{placeholder}}"></search>
+	</view>
+	<scroll-view wx:if="{{list.length !== 0}}" class="view-list" style="top:({{(paddingTop+40) * 2}}rpx);height:calc(100vh - {{paddingTop}}px - 85rpx)"
+		refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}"
+		bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
+		<block wx:for="{{list}}" wx:key="index">
+			<view class="view-row" data-item="{{item}}" bindtap="backData">
+				<text class="view-row-name">{{item.name}}</text>
+				<text class="view-row-address">{{item.detailedAddress}}</text>
+			</view>
+		</block>
+	</scroll-view>
+</view>
+
+<noData wx:if="{{list.length === 0}}" height="{{100}}"></noData>

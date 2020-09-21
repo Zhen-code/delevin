@@ -1,11 +1,18 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="获客文章" />
 <view class="view" style="padding-top:{{paddingTop}}px">
+
+	<!-- <view class="tab">
+		<text class="tab-item action">篮球</text>
+		<text class="tab-item">篮球</text>
+		<text class="tab-item">篮球</text>
+		<text class="tab-item">篮球</text>
+		<text class="tab-item">篮球</text>
+	</view> -->
+
 	<van-tabs nav-class="scrollTab" color="#FFD854" active="{{ active }}" bind:change="onChange">
-		<van-tab wx:for="{{list}}" wx:key="index" data-index="{{index}}" title="{{item.title}}" tab-class="tabStyle" tab-active-class="tabActiveStyle">
+		<van-tab wx:for="{{list}}" wx:key="index" data-index="{{index}}" title="{{item.title}}" tab-class="tabStyle"
+			tab-active-class="tabActiveStyle">
 			<view class="aspectItem">
-				<aspectItem></aspectItem>
-				<aspectItem></aspectItem>
-				<aspectItem></aspectItem>
 				<aspectItem></aspectItem>
 			</view>
 			<view class="home-bottom">

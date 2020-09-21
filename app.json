@@ -7,9 +7,9 @@
 		"pages/mine/index"
 	],
 	"tabBar": {
-    "color": "#999999",
+		"color": "#999999",
 		"selectedColor": "#333333",
-    "backgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff",
 		"list": [
 			{
 				"pagePath": "pages/home/index",
@@ -70,7 +70,8 @@
 				"pages/customerPoster/index",
 				"pages/customerArticles/index",
 				"pages/distrctSearch/index",
-				"pages/replyComment/index"
+				"pages/replyComment/index",
+				"pages/chooseAnInstitution/index"
 			]
 		}
 	],
@@ -118,7 +119,7 @@
 	"sitemapLocation": "sitemap.json",
 	"plugins": {
 		"chooseLocation": {
-		"version": "1.0.5",
+			"version": "1.0.5",
 			"provider": "wx76a9a06e5b4e693e"
 		}
 	}

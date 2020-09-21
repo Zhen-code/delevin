@@ -9,6 +9,10 @@ Component({
 		count: {
 			type: Number,
 			value: 1
+		},
+		fileList:{
+			type:Array,
+			value:[]
 		}
 	},
 
@@ -35,31 +39,36 @@ Component({
 			console.log(file)
 			for (let i = 0; i < pathArray.length; i++) {
 				wx.uploadFile({
-					url: domain+api.upload.imgVideoUpload, // 仅为示例，非真实的接口地址
+					url: domain + api.upload.imgVideoUpload, // 仅为示例，非真实的接口地址
 					filePath: pathArray[i],
 					name: 'file',
 					success: (response) => {
-						console.log(response)
 						let res = JSON.parse(response.data);
-						if(res.code === 200){
-							let {fileUri} = res.data;
-							console.log(fileUri);
-							let {fileList} = this.data;
+						if (res.code === 200) {
+							let {
+								fileUri
+							} = res.data;
+							let {
+								fileList
+							} = this.data;
 							this.setData({
-								fileList: [...fileList,{url:fileUri}]
+								fileList: [...fileList, {
+									url: fileUri
+								}]
 							});
 						}
 					},
 					fail(err) {
 						wx.showToast({
-										title: '上传失败！',
-										icon: 'none',
-										duration: 1000
-									})
+							title: '上传失败！',
+							icon: 'none',
+							duration: 1000
+						})
 					},
-					complete(){
-						console.log(that.data)
-						that.triggerEvent('getImgs',{e:that.data.fileList});
+					complete() {
+						that.triggerEvent('getImgs', {
+							e: that.data.fileList
+						});
 					}
 				});
 				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
