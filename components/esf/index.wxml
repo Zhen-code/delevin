@@ -4,13 +4,14 @@
         <view class="tab-item">
             <view class="tab-item-left">房源标题</view>
             <view class="tab-item-right">
-                <input value="{{name}}" bind:input="nameInput"></input>
+                <input value="{{name}}" placeholder="请输入小区标题" bind:input="nameInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">所属小区</view>
             <view class="tab-item-right">
-                <text class="common-text">{{districtTitle}}</text>
+                <text class="common-text" wx:if="{{districtTitle!==''}}">{{districtTitle}}</text>
+                <input wx:else placeholder="请选择所属小区" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -22,14 +23,14 @@
         <view class="tab-item">
             <view class="tab-item-left">总价</view>
             <view class="tab-item-right">
-                <input value="{{totalPrice}}" bind:input="totalPriceInput" type="digit"></input>
+                <input value="{{totalPrice}}" placeholder="请输入总价" bind:input="totalPriceInput" type="digit"></input>
                 <text class="common-text">万元</text>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">房源标签</view>
             <view class="tab-item-right">
-                <view class="houseType-wrap">
+                <view class="houseType-wrap" wx:if="{{labelType.length!==0}}">
                     <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
                         {{item}}
                         <van-icon name="close"
@@ -37,6 +38,7 @@
                                   bind:tap="deleteLabel"/>
                     </view>
                 </view>
+                <input wx:else placeholder="请选择标签" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -48,7 +50,7 @@
         <view class="tab-item">
             <view class="tab-item-left">户型</view>
             <view class="tab-item-right">
-                <input value="{{indoorType}}" bind:input="indoorTypeInput" type="number" class="indoor-input"></input><text class="common-text">室</text>
+                <input value="{{indoorType}}" placeholder="请输入" bind:input="indoorTypeInput" type="number" class="indoor-input"></input><text class="common-text">室</text>
                 <input value="{{room}}" bind:input="roomInput" type="number" class="indoor-input"></input><text class="common-text">房</text>
                 <input value="{{kitchen}}" bind:input="kitchenInput" type="number" class="indoor-input"></input><text class="common-text">厨</text>
                 <input value="{{wei}}" bind:input="weiInput" type="number" class="indoor-input"></input><text class="common-text">卫</text>
@@ -60,7 +62,7 @@
         <view class="tab-item">
             <view class="tab-item-left">建筑面积</view>
             <view class="tab-item-right">
-                <input value="{{buildingArea}}" bind:input="buildingAreaInput" type="number"></input>
+                <input value="{{buildingArea}}" placeholder="请输入建筑面积" bind:input="buildingAreaInput" type="number"></input>
             </view>
         </view>
         <view class="tab-item">
@@ -123,7 +125,8 @@
         <view class="tab-item">
             <view class="tab-item-left">详细地址</view>
             <view class="tab-item-right">
-                <text class="common-text">{{address}}</text>
+                <text class="common-text" wx:if="{{address!==''}}">{{address}}</text>
+                <input wx:else placeholder="请选择地址" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"

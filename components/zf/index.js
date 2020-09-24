@@ -56,15 +56,15 @@ Component({
             {name:'西南',value:'SOUTHWEST'},{name:'东南',value:'SOUTHEAST'},{name:'东西南',value:'EAST_WEST_SOUTH'},{name:'东南北',value:'SOUTHEAST_NORTH'},{name:'西南北',value:'SOUTHWEST_NORTH'},
             {name:'东西北',value:'EAST_WEST_NORTH'}, {name:'东南西北',value:'SOUTHEAST_NORTHWEST'}
         ],
-        name:''
+        name:'',
+        imgs: [],
     },
     timeFlag: 1,
-    imgs: [],
     rentTypeVal: '',
     orientValue:'',
     methods: {
         getImgs(e){
-            this.imgs = (e.detail.e).map(v=>v.url);
+            this.data.imgs = (e.detail.e).map(v=>v.url);
         },
         confirm(e){
             let time = new Date(e.detail);
@@ -89,54 +89,111 @@ Component({
             })
         },
         addHouse(){
-            wx.showLoading({
-                title: '加载中'
-            });
-          http({
-              url: '/api/access/v1/house/tenancy/add',
-              method: 'POST',
-              params:{
-                  "builtYear": Number(this.data.buildingTime),
-                  "city": this.data.city,
-                  "decorationStatus": this.data.zxCase,
-                  "description": this.data.makerDesc,
-                  "designSketch": this.imgs,
-                  "detailsAddress": this.data.address,
-                  "elevator": this.data.elevator,
-                  "floorCondition": this.data.floorStatus,
-                  "floorage": Number(this.data.buildingArea),
-                  "houseDisposal": this.data.buildingConfig,
-                  "houseHall": this.data.room,
-                  "houseKitchen": this.data.kitchen,
-                  "houseLabel": this.data.labelType,
-                  "houseToilet": this.data.wei,
-                  "houseType": this.data.indoorType,
-                  "houseVideo": this.data.videoUrl,
-                  "latitude": this.data.latitude,
-                  "longitude": this.data.longitude,
-                  "metro": this.data.subway,
-                  "monthRent": this.data.monthPrice,
-                  "payMethod": this.data.payWay,
-                  "province": this.data.province,
-                  "quartersId": this.data.districtId,
-                  "region": this.data.region,
-                  "rentType": this.rentTypeVal,
-                  "street": this.data.address,
-                  "title": this.data.name,
-                  "orientation":this.orientValue
-              }
-          }).then(res=>{
-              wx.hideLoading();
-              console.log(res)
-              wx.showToast({
-                  title: '添加成功！',
-                  icon: "success",
-                  duration:2000
-              });
-          }).catch(err=>{
-              wx.hideLoading();
-              console.log(err)
-          })
+            if(this.data.name===''){
+                wx.showToast({
+                    title: '请输入房源标题!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.monthPrice === ''){
+                wx.showToast({
+                    title: '请输入月租!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.labelType.length === 0){
+                wx.showToast({
+                    title: '请选择房源标签!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.rentType === ''){
+                wx.showToast({
+                    title: '请选择出租方式!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.districtTitle === ''){
+                wx.showToast({
+                    title: '请选择所属小区!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.indoorTypeInput === ''){
+                wx.showToast({
+                    title: '请输入户型室!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.buildingArea === ''){
+                wx.showToast({
+                    title: '请输入建筑面积!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.address === '' || this.data.area===''){
+                wx.showToast({
+                    title: '请选择地址与所在区域!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.imgs.length===0){
+                wx.showToast({
+                    title: '请上传至少一张效果图!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else{
+                return
+                wx.showLoading({
+                    title: '加载中'
+                });
+                http({
+                    url: '/api/access/v1/house/tenancy/add',
+                    method: 'POST',
+                    params:{
+                        "builtYear": Number(this.data.buildingTime),
+                        "city": this.data.city,
+                        "decorationStatus": this.data.zxCase,
+                        "description": this.data.makerDesc,
+                        "designSketch": this.data.imgs,
+                        "detailsAddress": this.data.address,
+                        "elevator": this.data.elevator,
+                        "floorCondition": this.data.floorStatus,
+                        "floorage": Number(this.data.buildingArea),
+                        "houseDisposal": this.data.buildingConfig,
+                        "houseHall": this.data.room,
+                        "houseKitchen": this.data.kitchen,
+                        "houseLabel": this.data.labelType,
+                        "houseToilet": this.data.wei,
+                        "houseType": this.data.indoorType,
+                        "houseVideo": this.data.videoUrl,
+                        "latitude": this.data.latitude,
+                        "longitude": this.data.longitude,
+                        "metro": this.data.subway,
+                        "monthRent": this.data.monthPrice,
+                        "payMethod": this.data.payWay,
+                        "province": this.data.province,
+                        "quartersId": this.data.districtId,
+                        "region": this.data.region,
+                        "rentType": this.rentTypeVal,
+                        "street": this.data.address,
+                        "title": this.data.name,
+                        "orientation":this.orientValue
+                    }
+                }).then(res=>{
+                    wx.hideLoading();
+                    console.log(res)
+                    wx.showToast({
+                        title: '添加成功！',
+                        icon: "success",
+                        duration:2000
+                    });
+                }).catch(err=>{
+                    wx.hideLoading();
+                    console.log(err)
+                })
+            }
         },
         goTextArea(){
             this.setData({
@@ -226,12 +283,9 @@ Component({
             },500);
         },
         buildingAreaInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     buildingArea: e.detail.value
                 })
-            },500);
         },
         buildingConfigInput(e){
             clearTimeout(this.timeFlag);

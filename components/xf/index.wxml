@@ -4,13 +4,13 @@
         <view class="tab-item">
             <view class="tab-item-left">房源标题</view>
             <view class="tab-item-right">
-                <input value="{{name}}" bind:input="nameInput"></input>
+                <input value="{{name}}" placeholder="请输入房源标题" bind:input="nameInput"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">户型</view>
             <view class="tab-item-right">
-                <view class="houseType-wrap">
+                <view class="houseType-wrap" wx:if="{{houseType.length!==0}}">
                     <view class="houseType-item" wx:for="{{houseType}}" wx:key="*this">
                         {{item.name}}
                         <van-icon name="close"
@@ -18,6 +18,7 @@
                                   bind:tap="deleteType"/>
                     </view>
                 </view>
+                <input disabled placeholder="请选择户型" wx:else/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -29,14 +30,14 @@
         <view class="tab-item">
             <view class="tab-item-left">单价</view>
             <view class="tab-item-right">
-                <input value="{{price}}" bind:input="priceInput" type="number"></input>
+                <input value="{{price}}" placeholder="请输入单价" bind:input="priceInput" type="number"></input>
                 <text class="common-text">元/m²</text>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">房源标签</view>
             <view class="tab-item-right">
-                <view class="houseType-wrap">
+                <view class="houseType-wrap" wx:if="{{labelType.length!==0}}">
                     <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
                         {{item}}
                         <van-icon name="close"
@@ -44,6 +45,7 @@
                                   bind:tap="deleteLabel"/>
                     </view>
                 </view>
+                <input wx:else placeholder="请选择标签" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -70,7 +72,8 @@
         <view class="tab-item">
             <view class="tab-item-left">物业类别</view>
             <view class="tab-item-right">
-                <text class="common-text">{{propertyType}}</text>
+                <text class="common-text" wx:if="{{propertyType!==''}}">{{propertyType}}</text>
+                <input wx:else placeholder="请选择物业类型" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -82,7 +85,8 @@
         <view class="tab-item">
             <view class="tab-item-left">建筑类型</view>
             <view class="tab-item-right">
-                <text class="common-text">{{buildingType}}</text>
+                <text class="common-text" wx:if="{{buildingType!==''}}">{{buildingType}}</text>
+                <input wx:else disabled placeholder="请选择建筑类型"/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -121,7 +125,8 @@
         <view class="tab-item">
             <view class="tab-item-left">销售状态</view>
             <view class="tab-item-right">
-                <text class="common-text">{{xsCase}}</text>
+                <text class="common-text" wx:if="{{xsCase!==''}}">{{xsCase}}</text>
+                <input wx:else placeholder="请选择销售状态"/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -241,7 +246,8 @@
         <view class="tab-item">
             <view class="tab-item-left">详细地址</view>
             <view class="tab-item-right">
-                <text class="common-text">{{address}}</text>
+                <text class="common-text" wx:if="{{address!==''}}">{{address}}</text>
+                <input wx:else placeholder="请选择地址" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
