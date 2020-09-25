@@ -1,9 +1,11 @@
 // pages/watchhot/watchhot.js
-//功能已经更新，请勿删除！！！！！！！！！！！！！！！！
-//功能已经更新，请勿删除！！！！！！！！！！！！！！！！
+const app = getApp()
 const {topHeight} = require('../../request/topHeight');
 const {http} = require('../../request/http');
 const {api} = require('../../request/api');
+const {
+	request
+} = require('../../request/request.js');
 var sy = 0;
 //功能已经更新，请勿删除！！！！！！！！！！！！！！！！
 Page({
@@ -12,6 +14,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    title:'看点',
+    type: false,
     paddingTop:topHeight,
     bgColor: {
       "color": true,
@@ -338,7 +342,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      title:app.globalData.state?'看点':'房源',
+			type: app.globalData.state
+		})
   },
 
   /**

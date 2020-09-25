@@ -185,12 +185,57 @@ const request = {
     });
   },
 
-  // 运营
+  // 运营之类的接口
   storeList: (params) => {
     return http({
       url: api.operation.storeList,
       method: "GET",
       params: params,
+    });
+  },
+  street: (params) => {
+    return http({
+      url: api.operation.street,
+      method: "GET",
+      params: params,
+    });
+  },
+  subway: (params) => {
+    return http({
+      url: api.operation.subway,
+      method: "GET",
+      params: params,
+    });
+  },
+  unitPrice: () => {
+    return http({
+      url: api.operation.unitPrice,
+      method: "GET",
+    });
+  },
+  totalPrice: () => {
+    return http({
+      url: api.operation.totalPrice,
+      method: "GET",
+    });
+  },
+  rent: () => {
+    return http({
+      url: api.operation.rent,
+      method: "GET",
+    });
+  },
+  type: () => {
+    return http({
+      url: api.operation.type,
+      method: "GET",
+    });
+  },
+  map: (params) => {
+    return http({
+      url: api.operation.map,
+      method: "GET",
+      params:params,
     });
   },
 

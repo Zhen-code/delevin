@@ -10,10 +10,10 @@
 		<text class="title" >房源照片</text>
 		<view class="image-view">
 			<block wx:for="{{list}}" wx:key="index">
-				<image class="image" data-item="{{item}}" data-index="{{index}}" bindtap="getImage" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+				<image class="image" data-item="{{item}}" data-index="{{index}}" bindtap="getImage" src="{{item}}"></image>
 			</block>
 		</view>
-		<view class="addTitle" wx:if="{{list.length !== 0}}" bindtap="getItem">{{addTitle}}</view>
+		<!-- <view class="addTitle" wx:if="{{list.length !== 0}}" bindtap="getItem">{{addTitle}}</view> -->
 	</view>
 </view>
 
@@ -22,7 +22,7 @@
 		<swiper indicator-dots indicator-dots="{{false}}" circular="true" current="{{current}}">
 			<block wx:for="{{list}}" wx:for-index="i" wx:key="index">
 				<swiper-item data-item="{{item}}">
-					<image class="setImage" src="https://img.yzcdn.cn/vant/cat.jpeg" ></image>
+					<image class="setImage" src="{{item}}" ></image>
 				</swiper-item>
 			</block>
 		</swiper>

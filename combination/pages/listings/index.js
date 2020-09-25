@@ -1,4 +1,8 @@
 // combination/pages/listings/index.js
+const app = getApp()
+const {
+	request
+} = require('../../../request/request.js');
 const topHeight = require('../../../request/topHeight.js').topHeight
 Page({
 
@@ -17,7 +21,45 @@ Page({
 		pageSize: 12,
 		scrollTop: 0,
 		triggered: false,
-		placeholder:'',
+		placeholder: '输入地名/地铁/楼盘/小区查找房源',
+		value: '',
+		keyword: '',
+		city: '',
+		province: '',
+		index: 0,
+	},
+
+	getCityValue(e) {
+		this.setData({
+			province: e.detail[0].name,
+			city: e.detail[1].name,
+		}, () => {
+			this.getData()
+		})
+	},
+
+	getInputValue(e) {
+		this.setData({
+			keyword: e.detail
+		})
+	},
+
+	getSearchValue(e) {
+		this.setData({
+			keyword: e.detail.value,
+			city: e.detail.city,
+			province: e.detail.province || app.globalData.address.province,
+		},()=>{
+			this.getData()
+		})
+	},
+
+	getBackTabValue(e) {
+		this.setData({
+			index: e.detail
+		},()=>{
+			this.getData()
+		})
 	},
 
 	scrollTop() {
@@ -28,7 +70,6 @@ Page({
 
 	topList() {
 		this.setData({
-			pageIndex: 1,
 			triggered: false,
 		})
 		this.getData()
@@ -40,16 +81,66 @@ Page({
 	},
 
 	getData() {
-
+		let requests = '';
+		let {
+			index,
+			city,
+			item,
+			keyword,
+			province,
+			pageIndex,
+			pageSize,
+		} = this.data;
+		switch (index) {
+			case 0:
+				requests = request.newListings;
+				break
+			case 1:
+				requests = request.towListings;
+				break
+			case 2:
+				requests = request.tenancyListings;
+				break
+			case 3:
+				requests = request.quartersListings;
+				break
+		}
+		requests({
+			"city": city,
+			"keyword": keyword,
+			"pageIndex": pageIndex,
+			"pageSize": pageSize,
+			"province": province,
+			"houseType": '',
+			"region": '',
+			"salesStatus": '',
+			"upperLimit": '',
+		}).then((res) => {
+			item.push(...res.list)
+			this.setData({
+				item: item,
+				pageIndex: pageIndex + 1,
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '数据错误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		console.log(options)
 		this.setData({
-			placeholder:options.title
+			city: app.globalData.address.city,
+			province: app.globalData.address.province,
+			value: options.title,
+			keyword:options.title,
+		},()=>{
+			this.getData()
 		})
 	},
 

@@ -70,7 +70,7 @@ Page({
 	},
 
 	tabBroker(e) {
-		if (e.currentTarget.dataset.item === "AGENT") {
+		if (e.currentTarget.dataset.item.identity === "AGENT") {
 			this.getTab()
 		} else {
 			wx.navigateTo({
@@ -162,7 +162,7 @@ Page({
 					res.resultStatusType = '审核中'
 					break;
 				case 'PASS':
-					res.resultStatusType = '审核通过'
+					res.resultStatusType = '切换至经纪端'
 					break;
 				case 'REFUSE':
 					res.resultStatusType = '审核拒绝'

@@ -33,7 +33,6 @@
     browseOtherList:'/api/access/v1/member/browsing/history/list/',
    },
 
-
    //房源
    listings: {
      newListingsList: '/api/access/v1/house/introduction/estate/list',
@@ -50,9 +49,16 @@
      likeListings:'/api/access/v1/house/guess/like/list',
    },
 
-   // 门店
+   // 运营之类的接口
    operation:{
-    storeList :'/api/access/v1/store/list'
+    storeList :'/api/access/v1/store/list',
+    street:'/api/v1/hms/area/street/list',
+    subway:'/api/access/v1/house/metro/line/list',
+    unitPrice:'/api/access/v1/single/price/list',
+    totalPrice:'/api/access/v1/total/price/list',
+    rent:'/api/access/v1/rental/price/list',
+    type:'/api/access/v1/house/type/list',
+    map:'/api/access/v1/house/around/list',
    },
 
    // 消息

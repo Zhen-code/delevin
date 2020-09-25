@@ -1,5 +1,5 @@
 
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="房猿通" />
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="搜索" />
 <view class="view" style="padding-top:{{paddingTop}}px">
 	<van-notify id="van-notify" />
 	<search isCancel val='{{val}}' bind:search="search" bind:firmInput="search"></search>

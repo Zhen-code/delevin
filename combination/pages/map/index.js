@@ -1,4 +1,7 @@
 // combination/pages/map/index.js
+const {
+	request
+} = require('../../../request/request.js');
 const topHeight = require('../../../request/topHeight.js').topHeight
 Page({
 
@@ -6,61 +9,122 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		paddingTop:topHeight,
+		paddingTop: topHeight,
 		bgColor: {
-      "color": true,
-      "border": true,
+			"color": true,
+			"border": true,
 		},
-		itemIndex:0,
-		list:[
-			{
-				"title":"银行",
+		latitude: '',
+		longitude: '',
+		itemIndex: 0,
+		city: '',
+		keyword: 'BANK',
+		detailsAddress: '',
+		list: [{
+				"title": "银行",
+				"type": "BANK",
 				"unCheckImgUrl": "/combination/image/mapTab/icon_bank_nor@2x.png",
 				"checkedImgUrl": "/combination/image/mapTab/icon_bank_pre@2x.png",
 			},
 			{
-				"title":"公交",
+				"title": "公交",
+				"type": "TRANSIT",
 				"unCheckImgUrl": "/combination/image/mapTab/icon_bus_nor@2x.png",
 				"checkedImgUrl": "/combination/image/mapTab/icon_bus_pre@2x.png",
 			},
 			{
-				"title":"地铁",
+				"title": "地铁",
+				"type": "METRO",
 				"unCheckImgUrl": "/combination/image/mapTab/icon_train_nor@2x.png",
 				"checkedImgUrl": "/combination/image/mapTab/icon_train_pre@2x.png",
 			},
 			{
-				"title":"教育",
+				"title": "教育",
+				"type": "EDUCATION",
 				"unCheckImgUrl": "/combination/image/mapTab/icon_education_nor@2x.png",
 				"checkedImgUrl": "/combination/image/mapTab/icon_education_pre@2x.png",
 			},
 			{
-				"title":"医疗",
+				"title": "医疗",
+				"type": "MEDICAL_TREATMENT",
 				"unCheckImgUrl": "/combination/image/mapTab/icon_medical_nor@2x.png",
 				"checkedImgUrl": "/combination/image/mapTab/icon_medical_pre@2x.png",
 			},
 			{
-				"title":"购物",
+				"title": "购物",
+				"type": "SHOPPING",
 				"unCheckImgUrl": "/combination/image/mapTab/icon_shop_nor@2x.png",
 				"checkedImgUrl": "/combination/image/mapTab/icon_shop_pre@2x.png",
 			},
 			{
-				"title":"餐饮",
+				"title": "餐饮",
+				"type": "RESTAURANT",
 				"unCheckImgUrl": "/combination/image/mapTab/icon_eat_nor@2x.png",
 				"checkedImgUrl": "/combination/image/mapTab/icon_eat_pre@2x.png",
 			}
-		]
+		],
+		markers: [],
 	},
-	tabItem(e){
-		this.setData({
-			itemIndex:e.currentTarget.dataset.index
+
+	getData() {
+		request.map({
+			city: this.data.city,
+			keyword: this.data.keyword,
+			detailsAddress: this.data.detailsAddress,
+		}).then((res) => {
+			let markers = res.map((item, index) => {
+				return {
+					iconPath: "/combination/image/order_icon_location@2x.png",
+					id: index,
+					title: item.title,
+					latitude: item.latitude,
+					longitude: item.longitude,
+					width: 15,
+					height: 20
+				};
+			})
+			this.setData({
+				markers
+			})
+		}).catch((err) => {
+			console.log(err)
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
 		})
 	},
 
+	tabItem(e) {
+		let index = e.currentTarget.dataset.index;
+		let item = e.currentTarget.dataset.item;
+		this.setData({
+			keyword:item.type,
+			itemIndex: index,
+		},()=>{
+			this.getData()
+		})
+	},
+
+	markertap(e) {
+		console.log(e.detail.markerId)
+	},
+	
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		let item = JSON.parse(options.item)
+		this.setData({
+			city: item.city,
+			keyword: 'BANK',
+			latitude: item.latitude,
+			longitude: item.longitude,
+			detailsAddress: item.detailsAddress,
+		},()=>{
+			this.getData()
+		})
 	},
 
 	/**

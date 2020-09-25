@@ -44,7 +44,7 @@ Page({
 			}
 		],
 		bannerList: [],
-		brokerList:[],
+		brokerList: [],
 		newsList: [],
 		areaList: provincCityDistrict,
 		tabItem: ['新房', '二手房'],
@@ -66,12 +66,14 @@ Page({
 		request.information().then((res) => {
 			this.setData({
 				userInfo: res,
-			},()=>{
-				this.getBrokerList()
+			}, () => {
+				if(this.data.userInfo.agentId){
+					this.getBrokerList()
+				}
 			})
 		}).catch((err) => {
 			wx.showToast({
-				title: '数据错误',
+				title: '请求失败',
 				icon: 'none',
 				duration: 2500
 			})
@@ -80,14 +82,14 @@ Page({
 
 	getBrokerList() {
 		request.brokerList({
-			agentId:this.data.userInfo.agentId
+			agentId: this.data.userInfo.agentId
 		}).then((res) => {
 			this.setData({
 				brokerList: res,
 			})
 		}).catch((err) => {
 			wx.showToast({
-				title: '数据错误',
+				title: '请求失败',
 				icon: 'none',
 				duration: 2500
 			})
@@ -140,7 +142,7 @@ Page({
 			})
 		}).catch((err) => {
 			wx.showToast({
-				title: err,
+				title: '请求失败',
 				icon: 'none',
 				duration: 2500
 			})
@@ -149,12 +151,34 @@ Page({
 
 	getIcon() {
 		request.icon().then((res) => {
+			let item = res.map((item) => {
+				switch (item.iconType) {
+					case "ESTATE":
+						item.iconName = "新房/楼盘";
+						break;
+					case "SECOND_HAND":
+						item.iconName = "二手房";
+						break;
+					case "TENANCY":
+						item.iconName = "租房";
+						break;
+					case "RESIDENTIAL_QUARTERS":
+						item.iconName = "找小区";
+						break;
+					case "MORTGAGE_CALCULATOR":
+						item.iconName = "房贷计算";
+						break;
+					default:
+				}
+				return item;
+			})
 			this.setData({
-				houseItem1: res
+				houseItem1: item
 			})
 		}).catch((err) => {
+			console.log(err)
 			wx.showToast({
-				title: err,
+				title: '请求失败',
 				icon: 'none',
 				duration: 2500
 			})
@@ -168,7 +192,7 @@ Page({
 			})
 		}).catch((err) => {
 			wx.showToast({
-				title: err,
+				title: '请求失败',
 				icon: 'none',
 				duration: 2500
 			})
@@ -184,10 +208,11 @@ Page({
 				wx.request({
 					url: `https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=${key}`,
 					success: (res) => {
-						let city = res.data.result.address_component.city;
-						app.globalData.city = city
+						app.globalData.address.province = res.data.result.address_component.province;
+						app.globalData.address.city = res.data.result.address_component.city;
+						app.globalData.address.district = res.data.result.address_component.district;
 						that.setData({
-							city: city
+							city: res.data.result.address_component.city,
 						})
 					}
 				})
@@ -218,16 +243,14 @@ Page({
 	},
 
 	confirm(e) {
-		// for (let i = 0; i < e.detail.values.length; i++) {
-		// 	name = e.detail.values[0].name + '-' + e.detail.values[1].name + '-' + e.detail.values[2].name;
-		// 	code = e.detail.values[0].code + '-' + e.detail.values[1].code + '-' + e.detail.values[2].code;
-		// }
 		let name = '';
 		if (e.detail.values[1].name.length > 4) {
 			name = e.detail.values[1].name.substring(0, 4) + '...'
 		} else {
 			name = e.detail.values[1].name
 		}
+		app.globalData.address.province = e.detail.values[0].name;
+		app.globalData.address.city = e.detail.values[1].name;
 		this.setData({
 			city: name || '未选择'
 		})
@@ -241,10 +264,9 @@ Page({
 	},
 
 	toNewsDetails(e) {
-		console.log('带参跳新闻详情界面')
-		console.log(e)
+		let id = e.currentTarget.dataset.item.id;
 		wx.navigateTo({
-			url: `/combination/pages/aspectDetail/index?id=${0}`,
+			url: `/combination/pages/aspectDetail/index?id=${id}`,
 		})
 	},
 
@@ -252,13 +274,30 @@ Page({
 		return false
 	},
 
-	getListingsList() {
+	getNewListingsList() {
 		request.newListingsList({
 			"pageSize": 3,
 			"pageIndex": 1,
 		}).then((res) => {
 			this.setData({
-				listingsList: res.list
+				title: '新房房源',
+				listingsList: [],
+				listingsList: res.list || []
+			})
+		}).catch((err) => {
+			console.log(err)
+		})
+	},
+
+	getTowListingsList() {
+		request.towListingsList({
+			"pageSize": 3,
+			"pageIndex": 1,
+		}).then((res) => {
+			this.setData({
+				title: '二手房房源',
+				listingsList: [],
+				listingsList: res.list || []
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -267,31 +306,9 @@ Page({
 
 	getTabValue(e) {
 		if (e.detail === 0) {
-			request.newListingsList({
-				"pageSize": 3,
-				"pageIndex": 1,
-			}).then((res) => {
-				this.setData({
-					title: '新房房源',
-					listingsList: [],
-					listingsList: res.list
-				})
-			}).catch((err) => {
-				console.log(err)
-			})
+			this.getNewListingsList()
 		} else {
-			request.towListingsList({
-				"pageSize": 3,
-				"pageIndex": 1,
-			}).then((res) => {
-				this.setData({
-					title: '二手房房源',
-					listingsList: [],
-					listingsList: res.list
-				})
-			}).catch((err) => {
-				console.log(err)
-			})
+			this.getTowListingsList()
 		}
 	},
 
@@ -307,27 +324,27 @@ Page({
 
 	changeHouseType1(e) {
 		let type = '';
-		let index = e.currentTarget.dataset.index;
-		switch (index) {
-			case 0:
+		let iconName = e.currentTarget.dataset.item.iconName;
+		switch (iconName) {
+			case '新房/楼盘':
 				type = '新房房源';
 				wx.navigateTo({
 					url: `/combination/pages/propertyType/index?type=${type}`,
 				})
 				break;
-			case 1:
+			case '二手房':
 				type = '二手房房源';
 				wx.navigateTo({
 					url: `/combination/pages/propertyType/index?type=${type}`,
 				})
 				break;
-			case 2:
+			case '租房':
 				type = '租房房源';
 				wx.navigateTo({
 					url: `/combination/pages/propertyType/index?type=${type}`,
 				})
 				break;
-			case 3:
+			case '找小区':
 				type = '小区房源';
 				wx.navigateTo({
 					url: `/combination/pages/propertyType/index?type=${type}`,
@@ -394,7 +411,7 @@ Page({
 		})
 	},
 
-	toAddHouseOrigin(){
+	toAddHouseOrigin() {
 		wx.navigateTo({
 			url: '/combination/pages/addHouseOrigin/index',
 		})
@@ -454,45 +471,6 @@ Page({
 		})
 	},
 
-	getUserInfo(e) {
-    let than = this;
-    wx.getSetting({
-      success(res) {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function (res) {
-              let loginInfo = app.globalData.loginInfo;
-              let data = {
-                "encryptedData": loginInfo.encryptedData,
-                "headImgUri": res.userInfo.avatarUrl,
-                "iv": loginInfo.iv,
-                "nickName": res.userInfo.nickName,
-                "openId": loginInfo.openId,
-                "sessionKey": loginInfo.sessionKey,
-              }
-              request.login(data).then((res) => {
-                let token = res.token;
-                console.log(res.token, 1111)
-                wx.removeStorageSync('token')
-                wx.setStorageSync('token', token)
-                than.setData({
-                  showInfo: false,
-                })
-              }).catch((err) => {
-                wx.showToast({
-                  title: '获取失败，请重新登录',
-                  icon: 'none',
-                  duration: 2500
-                })
-              })
-            }
-          })
-        }
-      }
-    })
-  },
-
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -502,7 +480,7 @@ Page({
 		this.getBanner();
 		this.getIcon();
 		this.getNews();
-		this.getListingsList();
+		this.getNewListingsList();
 		let then = this;
 		wx.getSetting({
 			success(res) {

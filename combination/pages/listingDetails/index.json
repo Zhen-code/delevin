@@ -4,6 +4,7 @@
     "navbar":"/components/nav/index",
     "shopItem":"/components/shopItem/index",
     "favorites":"/components/favorites/index",
-    "doubleTab":"/components/doubleTab/index"
+    "doubleTab":"/components/doubleTab/index",
+    "noData":"/components/noData/index"
   }
 }

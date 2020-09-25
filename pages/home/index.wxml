@@ -30,8 +30,8 @@
 			<view class="houseType">
 				<view class="houseType-item" wx:for="{{houseItem1}}" data-item="{{item}}" data-index="{{index}}" wx:key="index"
 					bindtap="changeHouseType1">
-					<van-icon size="80rpx" name="{{item.iconUri}}" />
-					<text class="houseType-item-name">{{item.iconType}}</text>
+					<image style="width:80rpx;height:80rpx" src="{{item.iconUri}}"></image>
+					<text class="houseType-item-name">{{item.iconName}}</text>
 				</view>
 			</view>
 		</view>

@@ -29,14 +29,24 @@ Page({
 	},
 
 	tovideoImage() {
+		let item = JSON.stringify({
+			"houseVideo": this.data.item.houseVideo,
+			"designSketch": this.data.item.designSketch,
+		})
 		wx.navigateTo({
-			url: "/combination/pages/browsePictures/index"
+			url: `/combination/pages/browsePictures/index?item=${item}`
 		})
 	},
 
 	toMap() {
+		let item = JSON.stringify({
+			"latitude": this.data.item.latitude,
+			"longitude": this.data.item.longitude,
+			"city": this.data.item.city,
+			"detailsAddress": this.data.item.detailsAddress,
+		})
 		wx.navigateTo({
-			url: "/combination/pages/map/index"
+			url: `/combination/pages/map/index?item=${item}`
 		})
 	},
 
@@ -81,37 +91,47 @@ Page({
 		requests({
 			"houseId": this.data.id,
 		}).then((res) => {
-			let list = res.map((item, index) => {
-				switch (item.decorationStatus) {
-					case 'ROUGHCAST':
-						item.decorationsStatus = '毛坯'
-						break;
-					case 'PAPERBACK':
-						item.decorationsStatus = '简装'
-						break;
-					case 'CHINESE_DRESS':
-						item.decorationsStatus = '中装'
-						break;
-					case 'HARDCOVER':
-						item.decorationsStatus = '精装'
-						break;
-					case 'HAUTE_COUTURE':
-						item.decorationsStatus = '豪装'
-						break;
-					default:
-				};
-				item.type = this.data.type;
-				return item;
-			})
+			switch (res.decorationStatus) {
+				case 'ROUGHCAST':
+					res.decorationsStatus = '毛坯'
+					break;
+				case 'PAPERBACK':
+					res.decorationsStatus = '简装'
+					break;
+				case 'CHINESE_DRESS':
+					res.decorationsStatus = '中装'
+					break;
+				case 'HARDCOVER':
+					res.decorationsStatus = '精装'
+					break;
+				case 'HAUTE_COUTURE':
+					res.decorationsStatus = '豪装'
+					break;
+				default:
+			};
+			res.type = this.data.type;
+			console.log(res)
 			this.setData({
-				item: list,
+				item: res,
 			})
 			let item = {
 				houseId: res.id,
 				houseMold: this.data.type
 			}
+			let column = {
+				categories: ["09.24", "09.25",],
+				series: [{
+					name: "房价走势图",
+					data: [2800,2900],
+					color: "#FFD200",
+					show: true,
+					area: [0, 90],
+				}]
+			};
+			this.showColumn(column);
 			this.getLikeListings(item);
 		}).catch((err) => {
+			console.log(err)
 			wx.showToast({
 				title: '数据有误',
 				icon: 'none',
@@ -139,14 +159,20 @@ Page({
 
 	toHomepage(e) {
 		wx.navigateTo({
-			url: `/combination/pages/homepage/index?link=${e.currentTarget.dataset.item.agentId}`,
+			url: `/combination/pages/homepage/index?agentId=${e.currentTarget.dataset.item.agentId}`,
 		})
 	},
 
 	callPheon(e) {
-		console.log(e.currentTarget.dataset.item)
 		wx.makePhoneCall({
 			phoneNumber: e.currentTarget.dataset.item.phone
+		})
+	},
+
+	collPhone() {
+		let phone = this.data.item.telephone
+		wx.makePhoneCall({
+			phoneNumber: phone
 		})
 	},
 
@@ -178,42 +204,20 @@ Page({
 		}, () => {
 			this.getData();
 		})
-		_self = this;
 		this.cWidth = wx.getSystemInfoSync().windowWidth;
 		this.cHeight = 500 / 750 * wx.getSystemInfoSync().windowWidth;
-		this.getServerData()
 	},
-	//   这里 先暂时 应用 ucharts 里面提供的数据 调取他们的接口 
-	getServerData: function () {
-		wx.request({
-			url: 'https://www.ucharts.cn/data.json',
-			success: function (res) {
-				let Column = {
-					categories: [],
-					series: []
-				};
-				Column.categories = res.data.data.ColumnB.categories;
-				Column.series = res.data.data.ColumnB.series;
-				//自定义标签颜色和字体大小
-				// Column.series[0].textColor = 'yellow';
-				// Column.series[0].textSize = 11;
-				_self.showColumn("canvasColumn", Column);
-			},
-			fail: () => {
-				console.log("请点击右上角【详情】，启用不校验合法域名");
-			},
-		})
-	},
-	showColumn(canvasId, chartData) {
+	showColumn(chartData) {
+		let _self = this;
 		canvaColumn = new uCharts({
 			$this: _self,
-			canvasId: canvasId,
+			canvasId: "canvasColumn",
 			type: 'line',
 			legend: true,
 			fontSize: 11,
 			background: '#FFFFFF',
 			pixelRatio: 1,
-			animation: true,
+			animation: false,
 			categories: chartData.categories,
 			series: chartData.series,
 			xAxis: {
@@ -222,7 +226,7 @@ Page({
 			yAxis: {
 				// disabled:true
 			},
-			dataLabel: true,
+			dataLabel: false,
 			width: 343,
 			height: 200,
 			extra: {

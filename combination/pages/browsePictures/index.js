@@ -11,11 +11,11 @@ Page({
 			"color": true,
 			"border": true
 		},
-		src: "https://aliyuncdn.beiru168.com/diana/7d941bf7-48e7-4539-813d-9cf3d9599ddc.mp4",
+		src: "",
 		current: 0,
 		paddingTop: topHeight,
 		addTitle: "点击加载更多",
-		list: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+		list: [],
 		pageIndex: 1,
 		pageSize: 12,
 		show: false,
@@ -40,15 +40,18 @@ Page({
 		// 	})
 		// })
 	},
+
 	getItem() {
 		console.log(this.data.list.length)
 	},
+
 	getImage(e) {
 		this.setData({
 			current: e.currentTarget.dataset.index,
 			show: true
 		});
 	},
+
 	onClose() {
 		this.setData({
 			show: false
@@ -58,7 +61,11 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		let item = JSON.parse(options.item);
+		this.setData({
+			src:item.houseVideo,
+			list:item.designSketch,
+		})
 	},
 
 	/**

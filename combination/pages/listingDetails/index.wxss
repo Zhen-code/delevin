@@ -324,7 +324,7 @@
 
 .surrounding-show {
 	width: 100%;
-	height: auto;
+	height: 344rpx;
 	margin-top: 40rpx;
 }
 
@@ -634,4 +634,17 @@
 .doubleTab{
 	width: 230rpx;
 	height: 100%;
+}
+
+.components-view{
+	width: 100;
+	height: auto;
+	display: flex;
+	align-items: flex-start;
+	justify-self: start;
+	flex-direction: column;
+}
+
+.noData{
+	width: 100%;
 }

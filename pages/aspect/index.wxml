@@ -1,7 +1,7 @@
 <!--下拉刷新功能已经更新，无需重复修改9.20！！！！！！！！！！！！！！！！-->
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="看点" />
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
 <!--下拉刷新功能已经更新，无需重复修改9.20！！！！！！！！！！！！！！！！-->
-<view class="container" style="padding-top:{{paddingTop}}px">
+<view class="container" wx:if="{{type}}" style="padding-top:{{paddingTop}}px">
 	<view class="tabbar">
 		<view class="tab {{_index=='0'?'tbActive':''}}" data-index="0" bind:tap="toggleTab">新闻资讯</view>
 		<view class="tab {{_index=='1'?'tbActive':''}}" data-index="1" bind:tap="toggleTab">地产315</view>
@@ -94,5 +94,9 @@
 		</view>
 		<image class="send" src="/assets/iconedit@2x.png" catch:tap="post"></image>
 	</view>
+</view>
+
+<view class="view" wx:if="{{!type}}" style="padding-top:{{paddingTop}}px"> 
+4234
 </view>
 

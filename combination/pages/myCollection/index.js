@@ -50,10 +50,11 @@ Page({
 							icon: 'success',
 							duration: 2500
 						})
-						// than.setData({
-
-						// })
-						than.getData();
+						than.setData({
+							item:[]
+						},()=>{
+							than.getData();
+						})
 					}).catch((err)=>{
 						wx.showToast({
 							title: '数据错误',
@@ -71,6 +72,7 @@ Page({
 		if (e.currentTarget.dataset.index === 0) {
 			this.setData({
 				item: [],
+				type: 'ESTATE',
 				tabIndex:0,
 				pageIndex: 1,
 				tabItem: data.tab1,

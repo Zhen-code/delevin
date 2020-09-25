@@ -5,7 +5,7 @@
 			<view class="view-top-video-play">
 				<image src="/combination/image/icon_play_50@2x.png"></image>
 			</view>
-			<image class="view-top-video-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+			<video class="view-top-video-image" src="{{item.houseVideo}}"></video>
 		</view>
 		<view class="view-top-image">
 			<image class="view-top-image-top" src="{{item.designSketch[0]}}"></image>
@@ -20,7 +20,7 @@
 	<view class="introduction borderBottom">
 		<view class="introduction-top">
 			<text class="introduction-title">{{item.title}}</text>
-			<favorites data="{{item}}"></favorites>
+			<!-- <favorites data="{{item}}"></favorites> -->
 		</view>
 		<view class="introduction-type">
 			<image class="item-right-content-icon1" wx:if="{{item.salesStatus === 'FOR_SALE' && type === 'ESTATE'}}"
@@ -95,8 +95,10 @@
 			<view class="introduction-specification-bottom">
 				<view class="name-type">楼盘名称：<text class="name-typeValue">{{item.developers}}</text></view>
 				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property}}</text></view>
-				<view class="name-type" wx:if="{{stlectState}}">物业类别：<text class="name-typeValue">{{item.propertyClassifyId}}</text></view>
-				<view class="name-type" wx:if="{{stlectState}}">装修状况：<text class="name-typeValue">{{item.decorationsStatus}}</text></view>
+				<view class="name-type" wx:if="{{stlectState}}">物业类别：<text
+						class="name-typeValue">{{item.propertyClassify}}</text></view>
+				<view class="name-type" wx:if="{{stlectState}}">装修状况：<text
+						class="name-typeValue">{{item.decorationsStatus}}</text></view>
 				<view class="name-type" wx:if="{{stlectState}}">环线位置：<text class="name-typeValue">{{item.loopLocation}}</text>
 				</view>
 			</view>
@@ -107,7 +109,7 @@
 				<view class="name-type">开盘时间：<text class="name-typeValue">{{item.openingDate}}</text></view>
 				<view class="name-type">交房时间：<text class="name-typeValue">{{item.deliveryDate}}</text></view>
 				<!-- <view class="name-type">楼盘优惠：<text class="name-typeValue">{{item.loopLocation}}</text></view> -->
-				<view class="name-type">新房补贴<text class="name-typeValue">{{item.houseSubsidy}}</text></view>
+				<view class="name-type">新房补贴：<text class="name-typeValue">{{item.houseSubsidy}}</text></view>
 				<view class="name-type">开发商：<text class="name-typeValue">{{item.developers}}</text></view>
 				<view class="name-type">楼盘地址：<text class="name-typeValue">{{item.province}}{{item.salesAddress}}</text></view>
 				<view class="name-type">咨询电话：<text class="name-typeValue">{{item.telephone}}</text></view>
@@ -146,7 +148,7 @@
 				<view class="name-type">发布时间：<text class="name-typeValue">{{item.dateFor}}</text></view>
 				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersId}}</text></view>
 				<view class="name-type">首付月供：<text
-						class="name-typeValue name-typeValueColor">预计{{item.downPayment}}万元，月供{{item.monthlyContribution}}元</text>
+						class="name-typeValue name-typeValueColor">预计{{item.downPayment}}元，月供{{item.monthlyContribution}}元</text>
 				</view>
 			</view>
 		</view>
@@ -203,14 +205,15 @@
 		<view class="surrounding">
 			<view class="surrounding-map">
 				<map id="map" longitude="{{item.longitude}}" latitude="{{item.latitude}}" scale="14" show-location
-					style="width: 100%; height: 172px;"></map>
+					style="width: 100%; height: 100%;"></map>
 			</view>
 			<view class="surrounding-change" bindtap="toMap">
 				<text class="surrounding-details">查看周边配套</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>
 			<view class="surrounding-show" wx:if="{{item.advertDisplay}}">
-				<van-image width="343" height="172" src="{{item.advertUri}}" />
+				<image style="width:686rpx;height:100%" src="{{item.advertUri || 'https://img.yzcdn.cn/vant/cat.jpeg'}}">
+				</image>
 			</view>
 		</view>
 	</view>
@@ -238,7 +241,7 @@
 		<text class="components-title">经纪人描述</text>
 		<text class="description">{{item.description}}</text>
 	</view>
-	<view class="components borderBottom">
+	<view class="components borderBottom" wx:if="{{item.comments.length !== 0}}">
 		<text class="components-title">全网点评</text>
 		<block wx:for="{{item.comments}}" wx:key="index">
 			<view class="comment">
@@ -272,9 +275,14 @@
 	</view>
 	<view class="components">
 		<text class="components-title">猜你喜欢</text>
-		<block wx:for="{{list}}" wx:key="index">
-			<shopItem item="{{item}}"></shopItem>
-		</block>
+		<view wx:if="{{list.length !== 0}}" class="components-view">
+			<block wx:for="{{list}}" wx:key="index">
+				<shopItem item="{{item}}"></shopItem>
+			</block>
+		</view>
+		<view class="noData">
+			<noData wx:if="{{list.length === 0}}" flexd="{{true}}" height="{{45}}"></noData>
+		</view>
 	</view>
 </view>
-<view class="bottom-phone"><text class="bottom-phone-text">电话咨询</text></view>
+<view class="bottom-phone"><text class="bottom-phone-text" bindtap="collPhone">电话咨询</text></view>

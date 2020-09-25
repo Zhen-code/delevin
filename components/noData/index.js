@@ -7,6 +7,10 @@ Component({
 		height:{
 			type:Number,
 			value:0,
+		},
+		flexd:{
+			type:Boolean,
+			value:false,
 		}
 	},
 

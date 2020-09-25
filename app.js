@@ -81,7 +81,7 @@ App({
     list: [], // tabBar
     districtTitle: '', //小区标题
     state:true,
-    city:'',
+    address:{},
     storeInfo:{},
   },
   topHeight: {
