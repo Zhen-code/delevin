@@ -1,126 +1,127 @@
 {
-	"pages": [
-		"pages/home/index",
-		"pages/login/index",
-		"pages/aspect/index",
-		"pages/message/index",
-		"pages/mine/index"
-	],
-	"tabBar": {
-		"color": "#999999",
-		"selectedColor": "#333333",
-		"backgroundColor": "#ffffff",
-		"list": [
-			{
-				"pagePath": "pages/home/index",
-				"iconPath": "/assets/tabbar/icon_tab1_24_nor@2x.png",
-				"selectedIconPath": "/assets/tabbar/icon_tab1_24_pre@2x.png",
-				"text": "首页"
-			},
-			{
-				"pagePath": "pages/aspect/index",
-				"iconPath": "/assets/tabbar/icon_tab2_24_nor@2x.png",
-				"selectedIconPath": "/assets/tabbar/icon_tab2_24_pre@2x.png",
-				"text": "看点"
-			},
-			{
-				"pagePath": "pages/message/index",
-				"iconPath": "/assets/tabbar/icon_tab3_24_nor@2x.png",
-				"selectedIconPath": "/assets/tabbar/icon_tab3_24_pre@2x.png",
-				"text": "消息"
-			},
-			{
-				"pagePath": "pages/mine/index",
-				"iconPath": "/assets/tabbar/icon_tab4_24_nor@2x.png",
-				"selectedIconPath": "/assets/tabbar/icon_tab4_24_pre@2x.png",
-				"text": "我的"
-			}
-		]
-	},
-	"subpackages": [
-		{
-			"root": "combination",
-			"pages": [
-				"pages/searchFor/index",
-				"pages/message/index",
-				"pages/listingDetails/index",
-				"pages/propertyType/index",
-				"pages/browsePictures/index",
-				"pages/map/index",
-				"pages/sellHouse/index",
-				"pages/listings/index",
-				"pages/aspectDetail/index",
-				"pages/post/index",
-				"pages/broker/index",
-				"pages/myCollection/index",
-				"pages/comment/index",
-				"pages/postDetail/index",
-				"pages/addHouseOrigin/index",
-				"pages/webView/index",
-				"pages/shareItCode/index",
-				"pages/modify/index",
-				"pages/recording/index",
-				"pages/management/index",
-				"pages/superPromotion/index",
-				"pages/generalPromotion/index",
-				"pages/selectPromotion/index",
-				"pages/myPackage/index",
-				"pages/homepage/index",
-				"pages/sharePoster/index",
-				"pages/customerPoster/index",
-				"pages/customerArticles/index",
-				"pages/distrctSearch/index",
-				"pages/replyComment/index",
-				"pages/chooseAnInstitution/index"
-			]
-		}
-	],
-	"usingComponents": {
-		"van-swipe-cell": "@vant/weapp/swipe-cell/index",
-		"van-sidebar": "@vant/weapp/sidebar/index",
-		"van-sidebar-item": "@vant/weapp/sidebar-item/index",
-		"van-stepper": "@vant/weapp/stepper/index",
-		"van-dialog": "@vant/weapp/dialog/index",
-		"van-uploader": "@vant/weapp/uploader/index",
-		"van-tab": "@vant/weapp/tab/index",
-		"van-tabs": "@vant/weapp/tabs/index",
-		"van-checkbox": "@vant/weapp/checkbox/index",
-		"van-checkbox-group": "@vant/weapp/checkbox-group/index",
-		"van-tree-select": "@vant/weapp/tree-select/index",
-		"van-goods-action": "@vant/weapp/goods-action/index",
-		"van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
-		"van-goods-action-button": "@vant/weapp/goods-action-button/index",
-		"van-notify": "@vant/weapp/notify/index",
-		"van-popup": "@vant/weapp/popup/index",
-		"van-area": "@vant/weapp/area/index",
-		"van-notice-bar": "@vant/weapp/notice-bar/index",
-		"van-tag": "@vant/weapp/tag/index",
-		"van-icon": "@vant/weapp/icon/index",
-		"van-button": "@vant/weapp/button/index",
-		"van-toast": "@vant/weapp/toast/index",
-		"van-image": "@vant/weapp/image/index",
-		"van-tabbar": "@vant/weapp/tabbar/index",
-		"van-tabbar-item": "@vant/weapp/tabbar-item/index"
-	},
-	"requiredBackgroundModes": [
-		"location"
-	],
-	"permission": {
-		"scope.userLocation": {
-			"desc": "你的位置信息将用于小程序位置接口的效果展示"
-		}
-	},
-	"window": {
-		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "WeChat",
-		"navigationBarTextStyle": "black"
-	},
-	"style": "v2",
-	"sitemapLocation": "sitemap.json",
-	"plugins": {
-		"chooseLocation": {
-			"version": "1.0.5",
-			"provider": "wx76a9a06e5b4e693e"
-		}
-	}
+  "pages": [
+    "pages/home/index",
+    "pages/login/index",
+    "pages/aspect/index",
+    "pages/message/index",
+    "pages/mine/index"
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#333333",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "/assets/tabbar/icon_tab1_24_nor@2x.png",
+        "selectedIconPath": "/assets/tabbar/icon_tab1_24_pre@2x.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/aspect/index",
+        "iconPath": "/assets/tabbar/icon_tab2_24_nor@2x.png",
+        "selectedIconPath": "/assets/tabbar/icon_tab2_24_pre@2x.png",
+        "text": "看点"
+      },
+      {
+        "pagePath": "pages/message/index",
+        "iconPath": "/assets/tabbar/icon_tab3_24_nor@2x.png",
+        "selectedIconPath": "/assets/tabbar/icon_tab3_24_pre@2x.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "iconPath": "/assets/tabbar/icon_tab4_24_nor@2x.png",
+        "selectedIconPath": "/assets/tabbar/icon_tab4_24_pre@2x.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "subpackages": [
+    {
+      "root": "combination",
+      "pages": [
+        "pages/searchFor/index",
+        "pages/message/index",
+        "pages/listingDetails/index",
+        "pages/propertyType/index",
+        "pages/browsePictures/index",
+        "pages/map/index",
+        "pages/sellHouse/index",
+        "pages/listings/index",
+        "pages/aspectDetail/index",
+        "pages/post/index",
+        "pages/broker/index",
+        "pages/myCollection/index",
+        "pages/comment/index",
+        "pages/postDetail/index",
+        "pages/addHouseOrigin/index",
+        "pages/webView/index",
+        "pages/shareItCode/index",
+        "pages/modify/index",
+        "pages/recording/index",
+        "pages/management/index",
+        "pages/superPromotion/index",
+        "pages/generalPromotion/index",
+        "pages/selectPromotion/index",
+        "pages/myPackage/index",
+        "pages/homepage/index",
+        "pages/sharePoster/index",
+        "pages/customerPoster/index",
+        "pages/customerArticles/index",
+        "pages/distrctSearch/index",
+        "pages/replyComment/index",
+        "pages/chooseAnInstitution/index",
+        "pages/customerArticleDetail/index"
+      ]
+    }
+  ],
+  "usingComponents": {
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-sidebar": "@vant/weapp/sidebar/index",
+    "van-sidebar-item": "@vant/weapp/sidebar-item/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "van-tree-select": "@vant/weapp/tree-select/index",
+    "van-goods-action": "@vant/weapp/goods-action/index",
+    "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
+    "van-goods-action-button": "@vant/weapp/goods-action-button/index",
+    "van-notify": "@vant/weapp/notify/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index"
+  },
+  "requiredBackgroundModes": [
+    "location"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "chooseLocation": {
+      "version": "1.0.5",
+      "provider": "wx76a9a06e5b4e693e"
+    }
+  }
 }

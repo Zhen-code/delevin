@@ -191,6 +191,12 @@ Component({
                         icon: "success",
                         duration:2000
                     });
+                    if(res.data['code'] === 500){
+                        wx.showToast({
+                            title: res.data['msg'],
+                            icon: "none"
+                        })
+                    }
                 }).catch(err=>{
                     wx.hideLoading();
                     console.log(err)

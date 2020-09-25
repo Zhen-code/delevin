@@ -573,12 +573,6 @@ Component({
                     icon: "none",
                     duration: 1000
                 })
-            }else if(this.data.imgs.length===0){
-                wx.showToast({
-                    title: '请上传至少一张效果图!',
-                    duration: 1000,
-                    icon:"none"
-                });
             }else if(this.data.houseType.length === 0){
                 wx.showToast({
                     title: '请至少选择一项户型!',
@@ -597,12 +591,6 @@ Component({
                     duration: 1000,
                     icon:"none"
                 });
-            }else if(this.data.xsCase === ''){
-                wx.showToast({
-                    title: '请选择销售状态!',
-                    duration: 1000,
-                    icon:"none"
-                });
             }else if(this.data.propertyType === ''){
                 wx.showToast({
                     title: '请选择物业类型!',
@@ -615,9 +603,21 @@ Component({
                     duration: 1000,
                     icon:"none"
                 });
+            }else if(this.data.xsCase === ''){
+                wx.showToast({
+                    title: '请选择销售状态!',
+                    duration: 1000,
+                    icon:"none"
+                });
             }else if(this.data.address === '' || this.data.area===''){
                 wx.showToast({
                     title: '请选择地址与所在区域!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.imgs.length===0){
+                wx.showToast({
+                    title: '请上传至少一张效果图!',
                     duration: 1000,
                     icon:"none"
                 });
@@ -677,6 +677,12 @@ Component({
                         icon: "success",
                         duration:2000
                     });
+                    if(res.data['code'] === 500){
+                        wx.showToast({
+                            title: res.data['msg'],
+                            icon: "none"
+                        })
+                    }
                 }).catch(err=>{
                     wx.hideLoading();
                     console.log(err)

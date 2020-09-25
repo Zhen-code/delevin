@@ -82,7 +82,9 @@
      commentNewPost: '/api/access/v1/news/post/comment',//新闻或帖子评论
      commentReply: '/api/access/v1/comment/reply',//新闻或评论回复
      constructClassify: '/api/access/v1/house/construct/classify/list',//建筑类型列表
-     metroList: '/api/access/v1/house/metro/line/list'//地铁配置列表
+     metroList: '/api/access/v1/house/metro/line/list',//地铁配置列表
+     customerList: '/api/access/v1/customers/list',//获客文章列表
+       customerArticleDetail: (customersId)=>{ return `/api/access/v1/customers/details/${customersId}`}
    },
 
    // 经纪人

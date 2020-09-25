@@ -1,49 +1,255 @@
-// combination/pages/customerArticles/index.js
-const topHeight = require('../../../request/topHeight.js').topHeight
+const app = getApp();
+const {topHeight} = require('../../../request/topHeight');
+const {http} = require('../../../request/http');
+const {api} = require('../../../request/api');
+const { request } = require('../../../request/request.js');
+var sy = 0;
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		paddingTop: topHeight,
+		title:'看点',
+		type: false,
+		paddingTop:topHeight,
 		bgColor: {
 			"color": true,
-			"border": true,
+			"border": true
 		},
 		active: 0,
-		list: [
-      {
-        title: '分类1',
-      },
-      {
-        title: '分类2',
-      },
-      {
-        title: '分类3',
-      },
-      {
-        title: '分类4',
-      },
-      {
-        title: '分类5',
-      },
-      {
-        title: '分类6',
-      }
-    ]
+		tabActive: 0,
+		list: [],
+		fId: 0,
+		newsList: [],
+		isBottom: true,
+		isPostBottom: true,
+		triggered: false,
+		isIndrag: false,
+		scrollTop: 0,
+		hei: 0,
+		desc: '下拉刷新'
 	},
-	onChange(e){
-		console.log(e.detail.index)
-		let index = e.detail.index;
-		let name = e.detail.name;
-		let title = e.detail.title;
+	pageIndex: 1,
+	pageSize: 10,
+	pageTotal: 0,
+	classifyId: 0,
+	postPIndex:1,
+	postPSize: 10,
+	postPTotal: 0,
+	timeFlag: 1,
+	i:0,
+	start(e){
+		sy = e.touches[0].clientY;
+	},
+	end(e){
+		// console.log(e)
+		sy = 0;
+		let that = this;
+		// console.log('离开高度'+this.data.hei)
+		if(this.data.hei>80){
+			this.setData({
+				desc: '正在刷新',
+				hei: 80
+			});
+			that.pageIndex = 1;
+				that.getNewsList(that.classifyId);
+			// console.log('下拉刷新了')
+		}else{
+			this.setData({
+				desc: '下拉刷新',
+				hei: 0,
+				isIndrag: false
+			})
+		}
+	},
+	move(e){
+		// console.log(e)
+		let delta = e.touches[0].clientY - sy;
+		if(this.data.hei<=0 && delta<=0){
+			console.log('上拉')
+			return
+		}
+		if(this.data.scrollTop>0){
+			return;
+		}
+		if(this.data.scrollTop<=0){
+			// console.log('触发顶部，scrollTopo<=0')
+			console.log(this.data.scrollTop);
+			if(!this.data.isIndrag){
+				this.setData({
+					isIndrag: true
+				})
+			}
+			var tempdelta = 0;
+			if(delta>0){
+				console.log('正在下拉')
+				if(this.data.hei>80){
+					// console.log('hei='+'80')
+					this.setData({
+						desc: '松开刷新'
+					})
+					tempdelta =  this.data.hei+delta/ (this.data.hei - 80)
+				}else{
+					// console.log('hei未达到80')
+					this.setData({
+						desc: '下拉刷新'
+					});
+					tempdelta = this.data.hei+delta;
+				}
+			}else{
+				// console.log('正在上拉'+this.data.hei + delta)
+				tempdelta = this.data.hei + delta;
+				if(tempdelta<=0){
+					tempdelta = 0;
+				}
+				this.setData({
+					desc: '下拉刷新'
+				})
+			}
+			this.setData({
+				hei: tempdelta
+			})
+		}
+		sy = e.touches[0].clientY;
+	},
+	scroll(e){
+		clearTimeout(this.timeFlag);
+		this.timeFlag = setTimeout(()=>{
+			let st = e.detail.scrollTop;
+			// console.log('st='+st)
+			this.setData({
+				scrollTop: st
+			})
+		},200);
+	},
+	scrollList(){
+		this.i = (this.i)+1;
+		if(this.i>=2){
+			return
+		}
+			this.pageIndex++;
+			if(this.pageIndex>this.pageTotal){
+				this.i = 0;
+				this.setData({
+					isBottom: true
+				})
+			}else{
+				this.getNewsList(this.classifyId);
+			}
+
+	},
+	onChange(event) {
+		console.log(event.detail);
+		this.setData({
+			tabActive: event.detail.index,
+			newsList:[]
+		});
+		this.pageIndex = 1;
+		let {index} =  event.detail;
+		let {list} = this.data;
+		let classifyId = list[index]['id'];
+		this.classifyId = classifyId;
+		this.getNewsList(classifyId);
+	},
+	goHouseDetal(e){
+		wx.navigateTo({
+			url: '/combination/pages/customerArticleDetail/index?id=' + e.currentTarget.dataset.id,
+		})
+		console.log(e.currentTarget.dataset.id);
+	},
+	getNewsList(classifyId){
+		http({
+			url: api.personalHome.customerList,
+			method: 'GET',
+			params:{
+				classifyId: classifyId,
+				pageIndex: this.pageIndex,
+				pageSize: this.pageSize
+			}
+		}).then(res=>{
+			console.log(res)
+			let isBottom = true;
+			if(res.pageIndex>=res.pageTotal){
+
+			}else{
+				isBottom = false;
+			}
+			this.pageTotal = res.pageTotal;
+			let {newsList} = this.data;
+			let resList = res.list || [];
+			if(this.data.hei>=80){
+				this.setData({
+					newsList: resList,
+					isBottom:isBottom
+				})
+			}else{
+				this.setData({
+					newsList: [...newsList,...resList],
+					isBottom:isBottom
+				});
+			}
+		}).then(()=>{
+				this.i = 0;
+				this.setData({
+					scrollTop: 0,
+					hei: 0,
+					isIndrag: false,
+					desc: '下拉刷新'
+				})
+			}
+		).catch(err=>{
+			console.log(err);
+		})
+	},
+	getArticleClassify(){
+		console.log(666)
+		http({
+			url: api.personalHome.articleClassify,
+			method: 'GET',
+			params:{
+				type: 'CUSTOMERS'
+			}
+		}).then(res=>{
+			console.log(res);
+			this.setData({
+				list: res|| [],
+				fId: res[0]['id']|| 0,
+			})
+		}).then(()=>{
+			http({
+				url: api.personalHome.customerList,
+				method: 'GET',
+				params:{
+					classifyId: this.data.fId,
+					pageIndex: this.pageIndex,
+					pageSize: this.pageSize
+				}
+			}).then(res=>{
+				console.log(res)
+				let isBottom = true;
+				if(res.pageIndex>=res.pageTotal){
+
+				}else{
+					isBottom = false;
+				}
+				this.pageTotal = res.pageTotal;
+				this.setData({
+					newsList: res.list,
+					isBottom:isBottom
+				});
+			}).catch(err=>{
+				console.log(err);
+			})
+		}).catch(err=>{
+			console.log(err);
+		})
 	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		this.getArticleClassify();
 	},
 
 	/**
@@ -57,7 +263,10 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		this.setData({
+			title:app.globalData.state?'看点':'房源',
+			type: app.globalData.state
+		})
 	},
 
 	/**
@@ -71,20 +280,6 @@ Page({
 	 * 生命周期函数--监听页面卸载
 	 */
 	onUnload: function () {
-
-	},
-
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function () {
-
-	},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {
 
 	},
 

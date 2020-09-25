@@ -1,0 +1,88 @@
+/* combination/pages/aspectDetail/index.wxss */
+.content{
+    background: #FFFFFF;
+    padding: 0 32rpx;
+    box-sizing: border-box;
+    width: 100%;
+}
+.content-top{
+    height: 213rpx;
+    width: 100%;
+    border-bottom: 1px solid #EEEEEE;
+    overflow: hidden;
+}
+.title{
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+    margin-top: 39rpx;
+}
+.second-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-size: 26rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #999999;
+    margin-top: 24rpx;
+}
+.second-bar-left{
+    margin-right: 40rpx;
+}
+.content-center{
+    font-size: 30rpx;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+    margin-top: 22rpx;
+}
+.news-img{
+    width: 686rpx;
+    height: 386rpx;
+    border-radius: 4rpx;
+    margin-top: 24rpx;
+    margin-bottom: 48rpx;
+}
+.line{
+    width: 750rpx;
+    height: 112rpx;
+    background: #F8F8F8;
+}
+.bottom-contain{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 18rpx;
+    box-sizing:border-box;
+    width: 100%;
+    height: 112rpx;
+    background: #FFF;
+}
+.bottom-text{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFD854;
+    border-radius: 10rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+    position: relative;
+}
+.share-btn{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+}

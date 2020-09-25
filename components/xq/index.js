@@ -458,7 +458,8 @@ Component({
                     });
                     if(res.data['code'] === 500){
                         wx.showToast({
-                            title: res.data['msg']
+                            title: res.data['msg'],
+                            icon: "none"
                         })
                     }
                 }).catch(err=>{
