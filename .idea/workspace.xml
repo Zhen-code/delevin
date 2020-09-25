@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="975fe9b3-b673-4fe0-8803-1aa5145f0e1c" name="Default Changelist" comment="">
+    <list default="true" id="975fe9b3-b673-4fe0-8803-1aa5145f0e1c" name="Default Changelist" comment="change:增加房源数据必填字段校验">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/customerArticles/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerArticles/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/customerArticles/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerArticles/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/customerArticles/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerArticles/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/esf/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/esf/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/esf/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/esf/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/esf/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/esf/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/xf/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/xf/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/xf/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/xf/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/xf/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/xf/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/xq/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/xq/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/xq/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/xq/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/xq/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/xq/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/zf/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/zf/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/request/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/zf/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/zf/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/zf/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/zf/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/http.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,7 +46,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../delevin/delevin-mini-program" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Alistar-pc" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -78,7 +78,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6e5b01d6-da30-4d9f-b288-589dbdd42b3f" name="Default Changelist" comment="" />
+      <changelist id="975fe9b3-b673-4fe0-8803-1aa5145f0e1c" name="Default Changelist" comment="change:增加房源数据必填字段校验" />
       <created>1599827242627</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -86,6 +86,7 @@
       <workItem from="1599827244198" duration="667000" />
       <workItem from="1600153720324" duration="6000" />
       <workItem from="1600305217699" duration="52369000" />
+      <workItem from="1601019019532" duration="8275000" />
     </task>
     <task id="LOCAL-00001" summary="feat:看点模块接口数据功能">
       <created>1600398268855</created>
@@ -122,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600944553924</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat: 获客文章与详情，转发">
+      <created>1601015538001</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1601015538001</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,28 +152,29 @@
     <MESSAGE value="feat:新房接口数据与房源样式重新添加" />
     <MESSAGE value="change:看点数据列表更改下拉刷新功能" />
     <MESSAGE value="change:增加房源数据必填字段校验" />
-    <option name="LAST_COMMIT_MESSAGE" value="change:增加房源数据必填字段校验" />
+    <MESSAGE value="feat: 获客文章与详情，转发" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 获客文章与详情，转发" />
   </component>
   <component name="WindowStateProjectService">
     <state x="469" y="213" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600616168720">
       <screen x="0" y="0" width="1600" height="866" />
     </state>
     <state x="469" y="213" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.866@0.0.1600.866" timestamp="1600616168720" />
-    <state x="573" y="228" key="CommitChangelistDialog2" timestamp="1601015395810">
+    <state x="573" y="228" key="CommitChangelistDialog2" timestamp="1601028457481">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="478" y="0" key="CommitChangelistDialog2/0.0.1600.866@0.0.1600.866" timestamp="1600616473995" />
-    <state x="573" y="228" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601015395810" />
-    <state x="184" y="92" width="1536" height="858" key="DiffContextDialog" timestamp="1600944511521">
+    <state x="573" y="228" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601028457481" />
+    <state x="184" y="92" width="1536" height="858" key="DiffContextDialog" timestamp="1601015522152">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="153" y="77" key="DiffContextDialog/0.0.1600.866@0.0.1600.866" timestamp="1600616459539" />
-    <state x="184" y="92" width="1536" height="858" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1600944511521" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1600999462847">
+    <state x="184" y="92" width="1536" height="858" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601015522152" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1601025814256">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2660" y="275" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1600153724913" />
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1600999462847" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1601025814256" />
     <state x="276" y="101" key="IDE.errors.dialog" timestamp="1600615393661">
       <screen x="0" y="0" width="1600" height="866" />
     </state>
@@ -186,11 +195,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1600427944986" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1600944559371">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1601015543458">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="460" y="197" key="Vcs.Push.Dialog.v2/0.0.1600.866@0.0.1600.866" timestamp="1600616426725" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600944559371" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1601015543458" />
     <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600999587299">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -213,22 +222,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/xq/index.js</url>
-          <line>277</line>
+          <line>270</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/xq/index.js</url>
-          <line>311</line>
+          <line>304</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/xq/index.js</url>
-          <line>322</line>
+          <line>315</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/xq/index.js</url>
-          <line>267</line>
+          <line>260</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

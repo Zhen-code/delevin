@@ -1,4 +1,4 @@
-<view class="xq-wrapper">
+<view class="xq-wrapper" wx:if="{{showPane}}">
     <view class="xq-top">
         <view class="tab-item"></view>
         <view class="tab-item">
@@ -324,6 +324,10 @@
                 bind:cancel="cancel"
         />
     </view>
+</view>
+<view class="success-wrapper" wx:else>
+    <image src="/combination/image/pic_success_100@2x.png" mode="aspectFill" style="width:200rpx;height:200rpx"></image>
+    <text class="successText">提交成功！</text>
 </view>
 <sheet
         title="{{title}}"

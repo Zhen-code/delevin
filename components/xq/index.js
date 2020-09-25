@@ -7,6 +7,7 @@ Component({
 
     },
     data: {
+        showPane: true,
         name: '',
         houseType:[],
         actions:[],
@@ -162,28 +163,20 @@ Component({
         },
         nameInput(e){
             console.log(e);
-            clearTimeout(this.timeFlag);
-            this.timeFlag=setTimeout(()=>{
                 this.setData({
                     name: e.detail.value
                 })
-            },2000);
         },
         apshInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag=setTimeout(()=>{
                 this.setData({
                     apsh: e.detail.value
-                })
-            },2000);
+                });
         },
         arpInput(e){
-            clearTimeout(this.timeFlag);
             this.timeFlag=setTimeout(()=>{
                 this.setData({
                     arp: e.detail.value
                 })
-            },2000);
         },
         deleteType(e){
             console.log(e.currentTarget.dataset.index)
@@ -349,14 +342,12 @@ Component({
                 })
         },
         propertyFareInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     propertyFare: e.detail.value
                 })
-            },2000);
         },
         addXQ(){
+            console.log(this.data.name)
             if(this.data.name===''){
                wx.showToast({
                    title: '请输入房源标题!',
@@ -433,8 +424,8 @@ Component({
                         "houseLabel": this.data.labelType,
                         "houseType":  houseId,
                         "houseVideo": this.data.videoUrl,
-                        "latitude": this.latitude,
-                        "longitude": this.longitude,
+                        "latitude": this.data.latitude,
+                        "longitude": this.data.longitude,
                         "metro": this.data.subway,
                         "parkingSpace": this.data.park,
                         "plotRatio": this.data.capacity,
@@ -446,22 +437,14 @@ Component({
                         "region": this.data.district,
                         "rentalAveragePrice": this.data.arp,
                         "street": this.data.area,
-                        "title": this.data.title
+                        "title": this.data.name
                     }
                 }).then(res=>{
                     wx.hideLoading();
-                    console.log(res)
-                    wx.showToast({
-                        title: '添加成功！',
-                        icon: "success",
-                        duration: 2000
+                    this.setData({
+                        showPane: false
                     });
-                    if(res.data['code'] === 500){
-                        wx.showToast({
-                            title: res.data['msg'],
-                            icon: "none"
-                        })
-                    }
+                    console.log(res)
                 }).catch(err=>{
                     wx.hideLoading();
                     console.log(err)
@@ -521,7 +504,9 @@ Component({
                     area: address,
                     city: city,
                     district:district,
-                    province: province
+                    province: province,
+                    latitude:latitude,
+                    longitude:longitude
                 })
             }
         }

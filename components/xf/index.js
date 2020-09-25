@@ -10,6 +10,7 @@ Component({
         }
     },
     data: {
+        showPane: true,
         title: '',
         type: '',
         actions: [],
@@ -490,12 +491,9 @@ Component({
             },500);
         },
         floorStatusInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     floorStatus: e.detail.value
                 })
-            },2000);
         },
         greenRateInput(e){
             this.setData({
@@ -503,12 +501,9 @@ Component({
             })
         },
         lineSiteInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     lineSite: e.detail.value
                 })
-            },2000);
         },
         parkRateInput(e){
             clearTimeout(this.timeFlag);
@@ -567,6 +562,7 @@ Component({
             },500);
         },
         addHouse(){
+            console.log(this.data.name)
             if(this.data.name === ''){
                 wx.showToast({
                     title: '请输入新房标题!',
@@ -671,18 +667,11 @@ Component({
                     }
                 }).then(res=>{
                     wx.hideLoading();
-                    console.log(res)
-                    wx.showToast({
-                        title: '添加成功！',
-                        icon: "success",
-                        duration:2000
+                    console.log(res);
+                    this.setData({
+                        showPane: false
                     });
-                    if(res.data['code'] === 500){
-                        wx.showToast({
-                            title: res.data['msg'],
-                            icon: "none"
-                        })
-                    }
+
                 }).catch(err=>{
                     wx.hideLoading();
                     console.log(err)

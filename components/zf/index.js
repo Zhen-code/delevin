@@ -5,6 +5,7 @@ var app = getApp();
 Component({
     properties: {},
     data: {
+        showPane: true,
         title: '',
         type: '',
         actions: [],
@@ -89,6 +90,7 @@ Component({
             })
         },
         addHouse(){
+            console.log(this.data.name)
             if(this.data.name===''){
                 wx.showToast({
                     title: '请输入房源标题!',
@@ -183,17 +185,10 @@ Component({
                 }).then(res=>{
                     wx.hideLoading();
                     console.log(res)
-                    wx.showToast({
-                        title: '添加成功！',
-                        icon: "success",
-                        duration:2000
+                    this.setData({
+                        showPane: false
                     });
-                    if(res.data['code'] === 500){
-                        wx.showToast({
-                            title: res.data['msg'],
-                            icon: "none"
-                        })
-                    }
+
                 }).catch(err=>{
                     wx.hideLoading();
                     console.log(err)

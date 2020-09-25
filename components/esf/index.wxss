@@ -181,5 +181,25 @@ input{
 .areaInput{
     width: 90%;
 }
+.success-wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+}
+.successText{
+    margin-top: 48rpx;
+    font-size: 36rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+}
+
 
 
