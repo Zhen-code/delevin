@@ -313,7 +313,7 @@ const request = {
       method: 'GET',
     })
   },
-  
+
   brokerList: (params)=> {
     return http({
       url: api.broker.list+params.agentId,
@@ -321,22 +321,28 @@ const request = {
     })
 
   },
-  
-  getHouseProperty: ()=>{//物业(勿删)
+
+  getHouseProperty: ()=>{//物业
       return http({
         url: '/api/access/v1/house/property/classify/list',
         method: 'GET',
         params:{}
       })
   },
-  getConstructClassify: ()=>{//建筑类型列表(勿删)
+  getConstructClassify: ()=>{//建筑类型列表
       return http({
         url: '/api/access/v1/house/construct/classify/list',
         method: 'GET',
         params:{}
       })
+  },
+  getLabelList: ()=>{
+    return http({
+      url: '/api/access/v1/house/label/list',
+      method: 'GET',
+      params:{}
+    })
   }
-
 }
 
 

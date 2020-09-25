@@ -281,13 +281,6 @@
         },
         {
           "id": -1,
-          "name": "combination/pages/homepage/index",
-          "pathName": "combination/pages/homepage/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
           "name": "combination/pages/customerPoster/index",
           "pathName": "combination/pages/customerPoster/index",
           "query": "",

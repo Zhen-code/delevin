@@ -66,13 +66,13 @@ Component({
             {name:'豪装',value: 'HAUTE_COUTURE'}],
         videoUrl: '',
         district: '',
-        province: ''
+        province: '',
+        imgs: [],
     },
         timeFlag: 1,
         constructClassify: [],
         constructClassifyId: '',
         decorationStatus: '',
-        imgs: [],
         propertyClassifyId: '',
         propertyTypeArray:[],
         saleStatuVal: '',
@@ -144,7 +144,7 @@ Component({
             });
         },
         getImgs(e){
-            this.imgs = (e.detail.e).map(v=>v.url);
+            this.data.imgs = (e.detail.e).map(v=>v.url);
         },
         goTextArea(){
             this.setData({
@@ -567,66 +567,121 @@ Component({
             },500);
         },
         addHouse(){
-            wx.showLoading({
-                title: '加载中'
-            });
-            let houseTypeId = this.data.houseType.map(v=>v.id);
-            http({
-                url: '/api/access/v1/house/estate/add',
-                method: 'POST',
-                params:{
-                    "areaCovered": this.data.ocupyArea,
-                    "buildingsCount": this.data.totalFloor,
-                    "city": this.data.city,
-                    "constructClassifyId": this.constructClassifyId,
-                    "decorationStatus": this.decorationStatus,
-                    "deliveryDate": this.data.startTime,
-                    "description": this.data.makerDesc,
-                    "designSketch":  this.imgs,
-                    "detailsAddress": this.data.address,
-                    "developers": this.data.developers,
-                    "floorCondition": this.data.floorStatus,
-                    "floorage": Number(this.data.buildingArea),
-                    "greenCoverage": this.data.greenRate,
-                    "houseLabel": this.data.labelType,
-                    "houseSubsidy": this.data.newHouseHelp,
-                    "houseType": houseTypeId,
-                    "houseVideo":  this.data.videoUrl,
-                    "latitude": this.data.latitude,
-                    "longitude": this.data.longitude,
-                    "loopLocation": this.data.lineSite,
-                    "metro": this.data.subway,
-                    "openingDate": this.data.startTime,
-                    "parkingRatio": this.data.parkRate,
-                    "parkingSpace": this.data.park,
-                    "plannedHouseholds": this.data.planCount,
-                    "projectFeatures": this.data.project,
-                    "property": this.data.cqYear,
-                    "propertyClassifyId": this.propertyClassifyId,
-                    "propertyCompany": this.data.propertyCompany,
-                    "propertyFee": this.data.propertyFare,
-                    "province": this.data.province,
-                    "region": this.data.district,
-                    "salesAddress": this.data.salesAddress,
-                    "salesStatus": this.saleStatuVal,
-                    "street": this.data.area,
-                    "telephone": this.data.telphone,
-                    "title": this.data.name,
-                    "unitPrice": this.data.price
-                }
-            }).then(res=>{
-                wx.hideLoading();
-                console.log(res)
+            if(this.data.name === ''){
                 wx.showToast({
-                    title: '添加成功！',
-                    icon: "success",
-                    duration:2000
+                    title: '请输入新房标题!',
+                    icon: "none",
+                    duration: 1000
+                })
+            }else if(this.data.imgs.length===0){
+                wx.showToast({
+                    title: '请上传至少一张效果图!',
+                    duration: 1000,
+                    icon:"none"
                 });
-            }).catch(err=>{
-                wx.hideLoading();
-                console.log(err)
-            })
-
+            }else if(this.data.houseType.length === 0){
+                wx.showToast({
+                    title: '请至少选择一项户型!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.price === ''){
+                wx.showToast({
+                    title: '请输入单价!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.labelType.length === 0){
+                wx.showToast({
+                    title: '请选择房源标签!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.xsCase === ''){
+                wx.showToast({
+                    title: '请选择销售状态!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.propertyType === ''){
+                wx.showToast({
+                    title: '请选择物业类型!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.buildingType === ''){
+                wx.showToast({
+                    title: '请选择建筑类型!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.address === '' || this.data.area===''){
+                wx.showToast({
+                    title: '请选择地址与所在区域!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else{
+                wx.showLoading({
+                    title: '加载中'
+                });
+                let houseTypeId = this.data.houseType.map(v=>v.id);
+                http({
+                    url: '/api/access/v1/house/estate/add',
+                    method: 'POST',
+                    params:{
+                        "areaCovered": this.data.ocupyArea,
+                        "buildingsCount": this.data.totalFloor,
+                        "city": this.data.city,
+                        "constructClassifyId": this.constructClassifyId,
+                        "decorationStatus": this.decorationStatus,
+                        "deliveryDate": this.data.startTime,
+                        "description": this.data.makerDesc,
+                        "designSketch":  this.data.imgs,
+                        "detailsAddress": this.data.address,
+                        "developers": this.data.developers,
+                        "floorCondition": this.data.floorStatus,
+                        "floorage": Number(this.data.buildingArea),
+                        "greenCoverage": this.data.greenRate,
+                        "houseLabel": this.data.labelType,
+                        "houseSubsidy": this.data.newHouseHelp,
+                        "houseType": houseTypeId,
+                        "houseVideo":  this.data.videoUrl,
+                        "latitude": this.data.latitude,
+                        "longitude": this.data.longitude,
+                        "loopLocation": this.data.lineSite,
+                        "metro": this.data.subway,
+                        "openingDate": this.data.startTime,
+                        "parkingRatio": this.data.parkRate,
+                        "parkingSpace": this.data.park,
+                        "plannedHouseholds": this.data.planCount,
+                        "projectFeatures": this.data.project,
+                        "property": this.data.cqYear,
+                        "propertyClassifyId": this.propertyClassifyId,
+                        "propertyCompany": this.data.propertyCompany,
+                        "propertyFee": this.data.propertyFare,
+                        "province": this.data.province,
+                        "region": this.data.district,
+                        "salesAddress": this.data.salesAddress,
+                        "salesStatus": this.saleStatuVal,
+                        "street": this.data.area,
+                        "telephone": this.data.telphone,
+                        "title": this.data.name,
+                        "unitPrice": this.data.price
+                    }
+                }).then(res=>{
+                    wx.hideLoading();
+                    console.log(res)
+                    wx.showToast({
+                        title: '添加成功！',
+                        icon: "success",
+                        duration:2000
+                    });
+                }).catch(err=>{
+                    wx.hideLoading();
+                    console.log(err)
+                })
+            }
         }
     },
 

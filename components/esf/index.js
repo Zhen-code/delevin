@@ -5,6 +5,7 @@ var app = getApp();
 Component({
     properties: {},
     data: {
+        imgs: [],
         title: '',
         type: '',
         actions: [],
@@ -56,7 +57,6 @@ Component({
         districtId:''
     },
     timeFlag: 1,
-    imgs: [],
     decorationStatus: '',
     orientValue:'',
     lifetimes:{
@@ -97,56 +97,105 @@ Component({
             },2000);
         },
         getImgs(e){
-            this.imgs = (e.detail.e).map(v=>v.url);
+            this.data.imgs = (e.detail.e).map(v=>v.url);
         },
         addHouse(){
-            wx.showLoading({
-                title: '加载中'
-            });
-            // return
-          http({
-              url: '/api/access/v1/house/second/hand/add',
-              method: 'POST',
-              params:{
-                  "builtYear": this.data.buildingTime,
-                  "city": this.data.city,
-                  "decorationStatus": this.decorationStatus,
-                  "description": this.data.makerDesc,
-                  "designSketch": this.imgs,
-                  "detailsAddress": this.data.area,
-                  "elevator": this.data.elevator,
-                  "floorCondition": this.data.floorStatus,
-                  "floorage": this.data.buildingArea,
-                  "houseHall": this.data.room,
-                  "houseKitchen": this.data.kitchen,
-                  "houseLabel": this.data.labelType,
-                  "houseToilet": this.data.wei,
-                  "houseType":  this.data.indoorType,
-                  "houseVideo": this.data.videoUrl,
-                  "latitude": this.data.latitude,
-                  "longitude": this.data.longitude,
-                  "metro": this.data.subway,
-                  "orientation": this.orientValue,
-                  "property": this.data.cqYear,
-                  "province": this.data.province,
-                  "quartersId": this.data.districtId,
-                  "region": this.data.district,
-                  "street": this.data.address,
-                  "title": this.data.name,
-                  "totalPrice": this.data.totalPrice
-              }
-          }).then(res=>{
-              wx.hideLoading();
-              console.log(res)
-              wx.showToast({
-                  title: '添加成功！',
-                  icon: "success",
-                  duration:2000
-              });
-          }).catch(err=>{
-              wx.hideLoading();
-              console.log(err)
-          })
+            if(this.data.name===''){
+                wx.showToast({
+                    title: '请输入房源标题!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.districtTitle === ''){
+                wx.showToast({
+                    title: '请选择所属小区!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.totalPrice === ''){
+                wx.showToast({
+                    title: '请输入总价',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.labelType.length === 0){
+                wx.showToast({
+                    title: '请选择房源标签!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.indoorType === ''){
+                wx.showToast({
+                    title: '请输入户型室!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.buildingArea === ''){
+                wx.showToast({
+                    title: '请输入建筑面积!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.address === '' || this.data.area===''){
+                wx.showToast({
+                    title: '请选择地址与所在区域!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.imgs.length===0){
+                wx.showToast({
+                    title: '请上传至少一张效果图!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else{
+                wx.showLoading({
+                    title: '加载中'
+                });
+                http({
+                    url: '/api/access/v1/house/second/hand/add',
+                    method: 'POST',
+                    params:{
+                        "builtYear": this.data.buildingTime,
+                        "city": this.data.city,
+                        "decorationStatus": this.decorationStatus,
+                        "description": this.data.makerDesc,
+                        "designSketch": this.data.imgs,
+                        "detailsAddress": this.data.area,
+                        "elevator": this.data.elevator,
+                        "floorCondition": this.data.floorStatus,
+                        "floorage": this.data.buildingArea,
+                        "houseHall": this.data.room,
+                        "houseKitchen": this.data.kitchen,
+                        "houseLabel": this.data.labelType,
+                        "houseToilet": this.data.wei,
+                        "houseType":  this.data.indoorType,
+                        "houseVideo": this.data.videoUrl,
+                        "latitude": this.data.latitude,
+                        "longitude": this.data.longitude,
+                        "metro": this.data.subway,
+                        "orientation": this.orientValue,
+                        "property": this.data.cqYear,
+                        "province": this.data.province,
+                        "quartersId": this.data.districtId,
+                        "region": this.data.district,
+                        "street": this.data.address,
+                        "title": this.data.name,
+                        "totalPrice": this.data.totalPrice
+                    }
+                }).then(res=>{
+                    wx.hideLoading();
+                    console.log(res)
+                    wx.showToast({
+                        title: '添加成功！',
+                        icon: "success",
+                        duration:2000
+                    });
+                }).catch(err=>{
+                    wx.hideLoading();
+                    console.log(err)
+                })
+            }
         },
         getVideoUrl(e){
             console.log(e)

@@ -162,7 +162,7 @@ Page({
 					res.resultStatusType = '审核中'
 					break;
 				case 'PASS':
-					res.resultStatusType = '切换至经纪端'
+					res.resultStatusType = '审核通过'
 					break;
 				case 'REFUSE':
 					res.resultStatusType = '审核拒绝'

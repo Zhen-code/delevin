@@ -43,14 +43,13 @@ Component({
         showIndoor:false,
         showTextArea:false,
         autofocus:false,
-        videoUrl: ''
+        videoUrl: '',
+        imgs: [],
     },
     timeFlag: 1,
     propertyTypeArray:[],
     constructClassify: [],
     constructClassifyId: '',
-    imgs: [],
-    houseType: [],
     propertyClassifyId: '',
     methods: {
         getVideoUrl(e){
@@ -167,14 +166,6 @@ Component({
             this.timeFlag=setTimeout(()=>{
                 this.setData({
                     name: e.detail.value
-                })
-            },2000);
-        },
-        houseTypeInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag=setTimeout(()=>{
-                this.setData({
-                    houseType: e.detail.value
                 })
             },2000);
         },
@@ -319,7 +310,13 @@ Component({
             }
         },
         getImgs(e){
-            this.imgs = (e.detail.e).map(v=>v.url);
+            let val = e.detail.e;
+            if(val || val.length!==0){
+                let imgs = val.map(v=>v.url);
+                this.setData({
+                    imgs
+                })
+            }
         },
         developersInput(e){
               this.setData({
@@ -360,56 +357,115 @@ Component({
             },2000);
         },
         addXQ(){
-            wx.showLoading({
-                title: '加载中'
-            });
-            http({
-                url: '/api/access/v1/house/residential/quarters/add',
-                method: 'POST',
-                params: {
-                    "averagePrice": this.apsh,
-                    "builtYear": this.buildingTime,
-                    "city": this.city,
-                    "constructClassifyId": this.constructClassifyId,
-                    "description": this.data.makerDesc,
-                    "designSketch": this.imgs,
-                    "detailsAddress": this.data.address,
-                    "developers": this.data.developers,
-                    "greenCoverage": this.data.greenRate,
-                    "houseLabel": this.data.labelType,
-                    "houseType":  this.houseType,
-                    "houseVideo": this.data.videoUrl,
-                    "latitude": this.latitude,
-                    "longitude": this.longitude,
-                    "metro": this.data.subway,
-                    "parkingSpace": this.data.park,
-                    "plotRatio": this.data.capacity,
-                    "property": this.data.cqYear,
-                    "propertyClassifyId": this.propertyClassifyId,
-                    "propertyCompany": this.data.propertyCompany,
-                    "propertyFee": this.data.propertyFare,
-                    "province": this.data.province,
-                    "region": this.data.district,
-                    "rentalAveragePrice": this.data.arp,
-                    "street": this.data.area,
-                    "title": this.data.title
-                }
-            }).then(res=>{
-                wx.hideLoading();
-                console.log(res)
+            if(this.data.name===''){
+               wx.showToast({
+                   title: '请输入房源标题!',
+                   duration: 1000,
+                   icon:"none"
+               });
+            }else if(this.data.houseType.length === 0){
                 wx.showToast({
-                   title: '添加成功！',
-                   icon: "success"
+                    title: '请至少选择一项户型!',
+                    duration: 1000,
+                    icon:"none"
                 });
-                if(res.data['code'] === 500){
+            }else if(this.data.apsh === ''){
+                wx.showToast({
+                    title: '请输入二手房均价!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.arp === ''){
+                wx.showToast({
+                    title: '请输入租房均价!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.labelType.length === 0){
+                wx.showToast({
+                    title: '请选择房源标签!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.propertyType === ''){
+                wx.showToast({
+                    title: '请选择物业类别!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.buildingType === ''){
+                wx.showToast({
+                    title: '请选择建筑类型!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.address === '' || this.data.area===''){
+                wx.showToast({
+                    title: '请选择地址与所在区域!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.imgs.length===0){
+                wx.showToast({
+                    title: '请上传至少一张效果图!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else{
+                let houseId = this.data.houseType.map(v=>v.id);
+                console.log(houseId)
+                wx.showLoading({
+                    title: '加载中'
+                });
+                http({
+                    url: '/api/access/v1/house/residential/quarters/add',
+                    method: 'POST',
+                    params: {
+                        "averagePrice": this.apsh,
+                        "builtYear": this.buildingTime,
+                        "city": this.city,
+                        "constructClassifyId": this.constructClassifyId,
+                        "description": this.data.makerDesc,
+                        "designSketch": this.data.imgs,
+                        "detailsAddress": this.data.address,
+                        "developers": this.data.developers,
+                        "greenCoverage": this.data.greenRate,
+                        "houseLabel": this.data.labelType,
+                        "houseType":  houseId,
+                        "houseVideo": this.data.videoUrl,
+                        "latitude": this.latitude,
+                        "longitude": this.longitude,
+                        "metro": this.data.subway,
+                        "parkingSpace": this.data.park,
+                        "plotRatio": this.data.capacity,
+                        "property": this.data.cqYear,
+                        "propertyClassifyId": this.propertyClassifyId,
+                        "propertyCompany": this.data.propertyCompany,
+                        "propertyFee": this.data.propertyFare,
+                        "province": this.data.province,
+                        "region": this.data.district,
+                        "rentalAveragePrice": this.data.arp,
+                        "street": this.data.area,
+                        "title": this.data.title
+                    }
+                }).then(res=>{
+                    wx.hideLoading();
+                    console.log(res)
                     wx.showToast({
-                        title: res.data['msg']
-                    })
-                }
-            }).catch(err=>{
-                wx.hideLoading();
-                console.log(err)
-            })
+                        title: '添加成功！',
+                        icon: "success",
+                        duration: 2000
+                    });
+                    if(res.data['code'] === 500){
+                        wx.showToast({
+                            title: res.data['msg']
+                        })
+                    }
+                }).catch(err=>{
+                    wx.hideLoading();
+                    console.log(err)
+                })
+            }
         }
     },
     lifetimes:{

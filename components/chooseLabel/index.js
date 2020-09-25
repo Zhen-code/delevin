@@ -1,3 +1,4 @@
+const {request} = require('../../request/request');
 Component({
     properties: {
         show:{
@@ -6,7 +7,25 @@ Component({
         }
     },
     data: {
-        labelList:[{name:'标签',isActive:false},{name:'标签1',isActive:false},{name:'标签2',isActive:false},{name:'标签3',isActive:false},{name:'标签4',isActive:false},{name:'标签5',isActive:false},{name:'标签6',isActive:false}]
+        labelList:[]
+    },
+    lifetimes:{
+      created() {
+          request.getLabelList().then(res=>{
+              console.log(res)
+              let labelList = res.map(v=>{
+                  return{
+                      name: v.name,
+                      isActive:false
+                  }
+              });
+              this.setData({
+                  labelList
+              })
+          }).catch(err=>{
+              console.log(err)
+          })
+      }
     },
     methods: {
         handleItem(e){
