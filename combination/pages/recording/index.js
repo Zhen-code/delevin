@@ -1,5 +1,7 @@
 // combination/pages/recording/index.js
-const topHeight = require('../../../request/topHeight.js').topHeight
+const topHeight = require('../../../request/topHeight.js').topHeight;
+const {http} = require('../../../request/http');
+const {api} = require('../../../request/api');
 Page({
 
 	/**
@@ -11,13 +13,14 @@ Page({
 			"color": true,
 			"border": true
 		},
-		item: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+		item: [],
 		pageIndex: 1,
 		pageSize: 12,
 		scrollTop: 0,
 		triggered: false,
+		toBottom: true
 	},
-
+	pageTotal: 0,
 	scrollTop() {
 		wx.pageScrollTo({
 			scrollTop: 0
@@ -28,20 +31,56 @@ Page({
 		this.setData({
 			pageIndex: 1,
 			triggered: false,
-		})
+		});
 		this.getData()
 	},
 
 	//滚动加载
 	scrollList() {
-		this.getData()
+		let {pageIndex} = this.data;
+		pageIndex++;
+		if(pageIndex>this.pageTotal){
+			this.setData({
+				toBottom: true
+			})
+		}else{
+			this.setData({
+				pageIndex
+			});
+			this.getData();
+		}
 	},
 
 	getData() {
+		http({
+			url: api.operation.visitorList,
+			method: 'GET',
+			params:{
+				pageIndex: this.data.pageIndex,
+				pageSize: this.data.pageSize
+			}
+		}).then(res=>{
+			console.log(res)
+			let {item} = this.data;
+			if(res.total>12){
+				this.setData({
+					item: [...item,...res.list],
+					toBottom: false
+				});
+			}else{
+				this.setData({
+					item: [...item,...res.list]
+				});
+			}
+			this.pageTotal = res.pageTotal;
+		}).catch(err=>{
+			console.log(err);
+		})
 
 	},
 
-	dialNumber() {
+	dialNumber(e) {
+		console.log(e)
 		wx.makePhoneCall({
 			phoneNumber: '17620835317'
 		})
@@ -74,7 +113,7 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		this.getData();
 	},
 
 	/**

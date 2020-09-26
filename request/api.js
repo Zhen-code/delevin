@@ -59,6 +59,7 @@
     rent:'/api/access/v1/rental/price/list',
     type:'/api/access/v1/house/type/list',
     map:'/api/access/v1/house/around/list',
+       visitorList: '/api/access/v1/member/visitors/list'
    },
 
    // 消息

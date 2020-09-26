@@ -362,6 +362,12 @@
 					"pathName": "combination/pages/customerArticleDetail/index",
 					"query": "id=3",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "访客记录",
+					"pathName": "combination/pages/recording/index",
+					"scene": null
 				}
 			]
 		}

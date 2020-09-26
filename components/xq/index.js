@@ -173,8 +173,7 @@ Component({
                 });
         },
         arpInput(e){
-            this.timeFlag=setTimeout(()=>{
-                this.setData({
+            this.setData({
                     arp: e.detail.value
                 })
         },
@@ -511,4 +510,5 @@ Component({
             }
         }
     }
-});
+}
+);
