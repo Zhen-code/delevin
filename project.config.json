@@ -376,6 +376,12 @@
 					"pathName": "combination/pages/customerPoster/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "客源管理",
+					"pathName": "combination/pages/management/index",
+					"scene": null
 				}
 			]
 		}

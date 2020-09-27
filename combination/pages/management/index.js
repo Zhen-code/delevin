@@ -1,5 +1,7 @@
 // combination/pages/recording/index.js
-const topHeight = require('../../../request/topHeight.js').topHeight
+const topHeight = require('../../../request/topHeight.js').topHeight;
+const {http} = require('../../../request/http');
+const {api} = require('../../../request/api');
 Page({
 
 	/**
@@ -18,6 +20,9 @@ Page({
 		scrollTop: 0,
 		triggered: false,
 		tabIndex:0,
+		snatchList:[],
+		watiCustomerList: [],
+		pushCustomer: []
 	},
 
 	scrollTop() {
@@ -97,12 +102,81 @@ Page({
 			}
 		})
 	},
+	getSnatchList(){
+			http({
+				url: api.broker.snatchCustomerList,
+				method: 'GET',
+				params:{
+					pageIndex: 1,
+					pageSize: 1000
+				}
+			}).then(res=>{
+				console.log(res)
+				this.setData({
+					snatchList: res.list||[]
+				})
+			}).catch(err=>{
+				console.log(err);
+			})
+	},
+	getWaitCustom(){
+		http({
+			url: api.broker.watiCustomerList,
+			method: 'GET',
+			params:{
+				pageIndex: 1,
+				pageSize: 1000
+			}
+		}).then(res=>{
+			console.log(res);
+			this.setData({
+				watiCustomerList: res.list
+			})
+		}).catch(err=>{
+			console.log(err)
+		})
+	},
+	getPushCustomer(){
+		http({
+			url: api.broker.pushCustomerList,
+			method: 'GET',
+			params:{
+				pageIndex: 1,
+				pageSize: 1000
+			}
+		}).then(res=>{
+			console.log(res)
+			this.setData({
+				pushCustomer: res.list
+			})
+		}).catch(err=>{
+			console.log(err);
+		})
+	},
+	getVisitorList(){
+		http({
+			url: api.operation.visitorList,
+			method: 'GET',
+			params:{
+				pageIndex: 1,
+				pageSize: 1000,
+				type: 'HOUSE'
+			}
+		}).then(res=>{
+			console.log(res)
+		}).catch(err=>{
+			console.log(err)
+		})
+	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+			this.getSnatchList();
+			this.getWaitCustom();
+			this.getPushCustomer();
+			this.getVisitorList();
 	},
 
 	/**

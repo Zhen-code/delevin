@@ -28,18 +28,20 @@
 								  bindtouchend='end'
 								  bindtouchmove='move'
 									>
-							<view wx:for="{{newsList}}" wx:key="id" class="tab-item" catchtap="goHouseDetal" data-id="{{item.id}}">
-								<view class="tab-item-left">
-									<view class="tab-item-left-title">{{item.name}}</view>
-									<view class="tab-item-left-desc">
-										<text>{{item.source}}</text>
-										<text class="split-line">|</text>
-										<text>{{item.author}}</text>
+								<block wx:for="{{newsList}}" wx:key="id">
+									<view wx:if="{{item.status==='DISPLAY'}}" class="tab-item" catchtap="goHouseDetal" data-id="{{item.id}}">
+										<view class="tab-item-left">
+											<view class="tab-item-left-title">{{item.name}}</view>
+											<view class="tab-item-left-desc">
+												<text>{{item.source}}</text>
+												<text class="split-line">|</text>
+												<text>{{item.author}}</text>
+											</view>
+											<view class="tab-item-left-time">{{item.createDate}}</view>
+										</view>
+										<image src="{{item.coverUri}}" class="tab-item-right" mode="aspectFill"></image>
 									</view>
-									<view class="tab-item-left-time">{{item.createDate}}</view>
-								</view>
-								<image src="{{item.coverUri}}" class="tab-item-right" mode="aspectFill"></image>
-							</view>
+								</block>
 							</view>
 						</scroll-view>
 						<view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
@@ -70,8 +72,8 @@
 				>
 		<view wx:for="{{postList}}" wx:key="id" class="tab-item2" catchtap="goPostDetail" data-id="{{item.id}}">
 			<view class="tab-item2-title">{{item.title}}</view>
-			<view class="tab-item2-desc">{{item.content}}</view>
-			<view class="tab-item2-label">#{{item.label}}</view>
+			<view class="tab-item2-desc">{{item.content==null?'':item.content}}</view>
+			<view class="tab-item2-label">#{{item.label==null?'暂无标签':item.label}}</view>
 			<view class="tab-item2-time">
 				<view class="tab-item2-time-left">
 					<text>最新回复</text>
@@ -88,8 +90,8 @@
 			</view>
 		</view>
 				</view>
+				<view class="bottom-text" wx:if="{{isPostBottom}}">- 到底啦 -</view>
 			</scroll-view>
-			<view class="bottom-text" wx:if="{{isPostBottom}}">- 到底啦 -</view>
 		</view>
 		<noData wx:else height="50" flexd="true"/>
 		<image class="send" src="/assets/iconedit@2x.png" catch:tap="post"></image>

@@ -100,6 +100,9 @@
     list:'/api/access/v1/house/around/list/',
     promote:'/api/access/v1/house/around/promotion',
     constructList:'/api/access/v1/house/construct/classify/list',//建筑类型列表
+       pushCustomerList: '/api/access/v1/order/push/customers/list',//推送客源列表
+       watiCustomerList: '/api/access/v1/order/waiting/customers/list',//待抢客源
+       snatchCustomerList: '/api/access/v1/order/snatch/customers/list'//已抢客源
    },
  }
  module.exports = {

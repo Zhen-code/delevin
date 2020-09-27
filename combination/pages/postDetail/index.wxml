@@ -1,6 +1,6 @@
 <!--combination/pages/postDetail/index.wxml-->
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="帖子详情" />
-<scroll-view scroll-y
+<scroll-view scroll-y="true"
               style="height:{{winHeight}}">
 <view class="content" style="padding-top:{{paddingTop}}px">
   <view class="content-top">
@@ -11,7 +11,7 @@
     </view>
   </view>
    <text class="content-center">
-    {{content}}
+    {{content==null?'暂无内容':content}}
   </text>
   <block wx:for="{{newsImg}}"
          wx:key="*this">

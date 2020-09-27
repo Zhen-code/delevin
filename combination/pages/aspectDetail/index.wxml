@@ -1,6 +1,8 @@
 <!--combination/pages/aspectDetail/index.wxml-->
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="新闻资讯" />
-<scroll-view scroll-y style="height:{{winHeight}}">
+<scroll-view scroll-y
+             style="height:{{winHeight}}"
+              scroll-into-view="{{toView}}">
   <view class="content" id="content" style="padding-top:{{paddingTop}}px">
     <view class="content-top">
       <view class="title">{{title}}</view>
@@ -85,13 +87,13 @@
   <view class="no-more-text">- 没有更多评论了 -</view>
 </scroll-view>
 <view class="bottom-contain">
-<view class="write-content" catch:tap="toWrite">写评论…</view>
-    <button
-            class="write-content-btn"
-            bind:tap="collect">
+  <view class="write-content" catch:tap="toWrite">写评论…</view>
+  <button
+          class="write-content-btn"
+          bind:tap="collect">
     <image src="{{collect==='YES'?'../../image/icon_collection_20_pre@2x.png':'../../image/icon_collection_20_nor@2x.png'}}" class="bottom-img" mode="aspectFill"></image>
     <text>收藏</text>
-    </button>
+  </button>
   <button
           class="write-content-btn"
           open-type="share">
@@ -102,8 +104,9 @@
     <image src="../../image/icon_comment_20_black@2x.png" class="bottom-img" mode="aspectFill"></image>
     <text>{{commentCount}}</text>
   </button>
-<!--  <button class="write-content-btn">-->
-<!--    <image src="../../image/icon_like_20_nor@2x.png" class="bottom-img" mode="aspectFill"></image>-->
-<!--    <text></text>-->
-<!--  </button>-->
+  <!--  <button class="write-content-btn">-->
+  <!--    <image src="../../image/icon_like_20_nor@2x.png" class="bottom-img" mode="aspectFill"></image>-->
+  <!--    <text></text>-->
+  <!--  </button>-->
 </view>
+
