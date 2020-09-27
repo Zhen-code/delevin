@@ -6,7 +6,7 @@
 		<text class="top-tab {{topTabIndex === 1?'top-tab-action':''}}" data-index="{{1}}" bindtap="topTap">其他</text>
 	</view>
 	<view class="doubleTab">
-		<doubleTab wx:if="{{topTabIndex === 0}}" style="width:100%;height:70rpx;" bind:backTabValue="getTabIndex" tabItem="{{tabItem}}"></doubleTab>
+		<doubleTab wx:if="{{topTabIndex === 0}}" tabIndex="{{doubleTabIndex}}" style="width:100%;height:70rpx;" bind:backTabValue="getTabIndex" tabItem="{{tabItem}}"></doubleTab>
 		<view class="tab" wx:if="{{topTabIndex === 1}}">
 			<text class="tabState {{tabIndex === 0?'tabAction':''}}" data-index="{{0}}" bindtap="tabItemIndex">新闻</text>
 			<text class="tabState {{tabIndex === 1?'tabAction':''}}" data-index="{{1}}" bindtap="tabItemIndex">地产315</text>
@@ -16,7 +16,7 @@
 		<block wx:for="{{item}}" wx:key="index">
 			<van-swipe-cell right-width="{{ 80 }}" id="swipe-cell" async-close data-item="{{item}}" data-index="{{index}}" bind:close="onClose">
 				<van-cell-group>
-					<shopItem item="{{item}}" wx:if="{{topTabIndex === 0}}"></shopItem>
+					<shopItem item="{{item}}" wx:if="{{topTabIndex === 0}}" data-item="{{item}}" data-index="{{index}}" bindtap="toDateils"></shopItem>
 					<aspectItem item="{{item}}" wx:if="{{topTabIndex === 1 && tabIndex === 0}}"></aspectItem>
 					<estateItem item="{{item}}" wx:if="{{topTabIndex === 1 && tabIndex === 1}}"></estateItem>
 				</van-cell-group>

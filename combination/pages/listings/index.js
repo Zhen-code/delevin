@@ -111,10 +111,6 @@ Page({
 			"pageIndex": pageIndex,
 			"pageSize": pageSize,
 			"province": province,
-			"houseType": '',
-			"region": '',
-			"salesStatus": '',
-			"upperLimit": '',
 		}).then((res) => {
 			item.push(...res.list)
 			this.setData({

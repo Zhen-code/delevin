@@ -22,30 +22,23 @@
 		</view>
 	</view>
 	<view class="list">
-		<view class="row {{tebIndex === 0?'action':''}}" data-index="{{0}}" bindtap="changeItem">
-			<image class="rowImage" src="/combination/image/label_discount_red@2x.png"></image>
-			<view class="rowMonth">3个月</view>
-			<view class="rowPrice">
-				<view class="rowPriceSymbol">￥<text class="rowPriceNum1">3000</text></view>
-				<view class="rowPriceSymbo2">￥<text class="rowPriceNum2">3000</text></view>
+		<block wx:for="{{list}}" wx:key="index">
+			<view class="row {{tebIndex === index?'action':''}}" data-item="{{item}}" data-index="{{index}}" bindtap="changeItem">
+				<image class="rowImage" src="/combination/image/label_discount_red@2x.png"></image>
+				<view class="rowMonth">{{item.specsTitle}}</view>
+				<view class="rowPrice">
+					<view class="rowPriceSymbol">￥<text class="rowPriceNum1">{{item.unitPrice}}</text></view>
+					<view class="rowPriceSymbo2">￥<text class="rowPriceNum2">{{item.discountPrice}}</text></view>
+				</view>
+				<view class="rowAverage">¥{{item.avgPrice}}/月</view>
 			</view>
-			<view class="rowAverage">¥1000/月</view>
-		</view>
-		<view class="row {{tebIndex === 1?'action':''}}" data-index="{{1}}" bindtap="changeItem">
-			<image class="rowImage" src="/combination/image/label_discount_red@2x.png"></image>
-			<view class="rowMonth">3个月</view>
-			<view class="rowPrice">
-				<view class="rowPriceSymbol">￥<text class="rowPriceNum1">3000</text></view>
-				<view class="rowPriceSymbo2">￥<text class="rowPriceNum2">3000</text></view>
-			</view>
-			<view class="rowAverage">¥1000/月</view>
-		</view>
+		</block>
 	</view>
 </view>
 
 <view class="footer">
-	<view class="footerAll">合计：<text class="footerPrice">3000元</text></view>
+	<view class="footerAll">合计：<text class="footerPrice">{{price}}元</text></view>
 	<view class="footerShop">
-		<text class="footerShopSurpe">提交订单</text>
+		<text class="footerShopSurpe" bindtap="submitOrder">提交订单</text>
 	</view>
 </view>

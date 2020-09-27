@@ -1,6 +1,7 @@
 /* combination/pages/listings/index.wxss */
 .view {
 	width: 100%;
+	height: calc(100vh - 136rpx);
 	background-color: white;
 	display: flex;
 	align-items: flex-start;
@@ -28,8 +29,9 @@
 	align-items: flex-start;
 	justify-content: flex-start;
 	flex-direction: column;
-	position: fixed;
+	/* position: fixed;
 	left: 0;
+	margin-bottom: 136rpx; */
 }
 
 .shopItem-list {
@@ -56,7 +58,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-bottom: 180px;
+	/* margin-bottom: 180px; */
 }
 
 .footer-text {

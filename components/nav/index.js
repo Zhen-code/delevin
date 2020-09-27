@@ -27,6 +27,7 @@ Component({
     border: '',
     bg: '',
     titleColor: '',
+    backTab:false,
   },
   properties: {
     back: {
@@ -48,6 +49,10 @@ Component({
     top: {
       type: Number, //类型
       value: 0 //默认值
+    },
+    backTab: {
+      type: Boolean, //类型
+      value: false //默认值
     },
   },
   observers: {
@@ -81,13 +86,26 @@ Component({
         }
       }
     },
+    backTab(val, newVal){
+      if(val){
+        this.setData({
+          backTab: val
+        })
+      }
+    },
   },
 
   methods: {
     back() {
-      wx.navigateBack({
-        delta: 1
-      })
+      if(this.data.backTab){
+        wx.switchTab({
+          url: '/pages/home/index'
+        })
+      }else{
+        wx.navigateBack({
+          delta: 1
+        })
+      }
     },
     toHome() {
       wx.switchTab({

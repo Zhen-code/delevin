@@ -77,6 +77,7 @@ Page({
 				url: `/combination/pages/broker/index`,
 			})
 		}
+		// this.getTab()
 	},
 
 	myCollection() {

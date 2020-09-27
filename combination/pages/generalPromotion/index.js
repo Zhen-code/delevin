@@ -1,4 +1,7 @@
 // combination/pages/generalPromotion/index.js
+const {
+	request
+} = require('../../../request/request.js');
 const topHeight = require('../../../request/topHeight.js').topHeight
 Page({
 
@@ -12,6 +15,11 @@ Page({
 			"border": false,
 			"titleColor":true
 		},
+		id:'',
+		price:0,
+		list:[],
+		pageIndex:1,
+		pageSize:12,
 		index:0,
 		tebIndex:'',
 		actionLeftBgImage1:'/combination/image/btn_black_left@2x.png',
@@ -28,14 +36,95 @@ Page({
 	tabItem(e){
 		let index = e.currentTarget.dataset.index;
 		this.setData({
-			index:index
+			list:[],
+			tebIndex:'',
+			index:index,
+		},()=>{
+			this.getData()
 		})
 	},
 
 	changeItem(e){
+		let item = e.currentTarget.dataset.item
 		let tebIndex = e.currentTarget.dataset.index;
 		this.setData({
-			tebIndex:tebIndex
+			id:item.id,
+			price:item.discountPrice,
+			tebIndex:tebIndex,
+		})
+	},
+
+	getData(){
+		let requests = '';
+		if(this.data.index === 0){
+			requests = request.portLsit;
+		}else{
+			requests = request.snatchLsit;
+		}
+		requests({
+			"pageIndex":this.data.pageIndex,
+			"pageSize":this.data.pageSize,
+		}).then((res) => {
+			this.setData({
+				list:res.list
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	submitOrder(){
+		request.submitOrder({
+			"id": this.data.id,
+			"setMealType": this.data.index === 0?"PORT_SET_MEAL":"SNATCH_SET_MEAL",
+		}).then((res)=>{
+			let orderNum = res.orderNum;
+			request.wxPay({
+				"orderNum": orderNum,
+				"payMethod": "WX"
+			}).then((res)=>{
+				let payInfo = JSON.parse(res.payInfo)
+				let wxPayResult = JSON.parse(payInfo.wxPayResult)
+				wx.requestPayment({
+					'timeStamp': payInfo.timeStamp,
+					'nonceStr': wxPayResult.nonceStr,
+					'package': 'prepay_id=' + wxPayResult.prepayId,
+					'signType': 'MD5',
+					'paySign': payInfo.sign,
+					'success': function (res) {
+						wx.reLaunch({
+							url: '/combination/pages/myPackage/index',
+						})
+					},
+					'fail': function (res) {
+						console.log('支付失败');
+						wx.showToast({
+							title: '支付失败',
+							icon: 'none',
+							duration: 2500
+						})
+						return;
+					},
+				})
+			}).catch((err)=>{
+				console.log(err)
+				wx.showToast({
+					title: '请求失败',
+					icon: 'none',
+					duration: 2500
+				})
+			})
+		}).catch((err)=>{
+			console.log(err)
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
 		})
 	},
 
@@ -43,7 +132,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		this.getData();
 	},
 
 	/**

@@ -59,6 +59,7 @@
     rent:'/api/access/v1/rental/price/list',
     type:'/api/access/v1/house/type/list',
     map:'/api/access/v1/house/around/list',
+    ahistoryAdd:'/api/access/v1/user/member/browsing/history/add',
    },
 
    // 消息
@@ -90,9 +91,17 @@
     application:'/api/access/v1/member/agent/certified',
     result:'/api/access/v1/member/agent/certified/result',
     home:'/api/access/v1/member/agent/details/',
-    delete:'/api/access/v1/house/around/del',
+    delete:'/api/access/v1/house/around/del/',
     list:'/api/access/v1/house/around/list/',
     promote:'/api/access/v1/house/around/promotion',
+    portLsit:'/api/access/v1/order/port/set/meal/list',
+    snatchLsit:'/api/access/v1/order/snatch/set/meal/list',
+    submitOrder:'/api/access/v1/order/buy/confirm',
+    wxPay:'/api/access/v1/fund/pay',
+    myPackageList:'/api/access/v1/order/set/meal/list',
+    superPromotion:'/api/access/v1/order/extension/set/meal/list',
+    superSubmitOrder:'/api/access/v1/order/super/buy/confirm',
+    superCalculation:'/api/access/v1/order/extension/set/meal/calculation',
     constructList:'/api/access/v1/house/construct/classify/list',//建筑类型列表
    },
  }

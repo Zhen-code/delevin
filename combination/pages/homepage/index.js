@@ -17,6 +17,7 @@ Page({
 		},
 		agentId:"",
 		userInfo: {},
+		list:[],
 	},
 
   onPageScroll(e) {
@@ -31,6 +32,22 @@ Page({
 		}).then((res)=>{
 			this.setData({
 				userInfo:res
+			})
+		}).catch((err)=>{
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	getLsit(){
+		request.brokerList({
+			"agentId":this.data.agentId
+		}).then((res)=>{
+			this.setData({
+				list:res
 			})
 		}).catch((err)=>{
 			wx.showToast({
@@ -56,7 +73,8 @@ Page({
 		this.setData({
 			agentId:options.agentId,
 		},()=>{
-			this.getData()
+			this.getData();
+			this.getLsit();
 		})
 	},
 

@@ -25,7 +25,11 @@ Page({
 		stlectName: "arrow-down",
 		cWidth: '',
 		cHeight: '',
-		tabItem: ['新房', '二手房']
+		tabItem: ['新房', '二手房'],
+		favoritesState: false,
+		favoritesIcon: 'star-o',
+		favoritesColor: '#cccccc',
+		favoritesName: '收藏',
 	},
 
 	tovideoImage() {
@@ -93,26 +97,72 @@ Page({
 		}).then((res) => {
 			switch (res.decorationStatus) {
 				case 'ROUGHCAST':
-					res.decorationsStatus = '毛坯'
+					res.decorationsStatusType = '毛坯'
 					break;
 				case 'PAPERBACK':
-					res.decorationsStatus = '简装'
+					res.decorationsStatusType = '简装'
 					break;
 				case 'CHINESE_DRESS':
-					res.decorationsStatus = '中装'
+					res.decorationsStatusType = '中装'
 					break;
 				case 'HARDCOVER':
-					res.decorationsStatus = '精装'
+					res.decorationsStatusType = '精装'
 					break;
 				case 'HAUTE_COUTURE':
-					res.decorationsStatus = '豪装'
+					res.decorationsStatusType = '豪装'
+					break;
+				default:
+			};
+			switch (res.orientation) {
+				case 'NORTH':
+					res.orientationType = '北'
+					break;
+				case 'SOUTH':
+					res.orientationType = '南'
+					break;
+				case 'WEST':
+					res.orientationType = '西'
+					break;
+				case 'EAST':
+					res.orientationType = '东'
+					break;
+				case 'NORTHWEST':
+					res.orientationType = '西北'
+					break;
+					case 'NORTHEAST':
+					res.orientationType = '东北'
+					break;
+				case 'SOUTHWEST':
+					res.orientationType = '西南'
+					break;
+				case 'SOUTHEAST':
+					res.orientationType = '东南'
+					break;
+				case 'EAST_WEST_SOUTH':
+					res.orientationType = '东西南'
+					break;
+				case 'SOUTHEAST_NORTH':
+					res.orientationType = '东南北'
+					break;
+					case 'SOUTHWEST_NORTH':
+					res.orientationType = '西南北'
+					break;
+				case 'EAST_WEST_NORTH':
+					res.orientationType = '东西北'
+					break;
+				case 'SOUTHEAST_NORTHWEST':
+					res.orientationType = '东南西北'
 					break;
 				default:
 			};
 			res.type = this.data.type;
-			console.log(res)
+			console.log(res,11111)
 			this.setData({
 				item: res,
+				favoritesState: res.collection === 'NO'?false:true,
+				favoritesIcon: res.collection === 'NO'?'star-o':'star',
+				favoritesColor: res.collection === 'NO'?'#cccccc':'#FFD854',
+				favoritesName: res.collection === 'NO'?'收藏':'已收藏',
 			})
 			let item = {
 				houseId: res.id,
@@ -125,15 +175,16 @@ Page({
 					data: [2800,2900],
 					color: "#FFD200",
 					show: true,
-					area: [0, 90],
+					area: [0, 50],
 				}]
 			};
 			this.showColumn(column);
 			this.getLikeListings(item);
+			this.ahistoryAdd(item);
 		}).catch((err) => {
 			console.log(err)
 			wx.showToast({
-				title: '数据有误',
+				title: '请求失败',
 				icon: 'none',
 				duration: 2500
 			})
@@ -151,6 +202,21 @@ Page({
 		}).catch((err) => {
 			wx.showToast({
 				title: '数据有误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	ahistoryAdd(item){
+		request.ahistoryAdd({
+			"targetId": item.houseId,
+			"type": item.houseMold
+		}).then((res)=>{	
+		}).catch((err)=>{
+			console.log(err)
+			wx.showToast({
+				title: '请求失败',
 				icon: 'none',
 				duration: 2500
 			})
@@ -176,12 +242,66 @@ Page({
 		})
 	},
 
+	changeFavorites() {
+		let state = this.data.favoritesState;
+		if (state) {
+			request.cancelFavorites({
+				"targetId": this.data.item.id,
+				"type": this.data.item.type,
+			}).then((res) => {
+				this.setData({
+					favoritesState: false,
+					favoritesIcon: 'star-o',
+					favoritesColor: '#cccccc',
+					favoritesName: '收藏',
+				},()=>{
+					wx.showToast({
+						title: '取消成功',
+						icon: 'success',
+						duration: 2000
+					})
+				})
+			}).catch((err) => {
+				wx.showToast({
+					title: '数据错误',
+					icon: 'none',
+					duration: 2000
+				})
+			})
+		} else {
+			request.addFavorites({
+				"targetId": this.data.item.id,
+				"type": this.data.item.type,
+			}).then((res) => {
+				this.setData({
+					favoritesState: true,
+					favoritesIcon: 'star',
+					favoritesColor: '#FFD854',
+					favoritesName: '已收藏',
+				},()=>{
+					wx.showToast({
+						title: '收藏成功',
+						icon: 'success',
+						duration: 2000
+					})
+				})
+			}).catch((err) => {
+				wx.showToast({
+					title: '数据错误',
+					icon: 'none',
+					duration: 2000
+				})
+			})
+		}
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
 		let type = "";
 		let item = JSON.parse(options.item)
+		console.log(item)
 		switch (item.title) {
 			case "新房房源":
 				type = "ESTATE";
@@ -197,6 +317,7 @@ Page({
 				break;
 			default:
 		}
+		console.log(type)
 		this.setData({
 			type: type,
 			id: item.id,

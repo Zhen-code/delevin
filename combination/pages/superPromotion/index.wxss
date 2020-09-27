@@ -1,7 +1,7 @@
 /* combination/pages/superPromotion/index.wxss */
 .view {
 	width: 100%;
-	height: calc(100vh - 80rpx);
+	height: calc(100vh);
 	background-color: white;
 	display: flex;
 	align-items: flex-start;
@@ -100,6 +100,10 @@
 	justify-content: flex-start;
 	flex-direction: column;
 	margin-top: 48rpx;
+}
+
+.row-list:last-child{
+	margin-bottom: 150rpx;
 }
 
 .row-list-top {
@@ -300,6 +304,7 @@
 	font-size: 34rpx;
 	font-weight: bold;
 	color: #FFFFFF;
+	overflow: hidden;
 }
 
 .floor-list-row-top-type-bottom .column {

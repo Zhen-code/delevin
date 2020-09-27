@@ -14,7 +14,7 @@ Page({
 			"color": true,
 			"border": true
 		},
-		tabIndex:0,
+		tabIndex: 0,
 		topTabIndex: 0,
 		navTabIndex: 0,
 		tabItem: [],
@@ -27,7 +27,8 @@ Page({
 		scrollTop: 0,
 		triggered: false,
 		favorites: "取消收藏",
-		title:'',
+		title: '',
+		doubleTabIndex: 0,
 	},
 
 	onClose(event) {
@@ -44,18 +45,18 @@ Page({
 					request.cancelFavorites({
 						"targetId": items.targetId,
 						"type": items.type
-					}).then((res)=>{
+					}).then((res) => {
 						wx.showToast({
 							title: '取消成功',
 							icon: 'success',
 							duration: 2500
 						})
 						than.setData({
-							item:[]
-						},()=>{
+							item: []
+						}, () => {
 							than.getData();
 						})
-					}).catch((err)=>{
+					}).catch((err) => {
 						wx.showToast({
 							title: '数据错误',
 							icon: 'none',
@@ -73,7 +74,7 @@ Page({
 			this.setData({
 				item: [],
 				type: 'ESTATE',
-				tabIndex:0,
+				tabIndex: 0,
 				pageIndex: 1,
 				tabItem: data.tab1,
 				topTabIndex: e.currentTarget.dataset.index
@@ -82,7 +83,7 @@ Page({
 			this.setData({
 				item: [],
 				type: 'NEWS',
-				tabIndex:0,
+				tabIndex: 0,
 				pageIndex: 1,
 				tabItem: data.tab2,
 				topTabIndex: e.currentTarget.dataset.index
@@ -134,28 +135,28 @@ Page({
 		} else {
 			this.setData({
 				item: [],
-				tabIndex:0,
+				tabIndex: 0,
 				pageIndex: 1,
 			})
 		}
 		this.getData()
 	},
 
-	tabItemIndex(e){
+	tabItemIndex(e) {
 		let index = e.currentTarget.dataset.index;
-		if(index === 0){
+		if (index === 0) {
 			this.setData({
-				type:'NEWS',
+				type: 'NEWS',
 				item: [],
 				pageIndex: 1,
-				tabIndex:e.currentTarget.dataset.index
+				tabIndex: e.currentTarget.dataset.index
 			})
-		}else{
+		} else {
 			this.setData({
-				type:'POST',
+				type: 'POST',
 				item: [],
 				pageIndex: 1,
-				tabIndex:e.currentTarget.dataset.index
+				tabIndex: e.currentTarget.dataset.index
 			})
 		}
 		this.getData()
@@ -181,13 +182,13 @@ Page({
 
 	getData() {
 		let requests = '';
-		if(this.data.title === '我的收藏'){
+		if (this.data.title === '我的收藏') {
 			if (this.data.topTabIndex === 0) {
 				requests = request.myFavoritesHouse
 			} else {
 				requests = request.myFavoritesOther
 			}
-		}else{
+		} else {
 			if (this.data.topTabIndex === 0) {
 				requests = request.browseListingsList
 			} else {
@@ -213,6 +214,35 @@ Page({
 			})
 		})
 	},
+
+	toDateils(e) {
+		let type = '';
+		console.log(e.currentTarget.dataset.item.targetId, this.data.navTabIndex)
+		switch (this.data.navTabIndex) {
+			case 0:
+				type = "新房房源";
+				break;
+			case 1:
+				type = "二手房房源";
+				break;
+			case 2:
+				type = "租房房源";
+				break;
+			case 3:
+				type = "小区房源";
+				break;
+			default:
+		}
+		let item = JSON.stringify({
+			'title': type,
+			"id": e.currentTarget.dataset.item.targetId,
+		})
+		wx.navigateTo({
+			url: `/combination/pages/listingDetails/index?item=${item}`,
+		})
+	},
+
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -222,8 +252,8 @@ Page({
 		this.setData({
 			tabItem: index === 0 ? data.tab1 : data.tab2,
 			topTabIndex: index,
-			title:index === 0?'我的收藏':'浏览记录'
-		},()=>{
+			title: index === 0 ? '我的收藏' : '浏览记录'
+		}, () => {
 			this.getData()
 		})
 	},

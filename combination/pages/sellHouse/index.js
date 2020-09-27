@@ -14,6 +14,7 @@ Page({
 			"color": true,
 			"border": false
 		},
+		backHome:true,
 		city: "",
 		community: "",
 		adddress: "",
@@ -96,9 +97,10 @@ Page({
 	},
 
 	submit() {
+		let _this = this;
 		let then = this.data;
 		if (then.city && then.community && then.adddress && then.building && then.unitType && then.area && then.floor && then.towards && then.price && then.name && then.phone && then.code !== '') {
-			request.newListingsList({
+			request.sellHouse({
 				"buildingUnit": then.building,
 				"city": then.city,
 				"code": then.code,
@@ -113,10 +115,14 @@ Page({
 				"sellingPrice": then.price
 			}).then((res) => {
 				console.log(res)
-				wx.showToast({
-					title: '提交成功',
-					icon: 'success',
-					duration: 2500
+				_this.setData({
+					backHome:false,
+				},()=>{
+					wx.showToast({
+						title: '提交成功',
+						icon: 'success',
+						duration: 2500
+					})
 				})
 			}).catch((err) => {
 				console.log(err)
@@ -133,6 +139,12 @@ Page({
 				duration: 2500
 			})
 		}
+	},
+
+	backHome(){
+		wx.switchTab({
+			url: '/pages/home/index'
+		})
 	},
 
 	/**

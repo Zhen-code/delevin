@@ -22,7 +22,7 @@ const request = {
     return http({
       url: api.information.infoUpData,
       method: "POST",
-      params:params
+      params: params
     });
   },
   code: (params) => {
@@ -41,7 +41,7 @@ const request = {
     return http({
       url: api.information.link,
       method: "POST",
-      params:params,
+      params: params,
     });
   },
 
@@ -94,25 +94,25 @@ const request = {
   //房源列表详情
   newListingsDetails: (params) => {
     return http({
-      url: api.listings.newListingsDetails+params.houseId,
+      url: api.listings.newListingsDetails + params.houseId,
       method: "GET",
     });
   },
   towListingsDetails: (params) => {
     return http({
-      url: api.listings.towListingsDetails+params.houseId,
+      url: api.listings.towListingsDetails + params.houseId,
       method: "GET",
     });
   },
   tenancyListingsDetails: (params) => {
     return http({
-      url: api.listings.tenancyListingsDetails+params.houseId,
+      url: api.listings.tenancyListingsDetails + params.houseId,
       method: "GET",
     });
   },
   quartersListingsDetails: (params) => {
     return http({
-      url: api.listings.quartersListingsDetails+params.houseId,
+      url: api.listings.quartersListingsDetails + params.houseId,
       method: "GET",
     });
   },
@@ -122,7 +122,7 @@ const request = {
     return http({
       url: api.listings.likeListings,
       method: "GET",
-      params:params,
+      params: params,
     });
   },
 
@@ -235,7 +235,14 @@ const request = {
     return http({
       url: api.operation.map,
       method: "GET",
-      params:params,
+      params: params,
+    });
+  },
+  ahistoryAdd: (params) => {
+    return http({
+      url: api.operation.ahistoryAdd,
+      method: "POST",
+      params: params,
     });
   },
 
@@ -284,7 +291,7 @@ const request = {
     });
   },
 
-  application:(params)=> {
+  application: (params) => {
     return http({
       url: api.broker.application,
       method: 'POST',
@@ -292,14 +299,14 @@ const request = {
     })
   },
 
-  result:()=> {
+  result: () => {
     return http({
       url: api.broker.result,
       method: 'GET',
     })
   },
 
-  constructClassify: (params)=> {//建筑类型列表(勿删)
+  constructClassify: (params) => { //建筑类型列表(勿删)
     return http({
       url: api.broker.constructList,
       method: 'GET',
@@ -307,45 +314,112 @@ const request = {
     })
   },
 
-  brokerHome: (params)=> {
+  brokerHome: (params) => {
     return http({
-      url: api.broker.home+params.agentId,
+      url: api.broker.home + params.agentId,
       method: 'GET',
     })
   },
 
-  brokerList: (params)=> {
+  brokerList: (params) => {
     return http({
-      url: api.broker.list+params.agentId,
+      url: api.broker.list + params.agentId,
       method: 'GET',
     })
-
+  },
+  brokerDatele: (params) => {
+    return http({
+      url: api.broker.delete + params.id,
+      method: 'POST',
+    })
+  },
+  portLsit: (params) => {
+    return http({
+      url: api.broker.portLsit,
+      method: 'GET',
+      params: params,
+    })
+  },
+  snatchLsit: (params) => {
+    return http({
+      url: api.broker.snatchLsit,
+      method: 'GET',
+      params: params,
+    })
+  },
+  submitOrder: (params) => {
+    return http({
+      url: api.broker.submitOrder,
+      method: 'POST',
+      params: params,
+    })
+  },
+  wxPay: (params) => {
+    return http({
+      url: api.broker.wxPay,
+      method: 'POST',
+      params: params,
+    })
+  },
+  myPackageList: (params) => {
+    return http({
+      url: api.broker.myPackageList,
+      method: 'GET',
+      params: params,
+    })
+  },
+  promote: (params) => {
+    return http({
+      url: api.broker.promote,
+      method: 'POST',
+      params: params,
+    })
+  },
+  superPromotion:(params) => {
+    return http({
+      url: api.broker.superPromotion,
+      method: 'GET',
+      params: params,
+    })
+  },
+  superCalculation:(params) => {
+    return http({
+      url: api.broker.superCalculation,
+      method: 'GET',
+      params: params,
+    })
+  },
+  superSubmitOrder: (params) => {
+    return http({
+      url: api.broker.superSubmitOrder,
+      method: 'POST',
+      params: params,
+    })
   },
 
-  getHouseProperty: ()=>{//物业
-      return http({
-        url: '/api/access/v1/house/property/classify/list',
-        method: 'GET',
-        params:{}
-      })
+
+  getHouseProperty: () => { //物业
+    return http({
+      url: '/api/access/v1/house/property/classify/list',
+      method: 'GET',
+      params: {}
+    })
   },
-  getConstructClassify: ()=>{//建筑类型列表
-      return http({
-        url: '/api/access/v1/house/construct/classify/list',
-        method: 'GET',
-        params:{}
-      })
+  getConstructClassify: () => { //建筑类型列表
+    return http({
+      url: '/api/access/v1/house/construct/classify/list',
+      method: 'GET',
+      params: {}
+    })
   },
-  getLabelList: ()=>{
+  getLabelList: () => {
     return http({
       url: '/api/access/v1/house/label/list',
       method: 'GET',
-      params:{}
+      params: {}
     })
-  }
+  },
 }
-
-
 
 
 module.exports = {
