@@ -31,6 +31,7 @@
    browse:{
     browseListingsList:'/api/access/v1/member/browsing/history/house/list/',
     browseOtherList:'/api/access/v1/member/browsing/history/list/',
+       browserHistoryAdd: '/api/access/v1/user/member/browsing/history/add'
    },
 
    //房源
@@ -59,7 +60,9 @@
     rent:'/api/access/v1/rental/price/list',
     type:'/api/access/v1/house/type/list',
     map:'/api/access/v1/house/around/list',
-       visitorList: '/api/access/v1/member/visitors/list'
+       visitorList: '/api/access/v1/member/visitors/list',//访客记录
+       supportList: '/api/access/v1/supporting/text/list',//获客配文
+       supportPoster: '/api/access/v1/poster/list'//获客海报
    },
 
    // 消息

@@ -89,7 +89,7 @@
 					</view>
 				</view>
 				<view class="mine-content-top-rigth" bindtap="toRecording">
-					<view class="mine-content-top-rigth-title">访客记录<text>{{userInfo.visitorsCount}}</text></view>
+					<view class="mine-content-top-rigth-title">访客记录<text>{{total}}</text></view>
 				</view>
 			</view>
 			<text class="introductionText">{{userInfo.synopsis}}</text>

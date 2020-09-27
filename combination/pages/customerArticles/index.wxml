@@ -43,4 +43,8 @@
             </van-tab>
         </van-tabs>
     </view>
+    <view class="noData {{show?'':'hideShow'}}">
+        <noData height="{{height}}" flexd="{{flexd}}"/>
+    </view>
 </view>
+

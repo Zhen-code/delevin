@@ -367,6 +367,14 @@
 					"id": -1,
 					"name": "访客记录",
 					"pathName": "combination/pages/recording/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "获客海报",
+					"pathName": "combination/pages/customerPoster/index",
+					"query": "",
 					"scene": null
 				}
 			]

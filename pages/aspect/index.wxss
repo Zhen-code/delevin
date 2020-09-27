@@ -78,7 +78,7 @@
 .van-tabs__line {
 	position: absolute;
 	bottom: -4rpx !important;
-	left: 6% !important;
+	/*left: 6% !important;*/
 	z-index: 1;
 	width: 44rpx !important;
 	height: 3rpx;
@@ -115,6 +115,10 @@
 	font-weight: 500;
 	color: #333333;
 	margin-bottom: 18rpx;
+	height: 84rpx;
+	width: 422rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .tab-item-left-desc {
@@ -123,6 +127,10 @@
 	font-weight: 400;
 	color: #999999;
 	margin-bottom: 4rpx;
+	width: 422rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .tab-item-left-time {
@@ -130,6 +138,7 @@
 	font-family: PingFangSC-Regular, PingFang SC;
 	font-weight: 400;
 	color: #999999;
+
 }
 
 .tab-item-right {

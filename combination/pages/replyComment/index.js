@@ -16,8 +16,6 @@ Page({
     targetId: '',
     type:'',
     commentInput(e){
-        clearTimeout(this.timeFlag);
-        this.timeFlag=setTimeout(()=>{
             let {value} = e.detail;
             if(value===''||value===null){
                 this.setData({
@@ -29,7 +27,6 @@ Page({
                     disable:false
                 })
             }
-        },1000);
     },
     go(){
         let {commentValue} = this.data;

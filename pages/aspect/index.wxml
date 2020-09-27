@@ -10,7 +10,7 @@
 			<van-tab wx:for="{{list}}" wx:key="id" data-index="{{index}}" title="{{item.name}}" tab-class="tabStyle"
 				tab-active-class="tabActiveStyle">
 				<view class="tabContent" hidden="{{tabActive!==index}}">
-					<view class="message-view">
+					<view class="message-view" wx:if="{{newsList.length!==0}}">
 						<scroll-view
 									class="view-list"
 									scroll-y="{{!isIndrag}}"
@@ -44,12 +44,13 @@
 						</scroll-view>
 						<view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
 					</view>
+					<noData wx:else height="50" flexd="true"/>
 				</view>
 			</van-tab>
 		</van-tabs>
 	</view>
 	<view class="tabContent" hidden="{{_index!=='1'}}">
-		<view class="message-view">
+		<view class="message-view" wx:if="{{postList!==0}}">
 			<scroll-view
 					class="view-list"
 					scroll-y="{{!isIndrag}}"
@@ -90,6 +91,7 @@
 			</scroll-view>
 			<view class="bottom-text" wx:if="{{isPostBottom}}">- 到底啦 -</view>
 		</view>
+		<noData wx:else height="50" flexd="true"/>
 		<image class="send" src="/assets/iconedit@2x.png" catch:tap="post"></image>
 	</view>
 </view>

@@ -33,6 +33,20 @@ Page({
   },
   id: '',
   timeFlag: 1,
+  addHistoryRecod(id){
+    http({
+      url: api.browse.browserHistoryAdd,
+      method:'POST',
+      params:{
+        "targetId": id,
+        "type": "POST"
+      }
+    }).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
+  },
   toReply(e){
     console.log(e)
     let {fatherid , targertid ,name} = e.currentTarget.dataset;
@@ -101,6 +115,7 @@ Page({
       id
     });
     this.id = id;
+    this.addHistoryRecod(id);
     this.getPostDetail(id);
   },
   onPageScroll(options) {

@@ -6,6 +6,7 @@ const topHeight = require('../../request/topHeight.js').topHeight;
 const {
 	provincCityDistrict
 } = require('../../request/provinces')
+const {http} = require('../../request/http');
 // var QQMapWX = require('../../../utils/qqmap-wx-jssdk');
 // var qqmapsdk;
 var key = 'XRUBZ-XN6KX-IYQ4H-7XZUT-AZWLJ-4PBIA';
@@ -23,7 +24,6 @@ Page({
 		paddingTop: topHeight,
 		show: false,
 		share: false,
-		showInfo: true,
 		city: "",
 		houseItem1: [],
 		houseItem2: [{
@@ -54,6 +54,7 @@ Page({
 		type: false,
 		title: '新房房源',
 		showInfo: false,
+		total: 0
 	},
 
 	onPageScroll(e) {
@@ -471,6 +472,24 @@ Page({
 		})
 	},
 
+	getVisitorRecod(){
+		http({
+			url: api.operation.visitorList,
+			method: 'GET',
+			params:{
+				pageIndex: 1,
+				pageSize: 100
+			}
+		}).then(res=>{
+			console.log(res)
+			this.setData({
+				total: res.total
+			})
+		}).catch(err=>{
+			console.log(err)
+		})
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -511,7 +530,8 @@ Page({
 	onShow: function () {
 		this.setData({
 			type: app.globalData.state
-		})
+		});
+		this.getVisitorRecod();
 	},
 
 	/**

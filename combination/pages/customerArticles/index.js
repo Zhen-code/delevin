@@ -28,7 +28,9 @@ Page({
 		isIndrag: false,
 		scrollTop: 0,
 		hei: 0,
-		desc: '下拉刷新'
+		desc: '下拉刷新',
+		height: 0,
+		flexd: false
 	},
 	pageIndex: 1,
 	pageSize: 10,
@@ -38,6 +40,7 @@ Page({
 	postPSize: 10,
 	postPTotal: 0,
 	timeFlag: 1,
+	showOnce: 1,
 	i:0,
 	start(e){
 		sy = e.touches[0].clientY;
@@ -178,6 +181,22 @@ Page({
 			this.pageTotal = res.pageTotal;
 			let {newsList} = this.data;
 			let resList = res.list || [];
+			let joinArray = [...newsList,...resList];
+			if(joinArray.length===0){
+				this.setData({
+					height: 70,
+					flexd: true,
+					show: true,
+					isBottom: false
+				});
+				return;
+			}else{
+				this.setData({
+					height: 0,
+					flexd: false,
+					show: false
+				})
+			}
 			if(this.data.hei>=80){
 				this.setData({
 					newsList: resList,

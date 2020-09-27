@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b17f1fa7-9f66-4c85-a234-51ad2c9e51fe" name="Default Changelist" comment="">
+    <list default="true" id="975fe9b3-b673-4fe0-8803-1aa5145f0e1c" name="Default Changelist" comment="fix:清除定时器">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/recording/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/recording/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/recording/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/recording/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/xq/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/xq/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/aspectDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/aspectDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/comment/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/comment/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/customerArticles/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerArticles/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/customerArticles/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerArticles/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/customerArticles/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerArticles/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/customerArticles/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerArticles/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/customerPoster/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerPoster/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/customerPoster/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerPoster/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/customerPoster/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerPoster/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/customerPoster/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerPoster/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/post/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/post/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/postDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/postDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/replyComment/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/replyComment/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/aspect/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/aspect/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/aspect/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/aspect/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/home/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/http.js" afterDir="false" />
@@ -153,11 +169,11 @@
       <screen x="0" y="0" width="1600" height="866" />
     </state>
     <state x="469" y="213" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.866@0.0.1600.866" timestamp="1600616168720" />
-    <state x="478" y="0" key="CommitChangelistDialog2" timestamp="1601126614292">
-      <screen x="0" y="0" width="1600" height="866" />
+    <state x="573" y="228" key="CommitChangelistDialog2" timestamp="1601203176261">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="478" y="0" key="CommitChangelistDialog2/0.0.1600.866@0.0.1600.866" timestamp="1601126614292" />
-    <state x="573" y="228" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601028457481" />
+    <state x="573" y="228" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601203176261" />
     <state x="184" y="92" width="1536" height="858" key="DiffContextDialog" timestamp="1601015522152">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -197,19 +213,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600999587299" />
-    <state x="789" y="171" width="811" height="674" key="find.popup" timestamp="1601124520814">
-      <screen x="0" y="0" width="1600" height="866" />
-    </state>
-    <state x="789" y="171" width="811" height="674" key="find.popup/0.0.1600.866@0.0.1600.866" timestamp="1601124520814" />
-    <state x="1099" y="205" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601000992086" />
-    <state x="371" y="186" key="run.anything.popup" timestamp="1600508493290">
-      <screen x="0" y="0" width="1600" height="866" />
-    </state>
-    <state x="371" y="186" key="run.anything.popup/0.0.1600.866@0.0.1600.866" timestamp="1600508493290" />
-    <state x="1155" y="353" width="672" height="678" key="search.everywhere.popup" timestamp="1600943808827">
+    <state x="1099" y="205" width="647" height="534" key="find.popup" timestamp="1601186302961">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1155" y="353" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1600943808827" />
+    <state x="789" y="171" width="811" height="674" key="find.popup/0.0.1600.866@0.0.1600.866" timestamp="1601124520814" />
+    <state x="1099" y="205" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601186302961" />
+    <state x="445" y="223" key="run.anything.popup" timestamp="1601177912385">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="371" y="186" key="run.anything.popup/0.0.1600.866@0.0.1600.866" timestamp="1600508493290" />
+    <state x="445" y="223" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601177912385" />
+    <state x="1155" y="353" width="672" height="678" key="search.everywhere.popup" timestamp="1601173906960">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="1155" y="353" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601173906960" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
