@@ -257,3 +257,34 @@
 	align-items: center;
 	width: 100%;
 }
+.scrollView{
+	width: 100%;
+	height: 88rpx;
+	white-space: nowrap;
+	overflow-x: auto;
+	padding: 0 32rpx;
+	box-sizing:border-box;
+}
+.scrollView view{
+	display: inline-block;
+	margin-right: 64rpx;
+	width: 74rpx;
+	height: 88rpx;
+	line-height: 88rpx;
+	text-align: center;
+	font-size: 28rpx;
+	font-family: PingFangSC-Regular, PingFang SC;
+	font-weight: 400;
+	color: #999999;
+}
+.isActive{
+	font-size: 28rpx;
+	font-family: PingFangSC-Medium, PingFang SC;
+	font-weight: 500;
+	color: #333333!important;
+	width: 44px;
+	height: 8px;
+	border-radius: 4rpx;
+	border-bottom: 8rpx solid #FFD854;
+}
+

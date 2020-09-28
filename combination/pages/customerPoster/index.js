@@ -29,12 +29,32 @@ Page( {
 		supportText: [],
 		height: 0,
 		flexd: false,
-		show: false,
+		show: false
 	},
 	classifyId: 0,
 	pageIndex: 1,
 	pageSize: 12,
 	pageTotal: 0,
+	toggleIndex: 0,
+	getPosterClassify(){
+		http({
+			url: '/api/access/v1/article/classify/list',
+			method: 'GET',
+			params:{
+				type: 'POSTER'
+			}
+		}).then(res=>{
+			console.log(res)
+			this.classifyId = res[0]['id'];
+			this.setData({
+				classifyList: res
+			})
+		}).then(()=>{
+			this.getImg(this.classifyId);
+		}).catch(err=>{
+			console.log(err)
+		})
+	},
 	getArticleClassify(){
 		http({
 			url: '/api/access/v1/article/classify/list',
@@ -49,7 +69,6 @@ Page( {
 				classifyList: res
 			})
 		}).then(()=>{
-			this.getImg(this.classifyId);
 			this.getArticle(this.classifyId);
 		}).catch(err=>{
 			console.log(err)
@@ -70,6 +89,7 @@ Page( {
 	},
 
 	copyBtn: function (e) {
+		console.log(e.currentTarget.dataset.text)
 		wx.setClipboardData({
 			data: e.currentTarget.dataset.text,
 			success: function (res) {
@@ -85,11 +105,27 @@ Page( {
 	},
 
 	getBackTabIndex(e) {
+		console.log(e)
 		this.setData({
 			tabIndex:e.detail
-		})
+		});
+		this.toggleIndex = e.detail;
+		if(e.detail === 0){
+			this.getPosterClassify();
+			this.setData({
+				activeKey: 0,
+				noramalData: []
+			});
+		}else if(e.detail === 1){
+			this.setData({
+				activeKey: 0
+			});
+			this.getArticleClassify();
+		}
+
 	},
 	getImg(classifyId){
+		console.log(classifyId)
 		http({
 			url: api.operation.supportPoster,
 			method: 'GET',
@@ -110,12 +146,14 @@ Page( {
 				}
 				return v;
 			});
+			console.log(dataArray)
+			console.log(this.data.noramalData);
 			if(dataArray.length === 0){
 				this.setData({
 					height: 80,
 					flexd: true,
 					show: true
-				})
+				});
 			}else{
 				this.setData({
 					noramalData: dataArray,
@@ -158,6 +196,7 @@ Page( {
 		})
 	},
 	getArticle(classifyId){
+		console.log(classifyId)
 		http({
 			url: api.operation.supportList,
 			method: 'GET',
@@ -168,13 +207,11 @@ Page( {
 			}
 		}).then(res=>{
 			console.log(res)
-			if(res===null){
-				return;
-			}
-			this.pageTotal = res.pageTotal?res.pageTotal:0;
+			// this.pageTotal = res.pageTotal;
 			let { supportText } = this.data;
 			let list = res.list.map(v=>{
 				v.isShow = false;
+				v.details = v.details.replace(/\<img/gi,'<img style="width:50rpx;height:50rpx"')
 				return v;
 			});
 			this.setData({
@@ -192,10 +229,16 @@ Page( {
 		this.classifyId = id;
 		this.setData({
 			activeKey:e.currentTarget.dataset.index,
-			noramalData: []
+			noramalData: [],
+			supportText:[]
 		});
-		this.getImg(id);
-		this.getArticle(id);
+		if(this.toggleIndex===0){
+			console.log('获取海报');
+			this.getImg(id);
+		}else if(this.toggleIndex===1){
+			console.log('获取图文')
+			this.getArticle(id);
+		}
 	},
 	toBottom(){
 		console.log(666)
@@ -211,7 +254,7 @@ Page( {
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		this.getArticleClassify();
+		this.getPosterClassify();
 	},
 
 	/**

@@ -346,7 +346,8 @@ Component({
                 })
         },
         addXQ(){
-            console.log(this.data.name)
+            let houseId = this.data.houseType.map(v=>v.id);
+            console.log(houseId)
             if(this.data.name===''){
                wx.showToast({
                    title: '请输入房源标题!',
@@ -402,8 +403,6 @@ Component({
                     icon:"none"
                 });
             }else{
-                let houseId = this.data.houseType.map(v=>v.id);
-                console.log(houseId)
                 wx.showLoading({
                     title: '加载中'
                 });
@@ -411,9 +410,9 @@ Component({
                     url: '/api/access/v1/house/residential/quarters/add',
                     method: 'POST',
                     params: {
-                        "averagePrice": this.apsh,
-                        "builtYear": this.buildingTime,
-                        "city": this.city,
+                        "averagePrice": this.data.apsh,
+                        "builtYear": this.data.buildingTime,
+                        "city": this.data.city,
                         "constructClassifyId": this.constructClassifyId,
                         "description": this.data.makerDesc,
                         "designSketch": this.data.imgs,

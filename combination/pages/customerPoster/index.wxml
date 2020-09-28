@@ -21,29 +21,28 @@
 					<image class='pic' style='height:{{item.CoverHeight}}rpx' src='{{item.coverUri}}'></image>
 				</block>
 			</view>
-		<view class="{{show?'isShow':'noShow'}}">
-			<noData height="{{height}}" flexd="{{flexd}}"/>
+		<view class="{{show?'isShow':'show'}}">
+			<noData height="50" flexd="true"/>
 		</view>
 	</view>
 	<view class="essay" wx:if="{{tabIndex === 1}}">
-			<scroll-view
-						wx:if="{{supportText.length!==0}}"
-						scroll-y="true"
+			<scroll-view scroll-y="true"
 						 bindscrolltolower="toBottom"
-						 class="scrollView">
+						 class="scrollView"
+						 wx:if="{{supportText.length!==0}}">
 				<block wx:for="{{supportText}}" wx:key="index">
 				<view class="essay-row">
-					<view class="text {{item.isShow ? 'on' : ''}}">{{item.details}}</view>
-					<view class="show" data-index="{{index}}" bindtap="toggle">
+					<view class="text {{item.isShow ? 'on' : ''}}"><rich-text nodes="{{item.details}}"></rich-text></view>
+					<view class="bottomShow" data-index="{{index}}" bindtap="toggle">
 						<text class="show-text">{{item.isShow?'收起':'展开'}}</text>
 						<van-icon name="{{item.isShow?'arrow-up' : 'arrow-down'}}" size="24rpx" color="#999999" />
 					</view>
 					<view class="copy">
-						<text class="copy-text" data-text="{{contents}}" bindtap='copyBtn'>复制</text>
+						<text class="copy-text" data-text="{{item.details}}" bindtap='copyBtn'>复制</text>
 					</view>
 				</view>
 				</block>
 			</scroll-view>
-			<noData wx:else height="50" flexd="true"/>
+		<noData wx:else height="50" flexd="true"/>
 	</view>
 </view>

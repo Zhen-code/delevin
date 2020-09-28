@@ -33,7 +33,8 @@ Page({
     isIndrag: false,
     scrollTop: 0,
     hei: 0,
-    desc: '下拉刷新'
+    desc: '下拉刷新',
+    on_index: 0
   },
   pageIndex: 1,
   pageSize: 10,
@@ -315,6 +316,16 @@ Page({
     }).catch(err=>{
       console.log(err);
     })
+  },
+  tabItem(e){
+    let {index,id} = e.currentTarget.dataset;
+    this.setData({
+      on_index: index,
+      newsList:[]
+    });
+    this.classifyId = id;
+    this.pageIndex = 1;
+    this.getNewsList(id);
   },
   /**
    * 生命周期函数--监听页面加载
