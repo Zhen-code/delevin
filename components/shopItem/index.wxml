@@ -1,9 +1,9 @@
 <!--components/shopItem/index.wxml-->
 <view class="item padding">
 	<view class="item-left">
-		<view class="item-left-no" wx:if="{{item.status === 'LOWER'}}">
+		<!-- <view class="item-left-no" wx:if="{{item.status === 'LOWER'}}">
 			<text class="item-left-text">已下架</text>
-		</view>
+		</view> -->
 		<image class="item-left-image" src="{{item.coverUri}}"></image>
 	</view>
 	<view class="item-right">
@@ -18,14 +18,14 @@
 			</block>
 		</view>
 		<view class="item-right-typeMoney">
-			<view class="price" wx:if="{{item.unitPrice || item.housePrice}}">{{item.unitPrice || item.housePrice}}元/m² <image
+			<view class="price" wx:if="{{item.unitPrice || item.housePrice}}">{{item.unitPrice || item.housePrice}}元/m²<image
 					style="margin-left:5px" class="item-right-content-icon2" src="/assets/label_newhouse_red@2x.png"></image>
 			</view>
-			<view class="price" wx:if="{{item.totalPrice}}">{{item.totalPrice}}万 <text>({{item.avgPrice}}元/m²)</text></view>
+			<view class="price" wx:if="{{item.totalPrice}}">{{item.totalPrice}}万 <text class="price-text">({{item.avgPrice}}元/m²)</text></view>
 			<view class="price" wx:if="{{item.monthRent}}">{{item.monthRent}}元/月</view>
 			<view class="item-right-typeNum" wx:if="{{item.averagePrice}}">
-				<view class="item-right-typeNum-ping">均价：<text>{{item.averagePrice}}元/m²</text></view>
-				<view class="item-right-typeNum-tao">在售房源：<text>{{item.houseCount}}套</text></view>
+				<view class="item-right-typeNum-ping">均价：<text class="item-right-typeNum-ping-text">{{item.averagePrice}}元/m²</text></view>
+				<view class="item-right-typeNum-tao">在售房源：<text class="item-right-typeNum-tao-text">{{item.houseCount}}套</text></view>
 			</view>
 			<van-tag size="large" color="#FFC51D" wx:if="{{item.add === true && item.added === 'NO'}}" text-color="#333333" type="warning">添加</van-tag>
 			<van-tag size="large" color="#EEEEEE" wx:if="{{item.add === true && item.added === 'YES'}}" text-color="#999999" type="warning">已添加</van-tag>

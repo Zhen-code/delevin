@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "navbar":"/components/nav/index",
-    "aspectItem":"/components/aspectItem/index"
+    "aspectItem":"/components/aspectItem/index",
+    "noData": "/components/noData/index"
   }
 }

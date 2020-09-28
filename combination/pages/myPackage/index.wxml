@@ -3,7 +3,7 @@
 	<view class="doubleTab">
 		<doubleTab style="width:100%;height:70rpx;" tabIndex="{{index}}" tabItem="{{tabItem}}" bind:backTabValue="getbackTabIndex"></doubleTab>
 	</view>
-	<scroll-view class="shopItem" refresher-enabled="true" scroll-into-view="{{toView}}"
+	<scroll-view wx:if="{{item.length !== 0}}" class="shopItem" refresher-enabled="true" scroll-into-view="{{toView}}"
 		refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
 		<block wx:for="{{item}}" wx:key="index">
 			<view class="row">
@@ -68,3 +68,5 @@
 		</view>
 	</view>
 </van-popup>
+
+<!-- <noData zIndex="{{1}}" wx:if="{{item.length === 0}}" height="{{80}}"></noData> -->

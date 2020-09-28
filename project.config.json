@@ -325,6 +325,7 @@
           "id": -1,
           "name": "搜小区",
           "pathName": "combination/pages/distrctSearch/index",
+          "query": "",
           "scene": null
         },
         {
@@ -345,6 +346,35 @@
           "id": -1,
           "name": "combination/pages/broker/index",
           "pathName": "combination/pages/broker/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "獲客文章",
+          "pathName": "combination/pages/customerArticles/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 41,
+          "name": "获客文章详情",
+          "pathName": "combination/pages/customerArticleDetail/index",
+          "query": "id=3",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "访客记录",
+          "pathName": "combination/pages/recording/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "获客海报",
+          "pathName": "combination/pages/customerPoster/index",
+          "query": "",
           "scene": null
         }
       ]

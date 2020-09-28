@@ -178,3 +178,14 @@
 	align-items: center;
 	justify-content: center;
 }
+.scrollView{
+	height: 100%;
+}
+.isShow{
+	position: absolute;
+	bottom: 0;
+	z-index: 5000;
+}
+.noShow{
+	display: none;
+}

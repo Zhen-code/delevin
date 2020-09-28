@@ -5,6 +5,7 @@ var app = getApp();
 Component({
     properties: {},
     data: {
+        showPane: true,
         title: '',
         type: '',
         actions: [],
@@ -89,27 +90,10 @@ Component({
             })
         },
         addHouse(){
+            console.log(this.data.name)
             if(this.data.name===''){
                 wx.showToast({
                     title: '请输入房源标题!',
-                    duration: 1000,
-                    icon:"none"
-                });
-            }else if(this.data.monthPrice === ''){
-                wx.showToast({
-                    title: '请输入月租!',
-                    duration: 1000,
-                    icon:"none"
-                });
-            }else if(this.data.labelType.length === 0){
-                wx.showToast({
-                    title: '请选择房源标签!',
-                    duration: 1000,
-                    icon:"none"
-                });
-            }else if(this.data.rentType === ''){
-                wx.showToast({
-                    title: '请选择出租方式!',
                     duration: 1000,
                     icon:"none"
                 });
@@ -119,15 +103,33 @@ Component({
                     duration: 1000,
                     icon:"none"
                 });
-            }else if(this.data.indoorTypeInput === ''){
+            }else if(this.data.labelType.length === 0){
                 wx.showToast({
-                    title: '请输入户型室!',
+                    title: '请选择房源标签!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.monthPrice === ''){
+                wx.showToast({
+                    title: '请输入月租!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.rentType === ''){
+                wx.showToast({
+                    title: '请选择出租方式!',
                     duration: 1000,
                     icon:"none"
                 });
             }else if(this.data.buildingArea === ''){
                 wx.showToast({
                     title: '请输入建筑面积!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.indoorTypeInput === ''){
+                wx.showToast({
+                    title: '请输入户型室!',
                     duration: 1000,
                     icon:"none"
                 });
@@ -144,7 +146,6 @@ Component({
                     icon:"none"
                 });
             }else{
-                return
                 wx.showLoading({
                     title: '加载中'
                 });
@@ -184,11 +185,10 @@ Component({
                 }).then(res=>{
                     wx.hideLoading();
                     console.log(res)
-                    wx.showToast({
-                        title: '添加成功！',
-                        icon: "success",
-                        duration:2000
+                    this.setData({
+                        showPane: false
                     });
+
                 }).catch(err=>{
                     wx.hideLoading();
                     console.log(err)

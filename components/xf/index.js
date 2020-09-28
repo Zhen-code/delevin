@@ -10,6 +10,7 @@ Component({
         }
     },
     data: {
+        showPane: true,
         title: '',
         type: '',
         actions: [],
@@ -490,12 +491,9 @@ Component({
             },500);
         },
         floorStatusInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     floorStatus: e.detail.value
                 })
-            },2000);
         },
         greenRateInput(e){
             this.setData({
@@ -503,12 +501,9 @@ Component({
             })
         },
         lineSiteInput(e){
-            clearTimeout(this.timeFlag);
-            this.timeFlag = setTimeout(()=>{
                 this.setData({
                     lineSite: e.detail.value
                 })
-            },2000);
         },
         parkRateInput(e){
             clearTimeout(this.timeFlag);
@@ -567,18 +562,13 @@ Component({
             },500);
         },
         addHouse(){
+            console.log(this.data.name)
             if(this.data.name === ''){
                 wx.showToast({
                     title: '请输入新房标题!',
                     icon: "none",
                     duration: 1000
                 })
-            }else if(this.data.imgs.length===0){
-                wx.showToast({
-                    title: '请上传至少一张效果图!',
-                    duration: 1000,
-                    icon:"none"
-                });
             }else if(this.data.houseType.length === 0){
                 wx.showToast({
                     title: '请至少选择一项户型!',
@@ -597,12 +587,6 @@ Component({
                     duration: 1000,
                     icon:"none"
                 });
-            }else if(this.data.xsCase === ''){
-                wx.showToast({
-                    title: '请选择销售状态!',
-                    duration: 1000,
-                    icon:"none"
-                });
             }else if(this.data.propertyType === ''){
                 wx.showToast({
                     title: '请选择物业类型!',
@@ -615,9 +599,21 @@ Component({
                     duration: 1000,
                     icon:"none"
                 });
+            }else if(this.data.xsCase === ''){
+                wx.showToast({
+                    title: '请选择销售状态!',
+                    duration: 1000,
+                    icon:"none"
+                });
             }else if(this.data.address === '' || this.data.area===''){
                 wx.showToast({
                     title: '请选择地址与所在区域!',
+                    duration: 1000,
+                    icon:"none"
+                });
+            }else if(this.data.imgs.length===0){
+                wx.showToast({
+                    title: '请上传至少一张效果图!',
                     duration: 1000,
                     icon:"none"
                 });
@@ -671,12 +667,11 @@ Component({
                     }
                 }).then(res=>{
                     wx.hideLoading();
-                    console.log(res)
-                    wx.showToast({
-                        title: '添加成功！',
-                        icon: "success",
-                        duration:2000
+                    console.log(res);
+                    this.setData({
+                        showPane: false
                     });
+
                 }).catch(err=>{
                     wx.hideLoading();
                     console.log(err)

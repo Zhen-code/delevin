@@ -5,6 +5,7 @@ var app = getApp();
 Component({
     properties: {},
     data: {
+        showPane:true,
         imgs: [],
         title: '',
         type: '',
@@ -186,10 +187,8 @@ Component({
                 }).then(res=>{
                     wx.hideLoading();
                     console.log(res)
-                    wx.showToast({
-                        title: '添加成功！',
-                        icon: "success",
-                        duration:2000
+                    this.setData({
+                        showPane: false
                     });
                 }).catch(err=>{
                     wx.hideLoading();
@@ -407,7 +406,7 @@ Component({
                 labelType
             });
         },
-            onClose(e){
+        onClose(e){
                 console.log(e)
                 let that = this;
                 const {type} = e.detail;

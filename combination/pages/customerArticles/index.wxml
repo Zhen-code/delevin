@@ -1,23 +1,50 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="获客文章" />
-<view class="view" style="padding-top:{{paddingTop}}px">
-
-	<!-- <view class="tab">
-		<text class="tab-item action">篮球</text>
-		<text class="tab-item">篮球</text>
-		<text class="tab-item">篮球</text>
-		<text class="tab-item">篮球</text>
-		<text class="tab-item">篮球</text>
-	</view> -->
-
-	<van-tabs nav-class="scrollTab" color="#FFD854" active="{{ active }}" bind:change="onChange">
-		<van-tab wx:for="{{list}}" wx:key="index" data-index="{{index}}" title="{{item.title}}" tab-class="tabStyle"
-			tab-active-class="tabActiveStyle">
-			<view class="aspectItem">
-				<aspectItem></aspectItem>
-			</view>
-			<view class="home-bottom">
-				<text>- 到底啦 -</text>
-			</view>
-		</van-tab>
-	</van-tabs>
+<view class="container" style="padding-top:{{paddingTop}}px">
+    <view class="tabContent">
+        <van-tabs nav-class="scrollTab" color="#FFD854" active="{{ active }}" bind:change="onChange" wx:if="{{list.length!==0}}">
+            <van-tab wx:for="{{list}}" wx:key="id" data-index="{{index}}" title="{{item.name}}" tab-class="tabStyle"
+                     tab-active-class="tabActiveStyle">
+                <view class="tabContent" hidden="{{tabActive!==index}}">
+                    <view class="message-view">
+                        <scroll-view
+                                class="view-list"
+                                scroll-y="{{!isIndrag}}"
+                                bindscroll="scroll"
+                                bindscrolltolower="scrollList"
+                        >
+                            <view wx:if="{{hei<80}}" style='height:{{hei}}rpx' class='{{hei===0?"noRefresh":"refresh"}}'>
+                                <image src="/assets/image/loading.png" mode="aspectFill" style="width:50rpx;height:50rpx;"></image>
+                            </view>
+                            <view  wx:else style='height:{{hei}}rpx' class='{{hei===0?"noRefresh":"refresh"}}'>
+                                <image src="/assets/image/loading.gif" mode="aspectFill" style="width:50rpx;height:50rpx;"></image>
+                            </view>
+                            <view class="column"
+                                  bind:touchstart="start"
+                                  bindtouchend='end'
+                                  bindtouchmove='move'
+                            >
+                                <view wx:for="{{newsList}}" wx:key="id" class="tab-item" catchtap="goHouseDetal" data-id="{{item.id}}">
+                                    <view class="tab-item-left">
+                                        <view class="tab-item-left-title">{{item.name}}</view>
+                                        <view class="tab-item-left-desc">
+                                            <text>{{item.source}}</text>
+                                            <text class="split-line">|</text>
+                                            <text>{{item.author}}</text>
+                                        </view>
+                                        <view class="tab-item-left-time">{{item.createDate}}</view>
+                                    </view>
+                                    <image src="{{item.coverUri}}" class="tab-item-right" mode="aspectFill"></image>
+                                </view>
+                            </view>
+                        </scroll-view>
+                        <view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
+                    </view>
+                </view>
+            </van-tab>
+        </van-tabs>
+    </view>
+    <view class="noData {{show?'':'hideShow'}}">
+        <noData height="{{height}}" flexd="{{flexd}}"/>
+    </view>
 </view>
+

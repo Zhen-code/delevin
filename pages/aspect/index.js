@@ -303,12 +303,12 @@ Page({
       let resList = res.list || [];
       if(this.data.hei>=80){
         this.setData({
-          postList: [...postList,...resList],
+          postList: resList,
           isPostBottom:isPostBottom
         });
       }else{
         this.setData({
-          postList: resList,
+          postList: [...postList,...resList],
           isPostBottom:isPostBottom
         });
       }
@@ -328,7 +328,6 @@ Page({
    */
   onLoad: function (options) {
     this.getArticleClassify();
-    this.getPostList();
   },
 
   /**
@@ -345,7 +344,9 @@ Page({
     this.setData({
       title:app.globalData.state?'看点':'房源',
 			type: app.globalData.state
-		})
+		});
+    this.postPIndex = 1;
+    this.getPostList();
   },
 
   /**

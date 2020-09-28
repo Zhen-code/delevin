@@ -10,7 +10,7 @@
 		refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}"
 		bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
 		<block wx:for="{{item}}" wx:key="index">
-			<shopItem></shopItem>
+			<shopItem item="{{item}}" data-item="{{item}}" bindtap="toDetails"></shopItem>
 		</block>
 		<view class="footer">
 			<text class="footer-text">- 到底啦 -</text>

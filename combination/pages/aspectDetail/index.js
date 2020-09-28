@@ -34,7 +34,7 @@ Page({
   timeFlag: 1,
   getNewsDetail(id){
     http({
-      url: api.personalHome.newsDetail(3),
+      url: api.personalHome.newsDetail(id),
       method: 'GET',
       params:{}
     }).then(res=>{
@@ -85,6 +85,7 @@ Page({
     });
     this.targetId = id;
     this.id = id;
+    this.addHistoryRecod(id);
     this.getNewsDetail(id);
   },
   onPageScroll(options) {
@@ -95,6 +96,20 @@ Page({
         top: options.scrollTop
       })
     },1000);
+  },
+  addHistoryRecod(id){
+    http({
+      url: api.browse.browserHistoryAdd,
+      method:'POST',
+      params:{
+        "targetId": id,
+        "type": "NEWS"
+      }
+    }).then(res=>{
+      console.log(res)
+    }).catch(err=>{
+      console.log(err)
+    })
   },
   goComment(){
     let { tabScrollTop } = this.data;

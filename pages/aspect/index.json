@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "backgroundTextStyle": "dark",
   "usingComponents": {
-    "navbar":"/components/nav/index"
+    "navbar":"/components/nav/index",
+    "noData": "/components/noData/index"
   }
 }

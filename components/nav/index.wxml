@@ -2,7 +2,7 @@
 	<!-- 胶囊区域 -->
 	<view class="capsule-box" style="height:{{menuHeight}}px;bottom:{{menuBotton}}px;">
 		<view class="back" wx:if="{{back}}" style="bottom:{{menuBotton}}px;" catchtap="back">
-			<image src="/assets/image/icon_back_24_black@2x.png"></image>
+			<image class="back-image" src="/assets/image/icon_back_24_black@2x.png"></image>
 		</view>
 
 		<view class="back2" wx:if="{{backHome}}">

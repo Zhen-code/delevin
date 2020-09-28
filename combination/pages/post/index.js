@@ -93,6 +93,16 @@ Page({
         "title": title
       }
     }).then(res=>{
+      wx.showToast({
+        icon: "none",
+        title: '发帖成功!',
+        duration: 1000
+      });
+      setTimeout(()=>{
+        wx.navigateBack({
+          delta: 1
+        });
+      },1000);
       console.log(res);
     }).catch(err=>{
       console.log(err);

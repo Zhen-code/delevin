@@ -27,7 +27,7 @@ Component({
     border: '',
     bg: '',
     titleColor: '',
-    backTab:false,
+    TabHome:false,
   },
   properties: {
     back: {
@@ -55,6 +55,7 @@ Component({
       value: false //默认值
     },
   },
+
   observers: {
     top(val, newVal) {
       if (val > 100) {
@@ -89,15 +90,15 @@ Component({
     backTab(val, newVal){
       if(val){
         this.setData({
-          backTab: val
+          TabHome: val
         })
       }
-    },
+    }
   },
 
   methods: {
     back() {
-      if(this.data.backTab){
+      if(this.data.TabHome){
         wx.switchTab({
           url: '/pages/home/index'
         })

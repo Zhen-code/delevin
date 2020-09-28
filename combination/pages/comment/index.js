@@ -79,21 +79,17 @@ Page({
   },
   commentInput(e){
     console.log(e)
-    clearTimeout(this.timeFlag);
-    this.timeFlag=setTimeout(()=>{
       let {value} = e.detail;
       if(value===''||value===null){
         this.setData({
           disable:true
         });
-        return;
       }else{
         this.setData({
           commentValue:value,
           disable:false
         })
       }
-    },1000);
   },
   go(){
     if (this.data.commentValue === '' || !this.data.commentValue || this.data.commentValue===null){
@@ -110,6 +106,16 @@ Page({
         }
       }).then(res=>{
         console.log(res)
+        wx.showToast({
+          icon: "none",
+          title: '评论成功！',
+          duration:1000
+        });
+        setTimeout(()=>{
+          wx.navigateBack({
+            delta: 1
+          });
+        },1000);
       }).catch(err=>{
         console.log(err);
       })
@@ -123,10 +129,19 @@ Page({
           type: "POST"
         }
       }).then(res=>{
-        console.log(res)
-      }).catch(err=>{
-        console.log(err);
-      })
+        console.log(res);
+        wx.showToast({
+          icon: "none",
+          title: '评论成功！',
+          duration:1000
+        });
+        setTimeout(()=>{
+          wx.navigateBack({
+            delta: 1
+          });
+        },1000)}).catch(err=>{
+          console.log(err);
+        })
     }
   }
 })

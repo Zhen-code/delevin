@@ -1,15 +1,14 @@
 // pages/home/index.js
 const app = getApp()
-const topHeight = require('../../request/topHeight.js').topHeight;
-const {
-	provincCityDistrict
-} = require('../../request/provinces')
 var key = 'XRUBZ-XN6KX-IYQ4H-7XZUT-AZWLJ-4PBIA';
+const topHeight = require('../../request/topHeight.js').topHeight;
 const {
 	request
 } = require('../../request/request.js');
+const {
+	provincCityDistrict
+} = require('../../request/provinces')
 Page({
-
 	/**
 	 * 页面的初始数据
 	 */
@@ -19,26 +18,9 @@ Page({
 		paddingTop: topHeight,
 		show: false,
 		share: false,
-		showInfo: true,
 		city: "",
 		houseItem1: [],
-		houseItem2: [{
-				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType": "客源管理",
-			},
-			{
-				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType": "获客文章",
-			},
-			{
-				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType": "获客海报",
-			},
-			{
-				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType": "房贷计算",
-			}
-		],
+		houseItem2: [],
 		bannerList: [],
 		brokerList: [],
 		newsList: [],
@@ -50,6 +32,7 @@ Page({
 		type: false,
 		title: '新房房源',
 		showInfo: false,
+		total: 0
 	},
 
 	onPageScroll(e) {

@@ -250,6 +250,7 @@ Page({
 		let index = Number(options.tabIndex);
 		let data = this.data;
 		this.setData({
+			type:index === 0 ? 'ESTATE' : 'NEWS',
 			tabItem: index === 0 ? data.tab1 : data.tab2,
 			topTabIndex: index,
 			title: index === 0 ? '我的收藏' : '浏览记录'
