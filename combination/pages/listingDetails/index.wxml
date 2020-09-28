@@ -21,6 +21,10 @@
 		<view class="introduction-top">
 			<text class="introduction-title">{{item.title}}</text>
 			<!-- <favorites data="{{item}}"></favorites> -->
+			<view class="introduction-favorites" bindtap="changeFavorites">
+				<van-icon size="22px" color="{{favoritesColor}}" name="{{favoritesIcon}}" />
+				<text class="introduction-favorites-name">{{favoritesName}}</text>
+			</view>
 		</view>
 		<view class="introduction-type">
 			<image class="item-right-content-icon1" wx:if="{{item.salesStatus === 'FOR_SALE' && type === 'ESTATE'}}"
@@ -139,16 +143,17 @@
 				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear}}</text></view>
 				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition}}</text></view>
 				<view class="name-type">产权：<text class="name-typeValue">{{item.property}}</text></view>
-				<view class="name-type">朝向：<text class="name-typeValue">{{item.orientation}}</text></view>
-				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationStatus}}</text></view>
+				<view class="name-type">朝向：<text class="name-typeValue">{{item.orientationType}}</text></view>
+				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationsStatusType}}</text></view>
 				<view class="name-type">楼型：<text class="name-typeValue">{{item.floorCondition}}</text></view>
-				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator}}梯</text></view>
+				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator}}</text></view>
 			</view>
 			<view class="introduction-specification-bottom">
-				<view class="name-type">发布时间：<text class="name-typeValue">{{item.dateFor}}</text></view>
-				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersId}}</text></view>
+				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate}}</text></view>
+				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersName}}</text>
+				</view>
 				<view class="name-type">首付月供：<text
-						class="name-typeValue name-typeValueColor">预计{{item.downPayment}}元，月供{{item.monthlyContribution}}元</text>
+						class="name-typeValue name-typeValueColor">预计**万元，月供{{item.monthlyContribution}}元</text>
 				</view>
 			</view>
 		</view>
@@ -157,16 +162,18 @@
 		<view class="introduction-specification" wx:if="{{type === 'TENANCY'}}">
 			<view class="introduction-specification-top">
 				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition}}</text></view>
-				<view class="name-type">地铁：<text class="name-typeValue">暂无</text></view>
-				<view class="name-type">朝向：<text class="name-typeValue">{{item.floorCondition}}</text></view>
-				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationStatus}}</text></view>
-				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator}}梯</text></view>
+				<view class="name-type">地铁：<block wx:for="{{item.metro}}" wx:key="index"><text
+							class="name-typeValue">{{item.lineName}}{{item.routeStop}}</text></block>
+				</view>
+				<view class="name-type">朝向：<text class="name-typeValue">{{item.orientationType || '暂无'}}</text></view>
+				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationsStatusType}}</text></view>
+				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator}}</text></view>
 				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear}}</text></view>
 			</view>
 			<view class="introduction-specification-bottom">
-				<view class="name-type">付款方式：<text class="name-typeValue">{{item.payMethod}} 押二付一</text></view>
-				<view class="name-type">发布时间：<text class="name-typeValue">暂无</text></view>
-				<view class="name-type">房屋配置：<text class="name-typeValue">{{item.houseDisposal}} 空调、洗衣机、电视机、床</text></view>
+				<view class="name-type">付款方式：<text class="name-typeValue">{{item.payMethod}}</text></view>
+				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate}}</text></view>
+				<view class="name-type">房屋配置：<text class="name-typeValue">{{item.houseDisposal}}</text></view>
 				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersId}}</text></view>
 			</view>
 		</view>
@@ -174,14 +181,14 @@
 		<!-- 小区房 -->
 		<view class="introduction-specification" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
 			<view class="introduction-specification-bottom">
-				<view class="name-type">小区地址：<text class="name-typeValue">{{item.province}}{{item.detailsAddress}}</text></view>
+				<view class="name-type">小区地址：<text class="name-typeValue">{{item.detailsAddress}}</text></view>
 			</view>
 			<view class="introduction-specification-top">
 				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property}}</text></view>
-				<view class="name-type">容积率：<text class="name-typeValue">{{item.plotRatio}}</text></view>
-				<view class="name-type">物业类别：<text class="name-typeValue">{{item.propertyClassifyId}}</text></view>
+				<view class="name-type">容积率：<text class="name-typeValue">{{item.plotRatio}}%</text></view>
+				<view class="name-type">物业类别：<text class="name-typeValue">{{item.propertyClassifyName}}</text></view>
 				<view class="name-type">停车位：<text class="name-typeValue">{{item.parkingSpace}}</text></view>
-				<view class="name-type">建筑年代：<text class="name-typeValue">{{item.createDate}}</text></view>
+				<view class="name-type">建筑年代：<text class="name-typeValue">{{item.builtYear}}</text></view>
 				<view class="name-type">物业费：<text class="name-typeValue">{{item.propertyFee}}</text></view>
 				<view class="name-type">物业公司：<text class="name-typeValue">{{item.propertyCompany}}</text></view>
 				<view class="name-type">绿化率：<text class="name-typeValue">{{item.greenCoverage}}%</text></view>
@@ -193,7 +200,7 @@
 		<view class="components-row">
 			<text class="components-title">房屋时光机</text>
 			<view class="doubleTab" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
-				<doubleTab tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
+				<doubleTab tabItem="{{tabItem}}" tabIndex="{{0}}" bind:backTabValue="getTabValue"></doubleTab>
 			</view>
 		</view>
 		<view class="lineChart">

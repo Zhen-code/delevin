@@ -525,6 +525,7 @@
 	align-items: center;
 	justify-content: center;
 	margin-top: 20rpx;
+	z-index: 9999;
 }
 
 .lineChart {
@@ -647,4 +648,22 @@
 
 .noData{
 	width: 100%;
+}
+
+.introduction-favorites {
+	width: 42px;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.introduction-favorites-name {
+	width: 100%;
+	font-size: 12px;
+	font-weight: 400;
+	color: #999999;
+	margin-top: 8rpx;
+	text-align: center;
 }

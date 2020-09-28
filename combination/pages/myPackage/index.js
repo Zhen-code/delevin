@@ -1,4 +1,7 @@
 // combination/pages/myPackage/index.js
+const {
+	request
+} = require('../../../request/request.js');
 const topHeight = require('../../../request/topHeight.js').topHeight
 Page({
 	/**
@@ -10,14 +13,24 @@ Page({
       "color": true,
       "border": false,
 		},
+		show:false,
 		index:0,
 		tabItem: ['端口套餐', '抢客套餐', '超级推广套餐'],
-		item: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+		item: [],
 		pageIndex: 1,
 		pageSize: 12,
+		setMealType:'PORT_SET_MEAL',
 		scrollTop: 0,
 		triggered: false,
 	},
+
+  showPopup() {
+    this.setData({ show: true });
+  },
+
+  onClose() {
+    this.setData({ show: false });
+  },
 
 	scrollTop() {
 		wx.pageScrollTo({
@@ -27,7 +40,6 @@ Page({
 
 	topList() {
 		this.setData({
-			pageIndex: 1,
 			triggered: false,
 		})
 		this.getData()
@@ -38,14 +50,45 @@ Page({
 		this.getData()
 	},
 
-	getData() {
-
-	},
-
 	getbackTabIndex(e){
-		console.log(e.detail)
+		let setMealType = '';
+		let index = e.detail;
+		if(index === 0){
+			setMealType = 'PORT_SET_MEAL'
+		}else if(index === 1){
+			setMealType = 'SNATCH_SET_MEAL'
+		}else{
+			setMealType = 'EXTENSION_SET_MEAL'
+		}
 		this.setData({
+			item:[],
+			setMealType,
+			pageIndex:1,
 			index:e.detail
+		},()=>{
+			this.getData()
+		})
+	},
+	
+	getData() {
+		request.myPackageList({
+			"pageSize":this.data.pageSize,
+			"pageIndex":this.data.pageIndex,
+			"setMealType":this.data.setMealType,
+		}).then((res)=>{
+			let item = this.data.item;
+			item.push(...res.list)
+			this.setData({
+				item: item,
+				pageIndex: this.data.pageIndex + 1,
+			})
+		}).catch((err)=>{
+			console.log(err)
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
 		})
 	},
 
@@ -53,7 +96,18 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		// if(Number(options.index) === 2){
+		// 	this.setData({
+		// 		index:2,
+		// 		setMealType:'EXTENSION_SET_MEAL',
+		// 	},()=>{
+		// 		this.getData();
+		// 	})
+		// }else{
+		// 	this.getData();
+		// }
 
+		this.getData();
 	},
 
 	/**

@@ -44,6 +44,22 @@ Page({
 		})
 	},
 
+	getLsit(){
+		request.brokerList({
+			"agentId":this.data.agentId
+		}).then((res)=>{
+			this.setData({
+				list:res
+			})
+		}).catch((err)=>{
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
 	toPhone(e){
 		let phone = e.currentTarget.dataset.item;
 		wx.makePhoneCall({
@@ -74,7 +90,8 @@ Page({
 		this.setData({
 			agentId:options.agentId,
 		},()=>{
-			this.getData()
+			this.getData();
+			this.getLsit();
 		})
 	},
 

@@ -17,7 +17,7 @@
 				indicator-active-color="#FFD200">
 				<block wx:for="{{bannerList}}" wx:for-index="i" wx:key="index">
 					<swiper-item data-item="{{item}}">
-						<image class="swiper-item-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+						<image class="swiper-item-image" src="{{item.images}}"></image>
 					</swiper-item>
 				</block>
 			</swiper>
@@ -66,13 +66,12 @@
 		<view class="components">
 			<view class="components-top">
 				<text class="components-top-left">推荐房源</text>
-				<doubleTab style="width:230rpx;" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
+				<doubleTab style="width:230rpx;" tabIndex="{{0}}" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
 			</view>
 			<block wx:for="{{listingsList}}" wx:key="index">
 				<shopItem item="{{item}}" data-item="{{item}}" bindtap="toDetails"></shopItem>
 			</block>
 		</view>
-
 		<view class="home-bottom">
 			<text>- 到底啦 -</text>
 		</view>
@@ -89,7 +88,7 @@
 					</view>
 				</view>
 				<view class="mine-content-top-rigth" bindtap="toRecording">
-					<view class="mine-content-top-rigth-title">访客记录<text>{{total}}</text></view>
+					<view class="mine-content-top-rigth-title">访客记录<text>{{userInfo.visitorsCount}}</text></view>
 				</view>
 			</view>
 			<text class="introductionText">{{userInfo.synopsis}}</text>
@@ -97,7 +96,7 @@
 				<view class="houseType-item" wx:for="{{houseItem2}}" data-item="{{item}}" data-index="{{index}}" wx:key="index"
 					bindtap="changeHouseType2">
 					<van-icon size="80rpx" name="{{item.iconUri}}" />
-					<text class="houseType-item-name">{{item.iconType}}</text>
+					<text class="houseType-item-name">{{item.iconName}}</text>
 				</view>
 			</view>
 		</view>
@@ -112,46 +111,75 @@
 			<view class="floor-list">
 				<block wx:for="{{brokerList}}" wx:key="index">
 					<view class="floor-list-row">
+						<!-- <view class="view-no-row">
+							<view class="view-no-row-top">
+								<text class="view-no-row-top-name">已下架</text>
+							</view>
+						</view> -->
 						<view class="floor-list-row-top">
-							<image class="floor-list-row-top-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+							<image class="floor-list-row-top-image" src="{{item.designSketch[0] || 'https://img.yzcdn.cn/vant/cat.jpeg'}}"></image>
 							<view class="floor-list-row-top-type">
 								<view class="floor-list-row-top-type-top">
 									<view class="top-view" bindtap="getShareIt">
 										<image class="top-view-image" src="/assets/icon_share_14_black@2x.png"></image>
 										<text class="top-view-text">分享</text>
 									</view>
-									<view class="top-delete" bindtap="getDelete">
+									<view class="top-delete" data-item="{{item.id}}" bindtap="getDelete">
 										<image class="top-view-image" src="/assets/icon_clean_14_white@2x.png"></image>
 										<text class="top-delete-text">删除</text>
 									</view>
 								</view>
 								<view class="floor-list-row-top-type-bottom">
-									<view class="title">楼盘名称汉溪长隆</view>
+									<view class="title">{{item.title}}</view>
 									<view class="column">
-										<text class="column-name">番禺·长隆</text>
-										<text class="column-price">23000元/m²</text>
+										<text class="column-name">{{item.street}}</text>
+										<text class="column-price" wx:if="{{item.houseMold === 'ESTATE'}}">{{item.unitPrice}}元/m²</text>
+										<text class="column-price"
+											wx:if="{{item.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{item.averagePrice}}元/m²</text>
+										<text class="column-price" wx:if="{{item.houseMold === 'TENANCY'}}">{{item.monthRent}}元/月</text>
+										<text class="column-price" wx:if="{{item.houseMold === 'SECOND_HAND'}}">{{item.totalPrice}}万</text>
 									</view>
 								</view>
 							</view>
 						</view>
 						<view class="floor-list-row-bottom">
 							<view class="floor-list-row-bottom-top">
-								<view class="floor-list-row-bottom-name">开盘时间：
-									<text class="floor-list-row-bottom-time">2020-08-20</text>
+								<view class="floor-list-row-bottom-name" wx:if="{{item.houseMold === 'ESTATE'}}">
+									<text class="floor-list-row-bottom-type">开盘时间：</text>
+									<text class="floor-list-row-bottom-time">{{item.openingDate}}</text>
 								</view>
-								<view class="floor-list-row-bottom-name">开盘地址：
-									<text class="floor-list-row-bottom-time">番禺区汉溪大道长隆</text>
+								<view class="floor-list-row-bottom-name"
+									wx:if="{{item.houseMold === 'SECOND_HAND' || item.houseMold === 'TENANCY'}}">
+									<text class="floor-list-row-bottom-type">建筑面积：</text>
+									<text class="floor-list-row-bottom-time">{{item.floorage}}</text>
+								</view>
+								<view class="floor-list-row-bottom-name" wx:if="{{item.houseMold === 'RESIDENTIAL_QUARTERS'}}">
+									<text class="floor-list-row-bottom-type">建筑年代：</text>
+									<text class="floor-list-row-bottom-time">{{item.builtYear}}</text>
+								</view>
+								<view class="floor-list-row-bottom-name">
+									<text class="floor-list-row-bottom-type">开盘地址：</text>
+									<text class="floor-list-row-bottom-time">{{item.detailsAddress}}</text>
 								</view>
 							</view>
 							<view class="floor-list-row-bottom-bottom">
-								<view class="floor-list-row-bottom-bottom-view" bindtap="getOrdinaryPurchase">
+								<view class="floor-list-row-bottom-bottom-view" wx:if="{{item.push === 'YES'}}">
+									<image class="floor-list-row-bottom-bottom-view-image" src="/assets/icon_promo_16_pre@2x.png"></image>
+									<text class="floor-list-row-bottom-bottom-view-text">已推广</text>
+								</view>
+								<view class="floor-list-row-bottom-bottom-view" data-item="{{item}}" wx:if="{{item.push === 'NO'}}"
+									bindtap="getOrdinaryPurchase">
 									<image class="floor-list-row-bottom-bottom-view-image" src="/assets/icon_promo_16@2x.png"></image>
 									<text class="floor-list-row-bottom-bottom-view-text">推广</text>
 								</view>
-								<view class="floor-list-row-bottom-bottom-super" bindtap="toSuperPromotion">
+								<view class="floor-list-row-bottom-bottom-super" data-item="{{item}}" bindtap="toSuperPromotion">
 									<image class="floor-list-row-bottom-bottom-view-image" src="/assets/icon_fire_16@2x.png"></image>
 									<text class="floor-list-row-bottom-bottom-super-text">超级推广</text>
 								</view>
+								<!-- <view class="top-delete" data-item="{{item.id}}" bindtap="getDelete">
+										<image class="top-view-image" src="/assets/icon_clean_14_white@2x.png"></image>
+										<text class="top-delete-text">删除</text>
+									</view> -->
 							</view>
 						</view>
 					</view>

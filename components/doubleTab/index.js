@@ -4,10 +4,20 @@ Component({
 	 * 组件的属性列表
 	 */
 	properties: {
-		tabItem:{
-			type:Array,
-			value:[],
+		tabItem: {
+			type: Array,
+			value: [],
 		},
+		tabIndex: {
+			type: Number,
+			value: '',
+			observer: function observer() {
+				var newVal = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+				this.setData({
+					tabIndex: Number(newVal),
+				})
+			}
+		}
 	},
 
 	/**
@@ -25,7 +35,7 @@ Component({
 			this.setData({
 				tabIndex: e.currentTarget.dataset.index,
 			})
-			this.triggerEvent('backTabValue',e.currentTarget.dataset.index);
+			this.triggerEvent('backTabValue', e.currentTarget.dataset.index);
 		},
 	}
 })

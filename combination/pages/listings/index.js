@@ -56,6 +56,8 @@ Page({
 
 	getBackTabValue(e) {
 		this.setData({
+			item:[],
+			pageIndex:1,
 			index: e.detail
 		},()=>{
 			this.getData()
@@ -111,11 +113,8 @@ Page({
 			"pageIndex": pageIndex,
 			"pageSize": pageSize,
 			"province": province,
-			"houseType": '',
-			"region": '',
-			"salesStatus": '',
-			"upperLimit": '',
 		}).then((res) => {
+			let data = item;
 			item.push(...res.list)
 			this.setData({
 				item: item,
@@ -127,6 +126,33 @@ Page({
 				icon: 'none',
 				duration: 2500
 			})
+		})
+	},
+
+	toDetails(e){
+		console.log(e.currentTarget.dataset.item)
+		let type = '';
+		switch (this.data.index) {
+			case 0:
+				type = "新房房源";
+				break;
+			case 1:
+				type = "二手房房源";
+				break;
+			case 2:
+				type = "租房房源";
+				break;
+			case 3:
+				type = "小区房源";
+				break;
+			default:
+		}
+		let item = JSON.stringify({
+			'title': type,
+			"id": e.currentTarget.dataset.item.id,
+		})
+		wx.navigateTo({
+			url: `/combination/pages/listingDetails/index?item=${item}`,
 		})
 	},
 

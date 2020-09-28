@@ -1,4 +1,8 @@
 // combination/pages/superPromotion/index.js
+const app = getApp()
+const {
+	request
+} = require('../../../request/request.js');
 const topHeight = require('../../../request/topHeight.js').topHeight
 Page({
 	/**
@@ -10,47 +14,220 @@ Page({
 			"color": true,
 			"border": true,
 		},
-		show: {
-			primary: true,
-			success: true,
-		},
-		itemValue:'',
-		itemIndex:'',
+		title: '',
+		advertising: '',
+		specs: '',
+		itemValue: '',
+		itemIndex: '',
+		list: [],
+		pageSize: 12,
+		pageIndex: 1,
+		num: 1,
+		item: [],
+		info: {},
+		price: 0,
 	},
-	
-	onChange(event) {
-    console.log(event.detail);
-  },
 
-	onClose(event) {
+	getInputValue(e) {
+		let model = e.currentTarget.dataset.model
 		this.setData({
-			[`show.${event.target.id}`]: false,
+			[`${model}`]: e.detail.value
+		})
+	},
+
+	onChange(event) {
+		this.setData({
+			num: event.detail
+		}, () => {
+			this.getSuperCalculation();
+		})
+	},
+
+	onClose(e) {
+		let item = this.data.item;
+		let index = e.currentTarget.dataset.index;
+		item[index].checked = false;
+		let list = item.filter(item => {
+			return item.checked === true
+		})
+		this.setData({
+			item: list,
 		});
 	},
 
-	tabItem(e){
-		if(e.detail.value !== undefined){
+	itemType(e) {
+		let value = Math.floor(Number(e.detail.value));
+		// console.log(value % 100)
+		console.log(value * 100)
+		this.setData({
+			itemIndex: -1,
+			itemValue: value,
+			specs: (value * 100),
+		}, () => {
+			this.getSuperCalculation();
+		})
+	},
+
+	tabItem(e) {
+		if (e.currentTarget.dataset.item !== undefined) {
 			this.setData({
-				itemValue:e.detail.value,
-				itemIndex:e.currentTarget.dataset.index
+				itemValue: '',
+				specs: Number(e.currentTarget.dataset.item.specs),
+				itemIndex: e.currentTarget.dataset.index
 			})
-		}else{
+		} else {
 			this.setData({
-				itemIndex:e.currentTarget.dataset.index
+				itemValue: '',
+				specs: '',
+				itemIndex: e.currentTarget.dataset.index
 			})
+		}
+		if (this.data.specs !== '') {
+			this.getSuperCalculation();
 		}
 	},
 
-	toSelectPromotion(){
+	getSuperCalculation() {
+		request.superCalculation({
+			"buyQuantity": this.data.num,
+			"specs": this.data.specs,
+		}).then((res) => {
+			this.setData({
+				price: res.totalPrice
+			})
+		}).catch((err) => {
+			console.log(err)
+			wx.showToast({
+				title: '数据错误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	toSelectPromotion() {
+		app.globalData.selectPromotion = [];
 		wx.navigateTo({
 			url: '/combination/pages/selectPromotion/index',
 		})
 	},
+
+	getData() {
+		request.superPromotion({
+			"pageSize": this.data.pageSize,
+			"pageIndex": this.data.pageIndex,
+		}).then((res) => {
+			this.setData({
+				list: res.list,
+			})
+		}).catch((err) => {
+			console.log(err)
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	submit() {
+		let {
+			info,
+			title,
+			item,
+			advertising,
+			specs,
+			num,
+		} = this.data;
+		let _this = this;
+		let data = {
+			"advertLanguage": advertising,
+			"buyQuantity": num,
+			"houseId": info.id,
+			"houseType": info.houseMold,
+			"launchExtension": item.map((item) => {
+				return {
+					"houseId": item.id,
+					"houseType": item.houseType,
+				};
+			}),
+			"specs": specs,
+		}
+		request.superSubmitOrder(data).then((res) => {
+			let orderNum = res.orderNum;
+			request.wxPay({
+				"orderNum": orderNum,
+				"payMethod": "WX"
+			}).then((res) => {
+				let payInfo = JSON.parse(res.payInfo)
+				let wxPayResult = JSON.parse(payInfo.wxPayResult)
+				wx.requestPayment({
+					'timeStamp': payInfo.timeStamp,
+					'nonceStr': wxPayResult.nonceStr,
+					'package': 'prepay_id=' + wxPayResult.prepayId,
+					'signType': 'MD5',
+					'paySign': payInfo.sign,
+					'success': function (res) {
+						let index = 2;
+						_this.setData({
+							title: '',
+							advertising: '',
+							specs: '',
+							itemValue: '',
+							itemIndex: '',
+							list: [],
+							pageSize: 12,
+							pageIndex: 1,
+							num: 1,
+							item: [],
+							info: {},
+							price: 0,
+						}, () => {
+							wx.reLaunch({
+								url: '/combination/pages/myPackage/index?index=' + index,
+							})
+						})
+					},
+					'fail': function (res) {
+						console.log('支付失败');
+						wx.showToast({
+							title: '支付失败',
+							icon: 'none',
+							duration: 2500
+						})
+						return;
+					},
+				})
+			}).catch((err) => {
+				console.log(err)
+				wx.showToast({
+					title: '请求失败',
+					icon: 'none',
+					duration: 2500
+				})
+			})
+		}).catch((err) => {
+			console.log(err)
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		let item = JSON.parse(options.item)
+		if (item) {
+			this.setData({
+				info: item,
+			}, () => {
+				this.getData();
+			})
+		}
 	},
 
 	/**
@@ -64,7 +241,15 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		let item = this.data.item;
+		let selectPromotion = app.globalData.selectPromotion;
+		// 这里需要做个数组过滤的功能
+		if (selectPromotion !== 0) {
+			item.push(...selectPromotion)
+			this.setData({
+				item: item,
+			})
+		}
 	},
 
 	/**

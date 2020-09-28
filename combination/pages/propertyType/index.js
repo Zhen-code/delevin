@@ -686,7 +686,7 @@ Page({
 
 	getUnitPrice() {
 		request.unitPrice().then((res) => {
-			console.log(res, '单价')
+			// console.log(res, '单价')
 			this.setData({
 				unitPrice: res
 			})
@@ -702,7 +702,7 @@ Page({
 
 	getTotalPrice() {
 		request.totalPrice().then((res) => {
-			console.log(res, '总价')
+			// console.log(res, '总价')
 			this.setData({
 				totalPrice: res
 			})
@@ -718,7 +718,7 @@ Page({
 
 	getRent() {
 		request.rent().then((res) => {
-			console.log(res, '租金')
+			// console.log(res, '租金')
 			this.setData({
 				rent: res
 			})
@@ -734,7 +734,7 @@ Page({
 
 	getType() {
 		request.type().then((res) => {
-			console.log(res, '户型')
+			// console.log(res, '户型')
 			let item = res.map((item) => {
 				item.checked = false;
 				return item;

@@ -20,7 +20,7 @@
 	height: auto;
 	padding: 0 40rpx;
 	box-sizing: border-box;
-	margin: 28rpx 32rpx 56rpx 32rpx;
+	margin: 28rpx 32rpx 16rpx 32rpx;
 	background: rgba(255, 255, 255, 1);
 	border-radius: 4px;
 	display: flex;
@@ -47,7 +47,7 @@
 	flex-direction: row;
 }
 
-.mine-content-top-rigth-image{
+.mine-content-top-rigth-image {
 	width: 80rpx;
 	height: 80rpx;
 	display: block;
@@ -107,6 +107,46 @@
 	align-items: flex-start;
 	justify-content: flex-start;
 	flex-direction: column;
+	margin-top: 40rpx;
+	position: relative;
+}
+
+.floor-list-no {
+	width: 100%;
+	height: auto;
+	border-radius: 8rpx 8rpx 0 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	overflow: hidden;
+}
+
+.floor-list-no-top {
+	width: 100%;
+	height: 440rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.floor-list-no-top-name {
+	width: 200rpx;
+	height: 72rpx;
+	background: rgba(255, 255, 255, 0.4);
+	border-radius: 2rpx;
+	border: 2rpx solid #FFFFFF;
+	font-size: 30rpx;
+	color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.floor-list-no-bottom {
+	width: 100%;
+	height: 140rpx;
 }
 
 .floor-list-row {
@@ -119,7 +159,7 @@
 	margin-bottom: 40rpx;
 }
 
-.floor-list-row:last-child{
+.floor-list-row:last-child {
 	margin-bottom: 0;
 }
 
@@ -304,7 +344,8 @@
 
 .floor-list-row-bottom-top {
 	width: 100%;
-	height: 152rpx;
+	height: auto;
+	padding: 20rpx 0;
 	display: flex;
 	align-content: center;
 	justify-content: center;
@@ -313,24 +354,26 @@
 
 .floor-list-row-bottom-name {
 	width: 100%;
-	height: 40rpx;
+	height: auto;
 	font-size: 28rpx;
 	font-weight: 400;
 	color: #999999;
-	line-height: 40rpx;
 	display: flex;
 	align-content: center;
 	justify-content: flex-start;
 	flex-direction: row;
 }
 
+.floor-list-row-bottom-type{
+	width: 145rpx;
+}
+
 .floor-list-row-bottom-time {
-	width: auto;
-	height: 40rpx;
+	flex: 1;
+	height: auto;
 	font-size: 28rpx;
 	font-weight: 400;
 	color: #333333;
-	line-height: 40rpx;
 }
 
 .floor-list-row-bottom-bottom {

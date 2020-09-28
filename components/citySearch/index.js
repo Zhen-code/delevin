@@ -12,9 +12,9 @@ Component({
 			type: String,
 			value: '输入地名/地铁/楼盘/小区查找房源',
 		},
-		value:{
-			type:String,
-			value:'',
+		value: {
+			type: String,
+			value: '',
 		}
 	},
 
@@ -23,14 +23,16 @@ Component({
 			// 在组件实例进入页面节点树时执行
 			console.log('在组件实例进入页面节点树时执行')
 			let name = '';
-			if (app.globalData.address.city.length > 4) {
-				name = app.globalData.address.city.substring(0, 4) + '...'
-			} else {
-				name = app.globalData.address.city
+			if (app.globalData.address.city) {
+				if (app.globalData.address.city.length > 4) {
+					name = app.globalData.address.city.substring(0, 4) + '...'
+				} else {
+					name = app.globalData.address.city
+				}
+				this.setData({
+					city: name,
+				})
 			}
-			this.setData({
-				city: name,
-			})
 		},
 		detached: function () {
 			// 在组件实例被从页面节点树移除时执行
@@ -47,13 +49,13 @@ Component({
 		console.log('在组件实例被从页面节点树移除时执行')
 	},
 
-/**
- * 组件的初始数据
- */
-data: {
+	/**
+	 * 组件的初始数据
+	 */
+	data: {
 		show: false,
 		city: '',
-		province:'',
+		province: '',
 		value: "",
 		name: '',
 		areaList: provincCityDistrict,
@@ -88,7 +90,7 @@ data: {
 				name = e.detail.values[1].name
 			}
 			this.setData({
-				province:e.detail.values[0].name,
+				province: e.detail.values[0].name,
 				city: name || '未选择'
 			})
 			this.triggerEvent("getCityValue", e.detail.values);
@@ -97,7 +99,7 @@ data: {
 
 		search(e) {
 			let type = {
-				"province":this.data.province,
+				"province": this.data.province,
 				"city": this.data.city,
 				"value": this.data.value
 			}

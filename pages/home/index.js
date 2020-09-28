@@ -1,20 +1,14 @@
 // pages/home/index.js
 const app = getApp()
-const api = require('../../request/api').api;
-const domain = require('../../request/http.js').domain;
-const topHeight = require('../../request/topHeight.js').topHeight;
-const {
-	provincCityDistrict
-} = require('../../request/provinces')
-const {http} = require('../../request/http');
-// var QQMapWX = require('../../../utils/qqmap-wx-jssdk');
-// var qqmapsdk;
 var key = 'XRUBZ-XN6KX-IYQ4H-7XZUT-AZWLJ-4PBIA';
+const topHeight = require('../../request/topHeight.js').topHeight;
 const {
 	request
 } = require('../../request/request.js');
+const {
+	provincCityDistrict
+} = require('../../request/provinces')
 Page({
-
 	/**
 	 * 页面的初始数据
 	 */
@@ -26,23 +20,7 @@ Page({
 		share: false,
 		city: "",
 		houseItem1: [],
-		houseItem2: [{
-				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType": "客源管理",
-			},
-			{
-				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType": "获客文章",
-			},
-			{
-				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType": "获客海报",
-			},
-			{
-				"iconUri": "https://b.yzcdn.cn/vant/icon-demo-1126.png",
-				"iconType": "房贷计算",
-			}
-		],
+		houseItem2: [],
 		bannerList: [],
 		brokerList: [],
 		newsList: [],
@@ -68,7 +46,7 @@ Page({
 			this.setData({
 				userInfo: res,
 			}, () => {
-				if(this.data.userInfo.agentId){
+				if (res.agentId) {
 					this.getBrokerList()
 				}
 			})
@@ -154,6 +132,18 @@ Page({
 		request.icon().then((res) => {
 			let item = res.map((item) => {
 				switch (item.iconType) {
+					case "CUSTOMERS_ARTICLES":
+						item.iconName = "获客文章";
+						break;
+					case "CUSTOMERS_MANAGE":
+						item.iconName = "客源管理";
+						break;
+					case "MORTGAGE_CALCULATOR_MEMBER":
+						item.iconName = "房贷计算";
+						break;
+					case "CUSTOMERS_POSTER":
+						item.iconName = "获客海报";
+						break;
 					case "ESTATE":
 						item.iconName = "新房/楼盘";
 						break;
@@ -166,7 +156,7 @@ Page({
 					case "RESIDENTIAL_QUARTERS":
 						item.iconName = "找小区";
 						break;
-					case "MORTGAGE_CALCULATOR":
+					case "MORTGAGE_CALCULATOR_AGENT":
 						item.iconName = "房贷计算";
 						break;
 					default:
@@ -174,7 +164,8 @@ Page({
 				return item;
 			})
 			this.setData({
-				houseItem1: item
+				houseItem1: item.slice(4, 9),
+				houseItem2: item.slice(0, 4),
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -200,7 +191,61 @@ Page({
 		})
 	},
 
-	getLocation() {
+	getSetting() {
+		let that = this;
+		wx.getSetting({
+      success: (res) => {
+        // console.log(JSON.stringify(res))
+        // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
+        // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
+        // res.authSetting['scope.userLocation'] == true    表示 地理位置授权
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+          wx.showModal({
+            title: '请求授权当前位置',
+            content: '需要获取您的地理位置，请确认授权',
+            success: function (res) {
+              if (res.cancel) {
+                wx.showToast({
+                  title: '拒绝授权',
+                  icon: 'none',
+                  duration: 1000
+                })
+              } else if (res.confirm) {
+                wx.openSetting({
+                  success: function (dataAu) {
+                    if (dataAu.authSetting["scope.userLocation"] == true) {
+                      wx.showToast({
+                        title: '授权成功',
+                        icon: 'success',
+                        duration: 1000
+                      })
+                      //再次授权，调用wx.getLocation的API
+											this.getLocation()
+                    } else {
+                      wx.showToast({
+                        title: '授权失败',
+                        icon: 'none',
+                        duration: 1000
+                      })
+                    }
+                  }
+                })
+              }
+            }
+          })
+        } else if (res.authSetting['scope.userLocation'] == undefined) {
+					//调用wx.getLocation的API
+					this.getLocation()
+        }
+        else {
+					//调用wx.getLocation的API
+					this.getLocation()
+        }
+      }
+    })
+	},
+
+	getLocation(){
 		let that = this;
 		wx.getLocation({
 			success: (res) => {
@@ -277,13 +322,18 @@ Page({
 
 	getNewListingsList() {
 		request.newListingsList({
-			"pageSize": 3,
+			"pageSize": 5,
 			"pageIndex": 1,
 		}).then((res) => {
+			console.log(res.list)
+			let data = res.list.map((item)=>{
+				item.salesStatus = '0'
+				return item;
+			})
 			this.setData({
 				title: '新房房源',
 				listingsList: [],
-				listingsList: res.list || []
+				listingsList: data || []
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -292,7 +342,7 @@ Page({
 
 	getTowListingsList() {
 		request.towListingsList({
-			"pageSize": 3,
+			"pageSize": 5,
 			"pageIndex": 1,
 		}).then((res) => {
 			this.setData({
@@ -424,7 +474,8 @@ Page({
 		})
 	},
 
-	getDelete() {
+	getDelete(e) {
+		let id = e.currentTarget.dataset.item
 		wx.showModal({
 			title: '删除信息',
 			content: '是否确认删除此楼盘？',
@@ -433,36 +484,90 @@ Page({
 			confirmText: "确定",
 			success(res) {
 				if (res.confirm) {
-					console.log(res, 111)
-				} else {
-					console.log(res, 222)
+					request.brokerDatele({
+						'id': id,
+					}).then((res) => {
+						wx.showToast({
+							title: '删除成功',
+							icon: 'success',
+							duration: 2500
+						})
+					}).catch((err) => {
+						wx.showToast({
+							title: '请求失败',
+							icon: 'none',
+							duration: 2500
+						})
+					})
 				}
 			}
 		})
 	},
 
-	getOrdinaryPurchase() {
+	getOrdinaryPurchase(e) {
+		let _this = this;
+		let item = e.currentTarget.dataset.item;
+		if (item.portMealStatus === 'NO') {
+			wx.showModal({
+				title: '楼盘推广',
+				content: '购买端口套餐即可获得推广房源资格，是否立即前往购买？',
+				showCancel: true,
+				cancelText: "取消",
+				confirmText: "立即购买",
+				success(res) {
+					if (res.confirm) {
+						wx.navigateTo({
+							url: '/combination/pages/generalPromotion/index',
+						})
+					}
+				}
+			})
+		} else {
+			wx.showModal({
+				title: '楼盘推广',
+				content: '是否确认推广此楼盘？',
+				showCancel: true,
+				cancelText: "取消",
+				confirmText: "确定",
+				success(res) {
+					if (res.confirm) {
+						request.promote({
+							"houseId": item.id,
+							"houseMold": item.houseMold
+						}).then((res) => {
+							_this.getPromote()
+							// wx.showToast({
+							// 	title: '推广成功',
+							// 	icon: 'success',
+							// 	duration: 2500
+							// })
+						}).catch((err) => {
+							wx.showToast({
+								title: '请求失败',
+								icon: 'none',
+								duration: 2500
+							})
+						})
+					}
+				}
+			})
+		}
+	},
+
+	getPromote() {
 		wx.showModal({
 			title: '楼盘推广',
-			content: '购买端口套餐即可获得推广房源资格，是否立即前往购买？',
+			content: '该房源由平台进行随机推广，当您删除房源或购买的端口套餐到期时，将停止推广',
 			showCancel: true,
 			cancelText: "取消",
-			confirmText: "立即购买",
-			success(res) {
-				if (res.confirm) {
-					wx.navigateTo({
-						url: '/combination/pages/generalPromotion/index',
-					})
-				} else {
-					console.log(res, 222)
-				}
-			}
+			confirmText: "确定",
 		})
 	},
 
-	toSuperPromotion() {
+	toSuperPromotion(e) {
+		let item = JSON.stringify(e.currentTarget.dataset.item)
 		wx.navigateTo({
-			url: '/combination/pages/superPromotion/index',
+			url: `/combination/pages/superPromotion/index?item=${item}`,
 		})
 	},
 
@@ -472,30 +577,10 @@ Page({
 		})
 	},
 
-	getVisitorRecod(){
-		http({
-			url: api.operation.visitorList,
-			method: 'GET',
-			params:{
-				pageIndex: 1,
-				pageSize: 100
-			}
-		}).then(res=>{
-			console.log(res)
-			this.setData({
-				total: res.total
-			})
-		}).catch(err=>{
-			console.log(err)
-		})
-	},
-
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		this.getData()
-		this.getLocation()
 		this.getBanner();
 		this.getIcon();
 		this.getNews();
@@ -530,8 +615,10 @@ Page({
 	onShow: function () {
 		this.setData({
 			type: app.globalData.state
-		});
-		this.getVisitorRecod();
+		}, () => {
+			this.getSetting();
+			this.getData()
+		})
 	},
 
 	/**

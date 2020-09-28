@@ -1,11 +1,11 @@
 <!--combination/pages/superPromotion/index.wxml-->
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="超级推广" />
 <view class="view" style="padding-top:{{paddingTop}}px">
+	<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="超级推广" />
 	<view class="view-row">
 		<view class="view-row-content">
 			<text class="view-row-content-name">推广房源</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='city' data-model="city" placeholder="房源标题"></input>
+				<input class="view-row-content-input-text" disabled="{{true}}" value="{{info.title}}"></input>
 			</view>
 		</view>
 		<view class="view-row-content" style="flex-direction: column;">
@@ -16,18 +16,16 @@
 					<van-icon name="arrow" size="40rpx" color="#333333" />
 				</view>
 			</view>
-			<view class="view-row-content-list1">
-				<van-tag wx:if="{{ show.primary }}" style="margin:0 10rpx 10rpx 0" closeable size="medium" color="#F8F8F8" text-color="#666666" id="primary" bind:close="onClose">标签</van-tag>
-				<van-tag wx:if="{{ show.primary }}" style="margin:0 10rpx 10rpx 0" closeable size="medium" color="#F8F8F8" text-color="#666666" id="primary" bind:close="onClose">富力千禧中心</van-tag>
-				<van-tag wx:if="{{ show.primary }}" style="margin:0 10rpx 10rpx 0" closeable size="medium" color="#F8F8F8" text-color="#666666" id="primary" bind:close="onClose">富力千禧中心</van-tag>
-				<van-tag wx:if="{{ show.primary }}" style="margin:0 10rpx 10rpx 0" closeable size="medium" color="#F8F8F8" text-color="#666666" id="primary" bind:close="onClose">万达广场</van-tag>
-				<van-tag wx:if="{{ show.primary }}" style="margin:0 10rpx 10rpx 0" closeable size="medium" color="#F8F8F8" text-color="#666666" id="primary" bind:close="onClose">汉溪长隆圣诞快乐飞进</van-tag>
+			<view class="view-row-content-list1" wx:if="{{item.length !== 0}}">
+				<block wx:for="{{item}}" wx:key="index">
+					<van-tag wx:if="{{ item.checked }}" style="margin:0 10rpx 10rpx 0" closeable size="medium" color="#F8F8F8" text-color="#666666" data-index="{{index}}" id="item.checked" bind:close="onClose">{{item.title}}</van-tag>
+				</block>
 			</view>
 		</view>
 		<view class="view-row-content">
 			<text class="view-row-content-name">输入广告语</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='community' data-model="community" placeholder="可输入不超过18字"></input>
+				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='advertising' data-model="advertising" placeholder="可输入不超过18字"></input>
 			</view>
 		</view>
 	</view>
@@ -39,7 +37,7 @@
 		<view class="floor-list">
 			<view class="floor-list-row">
 				<view class="floor-list-row-top">
-					<image class="floor-list-row-top-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+					<image class="floor-list-row-top-image" src="{{info.designSketch[0] || 'https://img.yzcdn.cn/vant/cat.jpeg'}}"></image>
 					<view class="floor-list-row-top-type">
 						<view class="floor-list-row-top-type-top">
 							<view class="top-delete" bindtap="getDelete">
@@ -47,9 +45,9 @@
 							</view>
 						</view>
 						<view class="floor-list-row-top-type-bottom">
-							<view class="title">楼盘名称汉溪长隆</view>
+							<view class="title">{{advertising}}</view>
 							<view class="column">
-								<text class="column-name">番禺·祈福新村</text>
+								<text class="column-name">{{info.street}}</text>
 							</view>
 						</view>
 					</view>
@@ -67,25 +65,25 @@
 			<text class="row-list-top-top">选择购买价格</text>
 		</view>
 		<view class="checkList">
-			<view class="checkList-row {{itemIndex === 0?'checkList-row-action':''}}" data-index="{{0}}" bindtap="tabItem">预计1000曝光/天</view>
-			<view class="checkList-row {{itemIndex === 1?'checkList-row-action':''}}" data-index="{{1}}" bindtap="tabItem">预计2000曝光/天</view>
-			<view class="checkList-row {{itemIndex === 2?'checkList-row-action':''}}" data-index="{{2}}" bindtap="tabItem">预计3000曝光/天</view>
-			<input class="checkList-row {{itemIndex === 3?'checkList-row-action':''}}" data-index="{{3}}" bindtap="tabItem" bindinput="tabItem"></input>
+			<block wx:for="{{list}}" wx:key="index">
+				<view wx:if="{{item.status === 'UPPER'}}" class="checkList-row {{itemIndex === index?'checkList-row-action':''}}" data-item="{{item}}" data-index="{{index}}" bindtap="tabItem">{{item.specsTitle}}</view>
+			</block>
+			<input type="number" class="checkList-row {{itemIndex === -1?'checkList-row-action':''}}" value="{{itemValue}}" data-index="{{-1}}" data-model="specs"  bindinput="itemType" bindtap="tabItem"></input>
 		</view>
 	</view>
 
 	<view class="row-list">
 		<view class="row-list-top">
 			<text class="row-list-top-top">选择购买数量</text>
-			<van-stepper value="{{ 1 }}" input-width="120rpx" disable-input integer bind:change="onChange" />
+			<van-stepper value="{{ num }}" input-width="120rpx" disable-input integer bind:change="onChange" />
 		</view>
 	</view>
 </view>
 
 
 <view class="footer">
-	<view class="footerAll">合计：<text class="footerPrice">3000元</text></view>
+	<view class="footerAll">合计：<text class="footerPrice">{{price}}元</text></view>
 	<view class="footerShop">
-		<text class="footerShopSurpe">提交订单</text>
+		<text class="footerShopSurpe" bindtap="submit">提交订单</text>
 	</view>
 </view>

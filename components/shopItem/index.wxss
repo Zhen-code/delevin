@@ -64,7 +64,8 @@
 
 .item-right-title {
 	width: 100%;
-	height: 70rpx;
+	min-height: 35rpx;
+	max-height: 70rpx;
 	line-height: 35rpx;
 	text-align: left;
 	font-size: 30rpx;
@@ -112,7 +113,7 @@
 	flex-direction: row;
 }
 
-.price text {
+.price-text {
 	font-size: 28rpx;
 	font-weight: 400;
 	color: rgba(254, 99, 0, 1);
@@ -138,7 +139,7 @@
 	color: rgba(153, 153, 153, 1);
 }
 
-.item-right-typeNum-ping text {
+.item-right-typeNum-ping-text {
 	font-size: 36rpx;
 	font-weight: 500;
 	color: rgba(254, 99, 0, 1);
@@ -155,7 +156,13 @@
 	color: rgba(153, 153, 153, 1);
 }
 
-.item-right-typeNum-tao text {
+/* .item-right-typeNum-tao text {
+	font-size: 26rpx;
+	font-weight: 400;
+	color: rgba(254, 99, 0, 1);
+} */
+
+.item-right-typeNum-tao-text {
 	font-size: 26rpx;
 	font-weight: 400;
 	color: rgba(254, 99, 0, 1);

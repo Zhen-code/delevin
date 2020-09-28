@@ -83,6 +83,7 @@ App({
     state:true,
     address:{},
     storeInfo:{},
+    selectPromotion:[],
   },
   topHeight: {
     height: 0,

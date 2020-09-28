@@ -11,6 +11,10 @@ Component({
 		flexd:{
 			type:Boolean,
 			value:false,
+		},
+		zIndex:{
+			type:Number,
+			value:-1,
 		}
 	},
 
