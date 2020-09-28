@@ -414,23 +414,23 @@ Page({
 		switch (index) {
 			case 0:
 				wx.navigateTo({
-					url: `/combination/pages/management/index`,
-				})
+					url: `/combination/pages/customerArticles/index`,
+				});
 				break;
 			case 1:
 				wx.navigateTo({
-					url: `/combination/pages/customerArticles/index`,
-				})
+					url: `/combination/pages/management/index`,
+				});
 				break;
 			case 2:
-				wx.navigateTo({
-					url: `/combination/pages/customerPoster/index`,
-				})
-				break;
-			case 3:
 				// wx.navigateTo({
 				// 	url: '/combination/pages/propertyType/index',
 				// })
+				break;
+			case 3:
+				wx.navigateTo({
+					url: `/combination/pages/customerPoster/index`,
+				});
 				break;
 			default:
 		}
@@ -654,5 +654,5 @@ Page({
 	 */
 	onShareAppMessage: function () {
 
-	}
+	},
 })

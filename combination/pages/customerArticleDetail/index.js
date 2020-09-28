@@ -37,6 +37,30 @@ Page({
       console.log(err);
     })
   },
+  addArticleVisited(){
+    let id = wx.getStorageSync('id')|| '';
+    if(id === '' || !id){
+      wx.showToast({
+        title: '请登录！',
+        icon: "none",
+        duration: 1000
+      })
+    }else{
+      http({
+        url: '/api/access/v1/user/member/visitors/add',
+        method: 'POST',
+        params:{
+          "intervieweeId": id,
+          "type": "HOUSE"
+        }
+      }).then(res=>{
+        console.log(res)
+      }).catch(err=>{
+        console.log(err)
+      })
+    }
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -61,7 +85,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.addArticleVisited();
   },
 
   /**

@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+    <list default="true" id="975fe9b3-b673-4fe0-8803-1aa5145f0e1c" name="Default Changelist" comment="fix:bug与修改接口数据">
     <list default="true" id="975fe9b3-b673-4fe0-8803-1aa5145f0e1c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/homepage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/homepage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/homepage/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/homepage/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/management/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/management/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/management/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/management/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/request.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/chooseLabel/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/chooseLabel/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/esf/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/esf/index.js" afterDir="false" />
@@ -229,6 +236,16 @@
           <url>file://$PROJECT_DIR$/pages/aspect/index.js</url>
           <line>46</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/combination/pages/aspectDetail/index.js</url>
+          <line>61</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/combination/pages/aspectDetail/index.js</url>
+          <line>62</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

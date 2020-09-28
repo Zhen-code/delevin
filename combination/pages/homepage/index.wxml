@@ -17,43 +17,35 @@
 			<text class="introductionText">{{userInfo.synopsis}}</text>
 		</view>
 		<view class="floor">
-			<block wx:for="{{list}}" wx:key="index">
-				<view class="floor-list">
-					<!-- <view class="floor-list-no">
-						<view class="floor-list-no-top">
-							<text class="floor-list-no-top-name">已下架</text>
-						</view>
-						<view class="floor-list-no-bottom"></view>
-					</view> -->
-					<view class="floor-list-row">
+			<view class="floor-list">
+				<block wx:for="{{list}}" wx:key="{{index}}">
+					<view class="floor-list-row" data-id="{{item.houseId}}" data-housetype="{{item.houseMold}}" catch:tap="goHouseDetail">
 						<view class="floor-list-row-top">
-							<image class="floor-list-row-top-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+							<image class="floor-list-row-top-image" src="{{item.designSketch}}"></image>
 							<view class="floor-list-row-top-type">
 								<view class="floor-list-row-top-type-top"></view>
 								<view class="floor-list-row-top-type-bottom">
 									<view class="title">{{item.title}}</view>
 									<view class="column">
-										<text class="column-name">{{item.region}}{{item.street}}</text>
-										<text class="column-price">{{item.averagePrice}}元/m²</text>
+										<text class="column-name">{{item.region}}·{{item.street}}</text>
+										<text class="column-price">{{item.unitPrice}}元/m²</text>
 									</view>
 								</view>
 							</view>
 						</view>
 						<view class="floor-list-row-bottom">
 							<view class="floor-list-row-bottom-top">
-								<view class="floor-list-row-bottom-name">
-									<text class="floor-list-row-bottom-type">开盘时间：</text>
+								<view class="floor-list-row-bottom-name">开盘时间：
 									<text class="floor-list-row-bottom-time">{{item.openingDate}}</text>
 								</view>
-								<view class="floor-list-row-bottom-name">
-									<text class="floor-list-row-bottom-type">开盘地址：</text>
+								<view class="floor-list-row-bottom-name">开盘地址：
 									<text class="floor-list-row-bottom-time">{{item.detailsAddress}}</text>
 								</view>
 							</view>
 						</view>
 					</view>
-				</view>
-			</block>
+				</block>
+			</view>
 			<view class="home-bottom">
 				<text>- 到底啦 -</text>
 			</view>

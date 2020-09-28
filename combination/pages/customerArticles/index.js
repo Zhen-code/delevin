@@ -2,7 +2,7 @@ const app = getApp();
 const {topHeight} = require('../../../request/topHeight');
 const {http} = require('../../../request/http');
 const {api} = require('../../../request/api');
-const { request } = require('../../../request/request.js');
+
 var sy = 0;
 Page({
 

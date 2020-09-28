@@ -155,15 +155,66 @@ Page({
 	},
 	getVisitorList(){
 		http({
-			url: api.operation.visitorList,
+			url: api.broker.vistHouseHistory,
 			method: 'GET',
 			params:{
 				pageIndex: 1,
-				pageSize: 1000,
-				type: 'HOUSE'
+				pageSize: 1000
 			}
 		}).then(res=>{
 			console.log(res)
+			this.setData({
+				item: res
+			});
+		}).catch(err=>{
+			console.log(err)
+		})
+	},
+	goHouseDetail(e){
+		let {id,housetype} = e.currentTarget.dataset;
+		console.log(e)
+			let type = '';
+			switch (housetype) {
+				case 'ESTATE':
+					type = "新房房源";
+					break;
+				case 'SECOND_HAND' :
+					type = "二手房房源";
+					break;
+				case 'TENANCY':
+					type = "租房房源";
+					break;
+				case 'RESIDENTIAL_QUARTERS':
+					type = "小区房源";
+					break;
+				default:
+					break;
+			}
+			let item = JSON.stringify({
+				'title': type,
+				"id": id
+			});
+			wx.navigateTo({
+				url: `/combination/pages/listingDetails/index?item=${item}`,
+			});
+	},
+	getCustomer(e){
+		console.log(e);
+		let id = e.currentTarget.dataset.memberid;
+		http({
+			url: api.broker.snatchCustomer,
+			method: 'POST',
+			params:{
+				id: id
+			}
+		}).then(res=>{
+			console.log(res);
+			wx.showToast({
+				title: '抢客成功!',
+				icon: "none",
+				duration: 1000
+			});
+			this.getWaitCustom();
 		}).catch(err=>{
 			console.log(err)
 		})
