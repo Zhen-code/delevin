@@ -81,6 +81,50 @@ Page({
 		})
 
 	},
+	goHouseDetail(e){
+		console.log(e);
+		let {id,housetype} = e.currentTarget.dataset;
+		console.log(e)
+		let type = '';
+		switch (housetype) {
+			case 'ESTATE':
+				type = "新房房源";
+				break;
+			case 'SECOND_HAND' :
+				type = "二手房房源";
+				break;
+			case 'TENANCY':
+				type = "租房房源";
+				break;
+			case 'RESIDENTIAL_QUARTERS':
+				type = "小区房源";
+				break;
+			default:
+				break;
+		}
+		let item = JSON.stringify({
+			'title': type,
+			"id": id
+		});
+		wx.navigateTo({
+			url: `/combination/pages/listingDetails/index?item=${item}`,
+		});
+	},
+	addRecordHome(){
+		let id = wx.getStorageSync('id')|| '';
+		http({
+			url: '/api/access/v1/user/member/visitors/add',
+			method: 'POST',
+			params: {
+				"intervieweeId": id,
+				"type": "PERSONAL_HOMEPAGE"
+			}
+		}).then(res=>{
+			console.log(res)
+		}).catch(err=>{
+			console.log(err)
+		})
+	},
 
 	/**
 	 * 生命周期函数--监听页面加载
@@ -99,7 +143,7 @@ Page({
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
 	onReady: function () {
-
+		this.addRecordHome();
 	},
 
 	/**

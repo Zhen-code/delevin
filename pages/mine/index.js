@@ -170,6 +170,8 @@ Page({
 					break;
 				default:
 			}
+			console.log(res);
+			wx.setStorageSync('userId',res.id);
 			this.setData({
 				userInfo: res,
 			})

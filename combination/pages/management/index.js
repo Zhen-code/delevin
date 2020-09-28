@@ -171,8 +171,32 @@ Page({
 		})
 	},
 	goHouseDetail(e){
-		let {id} = e.currentTarget.dataset;
+		let {id,housetype} = e.currentTarget.dataset;
 		console.log(e)
+			let type = '';
+			switch (housetype) {
+				case 'ESTATE':
+					type = "新房房源";
+					break;
+				case 'SECOND_HAND' :
+					type = "二手房房源";
+					break;
+				case 'TENANCY':
+					type = "租房房源";
+					break;
+				case 'RESIDENTIAL_QUARTERS':
+					type = "小区房源";
+					break;
+				default:
+					break;
+			}
+			let item = JSON.stringify({
+				'title': type,
+				"id": id
+			});
+			wx.navigateTo({
+				url: `/combination/pages/listingDetails/index?item=${item}`,
+			});
 	},
 	getCustomer(e){
 		console.log(e);

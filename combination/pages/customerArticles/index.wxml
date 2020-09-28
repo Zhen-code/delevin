@@ -1,11 +1,11 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="获客文章" />
 <view class="container" style="padding-top:{{paddingTop}}px">
     <view class="tabContent">
-        <van-tabs nav-class="scrollTab" color="#FFD854" active="{{ active }}" bind:change="onChange" wx:if="{{list.length!==0}}">
+        <van-tabs nav-class="scrollTab" color="#FFD854" active="{{ active }}" bind:change="onChange">
             <van-tab wx:for="{{list}}" wx:key="id" data-index="{{index}}" title="{{item.name}}" tab-class="tabStyle"
                      tab-active-class="tabActiveStyle">
                 <view class="tabContent" hidden="{{tabActive!==index}}">
-                    <view class="message-view">
+                    <view class="message-view" wx:if="{{newsList.length!==0}}">
                         <scroll-view
                                 class="view-list"
                                 scroll-y="{{!isIndrag}}"
@@ -39,12 +39,10 @@
                         </scroll-view>
                         <view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
                     </view>
+                    <noData wx:else height="50" flexd="true"/>
                 </view>
             </van-tab>
         </van-tabs>
-    </view>
-    <view class="noData {{show?'':'hideShow'}}">
-        <noData height="{{height}}" flexd="{{flexd}}"/>
     </view>
 </view>
 
