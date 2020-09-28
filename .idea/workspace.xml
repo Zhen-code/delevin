@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b17f1fa7-9f66-4c85-a234-51ad2c9e51fe" name="Default Changelist" comment="">
+    <list default="true" id="975fe9b3-b673-4fe0-8803-1aa5145f0e1c" name="Default Changelist" comment="fix:bug与修改接口数据">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/aspectDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/aspectDetail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/aspectDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/aspectDetail/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/homepage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/homepage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/homepage/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/homepage/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combination/pages/management/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/management/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combination/pages/management/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/management/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/postDetail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/postDetail/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/aspect/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/request.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,11 +153,11 @@
       <screen x="0" y="0" width="1600" height="866" />
     </state>
     <state x="469" y="213" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1600.866@0.0.1600.866" timestamp="1600616168720" />
-    <state x="478" y="0" key="CommitChangelistDialog2" timestamp="1601224116369">
-      <screen x="0" y="0" width="1600" height="866" />
+    <state x="573" y="228" key="CommitChangelistDialog2" timestamp="1601263246590">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="478" y="0" key="CommitChangelistDialog2/0.0.1600.866@0.0.1600.866" timestamp="1601224116369" />
-    <state x="573" y="228" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601203176261" />
+    <state x="573" y="228" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1601263246590" />
     <state x="184" y="92" width="1536" height="858" key="DiffContextDialog" timestamp="1601015522152">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -201,11 +198,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600999587299" />
-    <state x="789" y="171" width="811" height="674" key="find.popup" timestamp="1601218816845">
-      <screen x="0" y="0" width="1600" height="866" />
+    <state x="1099" y="205" width="647" height="534" key="find.popup" timestamp="1601262384509">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="789" y="171" width="811" height="674" key="find.popup/0.0.1600.866@0.0.1600.866" timestamp="1601218816845" />
-    <state x="1099" y="205" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601186302961" />
+    <state x="1099" y="205" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601262384509" />
     <state x="445" y="223" key="run.anything.popup" timestamp="1601177912385">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -242,13 +239,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/combination/pages/aspectDetail/index.js</url>
           <line>61</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/combination/pages/aspectDetail/index.js</url>
           <line>62</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>

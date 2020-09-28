@@ -5,7 +5,7 @@
 	</view>
 	<scroll-view class="shopItem" style="top: {{paddingTop+45}}px;" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
 		<block wx:for="{{item}}" wx:key="index" wx:if="{{tabIndex === 0}}">
-			<shopItem></shopItem>
+			<shopItem item="{{item}}" classType="{{}}"></shopItem>
 		</block>
 		<block wx:for="{{pushCustomer}}" wx:key="index" wx:if="{{tabIndex === 1}}">
 			<view class="row">
@@ -14,7 +14,7 @@
 					<view class="row-left-type">
 						<text class="row-left-type-name">{{item.nickname}}</text>
 						<view class="row-left-type-degree">匹配度 {{item.matchValue}}%
-							<text class="row-left-type-check">查看最匹配房源</text>
+							<text class="row-left-type-check" data-id="{{item.houseId}}" catch:tap="goHouseDetail">查看最匹配房源</text>
 						</view>
 					</view>
 				</view>
@@ -34,7 +34,7 @@
 					</view>
 				</view>
 				<view class="row-right" bindtap="confirm">
-					<van-tag wx:if="{{item.snatch=='YES'}}" size="large" color="#FFC51D" text-color="#333333" type="warning">待抢</van-tag>
+					<van-tag wx:if="{{item.snatch=='YES'}}" data-memberid="{{item.id}}" size="large" color="#FFC51D" text-color="#333333" type="warning" catch:tap="getCustomer">待抢</van-tag>
 					 <van-tag wx:else size="large" color="#EEEEEE" text-color="#333333" type="warning">不可抢</van-tag>
 				</view>
 			</view>

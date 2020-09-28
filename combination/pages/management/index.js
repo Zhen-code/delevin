@@ -14,7 +14,7 @@ Page({
 			"border": true
 		},
 		tabItem: ['房源访客', '推送客源', '待抢客源', '已抢客源'],
-		item: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+		item: [],
 		pageIndex: 1,
 		pageSize: 12,
 		scrollTop: 0,
@@ -155,15 +155,42 @@ Page({
 	},
 	getVisitorList(){
 		http({
-			url: api.operation.visitorList,
+			url: api.broker.vistHouseHistory,
 			method: 'GET',
 			params:{
 				pageIndex: 1,
-				pageSize: 1000,
-				type: 'HOUSE'
+				pageSize: 1000
 			}
 		}).then(res=>{
 			console.log(res)
+			this.setData({
+				item: res
+			});
+		}).catch(err=>{
+			console.log(err)
+		})
+	},
+	goHouseDetail(e){
+		let {id} = e.currentTarget.dataset;
+		console.log(e)
+	},
+	getCustomer(e){
+		console.log(e);
+		let id = e.currentTarget.dataset.memberid;
+		http({
+			url: api.broker.snatchCustomer,
+			method: 'POST',
+			params:{
+				id: id
+			}
+		}).then(res=>{
+			console.log(res);
+			wx.showToast({
+				title: '抢客成功!',
+				icon: "none",
+				duration: 1000
+			});
+			this.getWaitCustom();
 		}).catch(err=>{
 			console.log(err)
 		})

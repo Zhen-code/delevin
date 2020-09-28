@@ -2,7 +2,9 @@
 const {
 	request
 } = require('../../../request/request.js');
-const topHeight = require('../../../request/topHeight.js').topHeight
+const topHeight = require('../../../request/topHeight.js').topHeight;
+const {http} = require('../../../request/http');
+const {api} = require('../../../request/api');
 Page({
 
 	/**
@@ -17,6 +19,7 @@ Page({
 		},
 		agentId:"",
 		userInfo: {},
+		list:[]
 	},
 
   onPageScroll(e) {
@@ -24,7 +27,7 @@ Page({
       top: Number(e.scrollTop)
     })
 	},
-	
+
 	getData(){
 		request.brokerHome({
 			"agentId":this.data.agentId
@@ -46,6 +49,21 @@ Page({
 		wx.makePhoneCall({
 			phoneNumber: phone
 		})
+	},
+	getBrokerHouse(){
+		http({
+			url: api.broker.houseAroundList(this.data.agentId),
+			method: 'GET',
+			params:{}
+		}).then(res=>{
+			console.log(res);
+			this.setData({
+				list: res
+			});
+		}).catch(err=>{
+			console.log(err)
+		})
+
 	},
 
 	/**
@@ -71,7 +89,7 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+			this.getBrokerHouse();
 	},
 
 	/**
