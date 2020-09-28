@@ -61,9 +61,17 @@ Page({
 				} else {
 					//点击确定
 					console.log('确定')
-					wx.reLaunch({
-						url: "/pages/login/index"
+					wx.showToast({
+						title: '清除成功',
+						icon: 'success',
+						duration: 2500
 					})
+					wx.removeStorageSync('token')
+					setTimeout(()=>{
+						wx.reLaunch({
+							url: "/pages/login/index"
+						})
+					},1500)
 				}
 			},
 		})

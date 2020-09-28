@@ -5,6 +5,6 @@
     "citySearch":"/components/citySearch/index",
     "doubleTab":"/components/doubleTab/index",
     "shopItem":"/components/shopItem/index",
-    "onData":"/components/noData/index"
+    "noData":"/components/noData/index"
   }
 }

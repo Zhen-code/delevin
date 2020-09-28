@@ -27,7 +27,7 @@
 				<view class="item-right-typeNum-ping">均价：<text class="item-right-typeNum-ping-text">{{item.averagePrice}}元/m²</text></view>
 				<view class="item-right-typeNum-tao">在售房源：<text class="item-right-typeNum-tao-text">{{item.houseCount}}套</text></view>
 			</view>
-			<van-tag size="large" color="#FFC51D" wx:if="{{item.add === true && item.added === 'NO'}}" text-color="#333333" type="warning">添加</van-tag>
+			<van-tag size="large" color="#FFC51D" wx:if="{{item.add === true && item.added === 'NO'}}" text-color="#333333" data-item="{{item}}" catchtap="getAddListings" type="warning">添加</van-tag>
 			<van-tag size="large" color="#EEEEEE" wx:if="{{item.add === true && item.added === 'YES'}}" text-color="#999999" type="warning">已添加</van-tag>
 		</view>
 	</view>

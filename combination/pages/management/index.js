@@ -14,7 +14,7 @@ Page({
 			"border": true
 		},
 		tabItem: ['房源访客', '推送客源', '待抢客源', '已抢客源'],
-		item: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+		item: [],
 		pageIndex: 1,
 		pageSize: 12,
 		scrollTop: 0,

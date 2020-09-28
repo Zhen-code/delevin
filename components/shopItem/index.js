@@ -39,5 +39,9 @@ Component({
 				url: '/combination/pages/listingDetails/index?type='+this.data.typeClass,
 			})
 		},
+		getAddListings(e){
+			let item = e.currentTarget.dataset.item;
+			this.triggerEvent('backItem', item)
+		},
 	}
 })

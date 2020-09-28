@@ -1,5 +1,5 @@
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="看点" />
-<view class="container" style="padding-top:{{paddingTop}}px">
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
+<view class="container" wx:if="{{type}}" style="padding-top:{{paddingTop}}px">
 	<view class="tabbar">
 		<view class="tab {{_index=='0'?'tbActive':''}}" data-index="0" bind:tap="toggleTab">新闻资讯</view>
 		<view class="tab {{_index=='1'?'tbActive':''}}" data-index="1" bind:tap="toggleTab">地产315</view>
@@ -96,5 +96,24 @@
 		<noData wx:else height="50" flexd="true"/>
 		<image class="send" src="/assets/iconedit@2x.png" catch:tap="post"></image>
 	</view>
+</view>
+
+<view class="view" wx:if="{{!type}}" style="padding-top:{{paddingTop}}px;">
+	<citySearch style="width:100%" value="{{value}}" placeholder="{{placeholder}}" bind:getCityValue="getCityValue"
+		bind:getInputValue="getInputValue" bind:getSearchValue="getSearchValue"></citySearch>
+	<view class="doubleTab">
+		<doubleTab style="width:100%;height:70rpx;" tabIndex="{{0}}" tabItem="{{tabItem}}" bind:backTabValue="getBackTabValue"></doubleTab>
+	</view>
+	<scroll-view wx:if="{{item.length !== 0}}" class="shopItem" style="top: {{paddingTop+44+45}}px;"
+		refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}"
+		bindrefresherrefresh="topList" bindscrolltolower="scrollLists" scroll-y="true">
+		<block wx:for="{{item}}" wx:key="index">
+			<shopItem item="{{item}}" data-item="{{item}}" bindtap="toDetails" bind:backItem="getBackItem"></shopItem>
+		</block>
+		<view class="footer">
+			<text class="footer-text">- 到底啦 -</text>
+		</view>
+	</scroll-view>
+	<noData wx:if="{{item.length === 0}}" height="{{100}}"></noData>
 </view>
 

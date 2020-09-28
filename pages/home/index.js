@@ -325,7 +325,6 @@ Page({
 			"pageSize": 5,
 			"pageIndex": 1,
 		}).then((res) => {
-			console.log(res.list)
 			let data = res.list.map((item)=>{
 				item.salesStatus = '0'
 				return item;
@@ -572,8 +571,9 @@ Page({
 	},
 
 	toListings() {
+		let type = 'add';
 		wx.navigateTo({
-			url: '/combination/pages/listings/index',
+			url: '/combination/pages/listings/index?type='+type,
 		})
 	},
 

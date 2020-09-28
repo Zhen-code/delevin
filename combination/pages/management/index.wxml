@@ -1,7 +1,7 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="客源管理" />
 <view class="view" style="padding-top:{{paddingTop}}px">
 	<view class="doubleTab">
-		<doubleTab style="width:100%;height:70rpx;" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
+		<doubleTab style="width:100%;height:70rpx;" tabIndex="{{0}}" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
 	</view>
 	<scroll-view class="shopItem" style="top: {{paddingTop+45}}px;" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
 		<block wx:for="{{item}}" wx:key="index" wx:if="{{tabIndex === 0}}">

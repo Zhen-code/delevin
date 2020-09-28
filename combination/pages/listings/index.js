@@ -27,6 +27,7 @@ Page({
 		city: '',
 		province: '',
 		index: 0,
+		type:'',
 	},
 
 	getCityValue(e) {
@@ -85,6 +86,7 @@ Page({
 	getData() {
 		let requests = '';
 		let {
+			type,
 			index,
 			city,
 			item,
@@ -114,8 +116,16 @@ Page({
 			"pageSize": pageSize,
 			"province": province,
 		}).then((res) => {
-			let data = item;
-			item.push(...res.list)
+			let data = '';
+			if(type){
+				data = res.list.map((item)=>{
+					item.add = type = true
+					return item;
+				})
+			}else{
+				data = res.list;
+			}
+			item.push(...data)
 			this.setData({
 				item: item,
 				pageIndex: pageIndex + 1,
@@ -156,6 +166,25 @@ Page({
 		})
 	},
 
+	getBackItem(e){
+		request.addAgent({
+			"houseId": e.detail.id,
+			"houseMold": e.detail.sourceType,
+		}).then((res)=>{
+			wx.showToast({
+				title: '添加成功',
+				icon: 'success',
+				duration: 2500
+			})
+		}).catch((err)=>{
+			wx.showToast({
+				title: '请求错误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
@@ -163,8 +192,9 @@ Page({
 		this.setData({
 			city: app.globalData.address.city,
 			province: app.globalData.address.province,
-			value: options.title,
-			keyword:options.title,
+			value: options.title || '',
+			keyword:options.title || '',
+			type:options.type || '',
 		},()=>{
 			this.getData()
 		})
