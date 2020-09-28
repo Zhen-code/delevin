@@ -7,52 +7,52 @@
 		<block wx:for="{{item}}" wx:key="index" wx:if="{{tabIndex === 0}}">
 			<shopItem></shopItem>
 		</block>
-		<block wx:for="{{item}}" wx:key="index" wx:if="{{tabIndex === 1}}">
+		<block wx:for="{{pushCustomer}}" wx:key="index" wx:if="{{tabIndex === 1}}">
 			<view class="row">
 				<view class="row-left">
-					<image class="row-left-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+					<image class="row-left-image" src="{{item.headImgUri}}"></image>
 					<view class="row-left-type">
-						<text class="row-left-type-name">鱼仁之</text>
-						<view class="row-left-type-degree">匹配度 20%
+						<text class="row-left-type-name">{{item.nickname}}</text>
+						<view class="row-left-type-degree">匹配度 {{item.matchValue}}%
 							<text class="row-left-type-check">查看最匹配房源</text>
 						</view>
 					</view>
 				</view>
 				<view class="row-right" bindtap="dialNumber">
 					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
-					<text class="row-right-phone">虚拟号码</text>
+					<text class="row-right-phone">{{item.phone}}</text>
 				</view>
 			</view>
 		</block>
-		<block wx:for="{{item}}" wx:key="index" wx:if="{{tabIndex === 2}}">
+		<block wx:for="{{watiCustomerList}}" wx:key="index" wx:if="{{tabIndex === 2}}">
 			<view class="row">
 				<view class="row-left">
-					<image class="row-left-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+					<image class="row-left-image" src="{{item.headImgUri}}"></image>
 					<view class="row-left-type">
-						<text class="row-left-type-name">鱼仁之</text>
-						<view class="row-left-type-degree">匹配度 20%</view>
+						<text class="row-left-type-name">{{item.nickname}}</text>
+						<view class="row-left-type-degree">匹配度 {{item.matchValue}}%</view>
 					</view>
 				</view>
 				<view class="row-right" bindtap="confirm">
-					<van-tag size="large" color="#FFC51D" text-color="#333333" type="warning">待抢</van-tag>
-					<!-- <van-tag size="large" color="#EEEEEE" text-color="#333333" type="warning">已抢</van-tag> -->
+					<van-tag wx:if="{{item.snatch=='YES'}}" size="large" color="#FFC51D" text-color="#333333" type="warning">待抢</van-tag>
+					 <van-tag wx:else size="large" color="#EEEEEE" text-color="#333333" type="warning">不可抢</van-tag>
 				</view>
 			</view>
 		</block>
-		<block wx:for="{{item}}" wx:key="index" wx:if="{{tabIndex === 3}}">
+		<block wx:for="{{snatchList}}" wx:key="index" wx:if="{{tabIndex === 3}}">
 			<view class="row">
 				<view class="row-left">
-					<image class="row-left-image" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+					<image class="row-left-image" src="{{item.headImgUri}}"></image>
 					<view class="row-left-type">
-						<text class="row-left-type-name">鱼仁之</text>
-						<view class="row-left-type-degree">匹配度 20%
+						<text class="row-left-type-name">{{item.nickname}}</text>
+						<view class="row-left-type-degree">匹配度 {{item.matchValue}}%
 							<text class="row-left-type-check">查看最匹配房源</text>
 						</view>
 					</view>
 				</view>
 				<view class="row-right" bindtap="dialNumber">
 					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
-					<text class="row-right-phone">虚拟号码</text>
+					<text class="row-right-phone">{{item.phone}}</text>
 				</view>
 			</view>
 		</block>

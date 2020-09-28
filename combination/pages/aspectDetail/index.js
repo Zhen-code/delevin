@@ -27,7 +27,8 @@ Page({
     winHeight: 0,
     tabScrollTop: 0,
     top: 0,
-    id: ''
+    id: '',
+    toView: ''
   },
   targetId: '',
   id: '',
@@ -58,9 +59,10 @@ Page({
       });
       let query = wx.createSelectorQuery();
       query.select('#tab-comment').boundingClientRect((res=>{
-        console.log(res)
+        // console.log(res)
         console.log(res.top)
         let top = (res.top*toRpx);
+        // console.log(top)
         that.setData({
           tabScrollTop: top
         })
@@ -135,6 +137,7 @@ Page({
         let clientWidth = res.windowWidth;
         let rpxR = 750/clientWidth;
         let calc = clientHeight * rpxR;
+        // console.log(calc)
         that.setData({
           winHeight: calc
         })

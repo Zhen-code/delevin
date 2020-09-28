@@ -7,7 +7,6 @@ const {
 	request
 } = require('../../request/request.js');
 var sy = 0;
-//功能已经更新，请勿删除！！！！！！！！！！！！！！！！
 Page({
 
   /**
@@ -44,7 +43,6 @@ Page({
   postPSize: 10,
   postPTotal: 0,
   timeFlag: 1,
-  i:0,
   start(e){
     sy = e.touches[0].clientY;
   },
@@ -59,6 +57,7 @@ Page({
         hei: 80
       });
       that.pageIndex = 1;
+      that.postPIndex = 1;
       if(that.data._index == 0){
         that.getNewsList(that.classifyId);
       }else if(that.data._index == 1){
@@ -134,14 +133,9 @@ Page({
     },200);
   },
   scrollList(){
-    this.i = (this.i)+1;
-    if(this.i>=2){
-      return
-    }
     if(this.data._index == 0){
       this.pageIndex++;
       if(this.pageIndex>this.pageTotal){
-        this.i = 0;
         this.setData({
           isBottom: true
         })
@@ -151,7 +145,6 @@ Page({
     }else if(this.data._index == 1){
       this.postPIndex++;
       if(this.postPIndex>this.postPTotal){
-        this.i = 0;
         this.setData({
           isPostBottom: true
         })
@@ -301,7 +294,7 @@ Page({
       this.postPTotal = res.pageTotal;
       let {postList} = this.data;
       let resList = res.list || [];
-      if(this.data.hei>=80){
+      if(this.data.hei>=80|| this.postPIndex===1){
         this.setData({
           postList: resList,
           isPostBottom:isPostBottom
