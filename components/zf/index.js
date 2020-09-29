@@ -59,6 +59,7 @@ Component({
         ],
         name:'',
         imgs: [],
+        decorationStatus: ''
     },
     timeFlag: 1,
     rentTypeVal: '',
@@ -155,7 +156,7 @@ Component({
                     params:{
                         "builtYear": Number(this.data.buildingTime),
                         "city": this.data.city,
-                        "decorationStatus": this.data.zxCase,
+                        "decorationStatus": this.data.decorationStatus,
                         "description": this.data.makerDesc,
                         "designSketch": this.data.imgs,
                         "detailsAddress": this.data.address,
@@ -441,7 +442,8 @@ Component({
                     let decorationStatus = zxItem[0]['value'];
                     console.log(decorationStatus)
                     that.setData({
-                        zxCase: decorationStatus,
+                        decorationStatus: decorationStatus,
+                        zxCase: e.detail.detail,
                         show:false
                     });
                     break;
