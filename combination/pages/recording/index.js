@@ -62,14 +62,14 @@ Page({
 		}).then(res=>{
 			console.log(res)
 			let {item} = this.data;
-			if(res.total>12){
+			if(res.pageIndex>this.pageTotal){
 				this.setData({
-					item: [...item,...res.list],
-					toBottom: false
+					toBottom: true
 				});
 			}else{
 				this.setData({
-					item: [...item,...res.list]
+					item: [...item,...res.list],
+					toBottom: false
 				});
 			}
 			this.pageTotal = res.pageTotal;
