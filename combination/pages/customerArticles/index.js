@@ -30,7 +30,8 @@ Page({
 		hei: 0,
 		desc: '下拉刷新',
 		height: 0,
-		flexd: false
+		flexd: false,
+		_index:0
 	},
 	pageIndex: 1,
 	pageSize: 10,
@@ -42,6 +43,16 @@ Page({
 	timeFlag: 1,
 	showOnce: 1,
 	i:0,
+	tabItem(e){
+		let {index,id} = e.currentTarget.dataset;
+		this.setData({
+			_index: index,
+			newsList:[]
+		});
+		this.classifyId = id;
+		this.pageIndex = 1;
+		this.getNewsList(id);
+	},
 	start(e){
 		sy = e.touches[0].clientY;
 	},
@@ -127,20 +138,14 @@ Page({
 		},200);
 	},
 	scrollList(){
-		this.i = (this.i)+1;
-		if(this.i>=2){
-			return
-		}
 			this.pageIndex++;
 			if(this.pageIndex>this.pageTotal){
-				this.i = 0;
 				this.setData({
 					isBottom: true
 				})
 			}else{
 				this.getNewsList(this.classifyId);
 			}
-
 	},
 	onChange(event) {
 		console.log(event.detail);

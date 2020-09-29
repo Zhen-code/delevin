@@ -79,7 +79,7 @@
             <view class="tab-item-left">户型</view>
             <view class="tab-item-right">
                 <input value="{{indoorType}}" placeholder="输入室" bind:input="indoorTypeInput" type="number" class="indoor-input"></input><text class="common-text">室</text>
-                <input value="{{room}}" bind:input="roomInput" type="number" class="indoor-input"></input><text class="common-text">房</text>
+                <input value="{{room}}" bind:input="roomInput" type="number" class="indoor-input"></input><text class="common-text">厅</text>
                 <input value="{{kitchen}}" bind:input="kitchenInput" type="number" class="indoor-input"></input><text class="common-text">厨</text>
                 <input value="{{wei}}" bind:input="weiInput" type="number" class="indoor-input"></input><text class="common-text">卫</text>
             </view>

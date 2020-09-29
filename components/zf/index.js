@@ -90,7 +90,7 @@ Component({
             })
         },
         addHouse(){
-            console.log(this.data.name)
+            console.log(this.data.zxCase);
             if(this.data.name===''){
                 wx.showToast({
                     title: '请输入房源标题!',
@@ -438,9 +438,10 @@ Component({
             switch (type) {
                 case 'zxCase':
                     let zxItem = this.data.zxArray.filter(v=>v.name === e.detail.detail);
-                    that.decorationStatus = zxItem[0]['value'];
+                    let decorationStatus = zxItem[0]['value'];
+                    console.log(decorationStatus)
                     that.setData({
-                        zxCase: e.detail.detail,
+                        zxCase: decorationStatus,
                         show:false
                     });
                     break;

@@ -34,6 +34,7 @@ Page({
     scrollTop: 0,
     hei: 0,
     desc: '下拉刷新',
+    on_index: 0
     tabItem: ['新房/楼盘', '二手房', '租房', '小区'],
 		item: [],
 		pageIndex: 1,
@@ -326,6 +327,16 @@ Page({
       console.log(err);
     })
   },
+  tabItem(e){
+    let {index,id} = e.currentTarget.dataset;
+    this.setData({
+      on_index: index,
+      newsList:[]
+    });
+    this.classifyId = id;
+    this.pageIndex = 1;
+    this.getNewsList(id);
+  },
 
   getCityValue(e) {
 		this.setData({
@@ -450,7 +461,7 @@ Page({
 			url: `/combination/pages/listingDetails/index?item=${item}`,
 		})
   },
-  
+
   /**
    * 生命周期函数--监听页面加载
    */

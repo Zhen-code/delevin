@@ -53,6 +53,24 @@ Component({
     constructClassifyId: '',
     propertyClassifyId: '',
     methods: {
+        to1(){
+            console.log('11111111')
+        },
+        to2(){
+            console.log('2222222222')
+        },
+        to3(){
+            console.log('33333333333')
+        },
+        to4(){
+            console.log(4444444)
+        },
+        to5(){
+            console.log(555555)
+        },
+        to6(){
+            console.log(6666666)
+        },
         getVideoUrl(e){
             console.log(e)
             if(e.detail.e === ''|| !e.detail.e){
@@ -346,7 +364,8 @@ Component({
                 })
         },
         addXQ(){
-            console.log(this.data.name)
+            let houseId = this.data.houseType.map(v=>v.id);
+            console.log(houseId)
             if(this.data.name===''){
                wx.showToast({
                    title: '请输入房源标题!',
@@ -402,8 +421,6 @@ Component({
                     icon:"none"
                 });
             }else{
-                let houseId = this.data.houseType.map(v=>v.id);
-                console.log(houseId)
                 wx.showLoading({
                     title: '加载中'
                 });
@@ -411,9 +428,9 @@ Component({
                     url: '/api/access/v1/house/residential/quarters/add',
                     method: 'POST',
                     params: {
-                        "averagePrice": this.apsh,
-                        "builtYear": this.buildingTime,
-                        "city": this.city,
+                        "averagePrice": this.data.apsh,
+                        "builtYear": this.data.buildingTime,
+                        "city": this.data.city,
                         "constructClassifyId": this.constructClassifyId,
                         "description": this.data.makerDesc,
                         "designSketch": this.data.imgs,
