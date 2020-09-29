@@ -1,11 +1,11 @@
 <!--请勿删除！-->
 <van-action-sheet show="{{show}}" title="房源标签(最多5个)" bind:close="close">
     <view class="sheetWrap">
-        <view class="wrap-top">
+        <scroll-view scroll-y style="height:454rpx" class="wrap-top">
             <block wx:for="{{labelList}}" wx:key="name">
                 <view class="wrap-top-item {{item.isActive?'active':''}}" data-index="{{index}}" bind:tap="handleItem">{{item.name}}</view>
             </block>
-        </view>
+        </scroll-view>
         <view class="wrap-bottom">
             <view class="clear" catch:tap="clear">清空</view>
             <view class="sure" catch:tap="sure">确定</view>

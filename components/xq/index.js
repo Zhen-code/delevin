@@ -53,6 +53,24 @@ Component({
     constructClassifyId: '',
     propertyClassifyId: '',
     methods: {
+        to1(){
+            console.log('11111111')
+        },
+        to2(){
+            console.log('2222222222')
+        },
+        to3(){
+            console.log('33333333333')
+        },
+        to4(){
+            console.log(4444444)
+        },
+        to5(){
+            console.log(555555)
+        },
+        to6(){
+            console.log(6666666)
+        },
         getVideoUrl(e){
             console.log(e)
             if(e.detail.e === ''|| !e.detail.e){

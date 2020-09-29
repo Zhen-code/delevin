@@ -200,9 +200,9 @@
             <text class="textAreaStyle" wx:if="{{makerDesc===''}}">请输入经纪人描述…</text>
              <text class="textAreaActive" wx:else>{{makerDesc}}</text>
         </view>
-        <view class="tab-item-top">房源视频</view>
-        <view class="upload">
-           <uploaderVideo bind:getVideoUrl="getVideoUrl"/>
+        <view class="tab-item-top" bind:tap="to1">房源视频</view>
+        <view class="upload" bind:tap="to2">
+           <uploaderVideo bind:getVideoUrl="getVideoUrl" bind:tap="to3"/>
             <view class="videoWrap" wx:if="{{videoUrl!==''}}">
                 <video src="{{videoUrl}}"
                        show-mute-btn
@@ -212,9 +212,9 @@
                 ></video>
             </view>
         </view>
-        <view class="tab-item-top">效果图</view>
-        <view class="upload">
-            <uploader count="50" bind:getImgs="getImgs"/>
+        <view class="tab-item-top" bind:tap="to4">效果图</view>
+        <view class="upload" bind:tap="to5">
+            <uploader count="50" bind:getImgs="getImgs" bind:tap="to6"/>
         </view>
     </view>
     <view class="line"></view>
