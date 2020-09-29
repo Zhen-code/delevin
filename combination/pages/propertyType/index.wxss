@@ -378,6 +378,7 @@
 	justify-content: flex-start;
 	flex-direction: column;
 	box-sizing: border-box;
+	padding-bottom: 175rpx;
 }
 
 ::-webkit-scrollbar {

@@ -47,7 +47,7 @@
 					<view class="typeTreeSelect-list-left">
 						<text class="typeTreeSelect-list-left-index {{leftAction === 0?'left-index-action':''}}" data-index="{{0}}"
 							bindtap="leftTab">区域</text>
-						<text class="typeTreeSelect-list-left-index {{leftAction === 1?'left-index-action':''}}" data-index="{{1}}"
+						<text class="typeTreeSelect-list-left-index {{leftAction === 1?'left-index-action':''}}" wx:if="{{title === '租房房源'}}" data-index="{{1}}"
 							bindtap="leftTab">地铁</text>
 					</view>
 					<view class="typeTreeSelect-list-right">

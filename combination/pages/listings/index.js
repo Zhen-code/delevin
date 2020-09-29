@@ -32,6 +32,7 @@ Page({
 
 	getCityValue(e) {
 		this.setData({
+			item:[],
 			province: e.detail[0].name,
 			city: e.detail[1].name,
 		}, () => {
@@ -74,8 +75,9 @@ Page({
 	topList() {
 		this.setData({
 			triggered: false,
+		},()=>{
+			this.getData()
 		})
-		this.getData()
 	},
 
 	//滚动加载
@@ -171,10 +173,16 @@ Page({
 			"houseId": e.detail.id,
 			"houseMold": e.detail.sourceType,
 		}).then((res)=>{
-			wx.showToast({
-				title: '添加成功',
-				icon: 'success',
-				duration: 2500
+			this.setData({
+				item:[],
+				pageIndex:1,
+			},()=>{
+				this.getData();
+				wx.showToast({
+					title: '添加成功',
+					icon: 'success',
+					duration: 2500
+				})
 			})
 		}).catch((err)=>{
 			wx.showToast({
@@ -190,8 +198,8 @@ Page({
 	 */
 	onLoad: function (options) {
 		this.setData({
-			city: app.globalData.address.city,
-			province: app.globalData.address.province,
+			city: app.globalData.address.city || '',
+			province: app.globalData.address.province || '',
 			value: options.title || '',
 			keyword:options.title || '',
 			type:options.type || '',

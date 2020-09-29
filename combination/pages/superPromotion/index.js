@@ -56,13 +56,14 @@ Page({
 	},
 
 	itemType(e) {
+		console.log(e.detail.value)
 		let value = Math.floor(Number(e.detail.value));
 		// console.log(value % 100)
-		console.log(value * 100)
+		console.log(value)
 		this.setData({
 			itemIndex: -1,
 			itemValue: value,
-			specs: (value * 100),
+			specs: value,
 		}, () => {
 			this.getSuperCalculation();
 		})
@@ -143,7 +144,7 @@ Page({
 		let data = {
 			"advertLanguage": advertising,
 			"buyQuantity": num,
-			"houseId": info.id,
+			"houseId": info.houseId,
 			"houseType": info.houseMold,
 			"launchExtension": item.map((item) => {
 				return {

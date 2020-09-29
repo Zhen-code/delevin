@@ -43,5 +43,6 @@
 	color: rgba(102, 102, 102, 1);
 	line-height: 24px;
 	margin-top: 28rpx;
-	text-indent:2em
+	text-indent:2em;
+	margin-bottom: 20rpx;
 }

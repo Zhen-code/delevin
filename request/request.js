@@ -400,7 +400,7 @@ const request = {
   visitorsList: (params) => {
     return http({
       url: api.broker.visitorsList,
-      method: 'POST',
+      method: 'GET',
       params: params,
     })
   },

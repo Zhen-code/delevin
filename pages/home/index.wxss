@@ -562,9 +562,11 @@
 }
 
 .floor-list-row-top-type-bottom .column-price {
+	width: 300rpx;
 	font-size: 40rpx;
 	font-weight: bold;
 	color: #FFFFFF;
+	text-align: right;
 }
 
 .floor-list-row-bottom {
@@ -625,7 +627,7 @@
 }
 
 .floor-list-row-bottom-bottom-view1 {
-	width: 124rpx;
+	width: 160rpx;
 	height: 52rpx;
 	border-radius: 6rpx;
 	border: 1rpx solid #999999;

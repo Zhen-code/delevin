@@ -162,41 +162,10 @@
 	text-align: left;
 }
 
-
-.view-no {
+.noData{
 	width: 100%;
 	height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	z-index: 1;
-	/* position: absolute;
-	top:0;
-	left: 0; */
-}
-
-.view-no-row {
-	width: 400rpx;
-	height: auto;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-}
-
-.view-no-row-image {
-	width: 400rpx;
-	height: 400rpx;
-	display: block;
-}
-
-.view-no-row-title {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 28rpx;
-	font-weight: 400;
-	color: #999999;
-	margin-top: 20rpx;
 }

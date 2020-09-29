@@ -3,6 +3,7 @@
   "usingComponents": {
     "navbar":"/components/nav/index",
     "doubleTab":"/components/doubleTab/index",
-    "shopItem":"/components/shopItem/index"
+    "shopItem":"/components/shopItem/index",
+    "noData":"/components/noData/index"
   }
 }

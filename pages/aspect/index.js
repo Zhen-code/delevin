@@ -459,8 +459,8 @@ Page({
       this.getArticleClassify();
     }else{
       this.setData({
-        city: app.globalData.address.city,
-        province: app.globalData.address.province,
+        city: app.globalData.address.city || '',
+        province: app.globalData.address.province || '',
         value: options.title || '',
         keyword:options.title || '',
       },()=>{

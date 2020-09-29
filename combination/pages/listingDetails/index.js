@@ -156,7 +156,30 @@ Page({
 				default:
 			};
 			res.type = this.data.type;
-			console.log(res,11111)
+			let categories = [];
+			let seriesData = [];
+			if(res.houseHistory){
+				res.houseHistory.map((items)=>{
+					categories.push(items.dateFor)
+					seriesData.push(items.price)
+					return items
+				})
+			}
+			if(res.rentHistory){
+				res.rentHistory.map((items)=>{
+					categories.push(items.dateFor)
+					seriesData.push(items.price)
+					return items
+				})
+			}
+			if(res.secondHandHistory){
+				res.secondHandHistory.map((items)=>{
+					categories.push(items.dateFor)
+					seriesData.push(items.price)
+					return items
+				})
+			}
+			console.log(seriesData,categories)
 			this.setData({
 				item: res,
 				favoritesState: res.collection === 'NO'?false:true,
@@ -169,10 +192,10 @@ Page({
 				houseMold: this.data.type
 			}
 			let column = {
-				categories: ["09.24", "09.25",],
+				categories: categories,
 				series: [{
 					name: "房价走势图",
-					data: [2800,2900],
+					data: seriesData,
 					color: "#FFD200",
 					show: true,
 					area: [0, 50],
@@ -190,6 +213,8 @@ Page({
 			})
 		})
 	},
+
+	
 
 	getLikeListings(item) {
 		request.likeListings({

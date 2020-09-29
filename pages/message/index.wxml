@@ -13,5 +13,5 @@
 			</view>
 		</block>
 	</scroll-view>
-	<noData wx:if="{{list.length === 0}}" height="{{100}}"></noData>
+	<noData wx:if="{{list.length === 0}}" zIndex="{{22}}" height="{{100}}"></noData>
 </view>

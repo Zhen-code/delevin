@@ -32,7 +32,8 @@ Page({
 		type: false,
 		title: '新房房源',
 		showInfo: false,
-		total: 0
+		total: 0,
+		link:'',
 	},
 
 	onPageScroll(e) {
@@ -194,58 +195,57 @@ Page({
 	getSetting() {
 		let that = this;
 		wx.getSetting({
-      success: (res) => {
-        // console.log(JSON.stringify(res))
-        // res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
-        // res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
-        // res.authSetting['scope.userLocation'] == true    表示 地理位置授权
-        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
-          wx.showModal({
-            title: '请求授权当前位置',
-            content: '需要获取您的地理位置，请确认授权',
-            success: function (res) {
-              if (res.cancel) {
-                wx.showToast({
-                  title: '拒绝授权',
-                  icon: 'none',
-                  duration: 1000
-                })
-              } else if (res.confirm) {
-                wx.openSetting({
-                  success: function (dataAu) {
-                    if (dataAu.authSetting["scope.userLocation"] == true) {
-                      wx.showToast({
-                        title: '授权成功',
-                        icon: 'success',
-                        duration: 1000
-                      })
-                      //再次授权，调用wx.getLocation的API
+			success: (res) => {
+				// console.log(JSON.stringify(res))
+				// res.authSetting['scope.userLocation'] == undefined    表示 初始化进入该页面
+				// res.authSetting['scope.userLocation'] == false    表示 非初始化进入该页面,且未授权
+				// res.authSetting['scope.userLocation'] == true    表示 地理位置授权
+				if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+					wx.showModal({
+						title: '请求授权当前位置',
+						content: '需要获取您的地理位置，请确认授权',
+						success: function (res) {
+							if (res.cancel) {
+								wx.showToast({
+									title: '拒绝授权',
+									icon: 'none',
+									duration: 1000
+								})
+							} else if (res.confirm) {
+								wx.openSetting({
+									success: function (dataAu) {
+										if (dataAu.authSetting["scope.userLocation"] == true) {
+											wx.showToast({
+												title: '授权成功',
+												icon: 'success',
+												duration: 1000
+											})
+											//再次授权，调用wx.getLocation的API
 											this.getLocation()
-                    } else {
-                      wx.showToast({
-                        title: '授权失败',
-                        icon: 'none',
-                        duration: 1000
-                      })
-                    }
-                  }
-                })
-              }
-            }
-          })
-        } else if (res.authSetting['scope.userLocation'] == undefined) {
+										} else {
+											wx.showToast({
+												title: '授权失败',
+												icon: 'none',
+												duration: 1000
+											})
+										}
+									}
+								})
+							}
+						}
+					})
+				} else if (res.authSetting['scope.userLocation'] == undefined) {
 					//调用wx.getLocation的API
 					this.getLocation()
-        }
-        else {
+				} else {
 					//调用wx.getLocation的API
 					this.getLocation()
-        }
-      }
-    })
+				}
+			}
+		})
 	},
 
-	getLocation(){
+	getLocation() {
 		let that = this;
 		wx.getLocation({
 			success: (res) => {
@@ -325,7 +325,7 @@ Page({
 			"pageSize": 5,
 			"pageIndex": 1,
 		}).then((res) => {
-			let data = res.list.map((item)=>{
+			let data = res.list.map((item) => {
 				item.salesStatus = '0'
 				return item;
 			})
@@ -344,10 +344,14 @@ Page({
 			"pageSize": 5,
 			"pageIndex": 1,
 		}).then((res) => {
+			let data = res.list.map((item) => {
+				item.sourceType = 'RESIDENTIAL_QUARTERS';
+				return item;
+			})
 			this.setData({
 				title: '二手房房源',
 				listingsList: [],
-				listingsList: res.list || []
+				listingsList: data || []
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -363,9 +367,15 @@ Page({
 	},
 
 	toDetails(e) {
+		let id = '';
+		if (e.currentTarget.id) {
+			id = e.currentTarget.id;
+		} else {
+			id = e.currentTarget.dataset.item.id
+		}
 		let item = JSON.stringify({
 			'title': this.data.title,
-			"id": e.currentTarget.dataset.item.id,
+			"id": id,
 		})
 		wx.navigateTo({
 			url: `/combination/pages/listingDetails/index?item=${item}`,
@@ -400,10 +410,15 @@ Page({
 					url: `/combination/pages/propertyType/index?type=${type}`,
 				})
 				break;
-			case 4:
-				// wx.navigateTo({
-				// 	url: '/combination/pages/propertyType/index',
-				// })
+			case '房贷计算':
+				let obj = {
+					"title":"房贷计算器",
+					"link":"https://dev.delevin.beiru168.com/index.html",
+				}
+				let item = JSON.stringify(obj)
+				wx.navigateTo({
+					url: `/combination/pages/webView/index?item=${item}`,
+				})
 				break;
 			default:
 		}
@@ -423,9 +438,14 @@ Page({
 				});
 				break;
 			case 2:
-				// wx.navigateTo({
-				// 	url: '/combination/pages/propertyType/index',
-				// })
+				let obj = {
+					"title":"房贷计算器",
+					"link":"https://dev.delevin.beiru168.com/index.html",
+				}
+				let item = JSON.stringify(obj)
+				wx.navigateTo({
+					url: `/combination/pages/webView/index?item=${item}`,
+				})
 				break;
 			case 3:
 				wx.navigateTo({
@@ -474,7 +494,9 @@ Page({
 	},
 
 	getDelete(e) {
-		let id = e.currentTarget.dataset.item
+		let _this = this;
+		let id = e.currentTarget.dataset.item;
+		console.log(id)
 		wx.showModal({
 			title: '删除信息',
 			content: '是否确认删除此楼盘？',
@@ -484,12 +506,17 @@ Page({
 			success(res) {
 				if (res.confirm) {
 					request.brokerDatele({
-						'id': id,
+						id: id,
 					}).then((res) => {
-						wx.showToast({
-							title: '删除成功',
-							icon: 'success',
-							duration: 2500
+						_this.setData({
+							brokerList: [],
+						}, () => {
+							_this.getData();
+							wx.showToast({
+								title: '删除成功',
+								icon: 'success',
+								duration: 2500
+							})
 						})
 					}).catch((err) => {
 						wx.showToast({
@@ -505,8 +532,8 @@ Page({
 
 	getOrdinaryPurchase(e) {
 		let _this = this;
-		let item = e.currentTarget.dataset.item;
-		if (item.portMealStatus === 'NO') {
+		let data = e.currentTarget.dataset.item;
+		if (data.portMealStatus === 'NO') {
 			wx.showModal({
 				title: '楼盘推广',
 				content: '购买端口套餐即可获得推广房源资格，是否立即前往购买？',
@@ -531,15 +558,22 @@ Page({
 				success(res) {
 					if (res.confirm) {
 						request.promote({
-							"houseId": item.id,
-							"houseMold": item.houseMold
+							"houseId": data.houseId,
+							"houseMold": data.houseMold
 						}).then((res) => {
-							_this.getPromote()
-							// wx.showToast({
-							// 	title: '推广成功',
-							// 	icon: 'success',
-							// 	duration: 2500
-							// })
+							_this.setData({
+								brokerList:[],
+							},()=>{
+								_this.getData()
+								wx.showToast({
+									title: '推广成功',
+									icon: 'success',
+									duration: 2500
+								})
+							})
+							setTimeout(()=>{
+								_this.getPromote()
+							},2500)
 						}).catch((err) => {
 							wx.showToast({
 								title: '请求失败',
@@ -573,7 +607,7 @@ Page({
 	toListings() {
 		let type = 'add';
 		wx.navigateTo({
-			url: '/combination/pages/listings/index?type='+type,
+			url: '/combination/pages/listings/index?type=' + type,
 		})
 	},
 

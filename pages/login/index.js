@@ -58,8 +58,9 @@ Page({
                               url: "/pages/mine/index"
                             })
                           }).catch((err) => {
+                            console.log(err.data.msg)
                             wx.showToast({
-                              title: '获取失败，请重新登录',
+                              title: err.data.msg || '获取失败，请重新登录',
                               icon: 'none',
                               duration: 2500
                             })

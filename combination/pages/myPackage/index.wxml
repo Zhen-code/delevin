@@ -1,4 +1,4 @@
-<navbar backHome="{{true}}" backTab="{{true}}" bgColor="{{bgColor}}" title="我的套餐" />
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="我的套餐" />
 <view class="view" style="padding-top:{{paddingTop}}px;height: calc(100vh);">
 	<view class="doubleTab">
 		<doubleTab style="width:100%;height:70rpx;" tabIndex="{{index}}" tabItem="{{tabItem}}" bind:backTabValue="getbackTabIndex"></doubleTab>
@@ -50,6 +50,9 @@
 			</view>
 		</block>
 	</scroll-view>
+	<view class="noData">
+		<noData wx:if="{{item.length === 0}}" flexd="{{true}}" zIndex="{{20}}"></noData>
+	</view>
 </view>
 
 <van-popup show="{{ show }}" round bind:close="onClose">
@@ -63,10 +66,3 @@
 		</view>
 	</view>
 </van-popup>
-
-<view class="view-no">
-	<view class="view-no-row">
-		<image class="view-no-row-image" src="/assets/pic_empty@2x.png"></image>
-		<text class="view-no-row-title">暂无数据</text>
-	</view>
-</view>

@@ -11,8 +11,12 @@
 		<view class="item-right-content">
 			<image class="item-right-content-icon1" wx:if="{{item.salesStatus === 'FOR_SALE'}}" src="/assets/label_forsell_blue@2x.png"></image>
 			<image class="item-right-content-icon3" wx:if="{{item.salesStatus === 'ON_SALE'}}" src="/assets/label_sell_orange@2x.png"></image>
-			<van-tag style="margin-right:10rpx" wx:if="{{!item.salesStatus}}" color="#ffffff" text-color="#666666">{{item.floorage || 0}}m²</van-tag>
-			<van-tag style="margin-right:10rpx" wx:if="{{!item.salesStatus}}" color="#ffffff" text-color="#666666">{{item.houseType || 0}}室{{item.houseHall || 0}}厅{{item.houseToilet || 0}}卫</van-tag>
+			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'SECOND_HAND' || item.sourceType === 'RESIDENTIAL_QUARTERS' && item.floorage}}" color="#ffffff" text-color="#666666">{{item.floorage || 0}}m²</van-tag>
+			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'RESIDENTIAL_QUARTERS' && item.region}}" color="#ffffff" text-color="#666666">{{item.region}}</van-tag>
+			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'RESIDENTIAL_QUARTERS' && item.builtYear}}" color="#ffffff" text-color="#666666">{{item.builtYear}}</van-tag>
+			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'SECOND_HAND' || item.sourceType === 'TENANCY' || item.sourceType === 'RESIDENTIAL_QUARTERS'}}" color="#ffffff" text-color="#666666">{{item.houseType || 0}}室{{item.houseHall || 0}}厅{{item.houseToilet || 0}}卫</van-tag>
+		
+			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'TENANCY'}}" color="#ffffff" text-color="#666666">{{item.floorage || 0}}m²</van-tag>
 			<block wx:for="{{item.houseLabel}}" wx:key="index">
 				<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">{{item}}</van-tag>
 			</block>

@@ -90,10 +90,10 @@ Page({
 			routeStops: '',
 			houseType: '',
 			street: '',
-			lineName:'',
+			lineName: '',
 			salesStatus: '',
 			buildingAgeOptions: '',
-			rentType:'',
+			rentType: '',
 		}, () => {
 			this.getType()
 		})
@@ -366,9 +366,9 @@ Page({
 				lineName: type === 1 ? subwayList[0].lineName : '',
 				routeStops: type === 1 ? subwayList[0].routeStopItem.join(",") : '',
 				conditionIndex: e.currentTarget.dataset.index,
-				subwayList:[],
-				routeStop:[],
-				leftAction:0,
+				subwayList: [],
+				routeStop: [],
+				leftAction: 0,
 			})
 			type = '';
 		}
@@ -422,9 +422,15 @@ Page({
 
 	getCityValue(e) {
 		this.setData({
+			pageIndex: 1,
+			region: '',
+			street:'',
+			leftAction:0,
 			province: e.detail[0].name,
 			city: e.detail[1].name,
 		}, () => {
+			this.setHide();
+			this.getStreet()
 			this.getData()
 		})
 	},
@@ -779,9 +785,8 @@ Page({
 		this.setData({
 			towState: towState,
 			fourState: fourState,
-			city: app.globalData.address.city,
-			province: app.globalData.address.province,
-			region: app.globalData.address.district,
+			city: app.globalData.address.city || '',
+			province: app.globalData.address.province || '',
 			title: options.type,
 		}, () => {
 			this.getData();

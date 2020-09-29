@@ -96,18 +96,16 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		// if(Number(options.index) === 2){
-		// 	this.setData({
-		// 		index:2,
-		// 		setMealType:'EXTENSION_SET_MEAL',
-		// 	},()=>{
-		// 		this.getData();
-		// 	})
-		// }else{
-		// 	this.getData();
-		// }
-
-		this.getData();
+		if(Number(options.index) === 2){
+			this.setData({
+				index:2,
+				setMealType:'EXTENSION_SET_MEAL',
+			},()=>{
+				this.getData();
+			})
+		}else{
+			this.getData();
+		}
 	},
 
 	/**
