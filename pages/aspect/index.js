@@ -34,7 +34,7 @@ Page({
     scrollTop: 0,
     hei: 0,
     desc: '下拉刷新',
-    on_index: 0
+    on_index: 0,
     tabItem: ['新房/楼盘', '二手房', '租房', '小区'],
 		item: [],
 		pageIndex: 1,
