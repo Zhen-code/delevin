@@ -17,8 +17,8 @@
 			<van-swipe-cell right-width="{{ 80 }}" id="swipe-cell" async-close data-item="{{item}}" data-index="{{index}}" bind:close="onClose">
 				<van-cell-group>
 					<shopItem item="{{item}}" wx:if="{{topTabIndex === 0}}" data-item="{{item}}" data-index="{{index}}" bindtap="toDateils"></shopItem>
-					<aspectItem item="{{item}}" wx:if="{{topTabIndex === 1 && tabIndex === 0}}"></aspectItem>
-					<estateItem item="{{item}}" wx:if="{{topTabIndex === 1 && tabIndex === 1}}"></estateItem>
+					<aspectItem item="{{item}}" wx:if="{{topTabIndex === 1 && tabIndex === 0}}" data-item="{{item}}" data-index="{{index}}" bindtap="toAspectItem"></aspectItem>
+					<estateItem item="{{item}}" wx:if="{{topTabIndex === 1 && tabIndex === 1}}" data-item="{{item}}" data-index="{{index}}" bindtap="toEstateItem"></estateItem>
 				</van-cell-group>
 				<view slot="right">{{favorites}}</view>
 			</van-swipe-cell>

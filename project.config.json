@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "postcss": true,
     "preloadBackgroundData": false,
@@ -13,7 +13,7 @@
     "coverView": true,
     "nodeModules": true,
     "autoAudits": false,
-    "showShadowRootInWxmlPanel": true,
+    "showShadowRootInWxmlPanel": false,
     "scopeDataCheck": false,
     "checkInvalidKey": true,
     "checkSiteMap": true,

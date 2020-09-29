@@ -242,6 +242,19 @@ Page({
 		})
 	},
 
+	toAspectItem(e){
+		let targetId = e.currentTarget.dataset.item.targetId
+    wx.navigateTo({
+      url: `/combination/pages/aspectDetail/index?id=${targetId}`,
+    })
+	},
+
+	toEstateItem(e){
+		let targetId = e.currentTarget.dataset.item.targetId
+    wx.navigateTo({
+      url: `/combination/pages/postDetail/index?id=${targetId}`,
+    })
+	},
 
 	/**
 	 * 生命周期函数--监听页面加载

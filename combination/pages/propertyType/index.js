@@ -425,6 +425,7 @@ Page({
 			pageIndex: 1,
 			region: '',
 			street:'',
+			item:[],
 			leftAction:0,
 			province: e.detail[0].name,
 			city: e.detail[1].name,
