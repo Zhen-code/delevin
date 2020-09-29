@@ -1,7 +1,14 @@
 // combination/pages/recording/index.js
+const {
+	request
+} = require('../../../request/request.js');
 const topHeight = require('../../../request/topHeight.js').topHeight;
-const {http} = require('../../../request/http');
-const {api} = require('../../../request/api');
+const {
+	http
+} = require('../../../request/http');
+const {
+	api
+} = require('../../../request/api');
 Page({
 
 	/**
@@ -19,10 +26,11 @@ Page({
 		pageSize: 12,
 		scrollTop: 0,
 		triggered: false,
-		tabIndex:0,
-		snatchList:[],
+		tabIndex: 0,
+		snatchList: [],
 		watiCustomerList: [],
-		pushCustomer: []
+		pushCustomer: [],
+		selectType:[],
 	},
 
 	scrollTop() {
@@ -33,43 +41,58 @@ Page({
 
 	topList() {
 		this.setData({
-			pageIndex: 1,
 			triggered: false,
+		},()=>{
+			this.selectType(this.data.tabIndex)
 		})
-		this.getData()
 	},
 
-	//滚动加载
 	scrollList() {
-		this.getData()
-	},
-
-	getData() {
-
+		this.selectType(this.data.tabIndex)
 	},
 
 	dialNumber() {
 		wx.makePhoneCall({
 			phoneNumber: '17620835317'
 		})
-		// request.getPhome().then((res) => {
-
-		// }).catch((err) => {
-		// 	wx.showToast({
-		// 		title: err,
-		// 		icon: 'none',
-		// 		duration: 2500
-		// 	})
-		// })
 	},
 
-	getTabValue(e){
+	getTabValue(e) {
 		this.setData({
-			tabIndex:e.detail
+			pageIndex:1,
+		},()=>{
+			this.selectType(e.detail)
 		})
 	},
 
-	buy(){
+	selectType(index){
+		this.setData({
+			item:[],
+			snatchList: [],
+			watiCustomerList: [],
+			pushCustomer: [],
+			selectType:[],
+			tabIndex: index,
+		})
+		switch (index) {
+			case 0:
+				this.getVisitorList()
+				break;
+			case 1:
+				this.getPushCustomer();
+				break;
+			case 2:
+				this.getWaitCustom();
+				break;
+			case 3:
+				this.getSnatchList();
+				break;
+			default:
+				break;
+		}
+	},
+
+	buy() {
 		wx.showModal({
 			title: '客源管理',
 			content: '本功能需要购买抢客套餐，是否前往购买？',
@@ -86,7 +109,7 @@ Page({
 		})
 	},
 
-	confirm(){
+	confirm() {
 		wx.showModal({
 			title: '客源管理',
 			content: '本操作需要消耗1次抢客次数，是否确认抢客？',
@@ -102,112 +125,129 @@ Page({
 			}
 		})
 	},
-	getSnatchList(){
-			http({
-				url: api.broker.snatchCustomerList,
-				method: 'GET',
-				params:{
-					pageIndex: 1,
-					pageSize: 1000
-				}
-			}).then(res=>{
-				console.log(res)
-				this.setData({
-					snatchList: res.list||[]
-				})
-			}).catch(err=>{
-				console.log(err);
-			})
-	},
-	getWaitCustom(){
+
+	getSnatchList() {
 		http({
-			url: api.broker.watiCustomerList,
+			url: api.broker.snatchCustomerList,
 			method: 'GET',
-			params:{
+			params: {
 				pageIndex: 1,
 				pageSize: 1000
 			}
-		}).then(res=>{
-			console.log(res);
-			this.setData({
-				watiCustomerList: res.list
-			})
-		}).catch(err=>{
-			console.log(err)
-		})
-	},
-	getPushCustomer(){
-		http({
-			url: api.broker.pushCustomerList,
-			method: 'GET',
-			params:{
-				pageIndex: 1,
-				pageSize: 1000
-			}
-		}).then(res=>{
+		}).then(res => {
 			console.log(res)
 			this.setData({
-				pushCustomer: res.list
+				snatchList: res.list || [],
+				selectType:res.list,
 			})
-		}).catch(err=>{
+		}).catch(err => {
 			console.log(err);
 		})
 	},
-	getVisitorList(){
+
+	getWaitCustom() {
 		http({
-			url: api.broker.vistHouseHistory,
+			url: api.broker.watiCustomerList,
 			method: 'GET',
-			params:{
+			params: {
 				pageIndex: 1,
 				pageSize: 1000
 			}
-		}).then(res=>{
-			console.log(res)
+		}).then(res => {
+			console.log(res);
 			this.setData({
-				item: res
-			});
-		}).catch(err=>{
+				watiCustomerList: res.list,
+				selectType:res.list,
+			})
+		}).catch(err => {
 			console.log(err)
 		})
 	},
-	goHouseDetail(e){
-		let {id,housetype} = e.currentTarget.dataset;
-		console.log(e)
-			let type = '';
-			switch (housetype) {
-				case 'ESTATE':
-					type = "新房房源";
-					break;
-				case 'SECOND_HAND' :
-					type = "二手房房源";
-					break;
-				case 'TENANCY':
-					type = "租房房源";
-					break;
-				case 'RESIDENTIAL_QUARTERS':
-					type = "小区房源";
-					break;
-				default:
-					break;
+
+	getPushCustomer() {
+		http({
+			url: api.broker.pushCustomerList,
+			method: 'GET',
+			params: {
+				pageIndex: 1,
+				pageSize: 1000
 			}
-			let item = JSON.stringify({
-				'title': type,
-				"id": id
-			});
-			wx.navigateTo({
-				url: `/combination/pages/listingDetails/index?item=${item}`,
-			});
+		}).then(res => {
+			console.log(res)
+			this.setData({
+				pushCustomer: res.list,
+				selectType:res.list,
+			})
+		}).catch(err => {
+			console.log(err);
+		})
 	},
-	getCustomer(e){
+
+	getVisitorList() {
+		request.visitorsList({
+			"pageIndex": this.data.pageIndex,
+			"pageSize": this.data.pageSize
+		}).then((res) => {
+			console.log(res)
+			let data = this.data.item
+			data.push(...res)
+			this.setData({
+				item: data,
+				selectType:data,
+				pageIndex: this.data.pageIndex + 1,
+			})
+		}).catch((err) => {
+			console.log(err)
+			wx.showToast({
+				title: '请求错误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	goHouseDetail(e) {
+		let {
+			id,
+			housetype
+		} = e.currentTarget.dataset;
+		console.log(e)
+		let type = '';
+		switch (housetype) {
+			case 'ESTATE':
+				type = "新房房源";
+				break;
+			case 'SECOND_HAND':
+				type = "二手房房源";
+				break;
+			case 'TENANCY':
+				type = "租房房源";
+				break;
+			case 'RESIDENTIAL_QUARTERS':
+				type = "小区房源";
+				break;
+			default:
+				break;
+		}
+		let item = JSON.stringify({
+			'title': type,
+			"id": id
+		});
+		wx.navigateTo({
+			url: `/combination/pages/listingDetails/index?item=${item}`,
+		});
+	},
+
+	getCustomer(e) {
 		console.log(e);
 		let id = e.currentTarget.dataset.memberid;
 		http({
 			url: api.broker.snatchCustomer,
 			method: 'POST',
-			params:{
+			params: {
 				id: id
 			}
-		}).then(res=>{
+		}).then(res => {
 			console.log(res);
 			wx.showToast({
 				title: '抢客成功!',
@@ -215,7 +255,7 @@ Page({
 				duration: 1000
 			});
 			this.getWaitCustom();
-		}).catch(err=>{
+		}).catch(err => {
 			console.log(err)
 		})
 	},
@@ -224,10 +264,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-			this.getSnatchList();
-			this.getWaitCustom();
-			this.getPushCustomer();
-			this.getVisitorList();
+		this.getVisitorList();
 	},
 
 	/**

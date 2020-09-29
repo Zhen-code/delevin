@@ -1,6 +1,6 @@
 <navbar bgColor="{{bgColor}}" title="系统消息" />
 <view class="message-view" style="padding-top:{{paddingTop}}px">
-	<scroll-view class="view-list" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
+	<scroll-view class="view-list" wx:if="{{list.lenght !== 0}}" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
 		<block wx:for="{{list}}" wx:key="index">
 			<view class="view-row" data-index="{{index}}" data-item="{{item}}" bindtap="toMessageDetails">
 				<text class="view-row-top">{{item.createDate}}</text>
@@ -13,4 +13,5 @@
 			</view>
 		</block>
 	</scroll-view>
+	<noData wx:if="{{list.length === 0}}" zIndex="{{22}}" height="{{100}}"></noData>
 </view>

@@ -3,6 +3,9 @@
   "backgroundTextStyle": "dark",
   "usingComponents": {
     "navbar":"/components/nav/index",
-    "noData": "/components/noData/index"
+    "noData": "/components/noData/index",
+    "citySearch":"/components/citySearch/index",
+    "doubleTab":"/components/doubleTab/index",
+    "shopItem":"/components/shopItem/index"
   }
 }

@@ -139,7 +139,7 @@
 		<!-- 二手房详情 -->
 		<view class="introduction-specification" wx:if="{{type === 'SECOND_HAND'}}">
 			<view class="introduction-specification-top">
-				<view class="name-type">单价：<text class="name-typeValue">{{item.price}}元/m²</text></view>
+				<view class="name-type">单价：<text class="name-typeValue">{{item.unitPrice}}元/m²</text></view>
 				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear}}</text></view>
 				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition}}</text></view>
 				<view class="name-type">产权：<text class="name-typeValue">{{item.property}}</text></view>
@@ -153,7 +153,7 @@
 				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersName}}</text>
 				</view>
 				<view class="name-type">首付月供：<text
-						class="name-typeValue name-typeValueColor">预计**万元，月供{{item.monthlyContribution}}元</text>
+						class="name-typeValue name-typeValueColor">预计{{item.downPayment}}万元，月供{{item.monthlyContribution}}元</text>
 				</view>
 			</view>
 		</view>
@@ -167,14 +167,14 @@
 				</view>
 				<view class="name-type">朝向：<text class="name-typeValue">{{item.orientationType || '暂无'}}</text></view>
 				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationsStatusType}}</text></view>
-				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator}}</text></view>
+				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator || '暂无'}}</text></view>
 				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear}}</text></view>
 			</view>
 			<view class="introduction-specification-bottom">
 				<view class="name-type">付款方式：<text class="name-typeValue">{{item.payMethod}}</text></view>
 				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate}}</text></view>
 				<view class="name-type">房屋配置：<text class="name-typeValue">{{item.houseDisposal}}</text></view>
-				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersId}}</text></view>
+				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersName}}</text></view>
 			</view>
 		</view>
 
@@ -196,7 +196,7 @@
 		</view>
 	</view>
 
-	<view class="components borderBottom">
+	<view class="components borderBottom" wx:if="{{type !== 'ESTATE'}}">
 		<view class="components-row">
 			<text class="components-title">房屋时光机</text>
 			<view class="doubleTab" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
@@ -265,7 +265,7 @@
 			</view>
 		</block>
 	</view>
-	<view class="components borderBottom" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
+	<view class="components borderBottom" wx:if="{{type === 'RESIDENTIAL_QUARTERS' && item.transactionRecord}}">
 		<text class="components-title">成交记录</text>
 		<view class="record">
 			<block wx:for="{{item.transactionRecord}}" wx:key="index">

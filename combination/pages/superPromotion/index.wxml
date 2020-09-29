@@ -37,7 +37,7 @@
 		<view class="floor-list">
 			<view class="floor-list-row">
 				<view class="floor-list-row-top">
-					<image class="floor-list-row-top-image" src="{{info.designSketch[0] || 'https://img.yzcdn.cn/vant/cat.jpeg'}}"></image>
+					<image class="floor-list-row-top-image" src="{{info.designSketch}}"></image>
 					<view class="floor-list-row-top-type">
 						<view class="floor-list-row-top-type-top">
 							<view class="top-delete" bindtap="getDelete">
@@ -68,7 +68,7 @@
 			<block wx:for="{{list}}" wx:key="index">
 				<view wx:if="{{item.status === 'UPPER'}}" class="checkList-row {{itemIndex === index?'checkList-row-action':''}}" data-item="{{item}}" data-index="{{index}}" bindtap="tabItem">{{item.specsTitle}}</view>
 			</block>
-			<input type="number" class="checkList-row {{itemIndex === -1?'checkList-row-action':''}}" value="{{itemValue}}" data-index="{{-1}}" data-model="specs"  bindinput="itemType" bindtap="tabItem"></input>
+			<input type="number" class="checkList-row {{itemIndex === -1?'checkList-row-action':''}}" value="{{itemValue}}" data-index="{{-1}}" data-model="specs"  bindblur="itemType" bindtap="tabItem"></input>
 		</view>
 	</view>
 

@@ -329,8 +329,9 @@ const request = {
   },
   brokerDatele: (params) => {
     return http({
-      url: api.broker.delete + params.id,
+      url: api.broker.delete,
       method: 'POST',
+      params:params,
     })
   },
   portLsit: (params) => {
@@ -396,7 +397,20 @@ const request = {
       params: params,
     })
   },
-
+  visitorsList: (params) => {
+    return http({
+      url: api.broker.visitorsList,
+      method: 'GET',
+      params: params,
+    })
+  },
+  addAgent: (params) => {
+    return http({
+      url: api.listings.addAgent,
+      method: 'POST',
+      params: params,
+    })
+  },
 
   getHouseProperty: () => { //物业
     return http({

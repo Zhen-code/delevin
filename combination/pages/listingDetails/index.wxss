@@ -509,7 +509,7 @@
 	right: 0;
 	bottom: 0;
 	background: #FFFFFF;
-	z-index: 99;
+	z-index: 9999999;
 }
 
 .bottom-phone-text {

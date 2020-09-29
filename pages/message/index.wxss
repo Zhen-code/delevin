@@ -1,4 +1,4 @@
-.message-view{
+.message-view {
 	width: 100%;
 	height: 100vh;
 	padding-top: 88px;
@@ -6,10 +6,10 @@
 	background-color: #F8F8F8;
 }
 
-.view-list{
+.view-list {
 	width: 100%;
 	height: 100%;
-	padding:0 32rpx;
+	padding: 0 32rpx;
 	display: flex;
 	align-items: flex-start;
 	justify-content: center;
@@ -17,20 +17,21 @@
 	box-sizing: border-box;
 }
 
-.view-row{
+.view-row {
 	width: 100%;
 	height: auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
+	margin-top: 15rpx;
 }
 
-.view-row:last-child{
-	margin-bottom: 140rpx;
+.view-row:last-child {
+	margin-bottom: 40rpx;
 }
 
-.view-row-top{
+.view-row-top {
 	width: 100%;
 	height: 84rpx;
 	display: flex;
@@ -40,7 +41,7 @@
 	color: #999999;
 }
 
-.view-row-bottom{
+.view-row-bottom {
 	width: 100%;
 	height: auto;
 	display: flex;
@@ -53,37 +54,52 @@
 	box-sizing: border-box;
 }
 
-.view-row-bottom-top{
+.view-row-bottom-top {
 	width: 100%;
-	height: 60rpx;
+	height: auto;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
-.view-row-bottom-top text{
+.view-row-bottom-top text {
+	min-height: 40rpx;
+	max-height: 80rpx;
 	font-size: 30rpx;
 	color: #333333;
 	font-weight: bold;
 	text-align: left;
 	display: flex;
 	align-items: center;
-	justify-content:flex-start
+	justify-content: flex-start;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 
-.view-row-bottom-top image{
+.view-row-bottom-top image {
 	width: 40rpx;
 	height: 40rpx;
 }
 
-.view-row-bottom-text{
+.view-row-bottom-text {
 	width: 100%;
-	height: auto;
+	height: 80rpx;
+	line-height: 40rpx;
 	font-size: 28rpx;
-	color: #999999;
+	font-weight: 400;
+	color: #666666;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	margin-top: 10rpx;
 }
 
-.text{
+.text {
 	width: 100%;
 	height: 120rpx;
 	display: flex;
@@ -92,7 +108,7 @@
 	font-size: 26rpx;
 	color: #999999;
 	text-align: center;
-	margin:35rpx 0 20rpx 0
+	margin: 35rpx 0 20rpx 0
 }
 
 .no-message {
@@ -103,7 +119,7 @@
 	justify-content: center;
 	flex-direction: column;
 	position: fixed;
-	top:88px;
+	top: 88px;
 	left: 0;
 }
 

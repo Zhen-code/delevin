@@ -91,7 +91,7 @@
 					<view class="mine-content-top-rigth-title">访客记录<text>{{userInfo.visitorsCount}}</text></view>
 				</view>
 			</view>
-			<text class="introductionText">{{userInfo.synopsis}}</text>
+			<text class="introductionText">{{userInfo.synopsis || '暂无简介'}}</text>
 			<view class="houseType" style="margin-bottom:40rpx">
 				<view class="houseType-item" wx:for="{{houseItem2}}" data-item="{{item}}" data-index="{{index}}" wx:key="index"
 					bindtap="changeHouseType2">
@@ -116,15 +116,15 @@
 								<text class="view-no-row-top-name">已下架</text>
 							</view>
 						</view> -->
-						<view class="floor-list-row-top">
-							<image class="floor-list-row-top-image" src="{{item.designSketch[0] || 'https://img.yzcdn.cn/vant/cat.jpeg'}}"></image>
+						<view class="floor-list-row-top" id="{{item.houseId}}" bindtap="toDetails">
+							<image class="floor-list-row-top-image" src="{{item.designSketch}}"></image>
 							<view class="floor-list-row-top-type">
 								<view class="floor-list-row-top-type-top">
-									<view class="top-view" bindtap="getShareIt">
+									<view class="top-view" catchtap="getShareIt">
 										<image class="top-view-image" src="/assets/icon_share_14_black@2x.png"></image>
 										<text class="top-view-text">分享</text>
 									</view>
-									<view class="top-delete" data-item="{{item.id}}" bindtap="getDelete">
+									<view class="top-delete" data-item="{{item.id}}" catchtap="getDelete">
 										<image class="top-view-image" src="/assets/icon_clean_14_white@2x.png"></image>
 										<text class="top-delete-text">删除</text>
 									</view>
@@ -163,9 +163,9 @@
 								</view>
 							</view>
 							<view class="floor-list-row-bottom-bottom">
-								<view class="floor-list-row-bottom-bottom-view" wx:if="{{item.push === 'YES'}}">
+								<view class="floor-list-row-bottom-bottom-view1" wx:if="{{item.push === 'YES'}}">
 									<image class="floor-list-row-bottom-bottom-view-image" src="/assets/icon_promo_16_pre@2x.png"></image>
-									<text class="floor-list-row-bottom-bottom-view-text">已推广</text>
+									<text class="floor-list-row-bottom-bottom-view-text1">已推广</text>
 								</view>
 								<view class="floor-list-row-bottom-bottom-view" data-item="{{item}}" wx:if="{{item.push === 'NO'}}"
 									bindtap="getOrdinaryPurchase">
@@ -185,7 +185,7 @@
 					</view>
 				</block>
 			</view>
-			<view class="floor-add" bindtap="toListings">添加我的楼盘</view>
+			<view class="floor-add" wx:if="{{brokerList.length !== 10}}" bindtap="toListings">添加我的楼盘</view>
 		</view>
 	</view>
 </view>
@@ -224,3 +224,5 @@
 		</view>
 	</view>
 </view>
+
+<!-- <web-view src="{{link}}"></web-view> -->

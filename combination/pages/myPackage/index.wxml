@@ -1,4 +1,4 @@
-<navbar backHome="{{true}}" backTab="{{true}}" bgColor="{{bgColor}}" title="我的套餐" />
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="我的套餐" />
 <view class="view" style="padding-top:{{paddingTop}}px;height: calc(100vh);">
 	<view class="doubleTab">
 		<doubleTab style="width:100%;height:70rpx;" tabIndex="{{index}}" tabItem="{{tabItem}}" bind:backTabValue="getbackTabIndex"></doubleTab>
@@ -23,31 +23,36 @@
 					<text class="row-item-key">创建时间</text>
 					<text class="row-item-value">{{item.createDate}}</text>
 				</view>
+				<view class="row-item" wx:if="{{item.setMealType === 'EXTENSION_SET_MEAL'}}">
+					<text class="row-item-key">房源标题</text>
+					<text class="row-item-value">{{item.houseTitle}}</text>
+				</view>
 				<view class="row-item">
 					<text class="row-item-key">套餐规格</text>
 					<text class="row-item-value">{{item.specsTitle}}</text>
-					<!-- <text class="row-item-value" wx:if="{{index == 1}}">100次</text>
-					<text class="row-item-value" wx:if="{{index == 2}}">1000曝光/天</text> -->
 				</view>
-				<view class="row-item" wx:if="{{index === 1}}">
+				<view class="row-item" wx:if="{{item.setMealType === 'SNATCH_SET_MEAL'}}">
 					<text class="row-item-key">套餐余额</text>
 					<text class="row-item-value">{{item.surplus}}人次（当前可用抢客次数）</text>
 				</view>
-				<view class="row-item" wx:if="{{index === 2}}">
+				<view class="row-item" wx:if="{{item.setMealType === 'EXTENSION_SET_MEAL'}}">
 					<text class="row-item-key">购买数量</text>
 					<text class="row-item-value">5天</text>
 				</view>
-				<view class="row-item" wx:if="{{index == 0 || index == 2}}">
+				<view class="row-item" wx:if="{{item.setMealType === 'PORT_SET_MEAL' || item.setMealType === 'EXTENSION_SET_MEAL'}}">
 					<text class="row-item-key">套餐有效期</text>
 					<text class="row-item-value">{{item.effectiveDate}}至{{item.invalidDate}}</text>
 				</view>
-				<view class="row-item flex" bindtap="showPopup" wx:if="{{index === 2}}">
+				<view class="row-item flex" bindtap="showPopup" wx:if="{{item.setMealType === 'EXTENSION_SET_MEAL'}}">
 					<text class="mine-content-top-rigth-text">查看投放广告位</text>
 					<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 				</view>
 			</view>
 		</block>
 	</scroll-view>
+	<view class="noData">
+		<noData wx:if="{{item.length === 0}}" flexd="{{true}}" zIndex="{{20}}"></noData>
+	</view>
 </view>
 
 <van-popup show="{{ show }}" round bind:close="onClose">
@@ -57,16 +62,7 @@
 			<van-icon name="cross" size="20px" bindtap="onClose" color="#999999" />
 		</view>
 		<view class="scroll-view">
-			<text class="scroll-view-row">1.rewrrewrcdwdweweww ewqewqewqewqewqewqewqedxsfdsafsda</text>
-			<text class="scroll-view-row">1.rewrrewrcdwdweweww ewqewqewqewqewqewqewqedxsfdsafsda</text>
-			<text class="scroll-view-row">1.rewrrewrcdwdweweww ewqewqewqewqewqewqewqedxsfdsafsda</text>
-			<text class="scroll-view-row">1.rewrrewrcdwdweweww ewqewqewqewqewqewqewqedxsfdsafsda</text>
-			<text class="scroll-view-row">1.rewrrewrcdwdweweww ewqewqewqewqewqewqewqedxsfdsafsda</text>
-			<text class="scroll-view-row">1.rewrrewrcdwdweweww ewqewqewqewqewqewqewqedxsfdsafsda</text>
-			<text class="scroll-view-row">1.rewrrewrcdwdweweww ewqewqewqewqewqewqewqedxsfdsafsda</text>
-			<text class="scroll-view-row">1.rewrrewrcdwdweweww ewqewqewqewqewqewqewqedxsfdsafsda</text>
+			<text class="scroll-view-row">1.22222222</text>
 		</view>
 	</view>
 </van-popup>
-
-<!-- <noData zIndex="{{1}}" wx:if="{{item.length === 0}}" height="{{80}}"></noData> -->

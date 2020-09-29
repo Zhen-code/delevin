@@ -20,7 +20,7 @@
 					<image class="mine-content-top-rigth-image" src="/assets/img_qrcode_270@2x.png"></image>
 				</view>
 			</view>
-			<text class="introductionText" wx:if="{{show}}">{{userInfo.synopsis}}</text>
+			<text class="introductionText" wx:if="{{show}}">{{userInfo.synopsis || '暂无简介'}}</text>
 		</view>
 
 		<view class="mine-content-row" bindtap="myPackage" wx:if="{{show}}">

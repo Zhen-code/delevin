@@ -24,25 +24,27 @@ Page({
 			this.setData({
 				show: false,
 				tabTitle: '切换至经纪端',
-			})
-			app.globalData.state = show;
-			wx.setTabBarItem({
-				index: 1,
-				text: '看点',
-				iconPath: '/image/tabbar/icon_tab2_24_nor@2x.png',
-				selectedIconPath: '/image/tabbar/icon_tab2_24_pre@2x.png',
+			},()=>{
+				app.globalData.state = show;
+				wx.setTabBarItem({
+					index: 1,
+					text: '看点',
+					iconPath: '/image/tabbar/icon_tab2_24_nor@2x.png',
+					selectedIconPath: '/image/tabbar/icon_tab2_24_pre@2x.png',
+				})
 			})
 		} else {
 			this.setData({
 				show: true,
 				tabTitle: '切换至用户端',
-			})
-			app.globalData.state = show;
-			wx.setTabBarItem({
-				index: 1,
-				text: '房源',
-				iconPath: '/image/tabbar/icon_tab9_24_nor@2x.png',
-				selectedIconPath: '/image/tabbar/icon_tab9_24_pre@2x.png',
+			},()=>{
+				app.globalData.state = show;
+				wx.setTabBarItem({
+					index: 1,
+					text: '房源',
+					iconPath: '/assets/tabbar/icon_tab9_24_nor@2x.png',
+					selectedIconPath: '/assets/tabbar/icon_tab9_24_pre@2x.png',
+				})
 			})
 		}
 	},
@@ -61,9 +63,17 @@ Page({
 				} else {
 					//点击确定
 					console.log('确定')
-					wx.reLaunch({
-						url: "/pages/login/index"
+					wx.showToast({
+						title: '清除成功',
+						icon: 'success',
+						duration: 2500
 					})
+					wx.removeStorageSync('token')
+					setTimeout(()=>{
+						wx.reLaunch({
+							url: "/pages/login/index"
+						})
+					},1500)
 				}
 			},
 		})
@@ -170,7 +180,6 @@ Page({
 					break;
 				default:
 			}
-			console.log(res);
 			wx.setStorageSync('userId',res.id);
 			this.setData({
 				userInfo: res,
