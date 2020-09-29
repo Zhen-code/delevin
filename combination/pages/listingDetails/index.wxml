@@ -284,7 +284,7 @@
 		<text class="components-title">猜你喜欢</text>
 		<view wx:if="{{list.length !== 0}}" class="components-view">
 			<block wx:for="{{list}}" wx:key="index">
-				<shopItem item="{{item}}"></shopItem>
+				<shopItem item="{{item}}" data-item="{{item}}" bindtap="toDetails"></shopItem>
 			</block>
 		</view>
 		<view class="noData">

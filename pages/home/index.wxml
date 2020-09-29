@@ -16,7 +16,7 @@
 			<swiper indicator-dots autoplay="true" interval="2000" circular="true" indicator-color="white"
 				indicator-active-color="#FFD200">
 				<block wx:for="{{bannerList}}" wx:for-index="i" wx:key="index">
-					<swiper-item data-item="{{item}}">
+					<swiper-item data-item="{{item}}" bindtap="toWebView">
 						<image class="swiper-item-image" src="{{item.images}}"></image>
 					</swiper-item>
 				</block>

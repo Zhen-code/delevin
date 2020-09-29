@@ -37,7 +37,7 @@
 				</view>
 				<view class="row-item" wx:if="{{item.setMealType === 'EXTENSION_SET_MEAL'}}">
 					<text class="row-item-key">购买数量</text>
-					<text class="row-item-value">5天</text>
+					<text class="row-item-value">{{item.buyQuantity}}天</text>
 				</view>
 				<view class="row-item" wx:if="{{item.setMealType === 'PORT_SET_MEAL' || item.setMealType === 'EXTENSION_SET_MEAL'}}">
 					<text class="row-item-key">套餐有效期</text>

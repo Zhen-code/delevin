@@ -33,7 +33,7 @@ Page({
 		title: '新房房源',
 		showInfo: false,
 		total: 0,
-		link:'',
+		link: '',
 	},
 
 	onPageScroll(e) {
@@ -345,7 +345,7 @@ Page({
 			"pageIndex": 1,
 		}).then((res) => {
 			let data = res.list.map((item) => {
-				item.sourceType = 'RESIDENTIAL_QUARTERS';
+				item.sourceType = 'SECOND_HAND';
 				return item;
 			})
 			this.setData({
@@ -412,8 +412,8 @@ Page({
 				break;
 			case '房贷计算':
 				let obj = {
-					"title":"房贷计算器",
-					"link":"https://dev.delevin.beiru168.com/index.html",
+					"title": "房贷计算器",
+					"link": "https://dev.delevin.beiru168.com/index.html",
 				}
 				let item = JSON.stringify(obj)
 				wx.navigateTo({
@@ -439,8 +439,8 @@ Page({
 				break;
 			case 2:
 				let obj = {
-					"title":"房贷计算器",
-					"link":"https://dev.delevin.beiru168.com/index.html",
+					"title": "房贷计算器",
+					"link": "https://dev.delevin.beiru168.com/index.html",
 				}
 				let item = JSON.stringify(obj)
 				wx.navigateTo({
@@ -562,8 +562,8 @@ Page({
 							"houseMold": data.houseMold
 						}).then((res) => {
 							_this.setData({
-								brokerList:[],
-							},()=>{
+								brokerList: [],
+							}, () => {
 								_this.getData()
 								wx.showToast({
 									title: '推广成功',
@@ -571,9 +571,9 @@ Page({
 									duration: 2500
 								})
 							})
-							setTimeout(()=>{
+							setTimeout(() => {
 								_this.getPromote()
-							},2500)
+							}, 2500)
 						}).catch((err) => {
 							wx.showToast({
 								title: '请求失败',
@@ -608,6 +608,17 @@ Page({
 		let type = 'add';
 		wx.navigateTo({
 			url: '/combination/pages/listings/index?type=' + type,
+		})
+	},
+
+	toWebView(e) {
+		let link = e.currentTarget.dataset.item.link;
+		let item = JSON.stringify({
+			"title": "轮播图资讯",
+			"link": link,
+		})
+		wx.navigateTo({
+			url: `/combination/pages/webView/index?item=${item}`,
 		})
 	},
 

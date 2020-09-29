@@ -214,12 +214,13 @@ Page({
 		})
 	},
 
-	
 
 	getLikeListings(item) {
 		request.likeListings({
 			"houseId": item.houseId,
 			"houseMold": item.houseMold,
+			"pageIndex":1,
+			"pageSize":5,
 		}).then((res) => {
 			this.setData({
 				list: res.list
@@ -318,6 +319,34 @@ Page({
 				})
 			})
 		}
+	},
+
+	toDetails(e){
+		let type = '';
+		let data = e.currentTarget.dataset.item;
+		console.log(data,112212)
+		switch (data.houseMold) {
+			case 'ESTATE':
+				type = "新房房源";
+				break;
+			case "SECOND_HAND":
+				type = "二手房房源";
+				break;
+			case "TENANCY":
+				type = "租房房源";
+				break;
+			case "RESIDENTIAL_QUARTERS":
+				type = "小区房源";
+				break;
+			default:
+		}
+		let item = JSON.stringify({
+			'title': type,
+			"id": data.houseId,
+		})
+		wx.navigateTo({
+			url: `/combination/pages/listingDetails/index?item=${item}`,
+		})
 	},
 
 	/**
