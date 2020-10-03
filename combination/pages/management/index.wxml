@@ -18,7 +18,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="row-right" bindtap="dialNumber">
+				<view class="row-right" data-phone="{{item.phone}}" bindtap="dialNumber">
 					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
 					<text class="row-right-phone">{{item.phone}}</text>
 				</view>
@@ -50,7 +50,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="row-right" bindtap="dialNumber">
+				<view class="row-right" data-phone="{{item.phone}}" bindtap="dialNumber">
 					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
 					<text class="row-right-phone">{{item.phone}}</text>
 				</view>

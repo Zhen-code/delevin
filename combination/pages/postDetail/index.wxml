@@ -85,7 +85,7 @@
 </view>
 <view class="no-more-text">- 没有更多评论了 -</view>
 </scroll-view>
-<view class="bottom-contain">
+<view class="{{isIos?'bottom-contain-ios':'bottom-contain'}}">
   <view class="write-content" catch:tap="toWrite">写评论…</view>
   <button
           class="write-content-btn"

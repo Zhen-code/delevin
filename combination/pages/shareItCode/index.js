@@ -256,12 +256,11 @@ Page({
       }
     })
   },
-  renderToCanvas(codeUrl) {
+  renderToCanvas(codeUrl='') {
     let that = this;
     this.setData({
       reportOrClassOverFlag: {
         codeUrl: codeUrl,
-        codeUrl: '',
         name: '吴加良',
         phone: '17620835317',
         text: '今天房猿通开发了二维码界面',

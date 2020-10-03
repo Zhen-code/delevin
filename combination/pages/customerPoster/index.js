@@ -249,7 +249,12 @@ Page( {
 			this.getArticle(this.classifyId);
 		}
 	},
-
+	goShare(e){
+		let {imguri} = e.currentTarget.dataset;
+	wx.navigateTo({
+		url: '/combination/pages/shareInfoImg/index?uri='+imguri
+	});
+	},
 	/**
 	 * 生命周期函数--监听页面加载
 	 */

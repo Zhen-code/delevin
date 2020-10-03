@@ -44,7 +44,11 @@ Page({
 			"pageIndex": this.data.pageIndex,
 		}).then((res) => {
 			let list = this.data.list;
-			list.push(...res.list)
+			list.push(...res.list);
+			list.forEach(v=>{
+				v.details = v.details.replace(/\<h2/g,'<h4')
+			});
+			console.log(list)
 			this.setData({
 				list: list,
 				pageIndex: this.data.pageIndex + 1,

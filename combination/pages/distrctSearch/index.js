@@ -13,16 +13,32 @@ Page({
         isCancel: false,
         isIndrag: false,
         scrollTop: 0,
-        hei: 0
+        hei: 0,
+        isIos: false,
+        safeBottom: 0,
     },
     timeFlag:1,
     pageIndex:1,
     pageSize: 10,
-    pageTotla:0,
+    pageTotal:0,
     searchVal: '',
     onLoad: function (options) {
         this.getNKDistrct();
     },
+    onShow() {
+    let res = wx.getSystemInfoSync();
+        console.log(res)
+        if(res['model'].includes('iPhone')){
+            console.log('IOS')
+            this.setData({
+                isIos: true,
+                safeBottom: Number(res.safeArea.bottom-res.safeArea.height)
+            })
+        }
+        },
+    onReady() {
+        console.log(this.data.safeBottom);
+        },
     start(e){
         sy = e.touches[0].clientY;
     },
@@ -84,7 +100,8 @@ Page({
         if(this.data.hei>80){
             this.setData({
                 desc: '正在刷新',
-                hei: 80
+                hei: 80,
+                list: []
             });
             that.pageIndex = 1;
             if(that.searchVal===null || that.searchVal===undefined || !that.searchVal || that.searchVal==''){
@@ -101,15 +118,18 @@ Page({
         }
     },
     scrollList(){
-            this.pageIndex++;
-            if(this.pageIndex>this.pageTotal){
-                this.setData({
-                    isBottom: true
-                })
+        let pageIndex = this.pageIndex+=1;
+        this.pageIndex = pageIndex;
+        console.log(pageIndex)
+            if(pageIndex>this.pageTotal){
+
             }else{
-
+                if(this.searchVal === ''){
+                    this.getNKDistrct();
+                }else{
+                    this.getDistrct(this.searchVal);
+                }
             }
-
     },
     scroll(e){
         clearTimeout(this.timeFlag);
@@ -139,7 +159,6 @@ Page({
         }).then(()=>{
             this.setData({
                 hei: 0,
-                scrollTop: 0,
                 desc: '下拉刷新',
                 isInDrag: false
             })
@@ -158,13 +177,14 @@ Page({
             }
         }).then(res=>{
             console.log(res)
+            this.pageTotal = res.pageTotal;
+            let {list} = this.data;
             this.setData({
-                list: res.list
+                list: [...list , ...res.list]
             })
         }).then(()=>{
             this.setData({
                 hei: 0,
-                scrollTop: 0,
                 desc: '下拉刷新',
                 isInDrag: false
             })
@@ -172,13 +192,15 @@ Page({
             console.log(err)
         });
     },
-    getData(e){
+    getData(e){//搜索获取列表
         console.log(e)
         clearTimeout(this.timeFlag);
+        this.pageIndex = 1;
         let value = e.detail.detail;
         this.searchVal = value;
         this.timeFlag = setTimeout(()=>{
             if(!value || value===null || value===undefined){
+                this.searchVal = '';
                 this.getNKDistrct();
             }else{
                 this.getDistrct(value);
@@ -194,11 +216,6 @@ Page({
     selectDistrct(e){
         console.log(e)
         let {title,id} = e.currentTarget.dataset;
-        // let pages = getCurrentPages();
-        // if(pages.length>1){
-        //     let prePage = pages[pages.length-2];
-        //     console.log(prePage);
-        // }
         app.globalData.districtTitle = title;
         app.globalData.districtId = id;
         wx.navigateBack({

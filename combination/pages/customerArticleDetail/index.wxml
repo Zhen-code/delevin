@@ -1,5 +1,5 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="获客文章资讯" />
-<scroll-view scroll-y style="height:{{winHeight}}">
+<scroll-view scroll-y class="scrollWrap">
     <view class="content" id="content" style="padding-top:{{paddingTop}}px">
         <view class="content-top">
             <view class="title">{{title}}</view>
@@ -12,9 +12,9 @@
             <rich-text nodes="{{nodes}}" type="text"></rich-text>
         </view>
     </view>
+    <view class="line"></view>
 </scroll-view>
-<view class="line"></view>
-<view class="bottom-contain">
+<view class="bottom-contain" style="bottom:{{safeBottom}}rpx;">
     <view class="bottom-text">
         <button class="share-btn" open-type="share"></button>
         转发

@@ -29,6 +29,9 @@ Component({
 	 */
 	methods: {
 		afterRead(event) {
+			wx.showLoading({
+				title: '上传中'
+			});
 			var that = this;
 			const {
 				file
@@ -63,52 +66,21 @@ Component({
 							title: '上传失败！',
 							icon: 'none',
 							duration: 1000
-						})
+						});
 					},
 					complete(){
 						console.log(that.data);
 						that.triggerEvent('getImgs',{e:that.data.fileList});
 					}
 				});
-				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-				// wx.uploadFile({
-				// 	url: 'http://my.zol.com.cn/index.php?c=Ajax_User&a=uploadImg', // 仅为示例，非真实的接口地址
-				// 	filePath: pathArray[i],
-				// 	name: 'myPhoto',
-				// 	formData: {
-				// 		user: 'user'
-				// 	},
-				// 	success: (response) => {
-				// 		let res = JSON.parse(response.data);
-				// 		let {
-				// 			url
-				// 		} = res;
-				// 		if (url !== null && url !== '') {
-				// 			url = url.replace("\\", '');
-				// 		}
-				// 		let {
-				// 			fileList
-				// 		} = this.data;
-				// 		fileList.push({
-				// 			url
-				// 		});
-				// 		this.setData({
-				// 			fileList
-				// 		});
-				// 		wx.showToast({
-				// 			title: '上传成功！',
-				// 			icon: 'success',
-				// 			duration: 2500
-				// 		})
-				// 	},
-				// 	fail(err) {
-				// 		wx.showToast({
-				// 			title: err,
-				// 			icon: 'none',
-				// 			duration: 2500
-				// 		})
-				// 	},
-				// });
+			}
+			wx.hideLoading();
+			if(this.data['fileList'].length!==0){
+				wx.showToast({
+					title: '上传成功!',
+					icon: "none",
+					duration: 1000
+				})
 			}
 		},
 		deleteImg(e) {

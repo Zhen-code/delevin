@@ -4,5 +4,5 @@
 		<text class="view-top-title">{{data.title}}</text>
 		<text class="view-top-time">{{data.createDate}}</text>
 	</view>
-	<view class="view-text">{{data.details}}</view>
+	<view class="view-text"><rich-text nodes="{{data.details}}"></rich-text></view>
 </view>

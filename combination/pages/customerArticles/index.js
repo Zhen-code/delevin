@@ -5,10 +5,6 @@ const {api} = require('../../../request/api');
 
 var sy = 0;
 Page({
-
-	/**
-	 * 页面的初始数据
-	 */
 	data: {
 		title:'看点',
 		type: false,
@@ -31,7 +27,9 @@ Page({
 		desc: '下拉刷新',
 		height: 0,
 		flexd: false,
-		_index:0
+		_index:0,
+		isIos: false,
+		safeBottom: 0
 	},
 	pageIndex: 1,
 	pageSize: 10,
@@ -57,18 +55,16 @@ Page({
 		sy = e.touches[0].clientY;
 	},
 	end(e){
-		// console.log(e)
 		sy = 0;
 		let that = this;
-		// console.log('离开高度'+this.data.hei)
+		that.pageIndex = 1;
 		if(this.data.hei>80){
 			this.setData({
 				desc: '正在刷新',
-				hei: 80
+				hei: 80,
+				newsList: []
 			});
-			that.pageIndex = 1;
-				that.getNewsList(that.classifyId);
-			// console.log('下拉刷新了')
+			that.getNewsList(that.classifyId);
 		}else{
 			this.setData({
 				desc: '下拉刷新',
@@ -147,19 +143,6 @@ Page({
 				this.getNewsList(this.classifyId);
 			}
 	},
-	onChange(event) {
-		console.log(event.detail);
-		this.setData({
-			tabActive: event.detail.index,
-			newsList:[]
-		});
-		this.pageIndex = 1;
-		let {index} =  event.detail;
-		let {list} = this.data;
-		let classifyId = list[index]['id'];
-		this.classifyId = classifyId;
-		this.getNewsList(classifyId);
-	},
 	goHouseDetal(e){
 		wx.navigateTo({
 			url: '/combination/pages/customerArticleDetail/index?id=' + e.currentTarget.dataset.id,
@@ -227,7 +210,6 @@ Page({
 		})
 	},
 	getArticleClassify(){
-		console.log(666)
 		http({
 			url: api.personalHome.articleClassify,
 			method: 'GET',
@@ -236,6 +218,7 @@ Page({
 			}
 		}).then(res=>{
 			console.log(res);
+			this.classifyId = res[0]['id'];
 			this.setData({
 				list: res|| [],
 				fId: res[0]['id']|| 0,
@@ -290,27 +273,14 @@ Page({
 		this.setData({
 			title:app.globalData.state?'看点':'房源',
 			type: app.globalData.state
-		})
+		});
+		let res = wx.getSystemInfoSync();
+		if(res['model'].includes('iPhone')){
+			this.setData({
+				isIos: true,
+				safeBottom: Number(res.safeArea.bottom - res.safeArea.height)
+			})
+		}
 	},
 
-	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function () {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面卸载
-	 */
-	onUnload: function () {
-
-	},
-
-	/**
-	 * 用户点击右上角分享
-	 */
-	onShareAppMessage: function () {
-
-	}
 })

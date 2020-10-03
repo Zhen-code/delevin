@@ -199,6 +199,20 @@
   height: 112rpx;
   background: #FFF;
 }
+.bottom-contain-ios{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 18rpx 10rpx 34rpx 32rpx;
+  box-sizing:border-box;
+  width: 100%;
+  height: 128rpx;
+  background: #FFF;
+}
 .write-content{
   width: 376rpx;
   height: 64rpx;

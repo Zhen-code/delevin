@@ -29,7 +29,8 @@ Page({
     winHeight: '',
     tabScrollTop: 0,
     top: 0,
-    rpxR: 0
+    rpxR: 0,
+    isIos: false
   },
   id: '',
   timeFlag: 1,
@@ -187,6 +188,12 @@ Page({
    */
   onShow: function () {
     this.getPostDetail(this.id);
+    let res = wx.getSystemInfoSync();
+    if(res['model'].includes('iPhone')){
+      this.setData({
+        isIos: true
+      })
+    }
   },
 
   /**

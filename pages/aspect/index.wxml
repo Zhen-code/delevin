@@ -6,50 +6,6 @@
 	</view>
 
 	<view class="tabContent" hidden="{{_index!=='0'}}">
-<!--		<van-tabs nav-class="scrollTab" color="#FFD854" active="{{ active }}" bind:change="onChange" wx:if="{{list.length!==0}}">-->
-<!--			<van-tab wx:for="{{list}}" wx:key="id" data-index="{{index}}" title="{{item.name}}" tab-class="tabStyle"-->
-<!--				tab-active-class="tabActiveStyle">-->
-<!--				<view class="tabContent" hidden="{{tabActive!==index}}">-->
-<!--					<view class="message-view" wx:if="{{newsList.length!==0}}">-->
-<!--						<scroll-view-->
-<!--									class="view-list"-->
-<!--									scroll-y="{{!isIndrag}}"-->
-<!--									bindscroll="scroll"-->
-<!--									bindscrolltolower="scrollList"-->
-<!--									 >-->
-<!--							<view wx:if="{{hei<80}}" style='height:{{hei}}rpx' class='{{hei===0?"noRefresh":"refresh"}}'>-->
-<!--								<image src="/assets/image/loading.png" mode="aspectFill" style="width:50rpx;height:50rpx;"></image>-->
-<!--							</view>-->
-<!--							<view  wx:else style='height:{{hei}}rpx' class='{{hei===0?"noRefresh":"refresh"}}'>-->
-<!--								<image src="/assets/image/loading.gif" mode="aspectFill" style="width:50rpx;height:50rpx;"></image>-->
-<!--							</view>-->
-<!--							<view class="column"-->
-<!--							      bind:touchstart="start"-->
-<!--								  bindtouchend='end'-->
-<!--								  bindtouchmove='move'-->
-<!--									>-->
-<!--								<block wx:for="{{newsList}}" wx:key="id">-->
-<!--									<view wx:if="{{item.status==='DISPLAY'}}" class="tab-item" catchtap="goHouseDetal" data-id="{{item.id}}">-->
-<!--										<view class="tab-item-left">-->
-<!--											<view class="tab-item-left-title">{{item.name}}</view>-->
-<!--											<view class="tab-item-left-desc">-->
-<!--												<text>{{item.source}}</text>-->
-<!--												<text class="split-line">|</text>-->
-<!--												<text>{{item.author}}</text>-->
-<!--											</view>-->
-<!--											<view class="tab-item-left-time">{{item.createDate}}</view>-->
-<!--										</view>-->
-<!--										<image src="{{item.coverUri}}" class="tab-item-right" mode="aspectFill"></image>-->
-<!--									</view>-->
-<!--								</block>-->
-<!--							</view>-->
-<!--						</scroll-view>-->
-<!--						<view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>-->
-<!--					</view>-->
-<!--					<noData wx:else height="50" flexd="true"/>-->
-<!--				</view>-->
-<!--			</van-tab>-->
-<!--		</van-tabs>-->
 		<scroll-view scroll-x="true" class="scrollView">
 			<block wx:for="{{list}}" wx:key="index">
 				<view catch:tap="tabItem" class="{{index===on_index?'isActive':''}}" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</view>
@@ -88,13 +44,13 @@
 						</view>
 					</block>
 				</view>
+				<view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
 			</scroll-view>
-			<view class="bottom-text" wx:if="{{isBottom}}">- 到底啦 -</view>
 		</view>
 		<noData wx:else height="50" flexd="true"/>
 	</view>
 	<view class="tabContent" hidden="{{_index!=='1'}}">
-		<view class="message-view" wx:if="{{postList!==0}}">
+		<view class="message-view" wx:if="{{postList.length!==0}}">
 			<scroll-view
 					class="view-list"
 					scroll-y="{{!isIndrag}}"

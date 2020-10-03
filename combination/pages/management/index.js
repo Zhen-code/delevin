@@ -51,9 +51,10 @@ Page({
 		this.selectType(this.data.tabIndex)
 	},
 
-	dialNumber() {
+	dialNumber(e) {
+		let {phone} = e.currentTarget.dataset;
 		wx.makePhoneCall({
-			phoneNumber: '17620835317'
+			phoneNumber: phone
 		})
 	},
 

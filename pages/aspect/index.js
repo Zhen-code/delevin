@@ -63,16 +63,22 @@ Page({
     let that = this;
     // console.log('离开高度'+this.data.hei)
     if(this.data.hei>80){
-      this.setData({
-        desc: '正在刷新',
-        hei: 80
-      });
-      that.pageIndex = 1;
-      that.postPIndex = 1;
       if(that.data._index == 0){
-        that.getNewsList(that.classifyId);
+          that.setData({
+              desc: '正在刷新',
+              hei: 80,
+              newsList: []
+          });
+          that.pageIndex = 1;
+          that.getNewsList(that.classifyId);
       }else if(that.data._index == 1){
-        that.getPostList();
+          that.setData({
+              desc: '正在刷新',
+              hei: 80,
+              postList:[]
+          });
+          that.postPIndex = 1;
+          that.getPostList();
       }
       // console.log('下拉刷新了')
     }else{
@@ -170,19 +176,6 @@ Page({
       _index: e.target.dataset.index
     })
   },
-  onChange(event) {
-    console.log(event.detail);
-    this.setData({
-      tabActive: event.detail.index,
-      newsList:[]
-    });
-    this.pageIndex = 1;
-    let {index} =  event.detail;
-    let {list} = this.data;
-    let classifyId = list[index]['id'];
-    this.classifyId = classifyId;
-    this.getNewsList(classifyId);
-  },
   goHouseDetal(e){
     wx.navigateTo({
       url: '/combination/pages/aspectDetail/index?id=' + e.currentTarget.dataset.id,
@@ -219,21 +212,14 @@ Page({
       this.pageTotal = res.pageTotal;
       let {newsList} = this.data;
       let resList = res.list || [];
-      if(this.data.hei>=80){
-        this.setData({
-          newsList: resList,
-          isBottom:isBottom
-        })
-      }else{
-        this.setData({
+      this.setData({
           newsList: [...newsList,...resList],
           isBottom:isBottom
         });
-      }
+
     }).then(()=>{
           this.i = 0;
           this.setData({
-            scrollTop: 0,
             hei: 0,
             isIndrag: false,
             desc: '下拉刷新'
@@ -244,7 +230,6 @@ Page({
     })
   },
   getArticleClassify(){
-    console.log(666)
     http({
       url: api.personalHome.articleClassify,
       method: 'GET',
@@ -253,6 +238,7 @@ Page({
       }
     }).then(res=>{
       console.log(res);
+        this.classifyId = res[0]['id']|| 0;
         this.setData({
           list: res|| [],
           fId: res[0]['id']|| 0,
@@ -305,20 +291,12 @@ Page({
       this.postPTotal = res.pageTotal;
       let {postList} = this.data;
       let resList = res.list || [];
-      if(this.data.hei>=80|| this.postPIndex===1){
-        this.setData({
-          postList: resList,
-          isPostBottom:isPostBottom
-        });
-      }else{
         this.setData({
           postList: [...postList,...resList],
           isPostBottom:isPostBottom
         });
-      }
     }).then(()=>{
       this.setData({
-        scrollTop: 0,
         hei: 0,
         isIndrag: false,
         desc: '下拉刷新'

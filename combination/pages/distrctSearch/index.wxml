@@ -1,10 +1,12 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="搜小区" />
-<view class="wrap" style="padding-top:{{paddingTop}}px">
+<scroll-view class="wrap"
+             style="padding-top:{{paddingTop}}px"
+             scroll-y="false">
     <view class="search-block">
         <search placeholder="搜索" isCancel="{{isCancel}}" bind:getData="getData"/>
     </view>
     <view class="list">
-        <view class="message-view">
+        <view class="message-view" wx:if="{{list.length!==0}}">
             <scroll-view
                     class="view-list"
                     scroll-y="{{!isIndrag}}"
@@ -43,9 +45,10 @@
                         </view>
                     </view>
                 </view>
+                <view class="bottom">- 到底啦 -</view>
+                <view style="height:{{isIos?safeBottom:0}}px"></view>
             </scroll-view>
         </view>
-
+        <noData wx:else height="70" flexd="true"/>
     </view>
-    <view class="bottom">- 到底啦 -</view>
-</view>
+</scroll-view>
