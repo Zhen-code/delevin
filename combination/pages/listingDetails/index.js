@@ -165,20 +165,20 @@ Page({
 					return items
 				})
 			}
-			if(res.rentHistory){
-				res.rentHistory.map((items)=>{
-					categories.push(items.dateFor)
-					seriesData.push(items.price)
-					return items
-				})
-			}
-			if(res.secondHandHistory){
-				res.secondHandHistory.map((items)=>{
-					categories.push(items.dateFor)
-					seriesData.push(items.price)
-					return items
-				})
-			}
+			// if(res.rentHistory){
+			// 	res.rentHistory.map((items)=>{
+			// 		categories.push(items.dateFor)
+			// 		seriesData.push(items.price)
+			// 		return items
+			// 	})
+			// }
+			// if(res.secondHandHistory){
+			// 	res.secondHandHistory.map((items)=>{
+			// 		categories.push(items.dateFor)
+			// 		seriesData.push(items.price)
+			// 		return items
+			// 	})
+			// }
 			console.log(seriesData,categories)
 			this.setData({
 				item: res,
@@ -349,13 +349,30 @@ Page({
 		})
 	},
 
+	getAddvisitorRecord(){
+		request.visitorRecord({
+			"houseId":  item.houseId,
+			"houseType": item.houseMold,
+			"intervieweeId": '',
+			"type": "HOUSE"
+		}).then((res)=>{	
+			
+		}).catch((err)=>{
+			console.log(err)
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
 		let type = "";
 		let item = JSON.parse(options.item)
-		console.log(item)
 		switch (item.title) {
 			case "新房房源":
 				type = "ESTATE";
@@ -371,13 +388,13 @@ Page({
 				break;
 			default:
 		}
-		console.log(type)
 		this.setData({
 			type: type,
 			id: item.id,
 			title: item.title,
 		}, () => {
 			this.getData();
+			this.getAddvisitorRecord()
 		})
 		this.cWidth = wx.getSystemInfoSync().windowWidth;
 		this.cHeight = 500 / 750 * wx.getSystemInfoSync().windowWidth;
