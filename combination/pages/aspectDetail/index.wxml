@@ -1,5 +1,5 @@
 <!--combination/pages/aspectDetail/index.wxml-->
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="新闻资讯" />
+<navbar backHome="{{true}}" back="{{false}}" hideBack="{{hideBack}}" bgColor="{{bgColor}}" title="新闻资讯" />
 <scroll-view scroll-y
              style="height:{{winHeight}}"
               scroll-into-view="{{toView}}">

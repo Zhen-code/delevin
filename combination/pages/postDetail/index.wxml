@@ -1,5 +1,5 @@
 <!--combination/pages/postDetail/index.wxml-->
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="帖子详情" />
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="帖子详情" hideBack="{{hideBack}}"/>
 <scroll-view scroll-y="true"
               style="height:{{winHeight}}">
 <view class="content" style="padding-top:{{paddingTop}}px">

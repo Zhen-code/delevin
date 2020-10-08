@@ -8,7 +8,7 @@
 					<view class="view-row-bottom-top">
 						<text>{{item.title}}</text>
 					</view>
-					<rich-text nodes="{{item.details}}" class="view-row-bottom-text"></rich-text>
+					<view class="view-row-bottom-text">{{item.details}}</view>
 				</view>
 			</view>
 		</block>

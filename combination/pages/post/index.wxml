@@ -3,7 +3,7 @@
 <view class="content" style="padding-top:{{paddingTop}}px">
     <input value="{{title}}" type="text" placeholder="请输入标题…" placeholder-class="placeholderStyle" class="titleInput"
            bind:input="titleInput"></input>
-    <textarea value="{{content}}" placeholder="请输入内容…" placeholder-class="taStyle" auto-height="true"
+    <textarea value="{{content}}" maxlength='-1' placeholder="请输入内容…" placeholder-class="taStyle" auto-height="true"
               adjust-position="true" disable-default-padding="true" bindinput="contentInput" class="textareaInput">
     </textarea>
 <view class="label">
