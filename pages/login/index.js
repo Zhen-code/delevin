@@ -36,7 +36,7 @@ Page({
                       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
                       wx.getUserInfo({
                         success: function (res) {
-                          console.log(rese,12333)
+                          console.log(rese, 12333)
                           request.login({
                             "encryptedData": numberData.encryptedData,
                             "headImgUri": res.userInfo.avatarUrl,
@@ -108,6 +108,26 @@ Page({
     } else {
       console.log('拒绝授权')
     }
+  },
+
+  privacyPolicy() {
+    request.link({
+      'type': 'LOGIN_SERVICE_AGREEMENT'
+    }).then((res) => {
+      let item = JSON.stringify({
+        "type": "登录服务协议",
+        "link": res.link,
+      })
+      wx.navigateTo({
+        url: `/combination/pages/webView/index?item=${item}`,
+      })
+    }).catch((err) => {
+      wx.showToast({
+        title: '数据错误',
+        icon: 'none',
+        duration: 2500
+      })
+    })
   },
 
   onLoad: function () {

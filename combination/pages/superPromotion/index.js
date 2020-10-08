@@ -107,10 +107,18 @@ Page({
 	},
 
 	toSelectPromotion() {
-		app.globalData.selectPromotion = [];
-		wx.navigateTo({
-			url: '/combination/pages/selectPromotion/index',
-		})
+		if(this.data.item.length >= 20){
+			wx.showToast({
+				title: '房源最多可选择20个',
+				icon: 'none',
+				duration: 2500
+			})
+		}else{
+			app.globalData.selectPromotion = [];
+			wx.navigateTo({
+				url: '/combination/pages/selectPromotion/index',
+			})
+		}
 	},
 
 	getData() {
@@ -119,6 +127,7 @@ Page({
 			"pageIndex": this.data.pageIndex,
 		}).then((res) => {
 			this.setData({
+				item:[],
 				list: res.list,
 			})
 		}).catch((err) => {
@@ -225,6 +234,7 @@ Page({
 		if (item) {
 			this.setData({
 				info: item,
+				item:[],
 			}, () => {
 				this.getData();
 			})
@@ -248,7 +258,7 @@ Page({
 		if (selectPromotion !== 0) {
 			item.push(...selectPromotion)
 			this.setData({
-				item: item,
+				item: item.slice(0,20),
 			})
 		}
 	},

@@ -97,41 +97,41 @@
 		<view class="introduction-specification" wx:if="{{type === 'ESTATE'}}">
 			<text class="components-title marginTop">楼盘基本信息</text>
 			<view class="introduction-specification-bottom">
-				<view class="name-type">楼盘名称：<text class="name-typeValue">{{item.developers}}</text></view>
-				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property}}</text></view>
+				<view class="name-type">楼盘名称：<text class="name-typeValue">{{item.developers || '暂无'}}</text></view>
+				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property || '暂无'}}</text></view>
 				<view class="name-type" wx:if="{{stlectState}}">物业类别：<text
-						class="name-typeValue">{{item.propertyClassify}}</text></view>
+						class="name-typeValue">{{item.propertyClassify || '暂无'}}</text></view>
 				<view class="name-type" wx:if="{{stlectState}}">装修状况：<text
-						class="name-typeValue">{{item.decorationsStatus}}</text></view>
-				<view class="name-type" wx:if="{{stlectState}}">环线位置：<text class="name-typeValue">{{item.loopLocation}}</text>
+						class="name-typeValue">{{item.decorationsStatus || '暂无'}}</text></view>
+				<view class="name-type" wx:if="{{stlectState}}">环线位置：<text class="name-typeValue">{{item.loopLocation || '暂无'}}</text>
 				</view>
 			</view>
 			<text class="components-title marginTop" wx:if="{{stlectState}}">销售信息</text>
 			<view class="introduction-specification-bottom" wx:if="{{stlectState}}">
 				<view class="name-type">销售状态：<text class="name-typeValue">{{item.salesStatus === 'ON_SALE'?'在售':'待售'}}</text>
 				</view>
-				<view class="name-type">开盘时间：<text class="name-typeValue">{{item.openingDate}}</text></view>
-				<view class="name-type">交房时间：<text class="name-typeValue">{{item.deliveryDate}}</text></view>
+				<view class="name-type">开盘时间：<text class="name-typeValue">{{item.openingDate || '暂无'}}</text></view>
+				<view class="name-type">交房时间：<text class="name-typeValue">{{item.deliveryDate || '暂无'}}</text></view>
 				<!-- <view class="name-type">楼盘优惠：<text class="name-typeValue">{{item.loopLocation}}</text></view> -->
-				<view class="name-type">新房补贴：<text class="name-typeValue">{{item.houseSubsidy}}</text></view>
-				<view class="name-type">开发商：<text class="name-typeValue">{{item.developers}}</text></view>
+				<view class="name-type">新房补贴：<text class="name-typeValue">{{item.houseSubsidy || '暂无'}}</text></view>
+				<view class="name-type">开发商：<text class="name-typeValue">{{item.developers || '暂无'}}</text></view>
 				<view class="name-type">楼盘地址：<text class="name-typeValue">{{item.province}}{{item.salesAddress}}</text></view>
-				<view class="name-type">咨询电话：<text class="name-typeValue">{{item.telephone}}</text></view>
+				<view class="name-type">咨询电话：<text class="name-typeValue">{{item.telephone  || '暂无'}}</text></view>
 			</view>
 			<text class="components-title marginTop" wx:if="{{stlectState}}">小区规划</text>
 			<view class="introduction-specification-bottom" wx:if="{{stlectState}}">
-				<view class="name-type">占地面积：<text class="name-typeValue">{{item.areaCovered}}</text></view>
-				<view class="name-type">建筑面积：<text class="name-typeValue">{{item.floorage}}</text></view>
-				<view class="name-type">绿化率：<text class="name-typeValue">{{item.greenCoverage}}</text></view>
-				<view class="name-type">停车位：<text class="name-typeValue">{{item.parkingSpace}}</text></view>
-				<view class="name-type">停车配比：<text class="name-typeValue">{{item.parkingRatio}}</text></view>
-				<view class="name-type">规划户数：<text class="name-typeValue">{{item.plannedHouseholds}}</text></view>
-				<view class="name-type">楼层状况：<text class="name-typeValue">{{item.floorCondition}}</text></view>
-				<view class="name-type">物业费：<text class="name-typeValue">{{item.propertyFee}}</text></view>
-				<view class="name-type">物业公司：<text class="name-typeValue">{{item.propertyCompany}}</text></view>
+				<view class="name-type">占地面积：<text class="name-typeValue">{{item.areaCovered || '暂无'}}</text></view>
+				<view class="name-type">建筑面积：<text class="name-typeValue">{{item.floorage || '暂无'}}</text></view>
+				<view class="name-type">绿化率：<text class="name-typeValue">{{item.greenCoverage || '暂无'}}</text></view>
+				<view class="name-type">停车位：<text class="name-typeValue">{{item.parkingSpace || '暂无'}}</text></view>
+				<view class="name-type">停车配比：<text class="name-typeValue">{{item.parkingRatio || '暂无'}}</text></view>
+				<view class="name-type">规划户数：<text class="name-typeValue">{{item.plannedHouseholds || '暂无'}}</text></view>
+				<view class="name-type">楼层状况：<text class="name-typeValue">{{item.floorCondition || '暂无'}}</text></view>
+				<view class="name-type">物业费：<text class="name-typeValue">{{item.propertyFee || '暂无'}}</text></view>
+				<view class="name-type">物业公司：<text class="name-typeValue">{{item.propertyCompany || '暂无'}}</text></view>
 			</view>
 			<view class="introduction-specification-add" bindtap="changeArrow">
-				<text class="introduction-specification-add-title">{{stlectData}}</text>
+				<text class="introduction-specification-add-title">{{stlectData || '暂无'}}</text>
 				<van-icon size="30rpx" name="{{stlectName}}" color="#88ABFF" />
 			</view>
 		</view>
@@ -139,18 +139,18 @@
 		<!-- 二手房详情 -->
 		<view class="introduction-specification" wx:if="{{type === 'SECOND_HAND'}}">
 			<view class="introduction-specification-top">
-				<view class="name-type">单价：<text class="name-typeValue">{{item.unitPrice}}元/m²</text></view>
-				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear}}</text></view>
-				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition}}</text></view>
-				<view class="name-type">产权：<text class="name-typeValue">{{item.property}}</text></view>
-				<view class="name-type">朝向：<text class="name-typeValue">{{item.orientationType}}</text></view>
-				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationsStatusType}}</text></view>
-				<view class="name-type">楼型：<text class="name-typeValue">{{item.floorCondition}}</text></view>
-				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator}}</text></view>
+				<view class="name-type">单价：<text class="name-typeValue">{{item.unitPrice || '暂无'}}元/m²</text></view>
+				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear || '暂无'}}</text></view>
+				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition || '暂无'}}</text></view>
+				<view class="name-type">产权：<text class="name-typeValue">{{item.property || '暂无'}}</text></view>
+				<view class="name-type">朝向：<text class="name-typeValue">{{item.orientationType || '暂无'}}</text></view>
+				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationsStatusType || '暂无'}}</text></view>
+				<view class="name-type">楼型：<text class="name-typeValue">{{item.floorCondition || '暂无'}}</text></view>
+				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator || '暂无'}}</text></view>
 			</view>
 			<view class="introduction-specification-bottom">
-				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate}}</text></view>
-				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersName}}</text>
+				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate || '暂无'}}</text></view>
+				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersName || '暂无'}}</text>
 				</view>
 				<view class="name-type">首付月供：<text
 						class="name-typeValue name-typeValueColor">预计{{item.downPayment}}万元，月供{{item.monthlyContribution}}元</text>
@@ -161,37 +161,37 @@
 		<!-- 租房 -->
 		<view class="introduction-specification" wx:if="{{type === 'TENANCY'}}">
 			<view class="introduction-specification-top">
-				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition}}</text></view>
+				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition || '暂无'}}</text></view>
 				<view class="name-type">地铁：<block wx:for="{{item.metro}}" wx:key="index"><text
-							class="name-typeValue">{{item.lineName}}{{item.routeStop}}</text></block>
+							class="name-typeValue">{{item.lineName}}{{item.routeStop  || '暂无'}}</text></block>
 				</view>
 				<view class="name-type">朝向：<text class="name-typeValue">{{item.orientationType || '暂无'}}</text></view>
 				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationsStatusType}}</text></view>
 				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator || '暂无'}}</text></view>
-				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear}}</text></view>
+				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear  || '暂无'}}</text></view>
 			</view>
 			<view class="introduction-specification-bottom">
-				<view class="name-type">付款方式：<text class="name-typeValue">{{item.payMethod}}</text></view>
-				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate}}</text></view>
-				<view class="name-type">房屋配置：<text class="name-typeValue">{{item.houseDisposal}}</text></view>
-				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersName}}</text></view>
+				<view class="name-type">付款方式：<text class="name-typeValue">{{item.payMethod || '暂无'}}</text></view>
+				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate || '暂无'}}</text></view>
+				<view class="name-type">房屋配置：<text class="name-typeValue">{{item.houseDisposal || '暂无'}}</text></view>
+				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersName || '暂无'}}</text></view>
 			</view>
 		</view>
 
 		<!-- 小区房 -->
 		<view class="introduction-specification" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
 			<view class="introduction-specification-bottom">
-				<view class="name-type">小区地址：<text class="name-typeValue">{{item.detailsAddress}}</text></view>
+				<view class="name-type">小区地址：<text class="name-typeValue">{{item.detailsAddress || '暂无'}}</text></view>
 			</view>
 			<view class="introduction-specification-top">
-				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property}}</text></view>
-				<view class="name-type">容积率：<text class="name-typeValue">{{item.plotRatio}}%</text></view>
-				<view class="name-type">物业类别：<text class="name-typeValue">{{item.propertyClassifyName}}</text></view>
-				<view class="name-type">停车位：<text class="name-typeValue">{{item.parkingSpace}}</text></view>
-				<view class="name-type">建筑年代：<text class="name-typeValue">{{item.builtYear}}</text></view>
-				<view class="name-type">物业费：<text class="name-typeValue">{{item.propertyFee}}</text></view>
-				<view class="name-type">物业公司：<text class="name-typeValue">{{item.propertyCompany}}</text></view>
-				<view class="name-type">绿化率：<text class="name-typeValue">{{item.greenCoverage}}%</text></view>
+				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property || '暂无'}}</text></view>
+				<view class="name-type">容积率：<text class="name-typeValue">{{item.plotRatio || '暂无'}}%</text></view>
+				<view class="name-type">物业类别：<text class="name-typeValue">{{item.propertyClassifyName || '暂无'}}</text></view>
+				<view class="name-type">停车位：<text class="name-typeValue">{{item.parkingSpace || '暂无'}}</text></view>
+				<view class="name-type">建筑年代：<text class="name-typeValue">{{item.builtYear || '暂无'}}</text></view>
+				<view class="name-type">物业费：<text class="name-typeValue">{{item.propertyFee || '暂无'}}</text></view>
+				<view class="name-type">物业公司：<text class="name-typeValue">{{item.propertyCompany || '暂无'}}</text></view>
+				<view class="name-type">绿化率：<text class="name-typeValue">{{item.greenCoverage || '暂无'}}%</text></view>
 			</view>
 		</view>
 	</view>

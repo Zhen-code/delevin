@@ -31,7 +31,6 @@ Page({
 		listingsList: [],
 		type: false,
 		title: '新房房源',
-		showInfo: false,
 		total: 0,
 		link: '',
 	},
@@ -73,45 +72,6 @@ Page({
 				icon: 'none',
 				duration: 2500
 			})
-		})
-	},
-
-	getUserInfo(e) {
-		let than = this;
-		wx.getSetting({
-			success(res) {
-				if (res.authSetting['scope.userInfo']) {
-					// 已经授权，可以直接调用 getUserInfo 获取头像昵称
-					wx.getUserInfo({
-						success: function (res) {
-							let loginInfo = app.globalData.loginInfo;
-							let data = {
-								"encryptedData": loginInfo.encryptedData,
-								"headImgUri": res.userInfo.avatarUrl,
-								"iv": loginInfo.iv,
-								"nickName": res.userInfo.nickName,
-								"openId": loginInfo.openId,
-								"sessionKey": loginInfo.sessionKey,
-							}
-							request.login(data).then((res) => {
-								let token = res.token;
-								console.log(res.token, 1111)
-								wx.removeStorageSync('token')
-								wx.setStorageSync('token', token)
-								than.setData({
-									showInfo: false,
-								})
-							}).catch((err) => {
-								wx.showToast({
-									title: '获取失败，请重新登录',
-									icon: 'none',
-									duration: 2500
-								})
-							})
-						}
-					})
-				}
-			}
 		})
 	},
 
@@ -456,12 +416,6 @@ Page({
 		}
 	},
 
-	changeShowInfo() {
-		this.setData({
-			showInfo: false,
-		})
-	},
-
 	getShareIt() {
 		this.setData({
 			share: true,
@@ -630,21 +584,6 @@ Page({
 		this.getIcon();
 		this.getNews();
 		this.getNewListingsList();
-		let then = this;
-		wx.getSetting({
-			success(res) {
-				if (res.authSetting['scope.userInfo']) {
-					// 已经授权，可以直接调用 getUserInfo 获取头像昵称
-					then.setData({
-						showInfo: false,
-					})
-				} else {
-					then.setData({
-						showInfo: true,
-					})
-				}
-			}
-		})
 	},
 
 	/**

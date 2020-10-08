@@ -42,11 +42,19 @@ Page({
 		let list = item.filter(item=>{
 			return item.checked === true
 		})
-		this.setData({
-			item,
-			list:list,
-			checkedIndex:list.length
-		});
+		if(list.length === 21){
+			wx.showToast({
+				title: '房源最多可选择20个',
+				icon: 'none',
+				duration: 2500
+			})
+		}else{
+			this.setData({
+				item,
+				list:list,
+				checkedIndex:list.length
+			});
+		}
 	},
 
 	getCityValue(e) {
@@ -178,8 +186,8 @@ Page({
 	 */
 	onLoad: function (options) {
 		this.setData({
-			city: app.globalData.address.city || '广州市',
-			province: app.globalData.address.province || '广东省',
+			city: app.globalData.address.city || '',
+			province: app.globalData.address.province || '',
 		}, () => {
 			this.getData()
 		})
