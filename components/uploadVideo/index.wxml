@@ -1,9 +1,7 @@
-<!--请勿删除！-->
 <van-uploader
               name="videoFile"
               accept="video"
               deletable="{{ true }}"
-              capture="['album', 'camera']"
               max-count="1"
               compressed="true"
               bind:after-read="afterRead"

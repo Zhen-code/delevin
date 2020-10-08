@@ -9,14 +9,13 @@
         </view>
         <view class="tab-item">
             <view class="tab-item-left">所属小区</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"  catch:tap="goSelectDistrct"
+                  data-type="houseInType">
                 <text class="common-text" wx:if="{{districtTitle!==''}}">{{districtTitle}}</text>
                 <input wx:else placeholder="请选择所属小区" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSelectDistrct"
-                       data-type="houseInType"
                 ></image>
             </view>
         </view>
@@ -29,7 +28,8 @@
         </view>
         <view class="tab-item">
             <view class="tab-item-left">房源标签</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"  catch:tap="goLabelSheet"
+                  data-type="labelType">
                 <view class="houseType-wrap" wx:if="{{labelType.length!==0}}">
                     <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
                         {{item}}
@@ -42,8 +42,6 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goLabelSheet"
-                       data-type="labelType"
                 ></image>
             </view>
         </view>
@@ -73,13 +71,12 @@
         </view>
         <view class="tab-item">
             <view class="tab-item-left">建筑年代</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right" catch:tap="goPickTime"
+                  data-type="buildingTime">
                 <text class="common-text">{{buildingTime}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goPickTime"
-                       data-type="buildingTime"
                 ></image>
             </view>
         </view>
@@ -91,13 +88,12 @@
         </view>
         <view class="tab-item">
             <view class="tab-item-left">装修状况</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"  catch:tap="goSheet"
+                  data-type="zxCase">
                 <text class="common-text">{{zxCase}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSheet"
-                       data-type="zxCase"
                 ></image>
             </view>
         </view>
@@ -112,25 +108,24 @@
     <view class="xq-bottom">
         <view class="tab-item">
             <view class="tab-item-left">朝向</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"  catch:tap="goSheet"
+                  data-type="orientType">
                 <text class="common-text">{{orient}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSheet"
-                       data-type="orientType"
                 ></image>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">详细地址</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"
+                  catch:tap="goPickAddress">
                 <text class="common-text" wx:if="{{address!==''}}">{{address}}</text>
                 <input wx:else placeholder="请选择地址" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goPickAddress"
                 ></image>
             </view>
         </view>
@@ -142,7 +137,9 @@
         </view>
         <view class="tab-item">
             <view class="tab-item-left">邻近地铁</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"
+                  catch:tap="goSubWaySheet"
+                  data-type="subway">
                 <view class="houseType-wrap">
                     <view class="houseType-item" wx:for="{{subway}}" wx:key="*this">
                         {{item.lineName+''+item.routeStop}}
@@ -154,8 +151,6 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSubWaySheet"
-                       data-type="subway"
                 ></image>
             </view>
         </view>

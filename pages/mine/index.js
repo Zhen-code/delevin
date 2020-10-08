@@ -11,9 +11,57 @@ Page({
 	 */
 	data: {
 		show: false,
+		showInfo: false,
 		userInfo: {},
 		paddingTop: topHeight,
 		tabTitle: "切换至经纪端",
+	},
+
+	getUserInfo(e) {
+		let than = this;
+		wx.getSetting({
+			success(res) {
+				if (res.authSetting['scope.userInfo']) {
+					// 已经授权，可以直接调用 getUserInfo 获取头像昵称
+					wx.getUserInfo({
+						success: function (res) {
+							let loginInfo = app.globalData.loginInfo;
+							let data = {
+								"encryptedData": loginInfo.encryptedData,
+								"headImgUri": res.userInfo.avatarUrl,
+								"iv": loginInfo.iv,
+								"nickName": res.userInfo.nickName,
+								"openId": loginInfo.openId,
+								"sessionKey": loginInfo.sessionKey,
+							}
+							request.login(data).then((res) => {
+								let token = res.token;
+								console.log(res.token, 1111)
+								wx.removeStorageSync('token')
+								wx.setStorageSync('token', token)
+								than.setData({
+									showInfo: false,
+								},()=>{
+									than.getData()
+								})
+							}).catch((err) => {
+								wx.showToast({
+									title: '获取失败，请重新登录',
+									icon: 'none',
+									duration: 2500
+								})
+							})
+						}
+					})
+				}
+			}
+		})
+	},
+
+	changeShowInfo() {
+		this.setData({
+			showInfo: false,
+		})
 	},
 
 	getTab() {
@@ -193,7 +241,21 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		let then = this;
+		wx.getSetting({
+			success(res) {
+				if (res.authSetting['scope.userInfo']) {
+					// 已经授权，可以直接调用 getUserInfo 获取头像昵称
+					then.setData({
+						showInfo: false,
+					})
+				} else {
+					then.setData({
+						showInfo: true,
+					})
+				}
+			}
+		})
 	},
 
 	/**

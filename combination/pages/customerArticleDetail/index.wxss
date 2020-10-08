@@ -1,4 +1,7 @@
 /* combination/pages/aspectDetail/index.wxss */
+page{
+    height: 100%;
+}
 .content{
     background: #FFFFFF;
     padding: 0 32rpx;
@@ -49,6 +52,7 @@
     width: 750rpx;
     height: 112rpx;
     background: #F8F8F8;
+    margin-bottom: 112rpx;
 }
 .bottom-contain{
     position: fixed;
@@ -85,4 +89,7 @@
     padding: 0;
     margin: 0;
     opacity: 0;
+}
+.scrollWrap{
+   height: 90%;
 }

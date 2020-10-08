@@ -72,7 +72,8 @@
         "pages/distrctSearch/index",
         "pages/replyComment/index",
         "pages/chooseAnInstitution/index",
-        "pages/customerArticleDetail/index"
+        "pages/customerArticleDetail/index",
+        "pages/shareInfoImg/index"
       ]
     }
   ],

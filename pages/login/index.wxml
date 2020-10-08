@@ -2,5 +2,5 @@
 <view class="view">
 	<navbar title="登录/注册" />
 	<van-button type="primary" size='normal' open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">微信授权快捷登录</van-button>
-	<view class="title">我们郑重承诺：您的个人信息与真实号码受到平台隐私保护，不会泄露给第三方。登录即代表您同意<text class="text">《房猿通隐私服务协议》</text></view>
+	<view class="title">我们郑重承诺：您的个人信息与真实号码受到平台隐私保护，不会泄露给第三方。登录即代表您同意<text class="text" bindtap="privacyPolicy">《房猿通隐私服务协议》</text></view>
 </view>

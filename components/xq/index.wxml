@@ -9,7 +9,7 @@
         </view>
         <view class="tab-item">
             <view class="tab-item-left">户型</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"  catch:tap="goIndoorSheet" data-type="houseInType">
                 <view class="houseType-wrap" wx:if="{{houseType.length!==0}}">
               <view class="houseType-item" wx:for="{{houseType}}" wx:key="*this">
                   {{item.name}}
@@ -22,8 +22,6 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goIndoorSheet"
-                       data-type="houseInType"
                 ></image>
             </view>
         </view>
@@ -43,7 +41,7 @@
         </view>
         <view class="tab-item">
             <view class="tab-item-left">房源标签</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"  catch:tap="goLabelSheet" data-type="labelType">
                 <view class="houseType-wrap" wx:if="{{labelType.length!==0}}">
                     <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
                         {{item}}
@@ -56,8 +54,6 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goLabelSheet"
-                       data-type="labelType"
                 ></image>
             </view>
         </view>
@@ -66,39 +62,33 @@
     <view class="xq-center">
         <view class="tab-item">
             <view class="tab-item-left">物业类别</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"  catch:tap="goSheet" data-type="propertyType">
                 <text wx:if="{{propertyType!==''}}" class="common-text">{{propertyType}}</text>
                 <input wx:else placeholder="请选择物业类别" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSheet"
-                       data-type="propertyType"
                 ></image>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">建筑类型</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"  catch:tap="goSheet" data-type="buildingType">
                 <text wx:if="{{buildingType!==''}}" class="common-text">{{buildingType}}</text>
                 <input wx:else placeholder="请选择建筑类型" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSheet"
-                       data-type="buildingType"
                 ></image>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">建筑年代</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"  catch:tap="goPickTime" data-type="buildingTime">
                 <text class="common-text">{{buildingTime}}</text>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goPickTime"
-                       data-type="buildingTime"
                 ></image>
             </view>
         </view>
@@ -167,7 +157,7 @@
         </view>
         <view class="tab-item">
             <view class="tab-item-left">邻近地铁</view>
-            <view class="tab-item-right">
+            <view class="tab-item-right"  catch:tap="goSubWaySheet" data-type="subway">
                 <view class="houseType-wrap">
                     <view class="houseType-item" wx:for="{{subway}}" wx:key="*this">
                         {{item.lineName+''+item.routeStop}}
@@ -179,8 +169,6 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
-                       catch:tap="goSubWaySheet"
-                       data-type="subway"
                 ></image>
             </view>
         </view>

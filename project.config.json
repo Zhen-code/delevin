@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "postcss": true,
     "preloadBackgroundData": false,
@@ -13,7 +13,7 @@
     "coverView": true,
     "nodeModules": true,
     "autoAudits": false,
-    "showShadowRootInWxmlPanel": false,
+    "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
     "checkInvalidKey": true,
     "checkSiteMap": true,
@@ -33,9 +33,9 @@
     "packNpmRelationList": []
   },
   "compileType": "miniprogram",
-  "libVersion": "2.12.2",
+  "libVersion": "2.12.0",
   "appid": "wxe0ce08c67e4c6d85",
-  "projectname": "delevin-mini-program",
+  "projectname": "fangyuantong-demo",
   "cloudfunctionTemplateRoot": "",
   "watchOptions": {
     "ignore": []
@@ -102,285 +102,6 @@
           "name": "combination/pages/listingDetails/index",
           "pathName": "combination/pages/listingDetails/index",
           "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/propertyType/index",
-          "pathName": "combination/pages/propertyType/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/browsePictures/index",
-          "pathName": "combination/pages/browsePictures/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/sellHouse/index",
-          "pathName": "combination/pages/sellHouse/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/map/index",
-          "pathName": "combination/pages/map/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/listings/index",
-          "pathName": "combination/pages/listings/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "新闻详情页",
-          "pathName": "combination/pages/aspectDetail/index",
-          "query": "id=1",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "发帖页面",
-          "pathName": "combination/pages/post/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": 13,
-          "name": "combination/pages/broker/index",
-          "pathName": "combination/pages/broker/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/myCollection/index",
-          "pathName": "combination/pages/myCollection/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "帖子详情",
-          "pathName": "combination/pages/postDetail/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "添加房源",
-          "pathName": "combination/pages/addHouseOrigin/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/shareItCode/index",
-          "pathName": "combination/pages/shareItCode/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/map/index",
-          "pathName": "combination/pages/map/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "搜小区",
-          "pathName": "combination/pages/distrctSearch/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/modify/index",
-          "pathName": "combination/pages/modify/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/recording/index",
-          "pathName": "combination/pages/recording/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/management/index",
-          "pathName": "combination/pages/management/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/superPromotion/index",
-          "pathName": "combination/pages/superPromotion/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/generalPromotion/index",
-          "pathName": "combination/pages/generalPromotion/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/superPromotion/index",
-          "pathName": "combination/pages/superPromotion/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/selectPromotion/index",
-          "pathName": "combination/pages/selectPromotion/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/myPackage/index",
-          "pathName": "combination/pages/myPackage/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/modify/index",
-          "pathName": "combination/pages/modify/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/homepage/index",
-          "pathName": "combination/pages/homepage/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/customerPoster/index",
-          "pathName": "combination/pages/customerPoster/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/customerArticles/index",
-          "pathName": "combination/pages/customerArticles/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "帖子发布",
-          "pathName": "combination/pages/post/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "帖子详情",
-          "pathName": "combination/pages/postDetail/index",
-          "query": "id=5",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "新闻详情",
-          "pathName": "combination/pages/aspectDetail/index",
-          "query": "id=3",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "看点首页",
-          "pathName": "pages/aspect/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "搜小区",
-          "pathName": "combination/pages/distrctSearch/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/chooseAnInstitution/index",
-          "pathName": "combination/pages/chooseAnInstitution/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "pages/mine/index",
-          "pathName": "pages/mine/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/broker/index",
-          "pathName": "combination/pages/broker/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "獲客文章",
-          "pathName": "combination/pages/customerArticles/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": 41,
-          "name": "获客文章详情",
-          "pathName": "combination/pages/customerArticleDetail/index",
-          "query": "id=3",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "访客记录",
-          "pathName": "combination/pages/recording/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "获客海报",
-          "pathName": "combination/pages/customerPoster/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "客源管理",
-          "pathName": "combination/pages/management/index",
           "scene": null
         }
       ]

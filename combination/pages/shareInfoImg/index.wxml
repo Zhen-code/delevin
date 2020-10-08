@@ -1,0 +1,31 @@
+<canvas
+        id="share"
+        canvas-id="share"
+        disable-scroll="true"
+        style="width:750rpx;height:1088rpx"
+></canvas>
+<canvas style="width: 200px; height: 200px;" canvas-id="myQrcode"></canvas>
+
+<view class='container-main' hidden='{{!canvasHidden}}'>
+    <view class='point-img'>
+        <image src='https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3922290090,3177876335&fm=26&gp=0.jpg'
+               class='bjt'
+                mode="widthFix"></image>
+        <view class="point-container">
+            <view>
+                <view class='am-cname'><text>{{cname}}</text></view>
+                <view class="contact">
+                    <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
+                    <text>13824465795</text>
+                </view>
+                <view class="desc">个人介绍个人介绍奥克兰的公交卡</view>
+            </view>
+            <view class="am-img"><image src='{{imgurl}}'></image></view>
+        </view>
+    </view>
+</view>
+<view class='am-footer'>
+    <button open-type="share" data-tag="share1" id="btn_share1">转发</button>
+    <button bindtap='saveImageToPhotosAlbum'>保存图片</button>
+
+</view>

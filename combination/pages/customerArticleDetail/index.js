@@ -16,7 +16,8 @@ Page({
     author: '',
     time: '',
     nodes: '',
-    id: ''
+    id: '',
+    safeBottom: 0
   },
   id: '',
   timeFlag: 1,
@@ -86,6 +87,12 @@ Page({
    */
   onShow: function () {
     this.addArticleVisited();
+    let res = wx.getSystemInfoSync();
+    if(res['model'].includes('iPhone')){
+      this.setData({
+        safeBottom: Number(res.safeArea.bottom - res.safeArea.height)
+      })
+    }
   },
 
   /**

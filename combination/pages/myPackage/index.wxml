@@ -43,15 +43,15 @@
 					<text class="row-item-key">套餐有效期</text>
 					<text class="row-item-value">{{item.effectiveDate}}至{{item.invalidDate}}</text>
 				</view>
-				<view class="row-item flex" bindtap="showPopup" wx:if="{{item.setMealType === 'EXTENSION_SET_MEAL'}}">
+				<view class="row-item flex" data-item="{{item}}" bindtap="showPopup" wx:if="{{item.setMealType === 'EXTENSION_SET_MEAL'}}">
 					<text class="mine-content-top-rigth-text">查看投放广告位</text>
 					<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 				</view>
 			</view>
 		</block>
 	</scroll-view>
-	<view class="noData">
-		<noData wx:if="{{item.length === 0}}" flexd="{{true}}" zIndex="{{20}}"></noData>
+	<view class="noData" wx:if="{{item.length === 0}}">
+		<noData flexd="{{true}}" zIndex="{{20}}"></noData>
 	</view>
 </view>
 
@@ -62,7 +62,9 @@
 			<van-icon name="cross" size="20px" bindtap="onClose" color="#999999" />
 		</view>
 		<view class="scroll-view">
-			<text class="scroll-view-row">1.22222222</text>
+			<block wx:for="{{advertList}}" wx:key="index">
+				<text class="scroll-view-row">{{index+1}}.{{item}}</text>
+			</block>
 		</view>
 	</view>
 </van-popup>

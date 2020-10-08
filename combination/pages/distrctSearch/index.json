@@ -2,6 +2,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "search": "/components/search/index",
-    "navbar":"/components/nav/index"
+    "navbar":"/components/nav/index",
+    "noData": "/components/noData/index"
   }
 }

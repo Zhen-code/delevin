@@ -28,7 +28,9 @@ Page({
     tabScrollTop: 0,
     top: 0,
     id: '',
-    toView: ''
+    toView: '',
+    safeBottom: 0,
+    isIos: false
   },
   targetId: '',
   id: '',
@@ -150,6 +152,13 @@ Page({
    */
   onShow: function () {
     this.getNewsDetail(this.id);
+    let res = wx.getSystemInfoSync();
+    if(res['model'].includes('iPhone')){
+      this.setData({
+        safeBottom: Number(res.safeArea.bottom-res.safeArea.height),
+        isIos: true
+      })
+    }
   },
 
   /**

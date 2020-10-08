@@ -185,8 +185,9 @@ Page({
 				})
 			})
 		}).catch((err)=>{
+			console.log(err.data.msg)
 			wx.showToast({
-				title: '请求错误',
+				title: err.data.msg,
 				icon: 'none',
 				duration: 2500
 			})
