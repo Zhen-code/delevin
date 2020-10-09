@@ -208,7 +208,7 @@ Page({
 			};
 			this.showColumn(column);
 			this.getLikeListings(item);
-			this.ahistoryAdd(item);
+			// this.ahistoryAdd(item);
 		}).catch((err) => {
 			console.log(err)
 			wx.showToast({
@@ -354,22 +354,53 @@ Page({
 		})
 	},
 
-	getAddvisitorRecord(){
-		request.visitorRecord({
-			"houseId":  item.houseId,
-			"houseType": item.houseMold,
-			"intervieweeId": '',
-			"type": "HOUSE"
-		}).then((res)=>{
-
-		}).catch((err)=>{
+	addVistorRecord(){
+		request.addMemberVisitor({
+			houseId: this.data.id,
+			houseType: this.data.type,
+			type: 'HOUSE'
+		}).then(res=>{
+			console.log(res)
+		}).catch(err=>{
 			console.log(err)
-			wx.showToast({
-				title: '请求失败',
-				icon: 'none',
-				duration: 2500
-			})
 		})
+	},
+	updateVisitCount(){
+		request.updateVisitCount({
+			houseType: this.data.type,
+			targetId: this.data.id
+		}).then(res=>{
+			console.log(res)
+		}).catch(err=>{
+			console.log(err)
+		})
+	},
+	addBrowseHistory(){
+		request.addBrowseHistory({
+			targetId: this.data.id,
+			type: this.data.type
+		}).then(res=>{
+			console.log(res)
+		}).catch(err=>{
+			console.log(err)
+		})
+	},
+	getAddvisitorRecord(){
+		// request.visitorRecord({
+		// 	"houseId":  item.houseId,
+		// 	"houseType": item.houseMold,
+		// 	"intervieweeId": '',
+		// 	"type": "HOUSE"
+		// }).then((res)=>{
+		//
+		// }).catch((err)=>{
+		// 	console.log(err)
+		// 	wx.showToast({
+		// 		title: '请求失败',
+		// 		icon: 'none',
+		// 		duration: 2500
+		// 	})
+		// })
 	},
 
 	/**
@@ -445,7 +476,9 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
+		this.addVistorRecord();
+		this.updateVisitCount();
+		this.addBrowseHistory();
 	},
 
 	/**

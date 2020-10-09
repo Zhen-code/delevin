@@ -26,5 +26,5 @@
     </view>
 </view>
 <view class='am-footer'>
-    <button open-type="share"  id="btn_share1" class="share-button">立即分享</button>
+    <button open-type="share" disabled="{{isDisable}}" id="btn_share1" class="share-button">立即分享</button>
 </view>

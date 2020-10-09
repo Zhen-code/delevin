@@ -54,6 +54,7 @@ Page({
   postPSize: 10,
   postPTotal: 0,
   timeFlag: 1,
+    houseTotal: 1,
   start(e){
     sy = e.touches[0].clientY;
   },
@@ -342,6 +343,7 @@ Page({
 	},
 
 	getBackTabValue(e) {
+        this.houseTotal = 1;
 		this.setData({
 			item:[],
 			pageIndex:1,
@@ -369,6 +371,15 @@ Page({
 	},
 
 	getData() {
+      if(this.data.pageIndex>this.houseTotal){
+          console.log(464646)
+          wx.showToast({
+              title: '暂无更多数据',
+              icon: "none",
+              duration: 1000
+          });
+          return;
+      }
 		let requests = '';
 		let {
 			index,
@@ -393,6 +404,8 @@ Page({
 				requests = request.quartersListings;
 				break
 		}
+        console.log(city,province,keyword);
+        console.log(7979797979)
 		requests({
 			"city": city,
 			"keyword": keyword,
@@ -400,6 +413,8 @@ Page({
 			"pageSize": pageSize,
 			"province": province,
 		}).then((res) => {
+            console.log(res)
+            this.houseTotal = res.pageTotal;
 			item.push(...res.list)
 			this.setData({
 				item: item,

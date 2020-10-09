@@ -433,6 +433,29 @@ const request = {
       params: {}
     })
   },
+  //添加访客记录
+  addMemberVisitor(params){
+    return http({
+      url: '/api/access/v1/user/member/visitors/add',
+      method: 'POST',
+      params: params
+    })
+  },
+  //更新房源访问次数
+  updateVisitCount(params){
+    return http({
+      url: '/api/access/v1/house/visits/count',
+      method: 'POST',
+      params: params
+    })
+  },
+  addBrowseHistory(params){
+    return http({
+      url: '/api/access/v1/user/member/browsing/history/add',
+      method: 'POST',
+      params:params
+    })
+  }
 }
 
 

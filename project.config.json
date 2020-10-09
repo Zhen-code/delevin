@@ -110,6 +110,20 @@
 					"pathName": "combination/pages/shareInfoImg/index",
 					"query": "uri='http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/b11c4af8-5ba3-4a1b-9efd-560d6c5649d9.jpg'",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "客源管理",
+					"pathName": "combination/pages/management/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "房源",
+					"pathName": "pages/aspect/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

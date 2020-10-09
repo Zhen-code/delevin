@@ -52,10 +52,30 @@ Page({
 	},
 
 	dialNumber(e) {
-		let {phone} = e.currentTarget.dataset;
-		wx.makePhoneCall({
-			phoneNumber: phone
-		})
+		let {phone,dialing} = e.currentTarget.dataset;
+		console.log(dialing)
+		if(dialing==="NO"){
+			wx.showModal({
+				title: '请先购买客源套餐',
+				content: '是否前往购买?',
+				showCancel: true,
+				cancelText: '取消',
+				confirmText: '购买',
+				success(res){
+					if(res.confirm){
+						wx.navigateTo({
+							url: '/combination/pages/generalPromotion/index'
+						});
+					}else if(res.cancel){
+
+					}
+				}
+			});
+		}else{
+			wx.makePhoneCall({
+				phoneNumber: phone
+			})
+		}
 	},
 
 	getTabValue(e) {
@@ -110,7 +130,9 @@ Page({
 		})
 	},
 
-	confirm() {
+	confirm(e) {
+		let that = this;
+		let id = e.currentTarget.dataset.memberid;
 		wx.showModal({
 			title: '客源管理',
 			content: '本操作需要消耗1次抢客次数，是否确认抢客？',
@@ -119,11 +141,50 @@ Page({
 			confirmText: "确定抢客",
 			success(res) {
 				if (res.confirm) {
-					console.log(res, 111)
+					that.getCustomer(id);
 				} else {
 					console.log(res, 222)
 				}
 			}
+		})
+	},
+	getCustomer(id) {
+		http({
+			url: api.broker.snatchCustomer,
+			method: 'POST',
+			params: {
+				id: id
+			}
+		}).then(res => {
+			console.log(res);
+			wx.showToast({
+				title: '抢客成功!',
+				icon: "none",
+				duration: 1000
+			});
+			this.getWaitCustom();
+		}).catch(err => {
+			wx.showModal({
+				title: '套餐购买',
+				content: '抢客余量不足,是否前往购买?',
+				showCancel: true,
+				cancelText: '取消',
+				confirmText: '购买',
+				success(res){
+					if(res.confirm){
+						wx.navigateTo({
+							url: '/combination/pages/generalPromotion/index'
+						})
+					}else{
+						wx.showToast({
+							title:'请先购买套餐',
+							icon: "none",
+							duration: 1000
+						})
+					}
+				}
+			})
+			console.log(err)
 		})
 	},
 
@@ -239,27 +300,7 @@ Page({
 		});
 	},
 
-	getCustomer(e) {
-		console.log(e);
-		let id = e.currentTarget.dataset.memberid;
-		http({
-			url: api.broker.snatchCustomer,
-			method: 'POST',
-			params: {
-				id: id
-			}
-		}).then(res => {
-			console.log(res);
-			wx.showToast({
-				title: '抢客成功!',
-				icon: "none",
-				duration: 1000
-			});
-			this.getWaitCustom();
-		}).catch(err => {
-			console.log(err)
-		})
-	},
+
 
 	/**
 	 * 生命周期函数--监听页面加载

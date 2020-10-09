@@ -18,7 +18,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="row-right" data-phone="{{item.phone}}" bindtap="dialNumber">
+				<view class="row-right" data-phone="{{item.phone}}" data-dialing="{{item.dialing}}" bindtap="dialNumber">
 					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
 					<text class="row-right-phone">{{item.phone}}</text>
 				</view>
@@ -33,8 +33,8 @@
 						<view class="row-left-type-degree">匹配度 {{item.matchValue}}%</view>
 					</view>
 				</view>
-				<view class="row-right" bindtap="confirm">
-					<van-tag wx:if="{{item.snatch=='YES'}}" data-memberid="{{item.id}}" size="large" color="#FFC51D" text-color="#333333" type="warning" catch:tap="getCustomer">待抢</van-tag>
+				<view class="row-right">
+					<van-tag wx:if="{{item.snatch=='YES'}}" data-memberid="{{item.id}}" size="large" color="#FFC51D" text-color="#333333" type="warning" bindtap="confirm">待抢</van-tag>
 					 <van-tag wx:else size="large" color="#EEEEEE" text-color="#333333" type="warning">不可抢</van-tag>
 				</view>
 			</view>
@@ -50,7 +50,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="row-right" data-phone="{{item.phone}}" bindtap="dialNumber">
+				<view class="row-right" data-dialing="{{item.dialing}}" data-phone="{{item.phone}}" bindtap="dialNumber">
 					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
 					<text class="row-right-phone">{{item.phone}}</text>
 				</view>

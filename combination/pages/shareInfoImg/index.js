@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    agentId: '',
     isShare: false,
     bgImgHeight: 0,
     cname: '',
@@ -27,7 +28,8 @@ Page({
     phoneImgPath: '',
     saveTempCanvas: '',
     clientWidth: 0,
-    qrCodePath: ''
+    qrCodePath: '',
+    isDisable: true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -85,7 +87,8 @@ Page({
       this.setData({
         cname: res.nickname,
         phone: res.phone,
-        synopsis: res.synopsis===""?'暂无简介':res.synopsis
+        synopsis: res.synopsis===""?'暂无简介':res.synopsis,
+        agentId: res.agentId
       })
     }).catch(err=>{
       console.log(err)
@@ -204,7 +207,8 @@ Page({
               success:(res)=>{
                 console.log(res)
                 this.setData({
-                  saveTempCanvas: res.tempFilePath
+                  saveTempCanvas: res.tempFilePath,
+                  isDisable: false
                 },()=>{
                   if(isShare){
                     wx.saveImageToPhotosAlbum({
@@ -260,20 +264,20 @@ Page({
       isShare: true
     });
     console.log(res)
-    let userId = wx.getStorageSync('userId');
-    console.log(userId)
     let from = res.from;
     if(from === "button"){
       this.go();
       return{
         title: '经纪人主页',
-        path: '/pages/home/index?id='+userId+'&type=false',
-        // imageUrl: this.data.saveTempCanvas
+        // path: '/pages/home/index?id='+userId+'&type=false',
+        path: '/combination/pages/homepage/index?agentId='+this.data.agentId,
+        imageUrl: this.data.saveTempCanvas
       }
     }else{
       return{
         title: '经纪人主页',
-        path: '/pages/home/index?id='+userId+'&type=false',
+        // path: '/pages/home/index?id='+userId+'&type=false',
+        path: '/combination/pages/homepage/index?agentId='+this.data.agentId,
         imageUrl: this.data.saveTempCanvas
       }
     }

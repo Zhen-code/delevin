@@ -116,7 +116,8 @@ Page({
 						icon: 'success',
 						duration: 2500
 					})
-					wx.removeStorageSync('token')
+					// wx.removeStorageSync('token');
+					wx.clearStorage();
 					setTimeout(()=>{
 						wx.reLaunch({
 							url: "/pages/login/index"
