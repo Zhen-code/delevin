@@ -286,7 +286,7 @@ Page({
 			"pageIndex": 1,
 		}).then((res) => {
 			let data = res.list.map((item) => {
-				item.salesStatus = '0'
+				// item.salesStatus = '0'
 				return item;
 			})
 			this.setData({

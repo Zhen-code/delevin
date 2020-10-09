@@ -269,9 +269,9 @@
 					<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
 				</view>
 				<view class="rentalMethod-content">
-					<text class="rentalMethod-content-index {{entireRentIndex === 0?'index-action':''}}" data-item="{{'COTENANCY'}}" data-index="{{0}}"
+					<text class="rentalMethod-content-index {{entireRentIndex === 0?'index-action':''}}" data-item="{{'WHOLE_RENT'}}" data-index="{{0}}"
 						bindtap="entireRentTab">整租</text>
-					<text class="rentalMethod-content-index {{entireRentIndex === 1?'index-action':''}}" data-item="{{'WHOLE_RENT'}}" data-index="{{1}}"
+					<text class="rentalMethod-content-index {{entireRentIndex === 1?'index-action':''}}" data-item="{{'COTENANCY'}}" data-index="{{1}}"
 						bindtap="entireRentTab">合租</text>
 				</view>
 				<view class="rentalMethod-tap">

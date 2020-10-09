@@ -1,5 +1,8 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
-<view class="view" style="padding-top:{{paddingTop}}px">
+
+<scroll-view style="height: 100%" scroll-y="true" scroll-into-view="{{toView}}" class="view"
+	style="padding-top:{{paddingTop}}px" scroll-with-animation="true">
+
 	<view class="view-top" bindtap="tovideoImage">
 		<view class="view-top-video">
 			<view class="view-top-video-play">
@@ -88,7 +91,7 @@
 				</view>
 			</view>
 			<view class="introduction-resources-go">
-				<text class="introduction-resources-go-price">查看价格变动</text>
+				<text class="introduction-resources-go-price" data-id="key" bindtap="toPrice">查看价格变动</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>
 		</view>
@@ -103,7 +106,8 @@
 						class="name-typeValue">{{item.propertyClassify || '暂无'}}</text></view>
 				<view class="name-type" wx:if="{{stlectState}}">装修状况：<text
 						class="name-typeValue">{{item.decorationsStatus || '暂无'}}</text></view>
-				<view class="name-type" wx:if="{{stlectState}}">环线位置：<text class="name-typeValue">{{item.loopLocation || '暂无'}}</text>
+				<view class="name-type" wx:if="{{stlectState}}">环线位置：<text
+						class="name-typeValue">{{item.loopLocation || '暂无'}}</text>
 				</view>
 			</view>
 			<text class="components-title marginTop" wx:if="{{stlectState}}">销售信息</text>
@@ -150,9 +154,10 @@
 			</view>
 			<view class="introduction-specification-bottom">
 				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate || '暂无'}}</text></view>
-				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersName || '暂无'}}</text>
+				<view class="name-type" data-item="{{item}}" bindtap="toDetails">所在小区：<text
+						class="name-typeValue name-typeValueColor">{{item.quartersName || '暂无'}}</text>
 				</view>
-				<view class="name-type">首付月供：<text
+				<view class="name-type" bindtap="toWebView">首付月供：<text
 						class="name-typeValue name-typeValueColor">预计{{item.downPayment}}万元，月供{{item.monthlyContribution}}元</text>
 				</view>
 			</view>
@@ -174,7 +179,8 @@
 				<view class="name-type">付款方式：<text class="name-typeValue">{{item.payMethod || '暂无'}}</text></view>
 				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate || '暂无'}}</text></view>
 				<view class="name-type">房屋配置：<text class="name-typeValue">{{item.houseDisposal || '暂无'}}</text></view>
-				<view class="name-type">所在小区：<text class="name-typeValue name-typeValueColor">{{item.quartersName || '暂无'}}</text></view>
+				<view class="name-type" data-item="{{item}}" bindtap="toDetails">所在小区：<text
+						class="name-typeValue name-typeValueColor">{{item.quartersName || '暂无'}}</text></view>
 			</view>
 		</view>
 
@@ -196,7 +202,7 @@
 		</view>
 	</view>
 
-	<view class="components borderBottom" wx:if="{{type !== 'ESTATE'}}">
+	<view class="components borderBottom" wx:if="{{type !== 'ESTATE'}}" id='key'>
 		<view class="components-row">
 			<text class="components-title">房屋时光机</text>
 			<view class="doubleTab" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
@@ -207,6 +213,7 @@
 			<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
 		</view>
 	</view>
+
 	<view class="components borderBottom">
 		<text class="components-title">位置周边</text>
 		<view class="surrounding">
@@ -224,6 +231,7 @@
 			</view>
 		</view>
 	</view>
+
 	<view class="components">
 		<text class="components-title">推荐经纪人</text>
 		<view class="information">
@@ -244,10 +252,12 @@
 			</block>
 		</view>
 	</view>
+
 	<view class="components borderBottom">
 		<text class="components-title">经纪人描述</text>
 		<text class="description">{{item.description}}</text>
 	</view>
+
 	<view class="components borderBottom" wx:if="{{item.comments.length !== 0}}">
 		<text class="components-title">全网点评</text>
 		<block wx:for="{{item.comments}}" wx:key="index">
@@ -265,6 +275,7 @@
 			</view>
 		</block>
 	</view>
+
 	<view class="components borderBottom" wx:if="{{type === 'RESIDENTIAL_QUARTERS' && item.transactionRecord}}">
 		<text class="components-title">成交记录</text>
 		<view class="record">
@@ -280,6 +291,7 @@
 			</block>
 		</view>
 	</view>
+
 	<view class="components">
 		<text class="components-title">猜你喜欢</text>
 		<view wx:if="{{list.length !== 0}}" class="components-view">
@@ -291,5 +303,6 @@
 			<noData wx:if="{{list.length === 0}}" flexd="{{true}}" height="{{45}}"></noData>
 		</view>
 	</view>
-</view>
+</scroll-view>
+
 <view class="bottom-phone"><text class="bottom-phone-text" bindtap="collPhone">电话咨询</text></view>

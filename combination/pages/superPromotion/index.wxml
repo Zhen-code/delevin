@@ -53,8 +53,8 @@
 					</view>
 				</view>
 			</view>
-			<view class="floor-list-bottom">
-				<text class="floor-list-bottom-text">点击查看套餐介绍与规则</text>
+			<view class="floor-list-bottom" >
+				<text class="floor-list-bottom-text" bindtap="privacyPolicy">点击查看套餐介绍与规则</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>
 		</view>

@@ -24,10 +24,10 @@
 	<view class="list">
 		<block wx:for="{{list}}" wx:key="index">
 			<view class="row {{tebIndex === index?'action':''}}" data-item="{{item}}" data-index="{{index}}" bindtap="changeItem">
-				<image class="rowImage" src="/combination/image/label_discount_red@2x.png"></image>
+				<image class="rowImage" wx:if="{{item.discount}}" src="/combination/image/label_discount_red@2x.png"></image>
 				<view class="rowMonth">{{item.specsTitle}}</view>
 				<view class="rowPrice">
-					<view class="rowPriceSymbol">￥<text class="rowPriceNum1">{{item.unitPrice}}</text></view>
+					<view class="rowPriceSymbol" wx:if="{{item.discount}}">￥<text class="rowPriceNum1">{{item.unitPrice}}</text></view>
 					<view class="rowPriceSymbo2">￥<text class="rowPriceNum2">{{item.discountPrice}}</text></view>
 				</view>
 				<view class="rowAverage">¥{{item.avgPrice}}/月</view>

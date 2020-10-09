@@ -178,6 +178,7 @@ Page({
 					'signType': 'MD5',
 					'paySign': payInfo.sign,
 					'success': function (res) {
+						console.log('支付成功');
 						let index = 2;
 						_this.setData({
 							title: '',
@@ -225,6 +226,26 @@ Page({
 			})
 		})
 	},
+
+	privacyPolicy() {
+    request.link({
+      'type': 'SUPER_PROMOTION_PACKAGE_DESCRIPTION'
+    }).then((res) => {
+      let item = JSON.stringify({
+        "title": "超级推广套餐说明",
+        "link": res.link,
+      })
+      wx.navigateTo({
+        url: `/combination/pages/webView/index?item=${item}`,
+      })
+    }).catch((err) => {
+      wx.showToast({
+        title: '数据错误',
+        icon: 'none',
+        duration: 2500
+      })
+    })
+  },
 
 	/**
 	 * 生命周期函数--监听页面加载
