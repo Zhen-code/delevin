@@ -132,7 +132,8 @@ Page({
 			let item = JSON.parse(options.item)
 			this.setData({
 				src:item.headImgUri,
-				textarea:item.synopsis, 
+				textarea:item.synopsis,
+				index: item.synopsis.length||0
 			})
 		}
 	},

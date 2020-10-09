@@ -54,6 +54,10 @@ Component({
       type: Boolean, //类型
       value: false //默认值
     },
+    hideBack: {
+      type: Boolean,
+      value: true
+    }
   },
 
   observers: {
@@ -93,6 +97,11 @@ Component({
           TabHome: val
         })
       }
+    },
+    hideBack(val,newVal){
+      console.log(val)
+      this.properties.hideBack = val;
+      console.log(newVal)
     }
   },
 

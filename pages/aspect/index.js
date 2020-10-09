@@ -178,13 +178,13 @@ Page({
   },
   goHouseDetal(e){
     wx.navigateTo({
-      url: '/combination/pages/aspectDetail/index?id=' + e.currentTarget.dataset.id,
+      url: '/combination/pages/aspectDetail/index?id=' + e.currentTarget.dataset.id+'&hideBack=true',
     })
     console.log(e.currentTarget.dataset.id);
   },
   goPostDetail(e){
     wx.navigateTo({
-      url: '/combination/pages/postDetail/index?id=' + e.currentTarget.dataset.id
+      url: '/combination/pages/postDetail/index?id=' + e.currentTarget.dataset.id+'&hideBack=true'
     })
   },
   post(){

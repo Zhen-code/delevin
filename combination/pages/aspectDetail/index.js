@@ -30,7 +30,8 @@ Page({
     id: '',
     toView: '',
     safeBottom: 0,
-    isIos: false
+    isIos: false,
+    hideBack: true
   },
   targetId: '',
   id: '',
@@ -83,9 +84,11 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    let {id} = options;
+    let {id,hideBack} = options;
+    console.log(hideBack)
     this.setData({
-      id: id
+      id: id,
+      hideBack: Boolean(hideBack)
     });
     this.targetId = id;
     this.id = id;
@@ -195,12 +198,9 @@ Page({
   onShareAppMessage: function (res) {
     let { title} = this.data;
     console.log(res);
-    if(res.from === 'button'){
-
-    }
     return {
       title: title,
-      path: '/combination/pages/aspectDetail/index?id='+this.id,
+      path: '/combination/pages/aspectDetail/index?id='+this.id+'&hideBack=false',
       success: function (res) {
         console.log('成功', res)
       }

@@ -19,6 +19,7 @@ Page({
 		scrollTop: 0,
 		triggered: false,
 	},
+	pageTotal: 0,
 
 	scrollTop() {
 		wx.pageScrollTo({
@@ -29,25 +30,40 @@ Page({
 	topList() {
 		this.setData({
 			triggered: false,
-		})
+			pageIndex: 1,
+			list: []
+		});
 		this.getData()
 	},
 
 	//滚动加载
 	scrollList() {
-		this.getData()
+		if(this.data.pageIndex<=this.pageTotal){
+			this.getData();
+		}else{
+			wx.showToast({
+				title: '暂无更多消息!',
+				icon: "none",
+				duration: 1000
+			})
+		}
 	},
-
 	getData() {
 		request.messageList({
 			"pageSize": this.data.pageSize,
 			"pageIndex": this.data.pageIndex,
 		}).then((res) => {
+			this.pageTotal = res.pageTotal;
 			let list = this.data.list;
-			list.push(...res.list);
-			list.forEach(v=>{
-				v.details = v.details.replace(/\<h2/g,'<h4')
+			let newList = res.list.map(v=>{
+				v.details = v.details.replace(/(\n)/g, "");
+				v.details = v.details.replace(/(\t)/g, "");
+				v.details = v.details.replace(/(\r)/g, "");
+				v.details = v.details.replace(/<\/?[^>]*>/g, "");
+				v.details = v.details.replace(/\s*/g, "");
+				return v;
 			});
+			list.push(...newList);
 			console.log(list)
 			this.setData({
 				list: list,

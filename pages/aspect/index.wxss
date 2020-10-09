@@ -94,6 +94,9 @@
 	margin-bottom: 18rpx;
 	height: 84rpx;
 	width: 422rpx;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp:2;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -141,6 +144,13 @@
 	font-family: PingFangSC-Medium, PingFang SC;
 	font-weight: 500;
 	color: #333333;
+	height: 84rpx;
+	width: 686rpx;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp:2;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .tab-item2-desc {

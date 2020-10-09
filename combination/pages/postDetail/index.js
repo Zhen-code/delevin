@@ -30,7 +30,8 @@ Page({
     tabScrollTop: 0,
     top: 0,
     rpxR: 0,
-    isIos: false
+    isIos: false,
+    hideBack: true
   },
   id: '',
   timeFlag: 1,
@@ -111,9 +112,10 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    let {id} = options;
+    let {id,hideBack} = options;
     this.setData({
-      id
+      id,
+      hideBack: Boolean(hideBack)
     });
     this.id = id;
     this.addHistoryRecod(id);
