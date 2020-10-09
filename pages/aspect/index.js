@@ -333,10 +333,13 @@ Page({
 	},
 
 	getSearchValue(e) {
+        this.houseTotal = 1;
 		this.setData({
 			keyword: e.detail.value,
 			city: e.detail.city,
 			province: e.detail.province || app.globalData.address.province,
+            item: [],
+            pageIndex: 1
 		},()=>{
 			this.getData()
 		})
@@ -362,7 +365,10 @@ Page({
 	topList() {
 		this.setData({
 			triggered: false,
-		})
+            item: [],
+            pageIndex: 1
+		});
+		this.houseTotal = 1;
 		this.getData()
 	},
 
@@ -372,7 +378,6 @@ Page({
 
 	getData() {
       if(this.data.pageIndex>this.houseTotal){
-          console.log(464646)
           wx.showToast({
               title: '暂无更多数据',
               icon: "none",

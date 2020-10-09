@@ -32,7 +32,7 @@ Page({
 		pushCustomer: [],
 		selectType:[],
 	},
-
+	pageTotal: 1,
 	scrollTop() {
 		wx.pageScrollTo({
 			scrollTop: 0
@@ -40,15 +40,26 @@ Page({
 	},
 
 	topList() {
+		this.pageTotal = 1;
 		this.setData({
 			triggered: false,
+			item:[],
+			snatchList: [],
+			watiCustomerList: [],
+			pushCustomer: [],
+			selectType:[],
+			pageIndex: 1
 		},()=>{
 			this.selectType(this.data.tabIndex)
 		})
 	},
 
 	scrollList() {
-		this.selectType(this.data.tabIndex)
+		let pageIndex = this.data.pageIndex+1;
+		this.setData({
+			pageIndex
+		});
+		this.selectType(this.data.tabIndex);
 	},
 
 	dialNumber(e) {
@@ -79,6 +90,7 @@ Page({
 	},
 
 	getTabValue(e) {
+		this.pageTotal = 1;
 		this.setData({
 			pageIndex:1,
 		},()=>{
@@ -88,16 +100,11 @@ Page({
 
 	selectType(index){
 		this.setData({
-			item:[],
-			snatchList: [],
-			watiCustomerList: [],
-			pushCustomer: [],
-			selectType:[],
-			tabIndex: index,
-		})
+			tabIndex: index
+		});
 		switch (index) {
 			case 0:
-				this.getVisitorList()
+				this.getVisitorList();
 				break;
 			case 1:
 				this.getPushCustomer();
@@ -113,22 +120,22 @@ Page({
 		}
 	},
 
-	buy() {
-		wx.showModal({
-			title: '客源管理',
-			content: '本功能需要购买抢客套餐，是否前往购买？',
-			showCancel: true,
-			cancelText: "取消",
-			confirmText: "去付费",
-			success(res) {
-				if (res.confirm) {
-					console.log(res, 111)
-				} else {
-					console.log(res, 222)
-				}
-			}
-		})
-	},
+	// buy() {
+	// 	wx.showModal({
+	// 		title: '客源管理',
+	// 		content: '本功能需要购买抢客套餐，是否前往购买？',
+	// 		showCancel: true,
+	// 		cancelText: "取消",
+	// 		confirmText: "去付费",
+	// 		success(res) {
+	// 			if (res.confirm) {
+	// 				console.log(res, 111)
+	// 			} else {
+	// 				console.log(res, 222)
+	// 			}
+	// 		}
+	// 	})
+	// },
 
 	confirm(e) {
 		let that = this;
@@ -189,18 +196,20 @@ Page({
 	},
 
 	getSnatchList() {
+		let {pageIndex,pageSize,snatchList} = this.data;
 		http({
 			url: api.broker.snatchCustomerList,
 			method: 'GET',
 			params: {
-				pageIndex: 1,
-				pageSize: 1000
+				pageIndex: pageIndex,
+				pageSize: pageSize
 			}
 		}).then(res => {
 			console.log(res)
+			this.pageTotal = res.pageTotal;
 			this.setData({
-				snatchList: res.list || [],
-				selectType:res.list,
+				snatchList: [...res.list,...snatchList],
+				selectType: [...res.list,...snatchList],
 			})
 		}).catch(err => {
 			console.log(err);
@@ -208,18 +217,29 @@ Page({
 	},
 
 	getWaitCustom() {
+		let {pageIndex,pageSize,watiCustomerList} = this.data;
 		http({
 			url: api.broker.watiCustomerList,
 			method: 'GET',
 			params: {
-				pageIndex: 1,
-				pageSize: 1000
+				pageIndex: pageIndex,
+				pageSize: pageSize
 			}
 		}).then(res => {
 			console.log(res);
+			this.pageTotal = res.pageTotal;
+			let {pageIndex,pageSize,pushCustomer} = this.data;
+			if(pageIndex>this.pageTotal){
+				wx.showToast({
+					title:'暂无更多数据',
+					icon:"none",
+					duration:1000
+				});
+				return
+			}
 			this.setData({
-				watiCustomerList: res.list,
-				selectType:res.list,
+				watiCustomerList: [...res.list,...watiCustomerList],
+				selectType:[...res.list,...watiCustomerList],
 			})
 		}).catch(err => {
 			console.log(err)
@@ -227,18 +247,28 @@ Page({
 	},
 
 	getPushCustomer() {
+		let {pageIndex,pageSize,pushCustomer} = this.data;
+		if(pageIndex>this.pageTotal){
+			wx.showToast({
+				title:'暂无更多数据',
+				icon:"none",
+				duration:1000
+			});
+			return
+		}
 		http({
 			url: api.broker.pushCustomerList,
 			method: 'GET',
 			params: {
-				pageIndex: 1,
-				pageSize: 1000
+				pageIndex: pageIndex,
+				pageSize: pageSize
 			}
 		}).then(res => {
 			console.log(res)
+			this.pageTotal = res.pageTotal;
 			this.setData({
-				pushCustomer: res.list,
-				selectType:res.list,
+				pushCustomer: [...res.list,...pushCustomer],
+				selectType:[res.list,...pushCustomer],
 			})
 		}).catch(err => {
 			console.log(err);
@@ -246,6 +276,8 @@ Page({
 	},
 
 	getVisitorList() {
+		//待修改
+		let {pageIndex,pageSize,watiCustomerList} = this.data;
 		request.visitorsList({
 			"pageIndex": this.data.pageIndex,
 			"pageSize": this.data.pageSize

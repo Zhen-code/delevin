@@ -449,6 +449,7 @@ const request = {
       params: params
     })
   },
+  //添加历史浏览
   addBrowseHistory(params){
     return http({
       url: '/api/access/v1/user/member/browsing/history/add',

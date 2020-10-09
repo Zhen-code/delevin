@@ -153,6 +153,18 @@ Page({
 	 */
 	onShow: function () {
 			this.getBrokerHouse();
+			let userId = wx.getStorageSync('userId') || '';
+			if(userId!==""){
+				request.addMemberVisitor({
+					intervieweeId: userId,
+					type: 'PERSONAL_HOMEPAGE'
+				}).then(res=>{
+					console.log(res);
+					console.log('添加主页访客记录')
+				}).catch(err=>{
+					console.log(err)
+				})
+			}
 	},
 
 	/**

@@ -269,10 +269,17 @@
 	font-family: PingFangSC-Medium, PingFang SC;
 	font-weight: 500;
 	color: #333333!important;
-	width: 44px;
-	height: 8px;
+	position: relative;
+}
+.isActive::before{
+	content: '';
+	width: 44rpx;
+	height: 8rpx;
+	background: #FFD854;
 	border-radius: 4rpx;
-	border-bottom: 8rpx solid #FFD854;
+	position: absolute;
+	top: 70rpx;
+	left: 16rpx;
 }
 
 

@@ -1,6 +1,7 @@
 const topHeight = require('../../../request/topHeight.js').topHeight;
 const {api} = require('../../../request/api');
 const {http} = require('../../../request/http');
+const {request} = require('../../../request/request');
 Page({
 
   /**
@@ -91,6 +92,18 @@ Page({
     if(res['model'].includes('iPhone')){
       this.setData({
         safeBottom: Number(res.safeArea.bottom - res.safeArea.height)
+      })
+    }
+    let userId = wx.getStorageSync('userId') || '';
+    if(userId!==''){
+      request.addMemberVisitor({
+        intervieweeId: userId,
+        type: 'ARTICLE'
+      }).then(res=>{
+        console.log(res)
+        console.log('添加获客配文访客');
+      }).catch(err=>{
+        console.log(err)
       })
     }
   },

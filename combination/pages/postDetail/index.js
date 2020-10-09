@@ -253,8 +253,18 @@ Page({
          "type": "POST"
        }
      }).then(res=>{
+       wx.showToast({
+         title: '收藏成功!',
+         icon:"none",
+         duration: 1000
+       });
        console.log(res)
      }).catch(err=>{
+       wx.showToast({
+         title: '收藏失败!',
+         icon:"none",
+         duration: 1000
+       })
        console.log(err);
      })
     }else if(collect == 'YES'){
@@ -266,8 +276,18 @@ Page({
           "type": "POST"
         }
       }).then(res=>{
+        wx.showToast({
+          title: '取消收藏成功!',
+          icon:"none",
+          duration: 1000
+        });
         console.log(res)
       }).catch(err=>{
+        wx.showToast({
+          title: '取消收藏失败!',
+          icon:"none",
+          duration: 1000
+        });
         console.log(err);
       })
     }

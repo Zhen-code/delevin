@@ -33,7 +33,7 @@ Page( {
 	},
 	classifyId: 0,
 	pageIndex: 1,
-	pageSize: 12,
+	pageSize: 1000,
 	pageTotal: 0,
 	toggleIndex: 0,
 	getPosterClassify(){
@@ -106,15 +106,17 @@ Page( {
 
 	getBackTabIndex(e) {
 		console.log(e)
+		this.pageIndex = 1;
 		this.setData({
-			tabIndex:e.detail
+			tabIndex:e.detail,
+			supportText: [],
+			noramalData: []
 		});
 		this.toggleIndex = e.detail;
 		if(e.detail === 0){
 			this.getPosterClassify();
 			this.setData({
-				activeKey: 0,
-				noramalData: []
+				activeKey: 0
 			});
 		}else if(e.detail === 1){
 			this.setData({
@@ -207,13 +209,13 @@ Page( {
 			}
 		}).then(res=>{
 			console.log(res)
-			// this.pageTotal = res.pageTotal;
 			let { supportText } = this.data;
 			let list = res.list.map(v=>{
 				v.isShow = false;
-				v.details = v.details.replace(/\<img/gi,'<img style="width:50rpx;height:50rpx"')
+				v.details = v.details.replace(/(<([^>]+)>)/ig,'');
 				return v;
 			});
+			console.log(list)
 			this.setData({
 				supportText: [...supportText,...list]
 			})
@@ -241,13 +243,12 @@ Page( {
 		}
 	},
 	toBottom(){
-		console.log(666)
-		let pageIndex = this.pageIndex++;
-		if(pageIndex>this.pageTotal){
-
-		}else{
-			this.getArticle(this.classifyId);
-		}
+		// let pageIndex = this.pageIndex++;
+		// if(pageIndex>this.pageTotal){
+		//
+		// }else{
+		// 	this.getArticle(this.classifyId);
+		// }
 	},
 	goShare(e){
 		let {imguri} = e.currentTarget.dataset;

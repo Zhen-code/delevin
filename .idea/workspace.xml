@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6390fbf-cb8d-4c3c-a657-64662bad2579" name="Default Changelist" comment="fix: 'merge'">
+    <list default="true" id="412d825c-119e-4c4f-ac6f-7a0e16d514df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/listingDetails/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/listingDetails/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/aspectDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/aspectDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/customerArticleDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerArticleDetail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/customerPoster/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/customerPoster/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/homepage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/homepage/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combination/pages/management/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/management/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/management/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/management/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/postDetail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/postDetail/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/aspect/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mine/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mine/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/aspect/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/aspect/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/http.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/request.js" afterDir="false" />
@@ -110,9 +111,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602225145982" />
-    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1602236521609">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="530" y="211" width="786" height="612" key="find.popup" timestamp="1602252989776">
+      <screen x="0" y="0" width="1600" height="866" />
     </state>
+    <state x="530" y="211" width="786" height="612" key="find.popup/0.0.1600.866@0.0.1600.866" timestamp="1602252989776" />
     <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602236521609" />
     <state x="530" y="124" key="git4idea.branch.GitSmartOperationDialog" timestamp="1602106373237">
       <screen x="0" y="0" width="1536" height="824" />
@@ -125,14 +127,7 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/combination/pages/listingDetails/index.js</url>
           <line>387</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/pages/aspect/index.js</url>
-          <line>374</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
