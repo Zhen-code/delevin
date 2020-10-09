@@ -4,11 +4,10 @@
         disable-scroll="true"
         style="width:750rpx;height:1088rpx"
 ></canvas>
-<canvas style="width: 200px; height: 200px;" canvas-id="myQrcode"></canvas>
 
-<view class='container-main' hidden='{{!canvasHidden}}'>
+<view class='container-main'>
     <view class='point-img'>
-        <image src='https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3922290090,3177876335&fm=26&gp=0.jpg'
+        <image  src='{{imgUrl}}'
                class='bjt'
                 mode="widthFix"></image>
         <view class="point-container">
@@ -16,16 +15,14 @@
                 <view class='am-cname'><text>{{cname}}</text></view>
                 <view class="contact">
                     <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
-                    <text>13824465795</text>
+                    <text>{{phone}}</text>
                 </view>
-                <view class="desc">个人介绍个人介绍奥克兰的公交卡</view>
+                <view class="desc">{{synopsis}}</view>
             </view>
-            <view class="am-img"><image src='{{imgurl}}'></image></view>
+            <view class="am-img"><canvas style="width: 136rpx; height: 136rpx;" canvas-id="myQrcode"></canvas></view>
         </view>
     </view>
 </view>
 <view class='am-footer'>
-    <button open-type="share" data-tag="share1" id="btn_share1">转发</button>
-    <button bindtap='saveImageToPhotosAlbum'>保存图片</button>
-
+    <button open-type="share"  id="btn_share1" class="share-button">立即分享</button>
 </view>

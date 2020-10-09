@@ -1,5 +1,6 @@
 const app = getApp();
-import drawQrcode from '../../../miniprogram_npm/weapp-qrcode/index'
+import drawQrcode from '../../../miniprogram_npm/weapp-qrcode/index';
+import {request} from '../../../request/request';
 /*
 小程序利用canvas实现一键保存图片功能 */
 Page({
@@ -8,15 +9,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phoneImg: '',
-    cname: '杜芝天',
-    renwu: '',
-    yuyan: '',
-    fan: '',
-    xg: '',
-    imgurl: 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3922290090,3177876335&fm=26&gp=0.jpg',
-    canvasHidden: true,     //设置画板的显示与隐藏，画板不隐藏会影响页面正常显示
-    wxappName: '页面生成图片',    //小程序名称
+    isShare: false,
+    cname: '',
+    phone: '',
+    synopsis: '',
+    imgUrl: '',//背景图片地址
     shareTempFilePath: '',
     canvasWidth: '',
     canvasHeight: '',
@@ -36,68 +33,107 @@ Page({
    */
   onLoad: function (options) {
     let {uri} = options;
+    let bgImgUrl = uri.replace(/[\'|\"]/g,'');
+    console.log(bgImgUrl);
+    let that = this;
+    //获取大图
+    wx.downloadFile({
+      url: bgImgUrl,
+      success: (res)=>{
+        console.log(res)
+        that.setData({
+          imgUrl: res.tempFilePath,
+          imgPath: res.tempFilePath
+        });
+      },
+      fail: (err)=>{
+        console.log(err)
+      },
+      complete: ()=>{
+        console.log('下载完成')
+      }
+    });
     // wx.getImageInfo({
-    //   src: '../image/1.jpg',
+    //   src: bgImgUrl,
     //   success:(res)=>{
-    //     console.log(res)
-    //     this.setData({
-    //       imgPath: '../../'+res.path
-    //     })
-    //   },
-    //   fail: (err)=>{
-    //     console.log(err);
+    //   console.log(res)
+    //   that.setData({
+    //   imgUrl: res.path
+    // });
     //   }
     // });
-    // wx.getImageInfo({
-    //   src: '../image/icon_phonecall_30@2x.png',
-    //   success: (res)=>{
-    //     console.log(res)
-    //     this.setData({
-    //       phoneImgPath: '../../'+res.path
-    //     })
-    //   },
-    //   fail:(err)=>{
-    //     console.log(err)
-    //   }
-    // })
-
-
+    //获取手机图标
+    wx.getImageInfo({
+      src: '../../image/icon_phonecall_30@2x.png',
+      success: (res)=>{
+        console.log(res)
+        this.setData({
+          phoneImgPath: '../../../'+res.path
+        })
+      },
+      fail:(err)=>{
+        console.log(err)
+      }
+    })
   },
+
+  onShow() {
+    request.brokerHome({agentId:wx.getStorageSync('userId')||''}).then(res=>{
+      console.log(res)
+      console.log(64646313)
+      this.setData({
+        cname: res.nickname,
+        phone: res.phone,
+        synopsis: res.synopsis===""?'暂无简介':res.synopsis
+      })
+    }).catch(err=>{
+      console.log(err)
+    })
+    },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    let that = this;
     let res = wx.getSystemInfoSync();
-    console.log(res)
     this.setData({
       clientWidth:  res.screenWidth
     });
     let qrCodeCtx =  wx.createCanvasContext('myQrcode');
     drawQrcode({
-      width: 200,
-      height: 200,
+      width: 60,
+      height: 60,
       canvasId: 'myQrcode',
       ctx: qrCodeCtx,
       text: 'https://baidu.com',
       callback: (e)=>{
         console.log(e)
-        wx.canvasToTempFilePath({
-          canvasId: 'myQrcode',
-          quality: 0,
-          success:(res)=>{
-            console.log(res)
-            this.setData({
-              qrCodePath: res.tempFilePath
-            })
-          },
-          fail:(err)=>{
-            console.log(err)
-          }
-        })
+        if(e['errMsg'].includes('ok')){
+          console.log('二维码绘制完成');
+          wx.canvasToTempFilePath({
+            canvasId: 'myQrcode',
+            quality: 0,
+            success:(res)=>{
+              console.log(res)
+              this.setData({
+                qrCodePath: res.tempFilePath
+              })
+            },
+            fail:(err)=>{
+              console.log(err)
+            },
+            complete: ()=>{
+              that.go()
+            }
+          })
+        }else{
+          wx.showToast({
+            title: '二维码生成失败，请重新再试!'
+          })
+        }
       }
     })
-
   },
   to2Px(x){
     return Number(this.data.clientWidth/750*x);
@@ -120,6 +156,7 @@ Page({
 
   },
   go(){
+    let {isShare} = this.data;
     const query = wx.createSelectorQuery();
     let allWidth = 0;
     let allHeight = 0;
@@ -138,14 +175,14 @@ Page({
           ctx1.setFontSize(15);
           ctx1.setFillStyle('black');
           let nameLeft = this.to2Px(64);
-          ctx1.fillText('经济人',nameLeft,382);
+          ctx1.fillText(this.data.cname,nameLeft,382);
           ctx1.drawImage(this.data.phoneImgPath,nameLeft,391,this.to2Px(36),this.to2Px(36));
           let phoneLeft = this.to2Px(108);
           ctx1.setFontSize(13);
           ctx1.setFillStyle('black');
           ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-          ctx1.fillText('17820563432',phoneLeft,404);
-          let str = '个人介绍个人介绍奥克兰的公交卡';
+          ctx1.fillText(this.data.phone,phoneLeft,404);
+          let str = this.data.synopsis;
           let mulitipleWidth = this.to2Px(310);
           this.renderText(ctx1,str,nameLeft,429,mulitipleWidth);
           let qrImgLeft = this.to2Px(518);
@@ -167,25 +204,27 @@ Page({
                 this.setData({
                   saveTempCanvas: res.tempFilePath
                 },()=>{
-                  wx.saveImageToPhotosAlbum({
-                    filePath: this.data.saveTempCanvas,
-                    success: (res)=>{
-                      console.log(res);
-                      wx.showToast({
-                        title: '保存成功',
-                        icon: "none",
-                        duration: 2000
-                      })
-                    },
-                    fail:(err)=>{
-                      console.log(err)
-                      wx.showToast({
-                        title: '保存失败',
-                        icon: "none",
-                        duration: 2000
-                      })
-                    }
-                  })
+                  if(isShare){
+                    wx.saveImageToPhotosAlbum({
+                      filePath: this.data.saveTempCanvas,
+                      success: (res)=>{
+                        console.log(res);
+                        wx.showToast({
+                          title: '保存成功',
+                          icon: "none",
+                          duration: 2000
+                        })
+                      },
+                      fail:(err)=>{
+                        console.log(err)
+                        wx.showToast({
+                          title: '保存失败',
+                          icon: "none",
+                          duration: 2000
+                        })
+                      }
+                    })
+                  }
                 })
               },
               fail:(err)=>{
@@ -194,20 +233,7 @@ Page({
             })
           });
         });
-
-
   },
-  onShow: function () {
-
-  },
-
-
-
-
-
-
-
-
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -227,11 +253,27 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    return{
-      title: '经纪人信息',
-      path: '/pages/upload/index',
-      imageUrl: this.data.saveTempCanvas
+  onShareAppMessage: function (res) {
+    this.setData({
+      isShare: true
+    });
+    console.log(res)
+    let userId = wx.getStorageSync('userId');
+    console.log(userId)
+    let from = res.from;
+    if(from === "button"){
+      this.go();
+      return{
+        title: '经纪人主页',
+        path: '/pages/home/index?id='+userId+'&type=false',
+        // imageUrl: this.data.saveTempCanvas
+      }
+    }else{
+      return{
+        title: '经纪人主页',
+        path: '/pages/home/index?id='+userId+'&type=false',
+        imageUrl: this.data.saveTempCanvas
+      }
     }
   }
 });

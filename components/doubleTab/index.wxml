@@ -1,6 +1,6 @@
 <!--components/doubleTab/index.wxml-->
 <view class="tab">
 	<block wx:for="{{tabItem}}" wx:key="index">
-		<text class="tabState {{tabIndex === index?'tabAction':''}}" data-index="{{index}}" bindtap="selectShelf">{{item}}</text>
+		<text class="tabState {{tabIndex == index?'tabAction':''}}" data-index="{{index}}" bindtap="selectShelf">{{item}}</text>
 	</block>
 </view>

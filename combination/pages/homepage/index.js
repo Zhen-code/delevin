@@ -32,6 +32,8 @@ Page({
 		request.brokerHome({
 			"agentId":this.data.agentId
 		}).then((res)=>{
+			console.log(res)
+			console.log(666666)
 			this.setData({
 				userInfo:res
 			})

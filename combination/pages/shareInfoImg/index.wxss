@@ -28,6 +28,7 @@
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
     color: #333333;
+    margin-bottom: 8rpx;
 }
 .contact{
     display: flex;
@@ -49,11 +50,8 @@
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: #999999;
+    margin-top: 16rpx;
 }
-/*.point-container .am-yuyan {padding-top:15rpx; padding-left:20rpx;padding-right:20rpx;}*/
-/*.point-container .am-renwu {padding-top:15rpx;padding-left:20rpx;padding-right:20rpx;}*/
-/*.point-container .am-fan   {padding-top:15rpx;padding-left:20rpx;padding-right:20rpx;}*/
-/*.point-container .am-xg    {padding-top:15rpx;padding-left:20rpx;padding-right:20rpx;}*/
 
 .am-img {
     width: 136rpx;
@@ -70,15 +68,20 @@
     width: 100%;
     height: 162rpx;
     align-items: center;
+    justify-content: center;
 }
-.am-footer button {
-    border:#ff6a38 1px solid;
-    border-radius:20rpx;
-    width:300rpx !important;
-    height: 70rpx;
-    line-height: 70rpx;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    font-size: 30rpx;background-color:#ffffff;
-    color: #E97855;}
+.share-button{
+    width: 600rpx;
+    height: 88rpx;
+    background: #FFD854;
+    border-radius: 44rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

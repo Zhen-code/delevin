@@ -10,7 +10,7 @@ Component({
 		},
 		tabIndex: {
 			type: Number,
-			value: '',
+			value: '0',
 			observer: function observer() {
 				var newVal = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 				this.setData({

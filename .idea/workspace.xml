@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd6cf7d9-97e4-465b-ac08-2ea1ad68647d" name="Default Changelist" comment="">
+    <list default="true" id="f6390fbf-cb8d-4c3c-a657-64662bad2579" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/homepage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/homepage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/recording/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/recording/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/doubleTab/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/doubleTab/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/doubleTab/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/doubleTab/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/request/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/http.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +35,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../delevin-manager" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -45,15 +66,32 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix: 'merge'" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: 'merge'" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1602106896906">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="560" y="114" key="CommitChangelistDialog2" timestamp="1602209200440">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="560" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602209200440" />
+    <state x="184" y="92" key="DiffContextDialog" timestamp="1602209186175">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="92" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602209186175" />
+    <state x="686" y="211" key="FileChooserDialogImpl" timestamp="1602142621900">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1602106896906" />
+    <state x="686" y="211" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602142621900" />
     <state x="477" y="128" key="MultipleFileMergeDialog" timestamp="1602106383046">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="477" y="128" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1602106383046" />
+    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1602142184311">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602142184311" />
     <state x="530" y="124" key="git4idea.branch.GitSmartOperationDialog" timestamp="1602106373237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
