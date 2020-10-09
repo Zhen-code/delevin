@@ -95,6 +95,11 @@ Page({
 		requests({
 			"houseId": this.data.id,
 		}).then((res) => {
+			console.log(res)
+			res['comments'].forEach(v=>{
+				v.content = v.content.replace(/<[^>]+>/ig, '')
+			});
+			console.log(78787878)
 			switch (res.decorationStatus) {
 				case 'ROUGHCAST':
 					res.decorationsStatusType = '毛坯'
@@ -238,7 +243,7 @@ Page({
 		request.ahistoryAdd({
 			"targetId": item.houseId,
 			"type": item.houseMold
-		}).then((res)=>{	
+		}).then((res)=>{
 		}).catch((err)=>{
 			console.log(err)
 			wx.showToast({
@@ -355,8 +360,8 @@ Page({
 			"houseType": item.houseMold,
 			"intervieweeId": '',
 			"type": "HOUSE"
-		}).then((res)=>{	
-			
+		}).then((res)=>{
+
 		}).catch((err)=>{
 			console.log(err)
 			wx.showToast({

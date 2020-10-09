@@ -111,23 +111,44 @@ Page({
   },
 
   privacyPolicy() {
-    request.link({
-      'type': 'LOGIN_SERVICE_AGREEMENT'
-    }).then((res) => {
-      let item = JSON.stringify({
-        "type": "登录服务协议",
-        "link": res.link,
-      })
-      wx.navigateTo({
-        url: `/combination/pages/webView/index?item=${item}`,
-      })
-    }).catch((err) => {
-      wx.showToast({
-        title: '数据错误',
-        icon: 'none',
-        duration: 2500
-      })
-    })
+    wx.request({
+      url: 'https://dev.delevin.beiru168.com/api/v1/app/link',
+      method: 'POST',
+      data:{
+        'type': 'LOGIN_SERVICE_AGREEMENT'
+      },
+      success(res){
+        console.log(res)
+        let data = res.data['data'];
+        let item = JSON.stringify({
+            "title": "登录服务协议",
+            "link": data.link,
+          });
+          wx.navigateTo({
+            url: `/combination/pages/webView/index?item=${item}`,
+          })
+      },
+      fail(err){
+        console.log(err)
+      }
+    });
+    // request.link({
+    //   'type': 'LOGIN_SERVICE_AGREEMENT'
+    // }).then((res) => {
+    //   let item = JSON.stringify({
+    //     "type": "登录服务协议",
+    //     "link": res.link,
+    //   })
+    //   wx.navigateTo({
+    //     url: `/combination/pages/webView/index?item=${item}`,
+    //   })
+    // }).catch((err) => {
+    //   wx.showToast({
+    //     title: '数据错误',
+    //     icon: 'none',
+    //     duration: 2500
+    //   })
+    // })
   },
 
   onLoad: function () {

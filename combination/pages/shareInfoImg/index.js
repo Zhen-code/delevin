@@ -10,6 +10,7 @@ Page({
    */
   data: {
     isShare: false,
+    bgImgHeight: 0,
     cname: '',
     phone: '',
     synopsis: '',
@@ -53,15 +54,15 @@ Page({
         console.log('下载完成')
       }
     });
-    // wx.getImageInfo({
-    //   src: bgImgUrl,
-    //   success:(res)=>{
-    //   console.log(res)
-    //   that.setData({
-    //   imgUrl: res.path
-    // });
-    //   }
-    // });
+    wx.getImageInfo({
+      src: bgImgUrl,
+      success:(res)=>{
+      console.log(res)
+      that.setData({
+        bgImgHeight: res.height
+       });
+      }
+    });
     //获取手机图标
     wx.getImageInfo({
       src: '../../image/icon_phonecall_30@2x.png',
@@ -78,7 +79,7 @@ Page({
   },
 
   onShow() {
-    request.brokerHome({agentId:wx.getStorageSync('userId')||''}).then(res=>{
+    request.information().then(res=>{
       console.log(res)
       console.log(64646313)
       this.setData({
@@ -160,6 +161,7 @@ Page({
     const query = wx.createSelectorQuery();
     let allWidth = 0;
     let allHeight = 0;
+    let {bgImgHeight} = this.data;
     const dpr = wx.getSystemInfoSync().pixelRatio;
     query.select('#share')
         .fields({ node: true, size: true })
@@ -168,25 +170,25 @@ Page({
           allHeight =  res[0].height;
           const ctx1 = wx.createCanvasContext('share');
           console.log(this.data.imgPath)
-          ctx1.drawImage(this.data.imgPath,0,0,allWidth,300);
+          ctx1.drawImage(this.data.imgPath,0,0,allWidth,350);
           ctx1.rect(0,300,allWidth,allHeight-350);
           ctx1.setFillStyle('white');
           ctx1.fill();
           ctx1.setFontSize(15);
           ctx1.setFillStyle('black');
           let nameLeft = this.to2Px(64);
-          ctx1.fillText(this.data.cname,nameLeft,382);
-          ctx1.drawImage(this.data.phoneImgPath,nameLeft,391,this.to2Px(36),this.to2Px(36));
+          ctx1.fillText(this.data.cname,nameLeft,362);
+          ctx1.drawImage(this.data.phoneImgPath,nameLeft,371,this.to2Px(36),this.to2Px(36));
           let phoneLeft = this.to2Px(108);
           ctx1.setFontSize(13);
           ctx1.setFillStyle('black');
           ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-          ctx1.fillText(this.data.phone,phoneLeft,404);
+          ctx1.fillText(this.data.phone,phoneLeft,384);
           let str = this.data.synopsis;
           let mulitipleWidth = this.to2Px(310);
-          this.renderText(ctx1,str,nameLeft,429,mulitipleWidth);
+          this.renderText(ctx1,str,nameLeft,409,mulitipleWidth);
           let qrImgLeft = this.to2Px(518);
-          ctx1.drawImage(this.data.qrCodePath,qrImgLeft,382,68,68);
+          ctx1.drawImage(this.data.qrCodePath,qrImgLeft,352,68,68);
           ctx1.draw(false,()=>{
             console.log(666)
             wx.canvasToTempFilePath({

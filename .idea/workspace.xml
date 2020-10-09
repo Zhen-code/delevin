@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6390fbf-cb8d-4c3c-a657-64662bad2579" name="Default Changelist" comment="">
+    <list default="true" id="f6390fbf-cb8d-4c3c-a657-64662bad2579" name="Default Changelist" comment="fix: 'merge'">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/homepage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/homepage/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/combination/pages/recording/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/recording/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/listingDetails/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/listingDetails/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/combination/pages/listingDetails/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/listingDetails/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/shareInfoImg/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/doubleTab/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/doubleTab/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/doubleTab/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/components/doubleTab/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/http.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,6 +59,14 @@
       <updated>1602105828798</updated>
       <workItem from="1602105833408" duration="1067000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: 配图分享">
+      <created>1602209289464</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1602209289464</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -68,17 +74,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix: 'merge'" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: 'merge'" />
+    <MESSAGE value="feat: 配图分享" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: 配图分享" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="560" y="114" key="CommitChangelistDialog2" timestamp="1602209200440">
+    <state x="560" y="114" key="CommitChangelistDialog2" timestamp="1602225079320">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="560" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602209200440" />
-    <state x="184" y="92" key="DiffContextDialog" timestamp="1602209186175">
+    <state x="560" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602225079320" />
+    <state x="184" y="92" key="DiffContextDialog" timestamp="1602225077822">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="92" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602209186175" />
+    <state x="184" y="92" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602225077822" />
     <state x="686" y="211" key="FileChooserDialogImpl" timestamp="1602142621900">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -88,10 +95,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="477" y="128" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1602106383046" />
-    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1602142184311">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602209297361">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602142184311" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602209297361" />
+    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1602213052359">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602213052359" />
     <state x="530" y="124" key="git4idea.branch.GitSmartOperationDialog" timestamp="1602106373237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

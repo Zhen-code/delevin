@@ -1,4 +1,5 @@
 <canvas
+        class="shareCanvas"
         id="share"
         canvas-id="share"
         disable-scroll="true"
@@ -9,7 +10,8 @@
     <view class='point-img'>
         <image  src='{{imgUrl}}'
                class='bjt'
-                mode="widthFix"></image>
+                mode="widthFix"
+                style="height:{{bgImgHeight}}px"></image>
         <view class="point-container">
             <view>
                 <view class='am-cname'><text>{{cname}}</text></view>
