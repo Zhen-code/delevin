@@ -56,7 +56,6 @@ Page({
 			params:{
 				pageIndex: this.data.pageIndex,
 				pageSize: this.data.pageSize,
-				type: 'PERSONAL_HOMEPAGE'
 			}
 		}).then(res=>{
 			console.log(res)

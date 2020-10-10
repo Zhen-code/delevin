@@ -140,20 +140,45 @@ Page({
 	confirm(e) {
 		let that = this;
 		let id = e.currentTarget.dataset.memberid;
-		wx.showModal({
-			title: '客源管理',
-			content: '本操作需要消耗1次抢客次数，是否确认抢客？',
-			showCancel: true,
-			cancelText: "取消",
-			confirmText: "确定抢客",
-			success(res) {
-				if (res.confirm) {
-					that.getCustomer(id);
-				} else {
-					console.log(res, 222)
+		let snatch = e.currentTarget.dataset.snatch;
+		if(snatch === "NO"){
+			wx.showModal({
+				title: '本功能需要购买套餐',
+				content: '是否前往购买?',
+				cancelText: '取消',
+				confirmText: '去付费',
+				showCancel: true,
+				success(res){
+					if(res.confirm){
+						wx.navigateTo({
+							url: '/combination/pages/generalPromotion/index'
+						})
+					}else{
+						wx.showToast({
+							title: '请先购买套餐',
+							icon: "none",
+							duration: 1000
+						})
+					}
 				}
-			}
-		})
+			})
+		}else{
+			wx.showModal({
+				title: '客源管理',
+				content: '本操作需要消耗1次抢客次数，是否确认抢客？',
+				showCancel: true,
+				cancelText: "取消",
+				confirmText: "确定抢客",
+				success(res) {
+					if (res.confirm) {
+						that.getCustomer(id);
+					} else {
+						console.log(res, 222)
+					}
+				}
+			})
+		}
+
 	},
 	getCustomer(id) {
 		http({

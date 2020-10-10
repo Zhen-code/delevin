@@ -113,7 +113,7 @@ Page({
 		});
 	},
 	addRecordHome(){
-		let id = wx.getStorageSync('id')|| '';
+		let id = wx.getStorageSync('userId')|| '';
 		http({
 			url: '/api/access/v1/user/member/visitors/add',
 			method: 'POST',

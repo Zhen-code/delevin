@@ -149,6 +149,30 @@ Page({
 			specs,
 			num,
 		} = this.data;
+		if(advertising===""){
+			wx.showToast({
+				title: '请输入广告语',
+				icon: "none",
+				duration: 1000
+			});
+			return
+		}
+		if(specs===""){
+			wx.showToast({
+				title: '请选择曝光数',
+				icon: "none",
+				duration: 1000
+			});
+			return
+		}
+		if(item.length === 0){
+			wx.showToast({
+				title: '请选择投放广告位',
+				icon: "none",
+				duration: 1000
+			});
+			return
+		}
 		let _this = this;
 		let data = {
 			"advertLanguage": advertising,

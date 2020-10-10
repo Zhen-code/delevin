@@ -9,6 +9,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
+		bottomIndex: 0,
 		paddingTop: topHeight,
 		bgColor: {
 			"color": false,
@@ -39,6 +40,8 @@ Page({
 			list:[],
 			tebIndex:'',
 			index:index,
+			bottomIndex: index,
+			price: 0
 		},()=>{
 			this.getData()
 		})
@@ -96,6 +99,11 @@ Page({
 					'signType': 'MD5',
 					'paySign': payInfo.sign,
 					'success': function (res) {
+						wx.showToast({
+							title: '支付成功',
+							icon: 'none',
+							duration: 1000
+						});
 						wx.reLaunch({
 							url: '/combination/pages/myPackage/index',
 						})
@@ -107,7 +115,6 @@ Page({
 							icon: 'none',
 							duration: 2500
 						})
-						return;
 					},
 				})
 			}).catch((err)=>{
@@ -122,6 +129,46 @@ Page({
 			console.log(err)
 			wx.showToast({
 				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	privacyPolicy(){
+		request.link({
+			'type': 'PORT_PACKAGE_DESCRIPTION'
+		}).then((res) => {
+			let item = JSON.stringify({
+				"title": "端口套餐说明",
+				"link": res.link,
+			})
+			wx.navigateTo({
+				url: `/combination/pages/webView/index?item=${item}`,
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '数据错误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	snatchPolicy(){
+		request.link({
+			'type': 'CUSTOMER_SNATCHING_PACKAGE_DESCRIPTION'
+		}).then((res) => {
+			let item = JSON.stringify({
+				"title": "抢客套餐说明",
+				"link": res.link,
+			});
+			wx.navigateTo({
+				url: `/combination/pages/webView/index?item=${item}`,
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '数据错误',
 				icon: 'none',
 				duration: 2500
 			})

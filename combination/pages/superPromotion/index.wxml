@@ -68,7 +68,7 @@
 			<block wx:for="{{list}}" wx:key="index">
 				<view wx:if="{{item.status === 'UPPER'}}" class="checkList-row {{itemIndex === index?'checkList-row-action':''}}" data-item="{{item}}" data-index="{{index}}" bindtap="tabItem">{{item.specsTitle}}</view>
 			</block>
-			<input type="number" class="checkList-row {{itemIndex === -1?'checkList-row-action':''}}" value="{{itemValue}}" data-index="{{-1}}" data-model="specs"  bindblur="itemType" bindtap="tabItem"></input>
+			<input type="number" placeholder="自定义" class="checkList-row {{itemIndex === -1?'checkList-row-action':''}}" value="{{itemValue}}" data-index="{{-1}}" data-model="specs"  bindblur="itemType" bindtap="tabItem"></input>
 		</view>
 	</view>
 
