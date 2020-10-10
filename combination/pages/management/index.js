@@ -276,19 +276,47 @@ Page({
 	},
 
 	getVisitorList() {
-		//待修改
-		let {pageIndex,pageSize,watiCustomerList} = this.data;
+		let {pageIndex,pageSize,item} = this.data;
+		if(pageIndex>this.pageTotal){
+			wx.showToast({
+				title:'暂无更多数据',
+				icon:"none",
+				duration:1000
+			});
+			return
+		}
 		request.visitorsList({
-			"pageIndex": this.data.pageIndex,
-			"pageSize": this.data.pageSize
+			pageIndex: pageIndex,
+			pageSize: pageSize
 		}).then((res) => {
-			console.log(res)
-			let data = this.data.item
-			data.push(...res)
+			console.log(res);
+			this.pageTotal = res.pageTotal;
+			item.push(...res['list']);
+			let newData = item.map(v=>{
+				return{
+					coverUri: v.designSketch,
+					sourceType: v.houseMold,
+					houseLabel: v.houseLabel,
+					salesStatus: v.houseMold==="ESTATE"? v.salesStatus:'',
+					unitPrice: v.houseMold==="ESTATE"? v.unitPrice: '',
+					averagePrice: v.houseMold==="RESIDENTIAL_QUARTERS"? v.averagePrice: '',
+					monthRent: v.houseMold === "TENANCY"? v.monthRent:'',
+					houseHall: v.houseHall,
+					houseKitchen: v.houseKitchen,
+					houseToilet: v.houseToilet,
+					title: v.title,
+					street: v.street,
+					floorage: v.floorage,
+					showRegion: true,
+					district: v.region,
+					region: null,
+					houseType: v.houseType,
+					houseCount: v.saleCount
+				}
+			});
 			this.setData({
-				item: data,
-				selectType:data,
-				pageIndex: this.data.pageIndex + 1,
+				item: newData,
+				selectType:newData,
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -332,6 +360,11 @@ Page({
 		});
 	},
 
+	toRecording(){
+		wx.navigateTo({
+			url: '/combination/pages/recording/index'
+		})
+	},
 
 
 	/**

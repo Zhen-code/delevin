@@ -30,12 +30,20 @@
 					<view class="rowPriceSymbol" wx:if="{{item.discount}}">￥<text class="rowPriceNum1">{{item.unitPrice}}</text></view>
 					<view class="rowPriceSymbo2">￥<text class="rowPriceNum2">{{item.discountPrice}}</text></view>
 				</view>
-				<view class="rowAverage">¥{{item.avgPrice}}/月</view>
+				<view class="rowAverage" wx:if="{{bottomIndex===0}}">¥{{item.avgPrice}}/月</view>
+				<view class="rowAverage" wx:if="{{bottomIndex===1}}">¥{{item.avgPrice}}/人次</view>
 			</view>
 		</block>
 	</view>
+	<view class="floor-list-bottom" wx:if="{{bottomIndex===0}}">
+		<text class="floor-list-bottom-text" bindtap="privacyPolicy">点击查看套餐介绍与规则</text>
+		<van-icon size="30rpx" name="arrow" color="#88ABFF" />
+	</view>
+	<view class="floor-list-bottom" wx:if="{{bottomIndex===1}}">
+		<text class="floor-list-bottom-text" bindtap="snatchPolicy">点击查看套餐介绍与规则</text>
+		<van-icon size="30rpx" name="arrow" color="#88ABFF" />
+	</view>
 </view>
-
 <view class="footer">
 	<view class="footerAll">合计：<text class="footerPrice">{{price}}元</text></view>
 	<view class="footerShop">
