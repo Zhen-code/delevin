@@ -125,6 +125,9 @@
        return `/api/access/v1/house/around/list/${agentId}` //經紀人房源列表
      },
      snatchCustomer: '/api/access/v1/order/snatch/customers', //搶客
+     superAdvert: (houseType,houseId)=>{
+         return `/api/access/v1/house/details/advert/${houseType}/${houseId}`
+     }
    },
  }
  module.exports = {

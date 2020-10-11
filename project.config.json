@@ -124,6 +124,12 @@
 					"pathName": "pages/aspect/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "分享海报",
+					"pathName": "combination/pages/sharePoster/index",
+					"scene": null
 				}
 			]
 		}

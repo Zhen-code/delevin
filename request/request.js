@@ -456,8 +456,16 @@ const request = {
       method: 'POST',
       params:params
     })
-  }
-}
+  },
+  posterTemplate({}){
+    return http({
+      url: '/api/access/v1/poster/template/list',
+      method: 'GET',
+      params:{}
+    })
+  },
+
+};
 
 
 module.exports = {

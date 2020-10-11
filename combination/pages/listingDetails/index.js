@@ -1,6 +1,8 @@
 const {
 	request
 } = require('../../../request/request');
+const {http} = require('../../../request/http');
+const {api} = require('../../../request/api');
 const topHeight = require('../../../request/topHeight.js').topHeight
 import uCharts from "../../../utils/u-charts.min.js"
 var _self;
@@ -30,6 +32,7 @@ Page({
 		favoritesIcon: 'star-o',
 		favoritesColor: '#cccccc',
 		favoritesName: '收藏',
+		superInfo: ''
 	},
 
 	tovideoImage() {
@@ -430,8 +433,7 @@ Page({
 			title: item.title,
 		}, () => {
 			this.getData();
-			this.getAddvisitorRecord()
-		})
+		});
 		this.cWidth = wx.getSystemInfoSync().windowWidth;
 		this.cHeight = 500 / 750 * wx.getSystemInfoSync().windowWidth;
 	},
@@ -465,6 +467,44 @@ Page({
 			}
 		});
 	},
+
+	getSuperAdvert(){
+		http({
+			url: api.broker.superAdvert(this.data.type,this.data.id),
+			method: 'GET',
+			params:{}
+		}).then(res=>{
+			console.log(res)
+			let title = "";
+			switch (res.houseType) {
+				case "ESTATE":
+					 title = "新房房源";
+					break;
+				case "SECOND_HAND":
+					title = "二手房房源";
+					break;
+				case "TENANCY":
+					title = "租房房源";
+					break;
+				case "小区房源":
+					title = "RESIDENTIAL_QUARTERS";
+					break;
+				default:
+					break;
+			}
+			this.setData({
+				superInfo: {
+					...res,
+					title:title,
+					id: res.houseId,
+					houseMold: res.houseType
+				}
+			})
+		}).catch(err=>{
+			console.log(err)
+		})
+	},
+
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
@@ -479,6 +519,7 @@ Page({
 		this.addVistorRecord();
 		this.updateVisitCount();
 		this.addBrowseHistory();
+		this.getSuperAdvert();
 	},
 
 	/**

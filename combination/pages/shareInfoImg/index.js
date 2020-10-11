@@ -40,27 +40,29 @@ Page({
     console.log(bgImgUrl);
     let that = this;
     //获取大图
-    wx.downloadFile({
-      url: bgImgUrl,
-      success: (res)=>{
-        console.log(res)
-        that.setData({
-          imgUrl: res.tempFilePath,
-          imgPath: res.tempFilePath
-        });
-      },
-      fail: (err)=>{
-        console.log(err)
-      },
-      complete: ()=>{
-        console.log('下载完成')
-      }
-    });
+    // wx.downloadFile({
+    //   url: bgImgUrl,
+    //   success: (res)=>{
+    //     console.log(res)
+    //     that.setData({
+    //       imgUrl: res.tempFilePath,
+    //       imgPath: res.tempFilePath
+    //     });
+    //   },
+    //   fail: (err)=>{
+    //     console.log(err)
+    //   },
+    //   complete: ()=>{
+    //     console.log('下载完成')
+    //   }
+    // });
     wx.getImageInfo({
       src: bgImgUrl,
       success:(res)=>{
       console.log(res)
       that.setData({
+        imgUrl: res.path,
+        imgPath: res.path,
         bgImgHeight: res.height
        });
       }
@@ -157,7 +159,6 @@ Page({
         ctx.fillText(str.substring(lastSubStrIndex,i+1),left,initTop);
       }
     }
-
   },
   go(){
     let {isShare} = this.data;

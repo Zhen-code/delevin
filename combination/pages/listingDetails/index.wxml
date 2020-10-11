@@ -218,9 +218,17 @@
 				<text class="surrounding-details">查看周边配套</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>
-			<view class="surrounding-show" wx:if="{{item.advertDisplay}}">
-				<image style="width:686rpx;height:100%" src="{{item.advertUri || 'https://img.yzcdn.cn/vant/cat.jpeg'}}">
+			<view class="surrounding-show"
+				  wx:if="{{superInfo.display==='YES'}}"
+				  data-item="{{superInfo}}"
+				  catch:tap="toDetails">
+				<view class="adverText">广告</view>
+				<image style="width:686rpx;height:100%" src="{{superInfo.advertUri}}">
 				</image>
+				<view class="adverTitle">
+					<view class="house-title">{{superInfo.houseTitle}}</view>
+					<view class="adver-language">{{superInfo.advertLanguage}}</view>
+				</view>
 			</view>
 		</view>
 	</view>

@@ -1,2 +1,114 @@
-<!--combination/pages/sharePoster/index.wxml-->
-<text>分享海报</text>
+<!--分享海报-->
+<canvas
+        class="shareCanvas"
+        id="share"
+        canvas-id="share"
+        disable-scroll="true"
+        style="width:600rpx;height:1000rpx"
+></canvas>
+<view class="poster-wrap">
+    <swiper current="0"
+            bindchange="onChange"
+            class="swiper-wrap">
+            <swiper-item class="swiper-item" item-id="{{imgPath1}}">
+                <image class="img1" src="{{imgPath1}}" mode="widthFix"></image>
+                <view class="text">
+                    <view class="text-title">{{dataInfo.title}}</view>
+                    <view class="text-price">
+                        <text class="text-price-left">预估单价:</text>
+                        <text class="text-price-right">{{dataInfo.unitPrice}}元/m²</text>
+                    </view>
+                    <view class="text-address">
+                        <view class="text-address-left">开盘地址:</view>
+                        <view class="text-address-right">{{dataInfo.detailsAddress}}</view>
+                    </view>
+                </view>
+                <view class="point-container">
+                    <view>
+                        <view class='am-cname'><text>{{userInfo.realName}}</text></view>
+                        <view class="contact">
+                            <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
+                            <text class="phone">{{userInfo.phone}}</text>
+                        </view>
+                        <view class="desc">{{userInfo.synopsis}}</view>
+                    </view>
+                    <view class="am-img"><canvas style="width: 136rpx; height: 136rpx;" canvas-id="myQrcode"></canvas></view>
+                </view>
+            </swiper-item>
+            <swiper-item class="swiper-item"  item-id="{{imgPath2}}">
+                <image class="img1" src="{{imgPath2}}" mode="widthFix"></image>
+                <view class="text1">
+                    <view class="text-title1">{{dataInfo.title}}</view>
+                    <view class="text-price1">
+                        <text class="text-price-left1">预估单价:</text>
+                        <text class="text-price-right1">{{dataInfo.unitPrice}}元/m²</text>
+                    </view>
+                    <view class="text-address1">
+                        <view class="text-address-left1">开盘地址:</view>
+                        <view class="text-address-right1">{{dataInfo.detailsAddress}}</view>
+                    </view>
+                </view>
+                <view class="point-container">
+                    <view>
+                        <view class='am-cname'><text>{{userInfo.realName}}</text></view>
+                        <view class="contact">
+                            <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
+                            <text class="phone">{{userInfo.phone}}</text>
+                        </view>
+                        <view class="desc">{{userInfo.synopsis}}</view>
+                    </view>
+                    <view class="am-img"><canvas style="width: 136rpx; height: 136rpx;" canvas-id="myQrcode1"></canvas></view>
+                </view>
+            </swiper-item>
+            <swiper-item class="swiper-item si3"  item-id="{{imgPath3}}">
+                <view class="third-title">{{dataInfo.title}}</view>
+                <view class="text-price2">
+                    <text class="text-price-left1">预估单价:</text>
+                    <text class="text-price-right1">{{dataInfo.unitPrice}}元/m²</text>
+                </view>
+                <image class="img3" src="{{imgPath3}}" mode="widthFix"></image>
+                <view class="point-container">
+                    <view>
+                        <view class='am-cname'><text>{{userInfo.realName}}</text></view>
+                        <view class="contact">
+                            <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
+                            <text class="phone">{{userInfo.phone}}</text>
+                        </view>
+                        <view class="desc">{{userInfo.synopsis}}</view>
+                    </view>
+                    <view class="am-img"><canvas style="width: 100rpx; height: 100rpx;" canvas-id="myQrcode2"></canvas></view>
+                </view>
+            </swiper-item>
+            <swiper-item class="swiper-item si4" item-id="{{imgPath4}}">
+                <view class="point-container4">
+                    <view>
+                        <view class='am-cname'><text>{{userInfo.realName}}</text></view>
+                        <view class="contact">
+                            <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
+                            <text class="phone">{{userInfo.phone}}</text>
+                        </view>
+                        <view class="desc">{{userInfo.synopsis}}</view>
+                    </view>
+                    <view class="am-img"><canvas style="width: 100rpx; height: 100rpx;" canvas-id="myQrcode3"></canvas></view>
+                </view>
+                <image src="{{imgPath4}}" class="img4" mode="widthFix"></image>
+                <view class="sw4-title">{{dataInfo.title}}</view>
+                <view class="text4">
+                    <view class="text-price1">
+                        <text class="text-price-left1">预估单价:</text>
+                        <text class="text-price-right1">{{dataInfo.unitPrice}}元/m²</text>
+                    </view>
+                    <view class="text-address1">
+                        <view class="text-address-left1">开盘地址:</view>
+                        <view class="text-address-right1">{{dataInfo.detailsAddress}}</view>
+                    </view>
+                </view>
+            </swiper-item>
+    </swiper>
+    <view class="bottom-btn">
+    <view class="save-btn" catch:tap="save">保存至手机</view>
+    </view>
+    <view class="page">
+        <text class="page-index">{{index}}/4</text>
+    </view>
+</view>

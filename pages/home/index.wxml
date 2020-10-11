@@ -120,7 +120,7 @@
 							<image class="floor-list-row-top-image" src="{{item.designSketch}}"></image>
 							<view class="floor-list-row-top-type">
 								<view class="floor-list-row-top-type-top">
-									<view class="top-view" catchtap="getShareIt">
+									<view class="top-view" data-item="{{item}}" catchtap="getShareIt">
 										<image class="top-view-image" src="/assets/icon_share_14_black@2x.png"></image>
 										<text class="top-view-text">分享</text>
 									</view>
@@ -205,7 +205,7 @@
 				</button>
 			</view>
 			<view class="share-view-select-view">
-				<button open-type="share" class="share-view-select-button">
+				<button class="share-view-select-button" catch:tap="sharePoster">
 					<image src="/assets/icon_poster_45@2x.png"></image>
 					<text>分享海报</text>
 				</button>

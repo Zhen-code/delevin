@@ -38,6 +38,24 @@ function getTime(val) {
   let date = formatNumber(time.getDate());
   return (year+'/'+month+'/'+date);
 }
+function getImageInfo(path) {
+  console.log(66)
+  console.log(path)
+  return new Promise((resolve,reject)=>{
+    wx.getImageInfo({
+      src: path,
+      success: (res)=>{
+        resolve(res)
+      },
+      fail:(err)=>{
+        reject(err)
+      }
+    })
+  });
+}
+function to2Px(clientWidth,x){
+  return Number(clientWidth*x/750);
+}
 const key = 'YGYBZ-XGBWW-WEERF-R7V27-PJIIK-O6BWA';
 const referer = 'delevin-mini-program'; //调用插件的app的名称
 let min_time = new Date("1900-01-01 00:00:00").getTime();
@@ -49,5 +67,7 @@ module.exports = {
   referer,
   min_time,
   currentDate,
-  getTime
+  getTime,
+  getImageInfo,
+  to2Px
 };

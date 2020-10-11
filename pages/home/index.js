@@ -33,6 +33,7 @@ Page({
 		title: '新房房源',
 		total: 0,
 		link: '',
+		detailsData: ''
 	},
 
 	onPageScroll(e) {
@@ -416,9 +417,11 @@ Page({
 		}
 	},
 
-	getShareIt() {
+	getShareIt(e) {
+		let itemData = e.currentTarget.dataset;
 		this.setData({
 			share: true,
+			detailsData: itemData
 		})
 	},
 
@@ -573,6 +576,13 @@ Page({
 		})
 		wx.navigateTo({
 			url: `/combination/pages/webView/index?item=${item}`,
+		})
+	},
+
+	sharePoster(){
+		console.log(this.data.detailsData)
+		wx.navigateTo({
+			url: '/combination/pages/sharePoster/index?data='+JSON.stringify(this.data.detailsData)
 		})
 	},
 
