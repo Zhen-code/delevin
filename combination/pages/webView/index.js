@@ -5,7 +5,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		link:'',
+		link: '',
 	},
 
 	/**
@@ -13,13 +13,13 @@ Page({
 	 */
 	onLoad: function (options) {
 		let item = JSON.parse(options.item);
-		console.log(item)
+		console.log(item.link)
 		this.setData({
-			link:item.link
-		},()=>{
+			link: item.link
+		}, () => {
 			wx.setNavigationBarTitle({
 				title: item.title
-		 })
+			})
 		})
 	},
 

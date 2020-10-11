@@ -20,7 +20,7 @@ Page({
 		triggered: false,
 		toBottom: true
 	},
-	pageTotal: 0,
+	pageTotal: 1,
 	scrollTop() {
 		wx.pageScrollTo({
 			scrollTop: 0
@@ -31,6 +31,7 @@ Page({
 		this.setData({
 			pageIndex: 1,
 			triggered: false,
+			item: []
 		});
 		this.getData()
 	},
@@ -38,42 +39,31 @@ Page({
 	//滚动加载
 	scrollList() {
 		let {pageIndex} = this.data;
-		pageIndex++;
 		if(pageIndex>this.pageTotal){
 			this.setData({
 				toBottom: true
 			})
 		}else{
-			this.setData({
-				pageIndex
-			});
 			this.getData();
 		}
 	},
 
 	getData() {
+		let {item,pageIndex} = this.data;
 		http({
 			url: api.operation.visitorList,
 			method: 'GET',
 			params:{
 				pageIndex: this.data.pageIndex,
 				pageSize: this.data.pageSize,
-				type: 'PERSONAL_HOMEPAGE'
 			}
 		}).then(res=>{
 			console.log(res)
-			let {item} = this.data;
-			if(res.pageIndex>this.pageTotal){
-				this.setData({
-					toBottom: true
-				});
-			}else{
+			this.pageTotal = res.pageTotal;
 				this.setData({
 					item: [...item,...res.list],
-					toBottom: false
+					pageIndex: pageIndex+1
 				});
-			}
-			this.pageTotal = res.pageTotal;
 		}).catch(err=>{
 			console.log(err);
 		})
@@ -82,9 +72,31 @@ Page({
 
 	dialNumber(e) {
 		console.log(e)
-		wx.makePhoneCall({
-			phoneNumber: '17620835317'
-		})
+		let {phone,dialing} = e.currentTarget.dataset;
+		if(dialing==="YES"){
+			wx.makePhoneCall({
+				phoneNumber: phone
+			})
+		}else{
+			wx.showModal({
+				title: '套餐购买',
+				content: '当前需要购买相应套餐，是否前往?',
+				cancelText: '取消',
+				showCancel: true,
+				confirmText: '确定',
+				success(res){
+					if(res.confirm){
+						wx.navigateTo({
+							url: '/combination/pages/generalPromotion/index'
+						})
+					}else{
+						wx.showToast({
+							title: '请先购买套餐'
+						})
+					}
+				}
+			})
+		}
 		// request.getPhome().then((res) => {
 
 		// }).catch((err) => {

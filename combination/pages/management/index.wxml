@@ -5,7 +5,7 @@
 	</view>
 	<scroll-view class="shopItem" wx:if="{{selectType.length !== 0}}" style="top: {{paddingTop+45}}px;" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
 		<block wx:for="{{item}}" wx:key="index" wx:if="{{tabIndex === 0}}">
-			<shopItem item="{{item}}"></shopItem>
+			<shopItem classType="{{item.sourceType}}" item="{{item}}" bindtap="toRecording"></shopItem>
 		</block>
 		<block wx:for="{{pushCustomer}}" wx:key="index" wx:if="{{tabIndex === 1}}">
 			<view class="row">
@@ -20,7 +20,7 @@
 				</view>
 				<view class="row-right" data-phone="{{item.phone}}" data-dialing="{{item.dialing}}" bindtap="dialNumber">
 					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
-					<text class="row-right-phone">{{item.phone}}</text>
+					<text class="row-right-phone">虚拟号码</text>
 				</view>
 			</view>
 		</block>
@@ -34,8 +34,7 @@
 					</view>
 				</view>
 				<view class="row-right">
-					<van-tag wx:if="{{item.snatch=='YES'}}" data-memberid="{{item.id}}" size="large" color="#FFC51D" text-color="#333333" type="warning" bindtap="confirm">待抢</van-tag>
-					 <van-tag wx:else size="large" color="#EEEEEE" text-color="#333333" type="warning">不可抢</van-tag>
+					<van-tag data-snatch="{{item.snatch}}" data-memberid="{{item.id}}" size="large" color="#FFC51D" text-color="#333333" type="warning" bindtap="confirm">待抢</van-tag>
 				</view>
 			</view>
 		</block>
@@ -52,7 +51,7 @@
 				</view>
 				<view class="row-right" data-dialing="{{item.dialing}}" data-phone="{{item.phone}}" bindtap="dialNumber">
 					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
-					<text class="row-right-phone">{{item.phone}}</text>
+					<text class="row-right-phone">虚拟号码</text>
 				</view>
 			</view>
 		</block>

@@ -17,6 +17,8 @@
       <change beforePath="$PROJECT_DIR$/request/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/http.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/request/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/request/request.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/util.js" afterDir="false" />
+    <list default="true" id="f6390fbf-cb8d-4c3c-a657-64662bad2579" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/combination/pages/recording/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/combination/pages/recording/index.wxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +90,21 @@
       <updated>1602259187539</updated>
     </task>
     <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00003" summary="change:客源管理">
+      <created>1602320811791</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1602320811791</updated>
+    </task>
+    <task id="LOCAL-00004" summary="change:客源管理">
+      <created>1602328634982</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1602328634982</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,38 +114,55 @@
     <MESSAGE value="fix: 'merge'" />
     <MESSAGE value="feat: 配图分享" />
     <MESSAGE value="fix: 优化" />
+    <MESSAGE value="change:客源管理" />
+    <option name="LAST_COMMIT_MESSAGE" value="change:客源管理" />
     <MESSAGE value="feat:添加个人主页与获客文章访客记录;fix:房源列表搜索数据;change:获客管理数据" />
     <option name="LAST_COMMIT_MESSAGE" value="feat:添加个人主页与获客文章访客记录;fix:房源列表搜索数据;change:获客管理数据" />
   </component>
   <component name="WindowStateProjectService">
     <state x="467" y="0" key="CommitChangelistDialog2" timestamp="1602259183483">
       <screen x="0" y="0" width="1600" height="866" />
+    <state x="560" y="114" key="CommitChangelistDialog2" timestamp="1602328634009">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="560" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602328634009" />
+    <state x="184" y="92" key="DiffContextDialog" timestamp="1602320806499">
     <state x="467" y="0" key="CommitChangelistDialog2/0.0.1600.866@0.0.1600.866" timestamp="1602259183483" />
     <state x="560" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602239001101" />
     <state x="184" y="92" key="DiffContextDialog" timestamp="1602238998325">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="184" y="92" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602238998325" />
+    <state x="184" y="92" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602320806499" />
     <state x="686" y="211" key="FileChooserDialogImpl" timestamp="1602142621900">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1602106896906" />
     <state x="686" y="211" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1602142621900" />
+    <state x="540" y="255" key="IDE.errors.dialog" timestamp="1602318738541">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="540" y="255" key="IDE.errors.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602318738541" />
     <state x="477" y="128" key="MultipleFileMergeDialog" timestamp="1602106383046">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="477" y="128" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1602106383046" />
     <state x="460" y="205" key="Vcs.Push.Dialog.v2" timestamp="1602259195955">
       <screen x="0" y="0" width="1600" height="866" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602328641019">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="460" y="205" key="Vcs.Push.Dialog.v2/0.0.1600.866@0.0.1600.866" timestamp="1602259195955" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602225145982" />
     <state x="530" y="211" width="786" height="612" key="find.popup" timestamp="1602346601585">
       <screen x="0" y="0" width="1600" height="866" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602328641019" />
+    <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1602322591061">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="530" y="211" width="786" height="612" key="find.popup/0.0.1600.866@0.0.1600.866" timestamp="1602346601585" />
     <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602236521609" />
+    <state x="530" y="211" width="786" height="612" key="find.popup/0.0.1600.866@0.0.1600.866" timestamp="1602252989776" />
+    <state x="636" y="253" width="647" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602322591061" />
     <state x="530" y="124" key="git4idea.branch.GitSmartOperationDialog" timestamp="1602106373237">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

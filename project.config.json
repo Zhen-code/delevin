@@ -127,6 +127,20 @@
 				},
 				{
 					"id": -1,
+					"name": "客源套餐",
+					"pathName": "combination/pages/generalPromotion/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "超級推廣",
+					"pathName": "combination/pages/superPromotion/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
 					"name": "分享海报",
 					"pathName": "combination/pages/sharePoster/index",
 					"scene": null

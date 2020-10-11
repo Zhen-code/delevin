@@ -64,6 +64,12 @@ Page({
 		})
 	},
 
+	toShareItCode(){
+		wx.navigateTo({
+			url: `/combination/pages/shareItCode/index`,
+		})
+	},
+
 	getTab() {
 		let {
 			show

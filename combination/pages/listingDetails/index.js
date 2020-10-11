@@ -13,6 +13,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
+		toView:'',
 		paddingTop: topHeight,
 		id: '',
 		type: '',
@@ -33,6 +34,10 @@ Page({
 		favoritesColor: '#cccccc',
 		favoritesName: '收藏',
 		superInfo: ''
+		item1:[],
+		item2:[],
+		item3:[],
+		item4:[],
 	},
 
 	tovideoImage() {
@@ -43,6 +48,24 @@ Page({
 		wx.navigateTo({
 			url: `/combination/pages/browsePictures/index?item=${item}`
 		})
+	},
+
+	toWebView(){
+		let item = JSON.stringify({
+			"title": "房贷计算器",
+			"link": "https://dev.delevin.beiru168.com/index.html",
+		})
+		wx.navigateTo({
+			url: `/combination/pages/webView/index?item=${item}`,
+		})
+	},
+
+	toPrice(e){
+		var id = e.currentTarget.dataset.id;
+		console.log(id)
+    this.setData({
+      toView: id
+    })
 	},
 
 	toMap() {
@@ -75,7 +98,23 @@ Page({
 	},
 
 	getTabValue(e) {
-		console.log(e.detail)
+		let data = '';
+		let item1 = this.data.item1;
+		let item2 = this.data.item2;
+		let item3 = this.data.item3;
+		let item4 = this.data.item4;
+		if(e.detail === 0){
+			data = {
+				"categories":item1 || [],
+				"seriesData":item2 || [],
+			}
+		}else{
+			data = {
+				"categories":item3 || [],
+				"seriesData":item4 || [],
+			}
+		}
+		this.getshowColumn(data)
 	},
 
 	getData() {
@@ -102,7 +141,6 @@ Page({
 			res['comments'].forEach(v=>{
 				v.content = v.content.replace(/<[^>]+>/ig, '')
 			});
-			console.log(78787878)
 			switch (res.decorationStatus) {
 				case 'ROUGHCAST':
 					res.decorationsStatusType = '毛坯'
@@ -166,6 +204,10 @@ Page({
 			res.type = this.data.type;
 			let categories = [];
 			let seriesData = [];
+			let item1 = this.data.item1;
+			let item2 = this.data.item2;
+			let item3 = this.data.item3;
+			let item4 = this.data.item4;
 			if(res.houseHistory){
 				res.houseHistory.map((items)=>{
 					categories.push(items.dateFor)
@@ -173,21 +215,20 @@ Page({
 					return items
 				})
 			}
-			// if(res.rentHistory){
-			// 	res.rentHistory.map((items)=>{
-			// 		categories.push(items.dateFor)
-			// 		seriesData.push(items.price)
-			// 		return items
-			// 	})
-			// }
-			// if(res.secondHandHistory){
-			// 	res.secondHandHistory.map((items)=>{
-			// 		categories.push(items.dateFor)
-			// 		seriesData.push(items.price)
-			// 		return items
-			// 	})
-			// }
-			console.log(seriesData,categories)
+			if(res.rentHistory){
+				res.rentHistory.map((items)=>{
+					item1.push(items.dateFor)
+					item2.push(items.price)
+					return items
+				})
+			}
+			if(res.secondHandHistory){
+				res.secondHandHistory.map((items)=>{
+					item3.push(items.dateFor)
+					item4.push(items.price)
+					return items
+				})
+			}
 			this.setData({
 				item: res,
 				favoritesState: res.collection === 'NO'?false:true,
@@ -199,19 +240,13 @@ Page({
 				houseId: res.id,
 				houseMold: this.data.type
 			}
-			let column = {
-				categories: categories,
-				series: [{
-					name: "房价走势图",
-					data: seriesData,
-					color: "#FFD200",
-					show: true,
-					area: [0, 50],
-				}]
-			};
-			this.showColumn(column);
+			let data = {
+				"categories":categories || item1,
+				"seriesData":seriesData || item2,
+			}
+			this.getshowColumn(data)
 			this.getLikeListings(item);
-			// this.ahistoryAdd(item);
+			this.ahistoryAdd(item);
 		}).catch((err) => {
 			console.log(err)
 			wx.showToast({
@@ -222,6 +257,18 @@ Page({
 		})
 	},
 
+	getshowColumn(data){
+		this.showColumn({
+			categories: data.categories,
+			series: [{
+				name: "房价走势图",
+				data: data.seriesData,
+				color: "#FFD200",
+				show: true,
+				area: [0, 50],
+			}]
+		});
+	},
 
 	getLikeListings(item) {
 		request.likeListings({
@@ -247,6 +294,7 @@ Page({
 			"targetId": item.houseId,
 			"type": item.houseMold
 		}).then((res)=>{
+			console.log(res,55333)
 		}).catch((err)=>{
 			console.log(err)
 			wx.showToast({
@@ -333,7 +381,7 @@ Page({
 		let type = '';
 		let data = e.currentTarget.dataset.item;
 		console.log(data,112212)
-		switch (data.houseMold) {
+		switch (data.houseMold || 'RESIDENTIAL_QUARTERS') {
 			case 'ESTATE':
 				type = "新房房源";
 				break;
@@ -388,6 +436,7 @@ Page({
 			console.log(err)
 		})
 	},
+
 	getAddvisitorRecord(){
 		// request.visitorRecord({
 		// 	"houseId":  item.houseId,
@@ -433,10 +482,13 @@ Page({
 			title: item.title,
 		}, () => {
 			this.getData();
+			// this.getAddvisitorRecord()
+		})
 		});
 		this.cWidth = wx.getSystemInfoSync().windowWidth;
 		this.cHeight = 500 / 750 * wx.getSystemInfoSync().windowWidth;
 	},
+
 	showColumn(chartData) {
 		let _self = this;
 		canvaColumn = new uCharts({

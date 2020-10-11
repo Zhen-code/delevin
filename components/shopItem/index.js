@@ -14,7 +14,7 @@ Component({
 		},
 	},
 	observers: {
-    classType(val, newVal) {
+    classType(val) {
 			if(val){
 				this.setData({
 					typeClass:val
@@ -42,6 +42,6 @@ Component({
 		getAddListings(e){
 			let item = e.currentTarget.dataset.item;
 			this.triggerEvent('backItem', item)
-		},
+		}
 	}
 })

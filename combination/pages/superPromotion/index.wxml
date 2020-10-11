@@ -1,5 +1,5 @@
 <!--combination/pages/superPromotion/index.wxml-->
-<view class="view" style="padding-top:{{paddingTop}}px">
+<scroll-view style="height:60vw" class="view" style="padding-top:{{paddingTop}}px">
 	<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="超级推广" />
 	<view class="view-row">
 		<view class="view-row-content">
@@ -53,8 +53,8 @@
 					</view>
 				</view>
 			</view>
-			<view class="floor-list-bottom">
-				<text class="floor-list-bottom-text">点击查看套餐介绍与规则</text>
+			<view class="floor-list-bottom" >
+				<text class="floor-list-bottom-text" bindtap="privacyPolicy">点击查看套餐介绍与规则</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>
 		</view>
@@ -68,7 +68,7 @@
 			<block wx:for="{{list}}" wx:key="index">
 				<view wx:if="{{item.status === 'UPPER'}}" class="checkList-row {{itemIndex === index?'checkList-row-action':''}}" data-item="{{item}}" data-index="{{index}}" bindtap="tabItem">{{item.specsTitle}}</view>
 			</block>
-			<input type="number" class="checkList-row {{itemIndex === -1?'checkList-row-action':''}}" value="{{itemValue}}" data-index="{{-1}}" data-model="specs"  bindblur="itemType" bindtap="tabItem"></input>
+			<input type="number" placeholder="自定义" class="checkList-row {{itemIndex === -1?'checkList-row-action':''}}" value="{{itemValue}}" data-index="{{-1}}" data-model="specs"  bindblur="itemType" bindtap="tabItem"></input>
 		</view>
 	</view>
 
@@ -78,7 +78,7 @@
 			<van-stepper value="{{ num }}" input-width="120rpx" disable-input integer bind:change="onChange" />
 		</view>
 	</view>
-</view>
+</scroll-view>
 
 
 <view class="footer">

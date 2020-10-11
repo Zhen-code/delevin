@@ -445,6 +445,8 @@ Page({
 	getSearchValue(e) {
 		if (e.detail.value) {
 			this.setData({
+				pageIndex: 1,
+				item: [],
 				keyword: e.detail.value,
 				city: e.detail.city,
 				province: e.detail.province || app.globalData.address.province,

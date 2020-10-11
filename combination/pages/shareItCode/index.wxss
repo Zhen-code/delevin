@@ -57,3 +57,32 @@ page {
 }
 
 
+
+
+/* pages/canvas/index.wxss */
+.shareImgs {
+	width: 100%;
+	height: 100vh;
+	background-color: #fff;
+	position: relative;
+}
+
+.saveImgBtn {
+	width: 376rpx;
+	height: 80rpx;
+	border-radius: 40rpx;
+	border: 2rpx solid #333333;
+	color: #333333;
+	font-size: 32rpx;
+	text-align: center;
+	border-radius: 8rpx;
+	position: absolute;
+	bottom: 368rpx;
+	left: 188rpx;
+	right: 188rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 40rpx;
+	z-index: 999;
+}

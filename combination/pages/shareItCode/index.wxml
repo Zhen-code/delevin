@@ -6,12 +6,17 @@
 		<view bindtap="extraImage" class="inner_box">保存图片至本地</view>
 	</view>
 </view>
-<canvas style="width:200px;height:200px" canvas-id="myQrcode"></canvas> -->
+<canvas style="width:200px;height:200px" canvas-id="myQrcode"></canvas>
 
-
-<!-- <canvas style="width:200px;height:200px" canvas-id="myQrcode"></canvas> -->
-
+<canvas style="width:200px;height:200px" canvas-id="myQrcode"></canvas>
 
 <view>
 	<canvas canvas-id="myCode"></canvas>
+</view> -->
+
+
+
+<view class="shareImgs">
+	<canvas canvas-id="myCanvas" style='width:{{canvasWidth}}px;height:{{canvasHeight}}px'></canvas>
 </view>
+<view class="saveImgBtn" bindtap="savecanvas">生成图片并保存相册</view>
