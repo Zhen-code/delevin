@@ -1,8 +1,12 @@
 const {
 	request
 } = require('../../../request/request');
-const {http} = require('../../../request/http');
-const {api} = require('../../../request/api');
+const {
+	http
+} = require('../../../request/http');
+const {
+	api
+} = require('../../../request/api');
 const topHeight = require('../../../request/topHeight.js').topHeight
 import uCharts from "../../../utils/u-charts.min.js"
 var _self;
@@ -13,7 +17,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		toView:'',
+		toView: '',
 		paddingTop: topHeight,
 		id: '',
 		type: '',
@@ -33,11 +37,11 @@ Page({
 		favoritesIcon: 'star-o',
 		favoritesColor: '#cccccc',
 		favoritesName: '收藏',
-		superInfo: ''
-		item1:[],
-		item2:[],
-		item3:[],
-		item4:[],
+		superInfo: '',
+		item1: [],
+		item2: [],
+		item3: [],
+		item4: [],
 	},
 
 	tovideoImage() {
@@ -50,7 +54,7 @@ Page({
 		})
 	},
 
-	toWebView(){
+	toWebView() {
 		let item = JSON.stringify({
 			"title": "房贷计算器",
 			"link": "https://dev.delevin.beiru168.com/index.html",
@@ -60,12 +64,12 @@ Page({
 		})
 	},
 
-	toPrice(e){
-		var id = e.currentTarget.dataset.id;
-		console.log(id)
-    this.setData({
-      toView: id
-    })
+	toPrice(e) {
+		var components = e.currentTarget.dataset.myid;
+		console.log(components)
+		this.setData({
+			toView:components,
+		})
 	},
 
 	toMap() {
@@ -103,15 +107,15 @@ Page({
 		let item2 = this.data.item2;
 		let item3 = this.data.item3;
 		let item4 = this.data.item4;
-		if(e.detail === 0){
+		if (e.detail === 0) {
 			data = {
-				"categories":item1 || [],
-				"seriesData":item2 || [],
+				"categories": item1 || [],
+				"seriesData": item2 || [],
 			}
-		}else{
+		} else {
 			data = {
-				"categories":item3 || [],
-				"seriesData":item4 || [],
+				"categories": item3 || [],
+				"seriesData": item4 || [],
 			}
 		}
 		this.getshowColumn(data)
@@ -138,7 +142,7 @@ Page({
 			"houseId": this.data.id,
 		}).then((res) => {
 			console.log(res)
-			res['comments'].forEach(v=>{
+			res['comments'].forEach(v => {
 				v.content = v.content.replace(/<[^>]+>/ig, '')
 			});
 			switch (res.decorationStatus) {
@@ -175,7 +179,7 @@ Page({
 				case 'NORTHWEST':
 					res.orientationType = '西北'
 					break;
-					case 'NORTHEAST':
+				case 'NORTHEAST':
 					res.orientationType = '东北'
 					break;
 				case 'SOUTHWEST':
@@ -190,7 +194,7 @@ Page({
 				case 'SOUTHEAST_NORTH':
 					res.orientationType = '东南北'
 					break;
-					case 'SOUTHWEST_NORTH':
+				case 'SOUTHWEST_NORTH':
 					res.orientationType = '西南北'
 					break;
 				case 'EAST_WEST_NORTH':
@@ -208,22 +212,22 @@ Page({
 			let item2 = this.data.item2;
 			let item3 = this.data.item3;
 			let item4 = this.data.item4;
-			if(res.houseHistory){
-				res.houseHistory.map((items)=>{
+			if (res.houseHistory) {
+				res.houseHistory.map((items) => {
 					categories.push(items.dateFor)
 					seriesData.push(items.price)
 					return items
 				})
 			}
-			if(res.rentHistory){
-				res.rentHistory.map((items)=>{
+			if (res.rentHistory) {
+				res.rentHistory.map((items) => {
 					item1.push(items.dateFor)
 					item2.push(items.price)
 					return items
 				})
 			}
-			if(res.secondHandHistory){
-				res.secondHandHistory.map((items)=>{
+			if (res.secondHandHistory) {
+				res.secondHandHistory.map((items) => {
 					item3.push(items.dateFor)
 					item4.push(items.price)
 					return items
@@ -231,18 +235,18 @@ Page({
 			}
 			this.setData({
 				item: res,
-				favoritesState: res.collection === 'NO'?false:true,
-				favoritesIcon: res.collection === 'NO'?'star-o':'star',
-				favoritesColor: res.collection === 'NO'?'#cccccc':'#FFD854',
-				favoritesName: res.collection === 'NO'?'收藏':'已收藏',
+				favoritesState: res.collection === 'NO' ? false : true,
+				favoritesIcon: res.collection === 'NO' ? 'star-o' : 'star',
+				favoritesColor: res.collection === 'NO' ? '#cccccc' : '#FFD854',
+				favoritesName: res.collection === 'NO' ? '收藏' : '已收藏',
 			})
 			let item = {
 				houseId: res.id,
 				houseMold: this.data.type
 			}
 			let data = {
-				"categories":categories || item1,
-				"seriesData":seriesData || item2,
+				"categories": categories || item1,
+				"seriesData": seriesData || item2,
 			}
 			this.getshowColumn(data)
 			this.getLikeListings(item);
@@ -257,7 +261,7 @@ Page({
 		})
 	},
 
-	getshowColumn(data){
+	getshowColumn(data) {
 		this.showColumn({
 			categories: data.categories,
 			series: [{
@@ -274,8 +278,8 @@ Page({
 		request.likeListings({
 			"houseId": item.houseId,
 			"houseMold": item.houseMold,
-			"pageIndex":1,
-			"pageSize":5,
+			"pageIndex": 1,
+			"pageSize": 5,
 		}).then((res) => {
 			this.setData({
 				list: res.list
@@ -289,13 +293,13 @@ Page({
 		})
 	},
 
-	ahistoryAdd(item){
+	ahistoryAdd(item) {
 		request.ahistoryAdd({
 			"targetId": item.houseId,
 			"type": item.houseMold
-		}).then((res)=>{
-			console.log(res,55333)
-		}).catch((err)=>{
+		}).then((res) => {
+			// console.log(res,55333)
+		}).catch((err) => {
 			console.log(err)
 			wx.showToast({
 				title: '请求失败',
@@ -318,7 +322,7 @@ Page({
 	},
 
 	collPhone() {
-		let phone = this.data.item.telephone
+		let phone = this.data.item.platformPhone
 		wx.makePhoneCall({
 			phoneNumber: phone
 		})
@@ -336,7 +340,7 @@ Page({
 					favoritesIcon: 'star-o',
 					favoritesColor: '#cccccc',
 					favoritesName: '收藏',
-				},()=>{
+				}, () => {
 					wx.showToast({
 						title: '取消成功',
 						icon: 'success',
@@ -360,7 +364,7 @@ Page({
 					favoritesIcon: 'star',
 					favoritesColor: '#FFD854',
 					favoritesName: '已收藏',
-				},()=>{
+				}, () => {
 					wx.showToast({
 						title: '收藏成功',
 						icon: 'success',
@@ -377,11 +381,11 @@ Page({
 		}
 	},
 
-	toDetails(e){
+	toDetails(e) {
 		let type = '';
 		let data = e.currentTarget.dataset.item;
-		console.log(data,112212)
-		switch (data.houseMold || 'RESIDENTIAL_QUARTERS') {
+		console.log(data, data.houseId, 112212)
+		switch (this.data.type) {
 			case 'ESTATE':
 				type = "新房房源";
 				break;
@@ -398,46 +402,74 @@ Page({
 		}
 		let item = JSON.stringify({
 			'title': type,
-			"id": data.houseId,
+			"id": data.id,
 		})
 		wx.navigateTo({
 			url: `/combination/pages/listingDetails/index?item=${item}`,
 		})
 	},
 
-	addVistorRecord(){
+	toCommunity(e) {
+		let type = '';
+		let data = e.currentTarget.dataset.item;
+		console.log(data, data.quartersId, 112212)
+		// switch (this.data.type) {
+		// 	case 'ESTATE':
+		// 		type = "新房房源";
+		// 		break;
+		// 	case "SECOND_HAND":
+		// 		type = "二手房房源";
+		// 		break;
+		// 	case "TENANCY":
+		// 		type = "租房房源";
+		// 		break;
+		// 	case "RESIDENTIAL_QUARTERS":
+		// 		type = "小区房源";
+		// 		break;
+		// 	default:
+		// }
+		let item = JSON.stringify({
+			'title': '小区房源',
+			"id": data.quartersId,
+		})
+		wx.navigateTo({
+			url: `/combination/pages/listingDetails/index?item=${item}`,
+		})
+	},
+
+	addVistorRecord() {
 		request.addMemberVisitor({
 			houseId: this.data.id,
 			houseType: this.data.type,
 			type: 'HOUSE'
-		}).then(res=>{
-			console.log(res)
-		}).catch(err=>{
+		}).then(res => {
+			// console.log(res)
+		}).catch(err => {
 			console.log(err)
 		})
 	},
-	updateVisitCount(){
+	updateVisitCount() {
 		request.updateVisitCount({
 			houseType: this.data.type,
 			targetId: this.data.id
-		}).then(res=>{
-			console.log(res)
-		}).catch(err=>{
+		}).then(res => {
+			// console.log(res)
+		}).catch(err => {
 			console.log(err)
 		})
 	},
-	addBrowseHistory(){
+	addBrowseHistory() {
 		request.addBrowseHistory({
 			targetId: this.data.id,
 			type: this.data.type
-		}).then(res=>{
-			console.log(res)
-		}).catch(err=>{
+		}).then(res => {
+			// console.log(res)
+		}).catch(err => {
 			console.log(err)
 		})
 	},
 
-	getAddvisitorRecord(){
+	getAddvisitorRecord() {
 		// request.visitorRecord({
 		// 	"houseId":  item.houseId,
 		// 	"houseType": item.houseMold,
@@ -476,6 +508,7 @@ Page({
 				break;
 			default:
 		}
+		console.log(item, 454545)
 		this.setData({
 			type: type,
 			id: item.id,
@@ -484,7 +517,7 @@ Page({
 			this.getData();
 			// this.getAddvisitorRecord()
 		})
-		});
+
 		this.cWidth = wx.getSystemInfoSync().windowWidth;
 		this.cHeight = 500 / 750 * wx.getSystemInfoSync().windowWidth;
 	},
@@ -520,17 +553,17 @@ Page({
 		});
 	},
 
-	getSuperAdvert(){
+	getSuperAdvert() {
 		http({
-			url: api.broker.superAdvert(this.data.type,this.data.id),
+			url: api.broker.superAdvert(this.data.type, this.data.id),
 			method: 'GET',
-			params:{}
-		}).then(res=>{
-			console.log(res)
+			params: {}
+		}).then(res => {
+			// console.log(res)
 			let title = "";
 			switch (res.houseType) {
 				case "ESTATE":
-					 title = "新房房源";
+					title = "新房房源";
 					break;
 				case "SECOND_HAND":
 					title = "二手房房源";
@@ -547,12 +580,12 @@ Page({
 			this.setData({
 				superInfo: {
 					...res,
-					title:title,
+					title: title,
 					id: res.houseId,
 					houseMold: res.houseType
 				}
 			})
-		}).catch(err=>{
+		}).catch(err => {
 			console.log(err)
 		})
 	},

@@ -18,10 +18,10 @@
 		</view>
 		<view class="floor">
 			<view class="floor-list">
-				<block wx:for="{{list}}" wx:key="{{index}}">
+				<block wx:for="{{list}}" wx:key="index">
 					<view class="floor-list-row" data-id="{{item.houseId}}" data-housetype="{{item.houseMold}}" catch:tap="goHouseDetail">
 						<view class="floor-list-row-top">
-							<image class="floor-list-row-top-image" src="{{item.designSketch}}"></image>
+							<image class="floor-list-row-top-image" src="{{item.coverPicture}}"></image>
 							<view class="floor-list-row-top-type">
 								<view class="floor-list-row-top-type-top"></view>
 								<view class="floor-list-row-top-type-bottom">

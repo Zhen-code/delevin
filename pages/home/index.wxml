@@ -117,7 +117,7 @@
 							</view>
 						</view> -->
 						<view class="floor-list-row-top" id="{{item.houseId}}" bindtap="toDetails">
-							<image class="floor-list-row-top-image" src="{{item.designSketch}}"></image>
+							<image class="floor-list-row-top-image" src="{{item.coverPicture}}"></image>
 							<view class="floor-list-row-top-type">
 								<view class="floor-list-row-top-type-top">
 									<view class="top-view" data-item="{{item}}" catchtap="getShareIt">

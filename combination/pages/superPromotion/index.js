@@ -56,17 +56,27 @@ Page({
 	},
 
 	itemType(e) {
-		console.log(e.detail.value)
 		let value = Math.floor(Number(e.detail.value));
-		// console.log(value % 100)
-		console.log(value)
-		this.setData({
-			itemIndex: -1,
-			itemValue: value,
-			specs: value,
-		}, () => {
-			this.getSuperCalculation();
-		})
+		if (value < 100) {
+			this.setData({
+				itemValue: '',
+				itemIndex: -1,
+			}, () => {
+				wx.showToast({
+					title: '不能低于100',
+					icon: 'none',
+					duration: 2500
+				})
+			})
+		} else {
+			this.setData({
+				itemIndex: -1,
+				itemValue: value,
+				specs: Number(value),
+			}, () => {
+				this.getSuperCalculation();
+			})
+		}
 	},
 
 	tabItem(e) {
@@ -97,9 +107,9 @@ Page({
 				price: res.totalPrice
 			})
 		}).catch((err) => {
-			console.log(err)
+			console.log(err.data.msg)
 			wx.showToast({
-				title: '数据错误',
+				title: err.data.msg,
 				icon: 'none',
 				duration: 2500
 			})
@@ -107,13 +117,13 @@ Page({
 	},
 
 	toSelectPromotion() {
-		if(this.data.item.length >= 20){
+		if (this.data.item.length >= 20) {
 			wx.showToast({
 				title: '房源最多可选择20个',
 				icon: 'none',
 				duration: 2500
 			})
-		}else{
+		} else {
 			app.globalData.selectPromotion = [];
 			wx.navigateTo({
 				url: '/combination/pages/selectPromotion/index',
@@ -127,7 +137,7 @@ Page({
 			"pageIndex": this.data.pageIndex,
 		}).then((res) => {
 			this.setData({
-				item:[],
+				item: [],
 				list: res.list,
 			})
 		}).catch((err) => {
@@ -149,7 +159,7 @@ Page({
 			specs,
 			num,
 		} = this.data;
-		if(advertising===""){
+		if (advertising === "") {
 			wx.showToast({
 				title: '请输入广告语',
 				icon: "none",
@@ -157,7 +167,7 @@ Page({
 			});
 			return
 		}
-		if(specs===""){
+		if (specs === "") {
 			wx.showToast({
 				title: '请选择曝光数',
 				icon: "none",
@@ -165,7 +175,7 @@ Page({
 			});
 			return
 		}
-		if(item.length === 0){
+		if (item.length === 0) {
 			wx.showToast({
 				title: '请选择投放广告位',
 				icon: "none",
@@ -252,24 +262,24 @@ Page({
 	},
 
 	privacyPolicy() {
-    request.link({
-      'type': 'SUPER_PROMOTION_PACKAGE_DESCRIPTION'
-    }).then((res) => {
-      let item = JSON.stringify({
-        "title": "超级推广套餐说明",
-        "link": res.link,
-      })
-      wx.navigateTo({
-        url: `/combination/pages/webView/index?item=${item}`,
-      })
-    }).catch((err) => {
-      wx.showToast({
-        title: '数据错误',
-        icon: 'none',
-        duration: 2500
-      })
-    })
-  },
+		request.link({
+			'type': 'SUPER_PROMOTION_PACKAGE_DESCRIPTION'
+		}).then((res) => {
+			let item = JSON.stringify({
+				"title": "超级推广套餐说明",
+				"link": res.link,
+			})
+			wx.navigateTo({
+				url: `/combination/pages/webView/index?item=${item}`,
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '数据错误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
 
 	/**
 	 * 生命周期函数--监听页面加载
@@ -279,7 +289,7 @@ Page({
 		if (item) {
 			this.setData({
 				info: item,
-				item:[],
+				item: [],
 			}, () => {
 				this.getData();
 			})
@@ -303,7 +313,7 @@ Page({
 		if (selectPromotion !== 0) {
 			item.push(...selectPromotion)
 			this.setData({
-				item: item.slice(0,20),
+				item: item.slice(0, 20),
 			})
 		}
 	},

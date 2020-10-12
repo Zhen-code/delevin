@@ -1,22 +1,4 @@
-<!-- <view class="down_load_box">
-	<view class="down_sec_box">
-		<wxml-to-canvas class="widget" width="{{750}}" height="{{1334}}"></wxml-to-canvas>
-	</view>
-	<view class="down_load_btn">
-		<view bindtap="extraImage" class="inner_box">保存图片至本地</view>
-	</view>
+<share-box isCanDraw="{{true}}" item="{{item}}" />
+<view style="position:fixed;top:-999999999999999999999rpx;">
+	<canvas style="width: 200px; height: 200px;z-index:-99" canvas-id="myQrcode"></canvas>
 </view>
-<canvas style="width:200px;height:200px" canvas-id="myQrcode"></canvas>
-
-<canvas style="width:200px;height:200px" canvas-id="myQrcode"></canvas>
-
-<view>
-	<canvas canvas-id="myCode"></canvas>
-</view> -->
-
-
-
-<view class="shareImgs">
-	<canvas canvas-id="myCanvas" style='width:{{canvasWidth}}px;height:{{canvasHeight}}px'></canvas>
-</view>
-<view class="saveImgBtn" bindtap="savecanvas">生成图片并保存相册</view>

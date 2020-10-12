@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "navbar":"/components/nav/index",
+    "painter": "/components/canvas/painter/painter",
+    "dialog-modal": "/components/canvas/dialogModal/index"
+  }
+}

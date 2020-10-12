@@ -236,6 +236,7 @@ Page({
 				default:
 			}
 			wx.setStorageSync('userId',res.id);
+			wx.setStorageSync('info',res);
 			this.setData({
 				userInfo: res,
 			})

@@ -1,4 +1,6 @@
 {
   "navigationStyle": "custom",
-  "usingComponents": { "wxml-to-canvas": "../../miniprogram_npm/wxml-to-canvas"}
+  "usingComponents": { 
+    "share-box": "/components/canvas/shareBox/index"
+  }
 }

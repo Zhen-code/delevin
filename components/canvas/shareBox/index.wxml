@@ -1,0 +1,9 @@
+<view class="share-wrap">
+  <navbar backHome="{{true}}"/>
+  <view class="share-container">
+    <image mode="widthFix" src="{{sharePath}}" class="share-image" />
+    <view class="saveImgBtn" bindtap="handlePhotoSaved">生成图片并保存相册</view>
+  </view>
+</view>
+<painter style="position: absolute; top: -9999rpx;" palette="{{imgDraw}}" bind:imgOK="onImgOK" />
+<dialog-modal isShow="{{isModal}}" title="提示" content="您未开启保存图片到相册的权限，请点击确定去开启权限！" confirmType="openSetting" />

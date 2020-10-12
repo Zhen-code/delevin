@@ -1,0 +1,104 @@
+.share-wrap {
+  width: 100%;
+}
+
+.share-back {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 888;
+}
+
+.share-container {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.close {
+  width: 30rpx;
+  height: 30rpx;
+  overflow: hidden;
+  position: absolute;
+  right: 64rpx;
+  top: 64rpx;
+}
+
+.close::after {
+  transform: rotate(-45deg);
+}
+
+.close::before {
+  transform: rotate(45deg);
+}
+
+.close::before,
+.close::after {
+  content: '';
+  position: absolute;
+  height: 3rpx;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  margin-top: -2rpx;
+  background: #9C9C9C;
+}
+
+.share-image {
+  width: 100%;
+  height: 100vh;
+  display: block;
+  box-shadow: 0px 4rpx 8px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.share-tips {
+  width: 100%;
+  text-align: center;
+  color: #3C3C3C;
+  font-size: 28rpx;
+  margin: 32rpx 0;
+}
+
+.save-btn {
+  width: 336rpx;
+  height: 96rpx;
+  margin: 0 auto 94rpx;
+  background: url('https://qiniu-image.qtshe.com/20190506save-btn.png') center center;
+  background-size: 100% 100%;
+}
+
+
+.saveImgBtn {
+	width: 376rpx;
+	height: 80rpx;
+	border: 2rpx solid #333333;
+	color: #333333;
+	font-size: 32rpx;
+	text-align: center;
+	position: absolute;
+	bottom: 110rpx;
+	left: 188rpx;
+	right: 188rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 40rpx;
+	z-index: 999;
+}
