@@ -4,7 +4,7 @@
         id="share"
         canvas-id="share"
         disable-scroll="true"
-        style="width:600rpx;height:1000rpx"
+        style="width:750rpx;height:1000rpx"
 ></canvas>
 <view class="poster-wrap">
     <swiper current="0"

@@ -33,7 +33,7 @@ Page({
 		favoritesIcon: 'star-o',
 		favoritesColor: '#cccccc',
 		favoritesName: '收藏',
-		superInfo: ''
+		superInfo: '',
 		item1:[],
 		item2:[],
 		item3:[],
@@ -460,7 +460,7 @@ Page({
 	 */
 	onLoad: function (options) {
 		let type = "";
-		let item = JSON.parse(options.item)
+		let item = JSON.parse(options.item);
 		switch (item.title) {
 			case "新房房源":
 				type = "ESTATE";
@@ -483,7 +483,6 @@ Page({
 		}, () => {
 			this.getData();
 			// this.getAddvisitorRecord()
-		})
 		});
 		this.cWidth = wx.getSystemInfoSync().windowWidth;
 		this.cHeight = 500 / 750 * wx.getSystemInfoSync().windowWidth;

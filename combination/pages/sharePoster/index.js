@@ -50,44 +50,40 @@ Page({
 	go(){
 		const query = wx.createSelectorQuery();
 		let allHeight = 0;
+		let allWidth = 0;
 		const dpr = wx.getSystemInfoSync().pixelRatio;
-		let allWidth =  wx.getSystemInfoSync().screenWidth;
 		query.select('#share')
 			.fields({ node: true, size: true })
 			.exec((res) => {
-				let canvasWidth  = res[0].width;
+				allWidth  = res[0].width;
 				allHeight =  res[0].height;
 				const ctx1 = wx.createCanvasContext('share');
-				console.log(this.data.img1Height)
-				ctx1.drawImage(this.data.imgPath1,0,0,canvasWidth,this.data.img1Height);
-				ctx1.rect(0,350,allWidth,allHeight-this.data.img1Height);
+				ctx1.setFontSize(18);
+				ctx1.setFillStyle('black');
+				let titleLeft = to2Px(allWidth,48);
+				console.log(this.data.dataInfo['title'])
+				ctx1.fillText('好烦',80,80);
+				ctx1.drawImage(this.data.imgPath1,0,0,allWidth,375);
+				ctx1.rect(0,375,allWidth,allHeight-375);
 				ctx1.setFillStyle('white');
 				ctx1.fill();
 				ctx1.setFontSize(15);
 				ctx1.setFillStyle('black');
 				let nameLeft = to2Px(allWidth,40);
-				ctx1.fillText(this.data.userInfo['realName'],nameLeft,384);
-				ctx1.drawImage(this.data.phoneImgPath,nameLeft,408,to2Px(allWidth,36),to2Px(allWidth,36));
+				ctx1.fillText(this.data.userInfo['realName'],nameLeft,412);
+				ctx1.drawImage(this.data.phoneImgPath,nameLeft,422,to2Px(allWidth,36),to2Px(allWidth,36));
 				let phoneLeft = to2Px(allWidth,88);
-				let phoneTop = to2Px(allWidth,818);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('black');
 				ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,408);
+				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,435);
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
-				console.log(str)
 				let mulitipleWidth = to2Px(allWidth,360);
-				let initTop = to2Px(allWidth,870);
-				this.renderText(ctx1,str,nameLeft,420,mulitipleWidth);
+				this.renderText(ctx1,str,nameLeft,466,mulitipleWidth);
 				let qrImgLeft = to2Px(allWidth,460);
-				let qrTop = to2Px(allWidth,768);
-				console.log(qrTop)
-				console.log('二维码顶')
-				let width = to2Px(this.data.screenWidth,100);
-				let height = to2Px(this.data.screenWidth,100);
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,qrTop,width,height);
+				console.log(this.data.qrCodePath)
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,400,100,100);
 				ctx1.draw(false,()=>{
-					console.log(666)
 					wx.canvasToTempFilePath({
 						x: 0,
 						y: 0,

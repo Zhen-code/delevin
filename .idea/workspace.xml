@@ -32,6 +32,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1gqHqLBSnNAsTgkSZuJjAMGt9sJ" />
   <component name="ProjectViewState">
@@ -42,7 +43,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../delevin-manager" />
+    <property name="last_opened_file_path" value="E:/delevin-manager" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -104,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602328634982</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix:虚拟号码">
+      <created>1602328855839</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1602328855839</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,14 +126,17 @@
     <option name="LAST_COMMIT_MESSAGE" value="change:客源管理" />
     <MESSAGE value="feat:添加个人主页与获客文章访客记录;fix:房源列表搜索数据;change:获客管理数据" />
     <option name="LAST_COMMIT_MESSAGE" value="feat:添加个人主页与获客文章访客记录;fix:房源列表搜索数据;change:获客管理数据" />
+    <MESSAGE value="fix:虚拟号码" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:虚拟号码" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="560" y="114" key="CommitChangelistDialog2" timestamp="1602328855031">
     <state x="467" y="0" key="CommitChangelistDialog2" timestamp="1602259183483">
       <screen x="0" y="0" width="1600" height="866" />
     <state x="560" y="114" key="CommitChangelistDialog2" timestamp="1602328634009">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="560" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602328634009" />
+    <state x="560" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602328855031" />
     <state x="184" y="92" key="DiffContextDialog" timestamp="1602320806499">
     <state x="467" y="0" key="CommitChangelistDialog2/0.0.1600.866@0.0.1600.866" timestamp="1602259183483" />
     <state x="560" y="114" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1602239001101" />
@@ -146,6 +157,7 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="477" y="128" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1602106383046" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602328865240">
     <state x="460" y="205" key="Vcs.Push.Dialog.v2" timestamp="1602259195955">
       <screen x="0" y="0" width="1600" height="866" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1602328641019">
@@ -156,6 +168,11 @@
     <state x="530" y="211" width="786" height="612" key="find.popup" timestamp="1602346601585">
       <screen x="0" y="0" width="1600" height="866" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602328641019" />
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602328865240" />
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602464283057">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="752" y="437" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1602464283057" />
     <state x="636" y="253" width="647" height="534" key="find.popup" timestamp="1602322591061">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -268,3 +268,8 @@ page{
 .text4{
 
 }
+.shareCanvas{
+    position: fixed;
+    top: 1000px;
+    left: 0;
+}
