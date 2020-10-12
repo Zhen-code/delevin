@@ -93,6 +93,11 @@ Page({
 		this.pageTotal = 1;
 		this.setData({
 			pageIndex:1,
+			item:[],
+			snatchList: [],
+			watiCustomerList: [],
+			pushCustomer: [],
+			selectType:[]
 		},()=>{
 			this.selectType(e.detail)
 		})
@@ -336,7 +341,9 @@ Page({
 					district: v.region,
 					region: null,
 					houseType: v.houseType,
-					houseCount: v.saleCount
+					houseCount: v.saleCount,
+					houseId: v.houseId,
+					houseMold: v.houseMold
 				}
 			});
 			this.setData({
@@ -385,9 +392,11 @@ Page({
 		});
 	},
 
-	toRecording(){
+	toRecording(e){
+		console.log(e)
+		let {id,type} = e.currentTarget.dataset;
 		wx.navigateTo({
-			url: '/combination/pages/recording/index'
+			url: '/combination/pages/recording/index?houseid='+id+'&type='+type+'&req=house'
 		})
 	},
 

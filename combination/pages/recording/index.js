@@ -18,7 +18,8 @@ Page({
 		pageSize: 12,
 		scrollTop: 0,
 		triggered: false,
-		toBottom: true
+		toBottom: true,
+		req: ''
 	},
 	pageTotal: 1,
 	scrollTop() {
@@ -33,7 +34,11 @@ Page({
 			triggered: false,
 			item: []
 		});
-		this.getData()
+		if(this.data.req === "house"){
+			this.getHouseRecord(this.data.houseid, this.data.type);
+		}else if(this.data.req === "allRecord"){
+			this.getData();
+		}
 	},
 
 	//滚动加载
@@ -43,7 +48,9 @@ Page({
 			this.setData({
 				toBottom: true
 			})
-		}else{
+		}else if(this.data.req === "house"){
+			this.getHouseRecord(this.data.houseid, this.data.type);
+		}else if(this.data.req === "allRecord"){
 			this.getData();
 		}
 	},
@@ -64,6 +71,30 @@ Page({
 					item: [...item,...res.list],
 					pageIndex: pageIndex+1
 				});
+		}).catch(err=>{
+			console.log(err);
+		})
+
+	},
+	getHouseRecord(houseId,houseType) {
+		let {item,pageIndex} = this.data;
+		http({
+			url: api.operation.visitorList,
+			method: 'GET',
+			params:{
+				pageIndex: this.data.pageIndex,
+				pageSize: this.data.pageSize,
+				houseId: houseId,
+				houseType: houseType,
+				type: 'HOUSE'
+			}
+		}).then(res=>{
+			console.log(res)
+			this.pageTotal = res.pageTotal;
+			this.setData({
+				item: [...item,...res.list],
+				pageIndex: pageIndex+1
+			});
 		}).catch(err=>{
 			console.log(err);
 		})
@@ -97,22 +128,24 @@ Page({
 				}
 			})
 		}
-		// request.getPhome().then((res) => {
-
-		// }).catch((err) => {
-		// 	wx.showToast({
-		// 		title: err,
-		// 		icon: 'none',
-		// 		duration: 2500
-		// 	})
-		// })
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+		console.log(options)
+		let {houseid, type, req} = options;
+		this.setData({
+			req,
+			houseid,
+			type
+		});
+		if(req === "house"){
+			this.getHouseRecord(houseid,type);
+		}else if(req === "allRecord"){
+			this.getData();
+		}
 	},
 
 	/**
@@ -126,7 +159,7 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-		this.getData();
+
 	},
 
 	/**

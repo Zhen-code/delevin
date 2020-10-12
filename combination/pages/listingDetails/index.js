@@ -380,7 +380,13 @@ Page({
 			})
 		}
 	},
-
+	toHomePage(e){
+		let data = e.currentTarget.dataset.item;
+		let {agentId} = data;
+		wx.navigateTo({
+			url: '/combination/pages/homepage/index?agentId='+agentId
+		})
+	},
 	toDetails(e) {
 		let type = '';
 		let data = e.currentTarget.dataset.item;
