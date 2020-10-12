@@ -532,7 +532,7 @@
 
 .lineChart {
 	width: 100%;
-	height: auto;
+	height: 400rpx;
 	margin-top: 24rpx;
 	box-sizing: border-box;
 }

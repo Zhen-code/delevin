@@ -492,7 +492,7 @@ Page({
 	 */
 	onLoad: function (options) {
 		let type = "";
-		let item = JSON.parse(options.item)
+		let item = JSON.parse(options.item);
 		switch (item.title) {
 			case "新房房源":
 				type = "ESTATE";

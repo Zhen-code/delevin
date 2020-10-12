@@ -4,7 +4,28 @@
         id="share"
         canvas-id="share"
         disable-scroll="true"
-        style="width:600rpx;height:1000rpx"
+        style="width:750rpx;height:500px"
+></canvas>
+<canvas
+        class="shareCanvas"
+        id="share1"
+        canvas-id="share1"
+        disable-scroll="true"
+        style="width:750rpx;height:500px"
+></canvas>
+<canvas
+        class="shareCanvas"
+        id="share2"
+        canvas-id="share2"
+        disable-scroll="true"
+        style="width:750rpx;height:500px;background:white"
+></canvas>
+<canvas
+        class="shareCanvas"
+        id="share3"
+        canvas-id="share3"
+        disable-scroll="true"
+        style="width:750rpx;height:500px;background:white"
 ></canvas>
 <view class="poster-wrap">
     <swiper current="0"
@@ -16,7 +37,10 @@
                     <view class="text-title">{{dataInfo.title}}</view>
                     <view class="text-price">
                         <text class="text-price-left">预估单价:</text>
-                        <text class="text-price-right">{{dataInfo.unitPrice}}元/m²</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.averagePrice}}元/m²</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/m²</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.rentalAveragePrice}}元/m²</text>
                     </view>
                     <view class="text-address">
                         <view class="text-address-left">开盘地址:</view>
@@ -38,10 +62,13 @@
             <swiper-item class="swiper-item"  item-id="{{imgPath2}}">
                 <image class="img1" src="{{imgPath2}}" mode="widthFix"></image>
                 <view class="text1">
-                    <view class="text-title1">{{dataInfo.title}}</view>
+                    <view class="text-title2">{{dataInfo.title}}</view>
                     <view class="text-price1">
                         <text class="text-price-left1">预估单价:</text>
-                        <text class="text-price-right1">{{dataInfo.unitPrice}}元/m²</text>
+                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
+                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.averagePrice}}元/m²</text>
+                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/m²</text>
+                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.rentalAveragePrice}}元/m²</text>
                     </view>
                     <view class="text-address1">
                         <view class="text-address-left1">开盘地址:</view>
@@ -64,9 +91,17 @@
                 <view class="third-title">{{dataInfo.title}}</view>
                 <view class="text-price2">
                     <text class="text-price-left1">预估单价:</text>
-                    <text class="text-price-right1">{{dataInfo.unitPrice}}元/m²</text>
+                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
+                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.averagePrice}}元/m²</text>
+                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/m²</text>
+                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.rentalAveragePrice}}元/m²</text>
                 </view>
                 <image class="img3" src="{{imgPath3}}" mode="widthFix"></image>
+                <view class="row-img">
+                    <image src="{{imgPath5}}" mode="widthFix"></image>
+                    <image src="{{imgPath6}}" mode="widthFix"></image>
+                    <image src="{{imgPath7}}" mode="widthFix"></image>
+                </view>
                 <view class="point-container">
                     <view>
                         <view class='am-cname'><text>{{userInfo.realName}}</text></view>
@@ -92,11 +127,15 @@
                     <view class="am-img"><canvas style="width: 100rpx; height: 100rpx;" canvas-id="myQrcode3"></canvas></view>
                 </view>
                 <image src="{{imgPath4}}" class="img4" mode="widthFix"></image>
+                <image src="{{pic_resources}}" mode="widthFix" class="resource-img"></image>
                 <view class="sw4-title">{{dataInfo.title}}</view>
                 <view class="text4">
                     <view class="text-price1">
                         <text class="text-price-left1">预估单价:</text>
-                        <text class="text-price-right1">{{dataInfo.unitPrice}}元/m²</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.averagePrice}}元/m²</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/m²</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.rentalAveragePrice}}元/m²</text>
                     </view>
                     <view class="text-address1">
                         <view class="text-address-left1">开盘地址:</view>
@@ -106,7 +145,7 @@
             </swiper-item>
     </swiper>
     <view class="bottom-btn">
-    <view class="save-btn" catch:tap="save">保存至手机</view>
+    <view class="save-btn {{disable?'disActive':''}}" catch:tap="save">保存至手机</view>
     </view>
     <view class="page">
         <text class="page-index">{{index}}/4</text>
