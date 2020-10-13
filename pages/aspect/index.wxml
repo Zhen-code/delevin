@@ -71,19 +71,21 @@
 		<view wx:for="{{postList}}" wx:key="id" class="tab-item2" catchtap="goPostDetail" data-id="{{item.id}}">
 			<view class="tab-item2-title">{{item.title}}</view>
 			<view class="tab-item2-desc">{{item.content==null?'':item.content}}</view>
-			<view class="tab-item2-label" hidden="{{item.label==null||item.label==''}}">#{{item.label==null?'暂无标签':item.label}}</view>
+			<text class="tab-item2-label" wx:if="{{item.label!==''}}">#{{item.label==null?'暂无标签':item.label}}</text>
 			<view class="tab-item2-time">
 				<view class="tab-item2-time-left">
 					<text>最新回复</text>
 					<text>{{item.createDate}}</text>
 				</view>
-				<view class="tab-item2-time-center">
-					<image src="/assets/icon_comment_16_grey@2x.png" class="postImg" mode="aspectFill"></image>
-					<text>{{item.commentNumber}}</text>
-				</view>
-				<view class="tab-item2-time-right">
-					<image src="/assets/icon_like_16_grey@2x.png" class="postImg" mode="aspectFill"></image>
-					<text>{{item.number}}</text>
+				<view class="row-reply">
+					<view class="tab-item2-time-center">
+						<image src="/assets/icon_comment_16_grey@2x.png" class="postImg" mode="aspectFill"></image>
+						<text>{{item.commentNumber}}</text>
+					</view>
+					<view class="tab-item2-time-right">
+						<image src="/assets/icon_like_16_grey@2x.png" class="postImg" mode="aspectFill"></image>
+						<text>{{item.number}}</text>
+					</view>
 				</view>
 			</view>
 		</view>

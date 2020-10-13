@@ -13,7 +13,7 @@
 				</view>
 				<view class="mine-content-top-rigth" wx:if="{{!show}}" data-item="{{userInfo}}" bindtap="tabBroker">
 					<text class="mine-content-top-rigth-text" wx:if="{{userInfo.identity === 'MEMBER'}}">{{userInfo.resultStatusType || '认证为经纪人'}}</text>
-					<text class="mine-content-top-rigth-text" wx:if="{{userInfo.identity === 'AGENT'}}">切换经纪端</text>
+					<text class="mine-content-top-rigth-text" wx:if="{{userInfo.identity === 'AGENT'}}">切换机构端</text>
 					<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 				</view>
 				<view class="mine-content-top-rigth" wx:if="{{show}}" bindtap="toShareItCode">

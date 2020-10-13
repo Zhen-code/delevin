@@ -230,16 +230,24 @@
 	text-align: center;
 	font-size: 28rpx;
 	font-family: PingFangSC-Regular, PingFang SC;
-	font-weight: 400;
 	color: #999999;
 }
 .isActive{
 	font-size: 28rpx;
 	font-family: PingFangSC-Medium, PingFang SC;
-	font-weight: 500;
 	color: #333333!important;
 	width: 44px;
 	height: 8px;
+	font-weight: bold;
+	position: relative;
+}
+.isActive::before{
+	content: '';
+	width: 44rpx;
+	height: 8rpx;
+	background: #FFD854;
 	border-radius: 4rpx;
-	border-bottom: 8rpx solid #FFD854;
+	top: 70rpx;
+	left: 14rpx;
+	position: absolute;
 }

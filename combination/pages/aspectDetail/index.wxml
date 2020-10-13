@@ -42,7 +42,8 @@
           <view class="second-comment-item"
                 wx:for="{{item.commentResults}}"
                 wx:key="id"
-                wx:for-item="items">
+                wx:for-item="items"
+                wx:for-index="index">
             <view class="second-comment-item-title">{{items.content}}</view>
             <view class="second-comment-item-response">
               <view class="response1">{{items.nickName}}</view>
@@ -50,16 +51,17 @@
               <view class="response2">{{item.nickName}}</view>
               <view class="response-time">{{items.createDate}}</view>
             </view>
-            <view class="response-btn"
+            <view class="response-btn {{(index===(item.commentResults.length-1)&&items.commentResults.length===0)?'noline':'hasline'}}"
                   data-targetid="{{id}}"
                   data-fatherid="{{items.id}}"
                   data-nickname="{{items.nickName}}"
                   catch:tap="toReplay">回复</view>
             <block wx:if="{{items.commentResults.length!==0}}">
-              <view class="second-comment-inline"
+              <view class="{{(index1===items.commentResults.length-1)&&(index===(item.commentResults.length-1))?'no-comment-inline':'second-comment-inline'}}"
                     wx:for="{{items.commentResults}}"
                     wx:key="id"
-                    wx:for-item="v">
+                    wx:for-item="v"
+                    wx:for-index="index1">
                 <view class="second-comment-item-title">{{v.content}}</view>
                 <view class="second-comment-item-response">
                   <view class="response1">{{v.nickName}}</view>

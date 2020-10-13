@@ -141,11 +141,19 @@ Page({
 	// 		}
 	// 	})
 	// },
-
+	get(){
+		wx.showToast({
+			title: 'TA已经是您的客源,本次不消耗抢客次数',
+			icon: "none",
+			duration: 2000
+		})
+	},
 	confirm(e) {
 		let that = this;
 		let id = e.currentTarget.dataset.memberid;
 		let snatch = e.currentTarget.dataset.snatch;
+		let snatchcustomers = e.currentTarget.dataset.snatchcustomers;
+		console.log(snatchcustomers)
 		if(snatch === "NO"){
 			wx.showModal({
 				title: '本功能需要购买套餐',
@@ -169,11 +177,11 @@ Page({
 			})
 		}else{
 			wx.showModal({
-				title: '客源管理',
-				content: '本操作需要消耗1次抢客次数，是否确认抢客？',
+				title: '本操作需要消耗1次抢客次数',
+				content: '是否确认抢客？',
 				showCancel: true,
 				cancelText: "取消",
-				confirmText: "确定抢客",
+				confirmText: "确认抢客",
 				success(res) {
 					if (res.confirm) {
 						that.getCustomer(id);
@@ -268,7 +276,7 @@ Page({
 				return
 			}
 			this.setData({
-				watiCustomerList: [...res.list,...watiCustomerList],
+				watiCustomerList: [...watiCustomerList,...res.list],
 				selectType:[...res.list,...watiCustomerList],
 			})
 		}).catch(err => {
@@ -298,7 +306,7 @@ Page({
 			this.pageTotal = res.pageTotal;
 			this.setData({
 				pushCustomer: [...res.list,...pushCustomer],
-				selectType:[res.list,...pushCustomer],
+				selectType:[...res.list,...pushCustomer],
 			})
 		}).catch(err => {
 			console.log(err);

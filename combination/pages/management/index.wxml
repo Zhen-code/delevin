@@ -34,7 +34,8 @@
 					</view>
 				</view>
 				<view class="row-right">
-					<van-tag data-snatch="{{item.snatch}}" data-memberid="{{item.id}}" size="large" color="#FFC51D" text-color="#333333" type="warning" bindtap="confirm">待抢</van-tag>
+					<van-tag wx:if="{{item.snatchCustomers==='YES'}}" data-snatch="{{item.snatch}}" data-memberid="{{item.id}}" data-snatchcustomers="snatchCustomers" size="large" color="#FFC51D" text-color="#333333" type="warning" bindtap="confirm">待抢</van-tag>
+					<van-tag wx:if="{{item.snatchCustomers==='NO'}}"  size="large" color="#FFC51D" text-color="#333333" type="warning" bindtap="get">已抢</van-tag>
 				</view>
 			</view>
 		</block>
@@ -59,5 +60,7 @@
 			<text class="footer-text">- 到底啦 -</text>
 		</view>
 	</scroll-view>
-	<noData wx:if="{{selectType.length === 0}}" height="{{100}}"></noData>
+	<view class="nodata-wrap" wx:else>
+		<noData  flexd="true" height="80"></noData>
+	</view>
 </view>

@@ -18,21 +18,22 @@
         id="share2"
         canvas-id="share2"
         disable-scroll="true"
-        style="width:750rpx;height:500px;background:white"
+        style="width:750rpx;height:500px;"
 ></canvas>
 <canvas
         class="shareCanvas"
         id="share3"
         canvas-id="share3"
         disable-scroll="true"
-        style="width:750rpx;height:500px;background:white"
+        style="width:750rpx;height:500px;"
 ></canvas>
-<view class="poster-wrap">
+<navbar  bgColor="{{bgColor}}" title="{{title}}" backHome="true"></navbar>
+<view class="poster-wrap" style="padding-top:{{paddingTop+35}}px;box-sizing:border-box;">
     <swiper current="0"
             bindchange="onChange"
             class="swiper-wrap">
             <swiper-item class="swiper-item" item-id="{{imgPath1}}">
-                <image class="img1" src="{{imgPath1}}" mode="widthFix"></image>
+                <image class="img1" src="{{imgPath1}}" mode="aspectFill"></image>
                 <view class="text">
                     <view class="text-title">{{dataInfo.title}}</view>
                     <view class="text-price">
@@ -60,7 +61,7 @@
                 </view>
             </swiper-item>
             <swiper-item class="swiper-item"  item-id="{{imgPath2}}">
-                <image class="img1" src="{{imgPath2}}" mode="widthFix"></image>
+                <image class="img1" src="{{imgPath2}}" mode="aspectFill"></image>
                 <view class="text1">
                     <view class="text-title2">{{dataInfo.title}}</view>
                     <view class="text-price1">

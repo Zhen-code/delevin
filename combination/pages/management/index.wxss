@@ -154,3 +154,8 @@
 	font-weight: 400;
 	color: #999999;
 }
+.nodata-wrap{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}

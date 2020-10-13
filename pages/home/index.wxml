@@ -101,7 +101,7 @@
 			</view>
 		</view>
 		<view class="row-floor">
-			<text class="row-floor-left">我的楼盘</text>
+			<text class="row-floor-left">我的房源</text>
 			<view class="row-floor-right" bindtap="toAddHouseOrigin">
 				<text class="row-floor-right-text">添加新房源</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />

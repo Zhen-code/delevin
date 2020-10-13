@@ -3,6 +3,7 @@ const {request} = require('../../../request/request');
 const {getImageInfo} = require('../../../utils/util');
 import drawQrcode from '../../../miniprogram_npm/weapp-qrcode/index';
 const { to2Px} = require('../../../utils/util');
+const {topHeight} = require('../../../request/topHeight');
 Page({
 
 	/**
@@ -29,7 +30,13 @@ Page({
 		saveTempCanvas2: '',
 		saveTempCanvas3: '',
 		pic_resources: '',
-		disable: true
+		disable: true,
+		paddingTop:topHeight,
+		bgColor: {
+			"color": true,
+			"border": true
+		},
+		title: '获客海报分享'
 	},
 
 	onChange(current,source){
@@ -155,7 +162,8 @@ Page({
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('white');
 				let detailsAddressLeft = to2Px(allWidth,178);
-				ctx1.fillText(this.data.dataInfo['detailsAddress'],detailsAddressLeft,120);
+				let detailsAddress = this.data.dataInfo['detailsAddress'].substr(0,18);
+				ctx1.fillText(detailsAddress+'...',detailsAddressLeft,120);
 				ctx1.rect(0,375,allWidth,allHeight-375);
 				ctx1.setFillStyle('white');
 				ctx1.fill();
@@ -250,7 +258,8 @@ Page({
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
 				let detailsAddressLeft = to2Px(allWidth,178);
-				ctx1.fillText(this.data.dataInfo['detailsAddress'],detailsAddressLeft,166);
+				let detailsAddress = this.data.dataInfo['detailsAddress'];
+				ctx1.fillText(detailsAddress+'...',detailsAddressLeft,166);
 				ctx1.rect(0,375,allWidth,allHeight-375);
 				ctx1.setFillStyle('white');
 				ctx1.fill();
@@ -316,12 +325,15 @@ Page({
 				allWidth  = res[0].width;
 				allHeight =  res[0].height;
 				const ctx1 = wx.createCanvasContext('share2');
-				let titleLeft = to2Px(allWidth,112);
+				ctx1.rect(0,0,allWidth,allHeight);
+				ctx1.setFillStyle('white');
+				ctx1.fill();
+				let titleLeft = to2Px(allWidth,116);
 				this.renderTitle2(ctx1,this.data.dataInfo['title'],titleLeft,48,to2Px(allWidth,500));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
 				ctx1.fillText('预估单价:',titleLeft,100);
-				let unitPriceLeft = to2Px(allWidth,236);
+				let unitPriceLeft = to2Px(allWidth,246);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FE6300');
 				let unitPrice = 0;
@@ -341,17 +353,18 @@ Page({
 				ctx1.fillText('开盘地址:',titleLeft,120);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				let detailsAddressLeft = to2Px(allWidth,232);
-				ctx1.fillText(this.data.dataInfo['detailsAddress'],detailsAddressLeft,120);
+				let detailsAddressLeft = to2Px(allWidth,242);
+				let detailAddress = this.data.dataInfo['detailsAddress'].substr(0,14);
+				ctx1.fillText(detailAddress+'...',detailsAddressLeft,120);
 				ctx1.drawImage(this.data.imgPath3,titleLeft,130,to2Px(allWidth,520),150);
 				if(this.data.imgPath5!==''){
-					ctx1.drawImage(this.data.imgPath5,titleLeft,280,to2Px(allWidth,166),84);
+					ctx1.drawImage(this.data.imgPath5,titleLeft,288,to2Px(allWidth,166),84);
 				}
 				if(this.data.imgPath6!==''){
-					ctx1.drawImage(this.data.imgPath6,to2Px(allWidth,324),280,to2Px(allWidth,166),84);
+					ctx1.drawImage(this.data.imgPath6,to2Px(allWidth,294),288,to2Px(allWidth,166),84);
 				}
 				if(this.data.imgPath7!==''){
-					ctx1.drawImage(this.data.imgPath7,to2Px(allWidth,500),280,to2Px(allWidth,166),84);
+					ctx1.drawImage(this.data.imgPath7,to2Px(allWidth,470),288,to2Px(allWidth,166),84);
 				}
 				ctx1.setFontSize(15);
 				ctx1.setFillStyle('black');
@@ -366,7 +379,7 @@ Page({
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
 				let mulitipleWidth = to2Px(allWidth,360);
 				this.renderText(ctx1,str,nameLeft,466,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,536);
+				let qrImgLeft = to2Px(allWidth,446);
 				console.log(this.data.qrCodePath)
 				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,400,100,100);
 				ctx1.draw(false,()=>{
@@ -415,6 +428,9 @@ Page({
 				allWidth  = res[0].width;
 				allHeight =  res[0].height;
 				const ctx1 = wx.createCanvasContext('share3');
+				ctx1.rect(0,0,allWidth,allHeight);
+				ctx1.setFillStyle('white');
+				ctx1.fill();
 				ctx1.setFontSize(15);
 				ctx1.setFillStyle('black');
 				let nameLeft = to2Px(allWidth,116);
@@ -428,7 +444,7 @@ Page({
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
 				let mulitipleWidth = to2Px(allWidth,360);
 				this.renderText(ctx1,str,nameLeft,70,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,536);
+				let qrImgLeft = to2Px(allWidth,446);
 				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,10,100,100);
 				ctx1.drawImage(this.data.imgPath4,nameLeft,109,to2Px(allWidth,520),262);
 				ctx1.drawImage(this.data.pic_resources,to2Px(allWidth,488),325,to2Px(allWidth,188),to2Px(allWidth,188));
@@ -456,8 +472,9 @@ Page({
 				ctx1.fillText('开盘地址:',titleLeft,480);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				let detailsAddressLeft = to2Px(allWidth,232);
-				ctx1.fillText(this.data.dataInfo['detailsAddress'],detailsAddressLeft,480);
+				let detailsAddressLeft = to2Px(allWidth,242);
+				let detailAdress = this.data.dataInfo['detailsAddress'].substr(0,14);
+				ctx1.fillText(detailAdress+'...',detailsAddressLeft,480);
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -485,7 +502,7 @@ Page({
 									disable: false
 								})
 							}
-
+							wx.hideLoading();
 						}
 					})
 				});
@@ -827,7 +844,10 @@ Page({
 			})
 		}).catch(err=>{
 			console.log(err)
-		})
+		});
+		wx.showLoading({
+			title: '资源加载中'
+		});
 	},
 
 	/**
