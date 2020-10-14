@@ -160,14 +160,7 @@ Page({
 					confirmText: '确定',
 					success(res){
 						if(res.confirm){
-							that.setData({
-								tabIndex: Number(3),
-								pageIndex: 1,
-								snatchList: [],
-								selectType: []
-							},()=>{
-								that.getSnatchList();
-							})
+							that.getCustomer(id);
 						}
 					}
 				})
@@ -181,6 +174,7 @@ Page({
 					success(res) {
 						if (res.confirm) {
 							that.getCustomer(id);
+
 						} else {
 							console.log(res, 222)
 						}
@@ -191,6 +185,7 @@ Page({
 
 	},
 	getCustomer(id) {
+		let that = this;
 		http({
 			url: api.broker.snatchCustomer,
 			method: 'POST',
@@ -202,9 +197,15 @@ Page({
 			wx.showToast({
 				title: '抢客成功!',
 				icon: "none",
-				duration: 1000
+				duration: 2000
 			});
-			this.getWaitCustom();
+			that.setData({
+				pageIndex: 1,
+				watiCustomerList: [],
+				selectType:[]
+			},()=>{
+				that.getWaitCustom();
+			});
 		}).catch(err => {
 			console.log(err);
 			wx.showToast({
