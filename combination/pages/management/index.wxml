@@ -1,7 +1,7 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="客源管理" />
 <view class="view" style="padding-top:{{paddingTop}}px">
 	<view class="doubleTab">
-		<doubleTab style="width:100%;height:70rpx;" tabIndex="{{0}}" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
+		<doubleTab style="width:100%;height:70rpx;" tabIndex="{{tabIndex}}" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
 	</view>
 	<scroll-view class="shopItem" wx:if="{{selectType.length !== 0}}" style="top: {{paddingTop+45}}px;" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
 		<block wx:for="{{item}}" wx:key="index" wx:if="{{tabIndex === 0}}">
@@ -34,8 +34,7 @@
 					</view>
 				</view>
 				<view class="row-right">
-					<van-tag wx:if="{{item.snatchCustomers==='YES'}}" data-snatch="{{item.snatch}}" data-memberid="{{item.id}}" data-snatchcustomers="snatchCustomers" size="large" color="#FFC51D" text-color="#333333" type="warning" bindtap="confirm">待抢</van-tag>
-					<van-tag wx:if="{{item.snatchCustomers==='NO'}}"  size="large" color="#FFC51D" text-color="#333333" type="warning" bindtap="get">已抢</van-tag>
+					<van-tag  data-snatch="{{item.snatch}}" data-memberid="{{item.id}}" data-snatchcustomers="{{item.snatchCustomers}}" size="large" color="#FFC51D" text-color="#333333" type="warning" bindtap="confirm">待抢</van-tag>
 				</view>
 			</view>
 		</block>
@@ -50,7 +49,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="row-right" data-dialing="{{item.dialing}}" data-phone="{{item.phone}}" bindtap="dialNumber">
+				<view class="row-right" data-dialing="{{item.dialing}}" data-phone="{{item.phone}}" data-type="snatch" bindtap="dialNumber">
 					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
 					<text class="row-right-phone">虚拟号码</text>
 				</view>

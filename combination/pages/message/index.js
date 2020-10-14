@@ -22,7 +22,8 @@ Page({
 			'messageId': id
 		}).then((res) => {
 			console.log(res)
-			res.details.replace(/\<img/g,'<img style="width:100%;height:386rpx"');
+			res.details = res.details.replace(/\<img/gi,'<img class="message-img"');
+			console.log(res)
 			this.setData({
 				data:res
 			})

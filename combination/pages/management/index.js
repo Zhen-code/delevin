@@ -26,11 +26,11 @@ Page({
 		pageSize: 12,
 		scrollTop: 0,
 		triggered: false,
-		tabIndex: 0,
 		snatchList: [],
 		watiCustomerList: [],
 		pushCustomer: [],
 		selectType:[],
+		tabIndex: 0
 	},
 	pageTotal: 1,
 	scrollTop() {
@@ -63,12 +63,15 @@ Page({
 	},
 
 	dialNumber(e) {
-		let {phone,dialing} = e.currentTarget.dataset;
+		let {phone,dialing,type} = e.currentTarget.dataset;
 		console.log(dialing)
+		let tipText = (type==='snatch'?'抢客':'端口');
+		console.log(tipText)
+		console.log(7788)
 		if(dialing==="NO"){
 			wx.showModal({
-				title: '请先购买客源套餐',
-				content: '是否前往购买?',
+				title:'',
+				content: `本功能需要买${tipText}套餐,是否前往购买?`,
 				showCancel: true,
 				cancelText: '取消',
 				confirmText: '购买',
@@ -125,39 +128,15 @@ Page({
 		}
 	},
 
-	// buy() {
-	// 	wx.showModal({
-	// 		title: '客源管理',
-	// 		content: '本功能需要购买抢客套餐，是否前往购买？',
-	// 		showCancel: true,
-	// 		cancelText: "取消",
-	// 		confirmText: "去付费",
-	// 		success(res) {
-	// 			if (res.confirm) {
-	// 				console.log(res, 111)
-	// 			} else {
-	// 				console.log(res, 222)
-	// 			}
-	// 		}
-	// 	})
-	// },
-	get(){
-		wx.showToast({
-			title: 'TA已经是您的客源,本次不消耗抢客次数',
-			icon: "none",
-			duration: 2000
-		})
-	},
 	confirm(e) {
 		let that = this;
 		let id = e.currentTarget.dataset.memberid;
 		let snatch = e.currentTarget.dataset.snatch;
 		let snatchcustomers = e.currentTarget.dataset.snatchcustomers;
-		console.log(snatchcustomers)
 		if(snatch === "NO"){
 			wx.showModal({
-				title: '本功能需要购买套餐',
-				content: '是否前往购买?',
+				title: '',
+				content: '本功能需要购买抢客套餐,是否前往购买?',
 				cancelText: '取消',
 				confirmText: '去付费',
 				showCancel: true,
@@ -176,24 +155,40 @@ Page({
 				}
 			})
 		}else{
-			wx.showModal({
-				title: '本操作需要消耗1次抢客次数',
-				content: '是否确认抢客？',
-				showCancel: true,
-				cancelText: "取消",
-				confirmText: "确认抢客",
-				success(res) {
-					if (res.confirm) {
-						that.getCustomer(id);
-					} else {
-						console.log(res, 222)
+			if(snatchcustomers === 'YES'){
+				wx.showModal({
+					title: 'TA已经是您的客源',
+					content: '本次不消耗抢客次数',
+					showCancel: false,
+					confirmText: '确定',
+					success(res){
+						if(res.confirm){
+							that.getCustomer(id);
+						}
 					}
-				}
-			})
+				})
+			}else{
+				wx.showModal({
+					title: '本操作需要消耗1次抢客次数',
+					content: '是否确认抢客？',
+					showCancel: true,
+					cancelText: "取消",
+					confirmText: "确认抢客",
+					success(res) {
+						if (res.confirm) {
+							that.getCustomer(id);
+
+						} else {
+							console.log(res, 222)
+						}
+					}
+				})
+			}
 		}
 
 	},
 	getCustomer(id) {
+		let that = this;
 		http({
 			url: api.broker.snatchCustomer,
 			method: 'POST',
@@ -205,31 +200,22 @@ Page({
 			wx.showToast({
 				title: '抢客成功!',
 				icon: "none",
-				duration: 1000
+				duration: 2000
 			});
-			this.getWaitCustom();
+			that.setData({
+				pageIndex: 1,
+				watiCustomerList: [],
+				selectType:[]
+			},()=>{
+				that.getWaitCustom();
+			});
 		}).catch(err => {
-			wx.showModal({
-				title: '套餐购买',
-				content: '抢客余量不足,是否前往购买?',
-				showCancel: true,
-				cancelText: '取消',
-				confirmText: '购买',
-				success(res){
-					if(res.confirm){
-						wx.navigateTo({
-							url: '/combination/pages/generalPromotion/index'
-						})
-					}else{
-						wx.showToast({
-							title:'请先购买套餐',
-							icon: "none",
-							duration: 1000
-						})
-					}
-				}
+			console.log(err);
+			wx.showToast({
+				title: '抢客失败，请重新再试!',
+				icon: "none",
+				duration: 1000
 			})
-			console.log(err)
 		})
 	},
 
@@ -246,8 +232,8 @@ Page({
 			console.log(res)
 			this.pageTotal = res.pageTotal;
 			this.setData({
-				snatchList: [...res.list,...snatchList],
-				selectType: [...res.list,...snatchList],
+				snatchList: [...snatchList,...res.list],
+				selectType: [...snatchList,...res.list],
 			})
 		}).catch(err => {
 			console.log(err);
@@ -277,7 +263,7 @@ Page({
 			}
 			this.setData({
 				watiCustomerList: [...watiCustomerList,...res.list],
-				selectType:[...res.list,...watiCustomerList],
+				selectType:[...watiCustomerList,...res.list],
 			})
 		}).catch(err => {
 			console.log(err)
@@ -305,8 +291,8 @@ Page({
 			console.log(res)
 			this.pageTotal = res.pageTotal;
 			this.setData({
-				pushCustomer: [...res.list,...pushCustomer],
-				selectType:[...res.list,...pushCustomer],
+				pushCustomer: [...pushCustomer,...res.list],
+				selectType:[...pushCustomer,...res.list]
 			})
 		}).catch(err => {
 			console.log(err);
