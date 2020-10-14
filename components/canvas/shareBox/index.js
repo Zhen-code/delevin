@@ -37,6 +37,7 @@ Component({
       })
     },
     drawPic() {
+      let data = this.data.data;
       if (this.data.sharePath) { //如果已经绘制过了本地保存有图片不需要重新绘制
         this.setData({
           visible: true
@@ -47,24 +48,16 @@ Component({
       wx.showLoading({
         title: '生成中'
       })
-      let data = this.data.data;
-      let systemInfo = wx.getSystemInfoSync();
-      let _height = 0;
-      if (systemInfo.model === 'iPhone X') {
-        _height = '1630rpx';
-      } else {
-        _height = '1334rpx';
-      }
       this.setData({
         imgDraw: {
           width: '750rpx',
-          height: _height,
+          height: '1700rpx',
           background: '/combination/image/bg_house@2x.png',
           views: [{
               type: 'image',
               url: '/combination/image/bg_qr_white@2x.png',
               css: {
-                top: '250rpx',
+                top: '350rpx',
                 left: '55rpx',
                 right: '55rpx',
                 width: '640rpx',
@@ -76,7 +69,7 @@ Component({
               type: 'text',
               text: data.realName,
               css: {
-                top: '320rpx',
+                top: '420rpx',
                 left: '125rpx',
                 align: 'left',
                 fontSize: '32rpx',
@@ -88,7 +81,7 @@ Component({
               type: 'image',
               url: '/combination/image/icon_phonecall_30@2x.png',
               css: {
-                top: '380rpx',
+                top: '480rpx',
                 left: '125rpx',
                 width: '40rpx',
                 height: '40rpx'
@@ -98,7 +91,7 @@ Component({
               type: 'text',
               text: data.phone,
               css: {
-                top: '380rpx',
+                top: '480rpx',
                 left: '180rpx',
                 align: 'left',
                 fontSize: '30rpx',
@@ -111,7 +104,7 @@ Component({
               css: {
                 width: '500rpx',
                 height: '100rpx',
-                top: '460rpx',
+                top: '560rpx',
                 left: '125rpx',
                 maxLines: 2,
                 align: 'left',
@@ -123,7 +116,7 @@ Component({
               type: 'image',
               url: data.tempFilePath,
               css: {
-                top: '570rpx',
+                top: '670rpx',
                 left: '170rpx',
                 width: '400rpx',
                 height: '400rpx',

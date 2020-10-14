@@ -1,5 +1,5 @@
 <!--combination/pages/superPromotion/index.wxml-->
-<scroll-view style="height:60vw" class="view" style="padding-top:{{paddingTop}}px">
+<view style="height:60vw" class="view" style="padding-top:{{paddingTop}}px">
 	<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="超级推广" />
 	<view class="view-row">
 		<view class="view-row-content">
@@ -78,7 +78,7 @@
 			<van-stepper value="{{ num }}" input-width="120rpx" disable-input integer bind:change="onChange" />
 		</view>
 	</view>
-</scroll-view>
+</view>
 
 
 <view class="footer">

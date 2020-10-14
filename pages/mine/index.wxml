@@ -82,7 +82,7 @@
 			<text>退出登录</text>
 		</view>
 
-		<view class="mine-content-bottom"wx:if="{{show}}" bindtap="getTab">{{tabTitle}}</view>
+		<view class="mine-content-bottom" wx:if="{{show}}" bindtap="getTab">{{tabTitle}}</view>
 	</view>
 </view>
 

@@ -243,11 +243,13 @@
 	align-items: center;
 	justify-content: center;
 }
+
 .floor-list-bottom{
 	margin: 30rpx 0 0 32rpx;
 	display: flex;
 	align-items: center;
 }
+
 .floor-list-bottom-text{
 	font-size: 26rpx;
 	font-family: PingFangSC-Regular, PingFang SC;

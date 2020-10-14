@@ -118,7 +118,7 @@ Page({
 					//点击确定
 					console.log('确定')
 					wx.showToast({
-						title: '清除成功',
+						title: '数据清除成功',
 						icon: 'success',
 						duration: 2500
 					})
