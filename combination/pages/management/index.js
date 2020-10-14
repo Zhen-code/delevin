@@ -26,11 +26,11 @@ Page({
 		pageSize: 12,
 		scrollTop: 0,
 		triggered: false,
-		tabIndex: 0,
 		snatchList: [],
 		watiCustomerList: [],
 		pushCustomer: [],
 		selectType:[],
+		tabIndex: 0
 	},
 	pageTotal: 1,
 	scrollTop() {
@@ -125,35 +125,11 @@ Page({
 		}
 	},
 
-	// buy() {
-	// 	wx.showModal({
-	// 		title: '客源管理',
-	// 		content: '本功能需要购买抢客套餐，是否前往购买？',
-	// 		showCancel: true,
-	// 		cancelText: "取消",
-	// 		confirmText: "去付费",
-	// 		success(res) {
-	// 			if (res.confirm) {
-	// 				console.log(res, 111)
-	// 			} else {
-	// 				console.log(res, 222)
-	// 			}
-	// 		}
-	// 	})
-	// },
-	get(){
-		wx.showToast({
-			title: 'TA已经是您的客源,本次不消耗抢客次数',
-			icon: "none",
-			duration: 2000
-		})
-	},
 	confirm(e) {
 		let that = this;
 		let id = e.currentTarget.dataset.memberid;
 		let snatch = e.currentTarget.dataset.snatch;
 		let snatchcustomers = e.currentTarget.dataset.snatchcustomers;
-		console.log(snatchcustomers)
 		if(snatch === "NO"){
 			wx.showModal({
 				title: '本功能需要购买套餐',
@@ -176,20 +152,41 @@ Page({
 				}
 			})
 		}else{
-			wx.showModal({
-				title: '本操作需要消耗1次抢客次数',
-				content: '是否确认抢客？',
-				showCancel: true,
-				cancelText: "取消",
-				confirmText: "确认抢客",
-				success(res) {
-					if (res.confirm) {
-						that.getCustomer(id);
-					} else {
-						console.log(res, 222)
+			if(snatchcustomers === 'YES'){
+				wx.showModal({
+					title: 'TA已经是您的客源',
+					content: '本次不消耗抢客次数',
+					showCancel: false,
+					confirmText: '确定',
+					success(res){
+						if(res.confirm){
+							that.setData({
+								tabIndex: Number(3),
+								pageIndex: 1,
+								snatchList: [],
+								selectType: []
+							},()=>{
+								that.getSnatchList();
+							})
+						}
 					}
-				}
-			})
+				})
+			}else{
+				wx.showModal({
+					title: '本操作需要消耗1次抢客次数',
+					content: '是否确认抢客？',
+					showCancel: true,
+					cancelText: "取消",
+					confirmText: "确认抢客",
+					success(res) {
+						if (res.confirm) {
+							that.getCustomer(id);
+						} else {
+							console.log(res, 222)
+						}
+					}
+				})
+			}
 		}
 
 	},
@@ -209,27 +206,12 @@ Page({
 			});
 			this.getWaitCustom();
 		}).catch(err => {
-			wx.showModal({
-				title: '套餐购买',
-				content: '抢客余量不足,是否前往购买?',
-				showCancel: true,
-				cancelText: '取消',
-				confirmText: '购买',
-				success(res){
-					if(res.confirm){
-						wx.navigateTo({
-							url: '/combination/pages/generalPromotion/index'
-						})
-					}else{
-						wx.showToast({
-							title:'请先购买套餐',
-							icon: "none",
-							duration: 1000
-						})
-					}
-				}
+			console.log(err);
+			wx.showToast({
+				title: '抢客失败，请重新再试!',
+				icon: "none",
+				duration: 1000
 			})
-			console.log(err)
 		})
 	},
 
