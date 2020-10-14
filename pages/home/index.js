@@ -44,6 +44,8 @@ Page({
 
 	getData() {
 		request.information().then((res) => {
+			console.log(res)
+			wx.setStorageSync('userInfo',JSON.stringify(res));
 			this.setData({
 				userInfo: res,
 			}, () => {
@@ -622,7 +624,7 @@ Page({
 			type: app.globalData.state
 		}, () => {
 			this.getData()
-		})
+		});
 	},
 
 	/**

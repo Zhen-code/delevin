@@ -65,7 +65,7 @@ Page({
 	dialNumber(e) {
 		let {phone,dialing,type} = e.currentTarget.dataset;
 		console.log(dialing)
-		let tipText = (type==='snatch'?'抢客':'端口');
+		let tipText = (type==='snatch'?'端口':'端口');
 		console.log(tipText)
 		console.log(7788)
 		if(dialing==="NO"){

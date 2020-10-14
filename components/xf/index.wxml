@@ -182,7 +182,7 @@
         <view class="tab-item">
             <view class="tab-item-left">建筑面积</view>
             <view class="tab-item-right">
-                <input value="{{buildingArea}}" type="number" bind:input="buildingAreaInput"></input>
+                <input value="{{buildingArea}}" bind:input="buildingAreaInput"></input>
             </view>
         </view>
         <view class="tab-item">

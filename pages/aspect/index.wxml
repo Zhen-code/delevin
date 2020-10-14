@@ -7,7 +7,7 @@
 
 	<view class="tabContent" hidden="{{_index!=='0'}}">
 		<scroll-view scroll-x="true" class="scrollView">
-			<block wx:for="{{list}}" wx:key="index">
+			<block wx:for="{{list}}" wx:key="id">
 				<view catch:tap="tabItem" class="{{index===on_index?'isActive':''}}" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</view>
 			</block>
 		</scroll-view>
