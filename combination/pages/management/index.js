@@ -63,12 +63,15 @@ Page({
 	},
 
 	dialNumber(e) {
-		let {phone,dialing} = e.currentTarget.dataset;
+		let {phone,dialing,type} = e.currentTarget.dataset;
 		console.log(dialing)
+		let tipText = (type==='snatch'?'抢客':'端口');
+		console.log(tipText)
+		console.log(7788)
 		if(dialing==="NO"){
 			wx.showModal({
-				title: '请先购买客源套餐',
-				content: '是否前往购买?',
+				title:'',
+				content: `本功能需要买${tipText}套餐,是否前往购买?`,
 				showCancel: true,
 				cancelText: '取消',
 				confirmText: '购买',
@@ -132,8 +135,8 @@ Page({
 		let snatchcustomers = e.currentTarget.dataset.snatchcustomers;
 		if(snatch === "NO"){
 			wx.showModal({
-				title: '本功能需要购买套餐',
-				content: '是否前往购买?',
+				title: '',
+				content: '本功能需要购买抢客套餐,是否前往购买?',
 				cancelText: '取消',
 				confirmText: '去付费',
 				showCancel: true,
@@ -229,8 +232,8 @@ Page({
 			console.log(res)
 			this.pageTotal = res.pageTotal;
 			this.setData({
-				snatchList: [...res.list,...snatchList],
-				selectType: [...res.list,...snatchList],
+				snatchList: [...snatchList,...res.list],
+				selectType: [...snatchList,...res.list],
 			})
 		}).catch(err => {
 			console.log(err);
@@ -260,7 +263,7 @@ Page({
 			}
 			this.setData({
 				watiCustomerList: [...watiCustomerList,...res.list],
-				selectType:[...res.list,...watiCustomerList],
+				selectType:[...watiCustomerList,...res.list],
 			})
 		}).catch(err => {
 			console.log(err)
@@ -288,8 +291,8 @@ Page({
 			console.log(res)
 			this.pageTotal = res.pageTotal;
 			this.setData({
-				pushCustomer: [...res.list,...pushCustomer],
-				selectType:[...res.list,...pushCustomer],
+				pushCustomer: [...pushCustomer,...res.list],
+				selectType:[...pushCustomer,...res.list]
 			})
 		}).catch(err => {
 			console.log(err);

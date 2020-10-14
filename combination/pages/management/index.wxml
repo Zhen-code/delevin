@@ -49,7 +49,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="row-right" data-dialing="{{item.dialing}}" data-phone="{{item.phone}}" bindtap="dialNumber">
+				<view class="row-right" data-dialing="{{item.dialing}}" data-phone="{{item.phone}}" data-type="snatch" bindtap="dialNumber">
 					<image class="row-right-image" src="/combination/image/icon_phonecall_30@2x.png"></image>
 					<text class="row-right-phone">虚拟号码</text>
 				</view>
