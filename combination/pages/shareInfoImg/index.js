@@ -108,11 +108,11 @@ Page({
     });
     let qrCodeCtx =  wx.createCanvasContext('myQrcode');
     drawQrcode({
-      width: 60,
-      height: 60,
+      width: 80,
+      height: 80,
       canvasId: 'myQrcode',
       ctx: qrCodeCtx,
-      text: 'https://baidu.com',
+      text: 'https://dev.delevin.beiru168.com/homepage?agentId=1',
       callback: (e)=>{
         console.log(e)
         if(e['errMsg'].includes('ok')){
@@ -161,6 +161,7 @@ Page({
     }
   },
   go(){
+    let that = this;
     let {isShare} = this.data;
     const query = wx.createSelectorQuery();
     let allWidth = 0;
@@ -173,11 +174,11 @@ Page({
           allWidth = res[0].width;
           allHeight =  res[0].height;
           const ctx1 = wx.createCanvasContext('share');
+          ctx1.rect(0,0,allWidth,allHeight);
+          ctx1.setFillStyle('#FFFFFF');
+          ctx1.fill();
           console.log(this.data.imgPath)
           ctx1.drawImage(this.data.imgPath,0,0,allWidth,350);
-          ctx1.rect(0,300,allWidth,allHeight-350);
-          ctx1.setFillStyle('white');
-          ctx1.fill();
           ctx1.setFontSize(15);
           ctx1.setFillStyle('black');
           let nameLeft = this.to2Px(64);
@@ -212,25 +213,35 @@ Page({
                   isDisable: false
                 },()=>{
                   if(isShare){
-                    wx.saveImageToPhotosAlbum({
-                      filePath: this.data.saveTempCanvas,
-                      success: (res)=>{
-                        console.log(res);
-                        wx.showToast({
-                          title: '保存成功',
-                          icon: "none",
-                          duration: 2000
-                        })
+                    wx.getSetting({
+                      success(res){
+                        let auth = res.authSetting['scope.writePhotosAlbum'];
+                        if(auth || auth===undefined){
+                          that.saveImg();
+                        }else{
+                          wx.openSetting({
+                            success(res){
+                              if(res.authSetting['scope.writePhotosAlbum']){
+                                that.saveImg();
+                              }else{
+                                wx.showToast({
+                                  title: '请先授权图片存储权限',
+                                  icon: "none",
+                                  duration: 1000
+                                })
+                              }
+                            },
+                            fail(err){
+                              console.log(err)
+                            }
+                          })
+                        }
                       },
-                      fail:(err)=>{
+                      fail(err){
                         console.log(err)
-                        wx.showToast({
-                          title: '保存失败',
-                          icon: "none",
-                          duration: 2000
-                        })
                       }
-                    })
+                    });
+
                   }
                 })
               },
@@ -241,7 +252,27 @@ Page({
           });
         });
   },
-
+  saveImg(){
+    wx.saveImageToPhotosAlbum({
+      filePath: this.data.saveTempCanvas,
+      success: (res)=>{
+        console.log(res);
+        wx.showToast({
+          title: '保存成功',
+          icon: "none",
+          duration: 2000
+        })
+      },
+      fail:(err)=>{
+        console.log(err)
+        wx.showToast({
+          title: '保存失败',
+          icon: "none",
+          duration: 2000
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

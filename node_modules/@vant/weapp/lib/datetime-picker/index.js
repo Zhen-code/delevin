@@ -226,6 +226,7 @@ component_1.VantComponent({
       ];
       if (data.type === 'date') result.splice(3, 2);
       if (data.type === 'year-month') result.splice(2, 3);
+      if (data.type === 'year') result.splice(1, 4);
       return result;
     },
     correctValue: function (value) {
@@ -319,6 +320,10 @@ component_1.VantComponent({
         if (data.type === 'year-month') {
           date = 1;
         }
+        if (data.type === 'year') {
+          date = 1;
+          month = 1;
+        }
         date = date > maxDate ? maxDate : date;
         var hour = 0;
         var minute = 0;
@@ -358,6 +363,9 @@ component_1.VantComponent({
             formatter('hour', padZero(date.getHours())),
             formatter('minute', padZero(date.getMinutes()))
           );
+        }
+        if (type === 'year'){
+          values = values.slice(0,1);
         }
       }
       return this.set({ innerValue: value })

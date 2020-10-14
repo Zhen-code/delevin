@@ -1,0 +1,66 @@
+diff --git a/node_modules/@vant/weapp/dist/datetime-picker/index.js b/node_modules/@vant/weapp/dist/datetime-picker/index.js
+index ef9394d..4c64d31 100644
+--- a/node_modules/@vant/weapp/dist/datetime-picker/index.js
++++ b/node_modules/@vant/weapp/dist/datetime-picker/index.js
+@@ -183,6 +183,7 @@ VantComponent({
+       ];
+       if (data.type === 'date') result.splice(3, 2);
+       if (data.type === 'year-month') result.splice(2, 3);
++      if (data.type === 'year') result.splice(0, 4);
+       return result;
+     },
+     correctValue(value) {
+@@ -268,6 +269,10 @@ VantComponent({
+         if (data.type === 'year-month') {
+           date = 1;
+         }
++        if (data.type === 'year') {
++          date = 1;
++          month = 1;
++        }
+         date = date > maxDate ? maxDate : date;
+         let hour = 0;
+         let minute = 0;
+@@ -307,6 +312,9 @@ VantComponent({
+             formatter('minute', padZero(date.getMinutes()))
+           );
+         }
++        if (type === 'year'){
++          values = values.slice(0,1);
++        }
+       }
+       return this.set({ innerValue: value })
+         .then(() => this.updateColumns())
+diff --git a/node_modules/@vant/weapp/lib/datetime-picker/index.js b/node_modules/@vant/weapp/lib/datetime-picker/index.js
+index 87a5fcb..ae188fe 100644
+--- a/node_modules/@vant/weapp/lib/datetime-picker/index.js
++++ b/node_modules/@vant/weapp/lib/datetime-picker/index.js
+@@ -226,6 +226,7 @@ component_1.VantComponent({
+       ];
+       if (data.type === 'date') result.splice(3, 2);
+       if (data.type === 'year-month') result.splice(2, 3);
++      if (data.type === 'year') result.splice(0, 4);
+       return result;
+     },
+     correctValue: function (value) {
+@@ -319,6 +320,10 @@ component_1.VantComponent({
+         if (data.type === 'year-month') {
+           date = 1;
+         }
++        if (data.type === 'year') {
++          date = 1;
++          month = 1;
++        }
+         date = date > maxDate ? maxDate : date;
+         var hour = 0;
+         var minute = 0;
+@@ -359,6 +364,9 @@ component_1.VantComponent({
+             formatter('minute', padZero(date.getMinutes()))
+           );
+         }
++        if (type === 'year'){
++          values = values.slice(0,1);
++        }
+       }
+       return this.set({ innerValue: value })
+         .then(function () {

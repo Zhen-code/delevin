@@ -194,7 +194,7 @@
     <view class="{{showTimePick?'timePickerActive':'timePicker'}}">
         <van-datetime-picker
                 toolbar-class="toolbar"
-                type="year-month"
+                type="year"
                 value="{{ currentDate }}"
                 minDate="{{minDate}}"
                 title="选择年份"
