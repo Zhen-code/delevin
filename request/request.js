@@ -172,9 +172,9 @@ const request = {
   },
   browseListingsList: (params) => {
     return http({
-      url: api.browse.browseListingsList + params.type,
+      url: api.browse.browseListingsList + params.type+'?pageIndex='+params.pageIndex+'&pageSize='+params.pageSize,
       method: "GET",
-      params: params,
+
     });
   },
   browseOtherList: (params) => {

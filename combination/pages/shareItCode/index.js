@@ -10,7 +10,8 @@ Page({
   creatCode() {
     //动态生成二维码
     let that = this;
-    let shareUrl = 'http://www.baidu.com'
+    let item = wx.getStorageSync('info');
+    let shareUrl = 'https://dev.delevin.beiru168.com/homepage?agentId='+item.agentId;
     drawQrcode({
       width: 200,
       height: 200,
@@ -26,7 +27,6 @@ Page({
               width: 200,
               height: 200,
               success(e) {
-                let item = wx.getStorageSync('info')
                 item.tempFilePath = e.tempFilePath
                 that.setData({
                   item:item,

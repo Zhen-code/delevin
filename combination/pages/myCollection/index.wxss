@@ -23,7 +23,6 @@
 	width: 344rpx;
 	height: 34px;
 	background: #F8F8F8;
-	border-radius: 0px 4px 4px 0px;
 	border: 1px solid #EEEEEE;
 	display: flex;
 	align-items: center;
@@ -33,6 +32,16 @@
 	color: #999999;
 }
 
+.top-tab:nth-child(1) {
+	border-top-left-radius: 8rpx;
+	border-bottom-left-radius: 8rpx;
+}
+
+.top-tab:nth-child(2) {
+	border-top-right-radius: 8rpx;
+	border-bottom-right-radius: 8rpx;
+}
+
 .top-tab-action {
 	width: 344rpx;
 	height: 34px;
@@ -40,7 +49,16 @@
 	font-weight: bold;
 	color: #333333;
 	background: #FFD854;
-	border-radius: 4px 0px 0px 4px;
+}
+
+.top-tab-action:nth-child(1) {
+	border-top-left-radius: 8rpx;
+	border-bottom-left-radius: 8rpx;
+}
+
+.top-tab-action:nth-child(2) {
+	border-top-right-radius: 8rpx;
+	border-bottom-right-radius: 8rpx;
 }
 
 .doubleTab {

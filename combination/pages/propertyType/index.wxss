@@ -224,7 +224,6 @@
 
 .rentalMethod-rightName {
 	font-size: 30rx;
-	font-weight: 500;
 	color: #4077FF;
 }
 
@@ -336,7 +335,7 @@
 }
 
 .rentalMethod-ding-input input {
-	width: 200rpx;
+	width: 215rpx;
 	height: 72rpx;
 	padding: 0 24rpx;
 	border-radius: 4px;

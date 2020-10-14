@@ -20,7 +20,7 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "useMultiFrameRuntime": false,
-    "useApiHook": false,
+    "useApiHook": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -44,6 +44,8 @@
     "hidedInDevtools": []
   },
   "scripts": {},
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
   "condition": {
     "search": {
       "current": -1,
@@ -148,6 +150,34 @@
           "id": -1,
           "name": "combination/pages/shareItCode/index",
           "pathName": "combination/pages/shareItCode/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/homepage/index",
+          "pathName": "combination/pages/homepage/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/sellHouse/index",
+          "pathName": "combination/pages/sellHouse/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/broker/index",
+          "pathName": "combination/pages/broker/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/generalPromotion/index",
+          "pathName": "combination/pages/generalPromotion/index",
           "scene": null
         }
       ]

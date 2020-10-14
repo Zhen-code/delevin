@@ -12,6 +12,7 @@ Page({
 
   //事件处理函数
   getPhoneNumber: function (e) {
+    let _this = this;
     if (e.detail.errMsg == "getPhoneNumber:ok") {
       let numberData = e.detail;
       wx.login({
@@ -36,64 +37,11 @@ Page({
                       // 已经授权，可以直接调用 getUserInfo 获取头像昵称
                       wx.getUserInfo({
                         success: function (res) {
-                          console.log(rese, 12333)
-                          request.login({
-                            "encryptedData": numberData.encryptedData,
-                            "headImgUri": res.userInfo.avatarUrl,
-                            "iv": numberData.iv,
-                            "nickName": res.userInfo.nickName,
-                            "openId": rese.openId,
-                            "sessionKey": rese.sessionKey,
-                          }).then((res) => {
-                            let token = res.token;
-                            console.log(token)
-                            wx.removeStorageSync('token')
-                            wx.setStorageSync('token', token)
-                            wx.showToast({
-                              title: '登录成功',
-                              icon: 'none',
-                              duration: 2500
-                            })
-                            wx.reLaunch({
-                              url: "/pages/mine/index"
-                            })
-                          }).catch((err) => {
-                            console.log(err.data.msg)
-                            wx.showToast({
-                              title: err.data.msg || '获取失败，请重新登录',
-                              icon: 'none',
-                              duration: 2500
-                            })
-                          })
+                          _this.getToLogin(true, rese, res, numberData)
                         }
                       })
                     } else {
-                      request.login({
-                        "encryptedData": numberData.encryptedData,
-                        "headImgUri": "",
-                        "iv": numberData.iv,
-                        "nickName": "",
-                        "openId": rese.openId,
-                        "sessionKey": rese.sessionKey,
-                      }).then((res) => {
-                        let token = res.token;
-                        wx.removeStorageSync('token')
-                        wx.setStorageSync('token', token);
-                        wx.showToast({
-                          title: '登录成功',
-                          icon: 'none',
-                          duration: 2500
-                        })
-                        wx.reLaunch({
-                          url: "/pages/mine/index"
-                        })
-                      }).catch((err) => {
-                        wx.showToast({
-                          title: '获取失败，请重新登录',
-                          icon: 'none',
-                          duration: 2500
-                        })
-                      })
+                      _this.getToLogin(false, rese, {}, numberData)
                     }
                   }
                 })
@@ -108,6 +56,61 @@ Page({
     } else {
       console.log('拒绝授权')
     }
+  },
+
+  getToLogin(type, rese, res, numberData) {
+    let data = {};
+    let homePage = '';
+    if (wx.getStorageSync('homePage')) {
+      homePage = JSON.parse(wx.getStorageSync('homePage'))
+    }
+    if(type){
+      data = {
+        "encryptedData": numberData.encryptedData,
+        "headImgUri": res.userInfo.avatarUrl,
+        "iv": numberData.iv,
+        "nickName": res.userInfo.nickName,
+        "openId": rese.openId,
+        "sessionKey": rese.sessionKey,
+      }
+    }else{
+      data = {
+        "encryptedData": numberData.encryptedData,
+        "headImgUri": "",
+        "iv": numberData.iv,
+        "nickName": "",
+        "openId": rese.openId,
+        "sessionKey": rese.sessionKey,
+      }
+    }
+    request.login(data).then((res) => {
+      let token = res.token;
+      wx.removeStorageSync('token')
+      wx.setStorageSync('token', token)
+      wx.showToast({
+        title: '登录成功',
+        icon: 'none',
+        duration: 2500
+      })
+      if (homePage.name === 'homepage') {
+        wx.reLaunch({
+          url: `/combination/pages/homepage/index?agentId=${homePage.agentId}`,
+        })
+        wx.removeStorageSync('homePage')
+      } else {
+        app.globalData.state = true
+        wx.reLaunch({
+          url: "/pages/mine/index"
+        })
+      }
+    }).catch((err) => {
+      console.log(err.data.msg)
+      wx.showToast({
+        title: err.data.msg || '获取失败，请重新登录',
+        icon: 'none',
+        duration: 2500
+      })
+    })
   },
 
   privacyPolicy() {

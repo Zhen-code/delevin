@@ -3,7 +3,8 @@
 	<view class="top {{onShow?'':'hide'}}" wx:if="{{resultStatus == 'AUDITING' || resultStatus == 'REFUSE'}}">
 		<image class="top-image" src="/combination/image/bg_waiting_yellow_h76@2x.png"></image>
 		<view class="top-view">
-			<van-icon class="top-view-image" name="{{icon}}" size="56rpx" bindtap="hide" />
+			<van-icon class="top-view-image" wx:if="{{resultStatus == 'REFUSE'}}" name="{{icon}}" size="56rpx" bindtap="hide" />
+			<van-icon class="top-view-image" wx:if="{{resultStatus == 'AUDITING'}}" name="/combination/image/icon_clock_28_black@2x.png"/>
 			<view class="top-view-row">
 				<text class="top-view-titer">{{resultStatus === 'REFUSE'?'审核驳回':'审核中，请耐心等候'}}</text>
 				<text class="top-view-text" wx:if="{{resultStatus === 'REFUSE'}}">{{resultInfo}}</text>
@@ -14,32 +15,32 @@
 		<view class="view-row-content" data-item="{{type}}" bindtap="toChooseAnInstitution">
 			<text class="view-row-content-name">选择机构</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" value="{{store}}" disabled type='text' name='mechanism' data-model="mechanism" placeholder="选择您所在的机构"></input>
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" value="{{store}}" disabled type='text' name='mechanism' data-model="mechanism" placeholder="选择您所在的机构"></input>
 				<van-icon style="margin-left:10rpx" name="arrow" color="#cccccc" size="18px" />
 			</view>
 		</view>
 		<view class="view-row-content">
 			<text class="view-row-content-name">姓名</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" bindinput='getInputValue' disabled="{{type}}" type='text' value="{{name}}" name='name' data-model="name" placeholder="请输入真实姓名"></input>
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" bindinput='getInputValue' disabled="{{type}}" type='text' value="{{name}}" name='name' data-model="name" placeholder="请输入真实姓名"></input>
 			</view>
 		</view>
 		<view class="view-row-content">
 			<text class="view-row-content-name">工号</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" bindinput='getInputValue' disabled="{{type}}" type='text' value="{{jobNumber}}" name='jobNumber' data-model="jobNumber" placeholder="请输入工号"></input>
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" bindinput='getInputValue' disabled="{{type}}" type='text' value="{{jobNumber}}" name='jobNumber' data-model="jobNumber" placeholder="请输入工号"></input>
 			</view>
 		</view>
 		<view class="view-row-content">
 			<text class="view-row-content-name">手机号</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" bindinput='getInputValue' disabled="{{type}}" value="{{phone}}" type='text' name='phone' data-model="phone" maxlength="11" placeholder="请输入手机号"></input>
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" bindinput='getInputValue' disabled="{{type}}" value="{{phone}}" type='text' name='phone' data-model="phone" maxlength="11" placeholder="请输入手机号"></input>
 			</view>
 		</view>
 		<view class="view-row-content" wx:if="{{!type}}">
 			<text class="view-row-content-name">短信验证码</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='code' data-model="code" maxlength="6" placeholder="请输入验证码"></input>
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" bindinput='getInputValue' type='text' name='code' data-model="code" maxlength="6" placeholder="请输入验证码"></input>
 				<text class="view-row-content-input-set"></text>
 				<text class="view-row-content-input-code" bindtap="getCode">{{code_msg}}</text>
 			</view>

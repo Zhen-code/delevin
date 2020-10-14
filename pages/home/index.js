@@ -126,8 +126,8 @@ Page({
 				return item;
 			})
 			this.setData({
-				houseItem1: item.slice(4, 9),
-				houseItem2: item.slice(0, 4),
+				houseItem1: item.slice(0, 5),
+				houseItem2: item.slice(5, 9),
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -329,18 +329,27 @@ Page({
 
 	toDetails(e) {
 		let id = '';
-		if (e.currentTarget.id) {
-			id = e.currentTarget.id;
+		let data = e.currentTarget.dataset.item;
+		if (data.status === 'LOWER') {
+			wx.showToast({
+				title: '该房源已下架！',
+				icon: 'none',
+				duration: 2000
+			})
 		} else {
-			id = e.currentTarget.dataset.item.id
+			if (data.houseId) {
+				id = data.houseId;
+			} else {
+				id = data.id
+			}
+			let item = JSON.stringify({
+				'title': this.data.title,
+				"id": id,
+			})
+			wx.navigateTo({
+				url: `/combination/pages/listingDetails/index?item=${item}`,
+			})
 		}
-		let item = JSON.stringify({
-			'title': this.data.title,
-			"id": id,
-		})
-		wx.navigateTo({
-			url: `/combination/pages/listingDetails/index?item=${item}`,
-		})
 	},
 
 	changeHouseType1(e) {
@@ -387,18 +396,19 @@ Page({
 
 	changeHouseType2(e) {
 		let index = e.currentTarget.dataset.index;
-		switch (index) {
-			case 0:
+		let iconName = e.currentTarget.dataset.item.iconName;
+		switch (iconName) {
+			case '获客文章':
 				wx.navigateTo({
 					url: `/combination/pages/customerArticles/index`,
 				});
 				break;
-			case 1:
+			case '客源管理':
 				wx.navigateTo({
 					url: `/combination/pages/management/index`,
 				});
 				break;
-			case 2:
+			case '房贷计算':
 				let obj = {
 					"title": "房贷计算器",
 					"link": "https://dev.delevin.beiru168.com/index.html",
@@ -408,7 +418,7 @@ Page({
 					url: `/combination/pages/webView/index?item=${item}`,
 				})
 				break;
-			case 3:
+			case '获客海报':
 				wx.navigateTo({
 					url: `/combination/pages/customerPoster/index`,
 				});
@@ -579,10 +589,10 @@ Page({
 		})
 	},
 
-	sharePoster(){
+	sharePoster() {
 		console.log(this.data.detailsData)
 		wx.navigateTo({
-			url: '/combination/pages/sharePoster/index?data='+JSON.stringify(this.data.detailsData)
+			url: '/combination/pages/sharePoster/index?data=' + JSON.stringify(this.data.detailsData)
 		})
 	},
 
@@ -590,6 +600,7 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.getSetting();
 		this.getBanner();
 		this.getIcon();
 		this.getNews();
@@ -610,7 +621,6 @@ Page({
 		this.setData({
 			type: app.globalData.state
 		}, () => {
-			this.getSetting();
 			this.getData()
 		})
 	},

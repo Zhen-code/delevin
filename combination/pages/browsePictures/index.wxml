@@ -1,5 +1,5 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
-<view class="view" style="top:{{paddingTop}}px">
+<view class="view" style="padding-top:{{paddingTop}}px">
 	<view class="view-box borderBottom">
 		<text class="title" >房源视频</text>
 		<view class="video">

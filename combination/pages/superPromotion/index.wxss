@@ -7,6 +7,7 @@
 	justify-content: flex-start;
 	flex-direction: column;
 	overflow: scroll;
+	margin-bottom: 136rpx;
 }
 
 .view-row {
@@ -101,9 +102,9 @@
 	margin-top: 48rpx;
 }
 
-.row-list:last-child{
+/* .row-list:last-child{
 	margin-bottom: 300rpx;
-}
+} */
 
 .row-list-top {
 	width: 100%;
@@ -269,8 +270,8 @@
 }
 
 .top-delete {
-	width: 120rpx;
-	height: 60rpx;
+	width: 80rpx;
+	height: 42rpx;
 	background: rgba(0, 0, 0, 0.5);
 	border-radius: 4rpx;
 	display: flex;
@@ -496,6 +497,8 @@
 	border-radius: 4rpx;
 	border: 1rpx solid #FFD854;
 	text-align: center;
+	color: #333333;
+	font-weight: bold;
 }
 
 
@@ -530,7 +533,7 @@
 
 .footerPrice {
 	font-size: 36rpx;
-	font-weight: 500;
+	font-weight: bold;
 	color: #FE6300;
 }
 
@@ -546,7 +549,7 @@
 	height: 100%;
 	font-size: 32rpx;
 	font-weight: bold;
-	color: #755132;
+	color: #333333;
 	display: flex;
 	align-items: center;
 	justify-content: center;

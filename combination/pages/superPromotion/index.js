@@ -59,6 +59,7 @@ Page({
 		let value = Math.floor(Number(e.detail.value));
 		if (value < 100) {
 			this.setData({
+				price:0,
 				itemValue: '',
 				itemIndex: -1,
 			}, () => {

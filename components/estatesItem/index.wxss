@@ -8,8 +8,13 @@
 .tab-item2-title {
 	font-size: 30rpx;
 	font-family: PingFangSC-Medium, PingFang SC;
-	font-weight: 500;
+	font-weight: bold;
 	color: #333333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 
 .tab-item2-desc {
@@ -26,7 +31,7 @@
 }
 
 .tab-item2-label {
-	width: 310rpx;
+	width: 320rpx;
 	min-height: 44rpx;
 	background: #E8EFFF;
 	border-radius: 4px;
@@ -53,12 +58,19 @@
 	display: flex;
 }
 
-.tab-item2-time-center {
+.tab-item2-time-right1 {
 	display: flex;
-	margin: 0 24rpx 0 74rpx;
+	align-items: center;
+	justify-content: flex-end;
+	flex-direction: row;
 }
 
-.tab-item2-time-center text{
+.tab-item2-time-center {
+	display: flex;
+	margin: 0 24rpx 0 24rpx;
+}
+
+.tab-item2-time-center text {
 	margin-left: 8rpx;
 }
 
@@ -66,7 +78,7 @@
 	display: flex;
 }
 
-.tab-item2-time-right text{
+.tab-item2-time-right text {
 	margin-left: 8rpx;
 }
 

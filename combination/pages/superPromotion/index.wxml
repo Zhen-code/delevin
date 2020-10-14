@@ -5,7 +5,7 @@
 		<view class="view-row-content">
 			<text class="view-row-content-name">推广房源</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" disabled="{{true}}" value="{{info.title}}"></input>
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" disabled="{{true}}" value="{{info.title}}"></input>
 			</view>
 		</view>
 		<view class="view-row-content" style="flex-direction: column;">
@@ -13,7 +13,7 @@
 				<text class="view-row-content-name">选择投放广告位</text>
 				<view class="view-row-content-input" bindtap="toSelectPromotion">
 					<text class="view-row-content-chack">可选择最多20个</text>
-					<van-icon name="arrow" size="40rpx" color="#333333" />
+					<van-icon name="arrow" size="40rpx" color="#cccccc" />
 				</view>
 			</view>
 			<view class="view-row-content-list1" wx:if="{{item.length !== 0}}">
@@ -25,7 +25,7 @@
 		<view class="view-row-content">
 			<text class="view-row-content-name">输入广告语</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" bindinput='getInputValue' type='text' name='advertising' data-model="advertising" placeholder="可输入不超过18字"></input>
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" bindinput='getInputValue' type='text' name='advertising' data-model="advertising" placeholder="可输入不超过18字"></input>
 			</view>
 		</view>
 	</view>
@@ -68,7 +68,7 @@
 			<block wx:for="{{list}}" wx:key="index">
 				<view wx:if="{{item.status === 'UPPER'}}" class="checkList-row {{itemIndex === index?'checkList-row-action':''}}" data-item="{{item}}" data-index="{{index}}" bindtap="tabItem">{{item.specsTitle}}</view>
 			</block>
-			<input type="number" placeholder="自定义" class="checkList-row {{itemIndex === -1?'checkList-row-action':''}}" value="{{itemValue}}" data-index="{{-1}}" data-model="specs"  bindblur="itemType"></input>
+			<input type="number" placeholder="自定义" placeholder-style="color:#999999" class="checkList-row {{itemIndex === -1?'checkList-row-action':''}}" value="{{itemValue}}" data-index="{{-1}}" data-model="specs"  bindblur="itemType"></input>
 		</view>
 	</view>
 
