@@ -157,6 +157,20 @@
           "id": -1,
           "name": "combination/pages/generalPromotion/index",
           "pathName": "combination/pages/generalPromotion/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/shareItCode/index",
+          "pathName": "combination/pages/shareItCode/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/myCollection/index",
+          "pathName": "combination/pages/myCollection/index",
           "scene": null
         }
       ]

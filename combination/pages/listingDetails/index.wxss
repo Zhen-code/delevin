@@ -124,12 +124,14 @@
 
 .components-title {
 	flex: 1;
-	height: 40rpx;
+	height: 44rpx;
 	font-size: 32rpx;
 	font-weight: bold;
 	color: #333333;
 	text-align: left;
-	line-height: 40rpx;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
 }
 
 .components:last-child {
@@ -348,6 +350,15 @@
 	flex-direction: row;
 }
 
+.introduction-top-left{
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: column;
+	margin-right: 50rpx;
+}
+
 .introduction-title {
 	flex: 1;
 	font-size: 32rpx;
@@ -355,7 +366,6 @@
 	color: #333333;
 	line-height: 22px;
 	text-align: left;
-	margin-right: 50rpx;
 }
 
 
@@ -366,7 +376,7 @@
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	flex-direction: row;
-	margin-top: 4rpx;
+	margin-top: 8rpx;
 }
 
 .introduction-resources {
@@ -486,13 +496,13 @@
 	font-weight: 400;
 	color: #999999;
 	display: flex;
-	/* align-items: center; */
+	align-items: center;
 	justify-content: flex-start;
 	flex-direction: row;
 }
 
 .name-name {
-	width: 140rpx;
+	width: 145rpx;
 	height: 40rpx;
 	font-size: 14px;
 	font-weight: 400;
@@ -664,7 +674,7 @@
 }
 
 .introduction-favorites {
-	width: 42px;
+	width: 50px;
 	height: auto;
 	display: flex;
 	align-items: center;

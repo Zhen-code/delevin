@@ -22,22 +22,24 @@
 
 	<view class="introduction borderBottom">
 		<view class="introduction-top">
-			<text class="introduction-title">{{item.title}}</text>
-			<!-- <favorites data="{{item}}"></favorites> -->
+			<view class="introduction-top-left">
+				<text class="introduction-title">{{item.title}}</text>
+				<view class="introduction-type">
+					<image class="item-right-content-icon1" wx:if="{{item.salesStatus === 'FOR_SALE' && type === 'ESTATE'}}"
+						src="/combination/image/label_forsell_blue@2x.png"></image>
+					<image class="item-right-content-icon3" wx:if="{{item.salesStatus === 'ON_SALE' && type === 'ESTATE'}}"
+						src="/combination/image/label_sell_orange@2x.png"></image>
+					<block wx:for="{{item.houseLabel}}" wx:key="index">
+						<van-tag style="margin-right:10rpx" color="#f8f8f8" text-color="#666666">{{item}}</van-tag>
+					</block>
+				</view>
+			</view>
 			<view class="introduction-favorites" bindtap="changeFavorites">
 				<van-icon size="22px" color="{{favoritesColor}}" name="{{favoritesIcon}}" />
 				<text class="introduction-favorites-name">{{favoritesName}}</text>
 			</view>
 		</view>
-		<view class="introduction-type">
-			<image class="item-right-content-icon1" wx:if="{{item.salesStatus === 'FOR_SALE' && type === 'ESTATE'}}"
-				src="/combination/image/label_forsell_blue@2x.png"></image>
-			<image class="item-right-content-icon3" wx:if="{{item.salesStatus === 'ON_SALE' && type === 'ESTATE'}}"
-				src="/combination/image/label_sell_orange@2x.png"></image>
-			<block wx:for="{{item.houseLabel}}" wx:key="index">
-				<van-tag style="margin-right:10rpx" color="#f8f8f8" text-color="#666666">{{item}}</van-tag>
-			</block>
-		</view>
+
 		<view class="introduction-price" wx:if="{{type === 'ESTATE'}}">
 			<view class="introduction-price-num">{{item.unitPrice}}元/m²<text
 					class="introduction-price-name">(最终以开发商报价为准)</text></view>
@@ -100,8 +102,10 @@
 		<view class="introduction-specification" wx:if="{{type === 'ESTATE'}}">
 			<text class="components-title marginTop">楼盘基本信息</text>
 			<view class="introduction-specification-bottom">
-				<view class="name-type"><text class="name-name">楼盘名称：</text><text class="name-typeValue">{{item.developers || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">产权年限：</text><text class="name-typeValue">{{item.property || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">楼盘名称：</text><text
+						class="name-typeValue">{{item.developers || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">产权年限：</text><text
+						class="name-typeValue">{{item.property || '暂无'}}</text></view>
 				<view class="name-type" wx:if="{{stlectState}}"><text class="name-name">物业类别：</text><text
 						class="name-typeValue">{{item.propertyClassify || '暂无'}}</text></view>
 				<view class="name-type" wx:if="{{stlectState}}"><text class="name-name">装修状况：</text><text
@@ -112,26 +116,42 @@
 			</view>
 			<text class="components-title marginTop" wx:if="{{stlectState}}">销售信息</text>
 			<view class="introduction-specification-bottom" wx:if="{{stlectState}}">
-				<view class="name-type"><text class="name-name">销售状态：</text><text class="name-typeValue">{{item.salesStatus === 'ON_SALE'?'在售':'待售'}}</text>
+				<view class="name-type"><text class="name-name">销售状态：</text><text
+						class="name-typeValue">{{item.salesStatus === 'ON_SALE'?'在售':'待售'}}</text>
 				</view>
-				<view class="name-type"><text class="name-name">开盘时间：</text><text class="name-typeValue">{{item.openingDate || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">交房时间：</text><text class="name-typeValue">{{item.deliveryDate || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">新房补贴：</text><text class="name-typeValue">{{item.houseSubsidy || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">开发商：</text><text class="name-typeValue">{{item.developers || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">楼盘地址：</text><text class="name-typeValue">{{item.province}}{{item.salesAddress}}</text></view>
-				<view class="name-type"><text class="name-name">咨询电话：</text><text class="name-typeValue">{{item.telephone  || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">开盘时间：</text><text
+						class="name-typeValue">{{item.openingDate || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">交房时间：</text><text
+						class="name-typeValue">{{item.deliveryDate || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">新房补贴：</text><text
+						class="name-typeValue">{{item.houseSubsidy || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">开发商：</text><text
+						class="name-typeValue">{{item.developers || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">楼盘地址：</text><text
+						class="name-typeValue">{{item.province}}{{item.salesAddress}}</text></view>
+				<view class="name-type"><text class="name-name">咨询电话：</text><text
+						class="name-typeValue">{{item.telephone  || '暂无'}}</text></view>
 			</view>
 			<text class="components-title marginTop" wx:if="{{stlectState}}">小区规划</text>
 			<view class="introduction-specification-bottom" wx:if="{{stlectState}}">
-				<view class="name-type"><text class="name-name">占地面积：</text><text class="name-typeValue">{{item.areaCovered || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">建筑面积：</text><text class="name-typeValue">{{item.floorage || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">绿化率：</text><text class="name-typeValue">{{item.greenCoverage || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">停车位：</text><text class="name-typeValue">{{item.parkingSpace || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">停车配比：</text><text class="name-typeValue">{{item.parkingRatio || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">规划户数：</text><text class="name-typeValue">{{item.plannedHouseholds || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">楼层状况：</text><text class="name-typeValue">{{item.floorCondition || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">物业费：</text><text class="name-typeValue">{{item.propertyFee || '暂无'}}</text></view>
-				<view class="name-type"><text class="name-name">物业公司：</text><text class="name-typeValue">{{item.propertyCompany || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">占地面积：</text><text
+						class="name-typeValue">{{item.areaCovered || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">建筑面积：</text><text
+						class="name-typeValue">{{item.floorage || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">绿化率：</text><text
+						class="name-typeValue">{{item.greenCoverage || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">停车位：</text><text
+						class="name-typeValue">{{item.parkingSpace || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">停车配比：</text><text
+						class="name-typeValue">{{item.parkingRatio || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">规划户数：</text><text
+						class="name-typeValue">{{item.plannedHouseholds || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">楼层状况：</text><text
+						class="name-typeValue">{{item.floorCondition || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">物业费：</text><text
+						class="name-typeValue">{{item.propertyFee || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">物业公司：</text><text
+						class="name-typeValue">{{item.propertyCompany || '暂无'}}</text></view>
 			</view>
 			<view class="introduction-specification-add" bindtap="changeArrow">
 				<text class="introduction-specification-add-title">{{stlectData || '暂无'}}</text>
@@ -224,10 +244,8 @@
 				<text class="surrounding-details">查看周边配套</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>
-			<view class="surrounding-show"
-				  wx:if="{{superInfo.display==='YES'}}"
-				  data-item="{{superInfo}}"
-				  catch:tap="toHomePage">
+			<view class="surrounding-show" wx:if="{{superInfo.display==='YES'}}" data-item="{{superInfo}}"
+				catch:tap="toHomePage">
 				<view class="adverText">广告</view>
 				<image style="width:686rpx;height:100%" src="{{superInfo.advertUri}}">
 				</image>

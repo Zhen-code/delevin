@@ -36,11 +36,17 @@ Page({
 	},
 
 	onChange(event) {
-		this.setData({
-			num: event.detail
-		}, () => {
-			this.getSuperCalculation();
-		})
+		if(this.data.specs === ''){
+			this.setData({
+				num: event.detail
+			})
+		}else{
+			this.setData({
+				num: event.detail
+			}, () => {
+				this.getSuperCalculation();
+			})
+		}
 	},
 
 	onClose(e) {

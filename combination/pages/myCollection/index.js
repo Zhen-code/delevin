@@ -217,29 +217,37 @@ Page({
 
 	toDateils(e) {
 		let type = '';
-		console.log(e.currentTarget.dataset.item.targetId, this.data.navTabIndex)
-		switch (this.data.navTabIndex) {
-			case 0:
-				type = "新房房源";
-				break;
-			case 1:
-				type = "二手房房源";
-				break;
-			case 2:
-				type = "租房房源";
-				break;
-			case 3:
-				type = "小区房源";
-				break;
-			default:
+		let data = e.currentTarget.dataset.item
+		if(data.status === 'LOWER'){
+			wx.showToast({
+				title: '该房源已经下架！',
+				icon: 'none',
+				duration: 2500
+			})
+		}else{
+			switch (this.data.navTabIndex) {
+				case 0:
+					type = "新房房源";
+					break;
+				case 1:
+					type = "二手房房源";
+					break;
+				case 2:
+					type = "租房房源";
+					break;
+				case 3:
+					type = "小区房源";
+					break;
+				default:
+			}
+			let item = JSON.stringify({
+				'title': type,
+				"id": data.targetId,
+			})
+			wx.navigateTo({
+				url: `/combination/pages/listingDetails/index?item=${item}`,
+			})
 		}
-		let item = JSON.stringify({
-			'title': type,
-			"id": e.currentTarget.dataset.item.targetId,
-		})
-		wx.navigateTo({
-			url: `/combination/pages/listingDetails/index?item=${item}`,
-		})
 	},
 
 	toAspectItem(e){
