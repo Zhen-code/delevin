@@ -68,7 +68,7 @@ Page({
 		var components = e.currentTarget.dataset.myid;
 		console.log(components)
 		this.setData({
-			toView:components,
+			toView: components,
 		})
 	},
 
@@ -223,6 +223,8 @@ Page({
 				res.rentHistory.map((items) => {
 					item1.push(items.dateFor)
 					item2.push(items.price)
+					categories.push(items.dateFor)
+					seriesData.push(items.price)
 					return items
 				})
 			}
@@ -380,7 +382,15 @@ Page({
 			})
 		}
 	},
-
+	toHomePage(e) {
+		let data = e.currentTarget.dataset.item;
+		let {
+			agentId
+		} = data;
+		wx.navigateTo({
+			url: '/combination/pages/homepage/index?agentId=' + agentId
+		})
+	},
 	toDetails(e) {
 		let type = '';
 		let data = e.currentTarget.dataset.item;
@@ -410,24 +420,7 @@ Page({
 	},
 
 	toCommunity(e) {
-		let type = '';
 		let data = e.currentTarget.dataset.item;
-		console.log(data, data.quartersId, 112212)
-		// switch (this.data.type) {
-		// 	case 'ESTATE':
-		// 		type = "新房房源";
-		// 		break;
-		// 	case "SECOND_HAND":
-		// 		type = "二手房房源";
-		// 		break;
-		// 	case "TENANCY":
-		// 		type = "租房房源";
-		// 		break;
-		// 	case "RESIDENTIAL_QUARTERS":
-		// 		type = "小区房源";
-		// 		break;
-		// 	default:
-		// }
 		let item = JSON.stringify({
 			'title': '小区房源',
 			"id": data.quartersId,

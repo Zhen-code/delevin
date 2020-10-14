@@ -42,7 +42,8 @@
         <view class="second-comment-item"
               wx:for="{{item.commentResults}}"
               wx:key="id"
-              wx:for-item="items">
+              wx:for-item="items"
+              wx:for-index="index1">
           <view class="second-comment-item-title">{{items.content}}</view>
           <view class="second-comment-item-response">
             <view class="response1">{{items.nickName}}</view>
@@ -50,14 +51,15 @@
             <view class="response2">{{item.nickName}}</view>
             <view class="response-time">{{items.createDate}}</view>
           </view>
-          <view class="response-btn" catch:tap="toReply"
+          <view class="response-btn {{(index1===item.commentResults.length-1&&items.commentResults.length===0)?'':'hasline'}}" catch:tap="toReply"
                 data-fatherid="{{items.id}}"
                 data-targertid="{{id}}"
                 data-name="{{items.nickName}}">回复</view>
-          <view class="second-comment-items"
+          <view class="second-comment-items {{(index1===item.commentResults.length-1&&index2===items.commentResults.length-1)?'':'hasline'}}"
                 wx:if="{{items.commentResults.length!==0}}"
                 wx:for="{{items.commentResults}}"
                 wx:key="id"
+                wx:for-index="index2"
                 wx:for-item="v">
             <view class="second-comment-item-title">{{v.content}}</view>
             <view class="second-comment-item-response">
@@ -104,7 +106,7 @@
     <text>{{commentNumber}}</text>
   </button>
   <button class="write-content-btn" catch:tap="like">
-    <image src="{{like==='NO'?'../../image/icon_like_16_grey@2x.png':'../../image/icon_like_20_nor@2x.png'}}" class="bottom-img" mode="aspectFill"></image>
+    <image src="{{like==='NO'?'../../image/icon_like_20_nor@2x.png':'../../image/icon_like_20_pre@2x.png'}}" class="bottom-img" mode="aspectFill"></image>
     <text>{{number}}</text>
   </button>
 </view>

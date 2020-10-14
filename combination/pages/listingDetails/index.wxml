@@ -224,8 +224,10 @@
 				<text class="surrounding-details">查看周边配套</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>
-			<view class="surrounding-show" wx:if="{{superInfo.display==='YES'}}" data-item="{{superInfo}}"
-				catch:tap="toDetails">
+			<view class="surrounding-show"
+				  wx:if="{{superInfo.display==='YES'}}"
+				  data-item="{{superInfo}}"
+				  catch:tap="toHomePage">
 				<view class="adverText">广告</view>
 				<image style="width:686rpx;height:100%" src="{{superInfo.advertUri}}">
 				</image>

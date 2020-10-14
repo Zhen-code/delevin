@@ -1,4 +1,3 @@
-<!--请勿删除！-->
 <van-action-sheet show="{{ show }}"
                   title="邻近地铁(可多选)"
                   bind:close="onClose"
@@ -21,7 +20,7 @@
                              scroll-y>
                     <block wx:for="{{scrollRight}}" wx:key="name">
                         <view class="scrollItem" catch:tap="handleRight" data-index="{{index}}">
-                            <text>{{item.name}}</text>
+                            <text style="font-weight:{{item.active?'bold':'normal'}}">{{item.name}}</text>
                             <van-icon name="success" wx:if="{{item.active}}" color="#FFD200"/>
                         </view>
                     </block>

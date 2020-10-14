@@ -31,6 +31,7 @@
 	font-family: PingFangSC-Regular, PingFang SC;
 	font-weight: 400;
 	color: #999999;
+	border-bottom: 2rpx solid #EEEEEE;
 }
 
 .tbActive {
@@ -167,7 +168,7 @@
 }
 
 .tab-item2-label {
-	width: 310rpx;
+	width: auto;
 	min-height: 44rpx;
 	background: #E8EFFF;
 	border-radius: 4px;
@@ -178,12 +179,13 @@
 	font-weight: 400;
 	color: #4077FF;
 	margin-bottom: 16rpx;
+	display: inline-block;
 }
 
 .tab-item2-time {
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-start;
+	justify-content: space-between;
 	font-size: 26rpx;
 	font-family: PingFangSC-Regular, PingFang SC;
 	font-weight: 400;
@@ -196,11 +198,16 @@
 
 .tab-item2-time-center {
 	display: flex;
-	margin: 0 24rpx 0 74rpx;
+}
+
+.row-reply{
+	display: flex;
+	flex-direction: row;
 }
 
 .tab-item2-time-right {
 	display: flex;
+	margin-left: 24rpx;
 }
 
 .postImg {
@@ -261,13 +268,12 @@
 	text-align: center;
 	font-size: 28rpx;
 	font-family: PingFangSC-Regular, PingFang SC;
-	font-weight: 400;
 	color: #999999;
 }
 .isActive{
 	font-size: 28rpx;
 	font-family: PingFangSC-Medium, PingFang SC;
-	font-weight: 500;
+	font-weight: bold !important;
 	color: #333333!important;
 	position: relative;
 }

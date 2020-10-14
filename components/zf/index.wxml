@@ -4,7 +4,7 @@
         <view class="tab-item">
             <view class="tab-item-left">房源标题</view>
             <view class="tab-item-right">
-                <input value="{{name}}" placeholder="请输入房源标题" bind:input="nameInput"></input>
+                <input value="{{name}}" placeholder-style="color:#999999" placeholder="请输入房源标题" bind:input="nameInput"></input>
             </view>
         </view>
         <view class="tab-item">
@@ -12,7 +12,7 @@
             <view class="tab-item-right"  catch:tap="goSelectDistrct"
                   data-type="houseInType">
                 <text class="common-text" wx:if="{{districtTitle!==''}}">{{districtTitle}}</text>
-                <input placeholder="请选择所属小区" wx:else disabled></input>
+                <input placeholder-style="color:#999999" placeholder="请选择所属小区" wx:else disabled></input>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -21,8 +21,7 @@
         </view>
         <view class="tab-item">
             <view class="tab-item-left">房源标签</view>
-            <view class="tab-item-right"  catch:tap="goLabelSheet"
-                  data-type="labelType">
+            <view class="tab-item-right">
                 <view class="houseType-wrap"  wx:if="{{labelType.length!==0}}" >
                     <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
                         {{item}}
@@ -31,17 +30,19 @@
                                   bind:tap="deleteLabel"/>
                     </view>
                 </view>
-                <input wx:else disabled placeholder="请选择房源标签"/>
+                <input wx:else disabled placeholder-style="color:#999999" placeholder="请选择房源标签"/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
+                       data-type="labelType"
+                       catch:tap="goLabelSheet"
                 ></image>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">月租</view>
             <view class="tab-item-right">
-                <input value="{{monthPrice}}" placeholder="请输入月租" bind:input="monthPriceInput" type="digit"></input>
+                <input value="{{monthPrice}}" placeholder-style="color:#999999" placeholder="请输入月租" bind:input="monthPriceInput" type="digit"></input>
                 <text class="common-text">万/月</text>
             </view>
         </view>
@@ -50,7 +51,7 @@
             <view class="tab-item-right"  catch:tap="goSheet"
                   data-type="rantType">
                 <text class="common-text" wx:if="{{rentType!==''}}">{{rentType}}</text>
-                <input wx:else placeholder="请选择出租方式" disabled/>
+                <input wx:else placeholder-style="color:#999999" placeholder="请选择出租方式" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -69,13 +70,13 @@
         <view class="tab-item">
             <view class="tab-item-left">建筑面积</view>
             <view class="tab-item-right">
-                <input value="{{buildingArea}}" type="digit"  bind:input="buildingAreaInput"  placeholder="请输入建筑面积"></input>
+                <input value="{{buildingArea}}" type="digit"  bind:input="buildingAreaInput" placeholder-style="color:#999999" placeholder="请输入建筑面积"></input>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">户型</view>
             <view class="tab-item-right">
-                <input value="{{indoorType}}" placeholder="输入室" bind:input="indoorTypeInput" type="number" class="indoor-input"></input><text class="common-text">室</text>
+                <input value="{{indoorType}}" placeholder-style="color:#999999" placeholder="输入室" bind:input="indoorTypeInput" type="number" class="indoor-input"></input><text class="common-text">室</text>
                 <input value="{{room}}" bind:input="roomInput" type="number" class="indoor-input"></input><text class="common-text">厅</text>
                 <input value="{{kitchen}}" bind:input="kitchenInput" type="number" class="indoor-input"></input><text class="common-text">厨</text>
                 <input value="{{wei}}" bind:input="weiInput" type="number" class="indoor-input"></input><text class="common-text">卫</text>
@@ -140,7 +141,7 @@
             <view class="tab-item-right"
                   catch:tap="goPickAddress">
                 <text class="common-text" wx:if="{{address!==''}}">{{address}}</text>
-                <input wx:else placeholder="请选择地址" disabled/>
+                <input wx:else placeholder-style="color:#999999" placeholder="请选择地址" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -181,6 +182,7 @@
                 bindblur="looseBlur"
                 class="textAreaWrap"
                 value="{{makerDesc}}"
+                placeholder-style="color:#999999"
                 placeholder="请输入经纪人描述…"
                 placeholder-class="textAreaStyle"></textarea>
         <view  class="textAreaWrap" catch:tap="goTextArea" wx:else>

@@ -20,7 +20,7 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "useMultiFrameRuntime": false,
-    "useApiHook": true,
+    "useApiHook": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -150,27 +150,6 @@
           "id": -1,
           "name": "combination/pages/shareItCode/index",
           "pathName": "combination/pages/shareItCode/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/homepage/index",
-          "pathName": "combination/pages/homepage/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/sellHouse/index",
-          "pathName": "combination/pages/sellHouse/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "id": -1,
-          "name": "combination/pages/broker/index",
-          "pathName": "combination/pages/broker/index",
           "query": "",
           "scene": null
         },

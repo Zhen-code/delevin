@@ -106,7 +106,6 @@
 .second-comment-item{
   width: 100%;
   height: auto;
-  border-bottom: 1px solid #EEEEEE;
   margin-bottom: 10rpx;
 }
 .second-comment-item-title{
@@ -156,6 +155,14 @@
   width: 100%;
   text-align: right;
 }
+.hasline{
+  border-bottom: 1px solid #EEEEEE;
+  padding-bottom: 10rpx;
+}
+.noline{
+  border-bottom: 1px solid #f8f8f8;
+  padding-bottom: 10rpx;
+}
 .more-comment{
   display: flex;
   flex-direction: row;
@@ -183,7 +190,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 120rpx;
+  margin-bottom: 130rpx;
 }
 .bottom-contain{
   position: fixed;
@@ -250,4 +257,11 @@
 }
 .second-comment-inline{
   margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid #EEE;
+}
+.no-comment-inline{
+  margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid #f8f8f8;
 }

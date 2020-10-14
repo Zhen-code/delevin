@@ -4,7 +4,7 @@
         <view class="tab-item">
             <view class="tab-item-left">小区名称</view>
             <view class="tab-item-right">
-                <input value="{{name}}" placeholder="请输入房源标题" bind:input="nameInput"></input>
+                <input value="{{name}}" placeholder-style="color:#999999" placeholder="请输入房源标题" bind:input="nameInput"></input>
             </view>
         </view>
         <view class="tab-item">
@@ -18,7 +18,7 @@
                             bind:tap="deleteType"/>
               </view>
                 </view>
-                <input wx:else disabled placeholder="请选择户型"/>
+                <input wx:else disabled placeholder-style="color:#999999" placeholder="请选择户型"/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -28,20 +28,20 @@
         <view class="tab-item">
             <view class="tab-item-left">二手房均价</view>
             <view class="tab-item-right">
-                <input value="{{apsh}}" placeholder="请输入二手房均价" bind:input="apshInput" type="number"></input>
+                <input value="{{apsh}}" placeholder-style="color:#999999" placeholder="请输入二手房均价" bind:input="apshInput" type="number"></input>
                 <text class="common-text">元/m²</text>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">租房均价</view>
             <view class="tab-item-right">
-                <input value="{{arp}}" bind:input="arpInput" placeholder="请输入租房均价" type="number"></input>
+                <input value="{{arp}}" bind:input="arpInput" placeholder-style="color:#999999" placeholder="请输入租房均价" type="number"></input>
                 <text class="common-text">元/月</text>
             </view>
         </view>
         <view class="tab-item">
             <view class="tab-item-left">房源标签</view>
-            <view class="tab-item-right"  catch:tap="goLabelSheet" data-type="labelType">
+            <view class="tab-item-right">
                 <view class="houseType-wrap" wx:if="{{labelType.length!==0}}">
                     <view class="houseType-item" wx:for="{{labelType}}" wx:key="*this">
                         {{item}}
@@ -50,10 +50,12 @@
                                   bind:tap="deleteLabel"/>
                     </view>
                 </view>
-                <input wx:else disabled placeholder="请选择房源标签"/>
+                <input wx:else disabled placeholder-style="color:#999999" placeholder="请选择房源标签"/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
+                       catch:tap="goLabelSheet"
+                       data-type="labelType"
                 ></image>
             </view>
         </view>
@@ -64,7 +66,7 @@
             <view class="tab-item-left">物业类别</view>
             <view class="tab-item-right"  catch:tap="goSheet" data-type="propertyType">
                 <text wx:if="{{propertyType!==''}}" class="common-text">{{propertyType}}</text>
-                <input wx:else placeholder="请选择物业类别" disabled/>
+                <input wx:else placeholder-style="color:#999999" placeholder="请选择物业类别" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -75,7 +77,7 @@
             <view class="tab-item-left">建筑类型</view>
             <view class="tab-item-right"  catch:tap="goSheet" data-type="buildingType">
                 <text wx:if="{{buildingType!==''}}" class="common-text">{{buildingType}}</text>
-                <input wx:else placeholder="请选择建筑类型" disabled/>
+                <input wx:else placeholder-style="color:#999999" placeholder="请选择建筑类型" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -141,7 +143,7 @@
             <view class="tab-item-left">详细地址</view>
             <view class="tab-item-right">
                 <text wx:if="{{address!==''}}" class="common-text">{{address}}</text>
-                <input wx:else placeholder="请选择地址" disabled/>
+                <input wx:else placeholder-style="color:#999999" placeholder="请选择地址" disabled/>
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
@@ -182,6 +184,7 @@
                 bindblur="looseBlur"
                 class="textAreaWrap"
                 value="{{makerDesc}}"
+                placeholder-style="color:#999999"
                 placeholder="请输入经纪人描述…"
                 placeholder-class="textAreaStyle"></textarea>
         <view  class="textAreaWrap" catch:tap="goTextArea" wx:else>

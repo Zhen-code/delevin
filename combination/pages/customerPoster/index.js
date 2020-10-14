@@ -139,13 +139,15 @@ Page( {
 		}).then(res=>{
 			console.log(res);
 			let dataArray = res.list.map((v,i)=>{
-				if(i%2===0){
-					v.CoverHeight = 160;
-					v.CoverWidth = 122;
-				}else{
-					v.CoverHeight =  190;
-					v.CoverWidth = 122;
-				}
+				// if(i%2===0){
+				// 	v.CoverHeight = 160;
+				// 	v.CoverWidth = 122;
+				// }else{
+				// 	v.CoverHeight =  190;
+				// 	v.CoverWidth = 122;
+				// }
+				v.CoverHeight =  160;
+				v.CoverWidth = 122;
 				return v;
 			});
 			console.log(dataArray)

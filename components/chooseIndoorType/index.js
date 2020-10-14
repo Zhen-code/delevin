@@ -19,13 +19,13 @@ Component({
             let {index} = e.currentTarget.dataset;
             let {indoorList} = this.data;
             let chooseArray = indoorList.filter(i=>i.isActive);
-            if(chooseArray.length>=5){
-                if(indoorList[index]['isActive']){
-                    indoorList[index]['isActive']=!indoorList[index]['isActive'];
-                }
-            }else{
+            // if(chooseArray.length>=5){
+            //     if(indoorList[index]['isActive']){
+            //         indoorList[index]['isActive']=!indoorList[index]['isActive'];
+            //     }
+            // }else{
                 indoorList[index]['isActive']=!indoorList[index]['isActive'];
-            }
+            // }
             this.setData({
                 indoorList
             });

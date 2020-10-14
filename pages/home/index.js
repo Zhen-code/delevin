@@ -456,7 +456,7 @@ Page({
 
 	toRecording() {
 		wx.navigateTo({
-			url: '/combination/pages/recording/index',
+			url: '/combination/pages/recording/index?req=allRecord',
 		})
 	},
 
