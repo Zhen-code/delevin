@@ -1,6 +1,7 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
 
-<scroll-view style="padding-top:{{paddingTop}}px;" scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true">
+<scroll-view style="padding-top:{{paddingTop}}px;" scroll-into-view="{{toView}}" scroll-y="true"
+	scroll-with-animation="true">
 
 	<view class="view-top" bindtap="tovideoImage">
 		<view class="view-top-video">
@@ -34,7 +35,7 @@
 			<image class="item-right-content-icon3" wx:if="{{item.salesStatus === 'ON_SALE' && type === 'ESTATE'}}"
 				src="/combination/image/label_sell_orange@2x.png"></image>
 			<block wx:for="{{item.houseLabel}}" wx:key="index">
-				<van-tag style="margin-right:10rpx" color="#ffffff" text-color="#666666">{{item}}</van-tag>
+				<van-tag style="margin-right:10rpx" color="#f8f8f8" text-color="#666666">{{item}}</van-tag>
 			</block>
 		</view>
 		<view class="introduction-price" wx:if="{{type === 'ESTATE'}}">
@@ -99,39 +100,38 @@
 		<view class="introduction-specification" wx:if="{{type === 'ESTATE'}}">
 			<text class="components-title marginTop">楼盘基本信息</text>
 			<view class="introduction-specification-bottom">
-				<view class="name-type">楼盘名称：<text class="name-typeValue">{{item.developers || '暂无'}}</text></view>
-				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property || '暂无'}}</text></view>
-				<view class="name-type" wx:if="{{stlectState}}">物业类别：<text
+				<view class="name-type"><text class="name-name">楼盘名称：</text><text class="name-typeValue">{{item.developers || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">产权年限：</text><text class="name-typeValue">{{item.property || '暂无'}}</text></view>
+				<view class="name-type" wx:if="{{stlectState}}"><text class="name-name">物业类别：</text><text
 						class="name-typeValue">{{item.propertyClassify || '暂无'}}</text></view>
-				<view class="name-type" wx:if="{{stlectState}}">装修状况：<text
+				<view class="name-type" wx:if="{{stlectState}}"><text class="name-name">装修状况：</text><text
 						class="name-typeValue">{{item.decorationsStatus || '暂无'}}</text></view>
-				<view class="name-type" wx:if="{{stlectState}}">环线位置：<text
+				<view class="name-type" wx:if="{{stlectState}}"><text class="name-name">环线位置：</text><text
 						class="name-typeValue">{{item.loopLocation || '暂无'}}</text>
 				</view>
 			</view>
 			<text class="components-title marginTop" wx:if="{{stlectState}}">销售信息</text>
 			<view class="introduction-specification-bottom" wx:if="{{stlectState}}">
-				<view class="name-type">销售状态：<text class="name-typeValue">{{item.salesStatus === 'ON_SALE'?'在售':'待售'}}</text>
+				<view class="name-type"><text class="name-name">销售状态：</text><text class="name-typeValue">{{item.salesStatus === 'ON_SALE'?'在售':'待售'}}</text>
 				</view>
-				<view class="name-type">开盘时间：<text class="name-typeValue">{{item.openingDate || '暂无'}}</text></view>
-				<view class="name-type">交房时间：<text class="name-typeValue">{{item.deliveryDate || '暂无'}}</text></view>
-				<!-- <view class="name-type">楼盘优惠：<text class="name-typeValue">{{item.loopLocation}}</text></view> -->
-				<view class="name-type">新房补贴：<text class="name-typeValue">{{item.houseSubsidy || '暂无'}}</text></view>
-				<view class="name-type">开发商：<text class="name-typeValue">{{item.developers || '暂无'}}</text></view>
-				<view class="name-type">楼盘地址：<text class="name-typeValue">{{item.province}}{{item.salesAddress}}</text></view>
-				<view class="name-type">咨询电话：<text class="name-typeValue">{{item.telephone  || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">开盘时间：</text><text class="name-typeValue">{{item.openingDate || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">交房时间：</text><text class="name-typeValue">{{item.deliveryDate || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">新房补贴：</text><text class="name-typeValue">{{item.houseSubsidy || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">开发商：</text><text class="name-typeValue">{{item.developers || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">楼盘地址：</text><text class="name-typeValue">{{item.province}}{{item.salesAddress}}</text></view>
+				<view class="name-type"><text class="name-name">咨询电话：</text><text class="name-typeValue">{{item.telephone  || '暂无'}}</text></view>
 			</view>
 			<text class="components-title marginTop" wx:if="{{stlectState}}">小区规划</text>
 			<view class="introduction-specification-bottom" wx:if="{{stlectState}}">
-				<view class="name-type">占地面积：<text class="name-typeValue">{{item.areaCovered || '暂无'}}</text></view>
-				<view class="name-type">建筑面积：<text class="name-typeValue">{{item.floorage || '暂无'}}</text></view>
-				<view class="name-type">绿化率：<text class="name-typeValue">{{item.greenCoverage || '暂无'}}</text></view>
-				<view class="name-type">停车位：<text class="name-typeValue">{{item.parkingSpace || '暂无'}}</text></view>
-				<view class="name-type">停车配比：<text class="name-typeValue">{{item.parkingRatio || '暂无'}}</text></view>
-				<view class="name-type">规划户数：<text class="name-typeValue">{{item.plannedHouseholds || '暂无'}}</text></view>
-				<view class="name-type">楼层状况：<text class="name-typeValue">{{item.floorCondition || '暂无'}}</text></view>
-				<view class="name-type">物业费：<text class="name-typeValue">{{item.propertyFee || '暂无'}}</text></view>
-				<view class="name-type">物业公司：<text class="name-typeValue">{{item.propertyCompany || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">占地面积：</text><text class="name-typeValue">{{item.areaCovered || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">建筑面积：</text><text class="name-typeValue">{{item.floorage || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">绿化率：</text><text class="name-typeValue">{{item.greenCoverage || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">停车位：</text><text class="name-typeValue">{{item.parkingSpace || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">停车配比：</text><text class="name-typeValue">{{item.parkingRatio || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">规划户数：</text><text class="name-typeValue">{{item.plannedHouseholds || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">楼层状况：</text><text class="name-typeValue">{{item.floorCondition || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">物业费：</text><text class="name-typeValue">{{item.propertyFee || '暂无'}}</text></view>
+				<view class="name-type"><text class="name-name">物业公司：</text><text class="name-typeValue">{{item.propertyCompany || '暂无'}}</text></view>
 			</view>
 			<view class="introduction-specification-add" bindtap="changeArrow">
 				<text class="introduction-specification-add-title">{{stlectData || '暂无'}}</text>

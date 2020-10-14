@@ -3,41 +3,43 @@ const {
 	request
 } = require('../../../request/request.js');
 const topHeight = require('../../../request/topHeight.js').topHeight;
-const {http} = require('../../../request/http');
-const {api} = require('../../../request/api');
+const {
+	http
+} = require('../../../request/http');
+const {
+	api
+} = require('../../../request/api');
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-		top:0,
+		top: 0,
 		paddingTop: topHeight,
 		bgColor: {
 			"color": false,
 			"border": false,
 		},
-		agentId:"",
+		agentId: "",
 		userInfo: {},
-		list:[]
+		list: []
 	},
 
-  onPageScroll(e) {
-    this.setData({
-      top: Number(e.scrollTop)
-    })
+	onPageScroll(e) {
+		this.setData({
+			top: Number(e.scrollTop)
+		})
 	},
 
-	getData(){
+	getData() {
 		request.brokerHome({
-			"agentId":this.data.agentId
-		}).then((res)=>{
-			console.log(res)
-			console.log(666666)
+			"agentId": this.data.agentId
+		}).then((res) => {
 			this.setData({
-				userInfo:res
+				userInfo: res
 			})
-		}).catch((err)=>{
+		}).catch((err) => {
 			wx.showToast({
 				title: '请求失败',
 				icon: 'none',
@@ -46,14 +48,14 @@ Page({
 		})
 	},
 
-	getLsit(){
+	getLsit() {
 		request.brokerList({
-			"agentId":this.data.agentId
-		}).then((res)=>{
+			"agentId": this.data.agentId
+		}).then((res) => {
 			this.setData({
-				list:res
+				list: res
 			})
-		}).catch((err)=>{
+		}).catch((err) => {
 			wx.showToast({
 				title: '请求失败',
 				icon: 'none',
@@ -62,58 +64,73 @@ Page({
 		})
 	},
 
-	toPhone(e){
+	toPhone(e) {
 		let phone = e.currentTarget.dataset.item;
 		wx.makePhoneCall({
 			phoneNumber: phone
 		})
 	},
-	getBrokerHouse(){
+
+	getBrokerHouse() {
 		http({
 			url: api.broker.houseAroundList(this.data.agentId),
 			method: 'GET',
-			params:{}
-		}).then(res=>{
-			console.log(res);
+		}).then(res => {
 			this.setData({
 				list: res
 			});
-		}).catch(err=>{
-			console.log(err)
+		}).catch(err => {
+			console.log(err.data.code)
+			if (err.data.code === 500) {
+				wx.navigateTo({
+					url: "/pages/login/index"
+				})
+			}
 		})
+	},
 
-	},
-	goHouseDetail(e){
-		console.log(e);
-		let {id,housetype} = e.currentTarget.dataset;
-		console.log(e)
+	goHouseDetail(e) {
 		let type = '';
-		switch (housetype) {
-			case 'ESTATE':
-				type = "新房房源";
-				break;
-			case 'SECOND_HAND' :
-				type = "二手房房源";
-				break;
-			case 'TENANCY':
-				type = "租房房源";
-				break;
-			case 'RESIDENTIAL_QUARTERS':
-				type = "小区房源";
-				break;
-			default:
-				break;
+		let {
+			houseId,
+			status,
+			houseMold
+		} = e.currentTarget.dataset.item;
+		if (status === 'LOWER') {
+			wx.showToast({
+				title: '该房源已下架！',
+				icon: 'none',
+				duration: 2000
+			})
+		} else {
+			switch (houseMold) {
+				case 'ESTATE':
+					type = "新房房源";
+					break;
+				case 'SECOND_HAND':
+					type = "二手房房源";
+					break;
+				case 'TENANCY':
+					type = "租房房源";
+					break;
+				case 'RESIDENTIAL_QUARTERS':
+					type = "小区房源";
+					break;
+				default:
+					break;
+			}
+			let item = JSON.stringify({
+				'title': type,
+				"id": houseId
+			});
+			wx.navigateTo({
+				url: `/combination/pages/listingDetails/index?item=${item}`,
+			});
 		}
-		let item = JSON.stringify({
-			'title': type,
-			"id": id
-		});
-		wx.navigateTo({
-			url: `/combination/pages/listingDetails/index?item=${item}`,
-		});
 	},
-	addRecordHome(){
-		let id = wx.getStorageSync('userId')|| '';
+
+	addRecordHome() {
+		let id = wx.getStorageSync('userId') || '';
 		http({
 			url: '/api/access/v1/user/member/visitors/add',
 			method: 'POST',
@@ -121,9 +138,9 @@ Page({
 				"intervieweeId": id,
 				"type": "PERSONAL_HOMEPAGE"
 			}
-		}).then(res=>{
-			console.log(res)
-		}).catch(err=>{
+		}).then(res => {
+			// console.log(res)
+		}).catch(err => {
 			console.log(err)
 		})
 	},
@@ -132,39 +149,39 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		console.log(options,111)
-		this.setData({
-			agentId:options.agentId,
-		},()=>{
-			this.getData();
-			this.getLsit();
-		})
+		if (options.q) {
+			let qrUrl = decodeURIComponent(options.q)
+			let value = qrUrl.split("/")[3].split("?")[0];
+			let agentId = qrUrl.split("=")[1];
+			let item = JSON.stringify({
+				'name': value,
+				'agentId': agentId,
+			})
+			wx.setStorageSync('homePage', item)
+		} else {
+			this.setData({
+				agentId: options.agentId,
+			}, () => {
+				this.getData();
+				this.getLsit();
+				wx.removeStorageSync('homePage')
+			})
+		}
 	},
 
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
 	onReady: function () {
-		this.addRecordHome();
+
 	},
 
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-			this.getBrokerHouse();
-			let userId = wx.getStorageSync('userId') || '';
-			if(userId!==""){
-				request.addMemberVisitor({
-					intervieweeId: userId,
-					type: 'PERSONAL_HOMEPAGE'
-				}).then(res=>{
-					console.log(res);
-					console.log('添加主页访客记录')
-				}).catch(err=>{
-					console.log(err)
-				})
-			}
+		this.getBrokerHouse();
+		this.addRecordHome()
 	},
 
 	/**

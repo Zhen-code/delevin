@@ -1,12 +1,12 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
-<view class="view" style="top:{{paddingTop}}px">
+<view class="view" style="padding-top:{{paddingTop}}px">
 	<view class="view-box borderBottom">
 		<text class="title" >房源视频</text>
 		<view class="video">
 			<video class="video-video" loop="{{true}}" direction object-fit="{{fill}}" show-center-play-btn='{{false}}' show-play-btn="{{true}}" show-fullscreen-btn src="{{src}}"></video>
 		</view>
 	</view>
-	<view class="view-box" style="padding-bottom:180rpx">
+	<view class="view-box">
 		<text class="title" >房源照片</text>
 		<view class="image-view">
 			<block wx:for="{{list}}" wx:key="index">

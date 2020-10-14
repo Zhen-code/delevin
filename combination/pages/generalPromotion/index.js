@@ -26,7 +26,7 @@ Page({
 		actionLeftBgImage1:'/combination/image/btn_black_left@2x.png',
 		actionLeftBgImage2:'/combination/image/btn_golden_left@2x.png',
 		actionIconLeft1:'/combination/image/icon_fire_16_nor@2x.png',
-		actionIconLeft2:'/combination/image/icon_fire_16@2x.png',
+		actionIconLeft2:'/combination/image/icon_fire_16_pre@2x.png',
 
 		actionRightBgImage1:'/combination/image/btn_black_right.png',
 		actionRightBgImage2:'/combination/image/btn_golden_right@2x.png',

@@ -19,8 +19,13 @@
 		<view class="floor">
 			<view class="floor-list">
 				<block wx:for="{{list}}" wx:key="index">
-					<view class="floor-list-row" data-id="{{item.houseId}}" data-housetype="{{item.houseMold}}" catch:tap="goHouseDetail">
+					<view class="floor-list-row" data-item="{{item}}" catch:tap="goHouseDetail">
 						<view class="floor-list-row-top">
+							<view class="view-no-row" wx:if="{{item.status === 'LOWER'}}">
+								<view class="view-no-row-top">
+									<text class="view-no-row-top-name">已下架</text>
+								</view>
+							</view>
 							<image class="floor-list-row-top-image" src="{{item.coverPicture}}"></image>
 							<view class="floor-list-row-top-type">
 								<view class="floor-list-row-top-type-top"></view>
@@ -28,7 +33,11 @@
 									<view class="title">{{item.title}}</view>
 									<view class="column">
 										<text class="column-name">{{item.region}}·{{item.street}}</text>
-										<text class="column-price">{{item.unitPrice}}元/m²</text>
+										<text class="column-price" wx:if="{{item.houseMold === 'ESTATE'}}">{{item.unitPrice}}元/m²</text>
+										<text class="column-price"
+											wx:if="{{item.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{item.averagePrice}}元/m²</text>
+										<text class="column-price" wx:if="{{item.houseMold === 'TENANCY'}}">{{item.monthRent}}元/月</text>
+										<text class="column-price" wx:if="{{item.houseMold === 'SECOND_HAND'}}">{{item.totalPrice}}万</text>
 									</view>
 								</view>
 							</view>
@@ -36,7 +45,7 @@
 						<view class="floor-list-row-bottom">
 							<view class="floor-list-row-bottom-top">
 								<view class="floor-list-row-bottom-name">开盘时间：
-									<text class="floor-list-row-bottom-time">{{item.openingDate}}</text>
+									<text class="floor-list-row-bottom-time">{{item.openingDate || '待定'}}</text>
 								</view>
 								<view class="floor-list-row-bottom-name">开盘地址：
 									<text class="floor-list-row-bottom-time">{{item.detailsAddress}}</text>

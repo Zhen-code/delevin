@@ -324,9 +324,11 @@
 }
 
 .floor-list-row-top-type-bottom .column-price {
+	width: 300rpx;
 	font-size: 40rpx;
 	font-weight: bold;
 	color: #FFFFFF;
+	text-align: right;
 }
 
 .floor-list-row-bottom {
@@ -466,4 +468,41 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.view-no-row{
+	width: 100%;
+	height: 694rpx;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	overflow: hidden;
+}
+
+.view-no-row-top{
+	width: 100%;
+	height: 440rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.view-no-row-top-name {
+	width: 200rpx;
+	height: 72rpx;
+	background: rgba(255, 255, 255, 0.4);
+	border-radius: 2rpx;
+	border: 2rpx solid #FFFFFF;
+	font-size: 30rpx;
+	color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.view-no-row-no-bottom {
+	width: 100%;
+	height: 140rpx;
 }

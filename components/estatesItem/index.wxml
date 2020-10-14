@@ -1,20 +1,22 @@
 <!--components/estatesItem/index.wxml-->
 <view class="tab-item2">
-	<view class="tab-item2-title">{{itemk.title}}</view>
-	<view class="tab-item2-desc">{{item.content}}</view>
-	<view class="tab-item2-label"># 标签标签标签标签标签</view>
+	<view class="tab-item2-title">{{item.title}}</view>
+	<view class="tab-item2-desc">{{item.content==null?'':item.content}}</view>
+	<view class="tab-item2-label">#{{item.label==null?'暂无标签':item.label}}</view>
 	<view class="tab-item2-time">
 		<view class="tab-item2-time-left">
-			<text>最新回复</text>
+			<text>最新回复：</text>
 			<text>{{item.createDate}}</text>
 		</view>
-		<view class="tab-item2-time-center">
-			<van-icon name="chat-o" size="16px" />
-			<text>{{item.commentNumber}}</text>
-		</view>
-		<view class="tab-item2-time-right">
-			<van-icon name="good-job-o" size="16px" />
-			<text>{{item.number}}</text>
+		<view class="tab-item2-time-right1">
+			<view class="tab-item2-time-center">
+				<van-icon name="chat-o" size="16px" />
+				<text>{{item.commentNumber}}</text>
+			</view>
+			<view class="tab-item2-time-right">
+				<van-icon name="good-job-o" size="16px" />
+				<text>{{item.number}}</text>
+			</view>
 		</view>
 	</view>
 </view>

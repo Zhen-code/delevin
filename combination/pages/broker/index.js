@@ -135,36 +135,79 @@ Page({
 			storeId,
 			code,
 		} = this.data;
-		if (
-			store && name && jobNumber && phone && src && code !== '') {
-			request.application({
-				"code": code,
-				"jobNumber": jobNumber,
-				"phone": phone,
-				"realName": name,
-				"storeId": storeId,
-				"workingPhotos": src
-			}).then((res) => {
-				wx.showToast({
-					title: '提交成功',
-					icon: 'success',
-					duration: 2500
-				})
-				this.getInfo()
-			}).catch((err) => {
-				wx.showToast({
-					title: '请求失败',
-					icon: 'none',
-					duration: 2500
-				})
-			})
-		} else {
+		if (store === '') {
 			wx.showToast({
 				title: '请完善个人资料',
 				icon: 'none',
 				duration: 2500
 			})
+			return
 		}
+		if (name === '') {
+			wx.showToast({
+				title: '请完善个人资料',
+				icon: 'none',
+				duration: 2500
+			})
+			return
+		}
+		if (jobNumber === '') {
+			wx.showToast({
+				title: '请完善个人资料',
+				icon: 'none',
+				duration: 2500
+			})
+			return
+		}
+		if (phone === '') {
+			wx.showToast({
+				title: '请完善个人资料',
+				icon: 'none',
+				duration: 2500
+			})
+			return
+		}
+		if (src === '') {
+			wx.showToast({
+				title: '请完善个人资料',
+				icon: 'none',
+				duration: 2500
+			})
+			return
+		}
+
+		if (code === '') {
+			wx.showToast({
+				title: '请完善个人资料',
+				icon: 'none',
+				duration: 2500
+			})
+			return
+		}
+		request.application({
+			"code": code,
+			"jobNumber": jobNumber,
+			"phone": phone,
+			"realName": name,
+			"storeId": storeId,
+			"workingPhotos": src
+		}).then((res) => {
+			wx.showToast({
+				title: '提交成功',
+				icon: 'success',
+				duration: 2500
+			})
+			this.getInfo()
+			wx.navigateBack({
+				delta: 1
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
 	},
 
 	getInfo() {

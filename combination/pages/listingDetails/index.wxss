@@ -26,7 +26,7 @@
 	position: relative;
 }
 
-.view-top-video-image{
+.view-top-video-image {
 	width: 544rpx;
 	height: 100%;
 }
@@ -59,7 +59,7 @@
 	position: relative;
 }
 
-.view-top-image-top{
+.view-top-image-top {
 	width: 200rpx;
 	height: 200rpx;
 }
@@ -87,7 +87,7 @@
 }
 
 .view-top-image-show-add {
-	font-size: 40rpx;
+	font-size: 28rpx;
 	font-weight: 500;
 	color: #FFFFFF;
 }
@@ -491,6 +491,17 @@
 	flex-direction: row;
 }
 
+.name-name {
+	width: 140rpx;
+	height: 40rpx;
+	font-size: 14px;
+	font-weight: 400;
+	color: #999999;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
 .name-typeValue {
 	flex: 1;
 	font-size: 28rpx;
@@ -511,7 +522,7 @@
 	right: 0;
 	bottom: 0;
 	background: #FFFFFF;
-	z-index: 9999999;
+	z-index: 99999999999;
 }
 
 .bottom-phone-text {
@@ -634,12 +645,12 @@
 	color: #999999;
 }
 
-.doubleTab{
+.doubleTab {
 	width: 230rpx;
 	height: 100%;
 }
 
-.components-view{
+.components-view {
 	width: 100%;
 	height: auto;
 	display: flex;
@@ -648,7 +659,7 @@
 	flex-direction: column;
 }
 
-.noData{
+.noData {
 	width: 100%;
 }
 
@@ -670,7 +681,7 @@
 	text-align: center;
 }
 
-.adverText{
+.adverText {
 	width: 80rpx;
 	height: 42rpx;
 	background: rgba(0, 0, 0, 0.5);
@@ -686,20 +697,20 @@
 	right: 16rpx;
 }
 
-.adverTitle{
+.adverTitle {
 	position: absolute;
 	left: 40rpx;
 	top: 242rpx;
 }
 
-.house-title{
+.house-title {
 	font-size: 32rpx;
 	font-family: PingFangSC-Medium, PingFang SC;
 	font-weight: 500;
 	color: #FFFFFF;
 }
 
-.adver-language{
+.adver-language {
 	font-size: 28rpx;
 	font-family: PingFangSC-Regular, PingFang SC;
 	font-weight: 400;
