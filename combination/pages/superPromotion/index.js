@@ -36,11 +36,11 @@ Page({
 	},
 
 	onChange(event) {
-		if(this.data.specs === ''){
+		if (this.data.specs === '') {
 			this.setData({
 				num: event.detail
 			})
-		}else{
+		} else {
 			this.setData({
 				num: event.detail
 			}, () => {
@@ -65,7 +65,7 @@ Page({
 		let value = Math.floor(Number(e.detail.value));
 		if (value < 100) {
 			this.setData({
-				price:0,
+				price: 0,
 				itemValue: '',
 				itemIndex: -1,
 			}, () => {

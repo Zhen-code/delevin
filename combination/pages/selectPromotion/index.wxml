@@ -18,5 +18,5 @@
 </view>
 
 <view class="bottom">
-	<text class="footerShopSurpe" bindtap="submit">已选择({{checkedIndex}}/20)，确认选择</text>
+	<text class="footerShopSurpe {{checkedIndex === 0?'footerShopSurpeLength':''}}" bindtap="submit">已选择({{checkedIndex}}/20)，确认选择</text>
 </view>

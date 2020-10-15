@@ -25,7 +25,7 @@
 		<view class="view-row-content">
 			<text class="view-row-content-name">输入广告语</text>
 			<view class="view-row-content-input">
-				<input class="view-row-content-input-text" placeholder-style="color:#999999" bindinput='getInputValue' type='text' name='advertising' data-model="advertising" placeholder="可输入不超过18字"></input>
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" bindinput='getInputValue' maxlength="18" type='text' name='advertising' data-model="advertising" placeholder="可输入不超过18字"></input>
 			</view>
 		</view>
 	</view>

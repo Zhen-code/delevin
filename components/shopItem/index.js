@@ -12,6 +12,10 @@ Component({
 			type:Object,
 			value:{},
 		},
+		type:{
+			type:String,
+			value:'',
+		}
 	},
 	observers: {
     classType(val) {

@@ -3,9 +3,9 @@
 	<view class="tab-item-left">
 		<view class="tab-item-left-title">{{item.title}}</view>
 		<view class="tab-item-left-desc">
-			<text>{{item.title}}</text>
-			<text class="split-line">|</text>
-			<text>{{item.title}}</text>
+			<text>{{item.author}}</text>
+			<text class="split-line"> | </text>
+			<text>{{item.source}}</text>
 		</view>
 		<view class="tab-item-left-time">{{item.createDate}}</view>
 	</view>

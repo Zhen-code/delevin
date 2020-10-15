@@ -30,7 +30,8 @@ Page({
 		watiCustomerList: [],
 		pushCustomer: [],
 		selectType:[],
-		tabIndex: 0
+		tabIndex: 0,
+		type:'management',
 	},
 	pageTotal: 1,
 	scrollTop() {
@@ -313,7 +314,6 @@ Page({
 			pageIndex: pageIndex,
 			pageSize: pageSize
 		}).then((res) => {
-			console.log(res);
 			this.pageTotal = res.pageTotal;
 			item.push(...res['list']);
 			let newData = item.map(v=>{
@@ -337,7 +337,8 @@ Page({
 					houseType: v.houseType,
 					houseCount: v.saleCount,
 					houseId: v.houseId,
-					houseMold: v.houseMold
+					houseMold: v.houseMold,
+					openingDate:v.openingDate,
 				}
 			});
 			this.setData({
@@ -359,7 +360,6 @@ Page({
 			id,
 			housetype
 		} = e.currentTarget.dataset;
-		console.log(e)
 		let type = '';
 		switch (housetype) {
 			case 'ESTATE':

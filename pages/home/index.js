@@ -329,7 +329,14 @@ Page({
 
 	toDetails(e) {
 		let id = '';
-		let data = e.currentTarget.dataset.item;
+		let data = '';
+		let type = '';
+		let title = '';
+		if(e.shareIt){
+			data = e;
+		}else{
+			data = e.currentTarget.dataset.item;
+		}
 		if (data.status === 'LOWER') {
 			wx.showToast({
 				title: '该房源已下架！',
@@ -337,13 +344,30 @@ Page({
 				duration: 2000
 			})
 		} else {
+			switch (data.houseMold) {
+				case 'ESTATE':
+					type = '新房房源';
+					break;
+				case 'SECOND_HAND':
+					type = '二手房房源';
+					break;
+				case 'TENANCY':
+					type = '租房房源';
+					break;
+				case 'RESIDENTIAL_QUARTERS':
+					type = '小区房源';
+					break;
+				default:
+			}
 			if (data.houseId) {
 				id = data.houseId;
+				title = type;
 			} else {
-				id = data.id
+				id = data.id;
+				title = this.data.title;
 			}
 			let item = JSON.stringify({
-				'title': this.data.title,
+				'title': title,
 				"id": id,
 			})
 			wx.navigateTo({
@@ -590,10 +614,15 @@ Page({
 	},
 
 	sharePoster() {
-		console.log(this.data.detailsData)
 		wx.navigateTo({
 			url: '/combination/pages/sharePoster/index?data=' + JSON.stringify(this.data.detailsData)
 		})
+	},
+
+	getDetails(){
+		let item = this.data.detailsData.item;
+		item.shareIt = true
+		this.toDetails(item)
 	},
 
 	/**

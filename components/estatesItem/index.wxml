@@ -1,8 +1,8 @@
 <!--components/estatesItem/index.wxml-->
 <view class="tab-item2">
 	<view class="tab-item2-title">{{item.title}}</view>
-	<view class="tab-item2-desc">{{item.content==null?'':item.content}}</view>
-	<view class="tab-item2-label">#{{item.label==null?'暂无标签':item.label}}</view>
+	<view class="tab-item2-desc">{{item.content}}</view>
+	<text class="tab-item2-label">#{{item.label || '暂无标签'}}</text>
 	<view class="tab-item2-time">
 		<view class="tab-item2-time-left">
 			<text>最新回复：</text>

@@ -28,11 +28,9 @@ const http = (config) => {
             icon: "none"
           });
           // reject("请重新登录");
-          setTimeout(()=>{
-            wx.navigateTo({
-              url: "/pages/login/index"
-            })
-          },1500)
+          wx.navigateTo({
+            url: "/pages/login/index"
+          })
         } else {
           reject(res)
           wx.showToast({

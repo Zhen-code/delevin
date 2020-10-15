@@ -132,7 +132,8 @@
 								<view class="floor-list-row-top-type-bottom">
 									<view class="title">{{item.title}}</view>
 									<view class="column">
-										<text class="column-name">{{item.region}}·{{item.street}}</text>
+										<text class="column-name" wx:if="{{item.houseMold === 'ESTATE' || item.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{item.region}}·{{item.street}}</text>
+										<text class="column-name" wx:if="{{item.houseMold === 'SECOND_HAND' || item.houseMold === 'TENANCY'}}">{{item.houseType || 0}}室{{item.houseHall || 0}}厅{{item.houseToilet || 0}}卫{{item.houseKitchen || 0}}厨</text>
 										<text class="column-price" wx:if="{{item.houseMold === 'ESTATE'}}">{{item.unitPrice}}元/m²</text>
 										<text class="column-price" wx:if="{{item.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{item.averagePrice}}元/m²</text>
 										<text class="column-price" wx:if="{{item.houseMold === 'TENANCY'}}">{{item.monthRent}}元/月</text>
@@ -184,7 +185,7 @@
 					</view>
 				</block>
 			</view>
-			<view class="floor-add" wx:if="{{brokerList.length !== 10}}" bindtap="toListings">添加我的楼盘</view>
+			<view class="floor-add" wx:if="{{brokerList.length < 10}}" bindtap="toListings">添加我的楼盘</view>
 		</view>
 	</view>
 </view>
@@ -198,7 +199,7 @@
 	<view class="share-view">
 		<view class="share-view-select">
 			<view class="share-view-select-view">
-				<button open-type="share" class="share-view-select-button">
+				<button bindtap="getDetails" class="share-view-select-button">
 					<image src="/assets/icon_link_45@2x.png"></image>
 					<text>分享链接</text>
 				</button>

@@ -19,10 +19,14 @@
 
 .tab-item-left-title {
 	font-size: 30rpx;
-	font-family: PingFangSC-Medium, PingFang SC;
-	font-weight: 500;
+	font-weight: bold;
 	color: #333333;
 	margin-bottom: 18rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 
 .tab-item-left-desc {
@@ -31,6 +35,11 @@
 	font-weight: 400;
 	color: #999999;
 	margin-bottom: 4rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
 }
 
 .tab-item-left-time {

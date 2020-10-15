@@ -462,23 +462,23 @@ Page({
 		})
 	},
 
-	getAddvisitorRecord() {
-		// request.visitorRecord({
-		// 	"houseId":  item.houseId,
-		// 	"houseType": item.houseMold,
-		// 	"intervieweeId": '',
-		// 	"type": "HOUSE"
-		// }).then((res)=>{
-		//
-		// }).catch((err)=>{
-		// 	console.log(err)
-		// 	wx.showToast({
-		// 		title: '请求失败',
-		// 		icon: 'none',
-		// 		duration: 2500
-		// 	})
-		// })
-	},
+	// getAddvisitorRecord() {
+	// 	request.visitorRecord({
+	// 		"houseId":  item.houseId,
+	// 		"houseType": item.houseMold,
+	// 		"intervieweeId": '',
+	// 		"type": "HOUSE"
+	// 	}).then((res)=>{
+		
+	// 	}).catch((err)=>{
+	// 		console.log(err)
+	// 		wx.showToast({
+	// 			title: '请求失败',
+	// 			icon: 'none',
+	// 			duration: 2500
+	// 		})
+	// 	})
+	// },
 
 	/**
 	 * 生命周期函数--监听页面加载
@@ -513,6 +513,8 @@ Page({
 
 		this.cWidth = wx.getSystemInfoSync().windowWidth;
 		this.cHeight = 500 / 750 * wx.getSystemInfoSync().windowWidth;
+		// this.cWidth = '343';
+		// this.cHeight = '200';
 	},
 
 	showColumn(chartData) {
@@ -535,8 +537,8 @@ Page({
 				// disabled:true
 			},
 			dataLabel: false,
-			width: 343,
-			height: 200,
+			width: _self.cWidth,
+			height: 210,
 			extra: {
 				column: {
 					type: 'group',

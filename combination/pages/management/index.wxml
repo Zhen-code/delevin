@@ -5,7 +5,7 @@
 	</view>
 	<scroll-view class="shopItem" wx:if="{{selectType.length !== 0}}" style="top: {{paddingTop+45}}px;" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
 		<block wx:for="{{item}}" wx:key="index" wx:if="{{tabIndex === 0}}">
-			<shopItem classType="{{item.sourceType}}" item="{{item}}" data-type="{{item.houseMold}}" data-id="{{item.houseId}}"  bindtap="toRecording"></shopItem>
+			<shopItem classType="{{item.sourceType}}" type="{{type}}" item="{{item}}" data-type="{{item.houseMold}}" data-id="{{item.houseId}}"  bindtap="toRecording"></shopItem>
 		</block>
 		<block wx:for="{{pushCustomer}}" wx:key="index" wx:if="{{tabIndex === 1}}">
 			<view class="row">

@@ -52,7 +52,8 @@ Page({
 							duration: 2500
 						})
 						than.setData({
-							item: []
+							item: [],
+							pageIndex:1,
 						}, () => {
 							than.getData();
 						})
