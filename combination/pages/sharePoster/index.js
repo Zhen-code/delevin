@@ -193,7 +193,7 @@ Page({
 						destHeight: allHeight*dpr,
 						fileType: 'png',
 						canvasId: 'share',
-						quality: 0,
+						quality: 1,
 						success:(res)=>{
 							console.log(res)
 							this.setData({
@@ -289,7 +289,7 @@ Page({
 						destHeight: allHeight*dpr,
 						fileType: 'png',
 						canvasId: 'share1',
-						quality: 0,
+						quality: 1,
 						success:(res)=>{
 							console.log(res)
 							this.setData({
@@ -392,7 +392,7 @@ Page({
 						destHeight: allHeight*dpr,
 						fileType: 'png',
 						canvasId: 'share2',
-						quality: 0,
+						quality: 1,
 						success:(res)=>{
 							console.log(res)
 							this.setData({
@@ -485,7 +485,7 @@ Page({
 						destHeight: allHeight*dpr,
 						fileType: 'png',
 						canvasId: 'share3',
-						quality: 0,
+						quality: 1,
 						success:(res)=>{
 							console.log(res)
 							this.setData({
@@ -636,7 +636,7 @@ Page({
 					console.log('二维码绘制完成');
 					wx.canvasToTempFilePath({
 						canvasId: 'myQrcode',
-						quality: 0,
+						quality: 1,
 						success:(res)=>{
 							console.log(res)
 							this.setData({

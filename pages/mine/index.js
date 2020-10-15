@@ -234,7 +234,9 @@ Page({
 					break;
 				default:
 			}
-			wx.setStorageSync('userId',res.id);
+			if(res.agentId){
+				wx.setStorageSync('userId',res.agentId);
+			}
 			wx.setStorageSync('info',res);
 			this.setData({
 				userInfo: res,
