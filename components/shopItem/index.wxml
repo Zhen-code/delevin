@@ -26,13 +26,13 @@
 			</block>
 		</view>
 		<view class="item-right-typeMoney">
-			<view class="price" wx:if="{{item.unitPrice || item.housePrice}}">{{item.unitPrice || item.housePrice}}元/m²<image
+			<view class="price" wx:if="{{item.sourceType === 'ESTATE' || item.houseMold === 'ESTATE'}}">{{item.unitPrice || item.housePrice}}元/m²<image
 					style="margin-left:5px" class="item-right-content-icon2" src="/assets/label_newhouse_red@2x.png"></image>
 			</view>
-			<view class="price" wx:if="{{item.totalPrice}}">{{item.totalPrice}}万 <text class="price-text">({{item.avgPrice}}元/m²)</text></view>
-			<view class="price" wx:if="{{item.monthRent}}">{{item.monthRent}}元/月</view>
-			<view class="item-right-typeNum" wx:if="{{item.averagePrice}}">
-				<view class="item-right-typeNum-ping">均价：<text class="item-right-typeNum-ping-text">{{item.averagePrice}}元/m²</text></view>
+			<view class="price"wx:if="{{item.sourceType === 'SECOND_HAND' || item.houseMold === 'SECOND_HAND'}}">{{item.totalPrice || item.housePrice}}万 <text class="price-text">({{item.avgPrice}}元/m²)</text></view>
+			<view class="price" wx:if="{{item.sourceType === 'TENANCY' || item.houseMold === 'TENANCY'}}">{{item.monthRent || item.housePrice}}元/月</view>
+			<view class="item-right-typeNum" wx:if="{{item.sourceType === 'RESIDENTIAL_QUARTERS' || item.houseMold === 'RESIDENTIAL_QUARTERS'}}">
+				<view class="item-right-typeNum-ping">均价：<text class="item-right-typeNum-ping-text">{{item.averagePrice || item.housePrice}}元/m²</text></view>
 				<view class="item-right-typeNum-tao">在售房源：<text class="item-right-typeNum-tao-text">{{item.houseCount}}套</text></view>
 			</view>
 			<van-tag size="large" color="#FFC51D" wx:if="{{item.add === true && item.added === 'NO'}}" text-color="#333333" data-item="{{item}}" catchtap="getAddListings" type="warning">添加</van-tag>

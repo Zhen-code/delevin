@@ -70,7 +70,7 @@
 	font-weight: 500;
 	color: #333333;
 	margin-bottom: 18rpx;
-	height: 84rpx;
+	height: 82rpx;
 	width: 422rpx;
 	overflow: hidden;
 	display: -webkit-box;

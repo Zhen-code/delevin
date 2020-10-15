@@ -1,7 +1,7 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
 
 <view style="padding-top:{{paddingTop}}px;">
-	<view class="info-view">
+	<!-- <view class="info-view">
 		<van-icon name="cross" size="35rpx" color="#cccccc" />
 		<view class="info-view-row">
 			<image class="info-view-row-image" src="/combination/image/icon_customer_16_pre@2x.png"></image>
@@ -11,7 +11,7 @@
 			</view>
 		</view>
 		<van-tag size="large" color="#FFC51D" text-color="#333333" type="warning">联系我</van-tag>
-	</view>
+	</view> -->
 
 	<view class="view-top" bindtap="tovideoImage">
 		<view class="view-top-video">
@@ -90,7 +90,7 @@
 			<!-- 小区房源 -->
 			<view class="introduction-resources-row" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
 				<view class="introduction-resources-num">
-					<text>{{item.rentalAveragePrice}}元/m²</text>
+					<text>{{item.averagePrice}}元/m²</text>
 					<text>当月均价</text>
 				</view>
 				<view class="introduction-resources-num">

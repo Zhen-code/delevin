@@ -56,6 +56,7 @@
 .am-img {
     width: 136rpx;
     height: 136rpx;
+    margin-right: 24rpx;
 }
 .am-img image {
     width: 136rpx;

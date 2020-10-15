@@ -44,6 +44,8 @@ Page({
 
 	getData() {
 		request.information().then((res) => {
+			console.log(res)
+			wx.setStorageSync('userInfo',JSON.stringify(res));
 			this.setData({
 				userInfo: res,
 			}, () => {
@@ -287,7 +289,7 @@ Page({
 			"pageIndex": 1,
 		}).then((res) => {
 			let data = res.list.map((item) => {
-				// item.salesStatus = '0'
+				item.sourceType = 'ESTATE';
 				return item;
 			})
 			this.setData({
@@ -651,7 +653,7 @@ Page({
 			type: app.globalData.state
 		}, () => {
 			this.getData()
-		})
+		});
 	},
 
 	/**

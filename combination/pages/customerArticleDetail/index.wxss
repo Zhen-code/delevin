@@ -52,12 +52,12 @@ page{
     width: 750rpx;
     height: 112rpx;
     background: #F8F8F8;
-    margin-bottom: 112rpx;
+    margin-bottom: 60rpx;
 }
 .bottom-contain{
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 10rpx;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

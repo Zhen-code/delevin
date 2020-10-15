@@ -201,8 +201,14 @@ Page({
 			"pageIndex": this.data.pageIndex,
 			"type": this.data.type,
 		}).then((res) => {
-			let list = this.data.item;
-			list.push(...res.list)
+			let list = this.data.item
+			let data = res.list.map((item)=>{
+				item.houseType = this.data.type
+				item.sourceType = this.data.type
+				return item;
+			});
+			console.log(data,12121)
+			list.push(...data)
 			this.setData({
 				item: list,
 				pageIndex: this.data.pageIndex + 1,

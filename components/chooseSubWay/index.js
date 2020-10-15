@@ -24,7 +24,14 @@ Component({
         handleLeft(e){
             console.log(e)
             let {index} = e.currentTarget.dataset;
-            let {list} = this.data;
+            let {list,scrollLeft} = this.data;
+            scrollLeft.forEach((item,index1)=>{
+                if(index1 === index){
+                    item.active = true
+                }else{
+                    item.active = false
+                }
+            });
             let scrollRight = (list[index].routeStop).map(item=>{
                 return{
                     name: item,
@@ -33,7 +40,8 @@ Component({
             });
             this.setData({
                 _index:index,
-                scrollRight:scrollRight
+                scrollRight:scrollRight,
+                scrollLeft:scrollLeft
             })
         },
         handleRight(e){
@@ -57,9 +65,10 @@ Component({
                 }
             }).then(res=>{
                 console.log(res)
-                let scrollLeft = res.map(item=>{
+                let scrollLeft = res.map((item,index)=>{
                     return {
-                        lineName: item.lineName
+                        lineName: item.lineName,
+                        active: index===0? true:false
                     }
                 });
                 let scrollRight = (res[0].routeStop).map(item=>{

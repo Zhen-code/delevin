@@ -9,7 +9,7 @@
                              scroll-y>
                     <block wx:for="{{scrollLeft}}" wx:key="id">
                         <view class="scrollItem" catch:tap="handleLeft" data-index="{{index}}">
-                            <text>{{item.lineName}}</text>
+                            <text style="font-weight:{{item.active?'bold':'normal'}}">{{item.lineName}}</text>
                             <van-icon name="success" wx:if="{{_index===index}}" color="#FFD200"/>
                         </view>
                     </block>
