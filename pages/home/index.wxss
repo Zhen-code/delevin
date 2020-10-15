@@ -117,29 +117,35 @@
 }
 
 .components-top-left {
-	width: auto;
+	flex: 1;
 	height: 100%;
 	font-size: 32rpx;
 	font-weight: bold;
 	color: rgba(51, 51, 51, 1);
 }
 
+.components-top-right{
+	flex: 1;
+	height: 100%;
+	font-size: 32rpx;
+	font-weight: bold;
+	color: rgba(51, 51, 51, 1);
+	display: flex;
+	justify-content: flex-start;
+}
+
 .owner {
 	width: 100%;
 	height: 152rpx;
 	margin-top: 24rpx;
-	background-position: center center;
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-image: url('http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/16946559-db73-42a9-9d80-f7f5b78256a5.png');
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	flex-direction: row;
 }
 
 .owner-left {
-	width: 50%;
+	width: 47%;
 	padding-left: 48rpx;
 	box-sizing: border-box;
 	height: 100%;
@@ -147,6 +153,10 @@
 	align-items: flex-start;
 	justify-content: center;
 	flex-direction: column;
+	background-position: center center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-image: url('http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/16946559-db73-42a9-9d80-f7f5b78256a5.png');
 }
 
 .owner-left-title1 {
@@ -167,8 +177,15 @@
 	padding-right: 48rpx;
 	box-sizing: border-box;
 	display: flex;
-	align-items: center;
-	justify-content: flex-end;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	background-size: 100% 100%;
+	background-position: center center;
+	background-image: url('http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/7e715b51-546c-48e0-9233-933d9ef4ee2b.png');
+	background-repeat: no-repeat;
+	padding-left: 24rpx;
+	box-sizing: border-box;
 }
 
 .owner-rigth-image {

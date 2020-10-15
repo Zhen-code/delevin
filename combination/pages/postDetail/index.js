@@ -2,6 +2,7 @@
 const topHeight = require('../../../request/topHeight.js').topHeight;
 const {api} = require('../../../request/api');
 const {http} = require('../../../request/http');
+import Toast from "../../../miniprogram_npm/vant-weapp/toast/toast";
 Page({
 
   /**
@@ -253,18 +254,10 @@ Page({
          "type": "POST"
        }
      }).then(res=>{
-       wx.showToast({
-         title: '收藏成功!',
-         icon:"none",
-         duration: 1000
-       });
+       Toast('收藏成功!');
        console.log(res)
      }).catch(err=>{
-       wx.showToast({
-         title: '收藏失败!',
-         icon:"none",
-         duration: 1000
-       })
+       Toast('收藏失败!');
        console.log(err);
      })
     }else if(collect == 'YES'){
@@ -276,18 +269,10 @@ Page({
           "type": "POST"
         }
       }).then(res=>{
-        wx.showToast({
-          title: '取消收藏成功!',
-          icon:"none",
-          duration: 1000
-        });
+        Toast('取消收藏成功!');
         console.log(res)
       }).catch(err=>{
-        wx.showToast({
-          title: '取消收藏失败!',
-          icon:"none",
-          duration: 1000
-        });
+        Toast('取消收藏失败!');
         console.log(err);
       })
     }

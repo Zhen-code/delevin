@@ -66,9 +66,14 @@ Page({
 			}
 		}).then(res=>{
 			console.log(res)
+			let list = res.list.map(v=>{
+				v.createDate = v.createDate.replace(/T/g," ");
+				return v
+			});
+			console.log(list)
 			this.pageTotal = res.pageTotal;
 				this.setData({
-					item: [...item,...res.list],
+					item: [...item,...list],
 					pageIndex: pageIndex+1
 				});
 		}).catch(err=>{

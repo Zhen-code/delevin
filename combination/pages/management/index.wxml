@@ -14,7 +14,7 @@
 					<view class="row-left-type">
 						<text class="row-left-type-name">{{item.nickname}}</text>
 						<view class="row-left-type-degree">匹配度 {{item.matchValue}}%
-							<text class="row-left-type-check" data-id="{{item.houseId}}" data-housetype="{{item.houseType}}" catch:tap="goHouseDetail">查看最匹配房源</text>
+							<text class="row-left-type-check" data-id="{{item.houseId}}" data-housetype="{{item.houseType}}"  data-dialing="{{item.dialing}}" catch:tap="goHouseDetail">查看最匹配房源</text>
 						</view>
 					</view>
 				</view>

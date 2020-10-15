@@ -110,4 +110,5 @@
     <text>{{number}}</text>
   </button>
 </view>
+<van-toast id="van-toast" />
 

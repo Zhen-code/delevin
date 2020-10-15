@@ -111,4 +111,5 @@
   <!--    <text></text>-->
   <!--  </button>-->
 </view>
+<van-toast id="van-toast" />
 
