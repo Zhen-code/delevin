@@ -1,6 +1,7 @@
 const app = getApp();
 import drawQrcode from '../../../miniprogram_npm/weapp-qrcode/index';
 import {request} from '../../../request/request';
+const { topHeight } = require('../../../request/topHeight');
 /*
 小程序利用canvas实现一键保存图片功能 */
 Page({
@@ -29,7 +30,15 @@ Page({
     saveTempCanvas: '',
     clientWidth: 0,
     qrCodePath: '',
-    isDisable: true
+    isDisable: true,
+    title: '配图分享',
+    bgColor: {
+      "color": true,
+      "border": true
+    },
+    paddingTop: topHeight,
+    back: true,
+    backHome: true
   },
   /**
    * 生命周期函数--监听页面加载
@@ -102,44 +111,48 @@ Page({
    */
   onReady: function () {
     let that = this;
+    let agentId = wx.getStorageSync('userId');
     let res = wx.getSystemInfoSync();
     this.setData({
       clientWidth:  res.screenWidth
     });
+    console.log(agentId)
     let qrCodeCtx =  wx.createCanvasContext('myQrcode');
     drawQrcode({
-      width: 80,
-      height: 80,
+      width: 100,
+      height: 100,
       canvasId: 'myQrcode',
       ctx: qrCodeCtx,
-      text: 'https://dev.delevin.beiru168.com/homepage?agentId=1',
+      text: `https://dev.delevin.beiru168.com/homepage?agentId=${agentId}`,
       callback: (e)=>{
         console.log(e)
         if(e['errMsg'].includes('ok')){
           console.log('二维码绘制完成');
-          wx.canvasToTempFilePath({
-            canvasId: 'myQrcode',
-            quality: 0,
-            success:(res)=>{
-              console.log(res)
-              this.setData({
-                qrCodePath: res.tempFilePath
-              })
-            },
-            fail:(err)=>{
-              console.log(err)
-            },
-            complete: ()=>{
-              that.go()
-            }
-          })
+          setTimeout(()=>{
+            wx.canvasToTempFilePath({
+              canvasId: 'myQrcode',
+              quality: 1,
+              success: (res) => {
+                console.log(res)
+                this.setData({
+                  qrCodePath: res.tempFilePath
+                })
+              },
+              fail: (err) => {
+                console.log(err)
+              },
+              complete: () => {
+                that.go()
+              }
+            })
+          },1000)
         }else{
           wx.showToast({
             title: '二维码生成失败，请重新再试!'
           })
         }
       }
-    })
+    });
   },
   to2Px(x){
     return Number(this.data.clientWidth/750*x);
@@ -182,18 +195,18 @@ Page({
           ctx1.setFontSize(15);
           ctx1.setFillStyle('black');
           let nameLeft = this.to2Px(64);
-          ctx1.fillText(this.data.cname,nameLeft,362);
-          ctx1.drawImage(this.data.phoneImgPath,nameLeft,371,this.to2Px(36),this.to2Px(36));
+          ctx1.fillText(this.data.cname,nameLeft,382);
+          ctx1.drawImage(this.data.phoneImgPath,nameLeft,391,this.to2Px(36),this.to2Px(36));
           let phoneLeft = this.to2Px(108);
           ctx1.setFontSize(13);
           ctx1.setFillStyle('black');
           ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-          ctx1.fillText(this.data.phone,phoneLeft,384);
+          ctx1.fillText(this.data.phone,phoneLeft,404);
           let str = this.data.synopsis;
           let mulitipleWidth = this.to2Px(310);
-          this.renderText(ctx1,str,nameLeft,409,mulitipleWidth);
+          this.renderText(ctx1,str,nameLeft,429,mulitipleWidth);
           let qrImgLeft = this.to2Px(518);
-          ctx1.drawImage(this.data.qrCodePath,qrImgLeft,352,68,68);
+          ctx1.drawImage(this.data.qrCodePath,qrImgLeft,372,80,80);
           ctx1.draw(false,()=>{
             console.log(666)
             wx.canvasToTempFilePath({

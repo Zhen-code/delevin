@@ -710,7 +710,7 @@
 .adverTitle {
 	position: absolute;
 	left: 40rpx;
-	top: 242rpx;
+	bottom: 32rpx;
 }
 
 .house-title {
@@ -718,6 +718,13 @@
 	font-family: PingFangSC-Medium, PingFang SC;
 	font-weight: 500;
 	color: #FFFFFF;
+	width: 606rpx;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	line-clamp: 2;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .adver-language {
