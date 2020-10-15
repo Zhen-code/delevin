@@ -247,8 +247,9 @@
 		<text class="components-title">位置周边</text>
 		<view class="surrounding">
 			<view class="surrounding-map">
-				<map id="map" longitude="{{item.longitude}}" latitude="{{item.latitude}}" scale="14" show-location
-					style="width: 100%; height: 100%;"></map>
+				<!-- <map id="map" longitude="{{item.longitude}}" latitude="{{item.latitude}}" show-location
+					style="width: 100%; height: 100%;"></map> -->
+				<map id="map" longitude="{{item.longitude}}" latitude="{{item.latitude}}" markers="{{markers}}" show-location style="width: 100%; height: 100%;"></map>
 			</view>
 			<view class="surrounding-change" bindtap="toMap">
 				<text class="surrounding-details">查看周边配套</text>
@@ -318,9 +319,7 @@
 				<view class="record-row">
 					<view class="record-sky">{{item.houseType}}室{{item.houseHall}}厅{{item.houseToilet}}卫<text
 							class="record-sky-num">{{item.floorage}}m²</text></view>
-					<view class="record-price">成交金额：<text class="record-price-num">{{item.transactionAmount}}万</text><text
-							class="record-price-money">
-							{{item.createDate}}元/m²</text></view>
+					<view class="record-price">成交金额：<text class="record-price-num">{{item.transactionAmount}}万</text><text class="record-price-money">{{item.flooragePrice}}元/m²</text></view>
 					<view class="record-time">成交日期：<text class="record-time-num">{{item.transactionDate}}</text></view>
 				</view>
 			</block>

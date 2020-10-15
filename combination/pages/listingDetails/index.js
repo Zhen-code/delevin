@@ -42,6 +42,7 @@ Page({
 		item2: [],
 		item3: [],
 		item4: [],
+		markers:[],
 	},
 
 	tovideoImage() {
@@ -121,6 +122,21 @@ Page({
 		this.getshowColumn(data)
 	},
 
+	getMap(item){
+		let markers = [{
+			iconPath: "/combination/image/order_icon_location@2x.png",
+			id: 0,
+			title: item.street,
+			latitude: item.latitude,
+			longitude: item.longitude,
+			width: 15,
+			height: 20
+		}]
+		this.setData({
+			markers:markers
+		})
+	},
+
 	getData() {
 		let requests = '';
 		switch (this.data.title) {
@@ -142,6 +158,7 @@ Page({
 			"houseId": this.data.id,
 		}).then((res) => {
 			console.log(res)
+			this.getMap(res);
 			res['comments'].forEach(v => {
 				v.content = v.content.replace(/<[^>]+>/ig, '')
 			});
