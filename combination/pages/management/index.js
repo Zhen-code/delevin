@@ -358,8 +358,25 @@ Page({
 	goHouseDetail(e) {
 		let {
 			id,
-			housetype
+			housetype,
+			dialing
 		} = e.currentTarget.dataset;
+		if(dialing === 'NO'){
+			wx.showModal({
+				content: '本功能需要购买端口套餐,是否前往购买?',
+				showCancel: true,
+				cancelText: '取消',
+				confirmText: '去付费',
+				success:(res)=>{
+					if(res.confirm){
+						wx.navigateTo({
+							url: '/combination/pages/generalPromotion/index'
+						})
+					}
+				}
+			});
+			return
+		}
 		let type = '';
 		switch (housetype) {
 			case 'ESTATE':
