@@ -36,7 +36,8 @@ Page({
 			"color": true,
 			"border": true
 		},
-		title: '获客海报分享'
+		title: '获客海报分享',
+		show: true
 	},
 
 	onChange(current,source){
@@ -502,7 +503,9 @@ Page({
 									disable: false
 								})
 							}
-							wx.hideLoading();
+							that.setData({
+								show: false
+							});
 						}
 					})
 				});
@@ -844,9 +847,6 @@ Page({
 			})
 		}).catch(err=>{
 			console.log(err)
-		});
-		wx.showLoading({
-			title: '资源加载中'
 		});
 	},
 
