@@ -14,6 +14,7 @@ Page({
 			"color": true,
 			"border": true,
 		},
+		item: '',
 		latitude: '',
 		longitude: '',
 		itemIndex: 0,
@@ -72,19 +73,30 @@ Page({
 			keyword: this.data.keyword,
 			detailsAddress: this.data.detailsAddress,
 		}).then((res) => {
-			let markers = res.map((item, index) => {
-				return {
-					iconPath: "/combination/image/order_icon_location@2x.png",
-					id: index,
+			let markers = this.data.markers;
+			markers = []
+			markers = [{
+				iconPath: "/combination/image/icon_location_map@2x.png",
+				id: 0,
+				title: this.data.item.detailsAddress,
+				latitude: this.data.item.latitude,
+				longitude: this.data.item.longitude,
+				width: 33,
+				height: 35
+			}];
+			res.map((item, index) => {
+				markers.push({
+					iconPath: "/combination/image/icon_location_20_map@2x.png",
+					id: index + 1,
 					title: item.title,
 					latitude: item.latitude,
 					longitude: item.longitude,
-					width: 15,
+					width: 20,
 					height: 20
-				};
+				})
 			})
 			this.setData({
-				markers
+				markers: markers
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -100,9 +112,9 @@ Page({
 		let index = e.currentTarget.dataset.index;
 		let item = e.currentTarget.dataset.item;
 		this.setData({
-			keyword:item.type,
+			keyword: item.type,
 			itemIndex: index,
-		},()=>{
+		}, () => {
 			this.getData()
 		})
 	},
@@ -110,19 +122,21 @@ Page({
 	markertap(e) {
 		console.log(e.detail.markerId)
 	},
-	
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
 		let item = JSON.parse(options.item)
+		console.log(item)
 		this.setData({
 			city: item.city,
 			keyword: 'BANK',
 			latitude: item.latitude,
 			longitude: item.longitude,
 			detailsAddress: item.detailsAddress,
-		},()=>{
+			item: item,
+		}, () => {
 			this.getData()
 		})
 	},

@@ -380,6 +380,11 @@
 	align-items: center;
 	justify-content: center;
 	background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	overflow: hidden;
 }
 
 .view-no-row-top-name {

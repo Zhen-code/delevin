@@ -114,7 +114,6 @@ Page({
 				"region": then.community,
 				"sellingPrice": then.price
 			}).then((res) => {
-				console.log(res)
 				_this.setData({
 					backHome:false,
 				},()=>{
@@ -125,10 +124,10 @@ Page({
 					})
 				})
 			}).catch((err) => {
-				console.log(err)
+				console.log(err.data.msg)
 				wx.showToast({
-					title: '提交失败',
-					icon: 'success',
+					title: err.data.msg,
+					icon: 'none',
 					duration: 2500
 				})
 			})

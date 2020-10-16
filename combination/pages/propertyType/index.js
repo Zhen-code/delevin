@@ -420,6 +420,7 @@ Page({
 		})
 	},
 
+	// 城市选择
 	getCityValue(e) {
 		this.setData({
 			pageIndex: 1,
@@ -436,12 +437,14 @@ Page({
 		})
 	},
 
+	// 输入值
 	getInputValue(e) {
 		this.setData({
 			keyword: e.detail
 		})
 	},
 
+	// 搜索
 	getSearchValue(e) {
 		if (e.detail.value) {
 			this.setData({

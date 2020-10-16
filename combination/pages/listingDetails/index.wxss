@@ -501,12 +501,50 @@
 	flex-direction: row;
 }
 
-.name-name {
-	width: 145rpx;
-	height: 40rpx;
-	font-size: 14px;
+.name-type1{
+	width: 100%;
+	margin-top: 16rpx;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: row;
+}
+
+.name-type2{
+	width: 85rpx;
+	font-size: 28rpx;
 	font-weight: 400;
 	color: #999999;
+	text-align: left;
+}
+
+.typeValue1{
+	width: auto;
+	height: 100%;
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #999999;
+}
+
+.name-typeValue1{
+	flex: 1;
+	height: 100%;
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #333333;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.name-name {
+	width: 150rpx;
+	height: 40rpx;
+	font-size: 14px;
+	color: #999999;
+	text-align: left;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;

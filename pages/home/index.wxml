@@ -111,12 +111,10 @@
 			<view class="floor-list">
 				<block wx:for="{{brokerList}}" wx:key="index">
 					<view class="floor-list-row">
-						<view class="view-no-row" wx:if="{{item.status === 'LOWER'}}">
+						<view class="floor-list-row-top" data-item="{{item}}" bindtap="toDetails">
 							<view class="view-no-row-top">
 								<text class="view-no-row-top-name">已下架</text>
 							</view>
-						</view>
-						<view class="floor-list-row-top" data-item="{{item}}" bindtap="toDetails">
 							<image class="floor-list-row-top-image" src="{{item.coverPicture}}"></image>
 							<view class="floor-list-row-top-type">
 								<view class="floor-list-row-top-type-top">

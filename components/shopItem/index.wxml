@@ -13,8 +13,10 @@
 			<text class="item-right-time-time">开盘时间：{{item.openingDate}}</text>
 		</view>
 		<view class="item-right-content">
-			<image class="item-right-content-icon1" wx:if="{{item.salesStatus === 'FOR_SALE'}}" src="/assets/label_forsell_blue@2x.png"></image>
+			<view class="item-right-content-left">
+				<image class="item-right-content-icon1" wx:if="{{item.salesStatus === 'FOR_SALE'}}" src="/assets/label_forsell_blue@2x.png"></image>
 			<image class="item-right-content-icon3" wx:if="{{item.salesStatus === 'ON_SALE'}}" src="/assets/label_sell_orange@2x.png"></image>
+			</view>
 			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'SECOND_HAND' || item.sourceType === 'RESIDENTIAL_QUARTERS' && item.floorage}}" color="#F8F8F8" text-color="#666666">{{item.floorage || 0}}m²</van-tag>
 			<!-- <van-tag style="margin-right:10rpx" wx:if="{{item.district && item.showRegion}}" color="#F8F8F8" text-color="#666666">{{item.district}}-{{item.street}}</van-tag> -->
 			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'RESIDENTIAL_QUARTERS' && item.region}}" color="#F8F8F8" text-color="#666666">{{item.region}}</van-tag>

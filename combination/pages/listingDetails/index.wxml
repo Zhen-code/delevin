@@ -196,8 +196,11 @@
 		<view class="introduction-specification" wx:if="{{type === 'TENANCY'}}">
 			<view class="introduction-specification-top">
 				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition || '暂无'}}</text></view>
-				<view class="name-type">地铁：<block wx:for="{{item.metro}}" wx:key="index"><text
-							class="name-typeValue">{{item.lineName}}{{item.routeStop  || '暂无'}}</text></block>
+				<view class="name-type1">
+					<text class="name-type2">地铁：</text>
+					<view class="name-typeValue1">
+						<text wx:for="{{item.metro}}" wx:key="index">{{index === 0?'':'、'}}{{item.lineName}}{{item.routeStop || '暂无'}}</text>
+					</view>
 				</view>
 				<view class="name-type">朝向：<text class="name-typeValue">{{item.orientationType || '暂无'}}</text></view>
 				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationsStatusType}}</text></view>
@@ -220,13 +223,15 @@
 			</view>
 			<view class="introduction-specification-top">
 				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property || '暂无'}}</text></view>
-				<view class="name-type">容积率：<text class="name-typeValue">{{item.plotRatio || '暂无'}}{{item.greenCoverage ? '%':''}}</text></view>
+				<view class="name-type">容积率：<text
+						class="name-typeValue">{{item.plotRatio || '暂无'}}{{item.greenCoverage ? '%':''}}</text></view>
 				<view class="name-type">物业类别：<text class="name-typeValue">{{item.propertyClassifyName || '暂无'}}</text></view>
 				<view class="name-type">停车位：<text class="name-typeValue">{{item.parkingSpace || '暂无'}}</text></view>
 				<view class="name-type">建筑年代：<text class="name-typeValue">{{item.builtYear || '暂无'}}</text></view>
 				<view class="name-type">物业费：<text class="name-typeValue">{{item.propertyFee || '暂无'}}</text></view>
 				<view class="name-type">物业公司：<text class="name-typeValue">{{item.propertyCompany || '暂无'}}</text></view>
-				<view class="name-type">绿化率：<text class="name-typeValue">{{item.greenCoverage || '暂无'}}{{item.greenCoverage ? '%':''}}</text></view>
+				<view class="name-type">绿化率：<text
+						class="name-typeValue">{{item.greenCoverage || '暂无'}}{{item.greenCoverage ? '%':''}}</text></view>
 			</view>
 		</view>
 	</view>
@@ -247,9 +252,8 @@
 		<text class="components-title">位置周边</text>
 		<view class="surrounding">
 			<view class="surrounding-map">
-				<!-- <map id="map" longitude="{{item.longitude}}" latitude="{{item.latitude}}" show-location
-					style="width: 100%; height: 100%;"></map> -->
-				<map id="map" longitude="{{item.longitude}}" latitude="{{item.latitude}}" markers="{{markers}}" show-location style="width: 100%; height: 100%;"></map>
+				<map id="map" longitude="{{item.longitude}}" latitude="{{item.latitude}}" markers="{{markers}}" show-location
+					style="width: 100%; height: 100%;"></map>
 			</view>
 			<view class="surrounding-change" bindtap="toMap">
 				<text class="surrounding-details">查看周边配套</text>
@@ -319,7 +323,8 @@
 				<view class="record-row">
 					<view class="record-sky">{{item.houseType}}室{{item.houseHall}}厅{{item.houseToilet}}卫<text
 							class="record-sky-num">{{item.floorage}}m²</text></view>
-					<view class="record-price">成交金额：<text class="record-price-num">{{item.transactionAmount}}万</text><text class="record-price-money">{{item.flooragePrice}}元/m²</text></view>
+					<view class="record-price">成交金额：<text class="record-price-num">{{item.transactionAmount}}万</text><text
+							class="record-price-money">{{item.flooragePrice}}元/m²</text></view>
 					<view class="record-time">成交日期：<text class="record-time-num">{{item.transactionDate}}</text></view>
 				</view>
 			</block>
