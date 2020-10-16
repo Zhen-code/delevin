@@ -202,8 +202,9 @@ Page({
 				delta: 1
 			})
 		}).catch((err) => {
+			console.log(err.data.msg,'验证码请求失败返回')
 			wx.showToast({
-				title: '请求失败',
+				title: err.data.msg,
 				icon: 'none',
 				duration: 2500
 			})

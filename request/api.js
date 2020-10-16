@@ -40,6 +40,8 @@
      newListingsList: '/api/access/v1/house/introduction/estate/list',
      towListingsList: '/api/access/v1/house/introduction/second/hand/list',
      sellHouse: '/api/access/v1/house/selling/add',
+     customers:'/api/access/v1/recommend/customers/add',
+     demand:'/api/access/v1/customer/house/demand/list',
      newListings: '/api/access/v1/house/estate/list',
      newListingsDetails: '/api/access/v1/house/estate/details/',
      towListings: '/api/access/v1/house/second/hand/list',

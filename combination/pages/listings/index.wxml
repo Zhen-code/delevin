@@ -1,5 +1,5 @@
 <!--combination/pages/listings/index.wxml-->
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="房猿通" />
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
 <view class="view" style="padding-top:{{paddingTop}}px;">
 	<citySearch isCancel style="width:100%" value="{{value}}" bind:getCityValue="getCityValue"
 		bind:getInputValue="getInputValue" bind:getSearchValue="getSearchValue" bind:search="getSearchValue"

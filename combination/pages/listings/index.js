@@ -27,12 +27,13 @@ Page({
 		city: '',
 		province: '',
 		index: 0,
-		type:'',
+		type: '',
+		stateType:'',
 	},
 
 	getCityValue(e) {
 		this.setData({
-			item:[],
+			item: [],
 			province: e.detail[0].name,
 			city: e.detail[1].name,
 		}, () => {
@@ -51,17 +52,17 @@ Page({
 			keyword: e.detail.value,
 			city: e.detail.city,
 			province: e.detail.province || app.globalData.address.province,
-		},()=>{
+		}, () => {
 			this.getData()
 		})
 	},
 
 	getBackTabValue(e) {
 		this.setData({
-			item:[],
-			pageIndex:1,
+			item: [],
+			pageIndex: 1,
 			index: e.detail
-		},()=>{
+		}, () => {
 			this.getData()
 		})
 	},
@@ -75,7 +76,7 @@ Page({
 	topList() {
 		this.setData({
 			triggered: false,
-		},()=>{
+		}, () => {
 			this.getData()
 		})
 	},
@@ -119,12 +120,12 @@ Page({
 			"province": province,
 		}).then((res) => {
 			let data = '';
-			if(type){
-				data = res.list.map((item)=>{
+			if (type) {
+				data = res.list.map((item) => {
 					item.add = type = true
 					return item;
 				})
-			}else{
+			} else {
 				data = res.list;
 			}
 			item.push(...data)
@@ -141,42 +142,49 @@ Page({
 		})
 	},
 
-	toDetails(e){
-		console.log(e.currentTarget.dataset.item)
+	toDetails(e) {
 		let type = '';
-		switch (this.data.index) {
-			case 0:
-				type = "新房房源";
-				break;
-			case 1:
-				type = "二手房房源";
-				break;
-			case 2:
-				type = "租房房源";
-				break;
-			case 3:
-				type = "小区房源";
-				break;
-			default:
+		if(this.data.stateType){
+			app.globalData.realEstateItem = {};
+			app.globalData.realEstateItem = e.currentTarget.dataset.item;
+			wx.navigateBack({
+				delta: 1
+			})
+		}else{
+			switch (this.data.index) {
+				case 0:
+					type = "新房房源";
+					break;
+				case 1:
+					type = "二手房房源";
+					break;
+				case 2:
+					type = "租房房源";
+					break;
+				case 3:
+					type = "小区房源";
+					break;
+				default:
+			}
+			let item = JSON.stringify({
+				'title': type,
+				"id": e.currentTarget.dataset.item.id,
+			})
+			wx.navigateTo({
+				url: `/combination/pages/listingDetails/index?item=${item}`,
+			})
 		}
-		let item = JSON.stringify({
-			'title': type,
-			"id": e.currentTarget.dataset.item.id,
-		})
-		wx.navigateTo({
-			url: `/combination/pages/listingDetails/index?item=${item}`,
-		})
 	},
 
-	getBackItem(e){
+	getBackItem(e) {
 		request.addAgent({
 			"houseId": e.detail.id,
 			"houseMold": e.detail.sourceType,
-		}).then((res)=>{
+		}).then((res) => {
 			this.setData({
-				item:[],
-				pageIndex:1,
-			},()=>{
+				item: [],
+				pageIndex: 1,
+			}, () => {
 				this.getData();
 				wx.showToast({
 					title: '添加成功',
@@ -184,7 +192,7 @@ Page({
 					duration: 2500
 				})
 			})
-		}).catch((err)=>{
+		}).catch((err) => {
 			console.log(err.data.msg)
 			wx.showToast({
 				title: err.data.msg,
@@ -198,13 +206,21 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		let item = '';
+		if (options.item !== undefined) {
+			item = JSON.parse(options.item)
+		}else{
+
+		}
 		this.setData({
 			city: app.globalData.address.city || '',
 			province: app.globalData.address.province || '',
 			value: options.title || '',
-			keyword:options.title || '',
-			type:options.type || '',
-		},()=>{
+			keyword: options.title || '',
+			type: options.type || '',
+			title: item.key || '房猿通',
+			stateType:item.type || false,
+		}, () => {
 			this.getData()
 		})
 	},
