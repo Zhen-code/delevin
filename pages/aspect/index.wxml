@@ -1,4 +1,4 @@
-<navbar bgColor="{{bgColor}}" title="{{title}}" />
+<navbar back="{{false}}" bgColor="{{bgColor}}" title="{{title}}"/>
 <view class="container" wx:if="{{type}}" style="padding-top:{{paddingTop}}px">
 	<view class="tabbar">
 		<view class="tab {{_index=='0'?'tbActive':''}}" data-index="0" bind:tap="toggleTab">新闻资讯</view>
