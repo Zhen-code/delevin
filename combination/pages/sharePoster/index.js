@@ -37,7 +37,8 @@ Page({
 			"border": true
 		},
 		title: '获客海报分享',
-		show: true
+		show: true,
+		agentId: ''
 	},
 
 	onChange(current,source){
@@ -446,7 +447,7 @@ Page({
 				let mulitipleWidth = to2Px(allWidth,360);
 				this.renderText(ctx1,str,nameLeft,70,mulitipleWidth);
 				let qrImgLeft = to2Px(allWidth,446);
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,10,100,100);
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,1,100,100);
 				ctx1.drawImage(this.data.imgPath4,nameLeft,109,to2Px(allWidth,520),262);
 				ctx1.drawImage(this.data.pic_resources,to2Px(allWidth,488),325,to2Px(allWidth,188),to2Px(allWidth,188));
 				let titleLeft = to2Px(allWidth,116);
@@ -516,12 +517,14 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		let agentId = wx.getStorageSync('userId');
 		let resultInfo = wx.getSystemInfoSync();
 		let parseObj = JSON.parse(options.data);
 		console.log(parseObj.item)
 		console.log(123456)
 		this.setData({
-			dataInfo: parseObj.item
+			dataInfo: parseObj.item,
+			agentId:agentId
 		});
 		let designSketch = parseObj.item['designSketch'];
 		getImageInfo(designSketch[0]).then(res=>{
@@ -625,37 +628,37 @@ Page({
 			clientWidth:  res.screenWidth
 		});
 		let qrCodeCtx =  wx.createCanvasContext('myQrcode');
-		let width = to2Px(res.screenWidth,100);
-		let height = to2Px(res.screenWidth,100);
 		drawQrcode({
-			width: width,
-			height: height,
+			width: 70,
+			height: 70,
 			canvasId: 'myQrcode',
 			ctx: qrCodeCtx,
-			text: 'https://baidu.com',
+			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}`,
 			callback: (e)=>{
 				console.log(e)
 				if(e['errMsg'].includes('ok')){
 					console.log('二维码绘制完成');
-					wx.canvasToTempFilePath({
-						canvasId: 'myQrcode',
-						quality: 1,
-						success:(res)=>{
-							console.log(res)
-							this.setData({
-								qrCodePath: res.tempFilePath
-							})
-						},
-						fail:(err)=>{
-							console.log(err)
-						},
-						complete: ()=>{
-							that.go();
-							that.go1();
-							that.go2();
-							that.go3();
-						}
-					})
+					setTimeout(()=>{
+						wx.canvasToTempFilePath({
+							canvasId: 'myQrcode',
+							quality: 1,
+							success:(res)=>{
+								console.log(res)
+								this.setData({
+									qrCodePath: res.tempFilePath
+								})
+							},
+							fail:(err)=>{
+								console.log(err)
+							},
+							complete: ()=>{
+								that.go();
+								that.go1();
+								that.go2();
+								that.go3();
+							}
+						})
+					},1000);
 				}else{
 					wx.showToast({
 						title: '二维码生成失败，请重新再试!'
@@ -665,15 +668,14 @@ Page({
 		})
 	},
 	drawQR1(){
+		const that = this;
 		let qrCodeCtx =  wx.createCanvasContext('myQrcode1');
-		let width = to2Px(this.data.clientWidth,100);
-		let height = to2Px(this.data.clientWidth,100);
 		drawQrcode({
-			width: width,
-			height: height,
+			width: 70,
+			height: 70,
 			canvasId: 'myQrcode1',
 			ctx: qrCodeCtx,
-			text: 'https://baidu.com',
+			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}`,
 			callback: (e)=>{
 				console.log(e)
 				if(e['errMsg'].includes('ok')){
@@ -687,15 +689,14 @@ Page({
 		})
 	},
 	drawQR2(){
+		const that = this;
 		let qrCodeCtx =  wx.createCanvasContext('myQrcode2');
-		let width = to2Px(this.data.clientWidth,100);
-		let height = to2Px(this.data.clientWidth,100);
 		drawQrcode({
-			width: width,
-			height: height,
+			width: 70,
+			height: 70,
 			canvasId: 'myQrcode2',
 			ctx: qrCodeCtx,
-			text: 'https://baidu.com',
+			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}`,
 			callback: (e)=>{
 				console.log(e)
 				if(e['errMsg'].includes('ok')){
@@ -709,15 +710,14 @@ Page({
 		})
 	},
 	drawQR3(){
+		const that = this;
 		let qrCodeCtx =  wx.createCanvasContext('myQrcode3');
-		let width = to2Px(this.data.clientWidth,100);
-		let height = to2Px(this.data.clientWidth,100);
 		drawQrcode({
-			width: width,
-			height: height,
+			width: 70,
+			height: 70,
 			canvasId: 'myQrcode3',
 			ctx: qrCodeCtx,
-			text: 'https://baidu.com',
+			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}`,
 			callback: (e)=>{
 				console.log(e)
 				if(e['errMsg'].includes('ok')){
@@ -861,20 +861,6 @@ Page({
 	 * 生命周期函数--监听页面卸载
 	 */
 	onUnload: function () {
-
-	},
-
-	/**
-	 * 页面相关事件处理函数--监听用户下拉动作
-	 */
-	onPullDownRefresh: function () {
-
-	},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {
 
 	},
 
