@@ -123,7 +123,7 @@ Page({
       height: 100,
       canvasId: 'myQrcode',
       ctx: qrCodeCtx,
-      text: `https://dev.delevin.beiru168.com/homepage?agentId=${agentId}`,
+      text: `https://dev.delevin.beiru168.com/2`,
       callback: (e)=>{
         console.log(e)
         if(e['errMsg'].includes('ok')){

@@ -17,7 +17,6 @@ Page({
 			"color": true,
 			"border": true
 		},
-		backHome: true,
 		phone: "",
 		number: "",
 		city: "",
@@ -31,13 +30,23 @@ Page({
 		cityType: false,
 		timeType: false,
 		demandType: false,
-		actionIndex: 0,
+		actionIndex: 1,
 		tabIndex: '',
-		minHour: 10,
-		maxHour: 20,
-		minDate: new Date().getTime(),
-		maxDate: new Date().getTime(),
 		currentDate: new Date().getTime(),
+		formatter(type, value) {
+			if (type === 'year') {
+				return `${value}年`;
+			} else if (type === 'month') {
+				return `${value}月`;
+			} else if (type === 'day') {
+				return `${value}日`;
+			} else if (type === 'hour') {
+				return `${value}时`;
+			} else if (type === 'minute') {
+				return `${value}分`;
+			}
+			return value;
+		},
 		areaList: provincCityDistrict,
 	},
 
@@ -77,21 +86,48 @@ Page({
 		})
 	},
 
-	onInput(event) {
-		console.log(event)
+	ClickTimeViewOkBtn(event) {
+		let time = this.getTime(event.detail, '{y}-{m}-{d} {h}:{i}');
+		console.log("点击确定 选择的时间 - " + time);
 		this.setData({
 			currentDate: event.detail,
+			time: time
+		}, () => {
+			this.timeHide()
 		});
 	},
 
-	timeCancel() {
-		this.timeHide()
+	getTime(time, cFormat) {
+		if (arguments.length === 0) {
+			return null
+		}
+		const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
+		let date
+		if (typeof time === 'object') {} else {
+			if (('' + time).length === 10) time = parseInt(time) * 1000
+			date = new Date(time)
+		}
+		const formatObj = {
+			y: date.getFullYear(),
+			m: date.getMonth() + 1,
+			d: date.getDate(),
+			h: date.getHours(),
+			i: date.getMinutes(),
+			s: date.getSeconds(),
+			w: date.getDay()
+		}
+		const time_str = format.replace(/{(y|m|d|h|i|s|w)+}/g, (result, key) => {
+			let value = formatObj[key]
+			if (key === 'w') {
+				return ['日', '一', '二', '三', '四', '五', '六'][value]
+			}
+			if (result.length > 0 && value < 10) {
+				value = '0' + value
+			}
+			return value || 0;
+		})
+		return time_str;
 	},
-
-	timeConfirm(e) {
-		console.log(e)
-	},
-
 
 	demandShow() {
 		this.setData({
@@ -147,6 +183,7 @@ Page({
 				demandItem: [],
 			}, () => {
 				this.getDemand()
+				this.demandHide()
 			})
 		} else {
 			this.setData({
@@ -197,40 +234,65 @@ Page({
 		}
 	},
 
+	getState(){
+		this.setData({
+			phone: "",
+			number: "",
+			city: "",
+			realEstate: "",
+			realEstateItem: {},
+			time: "",
+			demand: "",
+			demandItem: [],
+			demandList: [],
+			remarks: '',
+			cityType: false,
+			timeType: false,
+			demandType: false,
+			actionIndex: 1,
+			tabIndex: '',
+		},()=>{
+			app.globalData.realEstateItem = {}
+		})
+	},
+
 	submit() {
-		let {phone,number,city,realEstateItem,time,demandList,remarks} = this.data
+		let {
+			phone,
+			number,
+			city,
+			realEstateItem,
+			time,
+			demandList,
+			remarks
+		} = this.data
 		if (phone && number !== '') {
 			let data = {
 				"cityName": city,
-				"demandName": demandList.map((item)=>{
+				"demandName": demandList.map((item) => {
 					return item.demandName
 				}).join(","),
 				"houseId": realEstateItem.id,
 				"houseType": realEstateItem.sourceType || realEstateItem.houseType,
 				"identityCard": number,
-				"openHomeDate": time,
+				"openHomeDate": time+':00',
 				"phone": phone,
 				"remarks": remarks
 			}
 			console.log(data)
-			// request.sellHouse(data).then((res) => {
-			// 	_this.setData({
-			// 		backHome: false,
-			// 	}, () => {
-			// 		wx.showToast({
-			// 			title: '提交成功',
-			// 			icon: 'success',
-			// 			duration: 2500
-			// 		})
-			// 	})
-			// }).catch((err) => {
-			// 	console.log(err.data.msg)
-			// 	wx.showToast({
-			// 		title: err.data.msg,
-			// 		icon: 'none',
-			// 		duration: 2500
-			// 	})
-			// })
+			request.customers(data).then((res) => {
+				this.getState()
+				wx.reLaunch({
+					url: `/combination/pages/backHome/index?title=${'推荐客源'}`,
+				})
+			}).catch((err) => {
+				console.log(err.data.msg)
+				wx.showToast({
+					title: err.data.msg,
+					icon: 'none',
+					duration: 2500
+				})
+			})
 		} else {
 			wx.showToast({
 				title: '请完善资料',
@@ -240,11 +302,26 @@ Page({
 		}
 	},
 
-	backHome() {
-		wx.switchTab({
-			url: '/pages/home/index'
-		})
+	privacyPolicy() {
+    request.link({
+      'type': 'RECOMMENDED_CUSTOMERS'
+    }).then((res) => {
+      let item = JSON.stringify({
+        "title": "推荐客源温馨提示",
+        "link": res.link,
+      })
+      wx.navigateTo({
+        url: `/combination/pages/webView/index?item=${item}`,
+      })
+    }).catch((err) => {
+      wx.showToast({
+        title: '数据错误',
+        icon: 'none',
+        duration: 2500
+      })
+    })
 	},
+
 
 	/**
 	 * 生命周期函数--监听页面加载
@@ -265,7 +342,6 @@ Page({
 	 */
 	onShow: function () {
 		let data = app.globalData.realEstateItem;
-		console.log(data)
 		if (data.title != undefined) {
 			this.setData({
 				realEstateItem: data,

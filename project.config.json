@@ -20,7 +20,7 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "useMultiFrameRuntime": false,
-    "useApiHook": false,
+    "useApiHook": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -185,6 +185,13 @@
           "id": -1,
           "name": "combination/pages/recommendedSource/index",
           "pathName": "combination/pages/recommendedSource/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "combination/pages/backHome/index",
+          "pathName": "combination/pages/backHome/index",
           "scene": null
         }
       ]

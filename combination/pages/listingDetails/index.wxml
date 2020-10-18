@@ -261,6 +261,7 @@
 			</view>
 			<view class="surrounding-show" wx:if="{{superInfo.display==='YES'}}" data-item="{{superInfo}}"
 				catch:tap="toHomePage">
+				<view class="surrounding-show-bg"></view>
 				<view class="adverText">广告</view>
 				<image style="width:686rpx;height:100%" src="{{superInfo.advertUri}}">
 				</image>

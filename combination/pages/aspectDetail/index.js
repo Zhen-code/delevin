@@ -32,7 +32,7 @@ Page({
     toView: '',
     safeBottom: 0,
     isIos: false,
-    hideBack: true
+    back: true
   },
   targetId: '',
   id: '',
@@ -89,7 +89,7 @@ Page({
     console.log(hideBack)
     this.setData({
       id: id,
-      hideBack: Boolean(hideBack)
+      back: false
     });
     this.targetId = id;
     this.id = id;

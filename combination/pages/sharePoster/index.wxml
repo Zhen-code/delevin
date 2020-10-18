@@ -28,7 +28,11 @@
         style="width:750rpx;height:500px;"
 ></canvas>
 <navbar  bgColor="{{bgColor}}" title="{{title}}" backHome="true"></navbar>
-<view class="poster-wrap" style="padding-top:{{paddingTop+35}}px;box-sizing:border-box;">
+<view class="poster-wrap" style="padding-top:{{paddingTop+30}}px;box-sizing:border-box;">
+    <view class="loading-tip" wx:if="{{show}}">
+        <image class="loading" src="/assets/image/loading.gif" mode="widthFix"></image>
+        <view class="loading-text">资源加载中...</view>
+    </view>
     <swiper current="0"
             bindchange="onChange"
             class="swiper-wrap">

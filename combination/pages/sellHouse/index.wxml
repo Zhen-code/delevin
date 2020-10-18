@@ -1,5 +1,5 @@
 <!--combination/pages/sellHouse/index.wxml-->
-<navbar backHome="{{backHome}}" bgColor="{{bgColor}}" title="我要卖房" />
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="我要卖房" />
 <view class="view" style="padding-top:{{paddingTop}}px">
 	<text class="view-title">房源信息</text>
 	<view class="view-row">
@@ -83,12 +83,3 @@
 	</view>
 </view>
 <view class="bottom-phone"><text class="bottom-phone-text" bindtap="submit">立即提交</text></view>
-
-
-<view class="submit" wx:if="{{!backHome}}">
-	<view class="submit-view">
-		<image class="submit-image" src="/combination/image/pic_success_100@2x.png"></image>
-		<text class="submit-title">提交成功！</text>
-	</view>
-	<text class="submit-back" bindtap="backHome">返回首页</text>
-</view>

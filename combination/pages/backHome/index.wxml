@@ -1,0 +1,7 @@
+<view class="submit">
+	<view class="submit-view">
+		<image class="submit-image" src="/combination/image/pic_success_100@2x.png"></image>
+		<text class="submit-title">提交成功！</text>
+	</view>
+	<text class="submit-back" bindtap="backHome">返回首页</text>
+</view>

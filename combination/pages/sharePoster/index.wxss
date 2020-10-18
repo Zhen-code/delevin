@@ -318,3 +318,21 @@ page{
     background: #DADDE3;
     color: #FFF;
 }
+.loading-tip{
+    text-align: center;
+    width: 100%;
+    height: auto;
+    line-height: 50rpx;
+    margin-bottom: 10rpx;
+}
+.loading{
+    width: 50rpx;
+    height: 50rpx;
+}
+.loading-text{
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    color: #000;
+    height: 20px;
+}

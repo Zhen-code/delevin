@@ -75,7 +75,8 @@
 				"pages/chooseAnInstitution/index",
 				"pages/customerArticleDetail/index",
 				"pages/shareInfoImg/index",
-				"pages/recommendedSource/index"
+				"pages/recommendedSource/index",
+				"pages/backHome/index"
 			]
 		}
 	],

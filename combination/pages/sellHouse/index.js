@@ -114,14 +114,8 @@ Page({
 				"region": then.community,
 				"sellingPrice": then.price
 			}).then((res) => {
-				_this.setData({
-					backHome:false,
-				},()=>{
-					wx.showToast({
-						title: '提交成功',
-						icon: 'success',
-						duration: 2500
-					})
+				wx.reLaunch({
+					url: `/combination/pages/backHome/index?title=${'我要卖房'}`,
 				})
 			}).catch((err) => {
 				console.log(err.data.msg)
