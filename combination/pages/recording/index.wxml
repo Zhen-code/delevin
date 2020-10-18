@@ -1,6 +1,6 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="最近来访记录" />
 <view class="view" style="padding-top:{{paddingTop}}px">
-	<scroll-view class="shopItem" style="top: {{paddingTop}}px;"
+	<scroll-view class="shopItem"
 				 refresher-enabled="true" scroll-into-view="{{toView}}"
 				 refresher-triggered="{{triggered}}"
 				 bindrefresherrefresh="topList"
