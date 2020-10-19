@@ -112,7 +112,7 @@
 				<text class="owner-left-title21">成功购买 可获佣金</text>
 			</view>
 			<view class="owner-rigth1" bindtap="toRecommendedSource">
-				<image class="owner-rigth-image" src="/assets/btn_recommend_golden@2x.png">
+				<image class="owner-rigth-image1" mode="aspectFill" src="/assets/btn_recommend_golden@2x.png">
 				</image>
 			</view>
 		</view>
