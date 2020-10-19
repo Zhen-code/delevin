@@ -2,7 +2,7 @@
     <view class="xq-top">
         <view class="tab-item"></view>
         <view class="tab-item">
-            <view class="tab-item-left">小区名称</view>
+            <view class="tab-item-left">房源标题</view>
             <view class="tab-item-right">
                 <input value="{{name}}" placeholder-style="color:#999999" placeholder="请输入房源标题" bind:input="nameInput"></input>
             </view>

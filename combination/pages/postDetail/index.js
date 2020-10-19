@@ -231,7 +231,7 @@ Page({
     }
     return {
       title: title,
-      path: '/combination/pages/postDetail/index?id='+this.id,
+      path: '/combination/pages/postDetail/index?id='+this.id+'&hideBack=true',
       success: function (res) {
         console.log('成功', res)
       }

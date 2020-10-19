@@ -179,7 +179,7 @@ Page({
   },
   goHouseDetal(e){
     wx.navigateTo({
-      url: '/combination/pages/aspectDetail/index?id=' + e.currentTarget.dataset.id+'&hideBack=true',
+      url: '/combination/pages/aspectDetail/index?id=' + e.currentTarget.dataset.id+'&hideBack=false',
     })
     console.log(e.currentTarget.dataset.id);
   },

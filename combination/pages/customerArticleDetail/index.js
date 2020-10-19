@@ -19,7 +19,9 @@ Page({
     nodes: '',
     id: '',
     safeBottom: 0,
-    userId:''
+    userId:'',
+    backHome: true,
+    pageHome: false
   },
   timeFlag: 1,
   getNewsDetail(id){
@@ -62,9 +64,20 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    let {id,userId} = options;
+    let {id,userId,hideBack} = options;
     console.log(userId)
     console.log('经纪人id')
+    if(hideBack === 'true'){
+      this.setData({
+        backHome: false,
+        pageHome: true
+      });
+    }else{
+      this.setData({
+        backHome: true,
+        pageHome: false
+      })
+    }
     this.setData({
       id: id,
       userId: userId||''
@@ -115,7 +128,7 @@ Page({
     }
     return {
       title: title,
-      path: '/combination/pages/customerArticleDetail/index?id='+this.data.id+'&userId='+userId,
+      path: '/combination/pages/customerArticleDetail/index?id='+this.data.id+'&userId='+userId+'&hideBack=true',
       success: function (res) {
         console.log('成功', res)
       }

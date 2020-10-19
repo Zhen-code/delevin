@@ -32,7 +32,8 @@ Page({
     toView: '',
     safeBottom: 0,
     isIos: false,
-    back: true
+    pageHome: false,
+    backHome: true
   },
   targetId: '',
   id: '',
@@ -86,7 +87,17 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let {id,hideBack} = options;
-    console.log(hideBack)
+    if(hideBack === 'false'){
+      this.setData({
+        pageHome: false,
+        backHome: true
+      });
+    }else{
+      this.setData({
+        pageHome: true,
+        backHome: false
+      })
+    }
     this.setData({
       id: id,
       back: false
@@ -201,7 +212,7 @@ Page({
     console.log(res);
     return {
       title: title,
-      path: '/combination/pages/aspectDetail/index?id='+this.id+'&hideBack=false',
+      path: '/combination/pages/aspectDetail/index?id='+this.id+'&hideBack=true',
       success: function (res) {
         console.log('成功', res)
       }

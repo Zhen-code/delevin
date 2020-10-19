@@ -842,7 +842,7 @@ Page({
 	onShow: function () {
 		request.information().then(res=>{
 			console.log(res)
-			let synopsis = res.synopsis===""?'暂无简介':res.synopsis;
+			let synopsis = res.synopsis===""?'暂无简介':res.synopsis.substr(0,20)+'...';
 			this.setData({
 				userInfo: {...res,synopsis:synopsis}
 			})
