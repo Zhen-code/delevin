@@ -11,6 +11,7 @@ Page({
    */
   data: {
     agentId: '',
+    userId: '',
     isShare: false,
     bgImgHeight: 0,
     cname: '',
@@ -94,12 +95,12 @@ Page({
   onShow() {
     request.information().then(res=>{
       console.log(res)
-      console.log(64646313)
       this.setData({
         cname: res.nickname,
         phone: res.phone,
         synopsis: res.synopsis===""?'暂无简介':res.synopsis,
-        agentId: res.agentId
+        agentId: res.agentId,
+        userId: res.id
       })
     }).catch(err=>{
       console.log(err)
@@ -111,19 +112,21 @@ Page({
    */
   onReady: function () {
     let that = this;
-    let agentId = wx.getStorageSync('userId');
+    let agentId = wx.getStorageSync('agentId');
+    let userId = wx.getStorageSync('userId');
+    console.log(agentId);
+    console.log('经纪人agentid');
     let res = wx.getSystemInfoSync();
     this.setData({
       clientWidth:  res.screenWidth
     });
-    console.log(agentId)
     let qrCodeCtx =  wx.createCanvasContext('myQrcode');
     drawQrcode({
       width: 100,
       height: 100,
       canvasId: 'myQrcode',
       ctx: qrCodeCtx,
-      text: `https://dev.delevin.beiru168.com/2`,
+      text: `https://dev.delevin.beiru168.com/homepage?agentId=${agentId}&userId=${userId}`,
       callback: (e)=>{
         console.log(e)
         if(e['errMsg'].includes('ok')){
@@ -308,21 +311,18 @@ Page({
     this.setData({
       isShare: true
     });
-    console.log(res)
     let from = res.from;
     if(from === "button"){
       this.go();
       return{
         title: '经纪人主页',
-        // path: '/pages/home/index?id='+userId+'&type=false',
-        path: '/combination/pages/homepage/index?agentId='+this.data.agentId,
+        path: '/combination/pages/homepage/index?agentId='+this.data.agentId+'&userId='+this.data.userId,
         imageUrl: this.data.saveTempCanvas
       }
     }else{
       return{
         title: '经纪人主页',
-        // path: '/pages/home/index?id='+userId+'&type=false',
-        path: '/combination/pages/homepage/index?agentId='+this.data.agentId,
+        path: '/combination/pages/homepage/index?agentId='+this.data.agentId+'&userId='+this.data.userId,
         imageUrl: this.data.saveTempCanvas
       }
     }

@@ -22,6 +22,7 @@ Page({
 			"border": false,
 		},
 		agentId: "",
+		userId: "",
 		userInfo: {},
 		list: []
 	},
@@ -48,7 +49,14 @@ Page({
 		})
 	},
 
-	getLsit() {
+	toPhone(e) {
+		let phone = e.currentTarget.dataset.item;
+		wx.makePhoneCall({
+			phoneNumber: phone
+		})
+	},
+
+	getBrokerHouse() {
 		request.brokerList({
 			"agentId": this.data.agentId
 		}).then((res) => {
@@ -61,31 +69,6 @@ Page({
 				icon: 'none',
 				duration: 2500
 			})
-		})
-	},
-
-	toPhone(e) {
-		let phone = e.currentTarget.dataset.item;
-		wx.makePhoneCall({
-			phoneNumber: phone
-		})
-	},
-
-	getBrokerHouse() {
-		http({
-			url: api.broker.houseAroundList(this.data.agentId),
-			method: 'GET',
-		}).then(res => {
-			this.setData({
-				list: res
-			});
-		}).catch(err => {
-			console.log(err.data.code)
-			if (err.data.code === 500) {
-				wx.navigateTo({
-					url: "/pages/login/index"
-				})
-			}
 		})
 	},
 
@@ -130,16 +113,15 @@ Page({
 	},
 
 	addRecordHome() {
-		let id = wx.getStorageSync('userId') || '';
 		http({
 			url: '/api/access/v1/user/member/visitors/add',
 			method: 'POST',
 			params: {
-				"intervieweeId": id,
+				"intervieweeId": this.data.userId,
 				"type": "PERSONAL_HOMEPAGE"
 			}
 		}).then(res => {
-			// console.log(res)
+			console.log(res)
 		}).catch(err => {
 			console.log(err)
 		})
@@ -150,22 +132,20 @@ Page({
 	 */
 	onLoad: function (options) {
 		if (options.q) {
-			let qrUrl = decodeURIComponent(options.q)
-			let value = qrUrl.split("/")[3].split("?")[0];
-			let agentId = qrUrl.split("=")[1];
-			let item = JSON.stringify({
-				'name': value,
-				'agentId': agentId,
-			})
-			wx.setStorageSync('homePage', item)
+			let qrUrl = decodeURIComponent(options.q);
+			let splitArray = qrUrl.split('?');
+			let paramsArray = splitArray[1].split('&');
+			let agentId = (paramsArray[0].split('='))[1];
+			let userId = (paramsArray[1].split('='))[1];
+			this.setData({
+				agentId: agentId,
+				userId: userId
+			});
 		} else {
 			this.setData({
 				agentId: options.agentId,
-			}, () => {
-				this.getData();
-				this.getLsit();
-				wx.removeStorageSync('homePage')
-			})
+				userId: options.userId
+			});
 		}
 	},
 
@@ -180,8 +160,10 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
+		// this.getBrokerHouse();
+		this.addRecordHome();
+		this.getData();
 		this.getBrokerHouse();
-		this.addRecordHome()
 	},
 
 	/**

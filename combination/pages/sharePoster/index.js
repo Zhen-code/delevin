@@ -38,7 +38,8 @@ Page({
 		},
 		title: '获客海报分享',
 		show: true,
-		agentId: ''
+		agentId: '',
+		userId: ''
 	},
 
 	onChange(current,source){
@@ -381,9 +382,9 @@ Page({
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
 				let mulitipleWidth = to2Px(allWidth,360);
 				this.renderText(ctx1,str,nameLeft,466,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,446);
+				let qrImgLeft = to2Px(allWidth,426);
 				console.log(this.data.qrCodePath)
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,400,100,100);
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,390,100,100);
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -446,7 +447,7 @@ Page({
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
 				let mulitipleWidth = to2Px(allWidth,360);
 				this.renderText(ctx1,str,nameLeft,70,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,446);
+				let qrImgLeft = to2Px(allWidth,436);
 				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,1,100,100);
 				ctx1.drawImage(this.data.imgPath4,nameLeft,109,to2Px(allWidth,520),262);
 				ctx1.drawImage(this.data.pic_resources,to2Px(allWidth,488),325,to2Px(allWidth,188),to2Px(allWidth,188));
@@ -517,14 +518,14 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		let agentId = wx.getStorageSync('userId');
+		let agentId = wx.getStorageSync('agentId');
+		let userId = wx.getStorageSync('userId');
 		let resultInfo = wx.getSystemInfoSync();
-		let parseObj = JSON.parse(options.data);
-		console.log(parseObj.item)
-		console.log(123456)
+		let parseObj = JSON.parse(options.data);//转换跳转参数
 		this.setData({
 			dataInfo: parseObj.item,
-			agentId:agentId
+			agentId:agentId,
+			userId: userId
 		});
 		let designSketch = parseObj.item['designSketch'];
 		getImageInfo(designSketch[0]).then(res=>{
@@ -633,7 +634,7 @@ Page({
 			height: 70,
 			canvasId: 'myQrcode',
 			ctx: qrCodeCtx,
-			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}`,
+			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}&userId=${that.data.userId}`,
 			callback: (e)=>{
 				console.log(e)
 				if(e['errMsg'].includes('ok')){
@@ -675,7 +676,7 @@ Page({
 			height: 70,
 			canvasId: 'myQrcode1',
 			ctx: qrCodeCtx,
-			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}`,
+			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}&userId=${that.data.userId}`,
 			callback: (e)=>{
 				console.log(e)
 				if(e['errMsg'].includes('ok')){
@@ -696,7 +697,7 @@ Page({
 			height: 70,
 			canvasId: 'myQrcode2',
 			ctx: qrCodeCtx,
-			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}`,
+			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}&userId=${that.data.userId}`,
 			callback: (e)=>{
 				console.log(e)
 				if(e['errMsg'].includes('ok')){
@@ -717,7 +718,7 @@ Page({
 			height: 70,
 			canvasId: 'myQrcode3',
 			ctx: qrCodeCtx,
-			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}`,
+			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}&userId=${that.data.userId}`,
 			callback: (e)=>{
 				console.log(e)
 				if(e['errMsg'].includes('ok')){
@@ -868,6 +869,9 @@ Page({
 	 * 用户点击右上角分享
 	 */
 	onShareAppMessage: function () {
-
+		return{
+			title: '经纪人主页',
+			path: '/combination/pages/homepage/index?agentId='+this.data.agentId+'&userId='+this.data.userId,
+		}
 	}
 })
