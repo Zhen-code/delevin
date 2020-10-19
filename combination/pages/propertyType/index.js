@@ -9,11 +9,6 @@ Page({
 	 */
 	data: {
 		checked: false,
-		selectType: '',
-		selectType1: 0,
-		selectType2: 0,
-		selectType3: 0,
-		selectType4: 0,
 		entireRentIndex: '',
 		shareIndex: 0,
 		conditionIndex: 1,
@@ -24,12 +19,7 @@ Page({
 			"color": true,
 			"border": true
 		},
-		show: {
-			primary: true,
-			success: true,
-		},
 		item: [],
-
 		pageIndex: 1,
 		pageSize: 12,
 		minPrice: '',
@@ -53,7 +43,7 @@ Page({
 		buildingAgeOptions: '',
 		averagePriceMax: '',
 		averagePriceMin: '',
-
+		selectList: [],
 		scrollTop: 0,
 		triggered: false,
 		show: false,
@@ -67,6 +57,15 @@ Page({
 		rent: [],
 		type: [],
 		typeList: [],
+		topIndex1: false,
+		topIndex2: false,
+		topIndex3: false,
+		topIndex4: false,
+		iconIndex1: 0,
+		iconIndex2: 0,
+		iconIndex3: 0,
+		iconIndex4: 0,
+		selectIndex: '',
 	},
 
 	onClose(event) {
@@ -75,109 +74,46 @@ Page({
 		});
 	},
 
-	getInitialization() {
-		this.setData({
-			minPrice: 0,
-			maxPrice: 0,
-			entireRentIndex: '',
-			shareIndex: 0,
-			conditionIndex: 1,
-			pageIndex: 1,
-			shareIndex: 0,
-			entireRentIndex: '',
-			upperLimit: '',
-			lowerLimit: '',
-			routeStops: '',
-			houseType: '',
-			street: '',
-			lineName: '',
-			salesStatus: '',
-			buildingAgeOptions: '',
-			rentType: '',
-		}, () => {
-			this.getType()
-		})
-	},
-
 	selectTab(e) {
-		this.setData({
-			selectType: e.currentTarget.dataset.index
-		}, () => {
-			this.getInitialization()
-		})
-		if (e.currentTarget.dataset.index === 0) {
-			if (this.data.selectType1 === 2) {
+		let _this = this.data;
+		let index = e.currentTarget.dataset.index;
+		// topIndex1:false,
+		// topIndex2:false,
+		// topIndex3:false,
+		// topIndex4:false,
+		// iconIndex1:0,
+		// iconIndex2:0,
+		// iconIndex3:0,
+		// iconIndex4:0,
+		// selectIndex:'',
+		// 0是未选中，1是选中关闭，2是选择开启
+		if (index === 0) {
+			if (_this.iconIndex1 === 1) {
 				this.setData({
-					selectType1: 1,
-					selectType2: 0,
-					selectType3: 0,
-					selectType4: 0,
-				}, () => {
-					this.setHide()
+					iconIndex1: 1,
+					topIndex1: true,
+					selectIndex: _this.selectIndex === 0 ? '' : 0,
 				})
 			} else {
 				this.setData({
-					selectType1: 2,
-					selectType2: 0,
-					selectType3: 0,
-					selectType4: 0,
+					iconIndex1: _this.topIndex1 ? 0 : 2,
+					topIndex1: _this.topIndex1 ? false : true,
+					selectIndex: _this.topIndex1 ? '' : 0,
 				})
 			}
 		}
-		if (e.currentTarget.dataset.index === 1) {
-			if (this.data.selectType2 === 2) {
+		if (index === 1) {
+			if (_this.iconIndex2 === 2) {
 				this.setData({
-					selectType1: 0,
-					selectType2: 1,
-					selectType3: 0,
-					selectType4: 0,
-				}, () => {
-					this.setHide()
+					iconIndex2: 1,
+					topIndex2: true,
+					selectIndex: _this.selectIndex === 1 ? '' : 1,
 				})
 			} else {
 				this.setData({
-					selectType1: 0,
-					selectType2: 2,
-					selectType3: 0,
-					selectType4: 0,
-				})
-			}
-		}
-		if (e.currentTarget.dataset.index === 2) {
-			if (this.data.selectType3 === 2) {
-				this.setData({
-					selectType1: 0,
-					selectType2: 0,
-					selectType3: 1,
-					selectType4: 0,
-				}, () => {
-					this.setHide()
-				})
-			} else {
-				this.setData({
-					selectType1: 0,
-					selectType2: 0,
-					selectType3: 2,
-					selectType4: 0,
-				})
-			}
-		}
-		if (e.currentTarget.dataset.index === 3) {
-			if (this.data.selectType4 === 2) {
-				this.setData({
-					selectType1: 0,
-					selectType2: 0,
-					selectType3: 0,
-					selectType4: 1,
-				}, () => {
-					this.setHide()
-				})
-			} else {
-				this.setData({
-					selectType1: 0,
-					selectType2: 0,
-					selectType3: 0,
-					selectType4: 2,
+					iconIndex2: _this.topIndex2 ? 0 : 2,
+					topIndex2: _this.topIndex2 ? false : true,
+					selectIndex: _this.topIndex2 ? '' : 1,
 				})
 			}
 		}
@@ -185,16 +121,12 @@ Page({
 
 	setHide() {
 		this.setData({
-			selectType: '',
-			selectType1: 0,
-			selectType2: 0,
-			selectType3: 0,
-			selectType4: 0,
+			pageIndex: 1,
 		})
 	},
 
 	changeReset() {
-		this.getInitialization()
+		console.log('重置')
 	},
 
 	leftTab(e) {
@@ -269,7 +201,6 @@ Page({
 
 	oncheckTab(e) {
 		let index = e.currentTarget.dataset.index;
-		let item = e.currentTarget.dataset.item;
 		let type = this.data.type;
 		let newArr = type.filter((item) => {
 			return item.checked === true
@@ -325,8 +256,8 @@ Page({
 				conditionIndex: e.currentTarget.dataset.index
 			})
 		}
-		this.getType()
-		this.setHide();
+		// this.getType()
+		// this.setHide();
 		this.getData();
 	},
 
@@ -354,26 +285,64 @@ Page({
 		})
 		if (index === 0) {
 			this.setData({
+				iconIndex1: 0,
+				topIndex1: false,
+				selectIndex: '',
 				item: [],
+				pageIndex: 1,
+				subwayList: [],
+				street: '',
 				salesStatus: '',
 				buildingAgeOptions: '',
-				conditionIndex: e.currentTarget.dataset.index
+				conditionIndex: e.currentTarget.dataset.index,
+			}, () => {
+				this.getStreet();
 			})
+			type = '';
 		} else {
 			this.setData({
+				iconIndex1: 1,
+				topIndex1: true,
+				selectIndex: '',
 				item: [],
+				pageIndex: 1,
 				street: type === 0 ? subwayList.join(",") : '',
+				selectList: subwayList,
 				lineName: type === 1 ? subwayList[0].lineName : '',
 				routeStops: type === 1 ? subwayList[0].routeStopItem.join(",") : '',
 				conditionIndex: e.currentTarget.dataset.index,
-				subwayList: [],
-				routeStop: [],
 				leftAction: 0,
+				selectTypeIndex: '',
 			})
-			type = '';
 		}
-		this.getStreet();
-		this.setHide();
+		this.getData();
+	},
+
+	changeTab(e){
+		let {upperLimit,lowerLimit} = this.data;
+		let index = e.currentTarget.dataset.index;
+		console.log(upperLimit,lowerLimit)
+		if (index === 0) {
+			this.setData({
+				iconIndex2: 0,
+				topIndex2: false,
+				selectIndex: '',
+				item: [],
+				pageIndex: 1,
+			}, () => {
+				this.getStreet();
+			})
+		} else {
+			this.setData({
+				iconIndex2: 2,
+				topIndex2: true,
+				selectIndex: '',
+				selectList: [upperLimit-lowerLimit],
+				item: [],
+				pageIndex: 1,
+			})
+		}
+		console.log([upperLimit-lowerLimit])
 		this.getData();
 	},
 
@@ -425,14 +394,14 @@ Page({
 		this.setData({
 			pageIndex: 1,
 			region: '',
-			street:'',
-			item:[],
-			leftAction:0,
+			street: '',
+			item: [],
+			leftAction: 0,
 			province: e.detail[0].name,
 			city: e.detail[1].name,
 		}, () => {
-			this.setHide();
-			this.getStreet()
+			// this.setHide();
+			// this.getStreet()
 			this.getData()
 		})
 	},
@@ -461,7 +430,6 @@ Page({
 				pageIndex: 1,
 				item: [],
 			}, () => {
-				this.getInitialization();
 				this.getStreet();
 				this.getData()
 			})
@@ -698,7 +666,7 @@ Page({
 
 	getUnitPrice() {
 		request.unitPrice().then((res) => {
-			// console.log(res, '单价')
+			console.log(res, '单价')
 			this.setData({
 				unitPrice: res
 			})

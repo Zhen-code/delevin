@@ -1,5 +1,5 @@
 <view class="mine">
-	<navbar backHome="{{true}}" top="{{top}}" title="经纪人主页" />
+	<navbar pageHome="{{pageHome}}" backHome="{{backHome}}" top="{{top}}" title="经纪人主页" />
 	<view class="mine-content" style="padding-top:{{paddingTop}}px;min-height: calc(100vh - {{paddingTop}}px);">
 		<view class="mine-content-top">
 			<view class="mine-content-top-box">

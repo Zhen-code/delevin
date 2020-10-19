@@ -67,10 +67,15 @@ Page({
 
 	toPrice(e) {
 		var components = e.currentTarget.dataset.myid;
-		console.log(components)
-		this.setData({
-			toView: components,
-		})
+		if(this.data.toView){
+			this.setData({
+				toView:'',
+			})
+		}else{
+			this.setData({
+				// toView: components,
+			})
+		}
 	},
 
 	toMap() {
@@ -498,6 +503,7 @@ Page({
 	onLoad: function (options) {
 		let type = "";
 		let item = JSON.parse(options.item);
+		console.log(item.title)
 		switch (item.title) {
 			case "新房房源":
 				type = "ESTATE";
@@ -513,7 +519,6 @@ Page({
 				break;
 			default:
 		}
-		console.log(item, 454545)
 		this.setData({
 			type: type,
 			id: item.id,
@@ -525,8 +530,6 @@ Page({
 
 		this.cWidth = wx.getSystemInfoSync().windowWidth;
 		this.cHeight = 500 / 750 * wx.getSystemInfoSync().windowWidth;
-		// this.cWidth = '343';
-		// this.cHeight = '200';
 	},
 
 	showColumn(chartData) {
@@ -539,7 +542,7 @@ Page({
 			fontSize: 11,
 			background: '#FFFFFF',
 			pixelRatio: 1,
-			animation: false,
+			animation: true,
 			categories: chartData.categories,
 			series: chartData.series,
 			xAxis: {
@@ -550,7 +553,7 @@ Page({
 			},
 			dataLabel: false,
 			width: _self.cWidth,
-			height: 210,
+			height: 220,
 			extra: {
 				column: {
 					type: 'group',

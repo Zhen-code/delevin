@@ -23,7 +23,9 @@ Page({
 		},
 		agentId: "",
 		userInfo: {},
-		list: []
+		list: [],
+		backHome:true,
+		pageHome:false,
 	},
 
 	onPageScroll(e) {

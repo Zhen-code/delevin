@@ -1,3 +1,4 @@
+const app = getApp()
 const systemInfo = wx.getSystemInfoSync();
 let system = systemInfo.system.toLowerCase();
 let _height = 0;
@@ -35,6 +36,10 @@ Component({
       value: false //默认值
     },
     backHome: {
+      type: Boolean, //类型
+      value: false //默认值
+    },
+    pageHome:{
       type: Boolean, //类型
       value: false //默认值
     },
@@ -118,6 +123,8 @@ Component({
       }
     },
     toHome() {
+      console.log(this.data.pageHome)
+      app.globalData.state = true
       wx.switchTab({
         url: `/pages/home/index`
       })

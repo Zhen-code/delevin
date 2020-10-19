@@ -268,16 +268,16 @@ Page({
 		} = this.data
 		if (phone && number !== '') {
 			let data = {
-				"cityName": city,
+				"cityName": city || "",
 				"demandName": demandList.map((item) => {
 					return item.demandName
-				}).join(","),
-				"houseId": realEstateItem.id,
-				"houseType": realEstateItem.sourceType || realEstateItem.houseType,
-				"identityCard": number,
-				"openHomeDate": time+':00',
+				}).join(",") || [],
+				"houseId": realEstateItem.id || "",
+				"houseType": realEstateItem.sourceType || realEstateItem.houseType || "",
+				"identityCard": number ,
+				"openHomeDate": time?time+':00':"",
 				"phone": phone,
-				"remarks": remarks
+				"remarks": remarks || ""
 			}
 			console.log(data)
 			request.customers(data).then((res) => {

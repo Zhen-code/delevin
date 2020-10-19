@@ -10,7 +10,7 @@
 		<view class="item-right-title"><text wx:if="{{item.type === 'TENANCY' || item.sourceType === 'TENANCY' || item.houseMold === 'TENANCY' && item.rentType}}">{{item.rentType === 'WHOLE_RENT'?'整租':'合租'}}+</text>{{item.title}}</view>
 		<view class="item-right-time" wx:if="{{type === 'management' && item.houseMold === 'ESTATE'}}">
 			<text class="item-right-time-address">{{item.district}}·{{item.street}}</text>
-			<text class="item-right-time-time">开盘时间：{{item.openingDate}}</text>
+			<text class="item-right-time-time">开盘时间：{{item.openingDate || '暂无'}}</text>
 		</view>
 		<view class="item-right-content">
 			<view class="item-right-content-left">
@@ -29,8 +29,6 @@
 				color="#F8F8F8" text-color="#666666">{{item.builtYear}}</van-tag>
 			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'SECOND_HAND' || item.sourceType === 'TENANCY'}}" color="#F8F8F8" text-color="#666666">
 				{{item.houseToilet || 0}}室{{item.houseHall || 0}}厅{{item.houseToilet || 0}}卫{{item.houseKitchen || 0}}厨</van-tag>
-			<!-- <van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'TENANCY'}}" color="#F8F8F8"
-				text-color="#666666">{{item.floorage || 0}}m²</van-tag> -->
 			<block wx:for="{{item.houseLabel}}" wx:key="index">
 				<van-tag style="margin-right:10rpx" color="#F8F8F8" text-color="#666666">{{item}}</van-tag>
 			</block>

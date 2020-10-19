@@ -1,6 +1,6 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
 
-<view style="padding-top:{{paddingTop}}px;">
+<scroll-view style="padding-top:{{paddingTop}}px;" scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true">
 	<!-- <view class="info-view">
 		<van-icon name="cross" size="35rpx" color="#cccccc" />
 		<view class="info-view-row">
@@ -39,6 +39,7 @@
 						src="/combination/image/label_forsell_blue@2x.png"></image>
 					<image class="item-right-content-icon3" wx:if="{{item.salesStatus === 'ON_SALE' && type === 'ESTATE'}}"
 						src="/combination/image/label_sell_orange@2x.png"></image>
+					<van-tag style="margin-right:10rpx"  wx:if="{{type === 'TENANCY'}}" color="#f8f8f8" text-color="#666666">{{item.rentType === 'WHOLE_RENT'?'整租':'合租'}}</van-tag>
 					<block wx:for="{{item.houseLabel}}" wx:key="index">
 						<van-tag style="margin-right:10rpx" color="#f8f8f8" text-color="#666666">{{item}}</van-tag>
 					</block>
@@ -76,7 +77,7 @@
 			<view class="introduction-resources-row" wx:if="{{type === 'TENANCY'}}">
 				<view class="introduction-resources-num">
 					<text>{{item.monthRent}}元</text>
-					<text>{{item.rentType === 'WHOLE_RENT'?'整租':'合租'}}</text>
+					<text>月租</text>
 				</view>
 				<view class="introduction-resources-num">
 					<text>3室2厅1卫</text>
@@ -183,6 +184,12 @@
 			</view>
 			<view class="introduction-specification-bottom">
 				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate || '暂无'}}</text></view>
+				<view class="name-type1">
+					<text class="name-type2">地址：</text>
+					<view class="name-typeValue1">
+						<text>{{item.detailsAddress || '暂无'}}</text>
+					</view>
+				</view>
 				<view class="name-type" data-item="{{item}}" bindtap="toCommunity">所在小区：<text
 						class="name-typeValue name-typeValueColor">{{item.quartersName || '暂无'}}</text>
 				</view>
@@ -210,6 +217,12 @@
 			<view class="introduction-specification-bottom">
 				<view class="name-type">付款方式：<text class="name-typeValue">{{item.payMethod || '暂无'}}</text></view>
 				<view class="name-type">发布时间：<text class="name-typeValue">{{item.createDate || '暂无'}}</text></view>
+				<view class="name-type1">
+					<text class="name-type2">地址：</text>
+					<view class="name-typeValue1">
+						<text>{{item.detailsAddress || '暂无'}}</text>
+					</view>
+				</view>
 				<view class="name-type">房屋配置：<text class="name-typeValue">{{item.houseDisposal || '暂无'}}</text></view>
 				<view class="name-type" data-item="{{item}}" bindtap="toCommunity">所在小区：<text
 						class="name-typeValue name-typeValueColor">{{item.quartersName || '暂无'}}</text></view>
@@ -236,7 +249,7 @@
 		</view>
 	</view>
 
-	<view class="components borderBottom" wx:if="{{type !== 'ESTATE'}}" id="components">
+	<view class="components borderBottom" wx:if="{{type !== 'ESTATE'}}">
 		<view class="components-row">
 			<text class="components-title">房屋时光机</text>
 			<view class="doubleTab" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
@@ -244,7 +257,7 @@
 			</view>
 		</view>
 		<view class="lineChart">
-			<canvas canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
+			<canvas disable-scroll="{{true}}" canvas-id="canvasColumn" id="canvasColumn" class="charts"></canvas>
 		</view>
 	</view>
 
@@ -273,7 +286,7 @@
 		</view>
 	</view>
 
-	<view class="components">
+	<view class="components" id="components">
 		<text class="components-title">推荐经纪人</text>
 		<view class="information">
 			<block wx:for="{{item.pushAgents}}" wx:key="index">
@@ -343,6 +356,6 @@
 			<noData wx:if="{{list.length === 0}}" flexd="{{true}}" height="{{45}}"></noData>
 		</view>
 	</view>
-</view>
+</scroll-view>
 
 <view class="bottom-phone"><text class="bottom-phone-text" bindtap="collPhone">电话咨询</text></view>
