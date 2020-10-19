@@ -50,7 +50,7 @@
 				<view class="owner-rigth" bindtap="toRecommendedSource">
 					<text class="owner-left-title1">推荐客源</text>
 					<text class="owner-left-title2">成功购买 可获佣金</text>
-					<image class="owner-rigth-img" src="/assets/pic_recommend.png" mode="aspectFill"></image>
+					<image class="owner-rigth-img" src="/assets/pic_recommend_w166@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
 
