@@ -235,9 +235,10 @@ Page({
 				default:
 			}
 			if(res.agentId){
-				wx.setStorageSync('userId',res.agentId);
+				wx.setStorageSync('agentId',res.agentId);//经纪人id
 			}
-			wx.setStorageSync('info',res);
+			wx.setStorageSync('userId',res.id);//普通用户id
+			wx.setStorageSync('info',res);//登录者信息
 			this.setData({
 				userInfo: res,
 			})

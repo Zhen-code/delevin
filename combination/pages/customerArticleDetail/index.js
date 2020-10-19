@@ -40,26 +40,21 @@ Page({
     })
   },
   addArticleVisited(){
-    let id = wx.getStorageSync('id')|| '';
-    if(id === '' || !id){
-      wx.showToast({
-        title: '请登录！',
-        icon: "none",
-        duration: 1000
-      })
-    }else{
-      http({
-        url: '/api/access/v1/user/member/visitors/add',
-        method: 'POST',
-        params:{
-          "intervieweeId": id,
-          "type": "HOUSE"
-        }
+    let userId = wx.getStorageSync('userId') || '';
+    console.log(userId);
+    console.log('被访用户id');
+    if(userId!==''){
+      request.addMemberVisitor({
+        intervieweeId: userId,
+        type: 'ARTICLE'
       }).then(res=>{
         console.log(res)
+        console.log('添加获客配文访客');
       }).catch(err=>{
         console.log(err)
       })
+    }else{
+      console.log('暂无用户id')
     }
 
   },
@@ -92,18 +87,6 @@ Page({
     if(res['model'].includes('iPhone')){
       this.setData({
         safeBottom: Number(res.safeArea.bottom - res.safeArea.height)
-      })
-    }
-    let userId = wx.getStorageSync('userId') || '';
-    if(userId!==''){
-      request.addMemberVisitor({
-        intervieweeId: userId,
-        type: 'ARTICLE'
-      }).then(res=>{
-        console.log(res)
-        console.log('添加获客配文访客');
-      }).catch(err=>{
-        console.log(err)
       })
     }
   },

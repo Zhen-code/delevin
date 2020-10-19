@@ -43,14 +43,14 @@
 			</view>
 			<view class="owner">
 				<view class="owner-left">
+					<image src="/assets/pic_sellhouse_w166@2x.png" mode="aspectFill" class="owner-left-img"></image>
 					<text class="owner-left-title1">我要卖房</text>
 					<text class="owner-left-title2">金牌经纪 快速成交</text>
 				</view>
 				<view class="owner-rigth">
 					<text class="owner-left-title1">推荐客源</text>
 					<text class="owner-left-title2">成功购买 可获佣金</text>
-<!--					<image class="owner-rigth-image"-->
-<!--						src="http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/3db0055d-7b73-42d5-b440-2d505e5d0e9b.png"></image>-->
+					<image class="owner-rigth-img" src="/assets/pic_recommend.png" mode="aspectFill"></image>
 				</view>
 			</view>
 			<view class="home-message">
