@@ -261,7 +261,7 @@
 	width: 686rpx;
 	height: auto;
 	padding: 0 40rpx;
-	margin: 28rpx 32rpx 56rpx 32rpx;
+	margin: 28rpx 32rpx 32rpx 32rpx;
 	background: rgba(255, 255, 255, 1);
 	border-radius: 4px;
 	display: flex;
@@ -388,6 +388,11 @@
 	align-items: center;
 	justify-content: center;
 	background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+	overflow: hidden;
 }
 
 .view-no-row-top-name {
@@ -456,6 +461,7 @@
 	align-items: center;
 	justify-content: space-between;
 	flex-direction: row;
+	margin-top: 40rpx;
 	margin-bottom: 24rpx;
 }
 
@@ -823,4 +829,54 @@
 	color: rgba(51, 51, 51, 1);
 }
 
+.owner1 {
+	flex: 1;
+	height: 152rpx;
+	margin: 0 32rpx;
+	background-position: center center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-image: url('http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/6a7b806e-4570-4dad-90af-c8b7b457f293.png');
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+}
 
+.owner-left1 {
+	width: 50%;
+	padding-left: 48rpx;
+	box-sizing: border-box;
+	height: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.owner-left-title11 {
+	font-size: 34rpx;
+	font-weight: bold;
+	color: rgba(51, 51, 51, 1);
+}
+
+.owner-left-title21 {
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #666666;
+}
+
+.owner-rigth1 {
+	width: 50%;
+	height: 100%;
+	padding-right: 48rpx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.owner-rigth-image1 {
+	width: 192rpx;
+	height: 82rpx;
+}

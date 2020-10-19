@@ -53,6 +53,7 @@ Component({
 	 * 组件的初始数据
 	 */
 	data: {
+		codes:'',
 		show: false,
 		city: '',
 		province: '',
@@ -114,6 +115,24 @@ Component({
 			// wx.navigateTo({
 			// 	url: `/combination/pages/searchFor/index`,
 			// })
-		}
+		},
+
+		firm(e) {
+      let that = this;
+      let val = e.detail.value == undefined ? that.data.codes : e.detail.value; //通过这个传递数据
+      let myEventDetail = {
+        value: val
+      }
+      this.triggerEvent('firmInput', myEventDetail) //myevent自定义名称事件，父组件中使/
+    },
+
+    search(){
+      // let that = this;
+      let value = this.data.value
+      let myEventDetail = {
+        value: value
+      }
+      this.triggerEvent('search', myEventDetail) //myevent自定义名称事件，父组件中使/
+    },
 	}
 })

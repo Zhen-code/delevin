@@ -1,8 +1,9 @@
 <!--combination/pages/listings/index.wxml-->
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="超级推广" />
 <view class="view" style="padding-top:{{paddingTop}}px;">
-	<citySearch style="width:100%" placeholder="{{placeholder}}" bind:getCityValue="getCityValue"
-		bind:getInputValue="getInputValue" bind:getSearchValue="getSearchValue"></citySearch>
+	<citySearch isCancel style="width:100%" value="{{value}}" bind:getCityValue="getCityValue"
+		bind:getInputValue="getInputValue" bind:getSearchValue="getSearchValue" bind:search="getSearchValue"
+		bind:firmInput="getSearchValue"></citySearch>
 	<view class="doubleTab">
 		<doubleTab style="width:100%;height:70rpx;" tabItem="{{tabItem}}" bind:backTabValue="getBackTabValue"></doubleTab>
 	</view>

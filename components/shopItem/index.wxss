@@ -192,10 +192,19 @@
 	color: rgba(254, 99, 0, 1);
 }
 
+.item-right-content-left{
+	width: auto;
+	/* height: 30rpx; */
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+
 .item-right-content-icon1 {
 	width: 30px;
 	height: 16px;
 	margin-right: 5px;
+	margin-bottom: 4px;
 }
 
 .item-right-content-icon2 {

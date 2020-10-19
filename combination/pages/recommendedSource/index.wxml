@@ -1,0 +1,109 @@
+<!--combination/pages/sellHouse/index.wxml-->
+<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="推荐客源" />
+<view class="view" style="padding-top:{{paddingTop}}px">
+	<view class="view-row">
+		<view class="view-row-content">
+			<view class="view-row-content-name">
+				<van-icon name="/assets/icon_asterisk_9_red@2x.png" style="margin-right:8rpx" size="18rpx" />被推荐人手机号</view>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" bindinput='getInputValue'
+					type='text' value="{{phone}}" name='phone' data-model="phone" maxlength="11" placeholder="请输入手机号码"></input>
+			</view>
+		</view>
+		<view class="view-row-content">
+			<view class="view-row-content-name">
+				<van-icon name="/assets/icon_asterisk_9_red@2x.png" style="margin-right:8rpx" size="18rpx" />被推荐人身份证后六位</view>
+			<view class="view-row-content-input">
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" bindinput='getInputValue'
+					type='text' value="{{number}}" name='number' data-model="number" maxlength="6" placeholder="请输入证件尾号"></input>
+			</view>
+		</view>
+		<view class="view-row-content" bindtap="cityTypeShow">
+			<text class="view-row-content-name">城市</text>
+			<view class="view-row-content-input" style="padding-right: 20rpx;">
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" disabled="disabled"
+					bindinput='getInputValue' type='text' value="{{city}}" name='city' data-model="city"
+					placeholder="请选择城市"></input>
+				<van-icon name="arrow" style="margin-left:10rpx" size="40rpx" color="#cccccc" />
+			</view>
+		</view>
+		<view class="view-row-content" bindtap="toListings">
+			<text class="view-row-content-name">意向楼盘</text>
+			<view class="view-row-content-input" style="padding-right: 20rpx;">
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" disabled="disabled"
+					bindinput='getInputValue' value="{{realEstate}}" type='text' name='realEstate' data-model="realEstate"
+					placeholder="请选择意向楼盘"></input>
+				<van-icon name="arrow" style="margin-left:10rpx" size="40rpx" color="#cccccc" />
+			</view>
+		</view>
+		<view class="view-row-content" bindtap="timeShow">
+			<text class="view-row-content-name">预约看房时间</text>
+			<view class="view-row-content-input" style="padding-right: 20rpx;">
+				<input class="view-row-content-input-text" placeholder-style="color:#999999" disabled="disabled"
+					bindinput='getInputValue' value="{{time}}" type='text' name='time' data-model="time" placeholder="请选择时间"></input>
+				<van-icon name="arrow" style="margin-left:10rpx" size="40rpx" color="#cccccc" />
+			</view>
+		</view>
+		<view class="view-row-content">
+			<view class="view-row-content-one" bindtap="demandShow">
+				<text class="view-row-content-name">购房客户需求</text>
+				<view class="view-row-content-input" style="padding-right: 20rpx;">
+					<input class="view-row-content-input-text" placeholder-style="color:#999999" disabled="disabled"
+						bindinput='getInputValue' type='text' name='demand' data-model="demand" placeholder="可多选"></input>
+					<van-icon name="arrow" style="margin-left:10rpx" size="40rpx" color="#cccccc" />
+				</view>
+			</view>
+			<view class="view-row-content-tow" wx:if="{{demandList.length > 0}}">
+				<block wx:for="{{demandList}}" wx:key="index">
+					<van-tag wx:if="{{ item.action }}" style="margin:0 10rpx 10rpx 0" closeable size="large" color="#F8F8F8"
+						text-color="#666666" data-index="{{index}}" id="item.action" bind:close="onCloseIndex">{{item.demandName}}
+					</van-tag>
+				</block>
+			</view>
+		</view>
+	</view>
+	<view class="view-row-tow">
+		<text class="text">备注</text>
+		<textarea class="textarea" bindinput='getInputValue' name='remarks' data-model="remarks"
+			placeholder-style="color:#999999" placeholder="请输入内容"></textarea>
+	</view>
+	<view class="view-row-text">
+		<text bindtap="privacyPolicy">温馨提示</text>
+		<text>与其等待与能力匹配的机会，不如培养与机会匹配的能力将已知的事物陌生化，更是一种创造与其等待与能力匹配的机会，不如培养与机会匹配的能力将已知的事物陌生化，更是一种创造与其等待与能力匹配的机会，不如培养与机会匹配的能力将已知的事物陌生化，更是一种创造</text>
+	</view>
+</view>
+
+<view class="bottom">
+	<text class="bottom-text action" bindtap="submit">马上推荐</text>
+</view>
+
+<van-popup show="{{ cityType }}" position="bottom" z-index="999999999" custom-style="width:100%;height: auto"
+	round="{{true}}" bind:close="cityTypeHide">
+	<van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" bind:cancel="cancel" bind:confirm="confirm" />
+</van-popup>
+
+<van-popup position="bottom" z-index="999999999" round="{{true}}" custom-style="width:100%;height: auto;" show="{{ timeType }}" bind:close="timeHide">
+	<van-datetime-picker title="请选择时间" type="datetime" value="{{ currentDate }}" bind:confirm="ClickTimeViewOkBtn" 	bind:cancel="timeHide" formatter="{{ formatter }}" active-class="active-class" />
+</van-popup>
+
+<van-popup show="{{ demandType }}" safe-area-inset-bottom round position="bottom" z-index="999999999" round="{{true}}"
+	custom-style="width:100%;height: auto" bind:close="demandHide">
+	<view class="demandType-view">
+		<view class="demandType-view-top">
+			<text class="demandType-view-top-left">购房需求</text>
+			<van-icon name="/combination/image/icon_close_22_cicle@2x.png" bindtap="demandHide" size="45rpx" />
+		</view>
+		<view class="demandType-view-content">
+			<block wx:for="{{demandItem}}" wx:key="index">
+				<text class="demandType-view-content-text {{item.action?'textAction':''}}" data-index="{{index}}"
+					bindtap="tabTextIndex">{{item.demandName}}</text>
+			</block>
+		</view>
+		<view class="demandType-view-bottom">
+			<text class="demandType-view-bottom-text {{actionIndex === 0?'action':''}}" data-index="{{0}}"
+				bindtap="bindAction">清空</text>
+			<text class="demandType-view-bottom-text {{actionIndex === 1?'action':''}}" data-index="{{1}}"
+				bindtap="bindAction">确定</text>
+		</view>
+	</view>
+</van-popup>

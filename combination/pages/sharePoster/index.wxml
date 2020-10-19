@@ -61,7 +61,7 @@
                         </view>
                         <view class="desc">{{userInfo.synopsis}}</view>
                     </view>
-                    <view class="am-img"><canvas style="width: 136rpx; height: 136rpx;" canvas-id="myQrcode"></canvas></view>
+                    <view class="am-img"><canvas style="width: 70px; height: 70px;" canvas-id="myQrcode"></canvas></view>
                 </view>
             </swiper-item>
             <swiper-item class="swiper-item"  item-id="{{imgPath2}}">
@@ -89,7 +89,7 @@
                         </view>
                         <view class="desc">{{userInfo.synopsis}}</view>
                     </view>
-                    <view class="am-img"><canvas style="width: 136rpx; height: 136rpx;" canvas-id="myQrcode1"></canvas></view>
+                    <view class="am-img"><canvas style="width: 70px; height: 70px;" canvas-id="myQrcode1"></canvas></view>
                 </view>
             </swiper-item>
             <swiper-item class="swiper-item si3"  item-id="{{imgPath3}}">
@@ -116,7 +116,7 @@
                         </view>
                         <view class="desc">{{userInfo.synopsis}}</view>
                     </view>
-                    <view class="am-img"><canvas style="width: 100rpx; height: 100rpx;" canvas-id="myQrcode2"></canvas></view>
+                    <view class="am-img"><canvas style="width: 70px; height: 70px;" canvas-id="myQrcode2"></canvas></view>
                 </view>
             </swiper-item>
             <swiper-item class="swiper-item si4" item-id="{{imgPath4}}">
@@ -129,7 +129,7 @@
                         </view>
                         <view class="desc">{{userInfo.synopsis}}</view>
                     </view>
-                    <view class="am-img"><canvas style="width: 100rpx; height: 100rpx;" canvas-id="myQrcode3"></canvas></view>
+                    <view class="am-img"><canvas style="width: 70px; height: 70px;" canvas-id="myQrcode3"></canvas></view>
                 </view>
                 <image src="{{imgPath4}}" class="img4" mode="widthFix"></image>
                 <image src="{{pic_resources}}" mode="widthFix" class="resource-img"></image>

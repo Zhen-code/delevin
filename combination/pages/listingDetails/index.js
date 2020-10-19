@@ -74,12 +74,7 @@ Page({
 	},
 
 	toMap() {
-		let item = JSON.stringify({
-			"latitude": this.data.item.latitude,
-			"longitude": this.data.item.longitude,
-			"city": this.data.item.city,
-			"detailsAddress": this.data.item.detailsAddress,
-		})
+		let item = JSON.stringify(this.data.item)
 		wx.navigateTo({
 			url: `/combination/pages/map/index?item=${item}`
 		})
@@ -124,13 +119,13 @@ Page({
 
 	getMap(item){
 		let markers = [{
-			iconPath: "/combination/image/order_icon_location@2x.png",
+			iconPath: "/combination/image/icon_location_map@2x.png",
 			id: 0,
 			title: item.street,
 			latitude: item.latitude,
 			longitude: item.longitude,
-			width: 15,
-			height: 20
+			width: 25,
+			height: 30
 		}]
 		this.setData({
 			markers:markers

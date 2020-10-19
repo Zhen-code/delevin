@@ -1,7 +1,7 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
 <view class="view" style="top:{{paddingTop}}px">
-	<citySearch style="width:100%" bind:getCityValue="getCityValue" bind:getInputValue="getInputValue"
-		bind:getSearchValue="getSearchValue"></citySearch>
+	<citySearch isCancel style="width:100%" bind:getCityValue="getCityValue" bind:getInputValue="getInputValue"
+		bind:getSearchValue="getSearchValue" bind:search="getSearchValue" bind:firmInput="getSearchValue"></citySearch>
 	<view class="type">
 		<view class="type-index" data-index="{{0}}" bindtap="selectTab">
 			<text class="type-index-name {{selectType === 0?'type-index-name-action':''}}">区域</text>

@@ -6,7 +6,7 @@
 	</view>
 	<view class="top-right">
 		<image class="top-right-image" bindtap="search" src="/assets/icon_glass_22_d6@2x.png"></image>
-		<input class="top-right-text" value="{{value}}" bindinput="chanheValue" placeholder="{{placeholder}}"></input>
+		<input class="top-right-text" confirm-type="search" bindconfirm="firm" value="{{value}}" bindinput="chanheValue" placeholder="{{placeholder}}"></input>
 	</view>
 </view>
 

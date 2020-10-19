@@ -47,12 +47,13 @@
 					<text class="owner-left-title1">我要卖房</text>
 					<text class="owner-left-title2">金牌经纪 快速成交</text>
 				</view>
-				<view class="owner-rigth">
+				<view class="owner-rigth" bindtap="toRecommendedSource">
 					<text class="owner-left-title1">推荐客源</text>
 					<text class="owner-left-title2">成功购买 可获佣金</text>
 					<image class="owner-rigth-img" src="/assets/pic_recommend.png" mode="aspectFill"></image>
 				</view>
 			</view>
+
 			<view class="home-message">
 				<image class="home-message-image" src="/assets/pic_notice_black@2x.png"></image>
 				<view class="home-message-text">
@@ -69,7 +70,8 @@
 		<view class="components">
 			<view class="components-top">
 				<text class="components-top-left">推荐房源</text>
-				<doubleTab style="width:230rpx;" tabIndex="{{0}}" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
+				<doubleTab style="width:230rpx;" tabIndex="{{0}}" tabItem="{{tabItem}}" bind:backTabValue="getTabValue">
+				</doubleTab>
 			</view>
 			<block wx:for="{{listingsList}}" wx:key="index">
 				<shopItem item="{{item}}" data-item="{{item}}" bindtap="toDetails"></shopItem>
@@ -103,6 +105,18 @@
 				</view>
 			</view>
 		</view>
+
+		<view class="owner1">
+			<view class="owner-left1">
+				<text class="owner-left-title11">推荐客源</text>
+				<text class="owner-left-title21">成功购买 可获佣金</text>
+			</view>
+			<view class="owner-rigth1" bindtap="toRecommendedSource">
+				<image class="owner-rigth-image" src="/assets/btn_recommend_golden@2x.png">
+				</image>
+			</view>
+		</view>
+
 		<view class="row-floor">
 			<text class="row-floor-left">我的房源</text>
 			<view class="row-floor-right" bindtap="toAddHouseOrigin">
@@ -114,12 +128,10 @@
 			<view class="floor-list">
 				<block wx:for="{{brokerList}}" wx:key="index">
 					<view class="floor-list-row">
-						<view class="view-no-row" wx:if="{{item.status === 'LOWER'}}">
-							<view class="view-no-row-top">
+						<view class="floor-list-row-top" data-item="{{item}}" bindtap="toDetails">
+							<view class="view-no-row-top" wx:if="{{item.status === 'LOWER'}}">
 								<text class="view-no-row-top-name">已下架</text>
 							</view>
-						</view>
-						<view class="floor-list-row-top" data-item="{{item}}" bindtap="toDetails">
 							<image class="floor-list-row-top-image" src="{{item.coverPicture}}"></image>
 							<view class="floor-list-row-top-type">
 								<view class="floor-list-row-top-type-top">
@@ -127,7 +139,8 @@
 										<image class="top-view-image" src="/assets/icon_share_14_black@2x.png"></image>
 										<text class="top-view-text">分享</text>
 									</view>
-									<view class="top-delete" data-item="{{item.id}}" catchtap="getDelete" wx:if="{{item.status !== 'LOWER'}}">
+									<view class="top-delete" data-item="{{item.id}}" catchtap="getDelete"
+										wx:if="{{item.status !== 'LOWER'}}">
 										<image class="top-view-image" src="/assets/icon_clean_14_white@2x.png"></image>
 										<text class="top-delete-text">删除</text>
 									</view>
@@ -135,10 +148,13 @@
 								<view class="floor-list-row-top-type-bottom">
 									<view class="title">{{item.title}}</view>
 									<view class="column">
-										<text class="column-name" wx:if="{{item.houseMold === 'ESTATE' || item.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{item.region}}·{{item.street}}</text>
-										<text class="column-name" wx:if="{{item.houseMold === 'SECOND_HAND' || item.houseMold === 'TENANCY'}}">{{item.houseType || 0}}室{{item.houseHall || 0}}厅{{item.houseToilet || 0}}卫{{item.houseKitchen || 0}}厨</text>
+										<text class="column-name"
+											wx:if="{{item.houseMold === 'ESTATE' || item.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{item.region}}·{{item.street}}</text>
+										<text class="column-name"
+											wx:if="{{item.houseMold === 'SECOND_HAND' || item.houseMold === 'TENANCY'}}">{{item.houseType || 0}}室{{item.houseHall || 0}}厅{{item.houseToilet || 0}}卫{{item.houseKitchen || 0}}厨</text>
 										<text class="column-price" wx:if="{{item.houseMold === 'ESTATE'}}">{{item.unitPrice}}元/m²</text>
-										<text class="column-price" wx:if="{{item.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{item.averagePrice}}元/m²</text>
+										<text class="column-price"
+											wx:if="{{item.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{item.averagePrice}}元/m²</text>
 										<text class="column-price" wx:if="{{item.houseMold === 'TENANCY'}}">{{item.monthRent}}元/月</text>
 										<text class="column-price" wx:if="{{item.houseMold === 'SECOND_HAND'}}">{{item.totalPrice}}万</text>
 									</view>
@@ -166,23 +182,26 @@
 								</view>
 							</view>
 							<view class="floor-list-row-bottom-bottom">
-								<view class="floor-list-row-bottom-bottom-view1" wx:if="{{item.push === 'YES' && item.status !== 'LOWER'}}">
+								<view class="floor-list-row-bottom-bottom-view1"
+									wx:if="{{item.push === 'YES' && item.status !== 'LOWER'}}">
 									<image class="floor-list-row-bottom-bottom-view-image" src="/assets/icon_promo_16_pre@2x.png"></image>
 									<text class="floor-list-row-bottom-bottom-view-text1">已推广</text>
 								</view>
-								<view class="floor-list-row-bottom-bottom-view" data-item="{{item}}" wx:if="{{item.push === 'NO' && item.status !== 'LOWER'}}"
-									bindtap="getOrdinaryPurchase">
+								<view class="floor-list-row-bottom-bottom-view" data-item="{{item}}"
+									wx:if="{{item.push === 'NO' && item.status !== 'LOWER'}}" bindtap="getOrdinaryPurchase">
 									<image class="floor-list-row-bottom-bottom-view-image" src="/assets/icon_promo_16@2x.png"></image>
 									<text class="floor-list-row-bottom-bottom-view-text">推广</text>
 								</view>
-								<view class="floor-list-row-bottom-bottom-super" data-item="{{item}}" bindtap="toSuperPromotion" wx:if="{{item.status !== 'LOWER'}}">
+								<view class="floor-list-row-bottom-bottom-super" data-item="{{item}}" bindtap="toSuperPromotion"
+									wx:if="{{item.status !== 'LOWER'}}">
 									<image class="floor-list-row-bottom-bottom-view-image" src="/assets/icon_fire_16@2x.png"></image>
 									<text class="floor-list-row-bottom-bottom-super-text">超级推广</text>
 								</view>
-								<view class="top-delete" data-item="{{item.id}}" bindtap="getDelete" wx:if="{{item.status === 'LOWER'}}">
-										<image class="top-view-image" src="/assets/icon_clean_14_white@2x.png"></image>
-										<text class="top-delete-text">删除</text>
-									</view>
+								<view class="top-delete" data-item="{{item.id}}" bindtap="getDelete"
+									wx:if="{{item.status === 'LOWER'}}">
+									<image class="top-view-image" src="/assets/icon_clean_14_white@2x.png"></image>
+									<text class="top-delete-text">删除</text>
+								</view>
 							</view>
 						</view>
 					</view>
@@ -217,4 +236,3 @@
 		<text class="share-view-no" bindtap="setShareIt">取消分享</text>
 	</view>
 </van-popup>
-

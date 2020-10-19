@@ -46,7 +46,6 @@ Page({
 			wx.navigateTo({
 				url: `/combination/pages/listings/index?title=${e.detail.val}`,
 			})
-
 		} else {
 			Notify.default({
 				type: 'warning',

@@ -627,6 +627,20 @@ Page({
 		this.toDetails(item)
 	},
 
+	toState(){
+		wx.showToast({
+			title: '该楼盘已下架',
+			icon: 'none',
+			duration: 2500
+		})
+	},
+
+	toRecommendedSource(){
+		wx.navigateTo({
+			url: '/combination/pages/recommendedSource/index'
+		})
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */

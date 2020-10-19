@@ -281,6 +281,20 @@ const request = {
       params: params,
     });
   },
+  customers: (params) => {
+    return http({
+      url: api.listings.customers,
+      method: "POST",
+      params: params,
+    });
+  },
+  demand: (params) => {
+    return http({
+      url: api.listings.demand,
+      method: "GET",
+      params: params,
+    });
+  },
 
   //用户我的
   personalMine: (params) => {
