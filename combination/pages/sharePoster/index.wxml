@@ -107,7 +107,7 @@
                     <image src="{{imgPath6}}" mode="widthFix"></image>
                     <image src="{{imgPath7}}" mode="widthFix"></image>
                 </view>
-                <view class="point-container">
+                <view class="point-container3">
                     <view>
                         <view class='am-cname'><text>{{userInfo.realName}}</text></view>
                         <view class="contact">

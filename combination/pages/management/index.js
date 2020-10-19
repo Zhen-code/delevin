@@ -361,6 +361,7 @@ Page({
 			housetype,
 			dialing
 		} = e.currentTarget.dataset;
+		console.log(dialing)
 		if(dialing === 'NO'){
 			wx.showModal({
 				content: '本功能需要购买端口套餐,是否前往购买?',
@@ -375,32 +376,32 @@ Page({
 					}
 				}
 			});
-			return
+		}else{
+			let type = '';
+			switch (housetype) {
+				case 'ESTATE':
+					type = "新房房源";
+					break;
+				case 'SECOND_HAND':
+					type = "二手房房源";
+					break;
+				case 'TENANCY':
+					type = "租房房源";
+					break;
+				case 'RESIDENTIAL_QUARTERS':
+					type = "小区房源";
+					break;
+				default:
+					break;
+			}
+			let item = JSON.stringify({
+				'title': type,
+				"id": id
+			});
+			wx.navigateTo({
+				url: `/combination/pages/listingDetails/index?item=${item}`,
+			});
 		}
-		let type = '';
-		switch (housetype) {
-			case 'ESTATE':
-				type = "新房房源";
-				break;
-			case 'SECOND_HAND':
-				type = "二手房房源";
-				break;
-			case 'TENANCY':
-				type = "租房房源";
-				break;
-			case 'RESIDENTIAL_QUARTERS':
-				type = "小区房源";
-				break;
-			default:
-				break;
-		}
-		let item = JSON.stringify({
-			'title': type,
-			"id": id
-		});
-		wx.navigateTo({
-			url: `/combination/pages/listingDetails/index?item=${item}`,
-		});
 	},
 
 	toRecording(e){

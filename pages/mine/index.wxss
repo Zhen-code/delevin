@@ -172,13 +172,13 @@
 	margin-top: 64px;
 }
 
-.mine-content-out text {
+.mine-content-out view {
 	width: 140px;
 	height: 40px;
 	font-size: 16px;
 	font-weight: 400;
 	color: rgba(64, 119, 255, 1);
-	border:1rpx solid rgba(64, 119, 255, 1);
+	border:1px solid rgba(64, 119, 255, 1);
 	display: flex;
 	align-items: center;
 	justify-content: center;

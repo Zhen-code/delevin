@@ -18,9 +18,9 @@ Page({
     time: '',
     nodes: '',
     id: '',
-    safeBottom: 0
+    safeBottom: 0,
+    userId:''
   },
-  id: '',
   timeFlag: 1,
   getNewsDetail(id){
     http({
@@ -40,26 +40,20 @@ Page({
     })
   },
   addArticleVisited(){
-    let id = wx.getStorageSync('id')|| '';
-    if(id === '' || !id){
-      wx.showToast({
-        title: '请登录！',
-        icon: "none",
-        duration: 1000
-      })
-    }else{
-      http({
-        url: '/api/access/v1/user/member/visitors/add',
-        method: 'POST',
-        params:{
-          "intervieweeId": id,
-          "type": "HOUSE"
-        }
+    let userId = this.data.userId;
+    console.log(userId)
+    console.log('被访用户id');
+    if(userId!==''){
+      request.addMemberVisitor({
+        intervieweeId: userId,
+        type: 'ARTICLE'
       }).then(res=>{
         console.log(res)
       }).catch(err=>{
         console.log(err)
       })
+    }else{
+      console.log('暂无用户id')
     }
 
   },
@@ -68,11 +62,13 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    let {id} = options;
+    let {id,userId} = options;
+    console.log(userId)
+    console.log('经纪人id')
     this.setData({
-      id: id
+      id: id,
+      userId: userId||''
     });
-    this.id = id;
     this.getNewsDetail(id);
   },
 
@@ -87,23 +83,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.addArticleVisited();
+    console.log(this.data.userId);
+    console.log('show中id')
+    if(this.data.userId){
+      this.addArticleVisited();
+    }
     let res = wx.getSystemInfoSync();
     if(res['model'].includes('iPhone')){
       this.setData({
         safeBottom: Number(res.safeArea.bottom - res.safeArea.height)
-      })
-    }
-    let userId = wx.getStorageSync('userId') || '';
-    if(userId!==''){
-      request.addMemberVisitor({
-        intervieweeId: userId,
-        type: 'ARTICLE'
-      }).then(res=>{
-        console.log(res)
-        console.log('添加获客配文访客');
-      }).catch(err=>{
-        console.log(err)
       })
     }
   },
@@ -121,12 +109,13 @@ Page({
   onShareAppMessage: function (res) {
     let { title} = this.data;
     console.log(res);
+    let userId = wx.getStorageSync('userId');
     if(res.from === 'button'){
 
     }
     return {
       title: title,
-      path: '/combination/pages/customerArticleDetail/index?id='+this.id,
+      path: '/combination/pages/customerArticleDetail/index?id='+this.data.id+'&userId='+userId,
       success: function (res) {
         console.log('成功', res)
       }

@@ -3,7 +3,14 @@
 	<view class="doubleTab">
 		<doubleTab style="width:100%;height:70rpx;" tabIndex="{{tabIndex}}" tabItem="{{tabItem}}" bind:backTabValue="getTabValue"></doubleTab>
 	</view>
-	<scroll-view class="shopItem" wx:if="{{selectType.length !== 0}}" style="top: {{paddingTop+45}}px;" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
+	<scroll-view class="shopItem"
+				 wx:if="{{selectType.length !== 0}}"
+				 refresher-enabled="true"
+				 scroll-into-view="{{toView}}"
+				 refresher-triggered="{{triggered}}"
+				 bindrefresherrefresh="topList"
+				 bindscrolltolower="scrollList"
+				 scroll-y="true">
 		<block wx:for="{{item}}" wx:key="index" wx:if="{{tabIndex === 0}}">
 			<shopItem classType="{{item.sourceType}}" type="{{type}}" item="{{item}}" data-type="{{item.houseMold}}" data-id="{{item.houseId}}"  bindtap="toRecording"></shopItem>
 		</block>
@@ -45,7 +52,7 @@
 					<view class="row-left-type">
 						<text class="row-left-type-name">{{item.nickname}}</text>
 						<view class="row-left-type-degree">匹配度 {{item.matchValue}}%
-							<text class="row-left-type-check" data-id="{{item.houseId}}"  data-housetype="{{item.houseType}}" catch:tap="goHouseDetail">查看最匹配房源</text>
+							<text class="row-left-type-check" data-id="{{item.houseId}}"  data-housetype="{{item.houseType}}" data-dialing="{{item.dialing}}" catch:tap="goHouseDetail">查看最匹配房源</text>
 						</view>
 					</view>
 				</view>

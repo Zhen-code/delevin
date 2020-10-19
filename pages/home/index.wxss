@@ -136,7 +136,7 @@
 
 .owner {
 	width: 100%;
-	height: 152rpx;
+	height: auto;
 	margin-top: 24rpx;
 	display: flex;
 	align-items: center;
@@ -146,26 +146,28 @@
 
 .owner-left {
 	width: 47%;
-	padding-left: 48rpx;
-	box-sizing: border-box;
 	height: 100%;
-	display: flex;
-	align-items: flex-start;
-	justify-content: center;
-	flex-direction: column;
-	background-position: center center;
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	background-image: url('http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/16946559-db73-42a9-9d80-f7f5b78256a5.png');
+	position: relative;
+}
+
+.owner-left-img{
+	width: 332rpx;
+	height: 180rpx;
 }
 
 .owner-left-title1 {
+	position: absolute;
+	left: 24rpx;
+	top: 32rpx;
 	font-size: 34rpx;
 	font-weight: bold;
 	color: rgba(51, 51, 51, 1);
 }
 
 .owner-left-title2 {
+	position: absolute;
+	left: 24rpx;
+	top: 80rpx;
 	font-size: 28rpx;
 	font-weight: 400;
 	color: rgba(102, 102, 102, 1);
@@ -174,29 +176,18 @@
 .owner-rigth {
 	width: 50%;
 	height: 100%;
-	padding-right: 48rpx;
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: center;
-	background-size: 100% 100%;
-	background-position: center center;
-	background-image: url('http://beiru.oss-cn-hangzhou.aliyuncs.com/admin-file/7e715b51-546c-48e0-9233-933d9ef4ee2b.png');
-	background-repeat: no-repeat;
-	padding-left: 24rpx;
-	box-sizing: border-box;
+	position: relative;
 }
 
-.owner-rigth-image {
-	width: 192rpx;
-	height: 82rpx;
+.owner-rigth-img {
+	width: 332rpx;
+	height: 180rpx;
 }
 
 .home-message {
 	width: 100%;
 	height: auto;
-	margin: 34rpx 0;
+	margin: 40rpx 0;
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;

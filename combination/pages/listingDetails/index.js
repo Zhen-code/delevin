@@ -312,22 +312,6 @@ Page({
 		})
 	},
 
-	ahistoryAdd(item) {
-		request.ahistoryAdd({
-			"targetId": item.houseId,
-			"type": item.houseMold
-		}).then((res) => {
-			// console.log(res,55333)
-		}).catch((err) => {
-			console.log(err)
-			wx.showToast({
-				title: '请求失败',
-				icon: 'none',
-				duration: 2500
-			})
-		})
-	},
-
 	toHomepage(e) {
 		wx.navigateTo({
 			url: `/combination/pages/homepage/index?agentId=${e.currentTarget.dataset.item.agentId}`,
@@ -399,6 +383,7 @@ Page({
 			})
 		}
 	},
+
 	toHomePage(e) {
 		let data = e.currentTarget.dataset.item;
 		let {
@@ -408,6 +393,7 @@ Page({
 			url: '/combination/pages/homepage/index?agentId=' + agentId
 		})
 	},
+
 	toDetails(e) {
 		let type = '';
 		let data = e.currentTarget.dataset.item;
@@ -447,6 +433,17 @@ Page({
 		})
 	},
 
+	updateVisitCount() {
+		request.updateVisitCount({
+			houseType: this.data.type,
+			targetId: this.data.id
+		}).then(res => {
+			// console.log(res)
+		}).catch(err => {
+			console.log(err)
+		})
+	},
+	//添加访客记录
 	addVistorRecord() {
 		request.addMemberVisitor({
 			houseId: this.data.id,
@@ -458,16 +455,7 @@ Page({
 			console.log(err)
 		})
 	},
-	updateVisitCount() {
-		request.updateVisitCount({
-			houseType: this.data.type,
-			targetId: this.data.id
-		}).then(res => {
-			// console.log(res)
-		}).catch(err => {
-			console.log(err)
-		})
-	},
+	//添加浏览记录
 	addBrowseHistory() {
 		request.addBrowseHistory({
 			targetId: this.data.id,
@@ -479,15 +467,12 @@ Page({
 		})
 	},
 
-	// getAddvisitorRecord() {
-	// 	request.visitorRecord({
-	// 		"houseId":  item.houseId,
-	// 		"houseType": item.houseMold,
-	// 		"intervieweeId": '',
-	// 		"type": "HOUSE"
-	// 	}).then((res)=>{
-		
-	// 	}).catch((err)=>{
+	// ahistoryAdd(item) {
+	// 	request.ahistoryAdd({
+	// 		"targetId": item.houseId,
+	// 		"type": item.houseMold
+	// 	}).then((res) => {
+	// 	}).catch((err) => {
 	// 		console.log(err)
 	// 		wx.showToast({
 	// 			title: '请求失败',
@@ -496,6 +481,7 @@ Page({
 	// 		})
 	// 	})
 	// },
+
 
 	/**
 	 * 生命周期函数--监听页面加载
@@ -525,7 +511,6 @@ Page({
 			title: item.title,
 		}, () => {
 			this.getData();
-			// this.getAddvisitorRecord()
 		})
 
 		this.cWidth = wx.getSystemInfoSync().windowWidth;
@@ -612,9 +597,9 @@ Page({
 	 */
 	onShow: function () {
 		this.addVistorRecord();
-		this.updateVisitCount();
-		this.addBrowseHistory();
-		this.getSuperAdvert();
+		this.updateVisitCount();//更新房源访问次数
+		this.addBrowseHistory();//添加浏览记录
+		this.getSuperAdvert();//获取超级推广
 	},
 
 	/**

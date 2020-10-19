@@ -42,13 +42,15 @@
 				<text class="components-top-right">我要推荐</text>
 			</view>
 			<view class="owner">
-				<view class="owner-left" bindtap="toPrice">
+				<view class="owner-left">
+					<image src="/assets/pic_sellhouse_w166@2x.png" mode="aspectFill" class="owner-left-img"></image>
 					<text class="owner-left-title1">我要卖房</text>
 					<text class="owner-left-title2">金牌经纪 快速成交</text>
 				</view>
 				<view class="owner-rigth" bindtap="toRecommendedSource">
 					<text class="owner-left-title1">推荐客源</text>
 					<text class="owner-left-title2">成功购买 可获佣金</text>
+					<image class="owner-rigth-img" src="/assets/pic_recommend_w166@2x.png" mode="aspectFill"></image>
 				</view>
 			</view>
 
@@ -110,7 +112,7 @@
 				<text class="owner-left-title21">成功购买 可获佣金</text>
 			</view>
 			<view class="owner-rigth1" bindtap="toRecommendedSource">
-				<image class="owner-rigth-image" src="/assets/btn_recommend_golden@2x.png">
+				<image class="owner-rigth-image1" mode="aspectFill" src="/assets/btn_recommend_golden@2x.png">
 				</image>
 			</view>
 		</view>
