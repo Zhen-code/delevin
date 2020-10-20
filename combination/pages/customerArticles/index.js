@@ -146,7 +146,7 @@ Page({
 	goHouseDetal(e){
 		wx.navigateTo({
 			url: '/combination/pages/customerArticleDetail/index?id=' + e.currentTarget.dataset.id,
-		})
+		});
 		console.log(e.currentTarget.dataset.id);
 	},
 	getNewsList(classifyId){

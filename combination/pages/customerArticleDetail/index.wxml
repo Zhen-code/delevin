@@ -1,4 +1,4 @@
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="获客文章资讯" />
+<navbar backHome="{{backHome}}" pageHome="{{pageHome}}" bgColor="{{bgColor}}" title="获客文章资讯" />
 <scroll-view scroll-y class="scrollWrap">
     <view class="content" id="content" style="padding-top:{{paddingTop}}px">
         <view class="content-top">

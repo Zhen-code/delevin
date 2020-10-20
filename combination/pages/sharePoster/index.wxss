@@ -85,7 +85,7 @@ page{
     overflow: hidden;
 }
 .point-container {
-    padding:48rpx 60rpx;
+    padding:36rpx 40rpx;
     box-sizing:border-box;
     width: 100%;
     height: 280rpx;
@@ -93,7 +93,7 @@ page{
     justify-content: space-between;
 }
 .point-container3{
-    padding:48rpx 20rpx;
+    padding:48rpx 16rpx;
     box-sizing:border-box;
     width: 100%;
     height: 280rpx;
@@ -128,6 +128,7 @@ page{
     font-weight: 400;
     color: #999999;
     margin-top: 16rpx;
+    width: 270rpx;
 }
 
 .am-img {
@@ -187,7 +188,6 @@ page{
     color: #333333;
 }
 .text-price1{
-    margin-top: 62rpx;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -234,7 +234,7 @@ page{
 }
 .si3{
     background-color: white;
-    padding: 48rpx 36rpx 30rpx 36rpx;
+    padding: 30rpx 36rpx 30rpx 36rpx;
     box-sizing: border-box;
 }
 .third-title{
@@ -246,7 +246,7 @@ page{
     line-clamp: 2;
     -webkit-box-orient: vertical;
     width: 528rpx;
-    height: 88rpx;
+    height: auto;
     font-size: 32rpx;
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
