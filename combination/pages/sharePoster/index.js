@@ -787,9 +787,9 @@ Page({
 		})
 	},
 	save(){
-		// if(this.data.disable){
-		// 	return
-		// }
+		if(this.data.disable){
+			return
+		}
 		wx.showLoading({
 			title: '图片生成中!'
 		});
