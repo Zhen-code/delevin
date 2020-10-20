@@ -183,7 +183,6 @@ Page({
 				demandItem: [],
 			}, () => {
 				this.getDemand()
-				this.demandHide()
 			})
 		} else {
 			this.setData({

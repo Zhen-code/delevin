@@ -1,6 +1,7 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
+<!-- <scroll-view style="padding-top:{{paddingTop}}px;" scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true"></scroll-view> -->
 
-<scroll-view style="padding-top:{{paddingTop}}px;" scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true">
+<view style="padding-top:{{paddingTop}}px;">
 	<!-- <view class="info-view">
 		<van-icon name="cross" size="35rpx" color="#cccccc" />
 		<view class="info-view-row">
@@ -104,7 +105,8 @@
 				</view>
 			</view>
 			<view class="introduction-resources-go">
-				<text class="introduction-resources-go-price" data-myid="components" bindtap="toPrice">查看价格变动</text>
+				<!-- bindtap="toPrice" -->
+				<text class="introduction-resources-go-price" data-myid="components" bindtap='huadong'>查看价格变动</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>
 		</view>
@@ -249,7 +251,7 @@
 		</view>
 	</view>
 
-	<view class="components borderBottom" wx:if="{{type !== 'ESTATE'}}">
+	<view class="components borderBottom" wx:if="{{type !== 'ESTATE'}}" id="page">
 		<view class="components-row">
 			<text class="components-title">房屋时光机</text>
 			<view class="doubleTab" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
@@ -286,7 +288,7 @@
 		</view>
 	</view>
 
-	<view class="components" id="components">
+	<view class="components">
 		<text class="components-title">推荐经纪人</text>
 		<view class="information">
 			<block wx:for="{{item.pushAgents}}" wx:key="index">
@@ -356,6 +358,6 @@
 			<noData wx:if="{{list.length === 0}}" flexd="{{true}}" height="{{45}}"></noData>
 		</view>
 	</view>
-</scroll-view>
+</view>
 
 <view class="bottom-phone"><text class="bottom-phone-text" bindtap="collPhone">电话咨询</text></view>

@@ -57,6 +57,7 @@ Page({
 		rent: [],
 		type: [],
 		typeList: [],
+		tabTitle:[],
 		topIndex1: false,
 		topIndex2: false,
 		topIndex3: false,
@@ -77,16 +78,6 @@ Page({
 	selectTab(e) {
 		let _this = this.data;
 		let index = e.currentTarget.dataset.index;
-		// topIndex1:false,
-		// topIndex2:false,
-		// topIndex3:false,
-		// topIndex4:false,
-		// iconIndex1:0,
-		// iconIndex2:0,
-		// iconIndex3:0,
-		// iconIndex4:0,
-		// selectIndex:'',
-		// 0是未选中，1是选中关闭，2是选择开启
 		if (index === 0) {
 			if (_this.iconIndex1 === 1) {
 				this.setData({
@@ -736,29 +727,23 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		let towState = '';
-		let fourState = '';
+		let tabTitle = [];
 		switch (options.type) {
 			case '新房房源':
-				towState = '单价';
-				fourState = '销售状态';
+				tabTitle = ['区域','单价','户型','销售状态',]
 				break
 			case '二手房房源':
-				towState = '总价';
-				fourState = '楼龄';
+				tabTitle = ['区域','总价','户型','楼龄',]
 				break
 			case '租房房源':
-				towState = '租金';
-				fourState = '出租方式';
+				tabTitle = ['区域','租金','户型','出租方式',]
 				break
 			case '小区房源':
-				towState = '单月均价';
-				fourState = '楼龄';
+				tabTitle = ['区域','单月均价','户型','楼龄',]
 				break
 		}
 		this.setData({
-			towState: towState,
-			fourState: fourState,
+			tabTitle:tabTitle,
 			city: app.globalData.address.city || '',
 			province: app.globalData.address.province || '',
 			title: options.type,
