@@ -477,8 +477,7 @@ const request = {
       method: 'GET',
       params:{}
     })
-  },
-
+  }
 };
 
 

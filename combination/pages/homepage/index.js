@@ -9,6 +9,7 @@ const {
 const {
 	api
 } = require('../../../request/api');
+const app = getApp();
 Page({
 
 	/**
@@ -25,8 +26,8 @@ Page({
 		userId: "",
 		userInfo: {},
 		list: [],
-		backHome:true,
-		pageHome:false,
+		backHome:false,
+		pageHome:true,
 	},
 
 	onPageScroll(e) {
@@ -144,6 +145,8 @@ Page({
 				userId: userId
 			});
 		} else {
+			console.log(options.agentId)
+			console.log('经纪人id');
 			this.setData({
 				agentId: options.agentId,
 				userId: options.userId

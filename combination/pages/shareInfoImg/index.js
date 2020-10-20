@@ -122,8 +122,8 @@ Page({
     });
     let qrCodeCtx =  wx.createCanvasContext('myQrcode');
     drawQrcode({
-      width: 100,
-      height: 100,
+      width: 80,
+      height: 80,
       canvasId: 'myQrcode',
       ctx: qrCodeCtx,
       text: `https://dev.delevin.beiru168.com/homepage?agentId=${agentId}&userId=${userId}`,

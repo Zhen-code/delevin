@@ -185,7 +185,7 @@ Page({
   },
   goPostDetail(e){
     wx.navigateTo({
-      url: '/combination/pages/postDetail/index?id=' + e.currentTarget.dataset.id+'&hideBack=true'
+      url: '/combination/pages/postDetail/index?id=' + e.currentTarget.dataset.id+'&hideBack=false'
     })
   },
   post(){

@@ -124,13 +124,13 @@ Component({
     },
 
     toHome() {
-      wx.switchTab({
-        url: `/pages/home/index`
-      })
-    },
-
-    backHome() {
-      // app.globalData.state = true
+      console.log(this.data.pageHome)
+      if(app.globalData.state){
+        app.globalData.state = true;
+      }else{
+        app.globalData.state = false;
+      }
+      console.log('用户首页类型'+ app.globalData.state);
       wx.switchTab({
         url: `/pages/home/index`
       })

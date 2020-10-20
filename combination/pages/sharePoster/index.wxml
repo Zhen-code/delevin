@@ -45,9 +45,9 @@
                         <text class="text-price-left" wx:if="{{dataInfo.houseMold === 'SECOND_HAND' || dataInfo.houseMold === 'TENANCY'}}">总价:</text>
                         <text class="text-price-left" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">当月均价:</text>
                         <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.averagePrice}}元/m²</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/m²</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.rentalAveragePrice}}元/m²</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.totalPrice}}万</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/月</text>
+                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.averagePrice}}元/m²</text>
                     </view>
                     <view class="text-address">
                         <view class="text-address-left">开盘地址:</view>
@@ -75,9 +75,9 @@
                         <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'TENANCY' || dataInfo.houseMold === 'SECOND_HAND'}}">总价:</text>
                         <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">当月均价:</text>
                         <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
-                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.averagePrice}}元/m²</text>
-                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/m²</text>
-                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.rentalAveragePrice}}元/m²</text>
+                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.totalPrice}}万</text>
+                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/月</text>
+                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.averagePrice}}元/m²</text>
                     </view>
                     <view class="text-address1">
                         <view class="text-address-left1">开盘地址:</view>
@@ -103,9 +103,9 @@
                     <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'SECOND_HAND' || dataInfo.houseMold === 'TENANCY'}}">总价:</text>
                     <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">当月均价:</text>
                     <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
-                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.averagePrice}}元/m²</text>
-                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/m²</text>
-                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.rentalAveragePrice}}元/m²</text>
+                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.totalPrice}}万</text>
+                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/月</text>
+                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.averagePrice}}元/m²</text>
                 </view>
                 <image class="img3" src="{{imgPath3}}" mode="widthFix"></image>
                 <view class="row-img">
@@ -145,10 +145,10 @@
                         <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">单价:</text>
                         <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'SECOND_HAND' || dataInfo.houseMold === 'TENANCY'}}">总价:</text>
                         <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">当月均价:</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.averagePrice}}元/m²</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/m²</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.rentalAveragePrice}}元/m²</text>
+                        <text class="text-price-right4" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
+                        <text class="text-price-right4" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.totalPrice}}万</text>
+                        <text class="text-price-right4" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/月</text>
+                        <text class="text-price-right4" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.averagePrice}}元/m²</text>
                     </view>
                     <view class="text-address1">
                         <view class="text-address-left1">开盘地址:</view>
