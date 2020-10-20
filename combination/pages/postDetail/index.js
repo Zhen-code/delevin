@@ -32,7 +32,8 @@ Page({
     top: 0,
     rpxR: 0,
     isIos: false,
-    hideBack: true
+    pageHome: false,
+    backHome: true
   },
   id: '',
   timeFlag: 1,
@@ -115,12 +116,22 @@ Page({
     console.log(options)
     let {id,hideBack} = options;
     this.setData({
-      id,
-      hideBack: Boolean(hideBack)
+      id
     });
     this.id = id;
     this.addHistoryRecod(id);
     this.getPostDetail(id);
+    if(hideBack === 'true'){
+      this.setData({
+        pageHome: true,
+        backHome: false
+      })
+    }else{
+      this.setData({
+        pageHome: false,
+        backHome: true
+      })
+    }
   },
   onPageScroll(options) {
     // console.log(options)

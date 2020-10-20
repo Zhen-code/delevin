@@ -170,7 +170,7 @@
 								<view class="floor-list-row-bottom-name"
 									wx:if="{{item.houseMold === 'SECOND_HAND' || item.houseMold === 'TENANCY'}}">
 									<text class="floor-list-row-bottom-type">建筑面积：</text>
-									<text class="floor-list-row-bottom-time">{{item.floorage}}</text>
+									<text class="floor-list-row-bottom-time">{{item.floorage}}m²</text>
 								</view>
 								<view class="floor-list-row-bottom-name" wx:if="{{item.houseMold === 'RESIDENTIAL_QUARTERS'}}">
 									<text class="floor-list-row-bottom-type">建筑年代：</text>
@@ -221,7 +221,7 @@
 	<view class="share-view">
 		<view class="share-view-select">
 			<view class="share-view-select-view">
-				<button bindtap="getDetails" class="share-view-select-button">
+				<button open-type="share" class="share-view-select-button">
 					<image src="/assets/icon_link_45@2x.png"></image>
 					<text>分享链接</text>
 				</button>

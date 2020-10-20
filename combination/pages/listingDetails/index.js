@@ -43,6 +43,12 @@ Page({
 		item3: [],
 		item4: [],
 		markers: [],
+		showAgent: false,
+		agentName: '',
+		agentSm: '',
+		agentPhone: '',
+		backHome: true,
+		pageHome: false
 	},
 
 	tovideoImage() {
@@ -491,12 +497,55 @@ Page({
 		}).exec()
 	},
 
+	linkAgent(){
+	wx.makePhoneCall({
+		phoneNumber: this.data.agentPhone
+	})
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		let that = this;
 		let type = "";
 		let item = JSON.parse(options.item);
+		console.log(item);
+		let showInfo = options.showInfo;
+		let agentId = options.agentId;
+		let hideBack = options.hideBack;
+		if(agentId){
+			request.brokerHome({
+				agentId: agentId
+			}).then(res=>{
+				console.log(res);
+				that.setData({
+					agentName: res.nickname,
+					agentSm: res.synopsis===''?'暂无简介':res.synopsis,
+					agentPhone: res.phone
+				})
+			})
+		}
+		if(hideBack === 'true'){
+			that.setData({
+				backHome: false,
+				pageHome: true
+			})
+		}else{
+			that.setData({
+				backHome: true,
+				pageHome: false
+			})
+		}
+		if(showInfo === 'true'){
+			this.setData({
+				showAgent: true
+			});
+		}else{
+			this.setData({
+				showAgent: false
+			})
+		}
 		console.log(item.title)
 		switch (item.title) {
 			case "新房房源":

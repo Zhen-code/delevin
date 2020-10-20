@@ -1,18 +1,18 @@
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
+<navbar backHome="{{backHome}}" pageHome="{{pageHome}}" bgColor="{{bgColor}}" title="{{title}}" />
 <!-- <scroll-view style="padding-top:{{paddingTop}}px;" scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true"></scroll-view> -->
 
 <view style="padding-top:{{paddingTop}}px;">
-	<!-- <view class="info-view">
+	<view class="info-view" wx:if="{{showAgent}}">
 		<van-icon name="cross" size="35rpx" color="#cccccc" />
 		<view class="info-view-row">
 			<image class="info-view-row-image" src="/combination/image/icon_customer_16_pre@2x.png"></image>
 			<view class="info-view-row-content">
-				<text>吴佳丽</text>
-				<text>联系我，提供更专业的房产服务</text>
+				<text>{{agentName}}</text>
+				<text>{{agentSm}}</text>
 			</view>
 		</view>
-		<van-tag size="large" color="#FFC51D" text-color="#333333" type="warning">联系我</van-tag>
-	</view> -->
+		<van-tag size="large" color="#FFC51D" text-color="#333333" type="warning" catch:tap="linkAgent">联系我</van-tag>
+	</view>
 
 	<view class="view-top" bindtap="tovideoImage">
 		<view class="view-top-video">

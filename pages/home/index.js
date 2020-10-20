@@ -329,55 +329,6 @@ Page({
 		}
 	},
 
-	toDetails(e) {
-		let id = '';
-		let data = '';
-		let type = '';
-		let title = '';
-		if(e.shareIt){
-			data = e;
-		}else{
-			data = e.currentTarget.dataset.item;
-		}
-		if (data.status === 'LOWER') {
-			wx.showToast({
-				title: '该房源已下架！',
-				icon: 'none',
-				duration: 2000
-			})
-		} else {
-			switch (data.houseMold) {
-				case 'ESTATE':
-					type = '新房房源';
-					break;
-				case 'SECOND_HAND':
-					type = '二手房房源';
-					break;
-				case 'TENANCY':
-					type = '租房房源';
-					break;
-				case 'RESIDENTIAL_QUARTERS':
-					type = '小区房源';
-					break;
-				default:
-			}
-			if (data.houseId) {
-				id = data.houseId;
-				title = type;
-			} else {
-				id = data.id;
-				title = this.data.title;
-			}
-			let item = JSON.stringify({
-				'title': title,
-				"id": id,
-			})
-			wx.navigateTo({
-				url: `/combination/pages/listingDetails/index?item=${item}`,
-			})
-		}
-	},
-
 	changeHouseType1(e) {
 		let type = '';
 		let iconName = e.currentTarget.dataset.item.iconName;
@@ -621,12 +572,6 @@ Page({
 		})
 	},
 
-	getDetails(){
-		let item = this.data.detailsData.item;
-		item.shareIt = true
-		this.toDetails(item)
-	},
-
 	toState(){
 		wx.showToast({
 			title: '该楼盘已下架',
@@ -656,7 +601,9 @@ Page({
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
 	onReady: function () {
-
+		wx.hideShareMenu({
+			menus: ['shareAppMessage', 'shareTimeline']
+		});
 	},
 
 	/**
@@ -698,10 +645,88 @@ Page({
 
 	},
 
+	toDetails(e) {
+		let {item} = e.currentTarget.dataset;
+		console.log(item)
+		let id = '';
+		let data = '';
+		let type = '';
+		let title = '';
+		data = item;
+		if (data.status === 'LOWER') {
+			wx.showToast({
+				title: '该房源已下架！',
+				icon: 'none',
+				duration: 2000
+			})
+		} else {
+			switch (data.houseMold) {
+				case 'ESTATE':
+					type = '新房房源';
+					break;
+				case 'SECOND_HAND':
+					type = '二手房房源';
+					break;
+				case 'TENANCY':
+					type = '租房房源';
+					break;
+				case 'RESIDENTIAL_QUARTERS':
+					type = '小区房源';
+					break;
+				default:
+			}
+			if (data.houseId) {
+				id = data.houseId;
+				title = type;
+			} else {
+				id = data.id;
+				title = this.data.title;
+			}
+			let item = JSON.stringify({
+				'title': title,
+				"id": id,
+			});
+			wx.navigateTo({
+				url: `/combination/pages/listingDetails/index?item=${item}`,
+			});
+		}
+	},
+
 	/**
 	 * 用户点击右上角分享
 	 */
-	onShareAppMessage: function () {
+	onShareAppMessage: function (res) {
+		let item = {};
+		let title = '';
+		let agentId = wx.getStorageSync('agentId');
+		let houseMold = this.data.detailsData['item'].houseMold;
+		switch (houseMold) {
+			case 'RESIDENTIAL_QUARTERS':
+				title = '小区房源';
+				break;
+			case 'ESTATE':
+				title = '新房房源';
+				break;
+			case 'SECOND_HAND':
+				title = '二手房房源';
+				break;
+			case 'TENANCY':
+				title = '租房房源';
+				break;
+			default:
+				break;
+		}
+		item.title = title;
+		item.id = this.data.detailsData.item['houseId'];
+		console.log(item)
+		console.log(this.data.detailsData.item);
+		if(res.from === 'button'){
+			return{
+				title: this.data.detailsData.item['title'],
+				path: '/combination/pages/listingDetails/index?item='+JSON.stringify(item)+'&showInfo=true&'+'agentId='+agentId+'&hideBack=true',
+				imageUrl: this.data.detailsData.item['coverPicture']
+			}
+		}
 
-	},
+	}
 })

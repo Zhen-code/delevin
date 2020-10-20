@@ -1,4 +1,4 @@
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="获客海报" />
+<navbar backHome="{{true}}" pageHome="{{false}}" bgColor="{{bgColor}}" title="获客海报" />
 <view class="doubleTab" style="margin-top:{{paddingTop}}px;">
 	<doubleTab style="width:100%;height:70rpx;" tabItem="{{tabItem}}" bind:backTabValue="getBackTabIndex"></doubleTab>
 </view>

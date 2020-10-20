@@ -39,9 +39,38 @@ Page({
 		title: '获客海报分享',
 		show: true,
 		agentId: '',
-		userId: ''
+		userId: '',
+		unitPrice: '',
+		unitTitle: '',
+		unit:''
 	},
-
+	getUnit(){
+		let unitPrice = 0;
+		let unitTitle = '';
+		let unit = '';
+		if(this.data.dataInfo['houseMold'] === 'ESTATE'){
+			unitPrice = this.data.dataInfo['unitPrice'];
+			unitTitle = '单价:';
+			unit = '元/m²';
+		}else if(this.data.dataInfo['houseMold'] === 'SECOND_HAND'){
+			unitPrice =  this.data.dataInfo['totalPrice'];
+			unitTitle = '总价:';
+			unit = '万';
+		}else if(this.data.dataInfo['houseMold'] === 'TENANCY'){
+			unitPrice = this.data.dataInfo['monthRent'];
+			unitTitle = '总价:';
+			unit = '月/元'
+		}else if(this.data.dataInfo['houseMold'] === 'RESIDENTIAL_QUARTERS'){
+			unitPrice = this.data.dataInfo['averagePrice'];
+			unitTitle = '当月均价:';
+			unit = '元/m²';
+		}
+		this.setData({
+			unitPrice,
+			unitTitle,
+			unit
+		});
+	},
 	onChange(current,source){
 		console.log(current)
 		this.setData({
@@ -143,22 +172,11 @@ Page({
 				this.renderTitle(ctx1,this.data.dataInfo['title'],titleLeft,48,to2Px(allWidth,504));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('white');
-				ctx1.fillText('预估单价:',titleLeft,100);
+				ctx1.fillText(that.data.unitTitle,titleLeft,100);
 				let unitPriceLeft = to2Px(allWidth,178);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FFD793');
-				let unitPrice = 0;
-				if(this.data.dataInfo['houseMold'] === 'ESTATE'){
-					unitPrice = this.data.dataInfo['unitPrice'];
-
-				}else if(this.data.dataInfo['houseMold'] === 'SECOND_HAND'){
-					unitPrice =  this.data.dataInfo['averagePrice'];
-				}else if(this.data.dataInfo['houseMold'] === 'TENANCY'){
-					unitPrice = this.data.dataInfo['monthRent'];
-				}else if(this.data.dataInfo['houseMold'] === 'RESIDENTIAL_QUARTERS'){
-					unitPrice = this.data.dataInfo['rentalAveragePrice'];
-				}
-				ctx1.fillText(unitPrice +'元/m²',unitPriceLeft,100);
+				ctx1.fillText(that.data.unitPrice + that.data.unit,unitPriceLeft,100);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('white');
 				ctx1.fillText('开盘地址:',titleLeft,120);
@@ -183,9 +201,9 @@ Page({
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
 				let mulitipleWidth = to2Px(allWidth,360);
 				this.renderText(ctx1,str,nameLeft,466,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,460);
+				let qrImgLeft = to2Px(allWidth,490);
 				console.log(this.data.qrCodePath)
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,400,100,100);
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,400,70,70);
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -239,7 +257,7 @@ Page({
 				this.renderTitle1(ctx1,this.data.dataInfo['title'],titleLeft,93,to2Px(allWidth,498));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText('预估单价:',titleLeft,150);
+				ctx1.fillText(that.data.unitTitle,titleLeft,150);
 				let unitPriceLeft = to2Px(allWidth,178);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FE6300');
@@ -254,7 +272,7 @@ Page({
 				}else if(this.data.dataInfo['houseMold'] === 'RESIDENTIAL_QUARTERS'){
 					unitPrice = this.data.dataInfo['rentalAveragePrice'];
 				}
-				ctx1.fillText(unitPrice +'元/m²',unitPriceLeft,150);
+				ctx1.fillText(that.data.unitPrice +that.data.unit,unitPriceLeft,150);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
 				ctx1.fillText('开盘地址:',titleLeft,166);
@@ -279,9 +297,9 @@ Page({
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
 				let mulitipleWidth = to2Px(allWidth,360);
 				this.renderText(ctx1,str,nameLeft,466,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,460);
+				let qrImgLeft = to2Px(allWidth,490);
 				console.log(this.data.qrCodePath)
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,400,100,100);
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,400,70,70);
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -335,7 +353,7 @@ Page({
 				this.renderTitle2(ctx1,this.data.dataInfo['title'],titleLeft,48,to2Px(allWidth,500));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText('预估单价:',titleLeft,100);
+				ctx1.fillText(that.data.unitTitle,titleLeft,100);
 				let unitPriceLeft = to2Px(allWidth,246);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FE6300');
@@ -350,7 +368,7 @@ Page({
 				}else if(this.data.dataInfo['houseMold'] === 'RESIDENTIAL_QUARTERS'){
 					unitPrice = this.data.dataInfo['rentalAveragePrice'];
 				}
-				ctx1.fillText(unitPrice +'元/m²',unitPriceLeft,100);
+				ctx1.fillText(that.data.unitPrice + that.data.unit,unitPriceLeft,100);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
 				ctx1.fillText('开盘地址:',titleLeft,120);
@@ -455,7 +473,7 @@ Page({
 				this.renderTitle2(ctx1,this.data.dataInfo['title'],titleLeft,390,to2Px(allWidth,324));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText('预估单价:',titleLeft,450);
+				ctx1.fillText(that.data.unitTitle,titleLeft,450);
 				let unitPriceLeft = to2Px(allWidth,246);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FE6300');
@@ -469,7 +487,7 @@ Page({
 				}else if(this.data.dataInfo['houseMold'] === 'RESIDENTIAL_QUARTERS'){
 					unitPrice = this.data.dataInfo['rentalAveragePrice'];
 				}
-				ctx1.fillText(unitPrice +'元/m²',unitPriceLeft,452);
+				ctx1.fillText(that.data.unitPrice + that.data.unit,unitPriceLeft,452);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
 				ctx1.fillText('开盘地址:',titleLeft,480);
@@ -522,10 +540,13 @@ Page({
 		let userId = wx.getStorageSync('userId');
 		let resultInfo = wx.getSystemInfoSync();
 		let parseObj = JSON.parse(options.data);//转换跳转参数
+		console.log(parseObj.item);
 		this.setData({
 			dataInfo: parseObj.item,
 			agentId:agentId,
 			userId: userId
+		},()=>{
+			this.getUnit();
 		});
 		let designSketch = parseObj.item['designSketch'];
 		getImageInfo(designSketch[0]).then(res=>{
@@ -579,7 +600,7 @@ Page({
 				posterList: res
 			});
 			let imgPath1 = res[0].backgroundUri.replace(/[\'|\"]/g,"");
-			let imgPath2 = res[0].backgroundUri.replace(/[\'|\"]/g,"");
+			let imgPath2 = res[1].backgroundUri.replace(/[\'|\"]/g,"");
 			getImageInfo(imgPath1).then(res=>{
 				console.log(res)
 				console.log('图片高度')
@@ -849,6 +870,9 @@ Page({
 		}).catch(err=>{
 			console.log(err)
 		});
+		wx.hideShareMenu({
+			menus: ['shareAppMessage', 'shareTimeline']
+		});
 	},
 
 	/**
@@ -869,9 +893,10 @@ Page({
 	 * 用户点击右上角分享
 	 */
 	onShareAppMessage: function () {
-		return{
-			title: '经纪人主页',
-			path: '/combination/pages/homepage/index?agentId='+this.data.agentId+'&userId='+this.data.userId,
-		}
+		return false
+		// return{
+		// 	title: '经纪人主页',
+		// 	path: '/combination/pages/homepage/index?agentId='+this.data.agentId+'&userId='+this.data.userId,
+		// }
 	}
 })
