@@ -70,6 +70,8 @@ Component({
 		changeCity() {
 			this.setData({
 				show: true
+			},()=>{
+				this.triggerEvent("showCity", this.data.show);
 			});
 		},
 

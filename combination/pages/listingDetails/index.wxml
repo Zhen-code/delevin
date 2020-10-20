@@ -1,7 +1,5 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
-<!-- <scroll-view style="padding-top:{{paddingTop}}px;" scroll-into-view="{{toView}}" scroll-y="true" scroll-with-animation="true"></scroll-view> -->
-
-<view style="padding-top:{{paddingTop}}px;">
+<view style="padding-top:{{paddingTop}}px; padding-bottom:160rpx">
 	<!-- <view class="info-view">
 		<van-icon name="cross" size="35rpx" color="#cccccc" />
 		<view class="info-view-row">
@@ -81,11 +79,11 @@
 					<text>月租</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>3室2厅1卫</text>
+					<text>{{item.houseType}}室{{item.houseHall}}厅{{item.houseToilet}}卫</text>
 					<text>户型</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>100m²</text>
+					<text>{{item.floorage}}m²</text>
 					<text>建筑面积</text>
 				</view>
 			</view>
@@ -105,7 +103,6 @@
 				</view>
 			</view>
 			<view class="introduction-resources-go">
-				<!-- bindtap="toPrice" -->
 				<text class="introduction-resources-go-price" data-myid="components" bindtap='huadong'>查看价格变动</text>
 				<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 			</view>

@@ -134,9 +134,9 @@
 	justify-content: flex-start;
 }
 
-.components:last-child {
+/* .components:last-child {
 	margin-bottom: 160rpx;
-}
+} */
 
 .components-tab {
 	width: 260rpx;

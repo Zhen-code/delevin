@@ -32,6 +32,8 @@ Page({
 		demandType: false,
 		actionIndex: 1,
 		tabIndex: '',
+		link:'',
+		content:'',
 		currentDate: new Date().getTime(),
 		formatter(type, value) {
 			if (type === 'year') {
@@ -305,13 +307,10 @@ Page({
     request.link({
       'type': 'RECOMMENDED_CUSTOMERS'
     }).then((res) => {
-      let item = JSON.stringify({
-        "title": "推荐客源温馨提示",
-        "link": res.link,
-      })
-      wx.navigateTo({
-        url: `/combination/pages/webView/index?item=${item}`,
-      })
+			this.setData({
+				link:res.link,
+				content:res.content,
+			})
     }).catch((err) => {
       wx.showToast({
         title: '数据错误',
@@ -321,12 +320,23 @@ Page({
     })
 	},
 
+	toWebView(){
+		let item = JSON.stringify({
+			"title": "推荐客源温馨提示",
+			"link": this.data.link,
+		})
+		wx.navigateTo({
+			url: `/combination/pages/webView/index?item=${item}`,
+		})
+	},
+
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
 		this.getDemand()
+		this.privacyPolicy();
 	},
 
 	/**

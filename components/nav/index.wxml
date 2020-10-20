@@ -12,7 +12,7 @@
 		</view>
 
 		<view class="back2" style="width:70rpx" wx:if="{{pageHome}}">
-			<van-icon name="wap-home" color="#000000" size="48rpx" bindtap="toHome"/>
+			<van-icon name="wap-home" color="#000000" size="48rpx" bindtap="backHome"/>
 		</view>
 
 		<view class="nav-title" style="color:{{titleColor?'#FFFFFF':'#333333'}}">{{title}}</view>

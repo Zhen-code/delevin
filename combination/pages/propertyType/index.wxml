@@ -1,52 +1,16 @@
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
 <view class="view" style="top:{{paddingTop}}px">
-	<citySearch isCancel style="width:100%" bind:getCityValue="getCityValue" bind:getInputValue="getInputValue"
+	<citySearch isCancel style="width:100%" bind:showCity="getShowCity" bind:getCityValue="getCityValue" bind:getInputValue="getInputValue"
 		bind:getSearchValue="getSearchValue" bind:search="getSearchValue" bind:firmInput="getSearchValue"></citySearch>
 
 		<view class="selectValue">
-			<selectValue tabTitle="{{tabTitle}}"></selectValue>
+			<selectValue city="{{city}}" tabTitle="{{tabTitle}}" pricePrice="{{pricePrice}}" type="{{type}}" subwayList="{{subwayList}}" bind:myEvent="getEvent"></selectValue>
 		</view>
 
 	<!-- <view class="type"> -->
-		<!-- <view class="type-index" data-index="{{0}}" bindtap="selectTab">
-			<text class="type-index-name {{topIndex1?'type-index-name-action':''}}">区域</text>
-			<image class="type-index-icon" wx:if="{{iconIndex1 === 0}}" src="/combination/image/icon_dragdown_12_nor@2x.png">
-			</image>
-			<image class="type-index-icon" wx:if="{{iconIndex1 === 1}}" src="/combination/image/icon_dragdown_12_pre@2x.png">
-			</image>
-			<image class="type-index-icon" wx:if="{{iconIndex1 === 2}}" src="/combination/image/icon_pullup_12_pre@2x.png">
-			</image>
-		</view>
-		<view class="type-index" data-index="{{1}}" bindtap="selectTab">
-			<text class="type-index-name {{topIndex2?'type-index-name-action':''}}">{{towState}}</text>
-			<image class="type-index-icon" wx:if="{{iconIndex2 === 0}}" src="/combination/image/icon_dragdown_12_nor@2x.png">
-			</image>
-			<image class="type-index-icon" wx:if="{{iconIndex2 === 1}}" src="/combination/image/icon_dragdown_12_pre@2x.png">
-			</image>
-			<image class="type-index-icon" wx:if="{{iconIndex2 === 2}}" src="/combination/image/icon_pullup_12_pre@2x.png">
-			</image>
-		</view>
-		<view class="type-index" data-index="{{2}}" bindtap="selectTab">
-			<text class="type-index-name {{selectType === 2?'type-index-name-action':''}}">户型</text>
-			<image class="type-index-icon" wx:if="{{selectType3 === 0}}" src="/combination/image/icon_dragdown_12_nor@2x.png">
-			</image>
-			<image class="type-index-icon" wx:if="{{selectType3 === 1}}" src="/combination/image/icon_dragdown_12_pre@2x.png">
-			</image>
-			<image class="type-index-icon" wx:if="{{selectType3 === 2}}" src="/combination/image/icon_pullup_12_pre@2x.png">
-			</image>
-		</view>
-		<view class="type-index" data-index="{{3}}" bindtap="selectTab">
-			<text class="type-index-name {{selectType === 3?'type-index-name-action':''}}">{{fourState}}</text>
-			<image class="type-index-icon" wx:if="{{selectType4 === 0}}" src="/combination/image/icon_dragdown_12_nor@2x.png">
-			</image>
-			<image class="type-index-icon" wx:if="{{selectType4 === 1}}" src="/combination/image/icon_dragdown_12_pre@2x.png">
-			</image>
-			<image class="type-index-icon" wx:if="{{selectType4 === 2}}" src="/combination/image/icon_pullup_12_pre@2x.png">
-			</image>
-		</view> -->
 
 		<!-- 区域 -->
-		<!-- <view class="typeTreeSelect" wx:if="{{selectIndex === 0}}">
+		<view class="typeTreeSelect" wx:if="{{selectIndex === 0}}">
 			<view class="typeTreeSelect-list">
 				<view class="typeTreeSelect-list-row">
 					<view class="typeTreeSelect-list-left">
@@ -87,7 +51,7 @@
 			</view>
 			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
-		</view> -->
+		</view>
 
 		<!-- 单价 -->
 		<!-- <view class="typeTreeSelect" wx:if="{{selectIndex === 1}}">

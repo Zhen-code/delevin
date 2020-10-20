@@ -57,326 +57,48 @@ Page({
 		rent: [],
 		type: [],
 		typeList: [],
-		tabTitle:[],
-		topIndex1: false,
-		topIndex2: false,
-		topIndex3: false,
-		topIndex4: false,
-		iconIndex1: 0,
-		iconIndex2: 0,
-		iconIndex3: 0,
-		iconIndex4: 0,
-		selectIndex: '',
+		tabTitle: [],
+		city:false,
 	},
 
-	onClose(event) {
-		this.setData({
-			[`show.${event.target.id}`]: false,
-		});
-	},
-
-	selectTab(e) {
-		let _this = this.data;
-		let index = e.currentTarget.dataset.index;
-		if (index === 0) {
-			if (_this.iconIndex1 === 1) {
-				this.setData({
-					iconIndex1: 1,
-					topIndex1: true,
-					selectIndex: _this.selectIndex === 0 ? '' : 0,
-				})
-			} else {
-				this.setData({
-					iconIndex1: _this.topIndex1 ? 0 : 2,
-					topIndex1: _this.topIndex1 ? false : true,
-					selectIndex: _this.topIndex1 ? '' : 0,
-				})
-			}
-		}
-		if (index === 1) {
-			if (_this.iconIndex2 === 2) {
-				this.setData({
-					iconIndex2: 1,
-					topIndex2: true,
-					selectIndex: _this.selectIndex === 1 ? '' : 1,
-				})
-			} else {
-				this.setData({
-					iconIndex2: _this.topIndex2 ? 0 : 2,
-					topIndex2: _this.topIndex2 ? false : true,
-					selectIndex: _this.topIndex2 ? '' : 1,
-				})
-			}
-		}
-	},
-
-	setHide() {
+	getState() {
 		this.setData({
 			pageIndex: 1,
+			pageSize: 12,
+			minPrice: '',
+			maxPrice: '',
+			keyword: '',
+			region: '',
+			houseType: '',
+			salesStatus: '',
+			upperLimit: '',
+			lowerLimit: '',
+			lineName: '',
+			routeStop: '',
+			routeStops: '',
+			street: '',
+			monthRentMax: '',
+			monthRentMin: '',
+			rentType: '',
+			salesStatus: '',
+			averagePriceMax: '',
+			averagePriceMin: '',
+			show: false,
+			towState: '',
+			fourState: '',
+			subwayList: [],
+			routeStop: [],
+			routeStopIndex: '',
+			rent: [],
+			typeList: [],
+			areaFirstList: []
 		})
 	},
 
-	changeReset() {
-		console.log('重置')
-	},
-
-	leftTab(e) {
-		let index = e.currentTarget.dataset.index;
-		switch (index) {
-			case 0:
-				this.setData({
-					subwayList: [],
-					routeStop: [],
-					routeStopIndex: ''
-				}, () => {
-					this.getStreet()
-				})
-				break
-			case 1:
-				this.setData({
-					subwayList: [],
-					routeStop: [],
-					routeStopIndex: ''
-				}, () => {
-					this.getSubway()
-				})
-				break
-		}
+	// 开启选择城市
+	getShowCity(e){
 		this.setData({
-			leftAction: index
-		})
-	},
-
-	priceTab(e) {
-		let item = e.currentTarget.dataset.item;
-		let index = e.currentTarget.dataset.index;
-		this.setData({
-			upperLimit: item.upperLimit,
-			lowerLimit: item.lowerLimit,
-			entireRentIndex: index
-		})
-	},
-
-	buildingAgeOptionsTab(e) {
-		let item = e.currentTarget.dataset.item;
-		let index = e.currentTarget.dataset.index;
-		this.setData({
-			buildingAgeOptions: item,
-			entireRentIndex: index
-		})
-	},
-
-	entireRentTab(e) {
-		let SALE = '';
-		let type = '';
-		let item = e.currentTarget.dataset.item;
-		let index = e.currentTarget.dataset.index;
-		if (item === "FOR_SALE") {
-			SALE = "FOR_SALE"
-		}
-		if (item === "ON_SALE") {
-			SALE = "ON_SALE"
-		}
-		if (item === "WHOLE_RENT") {
-			type = "WHOLE_RENT"
-		}
-		if (item === "COTENANCY") {
-			type = "COTENANCY"
-		}
-		this.setData({
-			rentType: type || '',
-			salesStatus: SALE.toString() || '',
-			entireRentIndex: index,
-		})
-	},
-
-	oncheckTab(e) {
-		let index = e.currentTarget.dataset.index;
-		let type = this.data.type;
-		let newArr = type.filter((item) => {
-			return item.checked === true
-		});
-		if (newArr.length === 5) {
-			if (type[index].checked) {
-				type[index].checked = false
-			} else {
-				wx.showToast({
-					title: '最多选择5种类型',
-					icon: 'none',
-					duration: 2500
-				})
-			}
-		} else {
-			if (type[index].checked) {
-				type[index].checked = false
-			} else {
-				type[index].checked = true
-			}
-		}
-		this.setData({
-			type
-		})
-	},
-
-	shareTab(e) {
-		this.setData({
-			shareIndex: e.currentTarget.dataset.index
-		})
-	},
-
-	rentTab(e) {
-		let type = this.data.type;
-		let index = e.currentTarget.dataset.index;
-		if (index === 0) {
-			this.setData({
-				type,
-				item: [],
-				type: [],
-				houseType: '',
-				conditionIndex: e.currentTarget.dataset.index
-			})
-		} else {
-			let houseType = type.filter(item => {
-				return item.checked === true;
-			}).map((key) => {
-				return key.id;
-			})
-			this.setData({
-				item: [],
-				houseType: houseType.join(","),
-				conditionIndex: e.currentTarget.dataset.index
-			})
-		}
-		// this.getType()
-		// this.setHide();
-		this.getData();
-	},
-
-	conditionTab(e) {
-		let type = '';
-		let index = e.currentTarget.dataset.index;
-		let subwayList = this.data.subwayList.filter(item => {
-			return item.checked === true;
-		}).map((item) => {
-			if (item.cityName) {
-				type = 0;
-				return item.cityName
-			} else {
-				type = 1;
-				let list = item.routeStopItem.filter(k => {
-					return k.checked === true
-				}).map((l) => {
-					return l.name;
-				})
-				return {
-					"lineName": item.lineName,
-					"routeStopItem": list
-				}
-			}
-		})
-		if (index === 0) {
-			this.setData({
-				iconIndex1: 0,
-				topIndex1: false,
-				selectIndex: '',
-				item: [],
-				pageIndex: 1,
-				subwayList: [],
-				street: '',
-				salesStatus: '',
-				buildingAgeOptions: '',
-				conditionIndex: e.currentTarget.dataset.index,
-			}, () => {
-				this.getStreet();
-			})
-			type = '';
-		} else {
-			this.setData({
-				iconIndex1: 1,
-				topIndex1: true,
-				selectIndex: '',
-				item: [],
-				pageIndex: 1,
-				street: type === 0 ? subwayList.join(",") : '',
-				selectList: subwayList,
-				lineName: type === 1 ? subwayList[0].lineName : '',
-				routeStops: type === 1 ? subwayList[0].routeStopItem.join(",") : '',
-				conditionIndex: e.currentTarget.dataset.index,
-				leftAction: 0,
-				selectTypeIndex: '',
-			})
-		}
-		this.getData();
-	},
-
-	changeTab(e){
-		let {upperLimit,lowerLimit} = this.data;
-		let index = e.currentTarget.dataset.index;
-		console.log(upperLimit,lowerLimit)
-		if (index === 0) {
-			this.setData({
-				iconIndex2: 0,
-				topIndex2: false,
-				selectIndex: '',
-				item: [],
-				pageIndex: 1,
-			}, () => {
-				this.getStreet();
-			})
-		} else {
-			this.setData({
-				iconIndex2: 2,
-				topIndex2: true,
-				selectIndex: '',
-				selectList: [upperLimit-lowerLimit],
-				item: [],
-				pageIndex: 1,
-			})
-		}
-		console.log([upperLimit-lowerLimit])
-		this.getData();
-	},
-
-	changePrice(e) {
-		let value = Number(e.detail.value);
-		let {
-			lowerLimit,
-			upperLimit
-		} = this.data;
-		if (e.currentTarget.dataset.index === 0) {
-			if (lowerLimit !== '') {
-				if (value <= upperLimit) {
-					lowerLimit = value;
-				} else {
-					lowerLimit = ''
-					// wx.showToast({
-					// 	title: '不能大于最高价',
-					// 	icon: 'none',
-					// 	duration: 2500
-					// })
-				}
-			} else {
-				lowerLimit = value;
-			}
-		} else {
-			if (upperLimit !== '') {
-				if (value >= lowerLimit) {
-					upperLimit = value;
-				} else {
-					upperLimit = lowerLimit
-					// wx.showToast({
-					// 	title: '不能低于最低价',
-					// 	icon: 'none',
-					// 	duration: 2500
-					// })
-				}
-			} else {
-				upperLimit = value;
-			}
-		}
-		this.setData({
-			lowerLimit: lowerLimit,
-			upperLimit: upperLimit,
+			city:e.detail
 		})
 	},
 
@@ -391,7 +113,6 @@ Page({
 			province: e.detail[0].name,
 			city: e.detail[1].name,
 		}, () => {
-			// this.setHide();
 			// this.getStreet()
 			this.getData()
 		})
@@ -445,6 +166,44 @@ Page({
 		this.getData()
 	},
 
+	getEvent(e) {
+		let obj = {
+			totalPrice: [],
+			houseType: [],
+			salesType: [],
+			totalPriceSelft: [],
+			roomageType: [],
+		}
+		if (JSON.stringify(e.detail) !== '{}') {
+			e.detail.map((item) => {
+				for (let key in obj) {
+					if (item.type == key) {
+						obj[key].push(item)
+					}
+				}
+			})
+			let buildingAgeOptions = obj.roomageType.length !== 0 ? obj.roomageType[0].buildingAgeOptions : '';
+			let upperLimit = obj.totalPrice.length !== 0 ? obj.totalPrice[0].upperLimit : obj.totalPriceSelft.length !== 0 ? (Number(obj.totalPriceSelft[0].topAcreage)) : '';
+			let lowerLimit = obj.totalPrice.length !== 0 ? obj.totalPrice[0].lowerLimit : obj.totalPriceSelft.length !== 0 ? (Number(obj.totalPriceSelft[0].bottomAcreage)) : '';
+			this.setData({
+				item: [],
+				pageIndex: 1,
+				upperLimit: upperLimit || '',
+				lowerLimit: lowerLimit || '',
+				houseType: obj.houseType || [],
+				salesStatus: obj.salesType[0] || '',
+				buildingAgeOptions: buildingAgeOptions,
+			}, () => {
+				this.getData()
+			})
+		} else {
+			this.getState();
+			this.getData();
+			obj = {}
+		}
+		console.log(obj, 112212)
+	},
+
 	getParams() {
 		let {
 			pageIndex,
@@ -453,7 +212,6 @@ Page({
 			province,
 			keyword,
 			region,
-			value,
 			houseType,
 			salesStatus,
 			upperLimit,
@@ -461,12 +219,8 @@ Page({
 			lineName,
 			routeStops,
 			street,
-			monthRentMax,
-			monthRentMin,
 			rentType,
 			buildingAgeOptions,
-			averagePriceMax,
-			averagePriceMin,
 		} = this.data;
 		let obj = {
 			pageIndex: pageIndex,
@@ -484,11 +238,13 @@ Page({
 		if (region !== '') {
 			obj.region = region;
 		}
-		if (houseType !== '') {
-			obj.houseType = houseType;
+		if (houseType.length !== 0) {
+			obj.houseType = houseType.map((item) => {
+				return item.id + 1
+			}).join(",")
 		}
-		if (salesStatus !== '') {
-			obj.salesStatus = salesStatus
+		if (salesStatus.value !== '') {
+			obj.salesStatus = salesStatus.value ? (salesStatus.value === "待售" ? 'FOR_SALE' : 'ON_SALE') : ''
 		}
 		if (street !== '') {
 			obj.street = street
@@ -501,9 +257,6 @@ Page({
 		}
 		if (lowerLimit !== '') {
 			obj.lowerLimit = lowerLimit;
-		}
-		if (houseType !== '') {
-			obj.houseType = houseType
 		}
 		if (routeStops !== '') {
 			obj.routeStop = routeStops
@@ -605,6 +358,7 @@ Page({
 		})
 	},
 
+	// 区域
 	getStreet() {
 		let {
 			region,
@@ -616,8 +370,15 @@ Page({
 			"province": province,
 			"region": region,
 		}).then((res) => {
+			console.log(res, 123)
+			let list = res.map((item) => {
+				item.type = "streetType"
+				item.selected = false
+				item.value = item.cityName
+				return item;
+			})
 			this.setData({
-				subwayList: res,
+				subwayList: list,
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -629,8 +390,10 @@ Page({
 		})
 	},
 
+	// 地铁
 	getSubway() {
 		request.subway({}).then((res) => {
+			console.log(res,123)
 			let item = res.map((item) => {
 				item.routeStopItem = item.routeStop.map((key, index) => {
 					return {
@@ -655,11 +418,20 @@ Page({
 		})
 	},
 
+	//单价
 	getUnitPrice() {
 		request.unitPrice().then((res) => {
 			console.log(res, '单价')
+			let list = res.map((item, index) => {
+				item.ids = item.id
+				item.id = index
+				item.type = "totalPrice"
+				item.selected = false
+				item.value = item.priceOption
+				return item;
+			})
 			this.setData({
-				unitPrice: res
+				pricePrice: list
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -671,11 +443,20 @@ Page({
 		})
 	},
 
+	// 总价
 	getTotalPrice() {
 		request.totalPrice().then((res) => {
 			// console.log(res, '总价')
+			let list = res.map((item, index) => {
+				item.ids = item.id
+				item.id = index
+				item.type = "totalPrice"
+				item.selected = false
+				item.value = item.priceOption
+				return item;
+			})
 			this.setData({
-				totalPrice: res
+				pricePrice: list
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -687,11 +468,20 @@ Page({
 		})
 	},
 
+	// 租金
 	getRent() {
 		request.rent().then((res) => {
-			// console.log(res, '租金')
+			console.log(res, '租金')
+			let list = res.map((item, index) => {
+				item.ids = item.id
+				item.id = index
+				item.type = "totalPrice"
+				item.selected = false
+				item.value = item.priceOption
+				return item;
+			})
 			this.setData({
-				rent: res
+				pricePrice: list
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -703,11 +493,14 @@ Page({
 		})
 	},
 
+	// 户型
 	getType() {
 		request.type().then((res) => {
 			// console.log(res, '户型')
 			let item = res.map((item) => {
-				item.checked = false;
+				item.type = "houseType";
+				item.value = item.title;
+				item.selected = false;
 				return item;
 			})
 			this.setData({
@@ -730,29 +523,30 @@ Page({
 		let tabTitle = [];
 		switch (options.type) {
 			case '新房房源':
-				tabTitle = ['区域','单价','户型','销售状态',]
+				tabTitle = ['区域', '单价', '户型', '销售状态', ]
+				this.getUnitPrice();
 				break
 			case '二手房房源':
-				tabTitle = ['区域','总价','户型','楼龄',]
+				tabTitle = ['区域', '总价', '户型', '楼龄', ]
+				this.getTotalPrice();
 				break
 			case '租房房源':
-				tabTitle = ['区域','租金','户型','出租方式',]
+				tabTitle = ['区域', '租金', '户型', '出租方式', ]
+				this.getRent();
 				break
 			case '小区房源':
-				tabTitle = ['区域','单月均价','户型','楼龄',]
+				tabTitle = ['区域', '单月均价', '户型', '楼龄', ]
+				this.getUnitPrice();
 				break
 		}
 		this.setData({
-			tabTitle:tabTitle,
+			tabTitle: tabTitle,
 			city: app.globalData.address.city || '',
 			province: app.globalData.address.province || '',
 			title: options.type,
 		}, () => {
 			this.getData();
 			this.getStreet()
-			this.getUnitPrice();
-			this.getTotalPrice();
-			this.getRent();
 			this.getType();
 		})
 	},

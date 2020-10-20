@@ -42,7 +42,7 @@
 				<text class="components-top-right">我要推荐</text>
 			</view>
 			<view class="owner">
-				<view class="owner-left">
+				<view class="owner-left" bindtap="toPrice">
 					<image src="/assets/pic_sellhouse_w166@2x.png" mode="aspectFill" class="owner-left-img"></image>
 					<text class="owner-left-title1">我要卖房</text>
 					<text class="owner-left-title2">金牌经纪 快速成交</text>

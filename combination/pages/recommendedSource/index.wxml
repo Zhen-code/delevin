@@ -68,8 +68,8 @@
 			placeholder-style="color:#999999" placeholder="请输入内容"></textarea>
 	</view>
 	<view class="view-row-text">
-		<text bindtap="privacyPolicy">温馨提示</text>
-		<text>与其等待与能力匹配的机会，不如培养与机会匹配的能力将已知的事物陌生化，更是一种创造与其等待与能力匹配的机会，不如培养与机会匹配的能力将已知的事物陌生化，更是一种创造与其等待与能力匹配的机会，不如培养与机会匹配的能力将已知的事物陌生化，更是一种创造</text>
+		<text bindtap="toWebView">温馨提示</text>
+		<text>{{content}}</text>
 	</view>
 </view>
 

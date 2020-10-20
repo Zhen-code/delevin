@@ -122,9 +122,15 @@ Component({
         })
       }
     },
+
     toHome() {
-      console.log(this.data.pageHome)
-      app.globalData.state = true
+      wx.switchTab({
+        url: `/pages/home/index`
+      })
+    },
+
+    backHome() {
+      // app.globalData.state = true
       wx.switchTab({
         url: `/pages/home/index`
       })

@@ -546,7 +546,7 @@ Page({
 			},
 			dataLabel: false,
 			width: _self.cWidth,
-			height: 220,
+			height: 210,
 			extra: {
 				column: {
 					type: 'group',

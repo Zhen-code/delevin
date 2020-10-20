@@ -65,6 +65,7 @@ Page({
       homePage = JSON.parse(wx.getStorageSync('homePage'))
     }
     if(type){
+      console.log(res.userInfo,1111)
       data = {
         "encryptedData": numberData.encryptedData,
         "headImgUri": res.userInfo.avatarUrl,
@@ -74,6 +75,7 @@ Page({
         "sessionKey": rese.sessionKey,
       }
     }else{
+      console.log(res.userInfo,1111)
       data = {
         "encryptedData": numberData.encryptedData,
         "headImgUri": "",
