@@ -1,0 +1,149 @@
+<!--pages/home/components/seach.wxml-->
+<view class='content '>
+	<!-- //条件选择区域 -->
+	<view class='condition'>
+		<view class='condition-line'>
+			<view class="condition-item {{conditionType == index ? 'color-red' :''}}" wx:for="{{conditionList}}"
+				wx:key="index" data-index="{{index}}" bindtap='pulldown'>
+				<text>{{item}}</text>
+				<image src='{{conditionType == index ?pullimg[1]:pullimg[0]}}'></image>
+			</view>
+		</view>
+		<!-- 选中条件区域 -->
+		<view class='selected' wx:if='{{areaselected.length != 0 && shadow}}'>
+			<view wx:for="{{areaselected}}" wx:key="index">{{item.value}}
+				<image src='/assets/cancel.png' bindtap='deleteSelected' data-id='{{item.id}}' data-type='{{item.type}}'></image>
+			</view>
+			<span bindtap="deleteAll" data-type="all">清空</span>
+		</view>
+	</view>
+
+	<!-- 区域选择列表 -->
+	<view class='scroll-box' hidden="{{!(conditionType == 0)}}" wx:if="{{!shadow}}">
+		<view class='scroll-content'>
+			<scroll-view class='scroll-first' scroll-y="true" enable-flex="true">
+				<text wx:for="{{areaFirst.list}}" wx:key="index" class="{{index == areaFirst.index ? 'bgcolor-white':''}} text"
+					bindtap="changeIndex" data-type='area' data-index="{{index}}">{{item}}
+				</text>
+			</scroll-view>
+			<scroll-view class='scroll-second' scroll-y="true" enable-flex="true">
+				<text class=".scroll-second-text" wx:for="{{ areaFirst.index == 0 ?areaSecondAll:areaSecond[areaFirst.index]}}"
+					data-areaId="{{item.id?item.id:areaFirst.index+'-'+index}}" bindtap='areaSelected' data-type='areaContent'
+					data-value='{{item}}' wx:key="index" class='{{item.selected?"color-red":""}}'>{{item.value}}</text>
+			</scroll-view>
+		</view>
+		<view class="buttom-group rentalMethod-tap">
+			<text class="rentalMethod-tap-text {{tabIndex === 0?'rentalMethod-tap-text-action':''}}" data-index="{{0}}"	bindtap="conditionTab">不限条件</text>
+			<text class="rentalMethod-tap-text {{tabIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
+		</view>
+	</view>
+
+	<!-- 价格选择列表 -->
+	<view class='area-square' hidden="{{!(conditionType == 1)}}" wx:if="{{!shadow}}">
+		<view class="rentalMethod-name">
+			<text class="rentalMethod-leftName">{{Amount.title}}</text>
+			<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
+		</view>
+		<view class="rentalMethod-content">
+			<block wx:for="{{areaSquare}}" wx:key="index" bindtap='areaSquareSelect' data-type='areaSquare'
+				data-id='{{item.id}}'>
+				<text class="rentalMethod-content-index index-action1" data-item="{{item}}" data-index="{{index}}"
+					bindtap="priceTab">{{item.value}}</text>
+			</block>
+		</view>
+		<view class='square-self'>
+			<text>自定义</text>
+			<input type='number' placeholder="{{Amount.down}}" placeholder-style="color:#999999" bindinput="limitbottom"
+				data-type="areaSquareSelft" value='{{areaSquareSelft.bottom}}'></input>
+			<span>-</span>
+			<input type='number' placeholder="{{Amount.up}}" placeholder-style="color:#999999" bindinput="limitTop"
+				data-type="areaSquareSelft" value='{{areaSquareSelft.top}}'></input>
+		</view>
+		<view class="buttom-group rentalMethod-tap">
+			<text class="rentalMethod-tap-text rentalMethod-tap-text-action" data-index="{{0}}" bindtap='cacel'
+				data-type='selfSquare'>不限条件</text>
+			<text class="rentalMethod-tap-text" data-index="{{1}}" bindtap='comfirm'>筛选房源</text>
+		</view>
+	</view>
+
+	<!-- 户型选择列表 -->
+	<view class='area-square' hidden="{{!(conditionType == 2)}}" wx:if="{{!shadow}}">
+		<view class="rentalMethod-name">
+			<text class="rentalMethod-leftName">户型</text>
+			<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
+		</view>
+		<view class="rentalMethod-content">
+			<block wx:for="{{areaSquare}}" wx:key="index" bindtap='areaSquareSelect' data-type='areaSquare'
+				data-id='{{item.id}}'>
+				<text class="rentalMethod-content-index index-action" data-item="{{item}}" data-index="{{index}}"
+					bindtap="priceTab">{{item.value}}</text>
+			</block>
+		</view>
+		<view class="buttom-group rentalMethod-tap">
+			<text class="rentalMethod-tap-text rentalMethod-tap-text-action" data-index="{{0}}" bindtap='cacel'
+				data-type='selfSquare'>不限条件</text>
+			<text class="rentalMethod-tap-text" data-index="{{1}}" bindtap='comfirm'>筛选房源</text>
+		</view>
+	</view>
+
+	<!-- 销售选择列表 -->
+	<view class='area-square' hidden="{{!(conditionType == 3)}}" wx:if="{{!shadow && conditionList[3] === '销售状态'}}">
+		<view class="rentalMethod-name">
+			<text class="rentalMethod-leftName">销售状态</text>
+			<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
+		</view>
+		<view class="rentalMethod-content">
+			<block wx:for="{{areaSquare}}" wx:key="index" bindtap='areaSquareSelect' data-type='areaSquare'
+				data-id='{{item.id}}'>
+				<text class="rentalMethod-content-index index-action" data-item="{{item}}" data-index="{{index}}"
+					bindtap="priceTab">{{item.value}}</text>
+			</block>
+		</view>
+		<view class="buttom-group rentalMethod-tap">
+			<text class="rentalMethod-tap-text rentalMethod-tap-text-action" data-index="{{0}}" bindtap='cacel'
+				data-type='selfSquare'>不限条件</text>
+			<text class="rentalMethod-tap-text" data-index="{{1}}" bindtap='comfirm'>筛选房源</text>
+		</view>
+	</view>
+
+	<!-- 楼龄选择列表 -->
+	<view class='area-square' hidden="{{!(conditionType == 3)}}" wx:if="{{!shadow && conditionList[3] === '楼龄'}}">
+		<view class="rentalMethod-name">
+			<text class="rentalMethod-leftName">楼龄</text>
+			<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
+		</view>
+		<view class="rentalMethod-content">
+			<block wx:for="{{areaSquare}}" wx:key="index" bindtap='areaSquareSelect' data-type='areaSquare'
+				data-id='{{item.id}}'>
+				<text class="rentalMethod-content-index index-action" data-item="{{item}}" data-index="{{index}}"
+					bindtap="priceTab">{{item.value}}</text>
+			</block>
+		</view>
+		<view class="buttom-group rentalMethod-tap">
+			<text class="rentalMethod-tap-text rentalMethod-tap-text-action" data-index="{{0}}" bindtap='cacel'
+				data-type='selfSquare'>不限条件</text>
+			<text class="rentalMethod-tap-text" data-index="{{1}}" bindtap='comfirm'>筛选房源</text>
+		</view>
+	</view>
+
+	<!-- 出租选择列表 -->
+	<view class='area-square' hidden="{{!(conditionType == 3)}}" wx:if="{{!shadow && conditionList[3] === '出租方式'}}">
+		<view class="rentalMethod-name">
+			<text class="rentalMethod-leftName">出租方式</text>
+			<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
+		</view>
+		<view class="rentalMethod-content">
+			<block wx:for="{{areaSquare}}" wx:key="index" bindtap='areaSquareSelect' data-type='areaSquare'
+				data-id='{{item.id}}'>
+				<text class="rentalMethod-content-index index-action" data-item="{{item}}" data-index="{{index}}"
+					bindtap="priceTab">{{item.value}}</text>
+			</block>
+		</view>
+		<view class="buttom-group rentalMethod-tap">
+			<text class="rentalMethod-tap-text rentalMethod-tap-text-action" data-index="{{0}}" bindtap='cacel'
+				data-type='selfSquare'>不限条件</text>
+			<text class="rentalMethod-tap-text" data-index="{{1}}" bindtap='comfirm'>筛选房源</text>
+		</view>
+	</view>
+
+</view>

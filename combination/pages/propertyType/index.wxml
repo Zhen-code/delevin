@@ -2,28 +2,27 @@
 <view class="view" style="top:{{paddingTop}}px">
 	<citySearch isCancel style="width:100%" bind:getCityValue="getCityValue" bind:getInputValue="getInputValue"
 		bind:getSearchValue="getSearchValue" bind:search="getSearchValue" bind:firmInput="getSearchValue"></citySearch>
-	<view class="type">
-		<view class="type-index" data-index="{{0}}" bindtap="selectTab">
+
+		<view class="selectValue">
+			<selectValue tabTitle="{{tabTitle}}"></selectValue>
+		</view>
+
+	<!-- <view class="type"> -->
+		<!-- <view class="type-index" data-index="{{0}}" bindtap="selectTab">
 			<text class="type-index-name {{topIndex1?'type-index-name-action':''}}">区域</text>
-			<!-- 未选中 -->
 			<image class="type-index-icon" wx:if="{{iconIndex1 === 0}}" src="/combination/image/icon_dragdown_12_nor@2x.png">
 			</image>
-			<!-- 选中关闭 -->
 			<image class="type-index-icon" wx:if="{{iconIndex1 === 1}}" src="/combination/image/icon_dragdown_12_pre@2x.png">
 			</image>
-			<!-- 选中开启 -->
 			<image class="type-index-icon" wx:if="{{iconIndex1 === 2}}" src="/combination/image/icon_pullup_12_pre@2x.png">
 			</image>
 		</view>
 		<view class="type-index" data-index="{{1}}" bindtap="selectTab">
 			<text class="type-index-name {{topIndex2?'type-index-name-action':''}}">{{towState}}</text>
-			<!-- 未选中 -->
 			<image class="type-index-icon" wx:if="{{iconIndex2 === 0}}" src="/combination/image/icon_dragdown_12_nor@2x.png">
 			</image>
-			<!-- 选中关闭 -->
 			<image class="type-index-icon" wx:if="{{iconIndex2 === 1}}" src="/combination/image/icon_dragdown_12_pre@2x.png">
 			</image>
-			<!-- 选中开启 -->
 			<image class="type-index-icon" wx:if="{{iconIndex2 === 2}}" src="/combination/image/icon_pullup_12_pre@2x.png">
 			</image>
 		</view>
@@ -44,10 +43,10 @@
 			</image>
 			<image class="type-index-icon" wx:if="{{selectType4 === 2}}" src="/combination/image/icon_pullup_12_pre@2x.png">
 			</image>
-		</view>
+		</view> -->
 
 		<!-- 区域 -->
-		<view class="typeTreeSelect" wx:if="{{selectIndex === 0}}">
+		<!-- <view class="typeTreeSelect" wx:if="{{selectIndex === 0}}">
 			<view class="typeTreeSelect-list">
 				<view class="typeTreeSelect-list-row">
 					<view class="typeTreeSelect-list-left">
@@ -88,10 +87,10 @@
 			</view>
 			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
-		</view>
+		</view> -->
 
 		<!-- 单价 -->
-		<view class="typeTreeSelect" wx:if="{{selectIndex === 1}}">
+		<!-- <view class="typeTreeSelect" wx:if="{{selectIndex === 1}}">
 			<view class="rentalMethod">
 				<view class="rentalMethod-name">
 					<text class="rentalMethod-leftName">单价区间(元/m²)</text>
@@ -115,15 +114,15 @@
 					<text class="rentalMethod-tap-text {{conditionIndex === 0?'rentalMethod-tap-text-action':''}}"
 						data-index="{{0}}" bindtap="changeTab">不限条件</text>
 					<text class="rentalMethod-tap-text {{conditionIndex === 1?'rentalMethod-tap-text-action':''}}"
-						data-index="{{1}}" bindtap="changeTab">筛选房源</text>
+						data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
 				</view>
 			</view>
 			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
-		</view>
+		</view> -->
 
 		<!-- 总价 -->
-		<view class="typeTreeSelect" wx:if="{{selectIndex === 1 && title === '二手房房源'}}">
+		<!-- <view class="typeTreeSelect" wx:if="{{selectIndex === 1 && title === '二手房房源'}}">
 			<view class="rentalMethod">
 				<view class="rentalMethod-name">
 					<text class="rentalMethod-leftName">总价(万)</text>
@@ -152,10 +151,10 @@
 			</view>
 			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
-		</view>
+		</view> -->
 
 		<!-- 户型 -->
-		<view class="typeTreeSelect" wx:if="{{selectIndex === 2}}">
+		<!-- <view class="typeTreeSelect" wx:if="{{selectIndex === 2}}">
 			<view class="rentalMethod">
 				<view class="rentalMethod-name">
 					<text class="rentalMethod-leftName">户型</text>
@@ -176,10 +175,10 @@
 			</view>
 			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
-		</view>
+		</view> -->
 
 		<!-- 销售状态 -->
-		<view class="typeTreeSelect" wx:if="{{selectIndex === 3  && title === '新房房源'}}">
+		<!-- <view class="typeTreeSelect" wx:if="{{selectIndex === 3  && title === '新房房源'}}">
 			<view class="rentalMethod">
 				<view class="rentalMethod-name">
 					<text class="rentalMethod-leftName">销售状态</text>
@@ -200,10 +199,10 @@
 			</view>
 			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
-		</view>
+		</view> -->
 
 		<!-- 楼龄 -->
-		<view class="typeTreeSelect" wx:if="{{selectIndex === 3 && (title === '二手房房源' || title === '小区房源')}}">
+		<!-- <view class="typeTreeSelect" wx:if="{{selectIndex === 3 && (title === '二手房房源' || title === '小区房源')}}">
 			<view class="rentalMethod">
 				<view class="rentalMethod-name">
 					<text class="rentalMethod-leftName">楼龄</text>
@@ -230,10 +229,10 @@
 			</view>
 			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
-		</view>
+		</view> -->
 
 		<!-- 出租方式 -->
-		<view class="typeTreeSelect" wx:if="{{selectIndex === 3 && title === '租房房源'}}">
+		<!-- <view class="typeTreeSelect" wx:if="{{selectIndex === 3 && title === '租房房源'}}">
 			<view class="rentalMethod">
 				<view class="rentalMethod-name">
 					<text class="rentalMethod-leftName">出租方式</text>
@@ -254,13 +253,8 @@
 			</view>
 			<view class="rentalMethod-hide" bindtap="setHide">
 			</view>
-		</view>
-	</view>
-
-	<view class="view-checked" wx:if="{{selectList.length !== 0}}">
-		<van-tag style="margin-right:16rpx" wx:for="{{selectList}}" wx:key="index" closeable size="medium" plain
-			type="primary" color="#F8F8F8" text-color="#666666" bind:close="onClose">{{item}}</van-tag>
-	</view>
+		</view> -->
+	<!-- </view> -->
 
 	<scroll-view class="list" wx:if="{{item.length !== 0}}" refresher-enabled="true" scroll-into-view="{{toView}}"
 		refresher-triggered="{{triggered}}" bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">

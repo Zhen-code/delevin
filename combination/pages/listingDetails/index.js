@@ -42,7 +42,7 @@ Page({
 		item2: [],
 		item3: [],
 		item4: [],
-		markers:[],
+		markers: [],
 	},
 
 	tovideoImage() {
@@ -67,11 +67,11 @@ Page({
 
 	toPrice(e) {
 		var components = e.currentTarget.dataset.myid;
-		if(this.data.toView){
+		if (this.data.toView) {
 			this.setData({
-				toView:'',
+				toView: '',
 			})
-		}else{
+		} else {
 			this.setData({
 				// toView: components,
 			})
@@ -122,7 +122,7 @@ Page({
 		this.getshowColumn(data)
 	},
 
-	getMap(item){
+	getMap(item) {
 		let markers = [{
 			iconPath: "/combination/image/icon_location_map@2x.png",
 			id: 0,
@@ -133,7 +133,7 @@ Page({
 			height: 30
 		}]
 		this.setData({
-			markers:markers
+			markers: markers
 		})
 	},
 
@@ -467,21 +467,29 @@ Page({
 		})
 	},
 
-	// ahistoryAdd(item) {
-	// 	request.ahistoryAdd({
-	// 		"targetId": item.houseId,
-	// 		"type": item.houseMold
-	// 	}).then((res) => {
-	// 	}).catch((err) => {
-	// 		console.log(err)
-	// 		wx.showToast({
-	// 			title: '请求失败',
-	// 			icon: 'none',
-	// 			duration: 2500
-	// 		})
-	// 	})
-	// },
+	ahistoryAdd(item) {
+		request.ahistoryAdd({
+			"targetId": item.houseId,
+			"type": item.houseMold
+		}).then((res) => {}).catch((err) => {
+			console.log(err)
+			wx.showToast({
+				title: '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
 
+	huadong: function () {
+		wx.createSelectorQuery().select('#page').boundingClientRect(function (rect) {
+			if (rect) {
+				wx.pageScrollTo({
+					scrollTop: 500
+				})
+			}
+		}).exec()
+	},
 
 	/**
 	 * 生命周期函数--监听页面加载
@@ -597,9 +605,9 @@ Page({
 	 */
 	onShow: function () {
 		this.addVistorRecord();
-		this.updateVisitCount();//更新房源访问次数
-		this.addBrowseHistory();//添加浏览记录
-		this.getSuperAdvert();//获取超级推广
+		this.updateVisitCount(); //更新房源访问次数
+		this.addBrowseHistory(); //添加浏览记录
+		this.getSuperAdvert(); //获取超级推广
 	},
 
 	/**
