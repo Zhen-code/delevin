@@ -32,7 +32,7 @@
 						 wx:if="{{supportText.length!==0}}">
 				<block wx:for="{{supportText}}" wx:key="index">
 				<view class="essay-row">
-					<view class="text {{item.isShow ? 'on' : ''}}"><rich-text nodes="{{item.details}}"></rich-text></view>
+					<view class="text {{item.isShow ? 'on' : ''}}">{{item.details}}</view>
 					<view class="bottomShow" data-index="{{index}}" bindtap="toggle">
 						<text class="show-text">{{item.isShow?'收起':'展开'}}</text>
 						<van-icon name="{{item.isShow?'arrow-up' : 'arrow-down'}}" size="24rpx" color="#999999" />

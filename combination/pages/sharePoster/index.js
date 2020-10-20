@@ -380,11 +380,11 @@ Page({
 				ctx1.font = '13px PingFangSC-Regular,PingFang SC';
 				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,435);
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
-				let mulitipleWidth = to2Px(allWidth,360);
+				let mulitipleWidth = to2Px(allWidth,320);
 				this.renderText(ctx1,str,nameLeft,466,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,426);
+				let qrImgLeft = to2Px(allWidth,476);
 				console.log(this.data.qrCodePath)
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,390,100,100);
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,390,70,70);
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -445,10 +445,10 @@ Page({
 				ctx1.font = '13px PingFangSC-Regular,PingFang SC';
 				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,41);
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
-				let mulitipleWidth = to2Px(allWidth,360);
+				let mulitipleWidth = to2Px(allWidth,310);
 				this.renderText(ctx1,str,nameLeft,70,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,436);
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,1,100,100);
+				let qrImgLeft = to2Px(allWidth,486);
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,1,70,70);
 				ctx1.drawImage(this.data.imgPath4,nameLeft,109,to2Px(allWidth,520),262);
 				ctx1.drawImage(this.data.pic_resources,to2Px(allWidth,488),325,to2Px(allWidth,188),to2Px(allWidth,188));
 				let titleLeft = to2Px(allWidth,116);
@@ -787,9 +787,9 @@ Page({
 		})
 	},
 	save(){
-		if(this.data.disable){
-			return
-		}
+		// if(this.data.disable){
+		// 	return
+		// }
 		wx.showLoading({
 			title: '图片生成中!'
 		});
