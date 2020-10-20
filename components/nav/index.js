@@ -135,5 +135,15 @@ Component({
         url: `/pages/home/index`
       })
     },
+    backHome(){
+      if(app.globalData.state){
+        app.globalData.state = true;
+      }else{
+        app.globalData.state = false;
+      }
+      wx.switchTab({
+        url: `/pages/home/index`
+      })
+    }
   }
 })
