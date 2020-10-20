@@ -22,7 +22,7 @@ Component({
     search: "", //搜索内容
     pullimg: ["/combination/image/icon_dragdown_12_nor@2x.png", "/combination/image/icon_dragdown_12_pre@2x.png"],
     bgShow: false,
-    tabIndex:0,
+    tabIndex: 0,
     conditionList: ['区域', '单价', '户型', '销售状态'],
     areaFirst: { //区域数据
       list: ['全部', '白云', '番禺'], //一级区域列表
@@ -40,20 +40,58 @@ Component({
           value: "不限"
         },
       ],
+      [
+        {
+          selected: false,
+          value: "大石"
+        }
+      ]
     ],
     areaSquare: [{
+      id: 0,
+      type: "areaSquare",
+      selected: false,
+      value: "不限"
+    },
+    {
+      id: 1,
+      type: "areaSquare",
+      selected: false,
+      value: "20m²以下"
+    },
+    ],
+    totalPrice: [
+      {
         id: 0,
-        type: "areaSquare",
+        type: "totalPrice",
         selected: false,
         value: "不限"
       },
       {
         id: 1,
-        type: "areaSquare",
+        type: "totalPrice",
         selected: false,
-        value: "20m²以下"
+        value: "20-100元",
+        bottomPrice: 20,
+        topPrice: 100
       },
     ],
+    totalPriceSelft: {
+      top: "",
+      bottom: ""
+    },
+    houseType: [{
+      id: 0,
+      type: "houseType",
+      selected: false,
+      value: "不限"
+    },
+    {
+      id: 1,
+      type: "houseType",
+      selected: false,
+      value: "一室",
+    }],
     areaSquareSelft: {
       top: "",
       bottom: ""
@@ -78,7 +116,7 @@ Component({
         type: "freeSecond",
         selected: false,
         value: '不限'
-      }, ]
+      },]
     ],
     conditionType: -1, //0区域 1面积 2费用 3筛选
     selected: [], //选中条件列表
@@ -95,10 +133,10 @@ Component({
     },
 
     // tab切换
-    conditionTab(e){
+    conditionTab(e) {
       let index = e.currentTarget.dataset.index;
       this.setData({
-        tabIndex:index,
+        tabIndex: index,
       })
     },
 
@@ -116,6 +154,17 @@ Component({
       //当type为all 全部删除
       let type = e.currentTarget.dataset.type
       console.log(type)
+      //新增 删除总价条件
+      if (type == "totalPrice" || type == "all") {
+        let totalPrice = this.data.totalPrice
+        totalPrice.map(item => { 
+            item.selected = false
+        
+        })
+        this.setData({
+          totalPrice: totalPrice
+        })
+      }
       //删除区域条件
       if (type == "areaSecond" || type == "all") {
         let areaSecond = this.data.areaSecond
@@ -258,6 +307,7 @@ Component({
       var selected = !this.data.areaSecond[index1][index2].selected
       //保留用户所在区域的选中状态
       let areaSecond1 = JSON.parse(JSON.stringify(this.data.areaSecond[index1]))
+      console.log(id)
       console.log(areaSecond1)
 
       let areaSecond = this.data.areaSecond
@@ -319,8 +369,8 @@ Component({
     },
     //选择面积条件
     areaSquareSelect(e) {
-      // console.log(e)
-      let index = e.currentTarget.dataset.id;
+      console.log(e)
+      let index = e.currentTarget.dataset.index;
       let areaSquare = this.data.areaSquare
       areaSquare[index].selected = !areaSquare[index].selected
       areaSquare.map((item, index1) => {
@@ -328,6 +378,7 @@ Component({
           item.selected = false
         }
       })
+      console.log(areaSquare)
       // let string = 'areaSquare[' + index + '].selected'
       e.currentTarget.dataset.type = "areaSquareSelft"
       this.cacel(e)
@@ -335,8 +386,42 @@ Component({
         // [string]: selected
         areaSquare: areaSquare
       })
-      console.log(this.data.areaSquare)
-
+    },
+    //新增  totalPrice 选择总价
+    totalPriceSelect(e) {
+      console.log(e)
+      let index = e.currentTarget.dataset.index;
+      let totalPrice = this.data.totalPrice
+      totalPrice[index].selected = !totalPrice[index].selected
+      totalPrice.map((item, index1) => {
+        if (index != index1) {
+          item.selected = false
+        }
+      })
+      // let string = 'areaSquare[' + index + '].selected'
+      e.currentTarget.dataset.type = "totalPrice"
+      // this.cacel(e)  //清空 type 类型的选项
+      this.setData({
+        // [string]: selected
+        totalPrice: totalPrice
+      })
+    },
+    //新增  houseType 选择户型
+    houseTypeSelect(e) {
+      console.log(e)
+      let index = e.currentTarget.dataset.index;
+      let houseType = this.data.houseType
+      houseType[index].selected = !houseType[index].selected
+      houseType.map((item, index1) => {
+        if (index != index1) {
+          item.selected = false
+        }
+      })
+      e.currentTarget.dataset.type = "houseType"
+      this.cacel(e)
+      this.setData({
+        houseType: houseType
+      })
     },
     //搜索框 双向绑定 防抖
     searchEdit: util.debounce(function (e) {
@@ -425,27 +510,6 @@ Component({
       // return
       var selected = !this.data.screen[type].list[index].selected
       var string = 'screen.' + type + '.list[' + index + '].selected'
-      // if (type == "operation") {
-      //   let operation = this.data.screen.operation
-      //   if (index == 0 && operation.list[0].selected == false) {
-      //     operation.list.map((item, index) => {
-      //       if (index != 0) {
-      //         item.selected = false;
-      //       } else {
-      //         item.selected = true;
-      //       }
-      //     })
-      //     this.setData({
-      //       ['screen.operation']: operation
-      //     })
-      //   } else {
-      //     this.setData({
-      //       [string]: selected,
-      //       ['screen.operation.list[0].selected']: false
-      //     })
-      //   }
-      //   return
-      // }
       this.setData({
         [string]: selected
       })
@@ -457,6 +521,24 @@ Component({
       var index = e.currentTarget.dataset.id
       console.log(index)
       switch (type) {
+        case "totalPrice": //新增 删除总价选项
+          var index = e.currentTarget.dataset.id
+          var selected = false
+          var string = 'totalPrice[' + index + '].selected'
+          console.log(string)
+          this.setData({
+            [string]: selected
+          })
+          break;
+        case "houseType": //新增 删除户型选项
+          var index = e.currentTarget.dataset.id
+          var selected = false
+          var string = 'houseType[' + index + '].selected'
+          console.log(string)
+          this.setData({
+            [string]: selected
+          })
+          break;
         case "areaSecond":
           console.log(type)
           var id = e.currentTarget.dataset.id
@@ -661,10 +743,50 @@ Component({
           }
         })
       }
-      // console.log(list)
-      // if(list.length != 0){
-      //   triggerEvent('options', list) //options名称事件，父组件中使用
-      // }
+
+
+      //新增 统计总价筛选
+      for (let key in data.totalPrice) {
+        if (data.totalPrice[key].selected == true) {
+          if (data.totalPrice[0].selected == true) {
+            let item = JSON.parse(JSON.stringify(data.totalPrice[0]))
+            item.value = "总价不限"
+            list.push(item)
+          } else {
+            list.push(data.totalPrice[key])
+          }
+        }
+      }
+      if (data.totalPriceSelft.top != "" || data.totalPriceSelft.bottom != "") {
+        var value;
+        if (data.totalPriceSelft.top && data.totalPriceSelft.bottom == "") {
+          value = data.totalPriceSelft.top + "元以下"
+        } else if (data.totalPriceSelft.top == "" && data.totalPriceSelft.bottom) {
+          value = data.totalPriceSelft.bottom + "元以上"
+        } else {
+          value = data.totalPriceSelft.bottom + "-" + data.totalPriceSelft.top + "元"
+        }
+        var item = {
+          type: "totalPriceSelft",
+          bottomAcreage: data.totalPriceSelft.bottom == "" ? 0 : data.totalPriceSelft.bottom,
+          topAcreage: data.totalPriceSelft.top == "" ? 0 : data.totalPriceSelft.top,
+          value: value,
+        }
+        list.push(item)
+      }
+
+      //新增 统计户型筛选
+      for (let key in data.houseType) {
+        if (data.houseType[key].selected == true) {
+          if (data.houseType[0].selected == true) {
+            let item = JSON.parse(JSON.stringify(data.houseType[0]))
+            item.value = "总价不限"
+            list.push(item)
+          } else {
+            list.push(data.houseType[key])
+          }
+        }
+      }
       return list
     },
     //统计全部区域地方
@@ -784,7 +906,7 @@ Component({
             break
         }
         this.setData({
-          Amount:Amount,
+          Amount: Amount,
           conditionList: val,
         })
       }
