@@ -150,16 +150,17 @@
 	justify-content: flex-start;
 }
 
-.view-row-text text:nth-child(2) {
-	width: 100%;
-	height: auto;
+.content-wrap{
+	min-height: 30rpx;
 	font-size: 26rpx;
 	color: #999999;
-	text-align: left;
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
 	margin-top: 10rpx;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp:5;
+	line-clamp:5;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
 .bottom {

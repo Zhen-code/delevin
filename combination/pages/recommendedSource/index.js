@@ -309,7 +309,7 @@ Page({
     }).then((res) => {
 			this.setData({
 				link:res.link,
-				content:res.content,
+				content:res['content'].replace(/<[^>]+>/ig,'').replace(/\&nbsp;/ig,''),
 			})
     }).catch((err) => {
       wx.showToast({

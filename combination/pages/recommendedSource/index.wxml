@@ -69,7 +69,7 @@
 	</view>
 	<view class="view-row-text">
 		<text bindtap="toWebView">温馨提示</text>
-		<text>{{content}}</text>
+		<view class="content-wrap">{{content}}</view>
 	</view>
 </view>
 
