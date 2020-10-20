@@ -10,7 +10,7 @@
 			</view>
 		</view>
 		<!-- 选中条件区域 -->
-		<view class='selected' wx:if='{{areaselected.length != 0 && shadow}}'>
+		<view class='selected' wx:if='{{areaselected.length != 0 &&conditionType == -1 }}'>
 			<view wx:for="{{areaselected}}" wx:key="index">{{item.value}}
 				<image src='/assets/cancel.png' bindtap='deleteSelected' data-id='{{item.id}}' data-type='{{item.type}}'></image>
 			</view>
@@ -45,19 +45,19 @@
 			<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
 		</view>
 		<view class="rentalMethod-content">
-			<block wx:for="{{areaSquare}}" wx:key="index" bindtap='areaSquareSelect' data-type='areaSquare'
+			<block wx:for="{{totalPrice}}" wx:key="index" 
 				data-id='{{item.id}}'>
-				<text class="rentalMethod-content-index index-action1" data-item="{{item}}" data-index="{{index}}"
-					bindtap="priceTab">{{item.value}}</text>
+				<text class="rentalMethod-content-index index-action1" data-type='areaSquare' data-item="{{item}}" data-index="{{index}}" style="{{item.selected?'color:red':''}}"
+					bindtap="totalPriceSelect">{{item.value}}</text>
 			</block>
 		</view>
 		<view class='square-self'>
 			<text>自定义</text>
 			<input type='number' placeholder="{{Amount.down}}" placeholder-style="color:#999999" bindinput="limitbottom"
-				data-type="areaSquareSelft" value='{{areaSquareSelft.bottom}}'></input>
+				data-type="totalPriceSelft" value='{{totalPriceSelft.bottom}}'></input>
 			<span>-</span>
 			<input type='number' placeholder="{{Amount.up}}" placeholder-style="color:#999999" bindinput="limitTop"
-				data-type="areaSquareSelft" value='{{areaSquareSelft.top}}'></input>
+				data-type="totalPriceSelft" value='{{totalPriceSelft.top}}'></input>
 		</view>
 		<view class="buttom-group rentalMethod-tap">
 			<text class="rentalMethod-tap-text rentalMethod-tap-text-action" data-index="{{0}}" bindtap='cacel'
@@ -73,10 +73,11 @@
 			<text class="rentalMethod-rightName" bindtap="changeReset">重置</text>
 		</view>
 		<view class="rentalMethod-content">
-			<block wx:for="{{areaSquare}}" wx:key="index" bindtap='areaSquareSelect' data-type='areaSquare'
+			<block wx:for="{{houseType}}" wx:key="index"  data-type='houseType'
 				data-id='{{item.id}}'>
-				<text class="rentalMethod-content-index index-action" data-item="{{item}}" data-index="{{index}}"
-					bindtap="priceTab">{{item.value}}</text>
+				<text class="rentalMethod-content-index index-action" data-item="{{item}}" data-index="{{index}}" data-type='houseType'
+				bindtap='houseTypeSelect'
+					>{{item.value}}</text>
 			</block>
 		</view>
 		<view class="buttom-group rentalMethod-tap">
