@@ -497,6 +497,12 @@ Page({
 		}).exec()
 	},
 
+	close(){
+		this.setData({
+			showAgent: false
+		})
+	},
+
 	linkAgent(){
 	wx.makePhoneCall({
 		phoneNumber: this.data.agentPhone
