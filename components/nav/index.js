@@ -58,10 +58,6 @@ Component({
     backTab: {
       type: Boolean, //类型
       value: false //默认值
-    },
-    hideBack: {
-      type: Boolean,
-      value: true
     }
   },
 
@@ -102,16 +98,13 @@ Component({
           TabHome: val
         })
       }
-    },
-    hideBack(val,newVal){
-      console.log(val)
-      this.properties.hideBack = val;
-      console.log(newVal)
     }
   },
 
   methods: {
     back() {
+      console.log('nav中tabhome')
+      console.log(this.data.TabHome)
       if(this.data.TabHome){
         wx.switchTab({
           url: '/pages/home/index'

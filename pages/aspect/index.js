@@ -93,8 +93,9 @@ Page({
   move(e){
     // console.log(e)
     let delta = e.touches[0].clientY - sy;
+      // console.log(delta)
     if(this.data.hei<=0 && delta<=0){
-      console.log('上拉')
+      // console.log('上拉')
       return
     }
     if(this.data.scrollTop>0){
@@ -148,7 +149,7 @@ Page({
       this.setData({
         scrollTop: st
       })
-    },200);
+    },100);
   },
   scrollList(){
     if(this.data._index == 0){
@@ -502,7 +503,9 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+      this.setData({
+          postList:[]
+      })
   },
 
   /**

@@ -1,4 +1,4 @@
-<navbar backHome="{{true}}" bgColor="{{bgColor}}" title="我的套餐" />
+<navbar backHome="{{backHome}}" backTab="{{backTab}}" bgColor="{{bgColor}}" title="我的套餐" />
 <view class="view" style="padding-top:{{paddingTop}}px;height: calc(100vh);">
 	<view class="doubleTab">
 		<doubleTab style="width:100%;height:70rpx;" tabIndex="{{index}}" tabItem="{{tabItem}}" bind:backTabValue="getbackTabIndex"></doubleTab>

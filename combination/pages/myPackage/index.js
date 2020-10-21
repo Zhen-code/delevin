@@ -22,6 +22,8 @@ Page({
 		setMealType: 'PORT_SET_MEAL',
 		scrollTop: 0,
 		triggered: false,
+		backTab: false,
+		backHome: true
 	},
 
 	showPopup(e) {
@@ -103,6 +105,18 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		let backTab = options.backTab;
+		console.log(backTab)
+		console.log('获取跳转backTab')
+		if(backTab=== 'true'){
+			this.setData({
+				backTab: true
+			})
+		}else{
+			this.setData({
+				backTab: false
+			})
+		}
 		if (Number(options.index) === 2) {
 			this.setData({
 				index: 2,

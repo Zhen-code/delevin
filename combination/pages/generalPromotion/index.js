@@ -90,8 +90,8 @@ Page({
 				"orderNum": orderNum,
 				"payMethod": "WX"
 			}).then((res)=>{
-				let payInfo = JSON.parse(res.payInfo)
-				let wxPayResult = JSON.parse(payInfo.wxPayResult)
+				let payInfo = JSON.parse(res.payInfo);
+				let wxPayResult = JSON.parse(payInfo.wxPayResult);
 				wx.requestPayment({
 					'timeStamp': payInfo.timeStamp,
 					'nonceStr': wxPayResult.nonceStr,
@@ -104,8 +104,9 @@ Page({
 							icon: 'none',
 							duration: 1000
 						});
-						wx.reLaunch({
-							url: '/combination/pages/myPackage/index',
+						console.log('backTab=false')
+						wx.navigateTo({
+							url: '/combination/pages/myPackage/index?backTab=false',
 						})
 					},
 					'fail': function (res) {
