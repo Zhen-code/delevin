@@ -32,7 +32,7 @@ Page({
 		stlectName: "arrow-down",
 		cWidth: '',
 		cHeight: '',
-		tabItem: ['新房', '二手房'],
+		tabItem: ['二手房','租房'],
 		favoritesState: false,
 		favoritesIcon: 'star-o',
 		favoritesColor: '#cccccc',

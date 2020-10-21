@@ -20,25 +20,6 @@
 	</view>
 
 	<!-- 区域选择列表 -->
-	<!-- <view class='scroll-box' hidden="{{!(conditionType == 0)}}" wx:if="{{!shadow}}">
-		<view class='scroll-content'>
-			<scroll-view class='scroll-first' scroll-y="true" enable-flex="true">
-				<text wx:for="{{areaFirst.list}}" wx:key="index" class="{{index == areaFirst.index ? 'bgcolor-white':''}} text"
-					bindtap="changeIndex" data-type='area' data-index="{{index}}">{{item}}
-				</text>
-			</scroll-view>
-			<scroll-view class='scroll-second' scroll-y="true" enable-flex="true">
-				<view class="row" wx:for="{{areaSecond[1]}}" wx:key="index" data-areaId="{{item.id?item.id:areaFirst.index+'-'+index}}" bindtap='areaSelected' data-type='areaContent' data-value='{{item}}'>
-					<text class=".scroll-second-text"  class='{{item.selected?"checked-color":""}}'>{{item.value}}</text>
-					<van-icon wx:if="{{item.selected}}" class="checked" name="success" color="#FFD200" size="34rpx" />
-				</view>
-			</scroll-view>
-		</view>
-		<view class="buttom-group rentalMethod-tap">
-			<text class="rentalMethod-tap-text {{tabIndex === 0?'rentalMethod-tap-text-action':''}}" data-index="{{0}}"	bindtap="conditionTab">不限条件</text>
-			<text class="rentalMethod-tap-text {{tabIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}" bindtap="conditionTab">筛选房源</text>
-		</view>
-	</view> -->
 	<view class="typeTreeSelect" hidden="{{!(conditionType == 0)}}" wx:if="{{!shadow}}">
 		<view class="typeTreeSelect-list">
 			<view class="typeTreeSelect-list-row">
@@ -49,26 +30,38 @@
 						wx:if="{{conditionList[3] === '出租方式'}}" data-index="{{1}}" bindtap="leftTab">地铁</text>
 				</view>
 				<view class="typeTreeSelect-list-right">
-					<view class="typeTreeSelect-list-right-one">
+					<view class="typeTreeSelect-list-right-one" wx:if="{{leftAction === 0}}">
 						<block wx:for="{{areaSecondList}}" wx:key="index">
 							<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
-								bindtap="changeArea">
+								data-type='streetType' bindtap="areaSecondList">
 								<text
 									class="typeTreeSelect-list-right-one-title {{item.selected?'right-one-action':''}}">{{item.lineName || item.cityName}}</text>
 								<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.selected}}" />
 							</view>
 						</block>
 					</view>
-					<!-- <view class="typeTreeSelect-list-right-one" wx:if="{{routeStop.length !== 0 && conditionList[3] === '出租方式'}}">
-						<block wx:for="{{routeStop}}" wx:key="index">
-							<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
-								bindtap="changeAreaChildren">
-								<text
-									class="typeTreeSelect-list-right-one-title {{item.checked?'right-one-action':''}}">{{item.name}}</text>
-								<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.checked}}" />
-							</view>
-						</block>
-					</view> -->
+					<view class="typeTreeSelect-row" wx:if="{{leftAction === 1 && conditionList[3] === '出租方式'}}">
+						<view class="typeTreeSelect-list-right-one">
+							<block wx:for="{{areaTypeList}}" wx:key="index">
+								<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
+									data-type='subwayType' bindtap="areaTypeList">
+									<text
+										class="typeTreeSelect-list-right-one-title {{item.selected?'right-one-action':''}}">{{item.value}}</text>
+									<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.selected}}" />
+								</view>
+							</block>
+						</view>
+						<view class="typeTreeSelect-list-right-one">
+							<block wx:for="{{areaTypeList2}}" wx:key="index">
+								<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
+									data-type='routeStopType' bindtap="areaTypeList2">
+									<text
+										class="typeTreeSelect-list-right-one-title {{item.selected?'right-one-action':''}}">{{item.value}}</text>
+									<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.selected}}" />
+								</view>
+							</block>
+						</view>
+					</view>
 				</view>
 			</view>
 			<view class="buttom-group rentalMethod-tap">
@@ -77,6 +70,8 @@
 				<text class="rentalMethod-tap-text {{tabIndex === 1?'rentalMethod-tap-text-action':''}}" data-index="{{1}}"
 					bindtap="conditionTab">筛选房源</text>
 			</view>
+		</view>
+		<view class="rentalMethod-hide" bindtap="onHide">
 		</view>
 	</view>
 

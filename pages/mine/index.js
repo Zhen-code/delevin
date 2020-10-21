@@ -36,12 +36,11 @@ Page({
 							}
 							request.login(data).then((res) => {
 								let token = res.token;
-								console.log(res.token, 1111)
 								wx.removeStorageSync('token')
 								wx.setStorageSync('token', token)
 								than.setData({
 									showInfo: false,
-								},()=>{
+								}, () => {
 									than.getData()
 								})
 							}).catch((err) => {
@@ -64,13 +63,14 @@ Page({
 		})
 	},
 
-	toShareItCode(){
+	toShareItCode() {
 		wx.navigateTo({
 			url: `/combination/pages/shareItCode/index`,
 		})
 	},
 
 	getTab() {
+		// 1.用户端为true 2.经纪端为flase
 		let {
 			show
 		} = this.data;
@@ -78,26 +78,38 @@ Page({
 			this.setData({
 				show: false,
 				tabTitle: '切换至经纪端',
-			},()=>{
+			}, () => {
 				app.globalData.state = show;
 				wx.setTabBarItem({
 					index: 1,
 					text: '看点',
-					iconPath: '/image/tabbar/icon_tab2_24_nor@2x.png',
-					selectedIconPath: '/image/tabbar/icon_tab2_24_pre@2x.png',
+					iconPath: '/assets/tabbar/icon_tab2_24_nor@2x.png',
+					selectedIconPath: '/assets/tabbar/icon_tab2_24_pre@2x.png',
+					"success": function (res) {
+						console.log("成功换图片", res)
+					},
+					"fail": function (err) {
+						console.log("换图片失败", err)
+					}
 				})
 			})
 		} else {
 			this.setData({
 				show: true,
 				tabTitle: '切换至用户端',
-			},()=>{
+			}, () => {
 				app.globalData.state = show;
 				wx.setTabBarItem({
 					index: 1,
 					text: '房源',
 					iconPath: '/assets/tabbar/icon_tab9_24_nor@2x.png',
 					selectedIconPath: '/assets/tabbar/icon_tab9_24_pre@2x.png',
+					"success": function (res) {
+						console.log("成功换图片", res)
+					},
+					"fail": function (err) {
+						console.log("换图片失败", err)
+					}
 				})
 			})
 		}
@@ -124,11 +136,11 @@ Page({
 					})
 					// wx.removeStorageSync('token');
 					wx.clearStorage();
-					setTimeout(()=>{
+					setTimeout(() => {
 						wx.reLaunch({
 							url: "/pages/login/index"
 						})
-					},1500)
+					}, 1500)
 				}
 			},
 		})
@@ -234,11 +246,11 @@ Page({
 					break;
 				default:
 			}
-			if(res.agentId){
-				wx.setStorageSync('agentId',res.agentId);//经纪人id
+			if (res.agentId) {
+				wx.setStorageSync('agentId', res.agentId); //经纪人id
 			}
-			wx.setStorageSync('userId',res.id);//普通用户id
-			wx.setStorageSync('info',res);//登录者信息
+			wx.setStorageSync('userId', res.id); //普通用户id
+			wx.setStorageSync('info', res); //登录者信息
 			this.setData({
 				userInfo: res,
 			})

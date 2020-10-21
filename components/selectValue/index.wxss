@@ -590,6 +590,11 @@
   border-left: 1px solid #eeeeee;
 }
 
+.rentalMethod-hide {
+	width: 100%;
+	height: 50vh;
+	z-index: 1;
+}
 
 .typeTreeSelect {
   width: 100%;
@@ -599,6 +604,15 @@
   left: 0;
   z-index: 999;
   background: rgba(0, 0, 0, 0.5);
+}
+
+.typeTreeSelect-row{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
 }
 
 .typeTreeSelect-list {
