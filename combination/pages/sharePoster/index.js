@@ -42,33 +42,41 @@ Page({
 		userId: '',
 		unitPrice: '',
 		unitTitle: '',
-		unit:''
+		unit:'',
+		unitLeft: 0
 	},
 	getUnit(){
+		let res = wx.getSystemInfoSync();
 		let unitPrice = 0;
 		let unitTitle = '';
 		let unit = '';
+		let unitLeft = '';
 		if(this.data.dataInfo['houseMold'] === 'ESTATE'){
 			unitPrice = this.data.dataInfo['unitPrice'];
 			unitTitle = '单价:';
 			unit = '元/m²';
+			unitLeft = to2Px(res.screenWidth,100);
 		}else if(this.data.dataInfo['houseMold'] === 'SECOND_HAND'){
 			unitPrice =  this.data.dataInfo['totalPrice'];
 			unitTitle = '总价:';
 			unit = '万';
+			unitLeft = to2Px(res.screenWidth,100);
 		}else if(this.data.dataInfo['houseMold'] === 'TENANCY'){
 			unitPrice = this.data.dataInfo['monthRent'];
 			unitTitle = '总价:';
-			unit = '月/元'
+			unit = '月/元';
+			unitLeft = to2Px(res.screenWidth,100);
 		}else if(this.data.dataInfo['houseMold'] === 'RESIDENTIAL_QUARTERS'){
 			unitPrice = this.data.dataInfo['averagePrice'];
 			unitTitle = '当月均价:';
 			unit = '元/m²';
+			unitLeft = to2Px(res.screenWidth,48);
 		}
 		this.setData({
 			unitPrice,
 			unitTitle,
-			unit
+			unit,
+			unitLeft
 		});
 	},
 	onChange(current,source){
@@ -172,7 +180,7 @@ Page({
 				this.renderTitle(ctx1,this.data.dataInfo['title'],titleLeft,48,to2Px(allWidth,504));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('white');
-				ctx1.fillText(that.data.unitTitle,titleLeft,100);
+				ctx1.fillText(that.data.unitTitle,that.data.unitLeft,100);
 				let unitPriceLeft = to2Px(allWidth,178);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FFD793');
@@ -257,7 +265,7 @@ Page({
 				this.renderTitle1(ctx1,this.data.dataInfo['title'],titleLeft,93,to2Px(allWidth,498));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText(that.data.unitTitle,titleLeft,150);
+				ctx1.fillText(that.data.unitTitle,that.data.unitLeft,150);
 				let unitPriceLeft = to2Px(allWidth,178);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FE6300');
@@ -353,7 +361,7 @@ Page({
 				this.renderTitle2(ctx1,this.data.dataInfo['title'],titleLeft,48,to2Px(allWidth,500));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText(that.data.unitTitle,titleLeft,100);
+				ctx1.fillText(that.data.unitTitle,that.data.unitLeft,100);
 				let unitPriceLeft = to2Px(allWidth,246);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FE6300');
@@ -473,7 +481,7 @@ Page({
 				this.renderTitle2(ctx1,this.data.dataInfo['title'],titleLeft,390,to2Px(allWidth,324));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText(that.data.unitTitle,titleLeft,450);
+				ctx1.fillText(that.data.unitTitle,that.data.unitLeft,450);
 				let unitPriceLeft = to2Px(allWidth,246);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FE6300');

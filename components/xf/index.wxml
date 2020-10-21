@@ -9,8 +9,7 @@
         </view>
         <view class="tab-item">
             <view class="tab-item-left">户型</view>
-            <view class="tab-item-right"   catch:tap="goIndoorSheet"
-                  data-type="houseInType">
+            <view class="tab-item-right">
                 <view class="houseType-wrap" wx:if="{{houseType.length!==0}}">
                     <view class="houseType-item" wx:for="{{houseType}}" wx:key="*this">
                         {{item.name}}
@@ -23,6 +22,8 @@
                 <image src="../../combination/image/icon_go_22_gray@2x.png"
                        mode="aspectFill"
                        class="common-img"
+                       data-type="houseInType"
+                       catch:tap="goIndoorSheet"
                 ></image>
             </view>
         </view>

@@ -685,8 +685,9 @@ Page({
 				'title': title,
 				"id": id,
 			});
+			let agentId = wx.getStorageSync('agentId');
 			wx.navigateTo({
-				url: `/combination/pages/listingDetails/index?item=${item}`,
+				url: `/combination/pages/listingDetails/index?item=${item}&agentId=${agentId}&showInfo=true`,
 			});
 		}
 	},

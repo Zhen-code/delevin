@@ -222,7 +222,7 @@ Page({
 
 	myPackage() {
 		wx.navigateTo({
-			url: '/combination/pages/myPackage/index',
+			url: '/combination/pages/myPackage/index?backTab=true',
 		})
 	},
 

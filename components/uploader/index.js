@@ -29,9 +29,6 @@ Component({
 	 */
 	methods: {
 		afterRead(event) {
-			wx.showLoading({
-				title: '上传中'
-			});
 			var that = this;
 			const {
 				file
@@ -40,6 +37,7 @@ Component({
 				return item.path;
 			});
 			console.log(file)
+			let all = pathArray.length-1;
 			for (let i = 0; i < pathArray.length; i++) {
 				wx.uploadFile({
 					url: domain + api.upload.imgVideoUpload, // 仅为示例，非真实的接口地址
@@ -73,8 +71,14 @@ Component({
 						that.triggerEvent('getImgs',{e:that.data.fileList});
 					}
 				});
+				if(all === i){
+					wx.showToast({
+						title: '图片上传成功!',
+						icon: "none",
+						duration: 2000
+					})
+				}
 			}
-			wx.hideLoading();
 			if(this.data['fileList'].length!==0){
 				wx.showToast({
 					title: '上传成功!',
