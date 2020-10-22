@@ -3,7 +3,7 @@
 	<view class="info-view" wx:if="{{showAgent}}">
 		<van-icon name="cross" size="35rpx" color="#cccccc" catch:tap="close"/>
 		<view class="info-view-row">
-			<image class="info-view-row-image" src="/combination/image/icon_customer_16_pre@2x.png"></image>
+			<image class="info-view-row-image" src="{{headImgUri}}"></image>
 			<view class="info-view-row-content">
 				<text>{{agentName}}</text>
 				<text>{{agentSm}}</text>

@@ -15,7 +15,7 @@
   </text>
   <block wx:for="{{newsImg}}"
          wx:key="*this">
-    <image src="{{item}}" mode="scaleToFill" class="news-img"></image>
+    <image src="{{item}}" mode="widthFix" class="news-img"></image>
   </block>
 </view>
 <view class="line"></view>
