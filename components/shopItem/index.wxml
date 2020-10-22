@@ -20,7 +20,7 @@
 					src="/assets/label_sell_orange@2x.png"></image>
 			</view>
 			<van-tag style="margin-right:10rpx"
-				wx:if="{{item.sourceType === 'TENANCY' || item.houseMold === 'TENANCY' && item.quartersName}}" color="#F8F8F8" text-color="#666666">{{item.quartersName}}</van-tag>
+				wx:if="{{item.sourceType === 'TENANCY' || item.houseMold === 'TENANCY' || item.rentType === 'COTENANCY' && item.quartersName}}" color="#F8F8F8" text-color="#666666">{{item.quartersName}}</van-tag>
 			<van-tag style="margin-right:10rpx"	wx:if="{{item.sourceType === 'TENANCY' || item.sourceType === 'SECOND_HAND' || item.sourceType === 'RESIDENTIAL_QUARTERS' && item.floorage}}" color="#F8F8F8" text-color="#666666">{{item.floorage || 0}}m²</van-tag>
 			<!-- <van-tag style="margin-right:10rpx" wx:if="{{item.district && item.showRegion}}" color="#F8F8F8" text-color="#666666">{{item.district}}-{{item.street}}</van-tag> -->
 			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'RESIDENTIAL_QUARTERS' && item.region}}"
@@ -28,15 +28,14 @@
 			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'RESIDENTIAL_QUARTERS' && item.builtYear}}"
 				color="#F8F8F8" text-color="#666666">{{item.builtYear}}</van-tag>
 			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'SECOND_HAND' || item.sourceType === 'TENANCY'}}" color="#F8F8F8" text-color="#666666">
-				{{item.houseToilet || 0}}室{{item.houseHall || 0}}厅{{item.houseToilet || 0}}卫{{item.houseKitchen || 0}}厨</van-tag>
+				{{item.houseType || 0}}室{{item.houseHall || 0}}厅{{item.houseToilet || 0}}卫{{item.houseKitchen || 0}}厨</van-tag>
 			<block wx:for="{{item.houseLabel}}" wx:key="index">
 				<van-tag style="margin-right:10rpx" color="#F8F8F8" text-color="#666666">{{item}}</van-tag>
 			</block>
 		</view>
 		<view class="item-right-typeMoney">
 			<view class="price" wx:if="{{item.sourceType === 'ESTATE' || item.houseMold === 'ESTATE'}}">
-				{{item.unitPrice || item.housePrice}}元/m²<image style="margin-left:5px" class="item-right-content-icon2"
-					src="/assets/label_newhouse_red@2x.png"></image>
+				{{item.unitPrice || item.housePrice}}元/m²<image style="margin-left:5px" wx:if="{{item.houseSubsidy}}" class="item-right-content-icon2" src="/assets/label_newhouse_red@2x.png"></image>
 			</view>
 			<view class="price" wx:if="{{item.sourceType === 'SECOND_HAND' || item.houseMold === 'SECOND_HAND'}}">
 				{{item.totalPrice || item.housePrice}}万 <text class="price-text">({{item.avgPrice}}元/m²)</text></view>

@@ -203,8 +203,8 @@ Page({
 		}).then((res) => {
 			let list = this.data.item
 			let data = res.list.map((item)=>{
-				item.houseType = this.data.type
 				item.sourceType = this.data.type
+				item.houseMold = this.data.type
 				return item;
 			});
 			console.log(data,12121)

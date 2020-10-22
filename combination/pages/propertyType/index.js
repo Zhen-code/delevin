@@ -59,7 +59,7 @@ Page({
 		type: [],
 		typeList: [],
 		tabTitle: [],
-		city: false,
+		citys: false,
 	},
 
 	getState() {
@@ -97,7 +97,7 @@ Page({
 	// 开启选择城市
 	getShowCity(e) {
 		this.setData({
-			city: e.detail
+			citys: e.detail
 		})
 	},
 
@@ -131,7 +131,7 @@ Page({
 				pageIndex: 1,
 				item: [],
 				keyword: e.detail.value,
-				city: e.detail.city,
+				city: e.detail.city || app.globalData.address.city,
 				province: e.detail.province || app.globalData.address.province,
 			}, () => {
 				this.getData()
@@ -233,7 +233,7 @@ Page({
 			rentType,
 			buildingAgeOptions,
 		} = this.data;
-	console.log(routeStops,789)
+	console.log(city,789)
 		let obj = {
 			pageIndex: pageIndex,
 			pageSize: pageSize,
@@ -242,7 +242,7 @@ Page({
 			obj.keyword = keyword
 		}
 		if (city !== '') {
-			obj.city = app.globalData.address.city || '';
+			obj.city = city;
 		}
 		if (province !== '') {
 			obj.province = province
@@ -552,14 +552,12 @@ Page({
 			case '租房房源':
 				tabTitle = ['区域', '租金', '户型', '出租方式', ]
 				this.getRent();
-				this.getSubway();
 				break
 			case '小区房源':
 				tabTitle = ['区域', '单月均价', '户型', '楼龄', ]
 				this.getUnitPrice();
 				break
 		}
-		console.log(app.globalData.address.city)
 		this.setData({
 			tabTitle: tabTitle,
 			city: app.globalData.address.city || '',
@@ -569,6 +567,7 @@ Page({
 			this.getData();
 			this.getStreet()
 			this.getType();
+			this.getSubway();
 		})
 	},
 

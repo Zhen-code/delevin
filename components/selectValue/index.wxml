@@ -26,8 +26,7 @@
 				<view class="typeTreeSelect-list-left">
 					<text class="typeTreeSelect-list-left-index {{leftAction === 0?'bgcolor-white':''}}" data-index="{{0}}"
 						bindtap="leftTab">区域</text>
-					<text class="typeTreeSelect-list-left-index {{leftAction === 1?'bgcolor-white':''}}"
-						wx:if="{{conditionList[3] === '出租方式'}}" data-index="{{1}}" bindtap="leftTab">地铁</text>
+					<text class="typeTreeSelect-list-left-index {{leftAction === 1?'bgcolor-white':''}}" data-index="{{1}}" bindtap="leftTab">地铁</text>
 				</view>
 				<view class="typeTreeSelect-list-right">
 					<view class="typeTreeSelect-list-right-one" wx:if="{{leftAction === 0}}">
@@ -40,7 +39,7 @@
 							</view>
 						</block>
 					</view>
-					<view class="typeTreeSelect-row" wx:if="{{leftAction === 1 && conditionList[3] === '出租方式'}}">
+					<view class="typeTreeSelect-row" wx:if="{{leftAction === 1}}">
 						<view class="typeTreeSelect-list-right-one">
 							<block wx:for="{{areaTypeList}}" wx:key="index">
 								<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"

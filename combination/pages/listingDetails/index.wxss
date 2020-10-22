@@ -505,7 +505,7 @@
 	font-weight: 400;
 	color: #999999;
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: flex-start;
 	flex-direction: row;
 }

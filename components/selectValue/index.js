@@ -1345,38 +1345,32 @@ Component({
     },
     tabTitle(val, newVal) {
       let Amount = this.data.Amount;
-      let areaFirst = this.data.areaFirst;
       if (val) {
         switch (val[1]) {
           case '单价':
             Amount.title = '单价区间(元/m²)';
             Amount.up = '最高价格(元/m²)';
             Amount.down = '最低价格(元/m²)';
-            areaFirst.list = ['区域']
-            console.log(this.data.priceList)
             break
           case '总价':
             Amount.title = '总价(元)';
             Amount.up = '最高价格(万元)';
             Amount.down = '最低价格(万元)';
-            areaFirst.list = ['区域']
             break
           case '租金':
             Amount.title = '租金(元/月)';
             Amount.up = '最高价格(元/月)';
             Amount.down = '最低价格(元/月)';
-            areaFirst.list = ['区域']
+
             break
           case '单月均价':
             Amount.title = '均价(元/m²)';
             Amount.up = '最高价格(元/m²)';
             Amount.down = '最低价格(元/m²)';
-            areaFirst.list = ['区域', '地铁']
             break
         }
         this.setData({
           Amount: Amount,
-          areaFirst: areaFirst,
           conditionList: val,
         })
       }
