@@ -50,7 +50,7 @@ Page({
 	getSearchValue(e) {
 		this.setData({
 			keyword: e.detail.value,
-			city: e.detail.city,
+			city: e.detail.city || app.globalData.address.city,
 			province: e.detail.province || app.globalData.address.province,
 		}, () => {
 			this.getData()
