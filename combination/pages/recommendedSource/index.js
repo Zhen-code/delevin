@@ -283,6 +283,7 @@ Page({
 			console.log(data)
 			request.customers(data).then((res) => {
 				this.getState()
+				app.globalData.realEstateItem = {};
 				wx.reLaunch({
 					url: `/combination/pages/backHome/index?title=${'推荐客源'}`,
 				})

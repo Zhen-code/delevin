@@ -123,7 +123,7 @@
 				<view class="name-type"><text class="name-name">物业类别：</text><text
 						class="name-typeValue">{{item.propertyClassify || '暂无'}}</text></view>
 				<view class="name-type"><text class="name-name">产权年限：</text><text
-						class="name-typeValue">{{item.property || '暂无'}}</text></view>
+						class="name-typeValue">{{item.property+'年' || '暂无'}}</text></view>
 				<view class="name-type"><text class="name-name">建筑类别：</text><text
 						class="name-typeValue">{{item.developers || '暂无'}}</text></view>
 				<view class="name-type"><text class="name-name">装修状况：</text><text
