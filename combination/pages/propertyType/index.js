@@ -59,6 +59,7 @@ Page({
 		type: [],
 		typeList: [],
 		tabTitle: [],
+		streetOffice:[],
 		citys: false,
 	},
 
@@ -175,6 +176,7 @@ Page({
 			streetType: [],
 			rentType: [],
 			routeStopType: [],
+			areaType:[],
 		}
 		if (JSON.stringify(e.detail) !== '{}') {
 			e.detail.map((item) => {
@@ -184,17 +186,19 @@ Page({
 					}
 				}
 			})
+			let street = obj.areaType.length !== 0 ?obj.areaType[0].name:'';
+			let region = obj.areaType.length !== 0 ?obj.areaType[0].lineName:(obj.streetType.length !== 0 ? obj.streetType[0].value : '');
 			let lineName = obj.routeStopType.length !== 0 ? obj.routeStopType[0].lineName : '';
 			let routeStops = obj.routeStopType.length !== 0 ? obj.routeStopType : '';
 			let rentType = obj.rentType.length !== 0 ? obj.rentType[0].rentType : '';
-			let region = obj.streetType.length !== 0 ? obj.streetType[0].value : '';
 			let buildingAgeOptions = obj.roomageType.length !== 0 ? obj.roomageType[0].buildingAgeOptions : '';
 			let upperLimit = obj.totalPrice.length !== 0 ? obj.totalPrice[0].upperLimit : obj.totalPriceSelft.length !== 0 ? (Number(obj.totalPriceSelft[0].topAcreage)) : '';
 			let lowerLimit = obj.totalPrice.length !== 0 ? obj.totalPrice[0].lowerLimit : obj.totalPriceSelft.length !== 0 ? (Number(obj.totalPriceSelft[0].bottomAcreage)) : '';
-			console.log(routeStops)
+
 			this.setData({
 				item: [],
 				pageIndex: 1,
+				street:street,
 				region: region,
 				rentType: rentType || '',
 				lineName: lineName || '',
@@ -233,7 +237,7 @@ Page({
 			rentType,
 			buildingAgeOptions,
 		} = this.data;
-	console.log(city,789)
+		console.log(city, 789)
 		let obj = {
 			pageIndex: pageIndex,
 			pageSize: pageSize,
@@ -375,14 +379,12 @@ Page({
 	// 区域
 	getStreet() {
 		let {
-			region,
 			city,
 			province
 		} = this.data;
 		request.street({
 			"city": city,
 			"province": province,
-			"region": region,
 		}).then((res) => {
 			console.log(res, 123)
 			let list = res.map((item) => {
@@ -402,6 +404,49 @@ Page({
 				duration: 2500
 			})
 		})
+	},
+
+	// 街道
+	getAreas() {
+		let {
+			region,
+			city,
+			province
+		} = this.data;
+		request.area({
+			"city": city,
+			"province": province,
+			"region": region,
+		}).then((res) => {
+			console.log(res, 123)
+			let list = res.map((item) => {
+				item.type = "areaType"
+				item.selected = false
+				item.value = item.cityName
+				return item;
+			})
+			this.setData({
+				streetOffice: list,
+			})
+		}).catch((err) => {
+			console.log(err)
+			wx.showToast({
+				title: '数据有误',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
+	getArea(e) {
+		let region = e.detail.cityName;
+		if (region !== '') {
+			this.setData({
+				region: region
+			}, () => {
+				this.getAreas()
+			})
+		}
 	},
 
 	// 地铁

@@ -19,8 +19,7 @@
 				<image class="item-right-content-icon3" wx:if="{{item.salesStatus === 'ON_SALE'}}"
 					src="/assets/label_sell_orange@2x.png"></image>
 			</view>
-			<van-tag style="margin-right:10rpx"
-				wx:if="{{item.sourceType === 'TENANCY' || item.houseMold === 'TENANCY' || item.rentType === 'COTENANCY' && item.quartersName}}" color="#F8F8F8" text-color="#666666">{{item.quartersName}}</van-tag>
+			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'TENANCY' || item.houseMold === 'TENANCY' && item.quartersName}}" color="#F8F8F8" text-color="#666666">{{item.quartersName}}</van-tag>
 			<van-tag style="margin-right:10rpx"	wx:if="{{item.sourceType === 'TENANCY' || item.sourceType === 'SECOND_HAND' || item.sourceType === 'RESIDENTIAL_QUARTERS' && item.floorage}}" color="#F8F8F8" text-color="#666666">{{item.floorage || 0}}m²</van-tag>
 			<!-- <van-tag style="margin-right:10rpx" wx:if="{{item.district && item.showRegion}}" color="#F8F8F8" text-color="#666666">{{item.district}}-{{item.street}}</van-tag> -->
 			<van-tag style="margin-right:10rpx" wx:if="{{item.sourceType === 'RESIDENTIAL_QUARTERS' && item.region}}"

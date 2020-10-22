@@ -4,7 +4,7 @@
 		bind:getSearchValue="getSearchValue" bind:search="getSearchValue" bind:firmInput="getSearchValue"></citySearch>
 
 		<view class="selectValue">
-			<selectValue city="{{citys}}" tabTitle="{{tabTitle}}" pricePrice="{{pricePrice}}" type="{{type}}" subwayList="{{subwayList}}" areaList="{{areaList}}" bind:myEvent="getEvent"></selectValue>
+			<selectValue city="{{citys}}" tabTitle="{{tabTitle}}" pricePrice="{{pricePrice}}" type="{{type}}" subwayList="{{subwayList}}" areaList="{{areaList}}" streetOffice="{{streetOffice}}" bind:myEvent="getEvent" bind:getArea="getArea"></selectValue>
 		</view>
 
 	<scroll-view class="list" wx:if="{{item.length !== 0}}" refresher-enabled="true" scroll-into-view="{{toView}}"

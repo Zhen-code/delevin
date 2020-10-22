@@ -11,8 +11,8 @@
      infoUpData: '/api/access/v1/user/member/info/update',
      code: '/api/access/v1/member/captcha/',
      phone: '/api/access/v1/member/service-hot-line/list',
-    //  link: '/api/access/v1/app/link',
-    link:'/api/v1/app/link',
+     //  link: '/api/access/v1/app/link',
+     link: '/api/v1/app/link',
    },
 
    // 上传图片/视频
@@ -40,8 +40,8 @@
      newListingsList: '/api/access/v1/house/introduction/estate/list',
      towListingsList: '/api/access/v1/house/introduction/second/hand/list',
      sellHouse: '/api/access/v1/house/selling/add',
-     customers:'/api/access/v1/recommend/customers/add',
-     demand:'/api/access/v1/customer/house/demand/list',
+     customers: '/api/access/v1/recommend/customers/add',
+     demand: '/api/access/v1/customer/house/demand/list',
      newListings: '/api/access/v1/house/estate/list',
      newListingsDetails: '/api/access/v1/house/estate/details/',
      towListings: '/api/access/v1/house/second/hand/list',
@@ -52,13 +52,14 @@
      quartersListingsDetails: '/api/access/v1/house/residential/quarters/details/',
      likeListings: '/api/access/v1/house/guess/like/list',
      addAgent: '/api/access/v1/house/relation/agent/add',
-     webView:'/index.html',
+     webView: '/index.html',
    },
 
    // 运营之类的接口
    operation: {
      storeList: '/api/access/v1/store/list',
      street: '/api/v1/hms/area/street/list',
+     area: '/api/v1/hms/area/street/list',
      subway: '/api/access/v1/house/metro/line/list',
      unitPrice: '/api/access/v1/single/price/list',
      totalPrice: '/api/access/v1/total/price/list',
@@ -128,8 +129,8 @@
        return `/api/access/v1/house/around/list/${agentId}` //經紀人房源列表
      },
      snatchCustomer: '/api/access/v1/order/snatch/customers', //搶客
-     superAdvert: (houseType,houseId)=>{
-         return `/api/access/v1/house/details/advert/${houseType}/${houseId}`
+     superAdvert: (houseType, houseId) => {
+       return `/api/access/v1/house/details/advert/${houseType}/${houseId}`
      }
    },
  }

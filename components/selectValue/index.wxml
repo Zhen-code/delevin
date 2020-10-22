@@ -29,16 +29,29 @@
 					<text class="typeTreeSelect-list-left-index {{leftAction === 1?'bgcolor-white':''}}" data-index="{{1}}" bindtap="leftTab">地铁</text>
 				</view>
 				<view class="typeTreeSelect-list-right">
-					<view class="typeTreeSelect-list-right-one" wx:if="{{leftAction === 0}}">
-						<block wx:for="{{areaSecondList}}" wx:key="index">
-							<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
-								data-type='streetType' bindtap="areaSecondList">
-								<text
-									class="typeTreeSelect-list-right-one-title {{item.selected?'right-one-action':''}}">{{item.lineName || item.cityName}}</text>
-								<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.selected}}" />
-							</view>
-						</block>
+					<view class="typeTreeSelect-row" wx:if="{{leftAction === 0}}">
+						<view class="typeTreeSelect-list-right-one">
+							<block wx:for="{{areaSecondList}}" wx:key="index">
+								<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
+									data-type='streetType' bindtap="areaSecondList">
+									<text
+										class="typeTreeSelect-list-right-one-title {{item.selected?'right-one-action':''}}">{{item.lineName || item.cityName}}</text>
+									<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.selected}}" />
+								</view>
+							</block>
+						</view>
+						<view class="typeTreeSelect-list-right-one" wx:if="{{areaStreet.length !== 0 && show}}">
+							<block wx:for="{{areaStreet}}" wx:key="index">
+								<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
+									data-type='areaType' bindtap="areaStreet">
+									<text
+										class="typeTreeSelect-list-right-one-title {{item.selected?'right-one-action':''}}">{{item.value}}</text>
+									<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.selected}}" />
+								</view>
+							</block>
+						</view>
 					</view>
+
 					<view class="typeTreeSelect-row" wx:if="{{leftAction === 1}}">
 						<view class="typeTreeSelect-list-right-one">
 							<block wx:for="{{areaTypeList}}" wx:key="index">
@@ -50,7 +63,7 @@
 								</view>
 							</block>
 						</view>
-						<view class="typeTreeSelect-list-right-one">
+						<view class="typeTreeSelect-list-right-one" wx:if="{{areaTypeList2.length !== 0}}">
 							<block wx:for="{{areaTypeList2}}" wx:key="index">
 								<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
 									data-type='routeStopType' bindtap="areaTypeList2">

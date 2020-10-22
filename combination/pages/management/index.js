@@ -339,6 +339,7 @@ Page({
 					houseId: v.houseId,
 					houseMold: v.houseMold,
 					openingDate:v.openingDate,
+					quartersName:v.quartersName,
 				}
 			});
 			this.setData({

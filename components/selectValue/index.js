@@ -19,6 +19,7 @@ Component({
     areaFirstList: Array,
     subwayList: Array,
     areaList: Array,
+    streetOffice: Array,
     city: Boolean,
   },
   /**
@@ -26,6 +27,7 @@ Component({
    */
   data: {
     e: '',
+    show:false,
     leftAction: 0,
     search: "", //搜索内容
     pullimg: ["/combination/image/icon_dragdown_12_nor@2x.png", "/combination/image/icon_dragdown_12_pre@2x.png"],
@@ -55,6 +57,7 @@ Component({
       }]
     ],
     areaSecondList: [],
+    areaStreet: [],
     areaTypeList: [],
     areaTypeList2: [],
     areaSquare: [{
@@ -194,12 +197,18 @@ Component({
 
     // tab切换
     conditionTab(e) {
+      let areaSecondList = this.data.areaSecondList;
       let index = e.currentTarget.dataset.index || e.currentTarget.dataset.index;
-      console.log(this.data.areaselected)
       if (index === 0) {
+        areaSecondList.map((item) => {
+          item.selected = false
+          return item
+        })
         this.setData({
           tabIndex: index,
           conditionType: -1,
+          areaStreet: [],
+          areaSecondList: areaSecondList,
         }, () => {
           if (this.data.areaselected.length !== 0) {
             this.changeReset()
@@ -220,24 +229,29 @@ Component({
       let areaTypeList = this.data.areaTypeList
       let areaSecondList = this.data.areaSecondList;
       let index = e.currentTarget.dataset.index;
-      if (index === 0) {
-        areaSecondList.map((item)=>{
+      if (index === 1) {
+        areaSecondList.map((item) => {
           item.selected = false
+          return item
         })
         this.setData({
-          areaSecondList:areaSecondList,
+          areaSecondList: areaSecondList,
           leftAction: index,
+          areaStreet: [],
         })
       } else {
-        areaTypeList.map((item)=>{
+        areaTypeList.map((item) => {
           item.selected = false;
-          item.routeStop.map((key)=>{
+          item.routeStop.map((key) => {
             key.selected = false;
             return key
           })
+          return item
         })
         this.setData({
-          areaTypeList:areaTypeList,
+          areaStreet: [],
+          areaTypeList2: [],
+          areaTypeList: areaTypeList,
           leftAction: index,
         })
       }
@@ -313,6 +327,15 @@ Component({
         })
         this.setData({
           areaSecondList: areaSecondList,
+        })
+      }
+      if (type == "areaType" || type == "all") {
+        let areaStreet = this.data.areaStreet
+        areaStreet.map(item => {
+          item.selected = false
+        })
+        this.setData({
+          areaStreet: areaStreet,
         })
       }
       if (type == "totalPriceSelft" || type == "all") {
@@ -653,11 +676,34 @@ Component({
       areaSecondList.map((item, index1) => {
         if (index != index1) {
           item.selected = false
+          this.setData({
+            areaStreet: []
+          })
+        }
+      })
+      if (areaSecondList[index].selected) {
+        this.triggerEvent('getArea', areaSecondList[index])
+      }
+      this.setData({
+        e: e,
+        show:areaSecondList[index].selected,
+        areaSecondList: areaSecondList
+      })
+    },
+    areaStreet(e) {
+      console.log(e)
+      let index = e.currentTarget.dataset.index;
+      let areaStreet = this.data.areaStreet
+      areaStreet[index].selected = !areaStreet[index].selected
+      areaStreet.map((item, index1) => {
+        if (index != index1) {
+          item.selected = false
         }
       })
       this.setData({
         e: e,
-        areaSecondList: areaSecondList
+        itemType: areaStreet[index].selected,
+        areaStreet: areaStreet
       })
     },
     areaTypeList(e) {
@@ -667,7 +713,7 @@ Component({
       areaTypeList.map((item, index1) => {
         if (index != index1) {
           item.selected = false
-          item.routeStop.map((key)=>{
+          item.routeStop.map((key) => {
             key.selected = false;
             return key
           })
@@ -837,6 +883,15 @@ Component({
           var index = e.currentTarget.dataset.id
           var selected = false
           var string = 'areaSecondList[' + index + '].selected'
+          console.log(this.data.areaSecondList, index)
+          this.setData({
+            [string]: selected
+          })
+          break;
+        case "areaType": //新增 删除区域选项
+          var index = e.currentTarget.dataset.id
+          var selected = false
+          var string = 'areaStreet[' + index + '].selected'
           console.log(this.data.areaSecondList, index)
           this.setData({
             [string]: selected
@@ -1026,12 +1081,28 @@ Component({
       //新增 统计区域
       data.areaSecondList.map((item, index) => {
         if (item.selected) {
+          if (data.itemType) {
+            itemValue = item
+          } else {
+            list.push({
+              id: index,
+              ids: item.id,
+              value: item.value,
+              type: item.type,
+              lineName: item.value,
+            })
+          }
+        }
+      })
+      data.areaStreet.map((item, index) => {
+        if (item.selected) {
           list.push({
             id: index,
             ids: item.id,
-            value: item.cityName,
+            value: itemValue.value + '/' + item.value,
             type: item.type,
-            parentId: item.parentId
+            lineName: itemValue.value,
+            name: item.value
           })
         }
       })
@@ -1041,7 +1112,6 @@ Component({
         if (item.selected) {
           if (data.itemType) {
             itemValue = item
-            console.log('选择地铁名后会打印到')
           } else {
             list.push({
               id: index,
@@ -1313,6 +1383,13 @@ Component({
       if (val) {
         this.setData({
           conditionType: -1
+        })
+      }
+    },
+    streetOffice(val, newVal) {
+      if (val) {
+        this.setData({
+          areaStreet: val
         })
       }
     },

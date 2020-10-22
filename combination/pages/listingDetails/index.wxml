@@ -189,7 +189,7 @@
 				<view class="name-type">产权：<text class="name-typeValue">{{item.property+'年' || '暂无'}}</text></view>
 				<view class="name-type">楼层：<text class="name-typeValue">{{item.floorCondition+'层' || '暂无'}}</text></view>
 				<view class="name-type">年代：<text class="name-typeValue">{{item.builtYear+'年' || '暂无'}}</text></view>
-				<view class="name-type">楼型：<text class="name-typeValue">{{item.floorCondition || '暂无'}}</text></view>
+				<view class="name-type">楼型：<text class="name-typeValue">暂无</text></view>
 				<view class="name-type">装修：<text class="name-typeValue">{{item.decorationsStatusType || '暂无'}}</text></view>
 				<view class="name-type">朝向：<text class="name-typeValue">{{item.orientationType || '暂无'}}</text></view>
 				<view class="name-type">电梯：<text class="name-typeValue">{{item.elevator || '暂无'}}</text></view>

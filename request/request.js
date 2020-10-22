@@ -200,6 +200,13 @@ const request = {
       params: params,
     });
   },
+  area: (params) => {
+    return http({
+      url: api.operation.street,
+      method: "GET",
+      params: params,
+    });
+  },
   subway: (params) => {
     return http({
       url: api.operation.subway,
