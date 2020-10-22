@@ -325,6 +325,8 @@ Page({
 					unitPrice: v.houseMold==="ESTATE"? v.unitPrice: '',
 					averagePrice: v.houseMold==="RESIDENTIAL_QUARTERS"? v.averagePrice: '',
 					monthRent: v.houseMold === "TENANCY"? v.monthRent:'',
+					secondPrice: v.houseMold === "SECOND_HAND"?v.averagePrice:'',
+					secondPriceShow: true,
 					houseHall: v.houseHall,
 					houseKitchen: v.houseKitchen,
 					houseToilet: v.houseToilet,

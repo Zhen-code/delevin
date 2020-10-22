@@ -214,7 +214,7 @@ Page( {
 			let { supportText } = this.data;
 			let list = res.list.map(v=>{
 				v.isShow = false;
-				v.details = v.details.replace(/(<([^>]+)>)/ig,'');
+				v.details = v.details.replace(/(<([^>]+)>)/ig,'').replace(/\&nbsp;/g,'');
 				return v;
 			});
 			console.log(list)
