@@ -47,6 +47,7 @@ Page({
 		agentName: '',
 		agentSm: '',
 		agentPhone: '',
+		headImgUri: '',
 		backHome: true,
 		pageHome: false
 	},
@@ -528,7 +529,8 @@ Page({
 				that.setData({
 					agentName: res.nickname,
 					agentSm: res.synopsis===''?'暂无简介':res.synopsis,
-					agentPhone: res.phone
+					agentPhone: res.phone,
+					headImgUri: res.headImgUri
 				})
 			})
 		}
