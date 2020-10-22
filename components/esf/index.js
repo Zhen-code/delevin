@@ -5,6 +5,7 @@ var app = getApp();
 Component({
     properties: {},
     data: {
+        buildingType: '',
         showPane:true,
         imgs: [],
         title: '',
@@ -81,13 +82,18 @@ Component({
         }
     },
     methods: {
+        buildingTypeInput(e){
+            this.setData({
+                buildingType: e.detail.value
+            })
+        },
         floorStatusInput(e){
             clearTimeout(this.timeFlag);
             this.timeFlag = setTimeout(()=>{
                 this.setData({
                     floorStatus: e.detail.value
                 })
-            },2000);
+            },500);
         },
         elevatorInput(e){
             clearTimeout(this.timeFlag);
@@ -95,7 +101,7 @@ Component({
                 this.setData({
                     elevator: e.detail.value
                 })
-            },2000);
+            },500);
         },
         getImgs(e){
             this.data.imgs = (e.detail.e).map(v=>v.url);
@@ -157,6 +163,7 @@ Component({
                     url: '/api/access/v1/house/second/hand/add',
                     method: 'POST',
                     params:{
+                        "buildingType": this.data.buildingType,
                         "builtYear": this.data.buildingTime,
                         "city": this.data.city,
                         "decorationStatus": this.decorationStatus,
@@ -237,7 +244,7 @@ Component({
                 this.setData({
                     floorStatus: e.detail.value
                 })
-            },2000);
+            },500);
         },
         elevatorInput(e){
             clearTimeout(this.timeFlag);
@@ -245,7 +252,7 @@ Component({
                 this.setData({
                     elevator: e.detail.value
                 })
-            },2000);
+            },500);
         },
         goTextArea(){
             this.setData({
@@ -335,7 +342,7 @@ Component({
                 this.setData({
                     name: e.detail.value
                 })
-            },2000);
+            },500);
         },
         deleteType(e){
             console.log(e.currentTarget.dataset.index)

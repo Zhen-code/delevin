@@ -43,6 +43,8 @@
   border-radius: 4rpx;
   margin-top: 24rpx;
   margin-bottom: 48rpx;
+  width: 100% !important;
+  height: auto;
 }
 .line{
   width: 750rpx;

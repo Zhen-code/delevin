@@ -37,7 +37,10 @@
 				{{item.unitPrice || item.housePrice}}元/m²<image style="margin-left:5px" wx:if="{{item.houseSubsidy}}" class="item-right-content-icon2" src="/assets/label_newhouse_red@2x.png"></image>
 			</view>
 			<view class="price" wx:if="{{item.sourceType === 'SECOND_HAND' || item.houseMold === 'SECOND_HAND'}}">
-				{{item.totalPrice || item.housePrice}}万 <text class="price-text">({{item.avgPrice}}元/m²)</text></view>
+				<text wx:if="{{item.secondPriceShow}}">{{item.secondPrice}}</text>
+				<text wx:else>{{item.totalPrice || item.housePrice}}万</text>
+				<text class="price-text">({{item.avgPrice}}元/m²)</text>
+			</view>
 			<view class="price" wx:if="{{item.sourceType === 'TENANCY' || item.houseMold === 'TENANCY'}}">
 				{{item.monthRent || item.housePrice}}元/月</view>
 			<view class="item-right-typeNum"

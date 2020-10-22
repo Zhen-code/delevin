@@ -108,6 +108,12 @@
     <view class="split-line"></view>
     <view class="xq-bottom">
         <view class="tab-item">
+            <view class="tab-item-left">楼型</view>
+            <view class="tab-item-right">
+                <input value="{{buildingType}}" placeholder-style="color:#999999" placeholder="请输入楼型" bind:input="buildingTypeInput"></input>
+            </view>
+        </view>
+        <view class="tab-item">
             <view class="tab-item-left">朝向</view>
             <view class="tab-item-right"  catch:tap="goSheet"
                   data-type="orientType">
