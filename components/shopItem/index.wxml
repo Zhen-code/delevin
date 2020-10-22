@@ -34,7 +34,8 @@
 		</view>
 		<view class="item-right-typeMoney">
 			<view class="price" wx:if="{{item.sourceType === 'ESTATE' || item.houseMold === 'ESTATE'}}">
-				{{item.unitPrice || item.housePrice}}元/m²<image style="margin-left:5px" wx:if="{{item.houseSubsidy}}" class="item-right-content-icon2" src="/assets/label_newhouse_red@2x.png"></image>
+				{{item.unitPrice || item.housePrice}}元/m²
+				<van-tag style="margin-left:10rpx" color="#F64D4D" text-color="#ffffff">{{item.houseSubsidy}}</van-tag>
 			</view>
 			<view class="price" wx:if="{{item.sourceType === 'SECOND_HAND' || item.houseMold === 'SECOND_HAND'}}">
 				<text wx:if="{{item.secondPriceShow}}">{{item.secondPrice}}</text>

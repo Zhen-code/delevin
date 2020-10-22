@@ -245,17 +245,17 @@ Page({
 			}
 			if (res.rentHistory) {
 				res.rentHistory.map((items) => {
-					item1.push(items.dateFor)
-					item2.push(items.price)
-					categories.push(items.dateFor)
-					seriesData.push(items.price)
+					item3.push(items.dateFor)
+					item4.push(items.price)
 					return items
 				})
 			}
 			if (res.secondHandHistory) {
 				res.secondHandHistory.map((items) => {
-					item3.push(items.dateFor)
-					item4.push(items.price)
+					item1.push(items.dateFor)
+					item2.push(items.price)
+					categories.push(items.dateFor)
+					seriesData.push(items.price)
 					return items
 				})
 			}
@@ -271,8 +271,8 @@ Page({
 				houseMold: this.data.type
 			}
 			let data = {
-				"categories": categories || item1,
-				"seriesData": seriesData || item2,
+				"categories": categories || item3,
+				"seriesData": seriesData || item4,
 			}
 			this.getshowColumn(data)
 			this.getLikeListings(item);

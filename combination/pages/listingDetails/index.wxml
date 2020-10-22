@@ -52,10 +52,9 @@
 		</view>
 
 		<view class="introduction-price" wx:if="{{type === 'ESTATE'}}">
-			<view class="introduction-price-num">{{item.unitPrice}}元/m²<text
-					class="introduction-price-name">(最终以开发商报价为准)</text></view>
-			<image wx:if="{{type === 'ESTATE' && item.houseSubsidy}}" class="item-right-content-icon2"
-				src="/combination/image/label_newhouse_red@2x.png"></image>
+			<view class="introduction-price-num">{{item.unitPrice}}元/m²
+				<text class="introduction-price-name">(最终以开发商报价为准)</text></view>
+			<van-tag style="margin-left:10rpx" color="#F64D4D" text-color="#ffffff">{{item.houseSubsidy}}</van-tag>
 		</view>
 
 		<view class="introduction-resources" wx:if="{{type !== 'ESTATE'}}">
@@ -249,9 +248,11 @@
 			</view>
 			<view class="introduction-specification-top">
 				<view class="name-type">建筑年代：<text class="name-typeValue">{{item.builtYear+'年' || '暂无'}}</text></view>
-				<view class="name-type">绿化率：<text class="name-typeValue">{{item.greenCoverage || '暂无'}}{{item.greenCoverage ? '%':''}}</text></view>
+				<view class="name-type">绿化率：<text
+						class="name-typeValue">{{item.greenCoverage || '暂无'}}{{item.greenCoverage ? '%':''}}</text></view>
 				<view class="name-type">产权年限：<text class="name-typeValue">{{item.property+'年' || '暂无'}}</text></view>
-				<view class="name-type">容积率：<text class="name-typeValue">{{item.plotRatio || '暂无'}}{{item.greenCoverage ? '%':''}}</text></view>
+				<view class="name-type">容积率：<text
+						class="name-typeValue">{{item.plotRatio || '暂无'}}{{item.greenCoverage ? '%':''}}</text></view>
 				<view class="name-type">物业类别：<text class="name-typeValue">{{item.propertyClassifyName || '暂无'}}</text></view>
 				<view class="name-type">停车位：<text class="name-typeValue">{{item.parkingSpace || '暂无'}}</text></view>
 			</view>
