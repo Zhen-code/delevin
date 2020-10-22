@@ -721,3 +721,8 @@
   font-weight: 400;
   color: #666666;
 }
+
+.right-one-action{
+  color: #333;
+  font-weight: bold;
+}

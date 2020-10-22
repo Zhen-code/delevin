@@ -30,7 +30,7 @@
 				</view>
 				<view class="typeTreeSelect-list-right">
 					<view class="typeTreeSelect-row" wx:if="{{leftAction === 0}}">
-						<view class="typeTreeSelect-list-right-one">
+						<scroll-view scroll-y="true" class="typeTreeSelect-list-right-one">
 							<block wx:for="{{areaSecondList}}" wx:key="index">
 								<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
 									data-type='streetType' bindtap="areaSecondList">
@@ -39,8 +39,8 @@
 									<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.selected}}" />
 								</view>
 							</block>
-						</view>
-						<view class="typeTreeSelect-list-right-one" wx:if="{{areaStreet.length !== 0 && show}}">
+						</scroll-view>
+						<scroll-view scroll-y="true" class="typeTreeSelect-list-right-one" wx:if="{{areaStreet.length !== 0 && show}}">
 							<block wx:for="{{areaStreet}}" wx:key="index">
 								<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
 									data-type='areaType' bindtap="areaStreet">
@@ -49,11 +49,11 @@
 									<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.selected}}" />
 								</view>
 							</block>
-						</view>
+						</scroll-view>
 					</view>
 
 					<view class="typeTreeSelect-row" wx:if="{{leftAction === 1}}">
-						<view class="typeTreeSelect-list-right-one">
+						<scroll-view scroll-y="true" class="typeTreeSelect-list-right-one">
 							<block wx:for="{{areaTypeList}}" wx:key="index">
 								<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
 									data-type='subwayType' bindtap="areaTypeList">
@@ -62,8 +62,8 @@
 									<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.selected}}" />
 								</view>
 							</block>
-						</view>
-						<view class="typeTreeSelect-list-right-one" wx:if="{{areaTypeList2.length !== 0}}">
+						</scroll-view>
+						<scroll-view scroll-y="true" class="typeTreeSelect-list-right-one" wx:if="{{areaTypeList2.length !== 0}}">
 							<block wx:for="{{areaTypeList2}}" wx:key="index">
 								<view class="typeTreeSelect-list-right-one-list" data-item="{{item}}" data-index="{{index}}"
 									data-type='routeStopType' bindtap="areaTypeList2">
@@ -72,7 +72,7 @@
 									<van-icon name="success" size="40rpx" color="#FFD200" wx:if="{{item.selected}}" />
 								</view>
 							</block>
-						</view>
+						</scroll-view>
 					</view>
 				</view>
 			</view>
