@@ -10,6 +10,6 @@
 	</view>
 </view>
 
-<van-popup show="{{ show }}" position="bottom" z-index="999999999" round="{{true}}" custom-style="width:100%;height: 500rpx;" bind:close="onClose">
+<van-popup show="{{ show }}" position="bottom" z-index="999999999" round="{{true}}" custom-style="width:100%;height: auto" bind:close="onClose">
 	<van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" bind:cancel="cancel" bind:confirm="confirm" />
 </van-popup>

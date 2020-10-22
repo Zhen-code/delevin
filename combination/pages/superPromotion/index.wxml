@@ -47,7 +47,7 @@
 						<view class="floor-list-row-top-type-bottom">
 							<view class="title">{{advertising}}</view>
 							<view class="column">
-								<text class="column-name">{{info.street}}</text>
+								<text class="column-name">{{info.title}}</text>
 							</view>
 						</view>
 					</view>

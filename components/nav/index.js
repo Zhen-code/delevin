@@ -117,7 +117,6 @@ Component({
     },
 
     toHome() {
-      console.log(this.data.pageHome)
       if(app.globalData.state){
         app.globalData.state = true;
       }else{
@@ -128,6 +127,7 @@ Component({
         url: `/pages/home/index`
       })
     },
+
     backHome(){
       if(app.globalData.state){
         app.globalData.state = true;

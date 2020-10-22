@@ -18,7 +18,8 @@ Component({
     type: Array,
     areaFirstList: Array,
     subwayList: Array,
-    city:Boolean,
+    areaList: Array,
+    city: Boolean,
   },
   /**
    * 组件的初始数据
@@ -30,6 +31,7 @@ Component({
     pullimg: ["/combination/image/icon_dragdown_12_nor@2x.png", "/combination/image/icon_dragdown_12_pre@2x.png"],
     bgShow: false,
     tabIndex: 0,
+    itemType: false,
     conditionList: ['区域', '单价', '户型', '销售状态'],
     Amount: {
       title: '单价区间(元/m²)',
@@ -53,6 +55,8 @@ Component({
       }]
     ],
     areaSecondList: [],
+    areaTypeList: [],
+    areaTypeList2: [],
     areaSquare: [{
         id: 0,
         type: "areaSquare",
@@ -66,22 +70,7 @@ Component({
         value: "20m²以下"
       },
     ],
-    totalPrice: [
-      // {
-      //   id: 0,
-      //   type: "totalPrice",
-      //   selected: false,
-      //   value: "不限"
-      // },
-      // {
-      //   id: 1,
-      //   type: "totalPrice",
-      //   selected: false,
-      //   value: "20-100元",
-      //   bottomPrice: 20,
-      //   topPrice: 100
-      // },
-    ],
+    totalPrice: [],
     totalPriceSelft: {
       top: "",
       bottom: ""
@@ -228,11 +217,30 @@ Component({
     },
 
     leftTab(e) {
-      console.log(e.currentTarget.dat.dataset.index)
-      let index = e.currentTarget.dat.dataset.index
-      this.setData({
-        leftAction: index,
-      })
+      let areaTypeList = this.data.areaTypeList
+      let areaSecondList = this.data.areaSecondList;
+      let index = e.currentTarget.dataset.index;
+      if (index === 0) {
+        areaSecondList.map((item)=>{
+          item.selected = false
+        })
+        this.setData({
+          areaSecondList:areaSecondList,
+          leftAction: index,
+        })
+      } else {
+        areaTypeList.map((item)=>{
+          item.selected = false;
+          item.routeStop.map((key)=>{
+            key.selected = false;
+            return key
+          })
+        })
+        this.setData({
+          areaTypeList:areaTypeList,
+          leftAction: index,
+        })
+      }
     },
 
     changeArea(e) {
@@ -297,6 +305,34 @@ Component({
         type = e.currentTarget.dataset.type
       }
       console.log(type)
+      //新增 删除区域条件
+      if (type == "streetType" || type == "all") {
+        let areaSecondList = this.data.areaSecondList
+        areaSecondList.map(item => {
+          item.selected = false
+        })
+        this.setData({
+          areaSecondList: areaSecondList,
+        })
+      }
+      if (type == "totalPriceSelft" || type == "all") {
+        let totalPriceSelft = this.data.totalPriceSelft
+        totalPriceSelft.top = "";
+        totalPriceSelft.bottom = "";
+        this.setData({
+          totalPriceSelft: totalPriceSelft,
+        })
+      }
+      if (type == "subwayType" || type == "all") {
+        let areaTypeList = this.data.areaTypeList;
+        areaTypeList.map(item => {
+          item.selected = false
+        })
+        this.setData({
+          areaTypeList: areaTypeList,
+          areaTypeList2: []
+        })
+      }
       //新增 删除总价条件
       if (type == "salesType" || type == "all") {
         let sales = this.data.sales
@@ -609,6 +645,51 @@ Component({
       }
       console.log(list.length)
     },
+    areaSecondList(e) {
+      console.log(e)
+      let index = e.currentTarget.dataset.index;
+      let areaSecondList = this.data.areaSecondList
+      areaSecondList[index].selected = !areaSecondList[index].selected
+      areaSecondList.map((item, index1) => {
+        if (index != index1) {
+          item.selected = false
+        }
+      })
+      this.setData({
+        e: e,
+        areaSecondList: areaSecondList
+      })
+    },
+    areaTypeList(e) {
+      let index = e.currentTarget.dataset.index;
+      let areaTypeList = this.data.areaTypeList
+      areaTypeList[index].selected = !areaTypeList[index].selected
+      areaTypeList.map((item, index1) => {
+        if (index != index1) {
+          item.selected = false
+          item.routeStop.map((key)=>{
+            key.selected = false;
+            return key
+          })
+        }
+      })
+      this.setData({
+        e: e,
+        areaTypeList: areaTypeList,
+        areaTypeList2: areaTypeList[index].selected ? areaTypeList[index].routeStop : [],
+      })
+    },
+    areaTypeList2(e) {
+      console.log(e)
+      let index = e.currentTarget.dataset.index;
+      let areaTypeList2 = this.data.areaTypeList2
+      areaTypeList2[index].selected = !areaTypeList2[index].selected
+      this.setData({
+        e: e,
+        itemType: areaTypeList2[index].selected,
+        areaTypeList2: areaTypeList2
+      })
+    },
     salesSelect(e) {
       console.log(e)
       let index = e.currentTarget.dataset.index;
@@ -752,6 +833,33 @@ Component({
       var index = e.currentTarget.dataset.id
       console.log(type)
       switch (type) {
+        case "streetType": //新增 删除区域选项
+          var index = e.currentTarget.dataset.id
+          var selected = false
+          var string = 'areaSecondList[' + index + '].selected'
+          console.log(this.data.areaSecondList, index)
+          this.setData({
+            [string]: selected
+          })
+          break;
+        case "subwayType": //新增 删除区域选项
+          var index = e.currentTarget.dataset.id
+          var selected = false
+          var string = 'areaTypeList[' + index + '].selected'
+          console.log(this.data.areaTypeList, index)
+          this.setData({
+            [string]: selected
+          })
+          break;
+        case "routeStopType": //新增 删除区域选项
+          var index = e.currentTarget.dataset.id
+          var selected = false
+          var string = 'areaTypeList2[' + index + '].selected'
+          console.log(this.data.areaTypeList2, index)
+          this.setData({
+            [string]: selected
+          })
+          break;
         case "totalPrice": //新增 删除总价选项
           var index = e.currentTarget.dataset.id
           var selected = false
@@ -887,6 +995,7 @@ Component({
     //统计选中条件
     areaselected(data) {
       var list = [];
+      var itemValue = '';
       //统计区域
       for (let key in data.areaSecond) {
         if (key == 0 && data.areaSecond[key][0].selected == true) { //选择全部区域
@@ -913,6 +1022,50 @@ Component({
           })
         }
       }
+
+      //新增 统计区域
+      data.areaSecondList.map((item, index) => {
+        if (item.selected) {
+          list.push({
+            id: index,
+            ids: item.id,
+            value: item.cityName,
+            type: item.type,
+            parentId: item.parentId
+          })
+        }
+      })
+
+      //新增 统计地铁 
+      data.areaTypeList.map((item, index) => {
+        if (item.selected) {
+          if (data.itemType) {
+            itemValue = item
+            console.log('选择地铁名后会打印到')
+          } else {
+            list.push({
+              id: index,
+              ids: item.id,
+              value: item.value,
+              type: item.type,
+              lineName: item.value,
+            })
+          }
+        }
+      })
+      data.areaTypeList2.map((item, index) => {
+        if (item.selected) {
+          list.push({
+            id: index,
+            ids: item.id,
+            value: itemValue.value + '/' + item.value,
+            type: item.type,
+            lineName: itemValue.value,
+            routeStop: item.value
+          })
+        }
+      })
+
       //统计面积
       for (let key in data.areaSquare) {
         if (data.areaSquare[key].selected == true) {
@@ -1012,14 +1165,7 @@ Component({
       //新增 统计总价筛选
       for (let key in data.totalPrice) {
         if (data.totalPrice[key].selected == true) {
-          // if (data.totalPrice[0].selected == true) {
-          //   let item = JSON.parse(JSON.stringify(data.totalPrice[0]))
-          //   item.value = "总价不限"
-          //   list.push(item)
-          // } else {
-          console.log(data.totalPrice[key])
           list.push(data.totalPrice[key])
-          // }
         }
       }
       if (data.totalPriceSelft.top != "" || data.totalPriceSelft.bottom != "") {
@@ -1052,13 +1198,7 @@ Component({
       //新增 统计销售状态筛选
       for (let key in data.sales) {
         if (data.sales[key].selected == true) {
-          // if (data.sales[0].selected == true) {
-          //   let item = JSON.parse(JSON.stringify(data.sales[0]))
-          //   item.value = "总价不限"
-          //   list.push(item)
-          // } else {
           list.push(data.sales[key])
-          // }
         }
       }
 
@@ -1169,7 +1309,7 @@ Component({
         value: "不限"
       }]
     },
-    city(val, newVal){
+    city(val, newVal) {
       if (val) {
         this.setData({
           conditionType: -1
@@ -1180,6 +1320,13 @@ Component({
       if (val) {
         this.setData({
           areaSecondList: val
+        })
+      }
+    },
+    areaList(val, newVal) {
+      if (val) {
+        this.setData({
+          areaTypeList: val
         })
       }
     },

@@ -1,6 +1,6 @@
 <!--combination/pages/myCollection/index.wxml-->
 <navbar backHome="{{true}}" bgColor="{{bgColor}}" title="{{title}}" />
-<view class="view" style="padding-top:{{paddingTop}}px">
+<view class="view" style="top:{{paddingTop}}px">
 	<view class="top">
 		<text class="top-tab {{topTabIndex === 0?'top-tab-action':''}}" data-index="{{0}}" bindtap="topTap">房源</text>
 		<text class="top-tab {{topTabIndex === 1?'top-tab-action':''}}" data-index="{{1}}" bindtap="topTap">其他</text>
@@ -13,9 +13,8 @@
 			<text class="tabState {{tabIndex === 1?'tabAction':''}}" data-index="{{1}}" bindtap="tabItemIndex">地产315</text>
 		</view>
 	</view>
-	<scroll-view wx:if="{{item.length !== 0}}" class="shopItem" style="top: {{paddingTop+44+61}}px;"
-		refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}"
-		bindrefresherrefresh="topList" bindscrolltolower="scrollList" scroll-y="true">
+	<scroll-view wx:if="{{item.length !== 0}}" scroll-y="true" class="shopItem" refresher-enabled="true" scroll-into-view="{{toView}}" refresher-triggered="{{triggered}}"
+		bindrefresherrefresh="topList" bindscrolltolower="scrollList">
 		<block wx:for="{{item}}" wx:key="index" wx:if="{{title === '我的收藏'}}">
 			<van-swipe-cell right-width="{{ 80 }}" id="swipe-cell" async-close data-item="{{item}}" data-index="{{index}}"
 				bind:close="onClose">
