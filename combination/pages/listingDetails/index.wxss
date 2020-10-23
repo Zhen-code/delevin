@@ -44,6 +44,14 @@
 	z-index: 1;
 }
 
+.view-top-video-play-title{
+	width: 100%;
+	text-align: center;
+	font-size: 24rpx;
+	color: #999999;
+	margin-top: 100rpx;
+}
+
 .view-top-video-play image {
 	width: 100rpx;
 	height: 100rpx;

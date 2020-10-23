@@ -15,9 +15,11 @@
 	<view class="view-top" bindtap="tovideoImage">
 		<view class="view-top-video">
 			<view class="view-top-video-play">
-				<image src="/combination/image/icon_play_50@2x.png"></image>
+				<image wx:if="{{item.houseVideo}}" src="/combination/image/icon_play_50@2x.png"></image>
+				<text class="view-top-video-play-title" wx:if="{{!item.houseVideo}}">暂无视频</text>
 			</view>
-			<video class="view-top-video-image" src="{{item.houseVideo}}"></video>
+			<video class="view-top-video-image" wx:if="{{item.houseVideo}}" src="{{item.houseVideo}}"></video>
+			<image class="view-top-video-image" wx:if="{{!item.houseVideo}}" src="/combination/image/pic_video_w343@2x.png"></image>
 		</view>
 		<view class="view-top-image">
 			<image class="view-top-image-top" src="{{item.designSketch[0]}}"></image>

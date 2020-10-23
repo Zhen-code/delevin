@@ -235,7 +235,7 @@
 
 .demandType-view-content {
 	width: 100%;
-	height: 350rpx;
+	height: auto;
 	padding: 26rpx 32rpx 0 32rpx;
 	box-sizing: border-box;
 	overflow: scroll;

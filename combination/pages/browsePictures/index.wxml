@@ -3,7 +3,9 @@
 	<view class="view-box borderBottom">
 		<text class="title" >房源视频</text>
 		<view class="video">
-			<video class="video-video" loop="{{true}}" direction object-fit="{{fill}}" show-center-play-btn='{{false}}' show-play-btn="{{true}}" show-fullscreen-btn src="{{src}}"></video>
+			<video class="video-video" wx:if="{{src}}" loop="{{true}}" direction object-fit="{{fill}}" show-center-play-btn='{{false}}' show-play-btn="{{true}}" show-fullscreen-btn src="{{src}}"></video>
+			<image class="video-video" wx:if="{{!src}}" src="/combination/image/pic_video_w343@2x.png"></image>
+			<text  class="view-top-video-play-title" wx:if="{{!src}}">暂无视频</text>
 		</view>
 	</view>
 	<view class="view-box">
