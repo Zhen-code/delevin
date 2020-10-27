@@ -63,45 +63,45 @@
 			<!-- 二手房源 -->
 			<view class="introduction-resources-row" wx:if="{{type === 'SECOND_HAND'}}">
 				<view class="introduction-resources-num">
-					<text>{{item.totalPrice}}万</text>
+					<text>{{item.totalPrice || 0}}万</text>
 					<text>总价</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>{{item.houseType}}室{{item.houseHall}}厅{{item.houseToilet}}卫</text>
+					<text>{{item.houseType || 0}}室{{item.houseHall || 0}}厅{{item.houseToilet || 0}}卫</text>
 					<text>户型</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>{{item.floorage}}m²</text>
+					<text>{{item.floorage || 0}}m²</text>
 					<text>建筑面积</text>
 				</view>
 			</view>
 			<!-- 租房 -->
 			<view class="introduction-resources-row" wx:if="{{type === 'TENANCY'}}">
 				<view class="introduction-resources-num">
-					<text>{{item.monthRent}}元</text>
+					<text>{{item.monthRent || 0}}元</text>
 					<text>月租</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>{{item.houseType}}室{{item.houseHall}}厅{{item.houseToilet}}卫</text>
+					<text>{{item.houseType || 0}}室{{item.houseHall || 0}}厅{{item.houseToilet || 0}}卫</text>
 					<text>户型</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>{{item.floorage}}m²</text>
+					<text>{{item.floorage || 0}}m²</text>
 					<text>建筑面积</text>
 				</view>
 			</view>
 			<!-- 小区房源 -->
 			<view class="introduction-resources-row" wx:if="{{type === 'RESIDENTIAL_QUARTERS'}}">
 				<view class="introduction-resources-num">
-					<text>{{item.averagePrice}}元/m²</text>
+					<text>{{item.averagePrice || 0}}元/m²</text>
 					<text>当月均价</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>{{item.saleCount}}套</text>
+					<text>{{item.saleCount || 0}}套</text>
 					<text>在售房源</text>
 				</view>
 				<view class="introduction-resources-num">
-					<text>{{item.rentCount}}套</text>
+					<text>{{item.rentCount || 0}}套</text>
 					<text>在租房源数</text>
 				</view>
 			</view>
@@ -114,7 +114,7 @@
 		<!-- 新房详情 -->
 		<view class="introduction-specification" wx:if="{{type === 'ESTATE'}}">
 			<view class="name-type" wx:if="{{!stlectState}}"><text class="name-name">楼盘地址：</text><text
-					class="name-typeValue">{{item.detailsAddress}}</text></view>
+					class="name-typeValue">{{item.detailsAddress  || '暂无'}}</text></view>
 			<view class="name-type" wx:if="{{!stlectState}}"><text class="name-name">开盘时间：</text><text
 					class="name-typeValue">{{item.openingDate || '暂无'}}</text></view>
 			<text class="components-title marginTop" wx:if="{{stlectState}}">销售信息</text>

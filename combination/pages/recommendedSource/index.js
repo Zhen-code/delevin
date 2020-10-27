@@ -140,6 +140,9 @@ Page({
 	demandHide() {
 		this.setData({
 			demandType: false,
+			demandItem:[], 
+		},()=>{
+			this.getDemand()
 		})
 	},
 

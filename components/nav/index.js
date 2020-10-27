@@ -63,7 +63,7 @@ Component({
 
   observers: {
     top(val, newVal) {
-      if (val > 100) {
+      if (val > 10) {
         this.setData({
           'bg': '#FFD200'
         })
