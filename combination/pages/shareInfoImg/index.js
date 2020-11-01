@@ -13,7 +13,6 @@ Page({
     agentId: '',
     userId: '',
     isShare: false,
-    bgImgHeight: 0,
     cname: '',
     phone: '',
     synopsis: '',
@@ -26,7 +25,6 @@ Page({
     screenHeight: 0,//设备屏幕高度
     shareImgSrc: '',
     shareImgPath: '',
-    imgPath: '',
     phoneImgPath: '',
     saveTempCanvas: '',
     clientWidth: 0,
@@ -39,41 +37,24 @@ Page({
     },
     paddingTop: topHeight,
     back: true,
-    backHome: true
+    backHome: true,
+    painting: {},
+    shareImage: '',
+    showmenu: false
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     let {uri} = options;
     let bgImgUrl = uri.replace(/[\'|\"]/g,'');
-    console.log(bgImgUrl);
-    let that = this;
-    //获取大图
-    // wx.downloadFile({
-    //   url: bgImgUrl,
-    //   success: (res)=>{
-    //     console.log(res)
-    //     that.setData({
-    //       imgUrl: res.tempFilePath,
-    //       imgPath: res.tempFilePath
-    //     });
-    //   },
-    //   fail: (err)=>{
-    //     console.log(err)
-    //   },
-    //   complete: ()=>{
-    //     console.log('下载完成')
-    //   }
-    // });
     wx.getImageInfo({
       src: bgImgUrl,
       success:(res)=>{
-      console.log(res)
+      console.log(res);
       that.setData({
-        imgUrl: res.path,
-        imgPath: res.path,
-        bgImgHeight: res.height
+        imgUrl: res.path
        });
       }
     });
@@ -83,47 +64,176 @@ Page({
       success: (res)=>{
         console.log(res)
         this.setData({
-          phoneImgPath: '../../../'+res.path
+          phoneImgPath: '../../'+res.path
         })
       },
       fail:(err)=>{
         console.log(err)
       }
+    });
+  },
+  eventDraw(url,phoneUrl,codeImg) {
+    var self  = this;
+    wx.showLoading({
+      title: '海报绘制中',
+      mask: true
+    });
+    this.setData({
+      painting: {
+        width: 686,
+        height: 1188,
+        clear: true,
+        views: [
+          {
+          type: 'rect',
+          background: '#FFFFFF',
+          top: 0,
+          left:0,
+          width: 686,
+          height: 1188
+          },
+          {
+          type: 'image',
+          url: url,//背景图
+          top: 0,
+          left: 0,
+          width: 686,
+          height: 914
+          },
+          {
+            type: 'text',
+              content: this.data.cname,
+              fontSize: 30,
+              textAlign: 'left',
+              color: "#333333",
+              top: 962,
+              left: 32,
+              bolder: true
+          },
+          {
+            type: 'image',
+            url: phoneUrl,
+            top: 1012,
+            left: 32,
+            width: 36,
+            height: 36
+          },
+          {
+            type: 'text',
+            content: this.data.phone,
+            fontSize: 26,
+            textAlign: 'left',
+            color: "#333333",
+            top: 1012,
+            left: 76,
+            bolder: true
+          },
+          {
+            type: 'text',
+            content: this.data.synopsis,
+            fontSize: 24,
+            color:'#999999',
+            textAlign: 'left',
+            top: 1064,
+            left: 32,
+            lineHeight: 34,
+            width: 452,
+            MaxLineNumber: 2,//最多展示5行
+            breakWord: true,
+            bolder: false
+          },
+          {
+            type: 'image',
+            url: codeImg,
+            top: 962,
+            left: 518,
+            width: 136,
+            height: 136
+          }
+          // {
+          //   type: 'text',
+          //   content: '为您推荐 ' + self.data.shop.shopName,//店铺名字
+          //   fontSize: 32,
+          //   textAlign: 'center',//居中，但是还是要left 自己left到居中 然后不管什么型号的都会居中了center必须要有
+          //   color: "#1a1a1a",
+          //   top: 575,
+          //   left: 375,
+          //   bolder: true
+          // },
+          // {
+          //   type: 'text',
+          //   content: self.data.shop.shopSign,//店铺介绍
+          //   fontSize: 28,
+          //   color:'#1a1a1a',
+          //   textAlign: 'left',
+          //   top: 660,
+          //   left: 22,
+          //   lineHeight: 40,
+          //   width: 680,
+          //   MaxLineNumber: 5,//最多展示5行
+          //   breakWord: true,
+          //   bolder: false
+          // },
+        ]
+      }
+    })
+
+  },
+  eventGetImage(event) {
+    console.log(event)
+    wx.hideLoading()
+    const {
+      tempFilePath,
+    } = event.detail;
+    if(tempFilePath){
+      this.setData({
+        shareImage: tempFilePath,
+        isDisable: false
+      })
+    }else{
+      this.setData({
+        isDisable: true
+      })
+    }
+
+  },
+  previewImage: function () {
+    const current = this.data.shareImage;
+    const showmenu = this.data.showmenu;
+    console.log(current)
+    wx.previewImage({
+      current: current,
+      urls: [current]
+    },true)
+  },
+  eventSave() {
+    this.setData({
+      showmenu: true
+    },()=>{
+      this.previewImage()
     })
   },
-
-  onShow() {
-    request.information().then(res=>{
-      console.log(res)
-      this.setData({
-        cname: res.nickname,
-        phone: res.phone,
-        synopsis: res.synopsis===""?'暂无简介':res.synopsis,
-        agentId: res.agentId,
-        userId: res.id
-      })
-    }).catch(err=>{
-      console.log(err)
-    })
-    },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    let that = this;
-    let agentId = wx.getStorageSync('agentId');
-    let userId = wx.getStorageSync('userId');
-    console.log(agentId);
-    console.log('经纪人agentid');
-    let res = wx.getSystemInfoSync();
+  getAgentInfo(){
+    const userInfo = JSON.parse(wx.getStorageSync('userInfo')||'{}');
     this.setData({
-      clientWidth:  res.screenWidth
-    });
+      cname: userInfo.nickname,
+      phone: userInfo.phone,
+      synopsis: userInfo.synopsis===""?'暂无简介':userInfo.synopsis,
+      agentId: userInfo.agentId,
+      userId: userInfo.id
+    })
+  },
+  to2Px(clientWidth,x){
+    return Number(clientWidth*x/750);
+  },
+  drawCode(agentId,userId){
+    const systemInfo = wx.getSystemInfoSync();
+    const screenWidth = systemInfo.screenWidth;
+    const that = this;
     let qrCodeCtx =  wx.createCanvasContext('myQrcode');
     drawQrcode({
-      width: 80,
-      height: 80,
+      width: that.to2Px(screenWidth,136),
+      height: that.to2Px(screenWidth,136),
       canvasId: 'myQrcode',
       ctx: qrCodeCtx,
       text: `https://dev.delevin.beiru168.com/homepage?agentId=${agentId}&userId=${userId}`,
@@ -139,13 +249,12 @@ Page({
                 console.log(res)
                 this.setData({
                   qrCodePath: res.tempFilePath
+                },()=>{
+                  that.eventDraw(that.data.imgUrl,that.data.phoneImgPath,res.tempFilePath);
                 })
               },
               fail: (err) => {
                 console.log(err)
-              },
-              complete: () => {
-                that.go()
               }
             })
           },1000)
@@ -157,137 +266,23 @@ Page({
       }
     });
   },
-  to2Px(x){
-    return Number(this.data.clientWidth/750*x);
-  },
-  renderText(ctx,str,left,initTop,canvasWidth){
-    let lineWidth = 0;
-    let lastSubStrIndex = 0;
-    for(let i = 0;i<str.length;i++){
-      lineWidth = lineWidth+ctx.measureText(str[i]).width;
-      if(lineWidth>canvasWidth){
-        ctx.fillText(str.substring(lastSubStrIndex,i),left,initTop);
-        lastSubStrIndex = i;
-        lineWidth = 0;
-        initTop+=18;
-      }
-      if(i === str.length-1){
-        ctx.fillText(str.substring(lastSubStrIndex,i+1),left,initTop);
-      }
-    }
-  },
-  go(){
-    let that = this;
-    let {isShare} = this.data;
-    const query = wx.createSelectorQuery();
-    let allWidth = 0;
-    let allHeight = 0;
-    let {bgImgHeight} = this.data;
-    const dpr = wx.getSystemInfoSync().pixelRatio;
-    query.select('#share')
-        .fields({ node: true, size: true })
-        .exec((res) => {
-          allWidth = res[0].width;
-          allHeight =  res[0].height;
-          const ctx1 = wx.createCanvasContext('share');
-          ctx1.rect(0,0,allWidth,allHeight);
-          ctx1.setFillStyle('#FFFFFF');
-          ctx1.fill();
-          console.log(this.data.imgPath)
-          ctx1.drawImage(this.data.imgPath,0,0,allWidth,350);
-          ctx1.setFontSize(15);
-          ctx1.setFillStyle('black');
-          let nameLeft = this.to2Px(64);
-          ctx1.fillText(this.data.cname,nameLeft,382);
-          ctx1.drawImage(this.data.phoneImgPath,nameLeft,391,this.to2Px(36),this.to2Px(36));
-          let phoneLeft = this.to2Px(108);
-          ctx1.setFontSize(13);
-          ctx1.setFillStyle('black');
-          ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-          ctx1.fillText(this.data.phone,phoneLeft,404);
-          let str = this.data.synopsis;
-          let mulitipleWidth = this.to2Px(310);
-          this.renderText(ctx1,str,nameLeft,429,mulitipleWidth);
-          let qrImgLeft = this.to2Px(518);
-          ctx1.drawImage(this.data.qrCodePath,qrImgLeft,372,80,80);
-          ctx1.draw(false,()=>{
-            console.log(666)
-            wx.canvasToTempFilePath({
-              x: 0,
-              y: 0,
-              width: allWidth,
-              height: allHeight,
-              destWidth: allWidth*dpr,
-              destHeight: allHeight*dpr,
-              fileType: 'png',
-              canvasId: 'share',
-              quality: 0,
-              success:(res)=>{
-                console.log(res)
-                this.setData({
-                  saveTempCanvas: res.tempFilePath,
-                  isDisable: false
-                },()=>{
-                  if(isShare){
-                    wx.getSetting({
-                      success(res){
-                        let auth = res.authSetting['scope.writePhotosAlbum'];
-                        if(auth || auth===undefined){
-                          that.saveImg();
-                        }else{
-                          wx.openSetting({
-                            success(res){
-                              if(res.authSetting['scope.writePhotosAlbum']){
-                                that.saveImg();
-                              }else{
-                                wx.showToast({
-                                  title: '请先授权图片存储权限',
-                                  icon: "none",
-                                  duration: 1000
-                                })
-                              }
-                            },
-                            fail(err){
-                              console.log(err)
-                            }
-                          })
-                        }
-                      },
-                      fail(err){
-                        console.log(err)
-                      }
-                    });
 
-                  }
-                })
-              },
-              fail:(err)=>{
-                console.log(err)
-              }
-            })
-          });
-        });
-  },
-  saveImg(){
-    wx.saveImageToPhotosAlbum({
-      filePath: this.data.saveTempCanvas,
-      success: (res)=>{
-        console.log(res);
-        wx.showToast({
-          title: '保存成功',
-          icon: "none",
-          duration: 2000
-        })
-      },
-      fail:(err)=>{
-        console.log(err)
-        wx.showToast({
-          title: '保存失败',
-          icon: "none",
-          duration: 2000
-        })
-      }
-    })
+  onShow() {
+    this.getAgentInfo();
+    },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    let agentId = wx.getStorageSync('agentId');
+    let userId = wx.getStorageSync('userId');
+    console.log(agentId);
+    console.log('经纪人agentid');
+    this.drawCode(agentId,userId);
+    wx.hideShareMenu({
+      menus: ['shareAppMessage', 'shareTimeline']
+    });
   },
   /**
    * 生命周期函数--监听页面隐藏
@@ -313,7 +308,6 @@ Page({
     });
     let from = res.from;
     if(from === "button"){
-      this.go();
       return{
         title: '经纪人主页',
         path: '/combination/pages/homepage/index?agentId='+this.data.agentId+'&userId='+this.data.userId,

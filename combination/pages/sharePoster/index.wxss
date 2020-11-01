@@ -10,9 +10,11 @@ page{
 }
 .swiper-wrap{
     height: 1000rpx !important;
+    width: 600rpx !important;
 }
 .swiper-item{
-    position: relative;
+    width: 100% !important;
+    height: 100% !important;
     background-color: white;
 }
 .img1{
@@ -135,11 +137,11 @@ page{
 .am-img {
     width: 70px;
     height: 70px;
+    position: fixed;
+    top: -600px;
+    left: 0;
 }
-.am-img image {
-    width: 70px;
-    height: 70px;
-}
+
 .bottom-btn{
     margin-top: 48rpx;
     width: 100%;
@@ -239,11 +241,7 @@ page{
     text-overflow: ellipsis;
     overflow: hidden;
 }
-.si3{
-    background-color: white;
-    padding: 30rpx 36rpx 30rpx 36rpx;
-    box-sizing: border-box;
-}
+
 .third-title{
     display: -webkit-box;
     text-overflow: -o-ellipsis-lastline;

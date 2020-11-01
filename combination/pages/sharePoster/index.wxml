@@ -4,163 +4,56 @@
         id="share"
         canvas-id="share"
         disable-scroll="true"
-        style="width:750rpx;height:500px"
+        style="width:600rpx;height:1000rpx"
 ></canvas>
 <canvas
         class="shareCanvas"
         id="share1"
         canvas-id="share1"
         disable-scroll="true"
-        style="width:750rpx;height:500px"
+        style="width:600rpx;height:1000rpx"
 ></canvas>
 <canvas
         class="shareCanvas"
         id="share2"
         canvas-id="share2"
         disable-scroll="true"
-        style="width:750rpx;height:500px;"
+        style="width:600rpx;height:1000rpx;"
 ></canvas>
 <canvas
         class="shareCanvas"
         id="share3"
         canvas-id="share3"
         disable-scroll="true"
-        style="width:750rpx;height:500px;"
+        style="width:600rpx;height:1000rpx;"
 ></canvas>
 <navbar  bgColor="{{bgColor}}" title="{{title}}" backHome="true"></navbar>
 <view class="poster-wrap" style="padding-top:{{paddingTop+30}}px;box-sizing:border-box;">
     <view class="loading-tip" wx:if="{{show}}">
         <image class="loading" src="/assets/image/loading.gif" mode="widthFix"></image>
-        <view class="loading-text">资源加载中...</view>
+        <view class="loading-text">海报生成中...</view>
     </view>
     <swiper current="0"
             bindchange="onChange"
             class="swiper-wrap">
-            <swiper-item class="swiper-item" item-id="{{imgPath1}}">
-                <image class="img1" src="{{imgPath1}}" mode="aspectFill"></image>
-                <view class="text">
-                    <view class="text-title">{{dataInfo.title}}</view>
-                    <view class="text-price">
-                        <text class="text-price-left" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">单价:</text>
-                        <text class="text-price-left" wx:if="{{dataInfo.houseMold === 'SECOND_HAND' || dataInfo.houseMold === 'TENANCY'}}">总价:</text>
-                        <text class="text-price-left" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">当月均价:</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.totalPrice}}万</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/月</text>
-                        <text class="text-price-right1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.averagePrice}}元/m²</text>
-                    </view>
-                    <view class="text-address">
-                        <view class="text-address-left">开盘地址:</view>
-                        <view class="text-address-right">{{dataInfo.detailsAddress}}</view>
-                    </view>
-                </view>
-                <view class="point-container">
-                    <view>
-                        <view class='am-cname'><text>{{userInfo.realName}}</text></view>
-                        <view class="contact">
-                            <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
-                            <text class="phone">{{userInfo.phone}}</text>
-                        </view>
-                        <view class="desc">{{userInfo.synopsis}}</view>
-                    </view>
-                    <view class="am-img"><canvas style="width: 70px; height: 70px;" canvas-id="myQrcode"></canvas></view>
-                </view>
-            </swiper-item>
-            <swiper-item class="swiper-item"  item-id="{{imgPath2}}">
-                <image class="img1" src="{{imgPath2}}" mode="aspectFill"></image>
-                <view class="text1">
-                    <view class="text-title2">{{dataInfo.title}}</view>
-                    <view class="text-price1">
-                        <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">单价:</text>
-                        <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'TENANCY' || dataInfo.houseMold === 'SECOND_HAND'}}">总价:</text>
-                        <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">当月均价:</text>
-                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
-                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.totalPrice}}万</text>
-                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/月</text>
-                        <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.averagePrice}}元/m²</text>
-                    </view>
-                    <view class="text-address1">
-                        <view class="text-address-left1">开盘地址:</view>
-                        <view class="text-address-right1">{{dataInfo.detailsAddress}}</view>
-                    </view>
-                </view>
-                <view class="point-container">
-                    <view>
-                        <view class='am-cname'><text>{{userInfo.realName}}</text></view>
-                        <view class="contact">
-                            <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
-                            <text class="phone">{{userInfo.phone}}</text>
-                        </view>
-                        <view class="desc">{{userInfo.synopsis}}</view>
-                    </view>
-                    <view class="am-img"><canvas style="width: 70px; height: 70px;" canvas-id="myQrcode1"></canvas></view>
-                </view>
-            </swiper-item>
-            <swiper-item class="swiper-item si3"  item-id="{{imgPath3}}">
-                <view class="third-title">{{dataInfo.title}}</view>
-                <view class="text-price2">
-                    <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">单价:</text>
-                    <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'SECOND_HAND' || dataInfo.houseMold === 'TENANCY'}}">总价:</text>
-                    <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">当月均价:</text>
-                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
-                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.totalPrice}}万</text>
-                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/月</text>
-                    <text class="text-price-right2" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.averagePrice}}元/m²</text>
-                </view>
-                <image class="img3" src="{{imgPath3}}" mode="widthFix"></image>
-                <view class="row-img">
-                    <image src="{{imgPath5}}" mode="widthFix"></image>
-                    <image src="{{imgPath6}}" mode="widthFix"></image>
-                    <image src="{{imgPath7}}" mode="widthFix"></image>
-                </view>
-                <view class="point-container3">
-                    <view>
-                        <view class='am-cname'><text>{{userInfo.realName}}</text></view>
-                        <view class="contact">
-                            <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
-                            <text class="phone">{{userInfo.phone}}</text>
-                        </view>
-                        <view class="desc">{{userInfo.synopsis}}</view>
-                    </view>
-                    <view class="am-img"><canvas style="width: 70px; height: 70px;" canvas-id="myQrcode2"></canvas></view>
-                </view>
-            </swiper-item>
-            <swiper-item class="swiper-item si4" item-id="{{imgPath4}}">
-                <view class="point-container4">
-                    <view>
-                        <view class='am-cname'><text>{{userInfo.realName}}</text></view>
-                        <view class="contact">
-                            <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
-                            <text class="phone">{{userInfo.phone}}</text>
-                        </view>
-                        <view class="desc">{{userInfo.synopsis}}</view>
-                    </view>
-                    <view class="am-img"><canvas style="width: 70px; height: 70px;" canvas-id="myQrcode3"></canvas></view>
-                </view>
-                <image src="{{imgPath4}}" class="img4" mode="widthFix"></image>
-                <image src="{{pic_resources}}" mode="widthFix" class="resource-img"></image>
-                <view class="sw4-title">{{dataInfo.title}}</view>
-                <view class="text4">
-                    <view class="text-price1">
-                        <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">单价:</text>
-                        <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'SECOND_HAND' || dataInfo.houseMold === 'TENANCY'}}">总价:</text>
-                        <text class="text-price-left1" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">当月均价:</text>
-                        <text class="text-price-right4" wx:if="{{dataInfo.houseMold === 'ESTATE'}}">{{dataInfo.unitPrice}}元/m²</text>
-                        <text class="text-price-right4" wx:if="{{dataInfo.houseMold === 'SECOND_HAND'}}">{{dataInfo.totalPrice}}万</text>
-                        <text class="text-price-right4" wx:if="{{dataInfo.houseMold === 'TENANCY'}}">{{dataInfo.monthRent}}元/月</text>
-                        <text class="text-price-right4" wx:if="{{dataInfo.houseMold === 'RESIDENTIAL_QUARTERS'}}">{{dataInfo.averagePrice}}元/m²</text>
-                    </view>
-                    <view class="text-address1">
-                        <view class="text-address-left1">开盘地址:</view>
-                        <view class="text-address-right1">{{dataInfo.detailsAddress}}</view>
-                    </view>
-                </view>
-            </swiper-item>
+        <swiper-item class="swiper-item" item-id="{{imgPath1}}">
+            <image src="{{saveTempCanvas}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"></image>
+        </swiper-item>
+        <swiper-item class="swiper-item"  item-id="{{imgPath2}}">
+            <image src="{{saveTempCanvas1}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"></image>
+        </swiper-item>
+        <swiper-item class="swiper-item"  item-id="{{imgPath3}}">
+            <image src="{{saveTempCanvas2}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"></image>
+        </swiper-item>
+        <swiper-item class="swiper-item" item-id="{{imgPath4}}">
+            <image src="{{saveTempCanvas3}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"></image>
+        </swiper-item>
     </swiper>
     <view class="bottom-btn">
-    <view class="save-btn {{disable?'disActive':''}}" catch:tap="save">保存至手机</view>
+        <view class="save-btn {{disable?'disActive':''}}" catch:tap="save">保存至手机</view>
     </view>
     <view class="page">
         <text class="page-index">{{index}}/4</text>
     </view>
+    <view class="am-img"><canvas style="width: 80px; height: 80px;" canvas-id="myQrcode"></canvas></view>
 </view>
