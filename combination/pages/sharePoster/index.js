@@ -17,11 +17,9 @@ Page({
 		imgPath5: '',
 		imgPath6: '',
 		imgPath7: '',
-		img1Height: 0,
 		posterList: [],
 		dataInfo: '',
 		userInfo: '',
-		clientWidth: '',
 		qrCodePath: '',
 		index: 1,
 		phoneImgPath: '',
@@ -42,41 +40,33 @@ Page({
 		userId: '',
 		unitPrice: '',
 		unitTitle: '',
-		unit:'',
-		unitLeft: 0
+		unit:''
 	},
 	getUnit(){
-		let res = wx.getSystemInfoSync();
 		let unitPrice = 0;
 		let unitTitle = '';
 		let unit = '';
-		let unitLeft = '';
 		if(this.data.dataInfo['houseMold'] === 'ESTATE'){
 			unitPrice = this.data.dataInfo['unitPrice'];
 			unitTitle = '单价:';
 			unit = '元/m²';
-			unitLeft = to2Px(res.screenWidth,100);
 		}else if(this.data.dataInfo['houseMold'] === 'SECOND_HAND'){
 			unitPrice =  this.data.dataInfo['totalPrice'];
 			unitTitle = '总价:';
 			unit = '万';
-			unitLeft = to2Px(res.screenWidth,100);
 		}else if(this.data.dataInfo['houseMold'] === 'TENANCY'){
 			unitPrice = this.data.dataInfo['monthRent'];
 			unitTitle = '总价:';
-			unit = '月/元';
-			unitLeft = to2Px(res.screenWidth,100);
+			unit = '月/元'
 		}else if(this.data.dataInfo['houseMold'] === 'RESIDENTIAL_QUARTERS'){
 			unitPrice = this.data.dataInfo['averagePrice'];
 			unitTitle = '当月均价:';
 			unit = '元/m²';
-			unitLeft = to2Px(res.screenWidth,48);
 		}
 		this.setData({
 			unitPrice,
 			unitTitle,
-			unit,
-			unitLeft
+			unit
 		});
 	},
 	onChange(current,source){
@@ -141,25 +131,25 @@ Page({
 			}
 		}
 	},
-	renderText(ctx,str,left,initTop,canvasWidth){
-	let lineWidth = 0;
-	let lastSubStrIndex = 0;
-	for(let i = 0;i<str.length;i++){
-		lineWidth = lineWidth+ctx.measureText(str[i]).width;
-		if(lineWidth>canvasWidth){
-			ctx.setFillStyle('#999999');
-			ctx.font = '13px PingFangSC-Regular,PingFang SC';
-			ctx.fillText(str.substring(lastSubStrIndex,i),left,initTop);
-			lastSubStrIndex = i;
-			lineWidth = 0;
-			initTop+=18;
+	renderText(ctx,str,left,initTop,canvasWidth,color='',size=0){
+		let lineWidth = 0;
+		let lastSubStrIndex = 0;
+		for(let i = 0;i<str.length;i++){
+			lineWidth = lineWidth+ctx.measureText(str[i]).width;
+			if(lineWidth>canvasWidth){
+				ctx.setFillStyle(color);
+				ctx.font = `${size}px PingFangSC-Regular,PingFang SC`;
+				ctx.fillText(str.substring(lastSubStrIndex,i),left,initTop+2);
+				lastSubStrIndex = i;
+				lineWidth = 0;
+				initTop+=size;
+			}
+			if(i === str.length-1){
+				ctx.setFillStyle(color);
+				ctx.font = `${size}px PingFangSC-Regular,PingFang SC`;
+				ctx.fillText(str.substring(lastSubStrIndex,i+1),left,initTop+2);
+			}
 		}
-		if(i === str.length-1){
-			ctx.setFillStyle('#999999');
-			ctx.font = '13px PingFangSC-Regular,PingFang SC';
-			ctx.fillText(str.substring(lastSubStrIndex,i+1),left,initTop);
-		}
-	}
 	},
 	go(){
 		const query = wx.createSelectorQuery();
@@ -167,51 +157,54 @@ Page({
 		let allWidth = 0;
 		let that = this;
 		const dpr = wx.getSystemInfoSync().pixelRatio;
+		const screenWidth = wx.getSystemInfoSync().screenWidth;
 		query.select('#share')
 			.fields({ node: true, size: true })
 			.exec((res) => {
 				allWidth  = res[0].width;
 				allHeight =  res[0].height;
 				const ctx1 = wx.createCanvasContext('share');
-				ctx1.drawImage(this.data.imgPath1,0,0,allWidth,375);
+				ctx1.rect(0,0,allWidth,allHeight);
+				ctx1.setFillStyle('white');
+				ctx1.fill();
+				ctx1.drawImage(this.data.imgPath1,0,0,allWidth,to2Px(screenWidth,720));
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('white');
-				let titleLeft = to2Px(allWidth,48);
-				this.renderTitle(ctx1,this.data.dataInfo['title'],titleLeft,48,to2Px(allWidth,504));
+				let titleLeft = to2Px(screenWidth,48);
+				this.renderTitle(ctx1,this.data.dataInfo['title'],titleLeft,48,to2Px(screenWidth,504));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('white');
-				ctx1.fillText(that.data.unitTitle,that.data.unitLeft,100);
-				let unitPriceLeft = to2Px(allWidth,178);
+				ctx1.fillText(that.data.unitTitle,titleLeft,100);
+				let unitPriceLeft = to2Px(screenWidth,182);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FFD793');
 				ctx1.fillText(that.data.unitPrice + that.data.unit,unitPriceLeft,100);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('white');
-				ctx1.fillText('开盘地址:',titleLeft,120);
+				ctx1.fillText('开盘地址:',titleLeft,126);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('white');
-				let detailsAddressLeft = to2Px(allWidth,178);
-				let detailsAddress = this.data.dataInfo['detailsAddress'].substr(0,18);
-				ctx1.fillText(detailsAddress+'...',detailsAddressLeft,120);
-				ctx1.rect(0,375,allWidth,allHeight-375);
-				ctx1.setFillStyle('white');
-				ctx1.fill();
+				let detailsAddressLeft = to2Px(screenWidth,182);
+				let detailsAddress = this.data.dataInfo['detailsAddress'];
+				this.renderText(ctx1,detailsAddress,detailsAddressLeft,122,374,'#FFF',13);
+				let nameLeft = to2Px(screenWidth,40);
+				ctx1.setFillStyle('#333333');
 				ctx1.setFontSize(15);
-				ctx1.setFillStyle('black');
-				let nameLeft = to2Px(allWidth,40);
-				ctx1.fillText(this.data.userInfo['realName'],nameLeft,412);
-				ctx1.drawImage(this.data.phoneImgPath,nameLeft,422,to2Px(allWidth,36),to2Px(allWidth,36));
-				let phoneLeft = to2Px(allWidth,88);
+				ctx1.fillText(this.data.userInfo['realName'],nameLeft,to2Px(screenWidth,768));
+				ctx1.drawImage(this.data.phoneImgPath,nameLeft,to2Px(screenWidth,790),to2Px(screenWidth,36),to2Px(screenWidth,36));
+				let phoneLeft = to2Px(screenWidth,88);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('black');
 				ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,435);
+				console.log()
+				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,to2Px(screenWidth,818));
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
-				let mulitipleWidth = to2Px(allWidth,360);
-				this.renderText(ctx1,str,nameLeft,466,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,490);
+				let mulitipleWidth = to2Px(screenWidth,360);
+				this.renderText(ctx1,str,nameLeft,to2Px(screenWidth,870),mulitipleWidth,'#999',12);
+				let qrImgLeft = to2Px(screenWidth,460);
 				console.log(this.data.qrCodePath)
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,400,70,70);
+				console.log('二维码')
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,to2Px(screenWidth,768),to2Px(screenWidth,100),to2Px(screenWidth,100));
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -226,20 +219,18 @@ Page({
 						success:(res)=>{
 							console.log(res)
 							this.setData({
-								saveTempCanvas: res.tempFilePath,
-								isDisable: false
+								saveTempCanvas: res.tempFilePath
+							},()=>{
+								if(this.data.saveTempCanvas!=="" && this.data.saveTempCanvas1!=="" && this.data.saveTempCanvas2!=="" && this.data.saveTempCanvas3!==""){
+									that.setData({
+										disable: false,
+										show: false
+									})
+								}
 							})
 						},
 						fail:(err)=>{
 							console.log(err)
-						},
-						complete:()=>{
-							if(this.data.saveTempCanvas!=="" && this.data.saveTempCanvas1!=="" && this.data.saveTempCanvas2!=="" && this.data.saveTempCanvas3!==""){
-								that.setData({
-									disable: false
-								})
-							}
-
 						}
 					})
 				});
@@ -257,18 +248,20 @@ Page({
 			.exec((res) => {
 				allWidth  = res[0].width;
 				allHeight =  res[0].height;
+				const screenWidth = wx.getSystemInfoSync().screenWidth;
 				const ctx1 = wx.createCanvasContext('share1');
-				ctx1.drawImage(this.data.imgPath2,0,0,allWidth,375);
+				ctx1.rect(0,0,allWidth,allHeight);
+				ctx1.setFillStyle('#FFF');
+				ctx1.fill();
+				ctx1.drawImage(this.data.imgPath2,0,0,allWidth,to2Px(screenWidth,720));
 				ctx1.setFontSize(18);
-				ctx1.setFillStyle('white');
-				let titleLeft = to2Px(allWidth,48);
-				this.renderTitle1(ctx1,this.data.dataInfo['title'],titleLeft,93,to2Px(allWidth,498));
+				ctx1.setFillStyle('#333');
+				let titleLeft = to2Px(screenWidth,48);
+				this.renderTitle1(ctx1,this.data.dataInfo['title'],titleLeft,93,to2Px(screenWidth,498));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText(that.data.unitTitle,that.data.unitLeft,150);
-				let unitPriceLeft = to2Px(allWidth,178);
-				ctx1.setFontSize(18);
-				ctx1.setFillStyle('#FE6300');
+				ctx1.fillText(that.data.unitTitle,titleLeft,150);
+				let unitPriceLeft = to2Px(screenWidth,178);
 				let unitPrice = 0;
 				if(this.data.dataInfo['houseMold'] === 'ESTATE'){
 					unitPrice = this.data.dataInfo['unitPrice'];
@@ -280,34 +273,33 @@ Page({
 				}else if(this.data.dataInfo['houseMold'] === 'RESIDENTIAL_QUARTERS'){
 					unitPrice = this.data.dataInfo['rentalAveragePrice'];
 				}
-				ctx1.fillText(that.data.unitPrice +that.data.unit,unitPriceLeft,150);
-				ctx1.setFontSize(13);
+				ctx1.setFontSize(18);
+				ctx1.setFillStyle('#FE6300');
+				ctx1.fillText(unitPrice +that.data.unit,unitPriceLeft,150);
+				ctx1.setFontSize(12);
 				ctx1.setFillStyle('#999999');
 				ctx1.fillText('开盘地址:',titleLeft,166);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				let detailsAddressLeft = to2Px(allWidth,178);
+				let detailsAddressLeft = to2Px(screenWidth,178);
 				let detailsAddress = this.data.dataInfo['detailsAddress'];
-				ctx1.fillText(detailsAddress+'...',detailsAddressLeft,166);
-				ctx1.rect(0,375,allWidth,allHeight-375);
-				ctx1.setFillStyle('white');
-				ctx1.fill();
+				ctx1.fillText(detailsAddress,detailsAddressLeft,166);
 				ctx1.setFontSize(15);
 				ctx1.setFillStyle('black');
-				let nameLeft = to2Px(allWidth,40);
-				ctx1.fillText(this.data.userInfo['realName'],nameLeft,412);
-				ctx1.drawImage(this.data.phoneImgPath,nameLeft,422,to2Px(allWidth,36),to2Px(allWidth,36));
-				let phoneLeft = to2Px(allWidth,88);
+				let nameLeft = to2Px(screenWidth,40);
+				ctx1.fillText(this.data.userInfo['realName'],nameLeft,to2Px(screenWidth,768));
+				ctx1.drawImage(this.data.phoneImgPath,nameLeft,to2Px(screenWidth,800),to2Px(screenWidth,36),to2Px(screenWidth,36));
+				let phoneLeft = to2Px(screenWidth,88);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('black');
 				ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,435);
+				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,to2Px(screenWidth,824));
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
-				let mulitipleWidth = to2Px(allWidth,360);
-				this.renderText(ctx1,str,nameLeft,466,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,490);
+				let mulitipleWidth = to2Px(screenWidth,360);
+				this.renderText(ctx1,str,nameLeft,to2Px(screenWidth,870),mulitipleWidth,'#999',12);
+				let qrImgLeft = to2Px(screenWidth,460);
 				console.log(this.data.qrCodePath)
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,400,70,70);
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,to2Px(screenWidth,768),to2Px(screenWidth,100),to2Px(screenWidth,100));
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -322,20 +314,18 @@ Page({
 						success:(res)=>{
 							console.log(res)
 							this.setData({
-								saveTempCanvas1: res.tempFilePath,
-								isDisable: false
+								saveTempCanvas1: res.tempFilePath
+							},()=>{
+								if(this.data.saveTempCanvas!=="" && this.data.saveTempCanvas1!=="" && this.data.saveTempCanvas2!=="" && this.data.saveTempCanvas3!==""){
+									that.setData({
+										disable: false,
+										show: false
+									})
+								}
 							})
 						},
 						fail:(err)=>{
 							console.log(err)
-						},
-						complete:()=>{
-							if(this.data.saveTempCanvas!=="" && this.data.saveTempCanvas1!=="" && this.data.saveTempCanvas2!=="" && this.data.saveTempCanvas3!==""){
-								that.setData({
-									disable: false
-								})
-							}
-
 						}
 					})
 				});
@@ -348,6 +338,7 @@ Page({
 		let allHeight = 0;
 		let allWidth = 0;
 		const dpr = wx.getSystemInfoSync().pixelRatio;
+		const screenWidth = wx.getSystemInfoSync().screenWidth;
 		query.select('#share2')
 			.fields({ node: true, size: true })
 			.exec((res) => {
@@ -357,12 +348,12 @@ Page({
 				ctx1.rect(0,0,allWidth,allHeight);
 				ctx1.setFillStyle('white');
 				ctx1.fill();
-				let titleLeft = to2Px(allWidth,116);
-				this.renderTitle2(ctx1,this.data.dataInfo['title'],titleLeft,48,to2Px(allWidth,500));
+				let titleLeft = to2Px(screenWidth,36);
+				this.renderTitle2(ctx1,this.data.dataInfo['title'],titleLeft,to2Px(screenWidth,48),to2Px(allWidth,500));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText(that.data.unitTitle,that.data.unitLeft,100);
-				let unitPriceLeft = to2Px(allWidth,246);
+				ctx1.fillText(that.data.unitTitle,titleLeft,to2Px(screenWidth,130));
+				let unitPriceLeft = to2Px(screenWidth,156);
 				ctx1.setFontSize(18);
 				ctx1.setFillStyle('#FE6300');
 				let unitPrice = 0;
@@ -376,41 +367,40 @@ Page({
 				}else if(this.data.dataInfo['houseMold'] === 'RESIDENTIAL_QUARTERS'){
 					unitPrice = this.data.dataInfo['rentalAveragePrice'];
 				}
-				ctx1.fillText(that.data.unitPrice + that.data.unit,unitPriceLeft,100);
-				ctx1.setFontSize(13);
+				ctx1.fillText(that.data.unitPrice + that.data.unit,unitPriceLeft,to2Px(screenWidth,130));
+				ctx1.setFontSize(12);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText('开盘地址:',titleLeft,120);
-				ctx1.setFontSize(13);
+				ctx1.fillText('开盘地址:',titleLeft,to2Px(screenWidth,170));
+				ctx1.setFontSize(12);
 				ctx1.setFillStyle('#999999');
-				let detailsAddressLeft = to2Px(allWidth,242);
-				let detailAddress = this.data.dataInfo['detailsAddress'].substr(0,14);
-				ctx1.fillText(detailAddress+'...',detailsAddressLeft,120);
-				ctx1.drawImage(this.data.imgPath3,titleLeft,130,to2Px(allWidth,520),150);
+				let detailsAddressLeft = to2Px(screenWidth,160);
+				let detailAddress = this.data.dataInfo['detailsAddress'].substr(0,15);
+				ctx1.fillText(detailAddress+'...',detailsAddressLeft,to2Px(screenWidth,170));
+				ctx1.drawImage(this.data.imgPath3,titleLeft,to2Px(screenWidth,230),to2Px(screenWidth,520),to2Px(screenWidth,364));
 				if(this.data.imgPath5!==''){
-					ctx1.drawImage(this.data.imgPath5,titleLeft,288,to2Px(allWidth,166),84);
+					ctx1.drawImage(this.data.imgPath5,titleLeft,to2Px(screenWidth,230),to2Px(screenWidth,166),to2Px(screenWidth,168));
 				}
 				if(this.data.imgPath6!==''){
-					ctx1.drawImage(this.data.imgPath6,to2Px(allWidth,294),288,to2Px(allWidth,166),84);
+					ctx1.drawImage(this.data.imgPath6,to2Px(screenWidth,218),to2Px(screenWidth,600),to2Px(screenWidth,166),to2Px(screenWidth,166));
 				}
 				if(this.data.imgPath7!==''){
-					ctx1.drawImage(this.data.imgPath7,to2Px(allWidth,470),288,to2Px(allWidth,166),84);
+					ctx1.drawImage(this.data.imgPath7,to2Px(screenWidth,394),to2Px(screenWidth,600),to2Px(screenWidth,166),to2Px(screenWidth,166));
 				}
 				ctx1.setFontSize(15);
 				ctx1.setFillStyle('black');
-				let nameLeft = to2Px(allWidth,116);
-				ctx1.fillText(this.data.userInfo['realName'],nameLeft,412);
-				ctx1.drawImage(this.data.phoneImgPath,nameLeft,422,to2Px(allWidth,36),to2Px(allWidth,36));
-				let phoneLeft = to2Px(allWidth,164);
+				let nameLeft = to2Px(screenWidth,40);
+				ctx1.fillText(this.data.userInfo['realName'],nameLeft,to2Px(screenWidth,800));
+				ctx1.drawImage(this.data.phoneImgPath,nameLeft,to2Px(screenWidth,830),to2Px(screenWidth,36),to2Px(screenWidth,36));
+				let phoneLeft = to2Px(screenWidth,84);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('black');
 				ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,435);
+				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,to2Px(screenWidth,850));
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
-				let mulitipleWidth = to2Px(allWidth,320);
-				this.renderText(ctx1,str,nameLeft,466,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,476);
-				console.log(this.data.qrCodePath)
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,390,70,70);
+				let mulitipleWidth = to2Px(screenWidth,360);
+				this.renderText(ctx1,str,nameLeft,to2Px(screenWidth,902),mulitipleWidth,'#999999',12);
+				let qrImgLeft = to2Px(screenWidth,460);
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,to2Px(screenWidth,800),to2Px(screenWidth,100),to2Px(screenWidth,100));
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -425,20 +415,18 @@ Page({
 						success:(res)=>{
 							console.log(res)
 							this.setData({
-								saveTempCanvas2: res.tempFilePath,
-								isDisable: false
+								saveTempCanvas2: res.tempFilePath
+							},()=>{
+								if(this.data.saveTempCanvas!=="" && this.data.saveTempCanvas1!=="" && this.data.saveTempCanvas2!=="" && this.data.saveTempCanvas3!==""){
+									that.setData({
+										disable: false,
+										show: false
+									})
+								}
 							})
 						},
 						fail:(err)=>{
 							console.log(err)
-						},
-						complete:()=>{
-							if(this.data.saveTempCanvas!=="" && this.data.saveTempCanvas1!=="" && this.data.saveTempCanvas2!=="" && this.data.saveTempCanvas3!==""){
-								that.setData({
-									disable: false
-								})
-							}
-
 						}
 					})
 				});
@@ -456,35 +444,34 @@ Page({
 			.exec((res) => {
 				allWidth  = res[0].width;
 				allHeight =  res[0].height;
+				const screnWidth = wx.getSystemInfoSync().screenWidth;
 				const ctx1 = wx.createCanvasContext('share3');
 				ctx1.rect(0,0,allWidth,allHeight);
 				ctx1.setFillStyle('white');
 				ctx1.fill();
 				ctx1.setFontSize(15);
 				ctx1.setFillStyle('black');
-				let nameLeft = to2Px(allWidth,116);
-				ctx1.fillText(this.data.userInfo['realName'],nameLeft,16);
-				ctx1.drawImage(this.data.phoneImgPath,nameLeft,26,to2Px(allWidth,36),to2Px(allWidth,36));
-				let phoneLeft = to2Px(allWidth,164);
+				let nameLeft = to2Px(screnWidth,40);
+				ctx1.fillText(this.data.userInfo['realName'],nameLeft,to2Px(screnWidth,42));
+				ctx1.drawImage(this.data.phoneImgPath,nameLeft,to2Px(screnWidth,70),to2Px(screnWidth,36),to2Px(screnWidth,36));
+				let phoneLeft = to2Px(screnWidth,84);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('black');
 				ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,41);
+				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,to2Px(screnWidth,92));
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
-				let mulitipleWidth = to2Px(allWidth,310);
-				this.renderText(ctx1,str,nameLeft,70,mulitipleWidth);
-				let qrImgLeft = to2Px(allWidth,486);
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,1,70,70);
-				ctx1.drawImage(this.data.imgPath4,nameLeft,109,to2Px(allWidth,520),262);
-				ctx1.drawImage(this.data.pic_resources,to2Px(allWidth,488),325,to2Px(allWidth,188),to2Px(allWidth,188));
-				let titleLeft = to2Px(allWidth,116);
-				this.renderTitle2(ctx1,this.data.dataInfo['title'],titleLeft,390,to2Px(allWidth,324));
+				let mulitipleWidth = to2Px(screnWidth,360);
+				this.renderText(ctx1,str,nameLeft,to2Px(screnWidth,134),mulitipleWidth,'#999999',12);
+				let qrImgLeft = to2Px(screnWidth,460);
+				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,to2Px(screnWidth,32),to2Px(screnWidth,100),to2Px(screnWidth,100));
+				ctx1.drawImage(this.data.imgPath4,nameLeft,to2Px(screnWidth,218),to2Px(screnWidth,520),to2Px(screnWidth,520));
+				ctx1.drawImage(this.data.pic_resources,to2Px(screnWidth,412),to2Px(screnWidth,682),to2Px(screnWidth,188),to2Px(screnWidth,188));
+				let titleLeft = to2Px(screnWidth,40);
+				this.renderTitle2(ctx1,this.data.dataInfo['title'],titleLeft,to2Px(screnWidth,778),to2Px(screnWidth,324));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText(that.data.unitTitle,that.data.unitLeft,450);
-				let unitPriceLeft = to2Px(allWidth,246);
-				ctx1.setFontSize(18);
-				ctx1.setFillStyle('#FE6300');
+				ctx1.fillText(that.data.unitTitle,titleLeft,to2Px(screnWidth,888));
+				let unitPriceLeft = to2Px(screnWidth,170);
 				let unitPrice = 0;
 				if(this.data.dataInfo['houseMold'] === 'ESTATE'){
 					unitPrice = this.data.dataInfo['unitPrice'];
@@ -495,15 +482,17 @@ Page({
 				}else if(this.data.dataInfo['houseMold'] === 'RESIDENTIAL_QUARTERS'){
 					unitPrice = this.data.dataInfo['rentalAveragePrice'];
 				}
-				ctx1.fillText(that.data.unitPrice + that.data.unit,unitPriceLeft,452);
+				ctx1.setFontSize(18);
+				ctx1.setFillStyle('#FE6300');
+				ctx1.fillText(unitPrice + that.data.unit,unitPriceLeft,to2Px(screnWidth,884));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText('开盘地址:',titleLeft,480);
+				ctx1.fillText('开盘地址:',titleLeft,to2Px(screnWidth,934));
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
-				let detailsAddressLeft = to2Px(allWidth,242);
+				let detailsAddressLeft = to2Px(screnWidth,170);
 				let detailAdress = this.data.dataInfo['detailsAddress'].substr(0,14);
-				ctx1.fillText(detailAdress+'...',detailsAddressLeft,480);
+				ctx1.fillText(detailAdress+'...',detailsAddressLeft,to2Px(screnWidth,934));
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -518,32 +507,123 @@ Page({
 						success:(res)=>{
 							console.log(res)
 							this.setData({
-								saveTempCanvas3: res.tempFilePath,
-								isDisable: false
+								saveTempCanvas3: res.tempFilePath
+							},()=>{
+								if(this.data.saveTempCanvas!=="" && this.data.saveTempCanvas1!=="" && this.data.saveTempCanvas2!=="" && this.data.saveTempCanvas3!==""){
+									that.setData({
+										disable: false,
+										show: false
+									})
+								}
 							})
 						},
 						fail:(err)=>{
 							console.log(err)
-						},
-						complete:()=>{
-							if(this.data.saveTempCanvas!=="" && this.data.saveTempCanvas1!=="" && this.data.saveTempCanvas2!=="" && this.data.saveTempCanvas3!==""){
-								that.setData({
-									disable: false
-								})
-							}
-							that.setData({
-								show: false
-							});
 						}
 					})
 				});
 			});
 	},
 
+	getDesign3(newDesignArray=[]){
+		if(newDesignArray.length===1){
+			getImageInfo(newDesignArray[0]).then(res=>{
+				console.log(res)
+				this.setData({
+					imgPath3: res.path
+				},()=>{
+					this.go2();
+				});
+			})
+		}else if(newDesignArray.length===2){
+			getImageInfo(newDesignArray[0]).then(res=>{
+				console.log(res)
+				this.setData({
+					imgPath3: res.path
+				},()=>{
+					getImageInfo(newDesignArray[1]).then(res=>{
+						console.log(res)
+						this.setData({
+							imgPath5: res.path
+						},()=>{
+							this.go2();
+						});
+					}).catch(err=>{
+						console.log(err)
+					});
+				});
+			})
+		}else if(newDesignArray.length===3){
+			getImageInfo(newDesignArray[0]).then(res=>{
+				console.log(res)
+				this.setData({
+					imgPath3: res.path
+				},()=>{
+					getImageInfo(newDesignArray[1]).then(res=>{
+						console.log(res)
+						this.setData({
+							imgPath5: res.path
+						},()=>{
+							getImageInfo(newDesignArra[2]).then(res=>{
+								console.log(res)
+								this.setData({
+									imgPath6: res.path
+								},()=>{
+									this.go2();
+								});
+							}).catch(err=>{
+								console.log(err)
+							});
+						});
+					}).catch(err=>{
+						console.log(err)
+					});
+				});
+			})
+		}else if(newDesignArray.length===4){
+			getImageInfo(newDesignArray[0]).then(res=>{
+				console.log(res)
+				this.setData({
+					imgPath3: res.path
+				},()=>{
+					getImageInfo(newDesignArray[1]).then(res=>{
+						console.log(res)
+						this.setData({
+							imgPath5: res.path
+						},()=>{
+							getImageInfo(newDesignArra[2]).then(res=>{
+								console.log(res)
+								this.setData({
+									imgPath6: res.path
+								},()=>{
+									getImageInfo(newDesignArra[3]).then(res=>{
+										console.log(res)
+										this.setData({
+											imgPath7: res.path
+										},()=>{
+											this.go2();
+										});
+									}).catch(err=>{
+										console.log(err)
+									});
+								});
+							}).catch(err=>{
+								console.log(err)
+							});
+						});
+					}).catch(err=>{
+						console.log(err)
+					});
+				});
+			})
+		}
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.drawQR();
 		let agentId = wx.getStorageSync('agentId');
 		let userId = wx.getStorageSync('userId');
 		let resultInfo = wx.getSystemInfoSync();
@@ -556,83 +636,6 @@ Page({
 		},()=>{
 			this.getUnit();
 		});
-		let designSketch = parseObj.item['designSketch'];
-		getImageInfo(designSketch[0]).then(res=>{
-			console.log(res)
-			this.setData({
-				imgPath3: res.path
-			});
-		}).catch(err=>{
-			console.log(err)
-		});
-		getImageInfo(designSketch[0]).then(res=>{
-			console.log(res)
-			this.setData({
-				imgPath4: res.path
-			});
-		}).catch(err=>{
-			console.log(err)
-		});
-		if(designSketch[1]){
-			getImageInfo(designSketch[1]).then(res=>{
-				console.log(res)
-				this.setData({
-					imgPath5: res.path
-				});
-			}).catch(err=>{
-				console.log(err)
-			});
-		}
-		if(designSketch[2]){
-			getImageInfo(designSketch[2]).then(res=>{
-				console.log(res)
-				this.setData({
-					imgPath6: res.path
-				});
-			}).catch(err=>{
-				console.log(err)
-			});
-		}
-		if(designSketch[3]){
-			getImageInfo(designSketch[3]).then(res=>{
-				console.log(res)
-				this.setData({
-					imgPath7: res.path
-				});
-			}).catch(err=>{
-				console.log(err)
-			});
-		}
-		request.posterTemplate({}).then(res=>{
-			this.setData({
-				posterList: res
-			});
-			let imgPath1 = res[0].backgroundUri.replace(/[\'|\"]/g,"");
-			let imgPath2 = res[1].backgroundUri.replace(/[\'|\"]/g,"");
-			getImageInfo(imgPath1).then(res=>{
-				console.log(res)
-				console.log('图片高度')
-				console.log(Number(resultInfo.screenWidth*720/750))
-				this.setData({
-					imgPath1: res.path,
-					img1Height: Number(resultInfo.screenWidth*720/750)
-				});
-				this.go();
-				this.go1();
-			}).catch(err=>{
-				console.log(err)
-			});
-			getImageInfo(imgPath2).then(res=>{
-				console.log(res)
-				this.setData({
-					imgPath2: res.path
-				});
-			}).catch(err=>{
-				console.log(err)
-			});
-		}).catch(err=>{
-			console.log(err)
-		});
 		getImageInfo('../../image/icon_phonecall_30@2x.png').then(res=>{
 			console.log(res)
 			this.setData({
@@ -641,26 +644,64 @@ Page({
 		}).catch(err=>{
 			console.log(err)
 		});
-		getImageInfo('../../image/pic_resources.png').then(res=>{
-			console.log(res)
+		let designSketch = parseObj.item['designSketch'];
+		const newDesignArray = designSketch.slice(0,4);
+		this.getDesign3(newDesignArray);
+		request.posterTemplate({}).then(res=>{
 			this.setData({
-				pic_resources: '../../../'+res.path
-			})
+				posterList: res
+			});
+			let imgPath1 = res[0].backgroundUri.replace(/[\'|\"]/g,"");
+			let imgPath2 = res[0].backgroundUri.replace(/[\'|\"]/g,"");
+			getImageInfo(imgPath1).then(res=>{
+				this.setData({
+					imgPath1: res.path
+				},()=>{
+					this.go();
+				});
+			}).catch(err=>{
+				console.log(err)
+			});
+			getImageInfo(imgPath2).then(res=>{
+				console.log(res)
+				this.setData({
+					imgPath2: res.path
+				},()=>{
+					this.go1();
+				});
+			}).catch(err=>{
+				console.log(err)
+			});
 		}).catch(err=>{
 			console.log(err)
-		})
+		});
+		getImageInfo(designSketch[0]).then(res=>{
+			console.log(res)
+			this.setData({
+				imgPath4: res.path
+			},()=>{
+				getImageInfo('../../image/pic_resources.png').then(res=>{
+					this.setData({
+						pic_resources: '../../../'+res.path
+					},()=>{
+						this.go3();
+					})
+				}).catch(err=>{
+					console.log(err)
+				})
+			});
+		}).catch(err=>{
+			console.log(err)
+		});
 	},
 
 	drawQR(){
 		let that = this;
 		let res = wx.getSystemInfoSync();
-		this.setData({
-			clientWidth:  res.screenWidth
-		});
 		let qrCodeCtx =  wx.createCanvasContext('myQrcode');
 		drawQrcode({
-			width: 70,
-			height: 70,
+			width: 80,
+			height: 80,
 			canvasId: 'myQrcode',
 			ctx: qrCodeCtx,
 			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}&userId=${that.data.userId}`,
@@ -680,78 +721,9 @@ Page({
 							},
 							fail:(err)=>{
 								console.log(err)
-							},
-							complete: ()=>{
-								that.go();
-								that.go1();
-								that.go2();
-								that.go3();
 							}
 						})
 					},1000);
-				}else{
-					wx.showToast({
-						title: '二维码生成失败，请重新再试!'
-					})
-				}
-			}
-		})
-	},
-	drawQR1(){
-		const that = this;
-		let qrCodeCtx =  wx.createCanvasContext('myQrcode1');
-		drawQrcode({
-			width: 70,
-			height: 70,
-			canvasId: 'myQrcode1',
-			ctx: qrCodeCtx,
-			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}&userId=${that.data.userId}`,
-			callback: (e)=>{
-				console.log(e)
-				if(e['errMsg'].includes('ok')){
-					console.log('二维码绘制完成');
-				}else{
-					wx.showToast({
-						title: '二维码生成失败，请重新再试!'
-					})
-				}
-			}
-		})
-	},
-	drawQR2(){
-		const that = this;
-		let qrCodeCtx =  wx.createCanvasContext('myQrcode2');
-		drawQrcode({
-			width: 70,
-			height: 70,
-			canvasId: 'myQrcode2',
-			ctx: qrCodeCtx,
-			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}&userId=${that.data.userId}`,
-			callback: (e)=>{
-				console.log(e)
-				if(e['errMsg'].includes('ok')){
-					console.log('二维码绘制完成');
-				}else{
-					wx.showToast({
-						title: '二维码生成失败，请重新再试!'
-					})
-				}
-			}
-		})
-	},
-	drawQR3(){
-		const that = this;
-		let qrCodeCtx =  wx.createCanvasContext('myQrcode3');
-		drawQrcode({
-			width: 70,
-			height: 70,
-			canvasId: 'myQrcode3',
-			ctx: qrCodeCtx,
-			text: `https://dev.delevin.beiru168.com/homepage?agentId=${that.data.agentId}&userId=${that.data.userId}`,
-			callback: (e)=>{
-				console.log(e)
-				if(e['errMsg'].includes('ok')){
-					console.log('二维码绘制完成');
 				}else{
 					wx.showToast({
 						title: '二维码生成失败，请重新再试!'
@@ -815,68 +787,69 @@ Page({
 			}
 		})
 	},
+	previewImage() {
+		console.log('preview')
+		const {saveTempCanvas,saveTempCanvas1,saveTempCanvas2,saveTempCanvas3} = this.data;
+		wx.previewImage({
+			current: saveTempCanvas,
+			urls: [saveTempCanvas,saveTempCanvas1,saveTempCanvas2,saveTempCanvas3]
+		},true)
+	},
 	save(){
 		if(this.data.disable){
 			return
 		}
-		wx.showLoading({
-			title: '图片生成中!'
-		});
-		let that = this;
-		wx.getSetting({
-			success(res){
-				console.log(res)
-				let auth = res.authSetting['scope.writePhotosAlbum'];
-				console.log(auth)
-				if(auth || auth===undefined){
-					that.saveImg();
-				}else{
-					wx.openSetting({
-						success(res){
-							console.log(res)
-							if(res.authSetting['scope.writePhotosAlbum']){
-								that.saveImg();
-							}else{
-								wx.showToast({
-									title: '请先授权图片存储权限',
-									icon: "none",
-									duration: 1000
-								})
-							}
-						},
-						fail(err){
-							console.log(err)
-						}
-					})
-				}
-			},
-			fail(err){
-				console.log(err)
-			}
-		});
+		this.previewImage();
+		// let that = this;
+		// wx.getSetting({
+		// 	success(res){
+		// 		console.log(res)
+		// 		let auth = res.authSetting['scope.writePhotosAlbum'];
+		// 		console.log(auth)
+		// 		if(auth || auth===undefined){
+		// 			that.saveImg();
+		// 		}else{
+		// 			wx.openSetting({
+		// 				success(res){
+		// 					console.log(res)
+		// 					if(res.authSetting['scope.writePhotosAlbum']){
+		// 						that.saveImg();
+		// 					}else{
+		// 						wx.showToast({
+		// 							title: '请先授权图片存储权限',
+		// 							icon: "none",
+		// 							duration: 1000
+		// 						})
+		// 					}
+		// 				},
+		// 				fail(err){
+		// 					console.log(err)
+		// 				}
+		// 			})
+		// 		}
+		// 	},
+		// 	fail(err){
+		// 		console.log(err)
+		// 	}
+		// });
 	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
 	onReady: function () {
-		this.drawQR();
-		this.drawQR1();
-		this.drawQR2();
-		this.drawQR3();
-		},
+	},
 
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-		request.information().then(res=>{
-			console.log(res)
-			let synopsis = res.synopsis===""?'暂无简介':res.synopsis.substr(0,20)+'...';
-			this.setData({
-				userInfo: {...res,synopsis:synopsis}
-			})
-		}).catch(err=>{
-			console.log(err)
+		const userInfo = JSON.parse(wx.getStorageSync('userInfo')||'{}');
+		let synopsis = userInfo.synopsis===""?'暂无简介':userInfo.synopsis.substr(0,20)+'...';
+		this.setData({
+			userInfo: {...userInfo,synopsis:synopsis}
+		});
+		wx.hideShareMenu({
+			menus: ['shareAppMessage', 'shareTimeline']
 		});
 		wx.hideShareMenu({
 			menus: ['shareAppMessage', 'shareTimeline']

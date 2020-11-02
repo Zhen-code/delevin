@@ -1,31 +1,12 @@
 <navbar bgColor="{{bgColor}}" title="{{title}}" back="{{back}}" backHome="{{backHome}}"/>
-<canvas
-        class="shareCanvas"
-        id="share"
-        canvas-id="share"
-        disable-scroll="true"
-        style="width:750rpx;height:500px"
-></canvas>
 
 <view class='container-main' style="padding-top:{{paddingTop+20}}px">
-    <view class='point-img'>
-        <image  src='{{imgUrl}}'
-               class='bjt'
-                mode="widthFix"
-                style="height:{{bgImgHeight}}px"></image>
-        <view class="point-container">
-            <view>
-                <view class='am-cname'><text>{{cname}}</text></view>
-                <view class="contact">
-                    <image src="/combination/image/icon_phonecall_30@2x.png" mode="widthFix"></image>
-                    <text>{{phone}}</text>
-                </view>
-                <view class="desc">{{synopsis}}</view>
-            </view>
-            <view class="am-img"><canvas style="width: 80px; height: 80px;" canvas-id="myQrcode"></canvas></view>
-        </view>
-    </view>
+    <image src="{{shareImage}}" mode="scaleToFill" class="share-image" bindtap="previewImage"></image>
+
+    <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage" />
+
+    <canvas style="width: 136rpx; height: 136rpx;" canvas-id="myQrcode" class="qrCode"></canvas>
 </view>
 <view class='am-footer'>
-    <button open-type="share" disabled="{{isDisable}}" id="btn_share1" class="share-button">立即分享</button>
+    <button disabled="{{isDisable}}" id="btn_share1" bind:tap="eventSave" class="share-button">立即分享</button>
 </view>

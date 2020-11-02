@@ -5,9 +5,6 @@
     height: auto;
 }
 
-.point-img {
-    width:100%;height:auto;
-}
 .bjt {
     width:686rpx;
     height:1066rpx;
@@ -87,8 +84,14 @@
     justify-content: center;
     align-items: center;
 }
-.shareCanvas{
+
+.share-image {
+    width: 686rpx;
+    height: 1188rpx;
+}
+
+.qrCode{
     position: fixed;
+    bottom: -600px;
     left: 0;
-    top: -2000px;
 }
