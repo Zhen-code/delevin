@@ -1,8 +1,6 @@
 <!--combination/pages/aspectDetail/index.wxml-->
-<navbar pageHome="{{pageHome}}" backHome="{{backHome}}" bgColor="{{bgColor}}" title="新闻资讯"/>
-<scroll-view scroll-y
-             style="height:{{winHeight}}"
-              scroll-into-view="{{toView}}">
+<navbar pageHome="{{pageHome}}" backHome="{{backHome}}" bgColor="{{bgColor}}" title="新闻资讯" />
+<scroll-view scroll-y style="height:{{winHeight}}" scroll-into-view="{{toView}}">
   <view class="content" id="content" style="padding-top:{{paddingTop}}px">
     <view class="content-top">
       <view class="title">{{title}}</view>
@@ -23,27 +21,18 @@
   <view class="comment-wrapper" id="tab-comment">
     <text class="comment-title">全部评论</text>
     <view class="comment-content">
-      <view class="comment-item"
-            wx:for="{{commentList}}"
-            wx:key="id"
-            wx:for-item="item">
+      <view class="comment-item" wx:for="{{commentList}}" wx:key="id" wx:for-item="item">
         <view class="comment-item-title">
           {{item.content}}
         </view>
         <view class="comment-item-time">
           <view class="comment-item-time-left">{{item.nickName}} {{item.createDate}}</view>
-          <view class="comment-item-time-right"
-                data-targetid="{{id}}"
-                data-fatherid="{{item.id}}"
-                data-nickname="{{item.nickName}}"
-                catch:tap="toReplay">回复</view>
+          <view class="comment-item-time-right" data-targetid="{{id}}" data-fatherid="{{item.id}}"
+            data-nickname="{{item.nickName}}" catch:tap="toReplay">回复</view>
         </view>
         <view class="second-comment" wx:if="{{item.commentResults.length!==0}}">
-          <view class="second-comment-item"
-                wx:for="{{item.commentResults}}"
-                wx:key="id"
-                wx:for-item="items"
-                wx:for-index="index">
+          <view class="second-comment-item" wx:for="{{item.commentResults}}" wx:key="id" wx:for-item="items"
+            wx:for-index="index">
             <view class="second-comment-item-title">{{items.content}}</view>
             <view class="second-comment-item-response">
               <view class="response1">{{items.nickName}}</view>
@@ -51,17 +40,14 @@
               <view class="response2">{{item.nickName}}</view>
               <view class="response-time">{{items.createDate}}</view>
             </view>
-            <view class="response-btn {{(index===(item.commentResults.length-1)&&items.commentResults.length===0)?'noline':'hasline'}}"
-                  data-targetid="{{id}}"
-                  data-fatherid="{{items.id}}"
-                  data-nickname="{{items.nickName}}"
-                  catch:tap="toReplay">回复</view>
+            <view
+              class="response-btn {{(index===(item.commentResults.length-1)&&items.commentResults.length===0)?'noline':'hasline'}}"
+              data-targetid="{{id}}" data-fatherid="{{items.id}}" data-nickname="{{items.nickName}}"
+              catch:tap="toReplay">回复</view>
             <block wx:if="{{items.commentResults.length!==0}}">
-              <view class="{{(index1===items.commentResults.length-1)&&(index===(item.commentResults.length-1))?'no-comment-inline':'second-comment-inline'}}"
-                    wx:for="{{items.commentResults}}"
-                    wx:key="id"
-                    wx:for-item="v"
-                    wx:for-index="index1">
+              <view
+                class="{{(index1===items.commentResults.length-1)&&(index===(item.commentResults.length-1))?'no-comment-inline':'second-comment-inline'}}"
+                wx:for="{{items.commentResults}}" wx:key="id" wx:for-item="v" wx:for-index="index1">
                 <view class="second-comment-item-title">{{v.content}}</view>
                 <view class="second-comment-item-response">
                   <view class="response1">{{v.nickName}}</view>
@@ -90,26 +76,23 @@
 </scroll-view>
 <view class="{{isIos?'bottom-contain-ios':'bottom-contain'}}">
   <view class="write-content" catch:tap="toWrite">写评论…</view>
-  <button
-          class="write-content-btn"
-          bind:tap="collect">
-    <image src="{{collect==='YES'?'../../image/icon_collection_20_pre@2x.png':'../../image/icon_collection_20_nor@2x.png'}}" class="bottom-img" mode="aspectFill"></image>
+  <button class="write-content-btn" bind:tap="collect">
+    <image
+      src="{{collect==='YES'?'../../image/icon_collection_20_pre@2x.png':'../../image/icon_collection_20_nor@2x.png'}}"
+      class="bottom-img" mode="aspectFill"></image>
     <text>收藏</text>
   </button>
-  <button
-          class="write-content-btn"
-          open-type="share">
-    <image  class="bottom-img"  src="../../image/icon_forward_20_black@2x.png" mode="aspectFill"></image>
+  <button class="write-content-btn" open-type="share">
+    <image class="bottom-img" src="../../image/icon_forward_20_black@2x.png" mode="aspectFill"></image>
     <text>转发</text>
   </button>
-  <button class="write-content-btn"  catch:tap="goComment">
+  <button class="write-content-btn" catch:tap="goComment">
     <image src="../../image/icon_comment_20_black@2x.png" class="bottom-img" mode="aspectFill"></image>
     <text>{{commentCount}}</text>
   </button>
-  <!--  <button class="write-content-btn">-->
-  <!--    <image src="../../image/icon_like_20_nor@2x.png" class="bottom-img" mode="aspectFill"></image>-->
-  <!--    <text></text>-->
-  <!--  </button>-->
+  <button class="write-content-btn" catch:tap="goComment">
+    <image src="../../image/icon_like_20_nor@2x.png" class="bottom-img" mode="aspectFill"></image>
+    <text>分享</text>
+  </button>
 </view>
 <van-toast id="van-toast" />
-

@@ -1,6 +1,6 @@
 <!--pages/personal/mine/index.wxml-->
 <view class="mine">
-	<navbar  title="个人中心"/>
+	<navbar title="个人中心" />
 	<view class="mine-content" style="padding-top:{{paddingTop}}px">
 		<view class="mine-content-top">
 			<view class="mine-content-top-row">
@@ -12,7 +12,8 @@
 					</view>
 				</view>
 				<view class="mine-content-top-rigth" wx:if="{{!show}}" data-item="{{userInfo}}" bindtap="tabBroker">
-					<text class="mine-content-top-rigth-text" wx:if="{{userInfo.identity === 'MEMBER'}}">{{userInfo.resultStatusType || '认证为经纪人'}}</text>
+					<text class="mine-content-top-rigth-text"
+						wx:if="{{userInfo.identity === 'MEMBER'}}">{{userInfo.resultStatusType || '认证为经纪人'}}</text>
 					<text class="mine-content-top-rigth-text" wx:if="{{userInfo.identity === 'AGENT'}}">切换机构端</text>
 					<van-icon size="30rpx" name="arrow" color="#88ABFF" />
 				</view>
@@ -86,7 +87,19 @@
 	</view>
 </view>
 
-<view class="info" wx:if='{{showInfo}}'>
+<van-overlay show="{{showInfo}}">
+	<view class="info">
+		<view class="info-view">
+			<text class="info-view-title">微信授权</text>
+			<text class="info-view-text">为展示用户头像、昵称，需要获得您的公开信息（昵称、图像）</text>
+			<view class="info-view-bottom">
+				<button open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取登录</button>
+			</view>
+		</view>
+	</view>
+</van-overlay>
+
+<!-- <view class="info" wx:if='{{showInfo}}'>
 	<view class="info-view">
 		<text class="info-view-title">微信授权</text>
 		<text class="info-view-text">为展示用户头像、昵称，需要获得您的公开信息（昵称、图像）</text>
@@ -94,4 +107,4 @@
 			<button open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取登录</button>
 		</view>
 	</view>
-</view>
+</view> -->

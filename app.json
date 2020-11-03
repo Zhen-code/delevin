@@ -81,6 +81,7 @@
 		}
 	],
 	"usingComponents": {
+		"van-overlay": "@vant/weapp/overlay/index",
 		"van-datetime-picker": "@vant/weapp/datetime-picker/index",
 		"van-swipe-cell": "@vant/weapp/swipe-cell/index",
 		"van-sidebar": "@vant/weapp/sidebar/index",
