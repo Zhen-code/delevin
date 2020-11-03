@@ -181,12 +181,12 @@ Page({
 				ctx1.fillText(that.data.unitPrice + that.data.unit,unitPriceLeft,100);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('white');
-				ctx1.fillText('开盘地址:',titleLeft,126);
+				ctx1.fillText('开盘地址:',titleLeft,122);
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('white');
 				let detailsAddressLeft = to2Px(screenWidth,182);
 				let detailsAddress = this.data.dataInfo['detailsAddress'];
-				this.renderText(ctx1,detailsAddress,detailsAddressLeft,122,374,'#FFF',13);
+				this.renderText(ctx1,detailsAddress,detailsAddressLeft,120,to2Px(screenWidth,380),'#FFF',13);
 				let nameLeft = to2Px(screenWidth,40);
 				ctx1.setFillStyle('#333333');
 				ctx1.setFontSize(15);
@@ -198,12 +198,12 @@ Page({
 				ctx1.font = '13px PingFangSC-Regular,PingFang SC';
 				console.log()
 				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,to2Px(screenWidth,818));
-				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
-				let mulitipleWidth = to2Px(screenWidth,360);
+				let str = this.data.userInfo['synopsis'];
+				let mulitipleWidth = to2Px(screenWidth,358);
 				this.renderText(ctx1,str,nameLeft,to2Px(screenWidth,870),mulitipleWidth,'#999',12);
 				let qrImgLeft = to2Px(screenWidth,460);
 				console.log(this.data.qrCodePath)
-				console.log('二维码')
+				console.log('二维码0')
 				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,to2Px(screenWidth,768),to2Px(screenWidth,100),to2Px(screenWidth,100));
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
@@ -278,16 +278,14 @@ Page({
 				ctx1.fillText(unitPrice +that.data.unit,unitPriceLeft,150);
 				ctx1.setFontSize(12);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText('开盘地址:',titleLeft,166);
-				ctx1.setFontSize(13);
-				ctx1.setFillStyle('#999999');
+				ctx1.fillText('开盘地址:',titleLeft,169);
 				let detailsAddressLeft = to2Px(screenWidth,178);
 				let detailsAddress = this.data.dataInfo['detailsAddress'];
-				ctx1.fillText(detailsAddress,detailsAddressLeft,166);
+				that.renderText(ctx1,detailsAddress,detailsAddressLeft,168,to2Px(screenWidth,382),'#999999',13);
 				ctx1.setFontSize(15);
 				ctx1.setFillStyle('black');
 				let nameLeft = to2Px(screenWidth,40);
-				ctx1.fillText(this.data.userInfo['realName'],nameLeft,to2Px(screenWidth,768));
+				ctx1.fillText(this.data.userInfo['realName'],nameLeft,to2Px(screenWidth,780));
 				ctx1.drawImage(this.data.phoneImgPath,nameLeft,to2Px(screenWidth,800),to2Px(screenWidth,36),to2Px(screenWidth,36));
 				let phoneLeft = to2Px(screenWidth,88);
 				ctx1.setFontSize(13);
@@ -299,6 +297,7 @@ Page({
 				this.renderText(ctx1,str,nameLeft,to2Px(screenWidth,870),mulitipleWidth,'#999',12);
 				let qrImgLeft = to2Px(screenWidth,460);
 				console.log(this.data.qrCodePath)
+				console.log('二维码1')
 				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,to2Px(screenWidth,768),to2Px(screenWidth,100),to2Px(screenWidth,100));
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
@@ -370,15 +369,13 @@ Page({
 				ctx1.fillText(that.data.unitPrice + that.data.unit,unitPriceLeft,to2Px(screenWidth,130));
 				ctx1.setFontSize(12);
 				ctx1.setFillStyle('#999999');
-				ctx1.fillText('开盘地址:',titleLeft,to2Px(screenWidth,170));
-				ctx1.setFontSize(12);
-				ctx1.setFillStyle('#999999');
+				ctx1.fillText('开盘地址:',titleLeft,to2Px(screenWidth,173));
 				let detailsAddressLeft = to2Px(screenWidth,160);
-				let detailAddress = this.data.dataInfo['detailsAddress'].substr(0,15);
-				ctx1.fillText(detailAddress+'...',detailsAddressLeft,to2Px(screenWidth,170));
+				let detailAddress = this.data.dataInfo['detailsAddress'];
+				that.renderText(ctx1,detailAddress,detailsAddressLeft,to2Px(screenWidth,170),to2Px(screenWidth,400),'#999999',12);
 				ctx1.drawImage(this.data.imgPath3,titleLeft,to2Px(screenWidth,230),to2Px(screenWidth,520),to2Px(screenWidth,364));
 				if(this.data.imgPath5!==''){
-					ctx1.drawImage(this.data.imgPath5,titleLeft,to2Px(screenWidth,230),to2Px(screenWidth,166),to2Px(screenWidth,168));
+					ctx1.drawImage(this.data.imgPath5,titleLeft,to2Px(screenWidth,600),to2Px(screenWidth,166),to2Px(screenWidth,168));
 				}
 				if(this.data.imgPath6!==''){
 					ctx1.drawImage(this.data.imgPath6,to2Px(screenWidth,218),to2Px(screenWidth,600),to2Px(screenWidth,166),to2Px(screenWidth,166));
@@ -395,12 +392,14 @@ Page({
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('black');
 				ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,to2Px(screenWidth,850));
+				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,to2Px(screenWidth,853));
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
 				let mulitipleWidth = to2Px(screenWidth,360);
 				this.renderText(ctx1,str,nameLeft,to2Px(screenWidth,902),mulitipleWidth,'#999999',12);
 				let qrImgLeft = to2Px(screenWidth,460);
-				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,to2Px(screenWidth,800),to2Px(screenWidth,100),to2Px(screenWidth,100));
+				console.log(this.data.qrCodePath)
+				console.log('二维码2')
+				ctx1.drawImage(that.data.qrCodePath,qrImgLeft,to2Px(screenWidth,800),to2Px(screenWidth,100),to2Px(screenWidth,100));
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -458,11 +457,13 @@ Page({
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('black');
 				ctx1.font = '13px PingFangSC-Regular,PingFang SC';
-				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,to2Px(screnWidth,92));
+				ctx1.fillText(this.data.userInfo['phone'],phoneLeft,to2Px(screnWidth,94));
 				let str = this.data.userInfo['synopsis']===""?'暂无简介':this.data.userInfo['synopsis'];
 				let mulitipleWidth = to2Px(screnWidth,360);
 				this.renderText(ctx1,str,nameLeft,to2Px(screnWidth,134),mulitipleWidth,'#999999',12);
 				let qrImgLeft = to2Px(screnWidth,460);
+				console.log(this.data.qrCodePath)
+				console.log('二维码3')
 				ctx1.drawImage(this.data.qrCodePath,qrImgLeft,to2Px(screnWidth,32),to2Px(screnWidth,100),to2Px(screnWidth,100));
 				ctx1.drawImage(this.data.imgPath4,nameLeft,to2Px(screnWidth,218),to2Px(screnWidth,520),to2Px(screnWidth,520));
 				ctx1.drawImage(this.data.pic_resources,to2Px(screnWidth,412),to2Px(screnWidth,682),to2Px(screnWidth,188),to2Px(screnWidth,188));
@@ -488,11 +489,9 @@ Page({
 				ctx1.setFontSize(13);
 				ctx1.setFillStyle('#999999');
 				ctx1.fillText('开盘地址:',titleLeft,to2Px(screnWidth,934));
-				ctx1.setFontSize(13);
-				ctx1.setFillStyle('#999999');
 				let detailsAddressLeft = to2Px(screnWidth,170);
-				let detailAdress = this.data.dataInfo['detailsAddress'].substr(0,14);
-				ctx1.fillText(detailAdress+'...',detailsAddressLeft,to2Px(screnWidth,934));
+				let detailAdress = this.data.dataInfo['detailsAddress'];
+				this.renderText(ctx1,detailAdress,detailsAddressLeft,to2Px(screnWidth,930),to2Px(screnWidth,390),'#999999',13);
 				ctx1.draw(false,()=>{
 					wx.canvasToTempFilePath({
 						x: 0,
@@ -526,6 +525,7 @@ Page({
 	},
 
 	getDesign3(newDesignArray=[]){
+		this.drawQR();
 		if(newDesignArray.length===1){
 			getImageInfo(newDesignArray[0]).then(res=>{
 				console.log(res)
@@ -564,7 +564,7 @@ Page({
 						this.setData({
 							imgPath5: res.path
 						},()=>{
-							getImageInfo(newDesignArra[2]).then(res=>{
+							getImageInfo(newDesignArray[2]).then(res=>{
 								console.log(res)
 								this.setData({
 									imgPath6: res.path
@@ -591,12 +591,12 @@ Page({
 						this.setData({
 							imgPath5: res.path
 						},()=>{
-							getImageInfo(newDesignArra[2]).then(res=>{
+							getImageInfo(newDesignArray[2]).then(res=>{
 								console.log(res)
 								this.setData({
 									imgPath6: res.path
 								},()=>{
-									getImageInfo(newDesignArra[3]).then(res=>{
+									getImageInfo(newDesignArray[3]).then(res=>{
 										console.log(res)
 										this.setData({
 											imgPath7: res.path
@@ -652,7 +652,7 @@ Page({
 				posterList: res
 			});
 			let imgPath1 = res[0].backgroundUri.replace(/[\'|\"]/g,"");
-			let imgPath2 = res[0].backgroundUri.replace(/[\'|\"]/g,"");
+			let imgPath2 = res[1].backgroundUri.replace(/[\'|\"]/g,"");
 			getImageInfo(imgPath1).then(res=>{
 				this.setData({
 					imgPath1: res.path
@@ -721,6 +721,12 @@ Page({
 							},
 							fail:(err)=>{
 								console.log(err)
+							},
+							complete:()=>{
+								that.go();
+								that.go1();
+								that.go2();
+								that.go3();
 							}
 						})
 					},1000);
@@ -789,9 +795,9 @@ Page({
 	},
 	previewImage() {
 		console.log('preview')
-		const {saveTempCanvas,saveTempCanvas1,saveTempCanvas2,saveTempCanvas3} = this.data;
+		const imgArray = [this.data.saveTempCanvas,this.data.saveTempCanvas1,this.data.saveTempCanvas2,this.data.saveTempCanvas3];
 		wx.previewImage({
-			current: saveTempCanvas,
+			current: imgArray[index],
 			urls: [saveTempCanvas,saveTempCanvas1,saveTempCanvas2,saveTempCanvas3]
 		},true)
 	},
@@ -844,7 +850,7 @@ Page({
 	 */
 	onShow: function () {
 		const userInfo = JSON.parse(wx.getStorageSync('userInfo')||'{}');
-		let synopsis = userInfo.synopsis===""?'暂无简介':userInfo.synopsis.substr(0,20)+'...';
+		let synopsis = userInfo.synopsis===""?'暂无简介':userInfo.synopsis;
 		this.setData({
 			userInfo: {...userInfo,synopsis:synopsis}
 		});
