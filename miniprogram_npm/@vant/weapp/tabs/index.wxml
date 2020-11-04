@@ -20,12 +20,12 @@
         style="{{ color ? 'border-color: ' + color : '' }}"
       >
         <view class="{{ utils.bem('tabs__nav', [type, { complete: !ellipsis }]) }} nav-class" style="{{ getters.tabCardTypeBorderStyle(color, type) }}">
-          <view wx:if="{{ type === 'line' }}" class="van-tabs__line" style="{{ lineStyle }}" />
+          <view wx:if="{{ type === 'line' }}" class="van-tabs__line" style="{{ getters.lineStyle({ color, lineOffsetLeft, lineHeight, skipTransition, duration, lineWidth }) }}" />
           <view
             wx:for="{{ tabs }}"
             wx:key="index"
             data-index="{{ index }}"
-            class="{{ getters.tabClass(index === currentIndex, ellipsis) }} {{ utils.bem('tab', ['' + index, { active: index === currentIndex, disabled: item.disabled, complete: !ellipsis }]) }}"
+            class="{{ getters.tabClass(index === currentIndex, ellipsis) }} {{ utils.bem('tab', { active: index === currentIndex, disabled: item.disabled, complete: !ellipsis }) }}"
             style="{{ getters.tabStyle(index === currentIndex, ellipsis, color, type, item.disabled, titleActiveColor, titleInactiveColor, swipeThreshold, scrollable) }}"
             bind:tap="onTap"
           >

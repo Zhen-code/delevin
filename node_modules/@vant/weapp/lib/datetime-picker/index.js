@@ -226,7 +226,7 @@ component_1.VantComponent({
       ];
       if (data.type === 'date') result.splice(3, 2);
       if (data.type === 'year-month') result.splice(2, 3);
-      if (data.type === 'year') result.splice(1, 4);
+      if (data.type === 'year') result.splice(0, 4);
       return result;
     },
     correctValue: function (value) {
