@@ -1,7 +1,6 @@
 'use strict';
 Object.defineProperty(exports, '__esModule', { value: true });
 var component_1 = require('../common/component');
-var utils_1 = require('../common/utils');
 component_1.VantComponent({
   props: {
     text: {
@@ -110,14 +109,14 @@ component_1.VantComponent({
           .step()
           .export(),
       });
-      utils_1.requestAnimationFrame(function () {
+      setTimeout(function () {
         _this.setData({
           animationData: _this.animation
             .translateX(-_this.contentWidth)
             .step()
             .export(),
         });
-      });
+      }, 20);
       this.timer = setTimeout(function () {
         _this.scroll();
       }, this.duration);

@@ -795,9 +795,11 @@ Page({
 	},
 	previewImage() {
 		console.log('preview')
-		const imgArray = [this.data.saveTempCanvas,this.data.saveTempCanvas1,this.data.saveTempCanvas2,this.data.saveTempCanvas3];
+		console.log(index)
+		const {index,saveTempCanvas,saveTempCanvas1,saveTempCanvas2,saveTempCanvas3} = this.data;
+		const imgArray = [saveTempCanvas,saveTempCanvas1,saveTempCanvas2,saveTempCanvas3];
 		wx.previewImage({
-			current: imgArray[index],
+			current: imgArray[index-1],
 			urls: [saveTempCanvas,saveTempCanvas1,saveTempCanvas2,saveTempCanvas3]
 		},true)
 	},

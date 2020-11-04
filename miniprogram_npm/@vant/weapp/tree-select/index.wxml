@@ -13,8 +13,6 @@
         custom-class="main-item-class"
         active-class="main-active-class"
         disabled-class="main-disabled-class"
-        badge="{{ item.badge }}"
-        dot="{{ item.dot }}"
         title="{{ item.text }}"
         disabled="{{ item.disabled }}"
       />
@@ -32,7 +30,7 @@
       {{ item.text }}
       <van-icon
         wx:if="{{ wxs.isActive(activeId, item.id) }}"
-        name="{{ selectedIcon }}"
+        name="checked"
         size="16px"
         class="van-tree-select__selected"
       />

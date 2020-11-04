@@ -18,7 +18,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var component_1 = require('../common/component');
 var utils_1 = require('./utils');
 var toast_1 = __importDefault(require('../toast/toast'));
-var utils_2 = require('../common/utils');
 component_1.VantComponent({
   props: {
     title: {
@@ -174,7 +173,7 @@ component_1.VantComponent({
     },
     scrollIntoView: function () {
       var _this = this;
-      utils_2.requestAnimationFrame(function () {
+      setTimeout(function () {
         var _a = _this.data,
           currentDate = _a.currentDate,
           type = _a.type,
@@ -195,7 +194,7 @@ component_1.VantComponent({
           }
           return false;
         });
-      });
+      }, 100);
     },
     onOpen: function () {
       this.$emit('open');

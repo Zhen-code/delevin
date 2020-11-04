@@ -23,12 +23,11 @@ component_1.VantComponent({
     },
   },
   props: {
+    color: {
+      type: String,
+      observer: 'setLine',
+    },
     sticky: Boolean,
-    border: Boolean,
-    swipeable: Boolean,
-    titleActiveColor: String,
-    titleInactiveColor: String,
-    color: String,
     animated: {
       type: Boolean,
       observer: function () {
@@ -38,15 +37,19 @@ component_1.VantComponent({
         });
       },
     },
+    swipeable: Boolean,
     lineWidth: {
       type: [String, Number],
-      value: 40,
+      value: -1,
       observer: 'setLine',
     },
     lineHeight: {
       type: [String, Number],
       value: -1,
+      observer: 'setLine',
     },
+    titleActiveColor: String,
+    titleInactiveColor: String,
     active: {
       type: [String, Number],
       value: 0,
@@ -59,6 +62,10 @@ component_1.VantComponent({
     type: {
       type: String,
       value: 'line',
+    },
+    border: {
+      type: Boolean,
+      value: true,
     },
     ellipsis: {
       type: Boolean,
@@ -96,10 +103,8 @@ component_1.VantComponent({
     scrollLeft: 0,
     scrollable: false,
     trackStyle: '',
-    currentIndex: 0,
+    currentIndex: null,
     container: null,
-    skipTransition: true,
-    lineOffsetLeft: 0,
   },
   mounted: function () {
     var _this = this;
@@ -209,33 +214,51 @@ component_1.VantComponent({
     },
     setLine: function (skipTransition) {
       var _this = this;
-      if (skipTransition === void 0) {
-        skipTransition = false;
-      }
       if (this.data.type !== 'line') {
         return;
       }
-      var currentIndex = this.data.currentIndex;
-      Promise.all([
-        utils_1.getAllRect.call(this, '.van-tab'),
-        utils_1.getRect.call(this, '.van-tabs__line'),
-      ]).then(function (_a) {
-        var _b = _a[0],
-          rects = _b === void 0 ? [] : _b,
-          lineRect = _a[1];
-        var rect = rects[currentIndex];
+      var _a = this.data,
+        color = _a.color,
+        duration = _a.duration,
+        currentIndex = _a.currentIndex,
+        lineWidth = _a.lineWidth,
+        lineHeight = _a.lineHeight;
+      this.getRect('.van-tab--' + currentIndex).then(function (rect) {
         if (rect == null) {
           return;
         }
-        var lineOffsetLeft = rects
-          .slice(0, currentIndex)
-          .reduce(function (prev, curr) {
-            return prev + curr.width;
-          }, 0);
-        lineOffsetLeft += (rect.width - lineRect.width) / 2;
+        var width = lineWidth !== -1 ? lineWidth : rect.width / 2;
+        var height =
+          lineHeight !== -1
+            ? 'height: ' +
+              utils_1.addUnit(lineHeight) +
+              '; border-radius: ' +
+              utils_1.addUnit(lineHeight) +
+              ';'
+            : '';
+        var left = rect.left + (rect.width - width) / 2;
+        var transition = skipTransition
+          ? ''
+          : 'transition-duration: ' +
+            duration +
+            's; -webkit-transition-duration: ' +
+            duration +
+            's;';
         _this.setData({
-          lineOffsetLeft: lineOffsetLeft,
-          skipTransition: skipTransition,
+          lineStyle:
+            '\n            ' +
+            height +
+            '\n            width: ' +
+            utils_1.addUnit(width) +
+            ';\n            background-color: ' +
+            color +
+            ';\n            -webkit-transform: translateX(' +
+            left +
+            'px);\n            transform: translateX(' +
+            left +
+            'px);\n            ' +
+            transition +
+            '\n          ',
         });
       });
     },
@@ -249,8 +272,8 @@ component_1.VantComponent({
         return;
       }
       Promise.all([
-        utils_1.getAllRect.call(this, '.van-tab'),
-        utils_1.getRect.call(this, '.van-tabs__nav'),
+        this.getRect('.van-tab', true),
+        this.getRect('.van-tabs__nav'),
       ]).then(function (_a) {
         var tabRects = _a[0],
           navRect = _a[1];

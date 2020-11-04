@@ -17,7 +17,6 @@ var __assign =
 Object.defineProperty(exports, '__esModule', { value: true });
 var component_1 = require('../common/component');
 var shared_1 = require('../picker/shared');
-var utils_1 = require('../common/utils');
 var COLUMNSPLACEHOLDERCODE = '000000';
 component_1.VantComponent({
   classes: ['active-class', 'toolbar-class', 'column-class'],
@@ -63,9 +62,9 @@ component_1.VantComponent({
   },
   mounted: function () {
     var _this = this;
-    utils_1.requestAnimationFrame(function () {
+    setTimeout(function () {
       _this.setValues();
-    });
+    }, 0);
   },
   methods: {
     getPicker: function () {

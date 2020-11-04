@@ -71,18 +71,14 @@ component_1.VantComponent({
         .then(function (height) {
           var animation = _this.animation;
           if (expanded) {
-            if (height === 0) {
-              animation.height('auto').top(1).step();
-            } else {
-              animation
-                .height(height)
-                .top(1)
-                .step({
-                  duration: inited ? 300 : 1,
-                })
-                .height('auto')
-                .step();
-            }
+            animation
+              .height(height)
+              .top(1)
+              .step({
+                duration: inited ? 300 : 1,
+              })
+              .height('auto')
+              .step();
             _this.setData({
               animation: animation.export(),
             });

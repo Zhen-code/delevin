@@ -29,10 +29,6 @@ component_1.VantComponent({
       type: Number,
       value: Infinity,
     },
-    selectedIcon: {
-      type: String,
-      value: 'success',
-    },
   },
   data: {
     subItems: [],
