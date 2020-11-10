@@ -29,9 +29,9 @@ Page({
 		snatchList: [],
 		watiCustomerList: [],
 		pushCustomer: [],
-		selectType:[],
+		selectType: [],
 		tabIndex: 0,
-		type:'management',
+		type: 'management',
 	},
 	pageTotal: 1,
 	scrollTop() {
@@ -44,19 +44,19 @@ Page({
 		this.pageTotal = 1;
 		this.setData({
 			triggered: false,
-			item:[],
+			item: [],
 			snatchList: [],
 			watiCustomerList: [],
 			pushCustomer: [],
-			selectType:[],
+			selectType: [],
 			pageIndex: 1
-		},()=>{
+		}, () => {
 			this.selectType(this.data.tabIndex)
 		})
 	},
 
 	scrollList() {
-		let pageIndex = this.data.pageIndex+1;
+		let pageIndex = this.data.pageIndex + 1;
 		this.setData({
 			pageIndex
 		});
@@ -64,50 +64,71 @@ Page({
 	},
 
 	dialNumber(e) {
-		let {phone,dialing,type} = e.currentTarget.dataset;
-		console.log(dialing)
-		let tipText = (type==='snatch'?'端口':'端口');
-		console.log(tipText)
-		console.log(7788)
-		if(dialing==="NO"){
+		let {
+			phone,
+			dialing,
+			type
+		} = e.currentTarget.dataset;
+		// console.log(dialing)
+		let tipText = (type === 'snatch' ? '端口' : '端口');
+		// console.log(tipText)
+		// console.log(7788)
+		if (dialing === "NO") {
 			wx.showModal({
-				title:'',
+				title: '',
 				content: `本功能需要买${tipText}套餐,是否前往购买?`,
 				showCancel: true,
 				cancelText: '取消',
 				confirmText: '购买',
-				success(res){
-					if(res.confirm){
+				success(res) {
+					if (res.confirm) {
 						wx.navigateTo({
 							url: '/combination/pages/generalPromotion/index'
 						});
-					}else if(res.cancel){
+					} else if (res.cancel) {
 
 					}
 				}
 			});
-		}else{
-			wx.makePhoneCall({
-				phoneNumber: phone
-			})
+		} else {
+			this.getPhone(phone)
 		}
+	},
+
+	getPhone(phone) {
+		request.bindPhone({
+			bindPhone: phone
+		}).then((res) => {
+			console.log(res)
+			wx.makePhoneCall({
+				phoneNumber: res.phone
+			})
+		}).catch((err) => {
+			console.log(err + '客源管理请求失败')
+			console.log(err.data.msg + '客源管理请求失败')
+			wx.showToast({
+				title: err.data.msg || '客源管理拨号请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
 	},
 
 	getTabValue(e) {
 		this.pageTotal = 1;
 		this.setData({
-			pageIndex:1,
-			item:[],
+			pageIndex: 1,
+			item: [],
 			snatchList: [],
 			watiCustomerList: [],
 			pushCustomer: [],
-			selectType:[]
-		},()=>{
+			selectType: []
+		}, () => {
 			this.selectType(e.detail)
 		})
 	},
 
-	selectType(index){
+	selectType(index) {
 		this.setData({
 			tabIndex: index
 		});
@@ -134,19 +155,19 @@ Page({
 		let id = e.currentTarget.dataset.memberid;
 		let snatch = e.currentTarget.dataset.snatch;
 		let snatchcustomers = e.currentTarget.dataset.snatchcustomers;
-		if(snatch === "NO"){
+		if (snatch === "NO") {
 			wx.showModal({
 				title: '',
 				content: '本功能需要购买抢客套餐,是否前往购买?',
 				cancelText: '取消',
 				confirmText: '去付费',
 				showCancel: true,
-				success(res){
-					if(res.confirm){
+				success(res) {
+					if (res.confirm) {
 						wx.navigateTo({
 							url: '/combination/pages/generalPromotion/index'
 						})
-					}else{
+					} else {
 						wx.showToast({
 							title: '请先购买套餐',
 							icon: "none",
@@ -155,20 +176,20 @@ Page({
 					}
 				}
 			})
-		}else{
-			if(snatchcustomers === 'YES'){
+		} else {
+			if (snatchcustomers === 'YES') {
 				wx.showModal({
 					title: 'TA已经是您的客源',
 					content: '本次不消耗抢客次数',
 					showCancel: false,
 					confirmText: '确定',
-					success(res){
-						if(res.confirm){
+					success(res) {
+						if (res.confirm) {
 							that.getCustomer(id);
 						}
 					}
 				})
-			}else{
+			} else {
 				wx.showModal({
 					title: '本操作需要消耗1次抢客次数',
 					content: '是否确认抢客？',
@@ -206,8 +227,8 @@ Page({
 			that.setData({
 				pageIndex: 1,
 				watiCustomerList: [],
-				selectType:[]
-			},()=>{
+				selectType: []
+			}, () => {
 				that.getWaitCustom();
 			});
 		}).catch(err => {
@@ -221,7 +242,11 @@ Page({
 	},
 
 	getSnatchList() {
-		let {pageIndex,pageSize,snatchList} = this.data;
+		let {
+			pageIndex,
+			pageSize,
+			snatchList
+		} = this.data;
 		http({
 			url: api.broker.snatchCustomerList,
 			method: 'GET',
@@ -233,8 +258,8 @@ Page({
 			console.log(res)
 			this.pageTotal = res.pageTotal;
 			this.setData({
-				snatchList: [...snatchList,...res.list],
-				selectType: [...snatchList,...res.list],
+				snatchList: [...snatchList, ...res.list],
+				selectType: [...snatchList, ...res.list],
 			})
 		}).catch(err => {
 			console.log(err);
@@ -242,7 +267,11 @@ Page({
 	},
 
 	getWaitCustom() {
-		let {pageIndex,pageSize,watiCustomerList} = this.data;
+		let {
+			pageIndex,
+			pageSize,
+			watiCustomerList
+		} = this.data;
 		http({
 			url: api.broker.watiCustomerList,
 			method: 'GET',
@@ -253,18 +282,22 @@ Page({
 		}).then(res => {
 			console.log(res);
 			this.pageTotal = res.pageTotal;
-			let {pageIndex,pageSize,pushCustomer} = this.data;
-			if(pageIndex>this.pageTotal){
+			let {
+				pageIndex,
+				pageSize,
+				pushCustomer
+			} = this.data;
+			if (pageIndex > this.pageTotal) {
 				wx.showToast({
-					title:'暂无更多数据',
-					icon:"none",
-					duration:1000
+					title: '暂无更多数据',
+					icon: "none",
+					duration: 1000
 				});
 				return
 			}
 			this.setData({
-				watiCustomerList: [...watiCustomerList,...res.list],
-				selectType:[...watiCustomerList,...res.list],
+				watiCustomerList: [...watiCustomerList, ...res.list],
+				selectType: [...watiCustomerList, ...res.list],
 			})
 		}).catch(err => {
 			console.log(err)
@@ -272,12 +305,16 @@ Page({
 	},
 
 	getPushCustomer() {
-		let {pageIndex,pageSize,pushCustomer} = this.data;
-		if(pageIndex>this.pageTotal){
+		let {
+			pageIndex,
+			pageSize,
+			pushCustomer
+		} = this.data;
+		if (pageIndex > this.pageTotal) {
 			wx.showToast({
-				title:'暂无更多数据',
-				icon:"none",
-				duration:1000
+				title: '暂无更多数据',
+				icon: "none",
+				duration: 1000
 			});
 			return
 		}
@@ -292,8 +329,8 @@ Page({
 			console.log(res)
 			this.pageTotal = res.pageTotal;
 			this.setData({
-				pushCustomer: [...pushCustomer,...res.list],
-				selectType:[...pushCustomer,...res.list]
+				pushCustomer: [...pushCustomer, ...res.list],
+				selectType: [...pushCustomer, ...res.list]
 			})
 		}).catch(err => {
 			console.log(err);
@@ -301,12 +338,16 @@ Page({
 	},
 
 	getVisitorList() {
-		let {pageIndex,pageSize,item} = this.data;
-		if(pageIndex>this.pageTotal){
+		let {
+			pageIndex,
+			pageSize,
+			item
+		} = this.data;
+		if (pageIndex > this.pageTotal) {
 			wx.showToast({
-				title:'暂无更多数据',
-				icon:"none",
-				duration:1000
+				title: '暂无更多数据',
+				icon: "none",
+				duration: 1000
 			});
 			return
 		}
@@ -316,16 +357,16 @@ Page({
 		}).then((res) => {
 			this.pageTotal = res.pageTotal;
 			item.push(...res['list']);
-			let newData = item.map(v=>{
-				return{
+			let newData = item.map(v => {
+				return {
 					coverUri: v.designSketch,
 					sourceType: v.houseMold,
 					houseLabel: v.houseLabel,
-					salesStatus: v.houseMold==="ESTATE"? v.salesStatus:'',
-					unitPrice: v.houseMold==="ESTATE"? v.unitPrice: '',
-					averagePrice: v.houseMold==="RESIDENTIAL_QUARTERS"? v.averagePrice: '',
-					monthRent: v.houseMold === "TENANCY"? v.monthRent:'',
-					secondPrice: v.houseMold === "SECOND_HAND"?v.averagePrice:'',
+					salesStatus: v.houseMold === "ESTATE" ? v.salesStatus : '',
+					unitPrice: v.houseMold === "ESTATE" ? v.unitPrice : '',
+					averagePrice: v.houseMold === "RESIDENTIAL_QUARTERS" ? v.averagePrice : '',
+					monthRent: v.houseMold === "TENANCY" ? v.monthRent : '',
+					secondPrice: v.houseMold === "SECOND_HAND" ? v.averagePrice : '',
 					secondPriceShow: true,
 					houseHall: v.houseHall,
 					houseKitchen: v.houseKitchen,
@@ -340,13 +381,13 @@ Page({
 					houseCount: v.saleCount,
 					houseId: v.houseId,
 					houseMold: v.houseMold,
-					openingDate:v.openingDate,
-					quartersName:v.quartersName,
+					openingDate: v.openingDate,
+					quartersName: v.quartersName,
 				}
 			});
 			this.setData({
 				item: newData,
-				selectType:newData,
+				selectType: newData,
 			})
 		}).catch((err) => {
 			console.log(err)
@@ -365,21 +406,21 @@ Page({
 			dialing
 		} = e.currentTarget.dataset;
 		console.log(dialing)
-		if(dialing === 'NO'){
+		if (dialing === 'NO') {
 			wx.showModal({
 				content: '本功能需要购买端口套餐,是否前往购买?',
 				showCancel: true,
 				cancelText: '取消',
 				confirmText: '去付费',
-				success:(res)=>{
-					if(res.confirm){
+				success: (res) => {
+					if (res.confirm) {
 						wx.navigateTo({
 							url: '/combination/pages/generalPromotion/index'
 						})
 					}
 				}
 			});
-		}else{
+		} else {
 			let type = '';
 			switch (housetype) {
 				case 'ESTATE':
@@ -407,11 +448,14 @@ Page({
 		}
 	},
 
-	toRecording(e){
+	toRecording(e) {
 		console.log(e)
-		let {id,type} = e.currentTarget.dataset;
+		let {
+			id,
+			type
+		} = e.currentTarget.dataset;
 		wx.navigateTo({
-			url: '/combination/pages/recording/index?houseid='+id+'&type='+type+'&req=house'
+			url: '/combination/pages/recording/index?houseid=' + id + '&type=' + type + '&req=house'
 		})
 	},
 

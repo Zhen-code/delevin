@@ -1,0 +1,12 @@
+<!--components/info/index.wxml-->
+<view class="info-view" wx:if="{{type}}">
+		<van-icon name="cross" size="35rpx" color="#cccccc" catch:tap="close" />
+		<view class="info-view-row">
+			<image class="info-view-row-image" src="{{item.headImgUri}}"></image>
+			<view class="info-view-row-content">
+				<text>{{item.nickname}}</text>
+				<text>{{item.synopsis}}</text>
+			</view>
+		</view>
+		<van-tag size="large" color="#FFC51D" text-color="#333333" type="warning" catch:tap="linkAgent">联系我</van-tag>
+	</view>

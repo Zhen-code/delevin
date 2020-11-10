@@ -11,8 +11,8 @@
      infoUpData: '/api/access/v1/user/member/info/update',
      code: '/api/access/v1/member/captcha/',
      phone: '/api/access/v1/member/service-hot-line/list',
-     //  link: '/api/access/v1/app/link',
      link: '/api/v1/app/link',
+     bindPhone:'/api/access/v1/member/number/privacy/protection/'
    },
 
    // 上传图片/视频

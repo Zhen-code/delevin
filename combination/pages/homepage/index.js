@@ -54,8 +54,23 @@ Page({
 
 	toPhone(e) {
 		let phone = e.currentTarget.dataset.item;
-		wx.makePhoneCall({
-			phoneNumber: phone
+		this.getPhone(phone)
+	},
+
+	getPhone(phone) {
+		request.bindPhone({
+			bindPhone: phone
+		}).then((res) => {
+			console.log(res)
+			wx.makePhoneCall({
+				phoneNumber: res.phone
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: err.data.msg || '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
 		})
 	},
 
