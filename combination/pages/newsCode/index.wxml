@@ -1,3 +1,8 @@
 <view>
-<canvasdrawer pating="{{painting}}" getImage="getImage"></canvasdrawer>
+    <navbar bgColor="{{bgColor}}" title="{{title}}" pageHome="{{pageHome}}" backHome="{{backHome}}"/>
+    <view style="padding-top:{{paddingTop}}px">
+        <image src="{{imgPath}}" class="newsCode"></image>
+    </view>
+    <canvasdrawer painting="{{painting}}" bind:getImage="getImage"></canvasdrawer>
+    <canvas canvas-id="myQrcode" style="width:220rpx;height:220rpx" class="qrCode"></canvas>
 </view>

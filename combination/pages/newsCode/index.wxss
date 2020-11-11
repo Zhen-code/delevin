@@ -1,0 +1,9 @@
+.newsCode{
+    width: 750rpx;
+    height: 1334rpx;
+}
+.qrCode{
+    position: fixed;
+    left: 0;
+    bottom: -600px;
+}

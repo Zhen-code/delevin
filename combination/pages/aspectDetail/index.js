@@ -87,6 +87,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.q) {
+      let qrUrl = decodeURIComponent(options.q);
+      let splitArray = qrUrl.split('?');
+      let paramsArray = splitArray[1].split('&');
+      let agentId = (paramsArray[0].split('='))[1];
+      let userId = (paramsArray[1].split('='))[1];
+      let hideBack = (paramsArray[2].split('='))[1];
+      let articlesId = (paramsArray[3].split('='))[1];
+      this.setData({
+        agentId: agentId,
+        userId: userId
+      });
+    }
     console.log(options)
     let {id,hideBack} = options;
     if(hideBack === 'false'){
