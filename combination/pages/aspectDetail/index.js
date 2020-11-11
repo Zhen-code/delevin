@@ -33,7 +33,9 @@ Page({
     safeBottom: 0,
     isIos: false,
     pageHome: false,
-    backHome: true
+    backHome: true,
+    info: {},
+    state: false
   },
   targetId: '',
   id: '',
@@ -142,6 +144,9 @@ Page({
     wx.navigateTo({
       url: '../replyComment/index?fatherid='+fatherid+'&targertid='+targetid+'&nickName='+ nickname+'&type='+'news'
     });
+  },
+  goImg(){
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

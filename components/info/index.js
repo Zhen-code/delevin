@@ -53,7 +53,7 @@ Component({
 		linkAgent() {
 			this.getPhone(this.data.item.phone)
 		},
-	
+
 		getPhone(phone) {
 			request.bindPhone({
 				bindPhone: phone
@@ -70,5 +70,10 @@ Component({
 				})
 			})
 		},
+		goHomePage(){
+			wx.navigateTo({
+				url: `../homepage/index?agentId=${this.data.item.agentId}&userId=${this.data.item.id}`
+			});
+		}
 	}
 })

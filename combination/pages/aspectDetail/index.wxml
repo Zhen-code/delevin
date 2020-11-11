@@ -2,6 +2,7 @@
 <navbar pageHome="{{pageHome}}" backHome="{{backHome}}" bgColor="{{bgColor}}" title="新闻资讯" />
 <scroll-view scroll-y style="height:{{winHeight}}" scroll-into-view="{{toView}}">
   <view class="content" id="content" style="padding-top:{{paddingTop}}px">
+    <info state="{{state}}" info="{{info}}"></info>
     <view class="content-top">
       <view class="title">{{title}}</view>
       <view class="second-bar">
@@ -11,6 +12,10 @@
     </view>
     <view class="content-center">
       <rich-text nodes="{{nodes}}" type="text"></rich-text>
+    </view>
+    <view class="share">
+      <image src="../../image/icon_moment_20@2x.png" class="monent-img"></image>
+      <text class="monent-text" bind:tap="goImg">转发到朋友圈</text>
     </view>
     <!--  <block wx:for="{{newsImg}}"-->
     <!--         wx:key="*this">-->

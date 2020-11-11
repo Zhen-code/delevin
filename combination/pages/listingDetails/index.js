@@ -356,6 +356,7 @@ Page({
 		})
 	},
 
+
 	changeFavorites() {
 		let state = this.data.favoritesState;
 		if (state) {
@@ -518,23 +519,6 @@ Page({
 
 	linkAgent() {
 		this.getPhone(this.data.agentPhone)
-	},
-
-	getPhone(phone) {
-		request.bindPhone({
-			bindPhone: phone
-		}).then((res) => {
-			console.log(res)
-			wx.makePhoneCall({
-				phoneNumber: res.phone
-			})
-		}).catch((err) => {
-			wx.showToast({
-				title: err.data.msg || '请求失败',
-				icon: 'none',
-				duration: 2500
-			})
-		})
 	},
 
 	getInfo(){

@@ -2,6 +2,6 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "navbar": "/components/nav/index",
-    "canvasdrawer": "../../components/canvasdrawer/canvasdrawer"
+    "canvasdrawer": "../../../components/canvasdrawer/canvasdrawer"
   }
 }

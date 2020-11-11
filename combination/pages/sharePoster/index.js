@@ -807,7 +807,7 @@ Page({
 		if(this.data.disable){
 			return
 		}
-		this.previewImage();
+		// this.previewImage();
 		// let that = this;
 		// wx.getSetting({
 		// 	success(res){
