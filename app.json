@@ -77,7 +77,8 @@
         "pages/shareInfoImg/index",
         "pages/recommendedSource/index",
         "pages/backHome/index",
-        "pages/customerArticlesCode/customerArticlesCode"
+        "pages/customerArticlesCode/customerArticlesCode",
+        "pages/newsCode/index"
       ]
     }
   ],

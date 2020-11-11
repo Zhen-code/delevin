@@ -1,0 +1,3 @@
+<view>
+<canvasdrawer pating="{{painting}}" getImage="getImage"></canvasdrawer>
+</view>

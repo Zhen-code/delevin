@@ -28,7 +28,7 @@ Page({
   timeFlag: 1,
   goCode(){
     wx.navigateTo({
-      url: '/combination/pages/customerArticlesCode/customerArticlesCode',
+      url: `/combination/pages/customerArticlesCode/customerArticlesCode?articleId=${this.data.id}&type=customer`,
     })
   },
 
@@ -43,7 +43,7 @@ Page({
         title: res.name,
         author: res.author,
         time: res.createDate,
-        nodes: res.newsDetails.replace(/\<img /gi,'<img class="news-img" ')
+        nodes: res.newsDetails.replace(/\<img/gi,'<img class="news-img" ')
       });
     }).catch(err=>{
       console.log(err);
@@ -73,7 +73,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let {id,userId,hideBack} = options;
-    
+
     if(hideBack){
       let info =wx.getStorageSync('info')
       this.setData({
