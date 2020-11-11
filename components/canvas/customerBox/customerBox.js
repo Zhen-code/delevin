@@ -1,12 +1,12 @@
 Component({
   properties: {
     id:{
+      type:Number,
       value:"",
-
     },
     type:{
       type:String,
-      value:"new"
+      value:"news"
     },
     //属性值可以在组件使用时指定
     isCanDraw: {
