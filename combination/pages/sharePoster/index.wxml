@@ -37,20 +37,20 @@
             bindchange="onChange"
             class="swiper-wrap">
         <swiper-item class="swiper-item" item-id="{{imgPath1}}">
-            <image src="{{saveTempCanvas}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"></image>
+            <image src="{{saveTempCanvas}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"  show-menu-by-longpress="true"></image>
         </swiper-item>
         <swiper-item class="swiper-item"  item-id="{{imgPath2}}">
-            <image src="{{saveTempCanvas1}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"></image>
+            <image src="{{saveTempCanvas1}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"  show-menu-by-longpress="true"></image>
         </swiper-item>
         <swiper-item class="swiper-item"  item-id="{{imgPath3}}">
-            <image src="{{saveTempCanvas2}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"></image>
+            <image src="{{saveTempCanvas2}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"  show-menu-by-longpress="true"></image>
         </swiper-item>
         <swiper-item class="swiper-item" item-id="{{imgPath4}}">
-            <image src="{{saveTempCanvas3}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"></image>
+            <image src="{{saveTempCanvas3}}" mode="scaleToFill" style="width:600rpx;height:1000rpx"  show-menu-by-longpress="true"></image>
         </swiper-item>
     </swiper>
     <view class="bottom-btn">
-        <view class="save-btn {{disable?'disActive':''}}" catch:tap="save">保存至手机</view>
+        <view class="save-btn {{disable?'disActive':''}}" catch:tap="save">长按图片保存至手机</view>
     </view>
     <view class="page">
         <text class="page-index">{{index}}/4</text>

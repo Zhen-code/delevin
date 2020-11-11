@@ -1,12 +1,12 @@
 <navbar bgColor="{{bgColor}}" title="{{title}}" back="{{back}}" backHome="{{backHome}}"/>
 
 <view class='container-main' style="padding-top:{{paddingTop+20}}px">
-    <image src="{{shareImage}}" mode="scaleToFill" class="share-image" bindtap="previewImage"></image>
+    <image src="{{shareImage}}" mode="scaleToFill" class="share-image" show-menu-by-longpress="true"></image>
 
-    <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage" />
+    <canvasdrawer painting="{{painting}}" class="canvasdrawer" bind:getImage="eventGetImage"/>
 
-    <canvas style="width: 136rpx; height: 136rpx;" canvas-id="myQrcode" class="qrCode"></canvas>
+    <canvas style="width: 160rpx; height: 160rpx;" canvas-id="myQrcode" class="qrCode"></canvas>
 </view>
 <view class='am-footer'>
-    <button disabled="{{isDisable}}" id="btn_share1" bind:tap="eventSave" class="share-button">立即分享</button>
+    <button disabled="{{isDisable}}" id="btn_share1" class="share-button">长按图片保存</button>
 </view>

@@ -1,5 +1,13 @@
 Component({
   properties: {
+    id:{
+      value:"",
+
+    },
+    type:{
+      type:String,
+      value:"new"
+    },
     //属性值可以在组件使用时指定
     isCanDraw: {
       type: Boolean,

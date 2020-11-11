@@ -265,3 +265,24 @@
   padding-bottom: 10rpx;
   border-bottom: 1px solid #f8f8f8;
 }
+.share{
+  width: 686rpx;
+  height: 88rpx;
+  background: #FFD854;
+  border-radius: 44rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40rpx 0 56rpx 0;
+}
+.monent-img{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 8rpx;
+}
+.monent-text{
+  font-size: 32rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #333333;
+}

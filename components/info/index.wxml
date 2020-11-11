@@ -2,7 +2,7 @@
 <view class="info-view" wx:if="{{type}}">
 		<van-icon name="cross" size="35rpx" color="#cccccc" catch:tap="close" />
 		<view class="info-view-row">
-			<image class="info-view-row-image" src="{{item.headImgUri}}"></image>
+			<image class="info-view-row-image" src="{{item.headImgUri}}" catch:tap="goHomePage"></image>
 			<view class="info-view-row-content">
 				<text>{{item.nickname}}</text>
 				<text>{{item.synopsis}}</text>

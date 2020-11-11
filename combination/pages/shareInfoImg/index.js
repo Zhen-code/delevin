@@ -40,7 +40,8 @@ Page({
     backHome: true,
     painting: {},
     shareImage: '',
-    showmenu: false
+    showmenu: false,
+    leftLogo:''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -71,8 +72,21 @@ Page({
         console.log(err)
       }
     });
+    //获取右上角logo
+    wx.getImageInfo({
+      src: '../../image/icon_logo_w@2x.png',
+      success:(res)=>{
+        this.setData({
+          leftLogo: '../../'+res.path
+        })
+      },
+      fail:(err)=>{
+        console.log(err)
+      }
+    });
   },
-  eventDraw(url,phoneUrl,codeImg) {
+  eventDraw(url,phoneUrl,codeImg,leftLogo) {
+    console.log(leftLogo)
     var self  = this;
     wx.showLoading({
       title: '海报绘制中',
@@ -80,8 +94,8 @@ Page({
     });
     this.setData({
       painting: {
-        width: 686,
-        height: 1188,
+        width: 750,
+        height: 1334,
         clear: true,
         views: [
           {
@@ -89,16 +103,24 @@ Page({
           background: '#FFFFFF',
           top: 0,
           left:0,
-          width: 686,
-          height: 1188
+          width: 750,
+          height: 1334
+          },
+          {
+            type: 'image',
+            url: leftLogo,
+            top: 28,
+            left: 574,
+            width: 144,
+            height: 42
           },
           {
           type: 'image',
           url: url,//背景图
-          top: 0,
-          left: 0,
-          width: 686,
-          height: 914
+          top: 94,
+          left: 34,
+          width: 682,
+          height: 908
           },
           {
             type: 'text',
@@ -106,14 +128,14 @@ Page({
               fontSize: 30,
               textAlign: 'left',
               color: "#333333",
-              top: 962,
+              top: 1034,
               left: 32,
               bolder: true
           },
           {
             type: 'image',
             url: phoneUrl,
-            top: 1012,
+            top: 1090,
             left: 32,
             width: 36,
             height: 36
@@ -124,8 +146,8 @@ Page({
             fontSize: 26,
             textAlign: 'left',
             color: "#333333",
-            top: 1012,
-            left: 76,
+            top: 1090,
+            left: 82,
             bolder: true
           },
           {
@@ -134,7 +156,7 @@ Page({
             fontSize: 24,
             color:'#999999',
             textAlign: 'left',
-            top: 1064,
+            top: 1138,
             left: 32,
             lineHeight: 34,
             width: 452,
@@ -145,10 +167,20 @@ Page({
           {
             type: 'image',
             url: codeImg,
-            top: 962,
-            left: 518,
+            top: 1034,
+            left: 526,
             width: 136,
             height: 136
+          },
+          {
+              type: 'text',
+              content: '识别小程序码查看更多房源资讯',
+              fontSize: 24,
+              textAlign: 'center',
+              color: "#999999",
+              top: 1270,
+              left: 360,
+              bolder: true
           }
           // {
           //   type: 'text',
@@ -206,7 +238,7 @@ Page({
       urls: [current]
     },true)
   },
-  eventSave() {
+  eventSave() {//保存图片
     this.setData({
       showmenu: true
     },()=>{
@@ -215,7 +247,8 @@ Page({
   },
   getAgentInfo(){
     const userInfo = JSON.parse(wx.getStorageSync('userInfo')||'{}');
-    this.setData({
+    const that = this;
+    that.setData({
       cname: userInfo.nickname,
       phone: userInfo.phone,
       synopsis: userInfo.synopsis===""?'暂无简介':userInfo.synopsis,
@@ -232,8 +265,8 @@ Page({
     const that = this;
     let qrCodeCtx =  wx.createCanvasContext('myQrcode');
     drawQrcode({
-      width: that.to2Px(screenWidth,136),
-      height: that.to2Px(screenWidth,136),
+      width: that.to2Px(screenWidth,160),
+      height: that.to2Px(screenWidth,160),
       canvasId: 'myQrcode',
       ctx: qrCodeCtx,
       text: `https://dev.delevin.beiru168.com/homepage?agentId=${agentId}&userId=${userId}`,
@@ -250,7 +283,7 @@ Page({
                 this.setData({
                   qrCodePath: res.tempFilePath
                 },()=>{
-                  that.eventDraw(that.data.imgUrl,that.data.phoneImgPath,res.tempFilePath);
+                  that.eventDraw(that.data.imgUrl,that.data.phoneImgPath,res.tempFilePath,that.data.leftLogo);
                 })
               },
               fail: (err) => {
