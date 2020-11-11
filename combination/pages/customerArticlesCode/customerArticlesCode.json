@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": { 
+    "share-box": "/components/canvas/customerBox/customerBox"
+  }
+}

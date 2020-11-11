@@ -1,0 +1,4 @@
+<share-box isCanDraw="{{true}}" item="{{item}}" />
+<view style="position:fixed;bottom:999999999999999999999rpx;">
+	<canvas style="width: 200px; height: 200px;z-index:-99" canvas-id="myQrcode"></canvas>
+</view>

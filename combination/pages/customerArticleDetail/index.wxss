@@ -1,27 +1,31 @@
 /* combination/pages/aspectDetail/index.wxss */
-page{
+page {
     height: 100%;
 }
-.content{
+
+.content {
     background: #FFFFFF;
     padding: 0 32rpx;
     box-sizing: border-box;
     width: 100%;
 }
-.content-top{
+
+.content-top {
     height: 213rpx;
     width: 100%;
     border-bottom: 1px solid #EEEEEE;
     overflow: hidden;
 }
-.title{
+
+.title {
     font-size: 32rpx;
     font-family: PingFangSC-Medium, PingFang SC;
     font-weight: 500;
     color: #333333;
     margin-top: 39rpx;
 }
-.second-bar{
+
+.second-bar {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -31,58 +35,76 @@ page{
     color: #999999;
     margin-top: 24rpx;
 }
-.second-bar-left{
+
+.second-bar-left {
     margin-right: 40rpx;
 }
-.content-center{
+
+.content-center {
     font-size: 30rpx;
     font-family: PingFangSC-Regular, PingFang SC;
     font-weight: 400;
     color: #333333;
     margin-top: 22rpx;
 }
-.news-img{
+
+.news-img {
     width: 100%;
     height: 100%;
     border-radius: 4rpx;
     margin-top: 24rpx;
     margin-bottom: 48rpx;
 }
-.line{
+
+.line {
     width: 750rpx;
     height: 112rpx;
     background: #F8F8F8;
     margin-bottom: 60rpx;
 }
-.bottom-contain{
+
+.bottom-contain {
     position: fixed;
+    margin-top: 32rpx;
     left: 0;
+    right: 0;
     bottom: 10rpx;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 18rpx;
-    box-sizing:border-box;
+    padding: 0 32rpx;
+    box-sizing: border-box;
     width: 100%;
-    height: 112rpx;
+    height: 88rpx;
     background: #FFF;
 }
-.bottom-text{
-    width: 100%;
+
+.bottom-text {
+    width: 332rpx;
     height: 100%;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     background: #FFD854;
     border-radius: 10rpx;
     font-size: 32rpx;
     font-family: PingFangSC-Medium, PingFang SC;
-    font-weight: 500;
+    font-weight: 600;
     color: #333333;
+
+    border-radius: 44rpx;
     position: relative;
+    box-sizing: border-box;
 }
-.share-btn{
+
+.share-cycle {
+    background-color: white;
+    border: 1px solid #333333;
+    color: #333333;
+}
+
+.share-btn {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -90,6 +112,7 @@ page{
     margin: 0;
     opacity: 0;
 }
-.scrollWrap{
-   height: 90%;
+
+.scrollWrap {
+    height: 90%;
 }

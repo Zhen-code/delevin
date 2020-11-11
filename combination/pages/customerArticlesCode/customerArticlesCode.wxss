@@ -1,0 +1,37 @@
+
+
+.shareImgs {
+	width: 100%;
+	height: 100vh;
+	background-color: #fff;
+	position: relative;
+}
+
+.saveImgBtn {
+	width: 376rpx;
+	height: 80rpx;
+	border: 2rpx solid #333333;
+	color: #333333;
+	font-size: 32rpx;
+	text-align: center;
+	position: absolute;
+	bottom: 300rpx;
+	left: 188rpx;
+	right: 188rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 40rpx;
+	z-index: 999;
+}
+
+.intro {
+  width: 686rpx;
+  height: 88rpx;
+  background: #00cc88;
+  color: #FFF;
+  border-radius: 16rpx;
+  font-size: 32rpx;
+  text-align: center;
+  margin: 200rpx auto;
+}

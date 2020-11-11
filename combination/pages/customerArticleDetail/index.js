@@ -21,9 +21,17 @@ Page({
     safeBottom: 0,
     userId:'',
     backHome: true,
-    pageHome: false
+    pageHome: false,
+    info:null,
+    state:false
   },
   timeFlag: 1,
+  goCode(){
+    wx.navigateTo({
+      url: '/combination/pages/customerArticlesCode/customerArticlesCode',
+    })
+  },
+
   getNewsDetail(id){
     http({
       url: api.personalHome.customerArticleDetail(id),
@@ -65,6 +73,14 @@ Page({
   onLoad: function (options) {
     console.log(options)
     let {id,userId,hideBack} = options;
+    
+    if(hideBack){
+      let info =wx.getStorageSync('info')
+      this.setData({
+        state:true,
+        info:info
+      })
+    }
     console.log(userId)
     console.log('经纪人id')
     if(hideBack === 'true'){
