@@ -5,6 +5,7 @@
     "shopItem":"/components/shopItem/index",
     "favorites":"/components/favorites/index",
     "doubleTab":"/components/doubleTab/index",
-    "noData":"/components/noData/index"
+    "noData":"/components/noData/index",
+    "info":"/components/info/index"
   }
 }

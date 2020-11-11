@@ -1,7 +1,14 @@
 // combination/pages/recording/index.js
 const topHeight = require('../../../request/topHeight.js').topHeight;
-const {http} = require('../../../request/http');
-const {api} = require('../../../request/api');
+const {
+	http
+} = require('../../../request/http');
+const {
+	api
+} = require('../../../request/api');
+const {
+	request
+} = require('../../../request/request');
 Page({
 
 	/**
@@ -34,73 +41,81 @@ Page({
 			triggered: false,
 			item: []
 		});
-		if(this.data.req === "house"){
+		if (this.data.req === "house") {
 			this.getHouseRecord(this.data.houseid, this.data.type);
-		}else if(this.data.req === "allRecord"){
+		} else if (this.data.req === "allRecord") {
 			this.getData();
 		}
 	},
 
 	//滚动加载
 	scrollList() {
-		let {pageIndex} = this.data;
-		if(pageIndex>this.pageTotal){
+		let {
+			pageIndex
+		} = this.data;
+		if (pageIndex > this.pageTotal) {
 			this.setData({
 				toBottom: true
 			})
-		}else if(this.data.req === "house"){
+		} else if (this.data.req === "house") {
 			this.getHouseRecord(this.data.houseid, this.data.type);
-		}else if(this.data.req === "allRecord"){
+		} else if (this.data.req === "allRecord") {
 			this.getData();
 		}
 	},
 
 	getData() {
-		let {item,pageIndex} = this.data;
+		let {
+			item,
+			pageIndex
+		} = this.data;
 		http({
 			url: api.operation.visitorList,
 			method: 'GET',
-			params:{
+			params: {
 				pageIndex: this.data.pageIndex,
 				pageSize: this.data.pageSize,
 			}
-		}).then(res=>{
+		}).then(res => {
 			console.log(res)
-			let list = res.list.map(v=>{
-				v.createDate = v.createDate.replace(/T/g," ");
+			let list = res.list.map(v => {
+				v.createDate = v.createDate.replace(/T/g, " ");
 				return v
 			});
 			console.log(list)
 			this.pageTotal = res.pageTotal;
-				this.setData({
-					item: [...item,...list],
-					pageIndex: pageIndex+1
-				});
-		}).catch(err=>{
+			this.setData({
+				item: [...item, ...list],
+				pageIndex: pageIndex + 1
+			});
+		}).catch(err => {
 			console.log(err);
 		})
 
 	},
-	getHouseRecord(houseId,houseType) {
-		let {item,pageIndex} = this.data;
+	getHouseRecord(houseId, houseType) {
+		let {
+			item,
+			pageIndex
+		} = this.data;
 		http({
 			url: api.operation.visitorList,
 			method: 'GET',
-			params:{
+			params: {
 				pageIndex: this.data.pageIndex,
 				pageSize: this.data.pageSize,
 				houseId: houseId,
 				houseType: houseType,
 				type: 'HOUSE'
 			}
-		}).then(res=>{
+		}).then(res => {
 			console.log(res)
 			this.pageTotal = res.pageTotal;
 			this.setData({
-				item: [...item,...res.list],
-				pageIndex: pageIndex+1
+				item: [...item, ...res.list],
+				pageIndex: pageIndex + 1
 			});
-		}).catch(err=>{
+		}).catch(err => {
 			console.log(err);
 		})
 
@@ -108,24 +123,25 @@ Page({
 
 	dialNumber(e) {
 		console.log(e)
-		let {phone,dialing} = e.currentTarget.dataset;
-		if(dialing==="YES"){
-			wx.makePhoneCall({
-				phoneNumber: phone
-			})
-		}else{
+		let {
+			phone,
+			dialing
+		} = e.currentTarget.dataset;
+		if (dialing === "YES") {
+			this.getPhone(phone)
+		} else {
 			wx.showModal({
 				title: '套餐购买',
 				content: '当前需要购买相应套餐，是否前往?',
 				cancelText: '取消',
 				showCancel: true,
 				confirmText: '确定',
-				success(res){
-					if(res.confirm){
+				success(res) {
+					if (res.confirm) {
 						wx.navigateTo({
 							url: '/combination/pages/generalPromotion/index'
 						})
-					}else{
+					} else {
 						wx.showToast({
 							title: '请先购买套餐'
 						})
@@ -135,20 +151,41 @@ Page({
 		}
 	},
 
+	getPhone(phone) {
+		request.bindPhone({
+			bindPhone: phone
+		}).then((res) => {
+			console.log(res)
+			wx.makePhoneCall({
+				phoneNumber: res.phone
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: err.data.msg || '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
+		})
+	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
 		console.log(options)
-		let {houseid, type, req} = options;
+		let {
+			houseid,
+			type,
+			req
+		} = options;
 		this.setData({
 			req,
 			houseid,
 			type
 		});
-		if(req === "house"){
-			this.getHouseRecord(houseid,type);
-		}else if(req === "allRecord"){
+		if (req === "house") {
+			this.getHouseRecord(houseid, type);
+		} else if (req === "allRecord") {
 			this.getData();
 		}
 	},

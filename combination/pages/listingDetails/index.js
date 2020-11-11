@@ -32,7 +32,7 @@ Page({
 		stlectName: "arrow-down",
 		cWidth: '',
 		cHeight: '',
-		tabItem: ['二手房','租房'],
+		tabItem: ['二手房', '租房'],
 		favoritesState: false,
 		favoritesIcon: 'star-o',
 		favoritesColor: '#cccccc',
@@ -44,6 +44,8 @@ Page({
 		item4: [],
 		markers: [],
 		showAgent: false,
+		agentId:'',
+		info:{},
 		agentName: '',
 		agentSm: '',
 		agentPhone: '',
@@ -326,15 +328,31 @@ Page({
 	},
 
 	callPheon(e) {
-		wx.makePhoneCall({
-			phoneNumber: e.currentTarget.dataset.item.phone
-		})
+		let bindPhone = e.currentTarget.dataset.item.phone;
+		this.getPhone(bindPhone)
 	},
 
 	collPhone() {
 		let phone = this.data.item.platformPhone
 		wx.makePhoneCall({
 			phoneNumber: phone
+		})
+	},
+
+	getPhone(phone) {
+		request.bindPhone({
+			bindPhone: phone
+		}).then((res) => {
+			console.log(res)
+			wx.makePhoneCall({
+				phoneNumber: res.phone
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: err.data.msg || '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
 		})
 	},
 
@@ -498,16 +516,42 @@ Page({
 		}).exec()
 	},
 
-	close(){
-		this.setData({
-			showAgent: false
+	linkAgent() {
+		this.getPhone(this.data.agentPhone)
+	},
+
+	getPhone(phone) {
+		request.bindPhone({
+			bindPhone: phone
+		}).then((res) => {
+			console.log(res)
+			wx.makePhoneCall({
+				phoneNumber: res.phone
+			})
+		}).catch((err) => {
+			wx.showToast({
+				title: err.data.msg || '请求失败',
+				icon: 'none',
+				duration: 2500
+			})
 		})
 	},
 
-	linkAgent(){
-	wx.makePhoneCall({
-		phoneNumber: this.data.agentPhone
-	})
+	getInfo(){
+		request.brokerHome({
+			agentId: this.data.agentId
+		}).then(res => {
+			console.log(res);
+			this.setData({
+				info:res
+			})
+			// that.setData({
+			// 	agentName: res.nickname,
+			// 	agentSm: res.synopsis === '' ? '暂无简介' : res.synopsis,
+			// 	agentPhone: res.phone,
+			// 	headImgUri: res.headImgUri
+			// })
+		})
 	},
 
 	/**
@@ -521,35 +565,29 @@ Page({
 		let showInfo = options.showInfo;
 		let agentId = options.agentId;
 		let hideBack = options.hideBack;
-		if(agentId){
-			request.brokerHome({
-				agentId: agentId
-			}).then(res=>{
-				console.log(res);
-				that.setData({
-					agentName: res.nickname,
-					agentSm: res.synopsis===''?'暂无简介':res.synopsis,
-					agentPhone: res.phone,
-					headImgUri: res.headImgUri
-				})
+		if (agentId) {
+			this.setData({
+				agentId
+			},()=>{
+				this.getInfo()
 			})
 		}
-		if(hideBack === 'true'){
+		if (hideBack === 'true') {
 			that.setData({
 				backHome: false,
 				pageHome: true
 			})
-		}else{
+		} else {
 			that.setData({
 				backHome: true,
 				pageHome: false
 			})
 		}
-		if(showInfo === 'true'){
+		if (showInfo === 'true') {
 			this.setData({
 				showAgent: true
 			});
-		}else{
+		} else {
 			this.setData({
 				showAgent: false
 			})

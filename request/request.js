@@ -44,6 +44,12 @@ const request = {
       params: params,
     });
   },
+  bindPhone: (params) => {
+    return http({
+      url: api.information.bindPhone + params.bindPhone,
+      method: "GET",
+    });
+  },
 
   //推荐新、二房源
   newListingsList: (params) => {
@@ -172,7 +178,7 @@ const request = {
   },
   browseListingsList: (params) => {
     return http({
-      url: api.browse.browseListingsList + params.type+'?pageIndex='+params.pageIndex+'&pageSize='+params.pageSize,
+      url: api.browse.browseListingsList + params.type + '?pageIndex=' + params.pageIndex + '&pageSize=' + params.pageSize,
       method: "GET",
 
     });
@@ -352,7 +358,7 @@ const request = {
     return http({
       url: api.broker.delete,
       method: 'POST',
-      params:params,
+      params: params,
     })
   },
   portLsit: (params) => {
@@ -397,14 +403,14 @@ const request = {
       params: params,
     })
   },
-  superPromotion:(params) => {
+  superPromotion: (params) => {
     return http({
       url: api.broker.superPromotion,
       method: 'GET',
       params: params,
     })
   },
-  superCalculation:(params) => {
+  superCalculation: (params) => {
     return http({
       url: api.broker.superCalculation,
       method: 'GET',
@@ -455,7 +461,7 @@ const request = {
     })
   },
   //添加访客记录
-  addMemberVisitor(params){
+  addMemberVisitor(params) {
     return http({
       url: '/api/access/v1/user/member/visitors/add',
       method: 'POST',
@@ -463,7 +469,7 @@ const request = {
     })
   },
   //更新房源访问次数
-  updateVisitCount(params){
+  updateVisitCount(params) {
     return http({
       url: '/api/access/v1/house/visits/count',
       method: 'POST',
@@ -471,18 +477,18 @@ const request = {
     })
   },
   //添加历史浏览
-  addBrowseHistory(params){
+  addBrowseHistory(params) {
     return http({
       url: '/api/access/v1/user/member/browsing/history/add',
       method: 'POST',
-      params:params
+      params: params
     })
   },
-  posterTemplate({}){
+  posterTemplate({}) {
     return http({
       url: '/api/access/v1/poster/template/list',
       method: 'GET',
-      params:{}
+      params: {}
     })
   }
 };
