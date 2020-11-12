@@ -27,13 +27,16 @@ Page({
         logo:'',
         qrCodePath:'',
         bgImg: '',
-        articlesId:''
+        articlesId:'',
+        showLoading: true
     },
     onLoad: function (options) {
         const info = wx.getStorageSync('info');
         this.setData({
-            userId: info.userId,
-            agentId: info.agentId
+            userId: info.id||'',
+            agentId: info.agentId,
+            nickName: info.nickname,
+            storeName: info.storeName||''
         });
         getImageInfo(info.headImgUri).then(res=>{
             console.log(res)
@@ -63,10 +66,10 @@ Page({
         const {articleId} = options;
         this.setData({
             articlesId:articleId
-        })
-        this.getNewsDetail(articleId);
+        });
     },
     getNewsDetail(id){
+        const that = this;
         http({
             url: api.personalHome.newsDetail(id),
             method: 'GET',
@@ -77,13 +80,16 @@ Page({
                 name: res.name,
                 newsDesc: res.newsDesc
             })
+        }).then(()=>{
+            that.drawCode(this.data.agentId,this.data.userId);
         }).catch(err=>{
             console.log(err);
         })
     },
     getImage(e){
         this.setData({
-            imgPath: e.detail.tempFilePath
+            imgPath: e.detail.tempFilePath,
+            showLoading: false
         });
         console.log(e)
     },
@@ -112,7 +118,7 @@ Page({
                                 this.setData({
                                     qrCodePath: res.tempFilePath
                                 },()=>{
-                                    that.eventDraw(that.data.bgImg,that.data.avatar,that.data.logo,res.tempFilePath,that.data.name,that.data.newsDesc);
+                                    that.eventDraw(that.data.bgImg,that.data.avatar,that.data.logo,res.tempFilePath,that.data.name,that.data.newsDesc,that.data.nickName,that.data.storeName);
                                 })
                             },
                             fail: (err) => {
@@ -128,7 +134,7 @@ Page({
             }
         });
     },
-    eventDraw(bgImg,avatar,logo,qrCodePath,name,newsDesc){
+    eventDraw(bgImg,avatar,logo,qrCodePath,name,newsDesc,nickName,storeName){
         this.setData({
             painting:{
                 width: 750,
@@ -150,6 +156,25 @@ Page({
                         left: 32,
                         width: 100,
                         height: 100
+                    },
+                    {
+                        type: 'text',
+                        content: nickName,
+                        fontSize: 36,
+                        color:'#333333',
+                        textAlign: 'left',
+                        top: 198,
+                        left: 156,
+                        bolder: true
+                    },
+                    {
+                        type: 'text',
+                        content: storeName,
+                        fontSize: 28,
+                        color:'#666666',
+                        textAlign: 'left',
+                        top: 256,
+                        left: 156
                     },
                     {
                         type: 'image',
@@ -225,6 +250,6 @@ Page({
         })
     },
     onShow() {
-        this.drawCode(this.data.agentId,this.data.userId);
+        this.getNewsDetail(this.data.articlesId);
     }
 });
