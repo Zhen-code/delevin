@@ -1,7 +1,11 @@
 <view>
     <navbar bgColor="{{bgColor}}" title="{{title}}" pageHome="{{pageHome}}" backHome="{{backHome}}"/>
-    <view style="padding-top:{{paddingTop}}px">
-        <image src="{{imgPath}}" class="newsCode"></image>
+    <view style="padding-top:{{paddingTop}}px;position:relative">
+        <image src="{{imgPath}}" show-menu-by-longpress="true" class="newsCode"></image>
+        <view class="save-img">长按图片保存</view>
+    </view>
+    <view class="loading" wx:if="{{showLoading}}">
+    <image src="../../../assets/image/loading.gif" class="loading-img"></image>
     </view>
     <canvasdrawer painting="{{painting}}" bind:getImage="getImage"></canvasdrawer>
     <canvas canvas-id="myQrcode" style="width:220rpx;height:220rpx" class="qrCode"></canvas>

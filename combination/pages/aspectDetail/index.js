@@ -2,6 +2,7 @@
 const topHeight = require('../../../request/topHeight.js').topHeight;
 const {api} = require('../../../request/api');
 const {http} = require('../../../request/http');
+const {request} = require('../../../request/request');
 import Toast from "../../../miniprogram_npm/vant-weapp/toast/toast";
 Page({
 
@@ -87,40 +88,80 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     if (options.q) {
       let qrUrl = decodeURIComponent(options.q);
+      console.log(qrUrl)
       let splitArray = qrUrl.split('?');
       let paramsArray = splitArray[1].split('&');
       let agentId = (paramsArray[0].split('='))[1];
       let userId = (paramsArray[1].split('='))[1];
       let hideBack = (paramsArray[2].split('='))[1];
       let articlesId = (paramsArray[3].split('='))[1];
+      if( agentId!==''|| agentId!==null || agentId!==undefined){
+        this.setData({
+          state: true
+        })
+      }else{
+        this.setData({
+          state: false
+        })
+      }
+      let params = {
+        agentId:agentId
+      };
+      let res = request.getAgentInfo(params).then(res=>{
+        console.log(res)
+        this.setData({
+          info:res
+        });
+        console.log(669)
+      }).catch(err=>{
+        console.log(err)
+      });
+
+      if(hideBack === 'false'){
+        this.setData({
+          pageHome: false,
+          backHome: true
+        });
+      }else{
+        this.setData({
+          pageHome: true,
+          backHome: false
+        })
+      }
       this.setData({
         agentId: agentId,
-        userId: userId
+        userId: userId,
+        id: articlesId,
       });
-    }
-    console.log(options)
-    let {id,hideBack} = options;
-    if(hideBack === 'false'){
-      this.setData({
-        pageHome: false,
-        backHome: true
-      });
+      this.targetId = articlesId;
+      this.id = articlesId;
+      this.addHistoryRecod(articlesId);
+      this.getNewsDetail(articlesId);
     }else{
+      let {id,hideBack} = options;
+      if(hideBack === 'false'){
+        this.setData({
+          pageHome: false,
+          backHome: true
+        });
+      }else{
+        this.setData({
+          pageHome: true,
+          backHome: false
+        })
+      }
       this.setData({
-        pageHome: true,
-        backHome: false
-      })
+        id: id,
+        back: false
+      });
+      this.targetId = id;
+      this.id = id;
+      this.addHistoryRecod(id);
+      this.getNewsDetail(id);
     }
-    this.setData({
-      id: id,
-      back: false
-    });
-    this.targetId = id;
-    this.id = id;
-    this.addHistoryRecod(id);
-    this.getNewsDetail(id);
   },
   onPageScroll(options) {
     console.log(options)

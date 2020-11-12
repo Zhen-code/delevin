@@ -490,6 +490,12 @@ const request = {
       method: 'GET',
       params: {}
     })
+  },
+  getAgentInfo(params){
+    return http({
+      url: `/api/access/v1/member/agent/details/${params.agentId}`,
+      method: 'GET'
+    })
   }
 };
 

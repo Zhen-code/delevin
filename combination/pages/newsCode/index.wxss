@@ -7,3 +7,20 @@
     left: 0;
     bottom: -600px;
 }
+.save-img{
+    position: absolute;
+    bottom: 20rpx;
+    left: 300rpx;
+    font-size: 12px;
+}
+.loading{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+}
+.loading-img{
+    width: 30px;
+    height: 30px;
+}
