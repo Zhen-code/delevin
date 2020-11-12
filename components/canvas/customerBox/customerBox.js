@@ -15,7 +15,7 @@ Component({
       type: Boolean,
       value: false,
       observer(newVal, oldVal) {
-        newVal && this.drawPic()
+        // newVal && this.drawPic()
       }
     },
     item: {
@@ -67,45 +67,6 @@ Component({
   },
 
   methods: {
-    drawCode(agentId,userId){
-      const that = this;
-      let qrCodeCtx =  wx.createCanvasContext('myQrcode');
-      drawQrcode({
-        width: 220,
-        height: 220,
-        canvasId: 'myQrcode',
-        ctx: qrCodeCtx,
-        text: `https://dev.delevin.beiru168.com/aspectDetail?agentId=${agentId}&userId=${userId}&hideBack=true&articleId=${that.data.articlesId}`,
-        callback: (e)=>{
-          console.log(e)
-          console.log('二维码')
-          if(e['errMsg'].includes('ok')){
-            console.log('二维码绘制完成');
-            setTimeout(()=>{
-              wx.canvasToTempFilePath({
-                canvasId: 'myQrcode',
-                quality: 1,
-                success: (res) => {
-                  console.log(res)
-                  this.setData({
-                    qrCodePath: res.tempFilePath
-                  },()=>{
-
-                  })
-                },
-                fail: (err) => {
-                  console.log(err)
-                }
-              })
-            },1000)
-          }else{
-            wx.showToast({
-              title: '二维码生成失败，请重新再试!'
-            })
-          }
-        }
-      });
-    },
     handlePhotoSaved() {
       this.savePhoto(this.data.sharePath)
     },
