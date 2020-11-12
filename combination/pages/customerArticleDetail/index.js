@@ -65,7 +65,16 @@ Page({
     } else {
       console.log('暂无用户id')
     }
-
+  },
+  getAgentInfo(params){
+    request.getAgentInfo(params).then(res=>{
+      this.setData({
+        state: true,
+        info: res
+      })
+    }).catch(err=>{
+      console.log(err)
+    });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -77,36 +86,45 @@ Page({
       let qrUrl = decodeURIComponent(options.q);
       console.log(qrUrl)
       let splitArray = qrUrl.split('?');
-      console.log(splitArray)
       let paramsArray = splitArray[1].split('&');
       id = (paramsArray[0].split('='))[1];
       userId = (paramsArray[1].split('='))[1];
       agentId = (paramsArray[2].split('='))[1];
-      hideBack = (paramsArray[3].split('='))[1];
+      hideBack = Boolean((paramsArray[3].split('='))[1]);
       const params = {
         agentId:agentId
       };
-      request.getAgentInfo(params).then(res=>{
-        this.setData({
-          state: true,
-          info: res
-        })
-      }).catch(err=>{
-        console.log(err)
-      })
-    }else {
+      this.getAgentInfo(params);
+      let homePage = {
+            url:`/combination/pages/customerArticleDetail/index?id=${id}&userId=${userId}&agentId=${agentId}&hideBack=${hideBack}`,
+            name:"customerArticleDetail"
+      };
+      wx.setStorageSync('homePage', homePage)
+    }else if(options.agentId!==undefined) {
       id = options.id;
       userId = options.userId;
-      hideBack = options.hideBack;
+      agentId = options.agentId;
+      hideBack = Boolean(options.hideBack);
+      const params = {
+        agentId:agentId
+      };
+      this.getAgentInfo(params);
+    }else if(options.agentId===undefined&&options.userId !==undefined){
+      id = options.id;
+      userId = options.userId;
+      hideBack = Boolean(options.hideBack);
+    }else if(options.userId === undefined||!options.userId){
+      id = options.id;
+      hideBack = false;
     }
-    if (hideBack === 'true') {
+    if (hideBack) {
       this.setData({
         backHome: false,
         pageHome: true,
         id: id,
         userId: userId || ''
       });
-    } else {
+    }else {
       this.setData({
         backHome: true,
         pageHome: false,

@@ -61,9 +61,9 @@ Page({
   getToLogin(type, rese, res, numberData) {
     let data = {};
     let homePage = '';
+    console.warn(wx.getStorageSync('homePage'));
     if (wx.getStorageSync('homePage')) {
       homePage = wx.getStorageSync('homePage')
-      console.log(homePage)
     }
     if (type) {
       console.log(res.userInfo, 1111)
@@ -94,14 +94,13 @@ Page({
         title: '登录成功',
         icon: 'none',
         duration: 2500
-      })
+      });
       if (homePage.name === 'homepage') {
         wx.reLaunch({
           url: `/combination/pages/homepage/index?agentId=${homePage.agentId}`,
-        })
+        });
         wx.removeStorageSync('homePage')
-      }
-      else if (homePage.name === 'customerArticleDetail') {
+      }else if (homePage.name === 'customerArticleDetail') {
         console.log(homePage.url)
         wx.reLaunch({
           url: homePage.url,
@@ -110,8 +109,15 @@ Page({
             wx.removeStorageSync('homePage')
           }
         })
-      }
-      else {
+      }else if(homePage.name === 'aspectDetail'){
+        wx.reLaunch({
+          url: homePage.url,
+          success:()=>{
+            console.log("清除缓存")
+            wx.removeStorageSync('homePage')
+          }
+        })
+      }else {
         app.globalData.state = true
         wx.reLaunch({
           url: "/pages/mine/index"

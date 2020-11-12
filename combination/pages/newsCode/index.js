@@ -34,8 +34,8 @@ Page({
     onLoad: function (options) {
         const info = wx.getStorageSync('info');
         this.setData({
-            userId: info.id||'',
-            agentId: info.agentId,
+            userId: info.id,
+            agentId: info.agentId||'',
             nickName: info.nickname,
             storeName: info.storeName||''
         });

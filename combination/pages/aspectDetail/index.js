@@ -89,79 +89,91 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    console.log(options.agentId)
+    const that = this;
+    let agentId = '';
+    let userId = '';
+    let hideBack = false;
+    let articlesId = '';
     if (options.q) {
       let qrUrl = decodeURIComponent(options.q);
       console.log(qrUrl)
       let splitArray = qrUrl.split('?');
       let paramsArray = splitArray[1].split('&');
-      let agentId = (paramsArray[0].split('='))[1];
-      let userId = (paramsArray[1].split('='))[1];
-      let hideBack = (paramsArray[2].split('='))[1];
-      let articlesId = (paramsArray[3].split('='))[1];
-      if( agentId!==''|| agentId!==null || agentId!==undefined){
-        this.setData({
-          state: true
-        })
+      agentId = (paramsArray[0].split('='))[1];
+      userId = (paramsArray[1].split('='))[1];
+      hideBack = Boolean((paramsArray[2].split('='))[1]);
+      articlesId = (paramsArray[3].split('='))[1];
+      if(agentId!==''){
+        let params = {
+          agentId:agentId
+        };
+        that.getAgentInfo(params);
       }else{
         this.setData({
           state: false
         })
       }
-      let params = {
-        agentId:agentId
+      let homePage = {
+        url:`/combination/pages/aspectDetail/index?agentId=${agentId}&userId=${userId}&hideBack=true&articleId=${articlesId}`,
+        name:"aspectDetail"
       };
-      let res = request.getAgentInfo(params).then(res=>{
-        console.log(res)
-        this.setData({
-          info:res
-        });
-        console.log(669)
-      }).catch(err=>{
-        console.log(err)
-      });
-
-      if(hideBack === 'false'){
-        this.setData({
-          pageHome: false,
-          backHome: true
-        });
+      wx.setStorageSync('homePage', homePage)
+    }else if(options.agentId !==undefined&&options.agentId){
+      if(options.agentId!==''){
+          agentId = options.agentId;
+          let params = {
+            agentId:options.agentId
+          };
+          that.getAgentInfo(params);
       }else{
+        agentId = '';
         this.setData({
-          pageHome: true,
-          backHome: false
+          state: false
         })
       }
+      articlesId = options.articleId;
+      hideBack = Boolean(options.hideBack);
+      userId = options.userId;
+    }else if((options.id&&options.id!==undefined)&&(options.hideBack&&options.hideBack!==undefined)){
+      let {id,hideBack} = options;
+      articlesId = id;
+      hideBack = Boolean(hideBack);
+      userId = '';
+      agentId = '';
+    }
+    if(hideBack){
       this.setData({
+        pageHome: true,
+        backHome: false,
+        agentId: agentId,
+        userId: userId,
+        id: articlesId
+      });
+    }else{
+      this.setData({
+        pageHome: false,
+        backHome: true,
         agentId: agentId,
         userId: userId,
         id: articlesId,
-      });
-      this.targetId = articlesId;
-      this.id = articlesId;
-      this.addHistoryRecod(articlesId);
-      this.getNewsDetail(articlesId);
-    }else{
-      let {id,hideBack} = options;
-      if(hideBack === 'false'){
-        this.setData({
-          pageHome: false,
-          backHome: true
-        });
-      }else{
-        this.setData({
-          pageHome: true,
-          backHome: false
-        })
-      }
-      this.setData({
-        id: id,
-        back: false
-      });
-      this.targetId = id;
-      this.id = id;
-      this.addHistoryRecod(id);
-      this.getNewsDetail(id);
+      })
     }
+    this.targetId = articlesId;
+    this.id = articlesId;
+    this.addHistoryRecod(articlesId);
+    this.getNewsDetail(articlesId);
+  },
+  getAgentInfo(params){
+    request.getAgentInfo(params).then(res=>{
+      console.log(res)
+      this.setData({
+        info:res,
+        state: true
+      });
+    }).catch(err=>{
+      console.log(err)
+    });
   },
   onPageScroll(options) {
     console.log(options)
