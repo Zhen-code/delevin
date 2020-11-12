@@ -14,7 +14,7 @@ Component({
       type: Boolean,
       value: false,
       observer(newVal, oldVal) {
-        newVal && this.drawPic()
+        // newVal && this.drawPic()
       }
     },
     item: {
@@ -36,24 +36,12 @@ Component({
     visible: false,
     data: '',
   },
-  lifetimes: {
-    attached: function () {
-      // 在组件实例进入页面节点树时执行
-      console.log(this.data)
-      this.setData({
-        data: this.data.item
-      })
-      this.drawPic()
-    },
-    detached: function () {
-      // 在组件实例被从页面节点树移除时执行
-    },
-  },
-  observers:{
-    "obj":function(val){
-      this.drawPic()
-    }
-  },
+
+  // observers:{
+  //   "obj":function(val){
+  //     this.drawPic()
+  //   }
+  // },
 
   methods: {
     handlePhotoSaved() {
