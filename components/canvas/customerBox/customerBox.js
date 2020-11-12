@@ -1,12 +1,13 @@
+
 Component({
   properties: {
-    id:{
-      type:Number,
-      value:"",
+    obj: {
+      type: Object,
+      require: true,
     },
-    type:{
-      type:String,
-      value:"news"
+    type: {
+      type: String,
+      value: "news"
     },
     //属性值可以在组件使用时指定
     isCanDraw: {
@@ -35,6 +36,25 @@ Component({
     visible: false,
     data: '',
   },
+  lifetimes: {
+    attached: function () {
+      // 在组件实例进入页面节点树时执行
+      console.log(this.data)
+      this.setData({
+        data: this.data.item
+      })
+      this.drawPic()
+    },
+    detached: function () {
+      // 在组件实例被从页面节点树移除时执行
+    },
+  },
+  observers:{
+    "obj":function(val){
+      this.drawPic()
+    }
+  },
+
   methods: {
     handlePhotoSaved() {
       this.savePhoto(this.data.sharePath)
@@ -45,7 +65,13 @@ Component({
       })
     },
     drawPic() {
+      console.log(2)
       let data = this.data.data;
+      wx.showLoading({
+        title: '生成中'
+      })
+
+
       let info = wx.getStorageSync('info')
       if (!!wx.getStorageSync('info').agentId) {
         info.realName = info.nickname
@@ -59,15 +85,23 @@ Component({
         this.triggerEvent('initData')
         return
       }
-      wx.showLoading({
-        title: '生成中'
-      })
+
       this.setData({
         imgDraw: {
           width: '750rpx',
           height: '1700rpx',
           background: '/combination/image/bg_house@2x.png',
           views: [
+            {
+              type: "image",
+              url: "/assets/icon_logo_w92 (1).png",
+              css: {
+                right: "44rpx",
+                top: "250rpx",
+                height: "46rpx",
+                width: "184rpx",
+              }
+            },
             {
               type: "image",
               url: info.headImgUri,
@@ -135,7 +169,7 @@ Component({
             },
             {
               type: "text",
-              text: "知识城全新盘！TOD地铁上盖仅1字头，全广州盯紧了！",
+              text: this.data.obj.title,
               css: {
                 top: '526rpx',
                 fontSize: "48rpx",
@@ -152,7 +186,7 @@ Component({
             },
             {
               type: "text",
-              text: "作为楼市主角，时代印象踏准了时机，一出场就要掀起楼市高潮。9月9日，黄埔区、从化区官方发布，由国企科学城集团操盘，打造黄埔—从化产业共建合作区。 南部太平片区作为知识城“扩容”区域从化产业共建合作的南部太平片区作为知识…",
+              text: this.data.obj.desc,
               css: {
                 top: '676rpx',
                 fontSize: "32rpx",
@@ -230,6 +264,7 @@ Component({
               text: "识别小程序码查看更多房源资讯",
               css: {
                 top: '1324rpx',
+                // top:"rpx",
                 left: "180rpx",
                 // right:"0rpx",
                 // left: '180rpx',
