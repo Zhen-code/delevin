@@ -62,10 +62,11 @@ Page({
     let data = {};
     let homePage = '';
     if (wx.getStorageSync('homePage')) {
-      homePage = JSON.parse(wx.getStorageSync('homePage'))
+      homePage = wx.getStorageSync('homePage')
+      console.log(homePage)
     }
-    if(type){
-      console.log(res.userInfo,1111)
+    if (type) {
+      console.log(res.userInfo, 1111)
       data = {
         "encryptedData": numberData.encryptedData,
         "headImgUri": res.userInfo.avatarUrl,
@@ -74,8 +75,8 @@ Page({
         "openId": rese.openId,
         "sessionKey": rese.sessionKey,
       }
-    }else{
-      console.log(res.userInfo,1111)
+    } else {
+      console.log(res.userInfo, 1111)
       data = {
         "encryptedData": numberData.encryptedData,
         "headImgUri": "",
@@ -99,7 +100,18 @@ Page({
           url: `/combination/pages/homepage/index?agentId=${homePage.agentId}`,
         })
         wx.removeStorageSync('homePage')
-      } else {
+      }
+      else if (homePage.name === 'customerArticleDetail') {
+        console.log(homePage.url)
+        wx.reLaunch({
+          url: homePage.url,
+          success:function(){
+            console.log("清除缓存")
+            wx.removeStorageSync('homePage')
+          }
+        })
+      }
+      else {
         app.globalData.state = true
         wx.reLaunch({
           url: "/pages/mine/index"

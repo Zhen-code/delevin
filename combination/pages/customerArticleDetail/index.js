@@ -75,15 +75,16 @@ Page({
     let id, userId, hideBack;
     if (options.q) {
       let qrUrl = decodeURIComponent(options.q);
-      console.log(qrUrl)
       let splitArray = qrUrl.split('?');
-      console.log(splitArray)
       let paramsArray = splitArray[1].split('&');
       id = (paramsArray[0].split('='))[1];
       userId = (paramsArray[1].split('='))[1];
       hideBack = (paramsArray[2].split('='))[1];
-  
-      console.log("我是id:"+ id)
+      let homePage = {
+        url:`/combination/pages/customerArticleDetail/index?id=${id}&userId=${userId}&hideBack=${hideBack}`,
+        name:"customerArticleDetail"
+      }
+      wx.setStorageSync('homePage', homePage)
     }
     else {
       id = options.id
