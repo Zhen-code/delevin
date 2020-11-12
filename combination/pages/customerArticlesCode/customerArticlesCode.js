@@ -11,7 +11,8 @@ Page({
       title:"",
       desc:""
     },
-    id:0
+    id:0,
+    code: ''
   },
 
   creatCode() {
@@ -35,12 +36,13 @@ Page({
     //动态生成二维码
     let that = this;
     let item = wx.getStorageSync('info');
-    let articleId = this.data.id
+    let articleId = this.data.id;
     let userId = wx.getStorageSync('userId');
-    let shareUrl = `https://dev.delevin.beiru168.com/customerArticleDetail?id=${articleId}&userId=${userId}&hideBack=true`;
+    let agentId = wx.getStorageSync('agentId');
+    let shareUrl = `https://dev.delevin.beiru168.com/customerArticleDetail?id=${articleId}&userId=${userId}&agentId=${agentId}&hideBack=true`;
     drawQrcode({
-      width: 200,
-      height: 200,
+      width: 188,
+      height: 188,
       canvasId: 'myQrcode',
       text: shareUrl,
       callback(e) {
@@ -53,6 +55,8 @@ Page({
               width: 200,
               height: 200,
               success(e) {
+                console.log('二维码')
+                console.log(e)
                 item.tempFilePath = e.tempFilePath
                 that.setData({
                   item: item,

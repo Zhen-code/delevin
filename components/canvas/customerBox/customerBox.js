@@ -1,4 +1,5 @@
-
+import drawQrcode from '../../../miniprogram_npm/weapp-qrcode/index';
+const topHeight = require('../../../request/topHeight.js').topHeight;
 Component({
   properties: {
     obj: {
@@ -35,9 +36,19 @@ Component({
     sharePath: '', //生成的分享图
     visible: false,
     data: '',
+    bgColor:{
+      "color": true,
+      "border": true
+    },
+    title: '二维码分享',
+    pageHome: false,
+    backHome: true,
+    paddingTop:topHeight,
+    qrCodePath:''
   },
   lifetimes: {
     attached: function () {
+      this.drawCode(1,2);
       // 在组件实例进入页面节点树时执行
       console.log(this.data)
       this.setData({
@@ -56,6 +67,45 @@ Component({
   },
 
   methods: {
+    drawCode(agentId,userId){
+      const that = this;
+      let qrCodeCtx =  wx.createCanvasContext('myQrcode');
+      drawQrcode({
+        width: 220,
+        height: 220,
+        canvasId: 'myQrcode',
+        ctx: qrCodeCtx,
+        text: `https://dev.delevin.beiru168.com/aspectDetail?agentId=${agentId}&userId=${userId}&hideBack=true&articleId=${that.data.articlesId}`,
+        callback: (e)=>{
+          console.log(e)
+          console.log('二维码')
+          if(e['errMsg'].includes('ok')){
+            console.log('二维码绘制完成');
+            setTimeout(()=>{
+              wx.canvasToTempFilePath({
+                canvasId: 'myQrcode',
+                quality: 1,
+                success: (res) => {
+                  console.log(res)
+                  this.setData({
+                    qrCodePath: res.tempFilePath
+                  },()=>{
+
+                  })
+                },
+                fail: (err) => {
+                  console.log(err)
+                }
+              })
+            },1000)
+          }else{
+            wx.showToast({
+              title: '二维码生成失败，请重新再试!'
+            })
+          }
+        }
+      });
+    },
     handlePhotoSaved() {
       this.savePhoto(this.data.sharePath)
     },
@@ -65,8 +115,10 @@ Component({
       })
     },
     drawPic() {
+      const that = this;
       console.log(2)
       let data = this.data.data;
+      console.log(data)
       wx.showLoading({
         title: '生成中'
       })
@@ -89,15 +141,15 @@ Component({
       this.setData({
         imgDraw: {
           width: '750rpx',
-          height: '1700rpx',
-          background: '/combination/image/bg_house@2x.png',
+          height: '1334rpx',
+          background: '/combination/image/bg_share_h667@2x.png',
           views: [
             {
               type: "image",
-              url: "/assets/icon_logo_w92 (1).png",
+              url: "/combination/image/icon_logo_w@2x.png",
               css: {
-                right: "44rpx",
-                top: "250rpx",
+                left: "522rpx",
+                top: "86rpx",
                 height: "46rpx",
                 width: "184rpx",
               }
@@ -107,61 +159,38 @@ Component({
               url: info.headImgUri,
               css: {
                 left: "32rpx",
-                top: "350rpx",
+                top: "196rpx",
                 height: "100rpx",
                 width: "100rpx",
                 borderRadius: '50rpx'
-
               }
             },
-
             {
               id: "my-text-id",
               type: "text",
               text: info.realName,
               css: {
-                top: '350rpx',
+                top: '198rpx',
                 left: '156rpx',
-                height: '50rpx',
                 fontWeight: "bold",
                 fontSize: "36rpx"
               },
-
             },
-            // {
-            //   type: "text",
-            //   text: info.storeName,
-            //   css: {
-            //     // left: ['156rpx', 'my-text-id',1],
-            //     top: '354rpx',
-            //     left: '220rpx',
-            //     height: '50rpx',
-            //     fontSize:"28rpx"
-            //   },
-
-            // },
             {
               type: "text",
-              text: info.storeName + "向你推荐",
+              text: info.storeName+'向你推荐',
               css: {
-                top: '410rpx',
+                top: '256rpx',
                 left: '156rpx',
-                // height: '50rpx',
-                color: "#666666",
-                fontSize: "28rpx",
-                lineHeight: "0rpx"
-
+                fontSize:"28rpx"
               },
-
             },
             {
               type: 'rect',
-              // content:"",
               css: {
-                top: '490rpx',
-                background: "rgba(255, 255, 255, 1)",
+                top: '336rpx',
                 left: '32rpx',
-                // right: '0rpx',
+                background: "rgba(255, 255, 255, 1)",
                 width: '686rpx',
                 height: '532rpx',
                 borderRadius: '16rpx'
@@ -171,109 +200,104 @@ Component({
               type: "text",
               text: this.data.obj.title,
               css: {
-                top: '526rpx',
+                top: '372rpx',
+                left: '72rpx',
                 fontSize: "48rpx",
                 fontWeight: "bold",
                 maxLines: "2",
-
-                left: '72rpx',
-                // right: '0rpx',
                 width: '606rpx',
                 lineHeight: "60rpx"
-                // height: '532rpx',
-                // borderRadius: '16rpx'
               },
             },
             {
               type: "text",
               text: this.data.obj.desc,
               css: {
-                top: '676rpx',
+                top: '528rpx',
+                left: '72rpx',
                 fontSize: "32rpx",
-                // fontWeight: "bold",
                 maxLines: "5",
                 color: "#666666",
-                left: '72rpx',
-                // right: '0rpx',
                 width: '606rpx',
                 lineHeight: "60rpx"
-                // height: '532rpx',
-                // borderRadius: '16rpx'
               },
             },
             // {
-            //   type: 'text',
-            //   text: data.realName,
+            //   type: "image",
+            //   url: '/combination/image/white-bg.png',
             //   css: {
-            //     top: '420rpx',
-            //     left: '125rpx',
-            //     align: 'left',
-            //     fontSize: '32rpx',
-            //     color: '#333333',
-            //     fontWeight: 'bold',
-            //   }
-            // },
-            // {
-            //   type: 'image',
-            //   url: '/combination/image/icon_phonecall_30@2x.png',
-            //   css: {
-            //     top: '480rpx',
-            //     left: '125rpx',
-            //     width: '40rpx',
-            //     height: '40rpx'
-            //   }
-            // },
-            // {
-            //   type: 'text',
-            //   text: data.phone,
-            //   css: {
-            //     top: '480rpx',
-            //     left: '180rpx',
-            //     align: 'left',
-            //     fontSize: '30rpx',
-            //     color: '#333333'
-            //   }
-            // },
-            // {
-            //   type: 'text',
-            //   text: data.synopsis || '请将我推荐给有需要的人',
-            //   css: {
-            //     width: '500rpx',
-            //     height: '100rpx',
-            //     top: '560rpx',
-            //     left: '125rpx',
-            //     maxLines: 2,
-            //     align: 'left',
-            //     fontSize: '28rpx',
-            //     color: '#999999'
+            //     left: "264rpx",
+            //     top: "930rpx",
+            //     height: "250rpx",
+            //     width: "250rpx"
             //   }
             // },
             {
               type: 'image',
-              url: data.tempFilePath,
+              url: that.data.qrCodePath,
               css: {
-                top: '1080rpx',
-                left: '264rpx',
-                width: '220rpx',
-                height: '220rpx',
+                top: '946rpx',
+                left: '280rpx',
+                width: '240rpx',
+                height: '234rpx',
               }
             },
             {
               type: 'text',
-              // url: data.tempFilePath,
               text: "识别小程序码查看更多房源资讯",
               css: {
-                top: '1324rpx',
-                // top:"rpx",
+                top: '1190rpx',
                 left: "180rpx",
-                // right:"0rpx",
-                // left: '180rpx',
-                width: '400rpx',
-                height: '220rpx',
                 fontSize: "28rpx"
-                // align:"center"
               }
             },
+            // {
+            //   type: 'rect',
+            //   // content:"",
+            //   css: {
+            //     top: '490rpx',
+            //     background: "rgba(255, 255, 255, 1)",
+            //     left: '32rpx',
+            //     // right: '0rpx',
+            //     width: '686rpx',
+            //     height: '532rpx',
+            //     borderRadius: '16rpx'
+            //   },
+            // },
+
+            // // {
+            // //   type: 'text',
+            // //   text: data.realName,
+            // //   css: {
+            // //     top: '420rpx',
+            // //     left: '125rpx',
+            // //     align: 'left',
+            // //     fontSize: '32rpx',
+            // //     color: '#333333',
+            // //     fontWeight: 'bold',
+            // //   }
+            // // },
+            // // {
+            // //   type: 'image',
+            // //   url: '/combination/image/icon_phonecall_30@2x.png',
+            // //   css: {
+            // //     top: '480rpx',
+            // //     left: '125rpx',
+            // //     width: '40rpx',
+            // //     height: '40rpx'
+            // //   }
+            // // },
+            // // {
+            // //   type: 'text',
+            // //   text: data.phone,
+            // //   css: {
+            // //     top: '480rpx',
+            // //     left: '180rpx',
+            // //     align: 'left',
+            // //     fontSize: '30rpx',
+            // //     color: '#333333'
+            // //   }
+            // // },
           ]
         }
       })

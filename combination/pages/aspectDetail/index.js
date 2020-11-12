@@ -201,7 +201,7 @@ Page({
   },
   goImg(){
     wx.navigateTo({
-      url: `../newsCode/index?articleId=${this.data.id}`
+      url: `../newsCode/index?articleId=${this.data.id}&type=news`
     })
   },
   /**

@@ -51,12 +51,6 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
@@ -192,6 +186,12 @@
           "name": "combination/pages/customerArticlesCode/customerArticlesCode",
           "pathName": "combination/pages/customerArticlesCode/customerArticlesCode",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "文章二维码",
+          "pathName": "combination/pages/customerArticlesCode/customerArticlesCode",
+          "query": "id=32",
           "scene": null
         }
       ]

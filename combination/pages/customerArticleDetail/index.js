@@ -18,7 +18,7 @@ Page({
     time: '',
     nodes: '',
     id: '',
-    safeBottom: 0,
+    safeBottom: 24,
     userId: '',
     backHome: true,
     pageHome: false,
@@ -28,7 +28,7 @@ Page({
   timeFlag: 1,
   goCode() {
     wx.navigateTo({
-      url: `/combination/pages/customerArticlesCode/customerArticlesCode?id=${this.data.id}`,
+      url: `../newsCode/index?articleId=${this.data.id}&type=customer`,
     })
   },
 
@@ -72,7 +72,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    let id, userId, hideBack;
+    let id, userId, agentId,hideBack;
     if (options.q) {
       let qrUrl = decodeURIComponent(options.q);
       console.log(qrUrl)
@@ -81,41 +81,40 @@ Page({
       let paramsArray = splitArray[1].split('&');
       id = (paramsArray[0].split('='))[1];
       userId = (paramsArray[1].split('='))[1];
-      hideBack = (paramsArray[2].split('='))[1];
-  
-      console.log("我是id:"+ id)
-    }
-    else {
-      id = options.id
-      userId = options.userId
-      hideBack = options.hideBack
-    }
-    if (hideBack) {
-      let info = wx.getStorageSync('info')
-      this.setData({
-        state: true,
-        info: info
+      agentId = (paramsArray[2].split('='))[1];
+      hideBack = (paramsArray[3].split('='))[1];
+      const params = {
+        agentId:agentId
+      };
+      request.getAgentInfo(params).then(res=>{
+        this.setData({
+          state: true,
+          info: res
+        })
+      }).catch(err=>{
+        console.log(err)
       })
+    }else {
+      id = options.id;
+      userId = options.userId;
+      hideBack = options.hideBack;
     }
-    console.log(userId)
-    console.log('经纪人id')
     if (hideBack === 'true') {
       this.setData({
         backHome: false,
-        pageHome: true
+        pageHome: true,
+        id: id,
+        userId: userId || ''
       });
     } else {
       this.setData({
         backHome: true,
-        pageHome: false
+        pageHome: false,
+        id: id,
+        userId: userId || ''
       })
     }
-    this.setData({
-      id: id,
-      userId: userId || ''
-    });
     this.getNewsDetail(id);
-
   },
 
   /**

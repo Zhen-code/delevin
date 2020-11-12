@@ -28,7 +28,8 @@ Page({
         qrCodePath:'',
         bgImg: '',
         articlesId:'',
-        showLoading: true
+        showLoading: true,
+        type:''
     },
     onLoad: function (options) {
         const info = wx.getStorageSync('info');
@@ -63,9 +64,10 @@ Page({
             console.log(err)
         })
         console.log(options);
-        const {articleId} = options;
+        const {articleId,type} = options;
         this.setData({
-            articlesId:articleId
+            articlesId:articleId,
+            type: type
         });
     },
     getNewsDetail(id){
@@ -86,6 +88,24 @@ Page({
             console.log(err);
         })
     },
+    getCustomerDetail(id) {
+        const that = this;
+        http({
+            url: api.personalHome.customerArticleDetail(id),
+            method: 'GET',
+            params: {}
+        }).then(res => {
+            console.log(res)
+            that.setData({
+                name: res.name,
+                newsDesc: res.newsDesc
+            })
+        }).then(()=>{
+            that.drawCode(this.data.agentId,this.data.userId);
+        }).catch(err => {
+            console.log(err);
+        })
+    },
     getImage(e){
         this.setData({
             imgPath: e.detail.tempFilePath,
@@ -98,12 +118,18 @@ Page({
         const screenWidth = systemInfo.screenWidth;
         const that = this;
         let qrCodeCtx =  wx.createCanvasContext('myQrcode');
+        let text = '';
+        if(this.data.type === 'news'){
+            text = `https://dev.delevin.beiru168.com/aspectDetail?agentId=${agentId}&userId=${userId}&hideBack=true&articleId=${that.data.articlesId}`;
+        }else if(this.data.type === 'customer'){
+            text = `https://dev.delevin.beiru168.com/customerArticleDetail?id=${that.data.articlesId}&userId=${userId}&agentId=${agentId}&hideBack=true`
+        }
         drawQrcode({
             width: to2Px(screenWidth,220),
             height: to2Px(screenWidth,220),
             canvasId: 'myQrcode',
             ctx: qrCodeCtx,
-            text: `https://dev.delevin.beiru168.com/aspectDetail?agentId=${agentId}&userId=${userId}&hideBack=true&articleId=${that.data.articlesId}`,
+            text: text,
             callback: (e)=>{
                 console.log(e)
                 console.log('二维码')
@@ -169,7 +195,7 @@ Page({
                     },
                     {
                         type: 'text',
-                        content: storeName,
+                        content: storeName+'向你推荐',
                         fontSize: 28,
                         color:'#666666',
                         textAlign: 'left',
@@ -250,6 +276,11 @@ Page({
         })
     },
     onShow() {
-        this.getNewsDetail(this.data.articlesId);
+        console.log(this.data.articlesId)
+        if(this.data.type === 'news'){
+            this.getNewsDetail(this.data.articlesId);
+        }else if(this.data.type === 'customer'){
+            this.getCustomerDetail(this.data.articlesId);
+        }
     }
 });
